@@ -1,4 +1,4 @@
-# exekyute-daily
+# exekyute-daily-builds
 
 A running collection of the small projects I build. Two kinds live here: portfolio toolkits, where I turn a real job description into working software, and daily projects, the smaller things I make to learn something or just to tinker.
 
@@ -43,7 +43,9 @@ Smaller builds, made to learn something or for fun.
 | [Crossword Generator](daily-projects/crossword-generator) | Single-file browser crossword generator, no build step. |
 | [Canadian FinLit Tools](daily-projects/finlit-tools-ca) | Seven browser calculators for Canadian benefit and tax rules. |
 | [Insertion Order Renamer](daily-projects/insertion-order-renamer) | Command-line tool that normalizes messy IO file names. |
+| [InvoiceParsimus](daily-projects/invoice-parsimus) | Browser-based invoice parser and financial dashboard powered by Gemini. |
 | [Knicks vs Spurs Matchup Projector](daily-projects/knicks-spurs-matchup-projector) | Single web page that projects the next Knicks vs Spurs game. |
+| [Steam Global Achievements Downloader](daily-projects/steam-achievements-scraper) | Firefox userscript that downloads every achievement's name, icon, and description from a Steam game page. |
 | [Table for One](daily-projects/table-for-one) | A concept food blog written from the eating side of the table. |
 
 ## License

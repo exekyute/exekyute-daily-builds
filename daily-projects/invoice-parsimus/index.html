@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InvoiceParsimus — Invoice Intelligence</title>
+
+<!-- Tailwind CSS: I use this as my design system. It gives me thousands of
+     pre-built utility classes (like "text-sm" or "bg-zinc-900") so I don't
+     have to write a separate stylesheet for every little thing. -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Inter is my main UI font. JetBrains Mono is the monospace font I use for
+     numbers and codes so digits line up neatly in columns (tabular numerals). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- PDF.js: lets me open a PDF file in the browser and render each page to a
+     canvas element so Tesseract can read the pixels. Without this I couldn't
+     handle PDFs at all, only images. The worker script is what actually does
+     the heavy lifting in a background thread so the page stays responsive. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+</script>
+
+<!-- Tesseract.js: OCR (Optical Character Recognition) that runs entirely inside
+     the browser. It looks at the canvas pixels and converts them to a string of
+     text. It also returns a confidence score (0-100) telling me how sure it is. -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+<!-- Chart.js: the charting library that draws both the Spend Timeline line chart
+     and the Vendor Distribution pie chart. -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Datalabels plugin: an add-on for Chart.js that lets me draw labels directly
+     on the pie chart slices (vendor name + percentage) so they're always visible
+     without the user needing to hover. -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+<style>
+  /* Tell the browser this is a dark-mode-first app so it applies dark defaults
+     to form controls and scrollbars without me having to override everything manually. */
+  :root { color-scheme: dark; }
+
+  /* Set Inter as the default font for everything. JetBrains Mono is pulled in
+     via the .font-mono and .tabular utility classes I apply to numbers/codes. */
+  html, body { font-family: 'Inter', system-ui, sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* tabular-nums makes every digit take the same width so dollar amounts
+     stay aligned in columns even as the numbers change. */
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  /* The subtle grid pattern I use as the page background texture. It's a pair
+     of very faint crossing lines repeating every 36px. The mask-image fades it
+     out toward the bottom so it doesn't compete with the content. */
+  .bg-grid {
+    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: radial-gradient(ellipse at top, rgba(0,0,0,0.9), transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at top, rgba(0,0,0,0.9), transparent 70%);
+  }
+
+  /* The green dot in the header that pulses to show OCR is loaded.
+     50% through the animation it shrinks slightly and fades, then returns. */
+  @keyframes pulse-dot { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: .35; transform: scale(.85);} }
+  .pulse-dot { animation: pulse-dot 2.2s ease-in-out infinite; }
+
+  /* Custom scrollbar styling so the dark-themed scrollbars match the UI.
+     The ::-webkit- prefix targets Chrome/Safari/Edge (most browsers). */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.16); }
+
+  /* Stat cards get a tiny upward lift on hover to make them feel interactive
+     even though they're just display elements. */
+  .card { transition: transform .25s ease, border-color .25s ease, background .25s ease; }
+  .card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.12); }
+
+  /* The faint diagonal stripe pattern inside the dropzone. It gives the zone
+     a textured look that makes it obvious it's a special drag target. */
+  .dropzone-stripes {
+    background-image: repeating-linear-gradient(45deg, rgba(139,92,246,0.04) 0, rgba(139,92,246,0.04) 10px, transparent 10px, transparent 20px);
+  }
+
+  /* Spinning loader animation used while OCR and Gemini are running. */
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+  .spinner { animation: spin 1s linear infinite; }
+
+  /* The totals row sticks to the bottom of the visible scroll area so the
+     running sums are always in view even when the table is tall. The
+     backdrop-filter gives it a frosted-glass blur so rows scrolling behind
+     it don't bleed through. */
+  tfoot.totals-row td {
+    position: sticky;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.95);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-top: 2px solid rgba(255,255,255,0.15);
+  }
+
+  /* Filter inputs live in the second header row, one per column.
+     They share the same dark background and border style as the rest of the UI. */
+  .col-filter {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 11px;
+    color: #e4e4e7;
+    outline: none;
+  }
+  .col-filter:focus { border-color: rgba(139,92,246,0.5); background: rgba(255,255,255,0.06); }
+  .col-filter::placeholder { color: rgba(255,255,255,0.25); }
+
+  /* The little ▾ caret next to each sortable column header.
+     It's dim by default, brighter on hover, and violet + fully opaque when
+     that column is the active sort key. */
+  .sort-caret { opacity: 0.35; transition: opacity .15s ease; }
+  th.sortable:hover .sort-caret { opacity: 0.7; }
+  th.sortable.active .sort-caret { opacity: 1; color: #a78bfa; }
+
+  /* The 1M / 3M / 6M / YTD / 1Y / All pills above the Spend Timeline chart.
+     The active one gets the violet gradient fill; inactive ones are subtle outlines. */
+  .range-pill {
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #a1a1aa;
+    transition: all .15s ease;
+    cursor: pointer;
+  }
+  .range-pill:hover { background: rgba(255,255,255,0.08); color: #e4e4e7; }
+  .range-pill.active {
+    background: linear-gradient(to bottom right, #8b5cf6, #6366f1);
+    border-color: rgba(139,92,246,0.5);
+    color: white;
+  }
+
+  /* Pure-CSS tooltip system. Any element with class "hint" wraps its content
+     plus a hidden .hint-bubble. The bubble becomes visible on hover via the
+     :hover selector -- no JavaScript needed. I use this for N/A cells so the
+     user can hover to see "Review manually" without me adding event listeners. */
+  .hint { position: relative; display: inline-flex; align-items: center; gap: 4px; }
+  .hint .hint-bubble {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #18181b;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #e4e4e7;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    z-index: 30;
+    transition: opacity .15s ease;
+    pointer-events: none;
+  }
+  .hint:hover .hint-bubble { visibility: visible; opacity: 1; }
+
+  /* Custom range slider styling for the Confidence Threshold setting.
+     Browsers each have their own default slider look, so I override both
+     the track (the bar) and the thumb (the draggable circle) to match
+     the violet/dark theme. -webkit- targets Chrome/Safari, -moz- targets Firefox. */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, #8b5cf6, #6366f1);
+    border: 2px solid #0f172a;
+    cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, #8b5cf6, #6366f1);
+    border: 2px solid #0f172a;
+    cursor: pointer;
+  }
+
+  /* The modal uses 'hidden' for the off state. When shown I swap in 'flex'. */
+  #settings-modal.is-open { display: flex; }
+</style>
+</head>
+<body class="bg-slate-950 text-zinc-100 antialiased min-h-screen relative overflow-x-hidden">
+
+<!-- Background decoration layer. Fixed to the viewport so it never scrolls.
+     pointer-events-none means clicks pass straight through it to the content.
+     The three blurred circles are what create the soft violet/sky/fuchsia
+     ambient glow behind everything. The bg-grid div overlays the dot grid. -->
+<div class="fixed inset-0 pointer-events-none -z-10">
+  <div class="absolute -top-40 -left-32 w-[34rem] h-[34rem] rounded-full bg-violet-600/15 blur-3xl"></div>
+  <div class="absolute top-1/3 -right-32 w-[30rem] h-[30rem] rounded-full bg-sky-600/10 blur-3xl"></div>
+  <div class="absolute bottom-0 left-1/3 w-[28rem] h-[28rem] rounded-full bg-fuchsia-600/10 blur-3xl"></div>
+  <div class="absolute inset-0 bg-grid"></div>
+</div>
+
+<!-- Sticky header bar. stays pinned to the top of the viewport as you scroll.
+     backdrop-blur-xl gives it the frosted-glass effect so the page content
+     blurs behind it rather than showing through hard edges. -->
+<header class="sticky top-0 z-40 border-b border-white/5 bg-slate-950/70 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-indigo-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-violet-500/30">
+        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6h13"/><path d="M3 12h9"/><path d="M3 18h5"/>
+          <path d="M16 4l4 4-4 4"/><path d="M20 14l-4 4 4 4"/>
+        </svg>
+      </div>
+      <div class="leading-tight">
+        <h1 class="font-semibold tracking-tight text-[15px]">InvoiceParsimus</h1>
+        <p class="text-[11px] text-zinc-500">Invoice Intelligence · v3.0</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <!-- "OCR ACTIVE" status badge. Just a visual indicator that Tesseract.js
+           has loaded and is ready to process files. The pulsing dot uses the
+           .pulse-dot animation defined in the CSS above. Hidden on small screens
+           (hidden sm:flex) to keep the header clean on mobile. -->
+      <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+        <span class="relative flex w-1.5 h-1.5"><span class="absolute inset-0 rounded-full bg-emerald-400 pulse-dot"></span></span>
+        <span class="text-[11px] font-medium tracking-wide text-emerald-300">OCR ACTIVE</span>
+      </div>
+      <!-- Gear button opens the Settings modal. The little green dot lights up when an API key is loaded in memory. -->
+      <button id="btn-settings" aria-label="Open settings" class="relative w-9 h-9 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-zinc-300 hover:text-white transition flex items-center justify-center">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span id="settings-key-indicator" class="hidden absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 border border-slate-950"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Settings modal. Hidden by default. Shows when I add the is-open class. -->
+<div id="settings-modal" class="hidden fixed inset-0 z-50 items-center justify-center px-4">
+  <div id="settings-backdrop" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+  <div class="relative w-full max-w-md rounded-2xl bg-zinc-900 border border-white/10 shadow-2xl shadow-violet-500/10 p-6">
+    <div class="flex items-start justify-between mb-5">
+      <div>
+        <h3 class="text-lg font-semibold text-zinc-100">Settings</h3>
+        <p class="text-xs text-zinc-500 mt-0.5">Configure your Gemini integration and PO format.</p>
+      </div>
+      <button id="btn-settings-close" aria-label="Close settings" class="text-zinc-500 hover:text-zinc-300">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="space-y-5">
+      <!-- API key field. type=password hides the key, autocomplete=off keeps browsers from offering to save it. -->
+      <div>
+        <label class="text-xs uppercase tracking-wider text-zinc-400 flex items-center">Gemini API Key
+          <span class="ml-2 text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 normal-case tracking-normal">session only</span>
+        </label>
+        <input id="settings-api-key" type="password" autocomplete="off" placeholder="AIza..." class="mt-1.5 w-full px-3 py-2 text-sm rounded-lg bg-white/[0.04] border border-white/10 text-zinc-100 focus:border-violet-400/50 focus:outline-none font-mono" />
+        <p class="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">
+          Kept only in this tab's memory. Cleared the moment you refresh, close the tab, or click Reset Session.
+          Never written to disk. Never sent anywhere except directly to Google's Gemini API.
+        </p>
+      </div>
+
+      <!-- Expected PO digit length. Session-only, same as the API key. -->
+      <div>
+        <label class="text-xs uppercase tracking-wider text-zinc-400 flex items-center">Expected PO Digits
+          <span class="ml-2 text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 normal-case tracking-normal">session only</span>
+        </label>
+        <input id="settings-po-length" type="number" min="1" max="30" class="mt-1.5 w-full px-3 py-2 text-sm rounded-lg bg-white/[0.04] border border-white/10 text-zinc-100 focus:border-violet-400/50 focus:outline-none font-mono" />
+        <p class="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">
+          Gemini will only return a PO number when it matches this exact length. Mismatches show N/A with the manual-review hint. Resets to 8 on refresh or Reset Session.
+        </p>
+      </div>
+
+      <!-- Confidence threshold slider. Session-only, same as the API key. -->
+      <div>
+        <label class="text-xs uppercase tracking-wider text-zinc-400 flex items-center">OCR Confidence Threshold
+          <span class="ml-2 text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 normal-case tracking-normal">session only</span>
+        </label>
+        <div class="flex items-center gap-3 mt-1.5">
+          <input id="settings-confidence" type="range" min="0" max="100" class="flex-1" />
+          <span id="settings-confidence-value" class="font-mono text-sm text-zinc-200 w-12 text-right">75%</span>
+        </div>
+        <p class="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">
+          If Tesseract's confidence is above this number, OCR text is sent to Gemini. If below, the original image is sent to Gemini Vision instead. Resets to 75% on refresh or Reset Session.
+        </p>
+      </div>
+    </div>
+    <div class="flex justify-end gap-2 mt-6">
+      <button id="btn-settings-cancel" class="px-4 py-2 text-sm rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-zinc-200">Cancel</button>
+      <button id="btn-settings-save" class="px-4 py-2 text-sm font-medium rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 hover:from-violet-400 hover:to-indigo-500 text-white">Save &amp; Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Main content area. max-w-7xl caps the width on very wide screens and
+     mx-auto centres it. space-y-8 adds vertical breathing room between
+     each section without me having to add margin classes individually. -->
+<main class="max-w-7xl mx-auto px-6 py-10 space-y-8">
+  <section class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+      <p class="text-xs uppercase tracking-[0.18em] text-zinc-500 mb-2">Overview</p>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Invoice Intelligence</h2>
+      <p class="text-sm text-zinc-400 mt-1.5">Local OCR plus Gemini parse your invoices into a sortable ledger.<br class="hidden sm:block"> Your data never leaves the browser.</p>
+    </div>
+    <div class="grid grid-cols-2 gap-2">
+      <button id="btn-export-csv" class="px-3 py-2 text-sm rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-zinc-200 transition flex items-center gap-2">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export CSV
+      </button>
+      <!-- Mock: Clean sits at grid position (row 1, col 2) so it stacks above Mock: Messy. -->
+      <button id="btn-mock-data-clean" title="Insert 6 fully-parsed sample invoices for testing" class="px-3 py-2 text-sm font-medium rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 hover:from-violet-400 hover:to-indigo-500 text-white transition shadow-lg shadow-violet-500/25 flex items-center gap-2">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Mock: Clean
+      </button>
+      <!-- Reset Session sits at grid position (row 2, col 1) under Export CSV. -->
+      <button id="btn-reset-session" title="Clear all invoices, filters, sort, mock warnings, and the in-memory API key. Equivalent to a page refresh." class="px-3 py-2 text-sm rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-200 transition flex items-center gap-2">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        Reset Session
+      </button>
+      <!-- Mock: Messy sits at grid position (row 2, col 2) directly below Mock: Clean. -->
+      <button id="btn-mock-data-messy" title="Insert 4 sample invoices with missing or invalid fields to demo how errors look" class="px-3 py-2 text-sm font-medium rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white transition shadow-lg shadow-amber-500/25 flex items-center gap-2">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Mock: Messy
+      </button>
+    </div>
+  </section>
+
+  <!-- Stat cards: four summary numbers at the top (Total Invoiced, Total Tax,
+       Processed count, Unique Vendors). The grid collapses from 4 columns
+       on large screens down to 2 on medium and 1 on mobile.
+       Each card's number is updated by updateStatCards() every time the
+       table filters change, so the numbers always match what you're looking at. -->
+  <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div class="card relative overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900/90 to-zinc-900/40 border border-white/5 p-4">
+      <div class="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-violet-500/10 blur-2xl"></div>
+      <div class="relative">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-violet-500/15 border border-violet-500/20 flex items-center justify-center text-violet-300"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+            <span class="text-xs uppercase tracking-wider text-zinc-500">Total Invoiced</span>
+          </div>
+          <span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-white/5 text-zinc-400">CAD</span>
+        </div>
+        <div class="font-mono tabular text-2xl font-semibold text-white" id="dash-total">$0.00</div>
+      </div>
+    </div>
+    <div class="card relative overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900/90 to-zinc-900/40 border border-white/5 p-4">
+      <div class="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-rose-500/10 blur-2xl"></div>
+      <div class="relative">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-rose-500/15 border border-rose-500/20 flex items-center justify-center text-rose-300"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg></div>
+            <span class="text-xs uppercase tracking-wider text-zinc-500">Total Tax</span>
+          </div>
+          <span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-300">GST/HST</span>
+        </div>
+        <div class="font-mono tabular text-2xl font-semibold text-white" id="dash-tax">$0.00</div>
+      </div>
+    </div>
+    <div class="card relative overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900/90 to-zinc-900/40 border border-white/5 p-4">
+      <div class="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-emerald-500/10 blur-2xl"></div>
+      <div class="relative">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-300"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></div>
+            <span class="text-xs uppercase tracking-wider text-zinc-500">Processed</span>
+          </div>
+          <span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300">ALL</span>
+        </div>
+        <div class="font-mono tabular text-2xl font-semibold text-white" id="dash-count">0</div>
+      </div>
+    </div>
+    <div class="card relative overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900/90 to-zinc-900/40 border border-white/5 p-4">
+      <div class="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-sky-500/10 blur-2xl"></div>
+      <div class="relative">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg bg-sky-500/15 border border-sky-500/20 flex items-center justify-center text-sky-300"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+            <span class="text-xs uppercase tracking-wider text-zinc-500">Vendors</span>
+          </div>
+          <span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-white/5 text-zinc-400">UNIQUE</span>
+        </div>
+        <div class="font-mono tabular text-2xl font-semibold text-white" id="dash-vendors">0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- "How does this work?" collapsible card (NEW in v3.0).
+       Closed by default. A friendly first-look walkthrough for new visitors. -->
+  <details class="rounded-2xl bg-zinc-900/40 border border-white/5 px-5 py-3 group">
+    <summary class="cursor-pointer list-none flex items-center justify-between text-sm text-zinc-200">
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-violet-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span class="font-medium">How does this work?</span>
+      </span>
+      <span class="text-[10px] uppercase tracking-wider text-violet-300/60 group-open:hidden">click to expand</span>
+      <span class="text-[10px] uppercase tracking-wider text-violet-300/60 hidden group-open:inline">click to collapse</span>
+    </summary>
+    <div class="mt-3 grid sm:grid-cols-2 gap-3 text-xs text-zinc-400 leading-relaxed">
+      <div>
+        <p class="font-semibold text-zinc-200 mb-1">1. Drop an invoice</p>
+        <p>Drag a PDF, PNG, or JPG into the box below. Files never leave your browser except for the optional Gemini call you opt into.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-zinc-200 mb-1">2. Tesseract reads it</p>
+        <p>A local OCR engine pulls text out of the page and reports how confident it is in what it read.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-zinc-200 mb-1">3. Gemini interprets it</p>
+        <p>If OCR confidence is high, Gemini reads the text. If confidence is low, Gemini sees the original image instead. Either path returns clean structured fields.</p>
+      </div>
+      <div>
+        <p class="font-semibold text-zinc-200 mb-1">4. Sort, filter, export</p>
+        <p>Parsed invoices populate the table below. Sort by any column, filter live, watch the totals and charts update, then click Export CSV when you are done.</p>
+      </div>
+      <div class="sm:col-span-2 pt-2 border-t border-white/5">
+        <p class="font-semibold text-amber-200 mb-1">Privacy</p>
+        <p>Your Gemini API key is held only in memory for this tab. Refresh the page or click Reset Session and it is wiped. The key is never written to disk and is sent only to Google's Gemini API.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- Dropzone. Three possible inner states: idle, loading, error.
+       I toggle one of #dropzone-content / #dropzone-loading / #dropzone-error visible at a time. -->
+  <section>
+    <div id="dropzone" class="relative rounded-2xl border-2 border-dashed border-white/10 hover:border-violet-400/40 bg-zinc-900/30 dropzone-stripes transition-all group cursor-pointer overflow-hidden">
+      <div class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent"></div>
+
+      <div id="dropzone-content" class="flex flex-col items-center text-center px-6 py-9">
+        <div class="relative w-14 h-14 mb-3">
+          <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet-500/20 to-indigo-500/10 border border-white/5 group-hover:from-violet-500/30 group-hover:to-indigo-500/20 transition"></div>
+          <div class="absolute inset-0 flex items-center justify-center text-violet-300 group-hover:scale-105 transition">
+            <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+        </div>
+        <h3 class="text-base font-semibold text-zinc-100">Drop PDF Invoices here</h3>
+        <p class="text-xs text-zinc-500 mt-1 max-w-sm">Tesseract reads locally. Gemini interprets the result via your session API key.</p>
+      </div>
+
+      <!-- Loading state. setLoadingStatus() updates #dropzone-loading-status as each pipeline stage runs. -->
+      <div id="dropzone-loading" class="hidden flex-col items-center text-center px-6 py-9">
+        <svg class="spinner w-10 h-10 text-violet-500 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+        <h3 class="text-base font-semibold text-zinc-100" id="dropzone-loading-title">Processing...</h3>
+        <p class="text-xs text-zinc-500 mt-1" id="dropzone-loading-status">Reading document...</p>
+      </div>
+
+      <!-- Error state. Shown when no API key is set, or when Gemini call fails. -->
+      <div id="dropzone-error" class="hidden flex-col items-center text-center px-6 py-9">
+        <svg class="w-10 h-10 text-amber-400 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <h3 class="text-base font-semibold text-amber-200" id="dropzone-error-title">Configure your Gemini API key</h3>
+        <p class="text-xs text-amber-100/70 mt-1 max-w-sm" id="dropzone-error-status">Open Settings (gear icon, top right) to paste your key. It is kept only in memory for this session.</p>
+        <button id="dropzone-error-open-settings" class="mt-3 px-3 py-1.5 text-xs rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-100">Open Settings</button>
+      </div>
+
+      <input type="file" id="file-input" class="hidden" accept="application/pdf, image/png, image/jpeg" multiple />
+    </div>
+  </section>
+
+  <!-- Mock data warning banner. Hidden until either Mock button is clicked. -->
+  <details id="mock-warning" class="hidden rounded-2xl bg-amber-500/10 border border-amber-500/30 px-5 py-4" open>
+    <summary class="cursor-pointer list-none flex items-start gap-3">
+      <svg class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div class="flex-1">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-semibold text-amber-200 text-sm">Mock data loaded (for testing only)</span>
+          <span class="text-[10px] uppercase tracking-wider text-amber-300/60">click to expand</span>
+        </div>
+        <p class="text-xs text-amber-100/70 mt-1">
+          The table below contains <strong>sample invoices</strong>, not data from your documents.
+          Each click of a mock button adds more rows on top of whatever is already there.
+          Click <strong>Reset Session</strong> (or refresh the page) before processing real invoices so the mock totals do not mix with your actual data.
+        </p>
+      </div>
+    </summary>
+    <div class="mt-3 pl-8 text-xs text-amber-100/60 space-y-1.5 border-t border-amber-500/20 pt-3">
+      <p><strong class="text-amber-200">Mock: Clean</strong> adds 6 fully-parsed sample rows (random subtotals between $30 and $250, flat 14% tax). Use this to test sorting, filtering, charts, and CSV export.</p>
+      <p><strong class="text-amber-200">Mock: Messy</strong> adds 4 deliberately broken sample rows that demonstrate how the table renders missing or invalid fields. Includes a wrong-length PO, an unreadable vendor, an illegible date, and a fully blank invoice. Use this to preview the N/A pills and the "Review manually" hint tooltip.</p>
+      <p><strong class="text-amber-200">Reset Session</strong> wipes all invoices, filters, sort, and all in-memory settings (API key, PO digit length, confidence threshold). Equivalent to a browser refresh. Nothing is ever saved to disk, so there is nothing to "undo."</p>
+    </div>
+  </details>
+
+  <!-- Parsed invoices table. The <thead> has two rows: the first row holds the
+       clickable sort headers (each has a data-sort-key attribute my JS reads),
+       and the second row holds the per-column filter inputs.
+       The <tbody> is empty here -- renderUI() fills it with rows at runtime.
+       The <tfoot> holds the sticky totals row. -->
+  <section class="rounded-2xl bg-zinc-900/50 border border-white/5 overflow-hidden">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-5 py-4 border-b border-white/5">
+      <h3 class="font-semibold text-zinc-100">Parsed Invoices</h3>
+      <button id="btn-clear-filters" class="px-3 py-1.5 text-xs rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-zinc-300 transition flex items-center gap-2 self-start sm:self-auto">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M6 12h12M10 18h4"/></svg>
+        Clear Sort/Filter
+      </button>
+    </div>
+    <div class="overflow-x-auto max-h-[600px] overflow-y-auto">
+      <table class="w-full text-sm">
+        <thead class="sticky top-0 z-10 bg-zinc-900/95 backdrop-blur">
+          <tr class="text-[11px] uppercase tracking-wider text-zinc-500 bg-white/[0.015]">
+            <th class="px-5 py-3 text-left font-medium sortable cursor-pointer select-none" data-sort-key="rawDate">Date <span class="sort-caret">▾</span></th>
+            <th class="px-5 py-3 text-left font-medium sortable cursor-pointer select-none" data-sort-key="vendor">Vendor <span class="sort-caret">▾</span></th>
+            <th class="px-5 py-3 text-left font-medium sortable cursor-pointer select-none" data-sort-key="poNumber">PO # <span class="sort-caret">▾</span></th>
+            <th class="px-5 py-3 text-left font-medium sortable cursor-pointer select-none" data-sort-key="invoiceNumber">Invoice # <span class="sort-caret">▾</span></th>
+            <th class="px-5 py-3 text-left font-medium sortable cursor-pointer select-none" data-sort-key="description">Description <span class="sort-caret">▾</span></th>
+            <th class="px-5 py-3 text-right font-medium sortable cursor-pointer select-none" data-sort-key="subtotal">Subtotal <span class="sort-caret">▾</span></th>
+            <th class="px-5 py-3 text-right font-medium sortable cursor-pointer select-none" data-sort-key="tax">Tax <span class="sort-caret">▾</span></th>
+            <th class="px-5 py-3 text-right font-medium sortable cursor-pointer select-none" data-sort-key="total">Total <span class="sort-caret">▾</span></th>
+          </tr>
+          <tr class="bg-zinc-900/60">
+            <th class="px-3 pb-2 pt-1"><input type="text" data-filter-key="displayDate" class="col-filter" placeholder="e.g. 2026 or -05-"></th>
+            <th class="px-3 pb-2 pt-1"><input type="text" data-filter-key="vendor" class="col-filter" placeholder="vendor"></th>
+            <th class="px-3 pb-2 pt-1"><input type="text" data-filter-key="poNumber" class="col-filter" placeholder="PO #"></th>
+            <th class="px-3 pb-2 pt-1"><input type="text" data-filter-key="invoiceNumber" class="col-filter" placeholder="Invoice #"></th>
+            <th class="px-3 pb-2 pt-1"><input type="text" data-filter-key="description" class="col-filter" placeholder="description"></th>
+            <th class="px-3 pb-2 pt-1"><input type="text" data-filter-key="subtotal" class="col-filter text-right" placeholder="e.g. 24"></th>
+            <th class="px-3 pb-2 pt-1"><input type="text" data-filter-key="tax" class="col-filter text-right" placeholder="e.g. 3.1"></th>
+            <th class="px-3 pb-2 pt-1"><input type="text" data-filter-key="total" class="col-filter text-right" placeholder="e.g. 24"></th>
+          </tr>
+        </thead>
+        <tbody id="invoice-table-body"></tbody>
+        <tfoot class="totals-row">
+          <tr id="totals-row" class="text-sm">
+            <td class="px-5 py-3.5"></td>
+            <td class="px-5 py-3.5"></td>
+            <td class="px-5 py-3.5"></td>
+            <td class="px-5 py-3.5"></td>
+            <td class="px-5 py-3.5"></td>
+            <td class="px-5 py-3.5 text-right font-mono tabular font-bold text-white" id="totals-subtotal">$0.00</td>
+            <td class="px-5 py-3.5 text-right font-mono tabular font-bold text-white" id="totals-tax">$0.00</td>
+            <td class="px-5 py-3.5 text-right font-mono tabular font-bold text-white text-base" id="totals-total">$0.00</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- Charts section. Two cards side by side on large screens, stacked on mobile.
+       Each chart's <canvas> element is empty here. initCharts() creates the
+       Chart.js instances and updateCharts() populates them with data at render time. -->
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-10">
+    <div class="card rounded-2xl bg-zinc-900/50 border border-white/5 p-5">
+      <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+        <h4 class="text-sm font-semibold text-zinc-200">Spend Timeline</h4>
+        <div id="range-toggle" class="flex items-center gap-1">
+          <button class="range-pill" data-range="1m">1M</button>
+          <button class="range-pill" data-range="3m">3M</button>
+          <button class="range-pill" data-range="6m">6M</button>
+          <button class="range-pill" data-range="ytd">YTD</button>
+          <button class="range-pill" data-range="1y">1Y</button>
+          <button class="range-pill active" data-range="all">All</button>
+        </div>
+      </div>
+      <div class="relative h-64 w-full"><canvas id="spendChart"></canvas></div>
+    </div>
+    <div class="card rounded-2xl bg-zinc-900/50 border border-white/5 p-5">
+      <h4 class="text-sm font-semibold text-zinc-200 mb-3">Vendor Distribution</h4>
+      <div class="relative h-72 w-full"><canvas id="vendorChart"></canvas></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  /* ============================================================
+     APP STATE
+     The single source of truth. The table, totals row, charts,
+     stat cards, and settings modal all read from here.
+     ============================================================ */
+  const appState = {
+    invoices: [],            // The canonical list of parsed invoices. Never mutated by sort/filter.
+    mockDataLoaded: false,   // Flips to true the first time either Mock button is clicked.
+    timelineRange: 'all',    // Active range pill for the line chart: 1m/3m/6m/ytd/1y/all
+    /* config: all three settings are IN-MEMORY ONLY (session-only).
+       None of them are ever written to localStorage, cookies, or disk.
+       Refreshing the page or clicking Reset Session wipes all three back to defaults.
+       - apiKey: Gemini API key.
+       - expectedPoLength: how many characters a valid PO number must be (default 8).
+       - confidenceThreshold: 0-100 cutoff. Above = send OCR text to Gemini, below = send image (default 75). */
+    config: {
+      apiKey: '',
+      expectedPoLength: 8,
+      confidenceThreshold: 75
+    }
+  };
+
+  /* tableState holds the current sort + per-column filters. Identical to v2.2. */
+  const tableState = {
+    sort: { key: null, dir: null },
+    filters: {}
+  };
+
+  // Register the datalabels plugin globally so the pie chart picks it up.
+  if (window.ChartDataLabels) Chart.register(window.ChartDataLabels);
+
+  /* ============================================================
+     NO LOCALSTORAGE
+     All three settings (API key, PO digit length, confidence threshold)
+     are session-only. Nothing is written to localStorage. The app has
+     zero persistent state -- every fresh page load starts from the
+     defaults defined in appState.config above.
+     ============================================================ */
+
+  /* ============================================================
+     DOM HANDLES
+     Pulled out once at script load so I don't re-query every render.
+     ============================================================ */
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('file-input');
+  const dropzoneContent = document.getElementById('dropzone-content');
+  const dropzoneLoading = document.getElementById('dropzone-loading');
+  const dropzoneError = document.getElementById('dropzone-error');
+  const dropzoneLoadingStatus = document.getElementById('dropzone-loading-status');
+  const dropzoneErrorStatus = document.getElementById('dropzone-error-status');
+  const dropzoneErrorTitle = document.getElementById('dropzone-error-title');
+  const tableBody = document.getElementById('invoice-table-body');
+  const mockWarning = document.getElementById('mock-warning');
+  const settingsModal = document.getElementById('settings-modal');
+  const settingsKeyIndicator = document.getElementById('settings-key-indicator');
+
+  let spendChartInstance, vendorChartInstance;
+
+  /* ============================================================
+     DROPZONE STATE HELPERS
+     Three mutually-exclusive states: idle, loading, error.
+     ============================================================ */
+  function showDropzoneIdle() {
+      dropzoneContent.classList.remove('hidden');
+      dropzoneContent.classList.add('flex');
+      dropzoneLoading.classList.add('hidden');
+      dropzoneLoading.classList.remove('flex');
+      dropzoneError.classList.add('hidden');
+      dropzoneError.classList.remove('flex');
+  }
+  function showDropzoneLoading() {
+      dropzoneContent.classList.add('hidden');
+      dropzoneContent.classList.remove('flex');
+      dropzoneError.classList.add('hidden');
+      dropzoneError.classList.remove('flex');
+      dropzoneLoading.classList.remove('hidden');
+      dropzoneLoading.classList.add('flex');
+  }
+  function showDropzoneError(title, message) {
+      dropzoneContent.classList.add('hidden');
+      dropzoneContent.classList.remove('flex');
+      dropzoneLoading.classList.add('hidden');
+      dropzoneLoading.classList.remove('flex');
+      dropzoneError.classList.remove('hidden');
+      dropzoneError.classList.add('flex');
+      if (title) dropzoneErrorTitle.textContent = title;
+      if (message) dropzoneErrorStatus.textContent = message;
+  }
+  function setLoadingStatus(msg) {
+      dropzoneLoadingStatus.textContent = msg;
+  }
+
+  /* ensureApiKey: gatekeeper called at the start of any OCR work.
+     Returns true if a key is loaded. Otherwise shows the error state and returns false. */
+  function ensureApiKey() {
+      if (!appState.config.apiKey || appState.config.apiKey.trim() === '') {
+          showDropzoneError(
+              'Configure your Gemini API key',
+              'Open Settings (gear icon, top right) to paste your key. It is kept only in memory for this session.'
+          );
+          return false;
+      }
+      return true;
+  }
+
+  /* ============================================================
+     DRAG AND DROP WIRING
+     ============================================================ */
+  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('border-violet-400'); });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('border-violet-400'));
+  dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('border-violet-400');
+      if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+  });
+  fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length) handleFiles(e.target.files);
+  });
+
+  /* ============================================================
+     FILE ROUTER
+     Walks the dropped files sequentially. Each file goes through its
+     own scope of OCR -> route -> Gemini -> store. The sequential await
+     pattern guarantees no cross-contamination between invoices.
+     ============================================================ */
+  async function handleFiles(files) {
+      if (!ensureApiKey()) return;
+
+      showDropzoneLoading();
+
+      for (const file of Array.from(files)) {
+          try {
+              if (file.type === 'application/pdf') {
+                  await parsePDFWithOCR(file);
+              } else if (file.type.startsWith('image/')) {
+                  await parseImageWithOCR(file);
+              } else {
+                  console.warn('Skipped unsupported file type:', file.type);
+              }
+          } catch (err) {
+              console.error('File processing failed:', err);
+              setLoadingStatus(`Error processing ${file.name}: ${err.message}. Continuing...`);
+          }
+      }
+
+      showDropzoneIdle();
+  }
+
+  /* ============================================================
+     OCR PIPELINE
+     parsePDFWithOCR + parseImageWithOCR. Each one collects an array
+     of { text, confidence, canvas } page results, then hands off
+     to routeAndStore which decides text vs vision and calls Gemini.
+     ============================================================ */
+  async function parsePDFWithOCR(file) {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument(new Uint8Array(arrayBuffer)).promise;
+      const pageResults = [];
+
+      for (let i = 1; i <= pdf.numPages; i++) {
+          setLoadingStatus(`Running OCR on page ${i}/${pdf.numPages}...`);
+          const page = await pdf.getPage(i);
+          const viewport = page.getViewport({ scale: 2.0 }); // 2x for sharper OCR
+          const canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+          await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+          // data.text = the OCR string. data.confidence = a 0-100 score from Tesseract.
+          const { data } = await Tesseract.recognize(canvas, 'eng');
+          pageResults.push({ text: data.text, confidence: data.confidence, canvas });
+      }
+
+      await routeAndStore(pageResults);
+  }
+
+  async function parseImageWithOCR(file) {
+      setLoadingStatus('Running OCR...');
+      const img = await fileToImage(file);
+      const canvas = imageToCanvas(img);
+      const { data } = await Tesseract.recognize(canvas, 'eng');
+      await routeAndStore([{ text: data.text, confidence: data.confidence, canvas }]);
+  }
+
+  // Helper: load an uploaded image file into an Image element.
+  function fileToImage(file) {
+      return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = URL.createObjectURL(file);
+      });
+  }
+
+  // Helper: draw an Image into a canvas so I can both run OCR on it AND convert it to base64 later if needed.
+  function imageToCanvas(img) {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      canvas.getContext('2d').drawImage(img, 0, 0);
+      return canvas;
+  }
+
+  /* routeAndStore: the gatekeeper.
+     Averages confidence across pages. If above threshold -> text path. Below or equal -> vision path.
+     Either path returns the same parsed JSON shape, which gets pushed into appState.invoices. */
+  async function routeAndStore(pageResults) {
+      const avgConfidence = pageResults.reduce((a, p) => a + p.confidence, 0) / pageResults.length;
+      console.log(`Tesseract avg confidence: ${avgConfidence.toFixed(1)} (threshold ${appState.config.confidenceThreshold})`);
+
+      let parsed, source;
+      try {
+          if (avgConfidence > appState.config.confidenceThreshold) {
+              setLoadingStatus(`High OCR confidence (${avgConfidence.toFixed(0)}%). Routing text to Gemini...`);
+              // Join multi-page text with a visible separator so Gemini can tell page boundaries apart.
+              const fullText = pageResults.map(p => p.text).join('\n\n---PAGE BREAK---\n\n');
+              parsed = await callGeminiText(fullText);
+              source = 'text';
+          } else {
+              setLoadingStatus(`Low OCR confidence (${avgConfidence.toFixed(0)}%). Routing image to Gemini Vision...`);
+              const images = pageResults.map(p => canvasToBase64(p.canvas));
+              parsed = await callGeminiVision(images);
+              source = 'vision';
+          }
+      } catch (err) {
+          console.error('Gemini call failed:', err);
+          showDropzoneError('Gemini request failed', `${err.message}. No row was added. Check your API key and try again.`);
+          // Re-show the idle state after a few seconds so the user can retry.
+          setTimeout(showDropzoneIdle, 5000);
+          return;
+      }
+
+      pushInvoiceFromGemini(parsed, source);
+      renderUI();
+  }
+
+  /* ============================================================
+     GEMINI API CLIENT
+     - GEMINI_MODEL fixed to gemini-2.5-flash for cost/speed.
+     - System instruction enforces PO length and refuses to guess on illegible fields.
+     - responseSchema constrains the JSON shape Gemini returns.
+     ============================================================ */
+  const GEMINI_MODEL = 'gemini-2.5-flash';
+  const GEMINI_ENDPOINT = (key) => `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(key)}`;
+
+  function buildSystemInstruction() {
+      // Note: I build this dynamically so the user's expectedPoLength gets injected each call.
+      return `You are an invoice data extraction system. Read the supplied invoice content and return ONLY the JSON described by the response schema.
+
+RULES:
+- PO Numbers must be exactly ${appState.config.expectedPoLength} characters long. If an alphanumeric string on the invoice does not match this constraint, DO NOT map it to the po_number field. Return null for po_number instead.
+- CRITICAL SAFETY RULE: If any data point (vendor_name, invoice_number, po_number, invoice_date, subtotal, tax, total) is smudged, illegible, partially missing, or visually ambiguous, DO NOT guess, approximate, or extrapolate characters. Return null for that field.
+- invoice_date must be ISO 8601 (YYYY-MM-DD). If only month and year are legible, use the 1st of the month.
+- Numeric fields (subtotal, tax, total) must be plain numbers without currency symbols or thousands separators.`;
+  }
+
+  function buildResponseSchema() {
+      // nullable: true on each property lets Gemini return null when uncertain.
+      return {
+          type: 'OBJECT',
+          properties: {
+              vendor_name:    { type: 'STRING', nullable: true, description: 'Business name issuing the invoice.' },
+              invoice_number: { type: 'STRING', nullable: true, description: 'Unique invoice identifier (Invoice #, Inv No, etc).' },
+              po_number:      { type: 'STRING', nullable: true, description: `Purchase Order number. Must be exactly ${appState.config.expectedPoLength} characters, otherwise return null.` },
+              invoice_date:   { type: 'STRING', nullable: true, description: 'Invoice date in ISO 8601 (YYYY-MM-DD).' },
+              subtotal:       { type: 'NUMBER', nullable: true, description: 'Pre-tax subtotal.' },
+              tax:            { type: 'NUMBER', nullable: true, description: 'Total tax amount (GST/HST/VAT).' },
+              total:          { type: 'NUMBER', nullable: true, description: 'Final amount due including tax.' }
+          },
+          required: ['vendor_name', 'invoice_number', 'po_number', 'invoice_date', 'subtotal', 'tax', 'total']
+      };
+  }
+
+  async function callGeminiText(invoiceText) {
+      return await postGemini({
+          contents: [{ role: 'user', parts: [{ text: `INVOICE OCR TEXT:\n\n${invoiceText}` }] }],
+          systemInstruction: { parts: [{ text: buildSystemInstruction() }] },
+          generationConfig: {
+              responseMimeType: 'application/json',
+              responseSchema: buildResponseSchema(),
+              temperature: 0.1 // Low temperature so extraction is deterministic, not creative.
+          }
+      });
+  }
+
+  async function callGeminiVision(base64Images) {
+      // Each base64 string becomes one inline_data part. Multiple pages = multiple parts in the same request.
+      const imageParts = base64Images.map(b64 => ({ inline_data: { mime_type: 'image/png', data: b64 } }));
+      return await postGemini({
+          contents: [{ role: 'user', parts: [
+              { text: 'Extract invoice fields per the schema. The images below are pages of one invoice.' },
+              ...imageParts
+          ]}],
+          systemInstruction: { parts: [{ text: buildSystemInstruction() }] },
+          generationConfig: {
+              responseMimeType: 'application/json',
+              responseSchema: buildResponseSchema(),
+              temperature: 0.1
+          }
+      });
+  }
+
+  async function postGemini(body) {
+      const res = await fetch(GEMINI_ENDPOINT(appState.config.apiKey), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+      });
+      if (!res.ok) {
+          // Slice the error body so I never accidentally log the full payload (which could include data I sent).
+          const errText = await res.text().catch(() => '');
+          throw new Error(`HTTP ${res.status}: ${errText.slice(0, 200)}`);
+      }
+      const json = await res.json();
+      // Gemini wraps the JSON I asked for inside candidates[0].content.parts[0].text. Parse it again.
+      const text = json?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!text) throw new Error('Gemini returned no JSON payload.');
+      return JSON.parse(text);
+  }
+
+  function canvasToBase64(canvas) {
+      // toDataURL returns "data:image/png;base64,<payload>". The split() strips everything up to and including the comma.
+      return canvas.toDataURL('image/png').split(',')[1];
+  }
+
+  /* pushInvoiceFromGemini: map Gemini's JSON into the existing invoice shape.
+     Crucially, this builds ONE invoice object locally and pushes it. Multiple concurrent files
+     each call this function independently, so their objects can never share fields. */
+  function pushInvoiceFromGemini(parsed, source) {
+      const flags = { vendor: false, poNumber: false, invoiceNumber: false, date: false, subtotal: false, tax: false, total: false };
+
+      const vendor = parsed.vendor_name || null;
+      if (!vendor) flags.vendor = true;
+
+      const invoiceNumber = parsed.invoice_number || null;
+      if (!invoiceNumber) flags.invoiceNumber = true;
+
+      // PO length validation. Even though the system prompt tells Gemini the rule,
+      // I double-check on the client. Belt-and-suspenders for hallucinations.
+      let poNumber = parsed.po_number || null;
+      const expected = appState.config.expectedPoLength;
+      if (!poNumber) {
+          flags.poNumber = true;
+      } else if (poNumber.length !== expected) {
+          // Keep the value visible to the user but flag it. They can see what Gemini found and decide.
+          flags.poNumber = true;
+      }
+
+      // Date handling. Convert Gemini's ISO date to my rawDate (for sorting/charts) + displayDate (DD-MM-YYYY).
+      let rawDate = new Date().toISOString().split('T')[0];
+      let displayDate = 'N/A';
+      if (parsed.invoice_date) {
+          const d = new Date(parsed.invoice_date);
+          if (!isNaN(d)) {
+              rawDate = d.toISOString().split('T')[0];
+              const dd = String(d.getDate()).padStart(2, '0');
+              const mm = String(d.getMonth() + 1).padStart(2, '0');
+              const yyyy = d.getFullYear();
+              displayDate = `${dd}-${mm}-${yyyy}`;
+          } else {
+              flags.date = true;
+          }
+      } else {
+          flags.date = true;
+      }
+
+      // Numeric fields. Null becomes 0 with the flag set so totals math doesn't blow up.
+      const subtotal = typeof parsed.subtotal === 'number' ? parsed.subtotal : 0;
+      const tax      = typeof parsed.tax === 'number'      ? parsed.tax      : 0;
+      const total    = typeof parsed.total === 'number'    ? parsed.total    : 0;
+      if (parsed.subtotal == null) flags.subtotal = true;
+      if (parsed.tax == null)      flags.tax = true;
+      if (parsed.total == null)    flags.total = true;
+
+      const description = vendor
+          ? `Auto-Parsed (${source === 'vision' ? 'Vision' : 'Text'}): ${vendor}`
+          : 'Manual Review Required';
+
+      appState.invoices.push({
+          rawDate, displayDate, vendor, poNumber, invoiceNumber,
+          description, subtotal, tax, total,
+          _flags: flags,
+          _source: source
+      });
+  }
+
+  /* ============================================================
+     SORT + FILTER ENGINE
+     getVisibleInvoices() is the heart of the interactive table.
+     It returns a filtered and sorted VIEW -- a new array of references
+     pointing at the same objects in appState.invoices, never copies.
+     This means PO #, Invoice #, Tax, etc. always belong to their correct
+     invoice no matter how the table is sorted or filtered.
+
+     FILTERING: for each active filter key I check whether the cell text
+     contains the search string as a substring. Dollar amount columns are
+     converted to "XX.XX" strings first so filtering on "24" matches $24.25
+     and $124.50 exactly as the user expects.
+
+     SORTING: numeric fields sort by value, text fields sort alphabetically
+     (case-insensitive). Null values always sink to the bottom regardless of
+     sort direction. If no sort is active, invoices sort by date descending
+     (newest first) as the default view.
+     ============================================================ */
+  function getVisibleInvoices() {
+      let view = appState.invoices.filter(inv => {
+          for (const key of Object.keys(tableState.filters)) {
+              const filterVal = tableState.filters[key];
+              if (filterVal === '' || filterVal == null) continue;
+              const cellText = (key === 'subtotal' || key === 'tax' || key === 'total')
+                  ? (inv[key] ?? 0).toFixed(2)
+                  : (inv[key] ?? 'n/a').toString().toLowerCase();
+              if (!cellText.includes(filterVal.toString().toLowerCase())) return false;
+          }
+          return true;
+      });
+
+      if (tableState.sort.key && tableState.sort.dir) {
+          const { key, dir } = tableState.sort;
+          view.sort((a, b) => {
+              let av = a[key], bv = b[key];
+              if (av == null && bv == null) return 0;
+              if (av == null) return 1;
+              if (bv == null) return -1;
+              if (typeof av === 'number' && typeof bv === 'number') {
+                  return dir === 'asc' ? av - bv : bv - av;
+              }
+              av = av.toString().toLowerCase();
+              bv = bv.toString().toLowerCase();
+              if (av < bv) return dir === 'asc' ? -1 : 1;
+              if (av > bv) return dir === 'asc' ? 1 : -1;
+              return 0;
+          });
+      } else {
+          view.sort((a, b) => new Date(b.rawDate) - new Date(a.rawDate));
+      }
+
+      return view;
+  }
+
+  /* renderCell: returns the HTML string for a single table cell.
+     If the field is flagged (meaning Gemini returned null for it) or the
+     value is genuinely empty, I show the N/A pill with a hover tooltip
+     instead of a blank or a misleading zero. The tooltip text reminds the
+     user to fill it in manually. If the value is fine I just wrap it in a span. */
+  function renderCell(value, flagged, extraClass = '') {
+      if (flagged || value == null || value === '') {
+          return `<span class="hint">
+            <span class="text-zinc-500 italic">N/A</span>
+            <svg class="w-3.5 h-3.5 text-amber-400/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span class="hint-bubble">Review manually. OCR or Gemini could not confirm this field.</span>
+          </span>`;
+      }
+      return `<span class="${extraClass}">${value}</span>`;
+  }
+
+  /* For PO numbers specifically: when the value is present BUT length mismatches expected,
+     show the value plus the warning icon and tooltip rather than just N/A. */
+  function renderPoCell(value, flagged) {
+      if (!value) return renderCell(null, true);
+      if (flagged) {
+          // Value present but length is wrong. Show value + the same hint UX so the user notices.
+          return `<span class="hint">
+            <span class="text-zinc-300">${value}</span>
+            <svg class="w-3.5 h-3.5 text-amber-400/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span class="hint-bubble">PO length does not match your configured format.</span>
+          </span>`;
+      }
+      return `<span>${value}</span>`;
+  }
+
+  /* ============================================================
+     UI RENDER
+     renderUI() is my single "redraw everything" function. Whenever data
+     changes (new invoice added, filter typed, sort clicked, mock inserted,
+     reset hit) I call renderUI() once and it rebuilds the table rows,
+     updates the totals, updates the stat cards, and redraws both charts.
+     I pass the same filtered 'visible' array to all four sub-functions so
+     they always show the same slice of data.
+     ============================================================ */
+  function renderUI() {
+      const visible = getVisibleInvoices();
+
+      if (appState.invoices.length === 0) {
+          tableBody.innerHTML = `<tr><td colspan="8" class="px-6 py-20 text-center text-zinc-500">No invoices processed. Drop a file to begin.</td></tr>`;
+          updateTotals([]);
+          updateStatCards([]);
+          updateCharts([]);
+          updateSortIndicators();
+          return;
+      }
+      if (visible.length === 0) {
+          tableBody.innerHTML = `<tr><td colspan="8" class="px-6 py-12 text-center text-zinc-500">No invoices match the current filters. <button class="text-violet-400 hover:text-violet-300 underline" onclick="clearFiltersAndSort()">Clear filters</button></td></tr>`;
+          updateTotals([]);
+          updateStatCards([]);
+          updateCharts([]);
+          updateSortIndicators();
+          return;
+      }
+
+      tableBody.innerHTML = visible.map(inv => `
+          <tr class="border-t border-white/5 hover:bg-white/[0.02] transition">
+              <td class="px-5 py-3.5 text-zinc-300 font-mono text-xs">${renderCell(inv.displayDate === 'N/A' ? null : inv.displayDate, inv._flags?.date)}</td>
+              <td class="px-5 py-3.5 font-medium ${inv.vendor ? 'text-zinc-200' : ''}">${renderCell(inv.vendor, inv._flags?.vendor)}</td>
+              <td class="px-5 py-3.5 text-zinc-300 font-mono text-xs">${renderPoCell(inv.poNumber, inv._flags?.poNumber)}</td>
+              <td class="px-5 py-3.5 text-zinc-300 font-mono text-xs">${renderCell(inv.invoiceNumber, inv._flags?.invoiceNumber)}</td>
+              <td class="px-5 py-3.5 text-zinc-400">${inv.description}</td>
+              <td class="px-5 py-3.5 text-zinc-300 text-right font-mono tabular">${inv._flags?.subtotal ? renderCell(null, true) : '$' + inv.subtotal.toFixed(2)}</td>
+              <td class="px-5 py-3.5 text-zinc-400 text-right font-mono tabular">${inv._flags?.tax ? renderCell(null, true) : '$' + inv.tax.toFixed(2)}</td>
+              <td class="px-5 py-3.5 text-zinc-100 font-semibold text-right font-mono tabular">${inv._flags?.total ? renderCell(null, true) : '$' + inv.total.toFixed(2)}</td>
+          </tr>
+      `).join('');
+
+      updateTotals(visible);
+      updateStatCards(visible);
+      updateCharts(visible);
+      updateSortIndicators();
+  }
+
+  /* updateTotals: sums subtotal, tax, and total across all currently-visible
+     rows and writes the formatted dollar amounts into the sticky tfoot cells.
+     reduce() walks the array and accumulates a running sum -- the || 0 fallback
+     means a null or undefined amount is treated as zero rather than NaN. */
+  function updateTotals(visible) {
+      const sumSubtotal = visible.reduce((a, inv) => a + (inv.subtotal || 0), 0);
+      const sumTax = visible.reduce((a, inv) => a + (inv.tax || 0), 0);
+      const sumTotal = visible.reduce((a, inv) => a + (inv.total || 0), 0);
+      document.getElementById('totals-subtotal').innerText = `$${sumSubtotal.toLocaleString('en-CA', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('totals-tax').innerText = `$${sumTax.toLocaleString('en-CA', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('totals-total').innerText = `$${sumTotal.toLocaleString('en-CA', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+  }
+
+  /* updateStatCards: fills the four summary numbers at the top of the page.
+     I use a Set to count unique vendors because a Set automatically ignores
+     duplicates -- if the same vendor appears five times it only counts once. */
+  function updateStatCards(visible) {
+      const totalInvoiced = visible.reduce((a, inv) => a + (inv.total || 0), 0);
+      const totalTax = visible.reduce((a, inv) => a + (inv.tax || 0), 0);
+      const vendors = new Set();
+      visible.forEach(inv => { if (inv.vendor) vendors.add(inv.vendor); });
+
+      document.getElementById('dash-total').innerText = `$${totalInvoiced.toLocaleString('en-CA', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('dash-tax').innerText = `$${totalTax.toLocaleString('en-CA', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('dash-count').innerText = visible.length;
+      document.getElementById('dash-vendors').innerText = vendors.size;
+  }
+
+  /* updateSortIndicators: walks every sortable <th> and updates its caret (▾/▴)
+     and the .active CSS class based on whatever is in tableState.sort.
+     This is purely visual -- the actual sorting already happened in getVisibleInvoices(). */
+  function updateSortIndicators() {
+      document.querySelectorAll('th.sortable').forEach(th => {
+          const key = th.getAttribute('data-sort-key');
+          const caret = th.querySelector('.sort-caret');
+          if (tableState.sort.key === key && tableState.sort.dir) {
+              th.classList.add('active');
+              caret.textContent = tableState.sort.dir === 'asc' ? '▴' : '▾';
+          } else {
+              th.classList.remove('active');
+              caret.textContent = '▾';
+          }
+      });
+  }
+
+  /* ============================================================
+     CHARTS
+     initCharts() runs once at boot and creates the two empty Chart.js
+     instances. updateCharts() is called on every renderUI() pass and
+     replaces the chart data in-place using .data = {...} + .update()
+     so the charts animate the transition rather than flashing.
+
+     Pie label truncation is capped at 8 characters so the outside labels
+     never crowd the right-side legend column. The full name is always
+     visible in the legend, so no information is lost.
+     ============================================================ */
+  function initCharts() {
+      Chart.defaults.color = '#a1a1aa';
+      Chart.defaults.font.family = 'Inter';
+
+      spendChartInstance = new Chart(document.getElementById('spendChart').getContext('2d'), {
+          type: 'line',
+          data: { labels: [], datasets: [] },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false }, datalabels: { display: false } },
+              elements: { line: { tension: 0.4 } },
+              scales: {
+                  y: { grid: { color: 'rgba(255,255,255,0.05)' }, beginAtZero: true },
+                  x: { grid: { display: false } }
+              }
+          }
+      });
+
+      vendorChartInstance = new Chart(document.getElementById('vendorChart').getContext('2d'), {
+          type: 'pie',
+          data: { labels: [], datasets: [] },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              layout: { padding: { top: 44, bottom: 44, left: 44, right: 24 } },
+              plugins: {
+                  legend: {
+                      position: 'right',
+                      rtl: true,
+                      labels: { boxWidth: 12, font: { size: 11 }, textAlign: 'right' }
+                  },
+                  datalabels: {
+                      color: '#e4e4e7',
+                      anchor: 'end',
+                      align: 'end',
+                      clamp: true,
+                      offset: 6,
+                      textAlign: 'center',
+                      display: (ctx) => {
+                          const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                          if (!total) return false;
+                          return ((ctx.dataset.data[ctx.dataIndex] / total) * 100) >= 5;
+                      },
+                      formatter: (value, ctx) => {
+                          const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                          if (!total) return '';
+                          const pct = ((value / total) * 100).toFixed(1);
+                          const label = ctx.chart.data.labels[ctx.dataIndex] || '';
+                          // Tighter cap (8 chars) keeps the label well away from the right-side legend column.
+                          const short = label.length > 8 ? label.substring(0, 7) + '…' : label;
+                          return `${short}\n${pct}%`;
+                      },
+                      font: { size: 10, weight: '600' }
+                  }
+              },
+              elements: { arc: { borderWidth: 2, borderColor: '#09090b' } }
+          }
+      });
+  }
+
+  /* updateCharts: rebuilds chart data from the currently-visible invoices.
+
+     For the Spend Timeline:
+     I first figure out the rangeStart date from the active pill (null = all time).
+     Then I bucket invoices into months using a "YYYY-MM" key, summing totals.
+     Sorting the keys alphabetically gives me chronological order for free.
+
+     For the Vendor Distribution:
+     I group totals by vendor name using a plain object, sort by spend descending,
+     and hand the label/data arrays to Chart.js. */
+  function updateCharts(visible) {
+      const now = new Date();
+      let rangeStart = null;
+      if (appState.timelineRange === '1m') rangeStart = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
+      else if (appState.timelineRange === '3m') rangeStart = new Date(now.getFullYear(), now.getMonth() - 3, now.getDate());
+      else if (appState.timelineRange === '6m') rangeStart = new Date(now.getFullYear(), now.getMonth() - 6, now.getDate());
+      else if (appState.timelineRange === 'ytd') rangeStart = new Date(now.getFullYear(), 0, 1);
+      else if (appState.timelineRange === '1y') rangeStart = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
+
+      const timelineRows = visible.filter(inv => {
+          if (!rangeStart) return true;
+          return new Date(inv.rawDate) >= rangeStart;
+      });
+
+      const monthly = {};
+      timelineRows.forEach(inv => {
+          const d = new Date(inv.rawDate);
+          const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+          if (!monthly[k]) monthly[k] = { label: d.toLocaleString('default', { month: 'short', year: 'numeric' }), total: 0 };
+          monthly[k].total += inv.total || 0;
+      });
+
+      const mKeys = Object.keys(monthly).sort();
+      spendChartInstance.data = {
+          labels: mKeys.map(k => monthly[k].label),
+          datasets: [{
+              data: mKeys.map(k => monthly[k].total),
+              borderColor: '#8b5cf6',
+              backgroundColor: 'rgba(139, 92, 246, 0.1)',
+              borderWidth: 2,
+              fill: true,
+              pointBackgroundColor: '#8b5cf6',
+              pointRadius: 3
+          }]
+      };
+      spendChartInstance.update();
+
+      const vendors = {};
+      visible.forEach(inv => {
+          if (inv.vendor) {
+              if (!vendors[inv.vendor]) vendors[inv.vendor] = 0;
+              vendors[inv.vendor] += inv.total || 0;
+          }
+      });
+      const vKeys = Object.entries(vendors).sort((a, b) => b[1] - a[1]);
+      vendorChartInstance.data = {
+          labels: vKeys.map(v => v[0]),
+          datasets: [{
+              data: vKeys.map(v => v[1]),
+              backgroundColor: ['#8b5cf6', '#0ea5e9', '#10b981', '#f43f5e', '#f59e0b', '#ec4899', '#a78bfa', '#34d399']
+          }]
+      };
+      vendorChartInstance.update();
+  }
+
+  /* ============================================================
+     SETTINGS MODAL
+     openSettingsModal pre-fills fields from appState.config.
+     saveSettings reads them back, persists prefs (not the key),
+     and updates the green dot indicator on the gear.
+     ============================================================ */
+  function openSettingsModal() {
+      document.getElementById('settings-api-key').value = appState.config.apiKey || '';
+      document.getElementById('settings-po-length').value = appState.config.expectedPoLength;
+      const slider = document.getElementById('settings-confidence');
+      slider.value = appState.config.confidenceThreshold;
+      document.getElementById('settings-confidence-value').textContent = `${appState.config.confidenceThreshold}%`;
+      settingsModal.classList.remove('hidden');
+      settingsModal.classList.add('is-open');
+  }
+  function closeSettingsModal() {
+      settingsModal.classList.add('hidden');
+      settingsModal.classList.remove('is-open');
+  }
+  function saveSettings() {
+      const keyInput = document.getElementById('settings-api-key').value.trim();
+      const poRaw = parseInt(document.getElementById('settings-po-length').value, 10);
+      const confRaw = parseInt(document.getElementById('settings-confidence').value, 10);
+
+      // Validate before saving. Out-of-range numbers fall back to current values.
+      const po = Number.isFinite(poRaw) && poRaw >= 1 && poRaw <= 30 ? poRaw : appState.config.expectedPoLength;
+      const conf = Number.isFinite(confRaw) && confRaw >= 0 && confRaw <= 100 ? confRaw : appState.config.confidenceThreshold;
+
+      // All three values are in-memory only. Nothing is written to disk.
+      appState.config.apiKey = keyInput;
+      appState.config.expectedPoLength = po;
+      appState.config.confidenceThreshold = conf;
+
+      updateKeyIndicator();
+
+      // If a key was just added and the user was looking at the error state, drop back to idle.
+      if (appState.config.apiKey) {
+          showDropzoneIdle();
+      }
+
+      closeSettingsModal();
+  }
+  /* updateKeyIndicator: shows or hides the small green dot on the gear button.
+     The dot being visible is a quick at-a-glance signal that a Gemini API key
+     is loaded in memory and the pipeline is ready to process files. */
+  function updateKeyIndicator() {
+      if (appState.config.apiKey && appState.config.apiKey.trim() !== '') {
+          settingsKeyIndicator.classList.remove('hidden');
+      } else {
+          settingsKeyIndicator.classList.add('hidden');
+      }
+  }
+
+  /* ============================================================
+     MOCK BUTTONS
+     - Clean: 6 fully-parsed sample rows.
+     - Messy: 4 sample rows demonstrating N/A pills and the manual-review hint.
+     ============================================================ */
+  function insertCleanMocks() {
+      const randomAmount = (min, max) => parseFloat((Math.random() * (max - min) + min).toFixed(2));
+      const emptyFlags = { vendor: false, poNumber: false, invoiceNumber: false, date: false, subtotal: false, tax: false, total: false };
+
+      const cleanMocks = [
+          { rawDate: '2026-05-15', displayDate: '15-05-2026', vendor: 'Printify',        poNumber: 'PO-10421', invoiceNumber: 'INV-88231', description: 'Mock (Clean): Printify Desk Mat Fulfillment' },
+          { rawDate: '2026-05-12', displayDate: '12-05-2026', vendor: 'Midjourney',      poNumber: 'PO-10422', invoiceNumber: 'INV-88245', description: 'Mock (Clean): Midjourney AI Image Sub' },
+          { rawDate: '2026-04-28', displayDate: '28-04-2026', vendor: 'Notion',          poNumber: 'PO-10398', invoiceNumber: 'INV-87990', description: 'Mock (Clean): Notion Workspace Plus' },
+          { rawDate: '2026-04-15', displayDate: '15-04-2026', vendor: 'ElevenLabs',      poNumber: 'PO-10377', invoiceNumber: 'INV-87811', description: 'Mock (Clean): ElevenLabs Creator Audio' },
+          { rawDate: '2026-03-20', displayDate: '20-03-2026', vendor: 'n8n',             poNumber: 'PO-10302', invoiceNumber: 'INV-87410', description: 'Mock (Clean): n8n Workflow Automation' },
+          { rawDate: '2026-03-10', displayDate: '10-03-2026', vendor: 'Yokohama Motors', poNumber: 'PO-10288', invoiceNumber: 'INV-87302', description: 'Mock (Clean): Yokohama Motors Import Parts' }
+      ].map(inv => {
+          const generatedSubtotal = randomAmount(30, 250);
+          const generatedTax = parseFloat((generatedSubtotal * 0.14).toFixed(2)); // Flat 14% mock tax
+          return {
+              ...inv,
+              subtotal: generatedSubtotal,
+              tax: generatedTax,
+              total: parseFloat((generatedSubtotal + generatedTax).toFixed(2)),
+              _flags: { ...emptyFlags },
+              _source: 'mock-clean'
+          };
+      });
+
+      appState.invoices.push(...cleanMocks);
+      appState.mockDataLoaded = true;
+      mockWarning.classList.remove('hidden');
+      renderUI();
+  }
+
+  function insertMessyMocks() {
+      const todayIso = new Date().toISOString().split('T')[0];
+
+      const messyMocks = [
+          // 1. Wrong-length PO. Value is preserved but flagged so the user can see what was found.
+          { rawDate: '2026-05-18', displayDate: '18-05-2026', vendor: 'Blurry Suppliers Co.',
+            poNumber: 'PO-12', invoiceNumber: 'INV-99001',
+            description: 'Mock (Messy): wrong-length PO',
+            subtotal: 142.50, tax: 19.95, total: 162.45,
+            _flags: { vendor: false, poNumber: true, invoiceNumber: false, date: false, subtotal: false, tax: false, total: false },
+            _source: 'vision' },
+          // 2. Vendor unreadable. Vendor cell becomes N/A; description switches to "Manual Review Required".
+          { rawDate: '2026-05-09', displayDate: '09-05-2026', vendor: null,
+            poNumber: 'PO-87654321', invoiceNumber: 'INV-99002',
+            description: 'Mock (Messy): vendor unreadable',
+            subtotal: 89.00, tax: 12.46, total: 101.46,
+            _flags: { vendor: true, poNumber: false, invoiceNumber: false, date: false, subtotal: false, tax: false, total: false },
+            _source: 'text' },
+          // 3. Date illegible. Date defaults to today behind the scenes so charts still work, but the cell shows N/A.
+          { rawDate: todayIso, displayDate: 'N/A',
+            vendor: 'Faded Receipt Inc.', poNumber: 'PO-44556677', invoiceNumber: 'INV-99003',
+            description: 'Mock (Messy): illegible date',
+            subtotal: 215.00, tax: 30.10, total: 245.10,
+            _flags: { vendor: false, poNumber: false, invoiceNumber: false, date: true, subtotal: false, tax: false, total: false },
+            _source: 'vision' },
+          // 4. Almost everything missing. Worst-case row showing how the table looks when OCR + Gemini both gave up.
+          { rawDate: todayIso, displayDate: 'N/A',
+            vendor: null, poNumber: null, invoiceNumber: 'INV-99004',
+            description: 'Mock (Messy): mostly unreadable',
+            subtotal: 0, tax: 0, total: 0,
+            _flags: { vendor: true, poNumber: true, invoiceNumber: false, date: true, subtotal: true, tax: true, total: true },
+            _source: 'vision' }
+      ];
+
+      appState.invoices.push(...messyMocks);
+      appState.mockDataLoaded = true;
+      mockWarning.classList.remove('hidden');
+      renderUI();
+  }
+
+  /* ============================================================
+     RESET SESSION
+     Mimics what a real browser refresh would do: clears all in-memory
+     state back to the same clean defaults the app starts with.
+     Because nothing is ever written to localStorage, there is nothing
+     to remove from storage -- this is a pure in-memory wipe.
+     ============================================================ */
+  function resetSession() {
+      appState.invoices = [];
+      appState.mockDataLoaded = false;
+      appState.config.apiKey = '';
+      appState.config.expectedPoLength = 8;
+      appState.config.confidenceThreshold = 75;
+      appState.timelineRange = 'all';
+
+      tableState.sort = { key: null, dir: null };
+      tableState.filters = {};
+      document.querySelectorAll('input.col-filter').forEach(input => { input.value = ''; });
+
+      mockWarning.classList.add('hidden');
+      updateKeyIndicator();
+      document.querySelectorAll('#range-toggle .range-pill').forEach(b => b.classList.remove('active'));
+      document.querySelector('#range-toggle .range-pill[data-range="all"]').classList.add('active');
+      showDropzoneIdle();
+
+      renderUI();
+      console.log('Session reset. All in-memory state cleared. Nothing was written to localStorage.');
+  }
+  function resetSessionWithConfirm() {
+      // Skip the confirm dialog if there's nothing to lose.
+      if (appState.invoices.length === 0 && !appState.config.apiKey) {
+          resetSession();
+          return;
+      }
+      if (confirm('Reset the session? This clears all invoices, filters, your Gemini API key, PO digit length, and confidence threshold. Everything returns to defaults.')) {
+          resetSession();
+      }
+  }
+
+  /* ============================================================
+     EVENT WIRING
+     Each piece is grouped by feature for easy scanning.
+     ============================================================ */
+
+  // Sort: cycle asc -> desc -> none on each click.
+  document.querySelectorAll('th.sortable').forEach(th => {
+      th.addEventListener('click', () => {
+          const key = th.getAttribute('data-sort-key');
+          if (tableState.sort.key !== key) {
+              tableState.sort = { key, dir: 'asc' };
+          } else if (tableState.sort.dir === 'asc') {
+              tableState.sort.dir = 'desc';
+          } else {
+              tableState.sort = { key: null, dir: null };
+          }
+          renderUI();
+      });
+  });
+
+  // Filter inputs: live substring filter on every keystroke.
+  document.querySelectorAll('input.col-filter').forEach(input => {
+      input.addEventListener('input', () => {
+          const key = input.getAttribute('data-filter-key');
+          tableState.filters[key] = input.value;
+          renderUI();
+      });
+  });
+
+  // Timeline range pills.
+  document.querySelectorAll('#range-toggle .range-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+          document.querySelectorAll('#range-toggle .range-pill').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          appState.timelineRange = btn.getAttribute('data-range');
+          renderUI();
+      });
+  });
+
+  // Clear sort and all filters.
+  function clearFiltersAndSort() {
+      tableState.sort = { key: null, dir: null };
+      tableState.filters = {};
+      document.querySelectorAll('input.col-filter').forEach(input => { input.value = ''; });
+      renderUI();
+  }
+  window.clearFiltersAndSort = clearFiltersAndSort;
+  document.getElementById('btn-clear-filters').addEventListener('click', clearFiltersAndSort);
+
+  // Mock buttons.
+  document.getElementById('btn-mock-data-clean').addEventListener('click', insertCleanMocks);
+  document.getElementById('btn-mock-data-messy').addEventListener('click', insertMessyMocks);
+
+  // Reset Session.
+  document.getElementById('btn-reset-session').addEventListener('click', resetSessionWithConfirm);
+
+  // Settings modal.
+  document.getElementById('btn-settings').addEventListener('click', openSettingsModal);
+  document.getElementById('btn-settings-close').addEventListener('click', closeSettingsModal);
+  document.getElementById('btn-settings-cancel').addEventListener('click', closeSettingsModal);
+  document.getElementById('settings-backdrop').addEventListener('click', closeSettingsModal);
+  document.getElementById('btn-settings-save').addEventListener('click', saveSettings);
+  document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && settingsModal.classList.contains('is-open')) closeSettingsModal();
+  });
+  document.getElementById('settings-confidence').addEventListener('input', (e) => {
+      document.getElementById('settings-confidence-value').textContent = `${e.target.value}%`;
+  });
+
+  // Dropzone error: open settings from the inline button.
+  document.getElementById('dropzone-error-open-settings').addEventListener('click', openSettingsModal);
+
+  /* CSV export. I build each row as a comma-separated string, wrapping text
+     fields in double-quotes and escaping any existing double-quotes inside
+     them (the .replace(/"/g, '""') part -- that's how the CSV spec handles it).
+     Then I join everything with newlines, wrap it in a Blob, and create a
+     temporary download link that I click programmatically.
+     This gives the user a file ready to open in Excel or any accounting software. */
+  document.getElementById('btn-export-csv').addEventListener('click', () => {
+      const rows = appState.invoices.map(i => {
+          const cells = [
+              i.displayDate || 'N/A',
+              `"${(i.vendor || 'N/A').replace(/"/g, '""')}"`,
+              `"${(i.poNumber || 'N/A').replace(/"/g, '""')}"`,
+              `"${(i.invoiceNumber || 'N/A').replace(/"/g, '""')}"`,
+              `"${(i.description || '').replace(/"/g, '""')}"`,
+              (i.subtotal || 0).toFixed(2),
+              (i.tax || 0).toFixed(2),
+              (i.total || 0).toFixed(2)
+          ];
+          return cells.join(',');
+      });
+      const header = 'Date,Vendor,PO #,Invoice #,Description,Subtotal,Tax,Total';
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(new Blob([[header, ...rows].join('\n')], { type: 'text/csv' }));
+      link.download = 'InvoiceParsimus_OCR_Export.csv';
+      link.click();
+  });
+
+  /* ============================================================
+     BOOT
+     DOMContentLoaded fires once the HTML has been parsed and all the
+     elements exist in the page, so it's safe to call getElementById and
+     attach event listeners. I do four things in order:
+
+     1. updateKeyIndicator: starts the green dot as hidden (no key loaded yet).
+     3. initCharts: creates the two empty Chart.js instances so they're
+        ready to receive data the moment the first invoice is processed.
+     4. renderUI: draws the "no invoices" empty state so the table and cards
+        start in a clean, valid state rather than showing broken/undefined values.
+     ============================================================ */
+  window.addEventListener('DOMContentLoaded', () => {
+      updateKeyIndicator(); // Will hide the dot since no key yet at boot.
+      initCharts();
+      renderUI();
+  });
+</script>
+</body>
+</html>
