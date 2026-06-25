@@ -4,7 +4,7 @@ A running collection of the small projects I build. Two kinds live here: job-mod
 
 Each project is self-contained in its own folder with its own README, so you can open any one on its own.
 
-> **Note:** On June 25, 2026, I used Claude Code to consolidate my separate daily-build repositories into this single one. Folding them together cuts down on repo clutter and makes the whole collection easier to browse, track, and keep an eye on from one place. The "Last Updated" dates below reflect when each project was last worked on before the merge.
+> **Note:** On June 25, 2026, I used Claude Code to consolidate my separate daily-build repositories into this single one. Folding them together cuts down on repo clutter and makes the whole collection easier to browse, track, and keep an eye on from one place. The "Last Updated" column shows when each project was last worked on. For the projects folded in during the merge, that is their date beforehand; anything I add or update later carries its own date.
 
 ## Job-Modeled Toolkits
 
