@@ -1,10 +1,10 @@
 # exekyute-daily-builds
 
-A running collection of the small projects I build. Two kinds live here: portfolio toolkits, where I turn a real job description into working software, and daily projects, the smaller things I make to learn something or just to tinker.
+A running collection of the small projects I build. Two kinds live here: job-modeled toolkits, where I turn a real job description into working software, and miscellaneous projects, the smaller things I make to learn something or just to tinker.
 
 Each project is self-contained in its own folder with its own README, so you can open any one on its own.
 
-## Portfolio toolkits
+## Job-Modeled Toolkits
 
 Business utilities modeled on real job descriptions. Most are no-backend tools: Python command-line scripts, SQLite analytics, Excel VBA, or browser dashboards.
 
@@ -32,7 +32,7 @@ Business utilities modeled on real job descriptions. Most are no-backend tools: 
 | [20 Property and Casualty Claims](portfolio-toolkits/20-property-casualty-claims-visualizations) | Claims aging funnel, loss ratio, and reserve triangle. |
 | [23 Fixed-Asset Depreciation](portfolio-toolkits/23-fixed-asset-depreciation-toolkit) | Canadian CRA CCA engine, rollforward, and dashboard. |
 
-## Daily projects
+## Miscellaneous Projects
 
 Smaller builds, made to learn something or for fun.
 

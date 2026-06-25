@@ -1,26 +1,46 @@
 # Pension Administration Toolkit
 
-This is a personal project, one of several where I turn a real job description into working
-software. I take the responsibilities listed for a role, then build small focused tools that
-practice the same skills the job asks for. The aim is to strengthen my foundational Python
-while producing something concrete that I can run, test, and explain.
+A personal project, one of several I build to model real-world job descriptions
+and turn them into working business utilities. The goal is to practice applied
+problem-solving on the kind of work a business analyst in pension administration
+does, while strengthening my foundational software development skills.
 
-This repository models the work of a Business Analyst in Pension Administration. It contains
-three independent command-line tools, each mapped to a core responsibility from that role.
-Each one focuses on clear business logic, careful input validation, and data integrity.
+The repository holds three independent command-line tools written in plain
+Python, each mapped to a core responsibility of the role. Each one is
+self-contained, rule-based, and built around clean business logic, careful input
+validation, and data integrity, using only the standard library. All sample data
+is synthetic.
 
-## The three tools
+## The tools
 
-1. **[Benefit Formula Engine](benefit-formula-engine/)** calculates a monthly retirement payout
-   from salary history, credited service, and retirement age, using configurable plan rules.
-2. **[Ledger Reconciliation Tool](ledger-reconciliation/)** compares an internal payroll file
-   against a trustee file by Employee ID and reports every variance.
-3. **[QA Test-Case Generator](qa-test-generator/)** builds edge-case scenarios, runs them through
-   the Benefit Engine, and writes a test-case table used to validate calculation output.
+1. **[Benefit Formula Engine](benefit-formula-engine/)** calculates a monthly
+   retirement payout from salary history, credited service, and retirement age,
+   using configurable plan rules.
+2. **[Ledger Reconciliation Tool](ledger-reconciliation/)** compares an internal
+   payroll file against a trustee file by Employee ID and reports every variance.
+3. **[QA Test-Case Generator](qa-test-generator/)** builds edge-case scenarios,
+   runs them through the Benefit Engine, and writes a test-case table used to
+   validate calculation output.
 
-Each tool folder has its own README with screenshots of the tool running.
+## How they connect
 
-All sample data in this repository is synthetic. No real member information is included.
+The QA Test-Case Generator drives the Benefit Formula Engine, feeding it built
+edge-case scenarios and recording the results into a test-case table, so the
+generator and the engine stay in agreement on every documented case.
+
+## Running the tools
+
+Python 3.10 or newer, no third-party packages. Each tool ships a `unittest`
+suite. From the repository root:
+
+```
+python -m unittest discover -s benefit-formula-engine/tests -v
+python -m unittest discover -s ledger-reconciliation/tests -v
+python -m unittest discover -s qa-test-generator/tests -v
+```
+
+Each tool folder has its own README with screenshots of the tool running, and a
+`spec.md` with its design blueprint.
 
 ## Repository layout
 
@@ -31,18 +51,7 @@ pension-admin-toolkit/
 └── qa-test-generator/         Tool 3
 ```
 
-Each tool folder also includes a `spec.md` with its design blueprint.
+## License
 
-## Requirements
-
-Python 3.10 or newer. No third-party packages.
-
-## Running the tests
-
-Each tool ships a `unittest` suite. From the repository root:
-
-```
-python -m unittest discover -s benefit-formula-engine/tests -v
-python -m unittest discover -s ledger-reconciliation/tests -v
-python -m unittest discover -s qa-test-generator/tests -v
-```
+Released under the MIT License. See [LICENSE](LICENSE).
+Copyright (c) 2026 Kevin Yu (https://github.com/exekyute).

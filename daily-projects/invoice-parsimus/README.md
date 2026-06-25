@@ -94,14 +94,14 @@ Either path returns the same structured JSON, so the table, charts, and export a
 
 The same OCR-to-AI pipeline works well for any structured document where you need to pull out specific fields. Some natural extensions:
 
-* 🧾 **Expense receipts** – extract merchant, date, amount, and payment method from till receipts and email receipts
-* 📦 **Purchase orders** – read vendor-issued POs to match against your own records
-* 🚚 **Delivery notes and packing slips** – capture item counts, shipment reference numbers, and delivery dates
-* ⚡ **Utility and telecom bills** – pull account number, billing period, usage, and total due
-* 🏥 **Medical bills and EOBs** – extract provider, service date, billed amount, and patient responsibility
-* 💳 **Bank and credit card statements** – parse transaction dates, descriptions, and amounts into a ledger
-* ⏳ **Contractor timesheets** – capture hours, rates, and project codes from submitted invoices
-* 🛡️ **Insurance claim documents** – extract claim number, policy number, incident date, and settlement amounts
+* 🧾 **Expense receipts** - extract merchant, date, amount, and payment method from till receipts and email receipts
+* 📦 **Purchase orders** - read vendor-issued POs to match against your own records
+* 🚚 **Delivery notes and packing slips** - capture item counts, shipment reference numbers, and delivery dates
+* ⚡ **Utility and telecom bills** - pull account number, billing period, usage, and total due
+* 🏥 **Medical bills and EOBs** - extract provider, service date, billed amount, and patient responsibility
+* 💳 **Bank and credit card statements** - parse transaction dates, descriptions, and amounts into a ledger
+* ⏳ **Contractor timesheets** - capture hours, rates, and project codes from submitted invoices
+* 🛡️ **Insurance claim documents** - extract claim number, policy number, incident date, and settlement amounts
 
 Core pattern remains the same: insert doc, let OCR read it locally, let Gemini interpret intelligently, and get back clean structured data.
 

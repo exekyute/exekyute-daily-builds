@@ -44,7 +44,7 @@ Math primitives are pure and isolated. The composition layers (RRSP-aware wrappe
 ## Repo layout
 
 ```
-finlit-tools-ca-main/
+finlit-tools-ca/
 ├── index.html                       # Hub page
 ├── README.md                        # This file
 ├── benefit-clawback-radar/

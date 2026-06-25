@@ -1,17 +1,17 @@
 # Site Compliance Toolkit
 
-This is a personal project, one of several where I turn a real job description into
-working software. I take the responsibilities listed for a role, then build small
-focused tools that practice the same skills the job asks for. The aim is to
-strengthen my foundational Python while producing something concrete that I can
-run, test, and explain.
+A personal project, one of several I build to model real-world job descriptions
+and turn them into working business utilities. The goal is to practice applied
+problem-solving on the kind of work an environmental project coordinator does,
+while strengthening my foundational software development skills.
 
-This repository models the work of an Environmental Project Coordinator. It
-contains three independent command-line tools, each mapped to a core
-responsibility from that role. Each one focuses on clear business logic, careful
-input validation, and data integrity. None of them use any external services.
+The repository holds three independent command-line tools written in plain
+Python, each mapped to a core responsibility of the role. Each one is
+self-contained, rule-based, and built around clean business logic, careful input
+validation, and data integrity. Everything runs on your machine using only the
+standard library. All sample data is synthetic.
 
-## The three tools
+## The tools
 
 1. **[Regional Waste and Fuel Log Aggregator](waste-fuel-aggregator/)** reads a
    folder of monthly site spreadsheets that each name their columns differently,
@@ -24,10 +24,7 @@ input validation, and data integrity. None of them use any external services.
    interactive questionnaire for site inspectors that forces valid answers and
    records each finished audit as one timestamped line.
 
-Each tool folder has its own README with screenshots of the tool running, and a
-`spec.md` with its design blueprint.
-
-## How the tools connect
+## How they connect
 
 The deadline monitor reads the unified ledger that the aggregator builds. On the
 sample data both tools agree that the ledger holds 3 distinct sites (Harbor Site,
@@ -35,8 +32,19 @@ North Site, Ridge Site), and the monitor then flags Ridge Site as a compliance g
 because it has operational activity but no tracked deadline. That shared count of 3
 is hand-checked and noted in both tools' specs.
 
-All sample data in this repository is synthetic. No real site or operational
-information is included.
+## Running the tools
+
+Python 3.8 or newer, no third-party packages. Each tool ships a `unittest` suite.
+From the repository root:
+
+```
+python -m unittest discover -s waste-fuel-aggregator/tests -v
+python -m unittest discover -s deadline-monitor/tests -v
+python -m unittest discover -s field-audit-validator/tests -v
+```
+
+Each tool folder has its own README with screenshots of the tool running, and a
+`spec.md` with its design blueprint.
 
 ## Repository layout
 
@@ -47,16 +55,7 @@ site-compliance-toolkit/
 └── field-audit-validator/    Tool 3
 ```
 
-## Requirements
+## License
 
-Python 3.8 or newer. No third-party packages.
-
-## Running the tests
-
-Each tool ships a `unittest` suite. From the repository root:
-
-```
-python -m unittest discover -s waste-fuel-aggregator/tests -v
-python -m unittest discover -s deadline-monitor/tests -v
-python -m unittest discover -s field-audit-validator/tests -v
-```
+Released under the MIT License. See [LICENSE](LICENSE).
+Copyright (c) 2026 Kevin Yu (https://github.com/exekyute).

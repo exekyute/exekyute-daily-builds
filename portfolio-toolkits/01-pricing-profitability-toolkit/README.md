@@ -1,8 +1,8 @@
 # Pricing and Profitability Toolkit
 
-A personal project, one of several I build to model real world job descriptions
-and turn them into functional business utilities. The goal is to practice applied
-problem solving on the kind of work a pricing and profitability analyst does,
+A personal project, one of several I build to model real-world job descriptions
+and turn them into working business utilities. The goal is to practice applied
+problem-solving on the kind of work a pricing and profitability analyst does,
 while strengthening my foundational software development skills.
 
 The repository holds three small command-line tools written in plain Python.
@@ -11,7 +11,7 @@ careful input validation, and exact money math. There are no outside
 libraries. Every cost, price, and margin figure is
 computed with `decimal.Decimal` and printed in fixed-point form.
 
-## The three tools
+## The tools
 
 They are numbered because they build on each other. Start with tool 1, since
 tools 2 and 3 read the pricing schedule it produces.
@@ -40,7 +40,7 @@ at `20.00` and reads it back as exactly `40.00%`, so it is not flagged. Tool 3,
 run with a zero percent increase, reproduces that same `40.00%` from the
 schedule. The figure is documented in each tool's `spec.md`.
 
-## Running any tool
+## Running the tools
 
 Each tool needs only Python 3 and the standard library. From inside a tool's
 folder:

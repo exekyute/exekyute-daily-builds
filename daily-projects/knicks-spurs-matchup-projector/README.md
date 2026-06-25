@@ -6,7 +6,7 @@ I just wanted something small to tinker with while the Finals were on, so here i
 
 ## What it does
 
-Open the page and you get every completed Knicks vs Spurs game this season, the head to head record, and each team's scoring average. Then it projects the next meeting: a score line, who's favored, and a rough win %. There's also a little chart that plays the next game out thousands of times to show the spread of possible outcomes
+Open the page and you get every completed Knicks vs Spurs game this season, the head to head record, and each team's scoring average. Then it projects the next meeting: a score line, who's favored, and a rough win %. There's also a little chart that plays the next game out thousands of times to show the spread of possible outcomes.
 
 The next game's host is filled in straight from the schedule, so home court edge is already baked in.
 
