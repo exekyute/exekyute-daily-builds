@@ -1,0 +1,59 @@
+{
+  "config": {
+    "as_of_date": "2026-06-01",
+    "minimum_age": 18,
+    "required_trainings": ["ORIENT", "SAFETY"],
+    "background_check_valid_days": 365,
+    "waiver_valid_days": 365
+  },
+  "volunteers": [
+    {
+      "id": "V-101",
+      "name": "Ana Reyes",
+      "date_of_birth": "1990-03-15",
+      "background_check": { "status": "passed", "date": "2026-01-10" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2026-01-10"
+    },
+    {
+      "id": "V-102",
+      "name": "Ben Cho",
+      "date_of_birth": "1985-11-02",
+      "background_check": { "status": "passed", "date": "2025-12-01" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2025-12-01"
+    },
+    {
+      "id": "V-103",
+      "name": "Carmen Diaz",
+      "date_of_birth": "2000-07-20",
+      "background_check": { "status": "passed", "date": "2026-02-14" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2026-02-14"
+    },
+    {
+      "id": "V-104",
+      "name": "Dev Patel",
+      "date_of_birth": "2008-06-01",
+      "background_check": { "status": "passed", "date": "2025-09-15" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2025-09-15"
+    },
+    {
+      "id": "V-105",
+      "name": "Jordan Lee",
+      "date_of_birth": "1998-04-22",
+      "background_check": { "status": "none", "date": "" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2026-01-05"
+    },
+    {
+      "id": "V-106",
+      "name": "Priya Nair",
+      "date_of_birth": "1995-08-30",
+      "background_check": { "status": "passed", "date": "2025-06-01" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2025-06-01"
+    }
+  ]
+}

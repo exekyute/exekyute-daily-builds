@@ -1,0 +1,19 @@
+name,email,phone,company,title
+Jane Doe,Jane@Acme.com,,Acme Corporation,Marketing Lead
+  jane doe , jane@acme.com ,(555) 123-4567,,
+Jane Doe,Jane Doe <jane@acme.com>,555.123.4567,Acme Corporation,Marketing Lead
+Bob Smith,,+1 555 234 5678,Globex Inc,Buyer
+Robert Smith,,5552345678,Globex Inc,Senior Buyer
+Carol King,,,Initech LLC,Coordinator
+carol king,,,Initech LLC,Coordinator
+Dave Lee,dave@umbrella.com,(555) 345-6789,Umbrella Media,Analyst
+Dave Lee,DAVE@umbrella.com,,Umbrella Corp,
+Frank Stone,frank@initrode.com,555-12,Initrode Partners,Owner
+Grace Hopper,grace@globex.com,(555) 456-7890,Globex Inc,CTO
+Henry Ford,henry@initech.com,5554567891,Initech LLC,Operations
+Ivy Chen,ivy@acme.com,+1 (555) 567-8902,Acme Corporation,Designer
+  JAMES   BOND ,james@globex.com,555 678 9013,Globex Inc,Field Agent
+Karen Page,karen@umbrella.com,(555) 789-0124,Umbrella Media,Counsel
+Leo Marsh,leo@initrode.com,5557890125,Initrode Partners,Scout
+Mona Reyes,,555.890.1267,Acme Corporation,Curator
+Otto Frank,OTTO@INITECH.COM,+1 (555) 901-2378,Initech LLC,Archivist

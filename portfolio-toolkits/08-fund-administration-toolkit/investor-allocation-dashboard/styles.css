@@ -1,0 +1,246 @@
+/*
+ * Two-tone palette: one base colour plus one accent, with neutral greys derived
+ * for page, surface, text, and borders. One spacing scale, multiples of 8px, is
+ * reused for every margin, padding, and gap so the layout stays on a shared grid.
+ */
+
+:root {
+  /* Two tones */
+  --color-base: #1f2a44; /* deep slate, the base */
+  --color-accent: #2bb3a3; /* teal, the single accent */
+
+  /* Derived neutrals */
+  --color-page: #f4f6f9;
+  --color-surface: #ffffff;
+  --color-text: #1f2a44;
+  --color-muted: #5b6677;
+  --color-border: #d8dee7;
+  --color-error: #b3261e;
+
+  /* Spacing scale, multiples of 8px */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+
+  --radius: 8px;
+  --max-width: 960px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: var(--space-4) var(--space-3);
+  background-color: var(--color-page);
+  color: var(--color-text);
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.page__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border-bottom: 4px solid var(--color-accent);
+  padding-bottom: var(--space-3);
+}
+
+.page__title {
+  margin: 0;
+  font-size: 28px;
+  color: var(--color-base);
+}
+
+.page__intro {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--color-muted);
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+
+.controls__label {
+  font-weight: 600;
+  color: var(--color-base);
+}
+
+.controls__input {
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-page);
+  font-size: 15px;
+}
+
+.controls__input::file-selector-button {
+  margin-right: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  border-radius: var(--radius);
+  background-color: var(--color-base);
+  color: var(--color-surface);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.controls__hint {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.controls__hint code {
+  background-color: var(--color-page);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+/* Message */
+.message {
+  margin: 0;
+}
+
+.message--error {
+  background-color: #fdecea;
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius);
+  color: var(--color-error);
+  padding: var(--space-2) var(--space-3);
+  font-weight: 600;
+}
+
+/* Summary */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+}
+
+.summary__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+
+.summary__label {
+  color: var(--color-muted);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.summary__value {
+  color: var(--color-base);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Table */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.allocation {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.allocation th,
+.allocation td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.allocation thead th {
+  background-color: var(--color-base);
+  color: var(--color-surface);
+  font-weight: 600;
+}
+
+.allocation tbody tr:nth-child(even) {
+  background-color: var(--color-page);
+}
+
+.allocation tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.allocation .numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Test harness (tests.html) */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.result {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  font-family: "Consolas", "Courier New", monospace;
+}
+
+.result--pass {
+  background-color: #e7f6f2;
+  border-color: var(--color-accent);
+  color: #14564d;
+}
+
+.result--fail {
+  background-color: #fdecea;
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.tests-summary {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.tests-summary--pass {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+.tests-summary--fail {
+  background-color: var(--color-error);
+  color: var(--color-surface);
+}

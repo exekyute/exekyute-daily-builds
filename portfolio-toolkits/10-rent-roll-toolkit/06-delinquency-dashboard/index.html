@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Delinquency Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="page-head">
+      <h1>Delinquency Dashboard</h1>
+      <p class="lede">
+        Load an aging CSV to see delinquency by bucket, with totals and the most
+        overdue charges first. The file is read in your browser and never sent
+        anywhere.
+      </p>
+    </header>
+
+    <section class="controls" aria-label="Controls">
+      <div class="field">
+        <label for="file">Aging CSV</label>
+        <input type="file" id="file" accept=".csv,text/csv" />
+        <p class="hint">Sample included at <code>data/aging.csv</code>.</p>
+      </div>
+    </section>
+
+    <p id="message" class="message" role="status"></p>
+
+    <section id="summary" class="summary" hidden></section>
+
+    <section id="buckets-panel" class="panel" hidden>
+      <h2>By bucket</h2>
+      <div class="table-scroll">
+        <table id="buckets">
+          <thead>
+            <tr>
+              <th>Bucket</th>
+              <th class="num">Charges</th>
+              <th class="num">Balance</th>
+              <th class="num">Late fees</th>
+              <th class="num">Total owed</th>
+            </tr>
+          </thead>
+          <tbody id="buckets-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="table-panel" class="panel" hidden>
+      <h2>Charges, most overdue first</h2>
+      <div class="table-scroll">
+        <table id="charges">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Tenant</th>
+              <th>Charge</th>
+              <th>Due date</th>
+              <th class="num">Balance</th>
+              <th class="num">Days overdue</th>
+              <th>Bucket</th>
+              <th class="num">Late fee</th>
+              <th class="num">Total owed</th>
+            </tr>
+          </thead>
+          <tbody id="charges-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="issues-panel" class="panel issues" hidden>
+      <h2>Skipped rows</h2>
+      <ul id="issues-list"></ul>
+    </section>
+  </main>
+
+  <script src="delinquency_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

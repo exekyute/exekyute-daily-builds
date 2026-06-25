@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quota Attainment Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>Quota Attainment Dashboard</h1>
+      <p class="lede">
+        Load a CSV of rep results. The page reads it in your browser, checks
+        every row, and shows a color-coded table of who landed under, at, or
+        over quota, with a summary across the team. Rows with a problem are
+        listed separately so one bad row never hides the rest. Your file is
+        never uploaded anywhere.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>1. Load results</h2>
+      <p class="hint">
+        The CSV needs the columns <code>rep_id</code>, <code>rep_name</code>,
+        <code>quota</code>, and <code>actual_revenue</code>. A sample file is in
+        this tool's <code>data</code> folder.
+      </p>
+      <label class="file-btn">
+        Choose CSV file
+        <input id="csvFile" type="file" accept=".csv,text/csv" hidden />
+      </label>
+      <span id="fileName" class="file-name">No file loaded yet.</span>
+    </section>
+
+    <section id="error" class="card error" hidden>
+      <h2>That file could not be read</h2>
+      <p id="errorText"></p>
+    </section>
+
+    <section id="summary" class="card" hidden>
+      <h2>Team summary</h2>
+      <div class="summary-grid">
+        <div class="stat over"><span id="statOver">0</span><label>Over quota</label></div>
+        <div class="stat at"><span id="statAt">0</span><label>At quota</label></div>
+        <div class="stat under"><span id="statUnder">0</span><label>Under quota</label></div>
+        <div class="stat"><span id="statIssues">0</span><label>Rows with issues</label></div>
+      </div>
+      <p id="summaryLine" class="summary-line"></p>
+    </section>
+
+    <section id="tableCard" class="card" hidden>
+      <h2>Rep results</h2>
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Rep ID</th>
+            <th>Rep name</th>
+            <th>Quota</th>
+            <th>Actual revenue</th>
+            <th>Attainment</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="resultRows"></tbody>
+      </table>
+    </section>
+
+    <section id="issuesCard" class="card issues" hidden>
+      <h2>Rows with issues</h2>
+      <p class="hint">
+        These rows were left out of the table. Fix them in the source file and
+        load it again.
+      </p>
+      <table class="issues-table">
+        <thead>
+          <tr>
+            <th>Line</th>
+            <th>Problem</th>
+          </tr>
+        </thead>
+        <tbody id="issueRows"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="dashboard_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

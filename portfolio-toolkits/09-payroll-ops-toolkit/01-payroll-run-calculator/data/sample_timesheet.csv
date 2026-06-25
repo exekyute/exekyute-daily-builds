@@ -1,0 +1,9 @@
+employee_id,name,pay_type,rate,hours_worked,pretax_deductions,posttax_deductions
+E001,Avery Singh,salaried,2500.00,0,100.00,0.00
+E002,Bianca Tran,hourly,30.00,50,50.00,25.00
+E003,Caleb Roy,hourly,25.00,38,0.00,0.00
+E004,Dana Lee,hourly,22.00,0,0.00,0.00
+E005,Elena Cruz,salaried,8000.00,0,0.00,0.00
+E002,Frank Osei,hourly,40.00,45,0.00,0.00
+E007,Grace Kim,hourly,,30,0.00,0.00
+E008,Henry Park,hourly,28.00,42,10.00,5.00,OOPS

@@ -1,0 +1,7 @@
+txn_id,date,sku,description,category,txn_type,quantity,unit,unit_price,freight,customs_duty,abv_class,litres_per_unit
+T01,2026-05-01,RM-MALT-2ROW,2-Row Pale Malt,raw_material,opening,1000,kg,1.20,,,,
+T01,2026-05-06,RM-MALT-2ROW,2-Row Pale Malt,raw_material,receipt,2000,kg,1.25,180.00,0,,
+T02,2026-05-07,RM-HOPS-CASCADE,Cascade Hops,raw_material,receipt,-50,kg,15.00,120.00,90.00,,
+T03,2026-05-12,RM-MALT-2ROW,2-Row Pale Malt,raw_material,issue,2500,kg,,,,over_2_5,
+T04,2026-05-22,FG-LAGER-CAN,Lager 355mL Can,finished_goods,package,500,case,28.80,,,,
+T05,2026-05-22,RM-YEAST,House Ale Yeast,grain,receipt,10,brick,abc,,,,

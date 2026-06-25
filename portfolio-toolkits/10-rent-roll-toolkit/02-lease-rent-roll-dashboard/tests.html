@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests: Lease and Rent Roll Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pass { color: #1b7f3b; font-weight: 700; }
+    .fail { color: #c2410c; font-weight: 700; }
+    .result-line { font-variant-numeric: tabular-nums; }
+    #summary-line { font-size: 18px; font-weight: 700; margin: 0 0 var(--s3); }
+    ol { padding-left: var(--s3); }
+    li { margin-bottom: var(--s1); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tests: Lease and Rent Roll Dashboard</h1>
+    <p class="lede">
+      These checks run the pure logic in dashboard_logic.js against small CSV
+      strings worked out by hand. Open this file in a browser. No build step.
+    </p>
+    <p id="summary-line"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <script src="dashboard_logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var passed = 0;
+      var failed = 0;
+      var list = document.getElementById("results");
+
+      function record(name, ok, detail) {
+        if (ok) { passed += 1; } else { failed += 1; }
+        var li = document.createElement("li");
+        li.className = "result-line";
+        li.innerHTML =
+          '<span class="' + (ok ? "pass" : "fail") + '">' +
+          (ok ? "PASS" : "FAIL") + "</span> " + name +
+          (ok ? "" : (detail ? " : " + detail : ""));
+        list.appendChild(li);
+      }
+
+      function assertEqual(name, got, expected) {
+        record(name, got === expected, "expected " + expected + ", got " + got);
+      }
+
+      // A small clean rent roll, matching the sample the calculator produces.
+      var CLEAN =
+        "unit,tenant,monthly_rent,prorated_rent,late_fee,amount_due,lease_end\n" +
+        "101,Ava Bennett,1500.00,750.00,0.00,750.00,2027-05-31\n" +
+        "103,Maya Singh,1650.00,550.00,0.00,550.00,2026-06-30\n" +
+        "104,Noah Diaz,2000.00,2000.00,25.00,2525.00,2026-08-11\n";
+
+      // Money parsing in integer cents.
+      assertEqual("parseMoneyToCents plain", parseMoneyToCents("750.00"), 75000);
+      assertEqual("parseMoneyToCents with symbols", parseMoneyToCents("$2,525.00"), 252500);
+      assertEqual("parseMoneyToCents whole dollars", parseMoneyToCents("1800"), 180000);
+      assertEqual("parseMoneyToCents blank is null", parseMoneyToCents(""), null);
+      assertEqual("parseMoneyToCents junk is null", parseMoneyToCents("n/a"), null);
+
+      // Money formatting from cents.
+      assertEqual("formatCents 75000", formatCents(75000), "$750.00");
+      assertEqual("formatCents 252500", formatCents(252500), "$2,525.00");
+
+      // Date parsing and day math.
+      assertEqual("parseDateYMD rejects bad date", parseDateYMD("2026-02-30"), null);
+      assertEqual(
+        "daysUntil counts whole days",
+        daysUntil(parseDateYMD("2026-06-12"), parseDateYMD("2026-06-30")),
+        18
+      );
+      assertEqual(
+        "daysUntil is negative for past end",
+        daysUntil(parseDateYMD("2026-06-12"), parseDateYMD("2026-06-02")),
+        -10
+      );
+
+      // Expiry boundary: exactly window days out is flagged, one more is not.
+      assertEqual("isExpiring at boundary", isExpiring(60, 60), true);
+      assertEqual("isExpiring beyond boundary", isExpiring(61, 60), false);
+      assertEqual("isExpiring already past", isExpiring(-3, 60), true);
+
+      // Hand-checked match with the calculator: Unit 101 prorated shows $750.00.
+      var clean = analyzeRentRoll(CLEAN, "2026-06-12", "60");
+      assertEqual("clean read ok", clean.ok, true);
+      assertEqual("clean unit count", clean.units.length, 3);
+      assertEqual(
+        "Unit 101 prorated matches calculator",
+        formatCents(clean.units[0].proratedCents),
+        "$750.00"
+      );
+      assertEqual("total billed in cents", clean.summary.totalBilledCents, 75000 + 55000 + 252500);
+      assertEqual("total billed formatted", formatCents(clean.summary.totalBilledCents), "$3,825.00");
+
+      // Flags: lease ending 2026-06-30 (18 days) and 2026-08-11 (60 days) are
+      // both within a 60-day window; 2027-05-31 is not.
+      assertEqual("two leases flagged", clean.summary.flaggedCount, 2);
+      assertEqual("Unit 101 not flagged", clean.units[0].expiring, false);
+      assertEqual("Unit 103 flagged", clean.units[1].expiring, true);
+      assertEqual("Unit 104 flagged at boundary", clean.units[2].expiring, true);
+
+      // Whole-file rejection: a missing required column stops the read.
+      var badHeader = analyzeRentRoll(
+        "unit,tenant,monthly_rent,prorated_rent,late_fee,lease_end\n" +
+          "101,Ava,1500.00,750.00,0.00,2027-05-31\n",
+        "2026-06-12",
+        "60"
+      );
+      assertEqual("missing column rejected", badHeader.ok, false);
+      record(
+        "missing column names amount_due",
+        badHeader.error.indexOf("amount_due") !== -1,
+        badHeader.error
+      );
+
+      // Row-level skips: bad field count, duplicate unit, non-numeric money, all
+      // reported while the valid rows still come through.
+      var messy =
+        "unit,tenant,monthly_rent,prorated_rent,late_fee,amount_due,lease_end\n" +
+        "201,Good Row,1500.00,1500.00,0.00,1500.00,2026-09-30\n" +
+        "202,Short Row,1500.00,1500.00,0.00,1500.00\n" +
+        "201,Dupe Unit,1500.00,1500.00,0.00,1500.00,2026-09-30\n" +
+        "204,Bad Money,1500.00,oops,0.00,1500.00,2026-09-30\n";
+      var messyResult = analyzeRentRoll(messy, "2026-06-12", "60");
+      assertEqual("messy read still ok", messyResult.ok, true);
+      assertEqual("one valid row survives", messyResult.units.length, 1);
+      assertEqual("three rows skipped", messyResult.issues.length, 3);
+
+      // Empty file.
+      assertEqual("empty file rejected", analyzeRentRoll("", "2026-06-12", "60").ok, false);
+
+      var summaryLine = document.getElementById("summary-line");
+      summaryLine.textContent = passed + " passed, " + failed + " failed";
+      summaryLine.className = failed === 0 ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

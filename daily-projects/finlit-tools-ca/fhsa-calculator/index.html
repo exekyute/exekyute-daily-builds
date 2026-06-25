@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FHSA Optimization Engine</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #4f46e5;
+      cursor: pointer;
+      border: 3px solid white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #4f46e5;
+      cursor: pointer;
+      border: 3px solid white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+    @media print {
+      body { background-color: white !important; }
+      .no-print { display: none !important; }
+      .shadow-sm, .shadow-lg { box-shadow: none !important; border: 1px solid #e2e8f0; }
+    }
+  </style>
+</head>
+<body class="bg-[#f8fafc] min-h-screen py-10">
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react,typescript">
+    // OPS CONTEXT: Projects a Canadian First Home Savings Account year by year — contributions, tax refunds, growth — toward a down-payment target.
+    const { useState, useMemo, useEffect } = React;
+
+    // M1 [Constants & Rules]: CRA FHSA limits.
+    // PIVOT: Federal FHSA caps. $40K lifetime, $8K base annual, $8K max carry-forward — changing any value invalidates the room math downstream.
+    const LIFETIME_CAP = 40000;
+    const ANNUAL_BASE_CAP = 8000;
+    const MAX_CARRY_FORWARD = 8000;
+
+    // M2 [Tax Bracket Estimator]: simplified combined federal+provincial marginal rate by income band.
+    // PIVOT: Approximate 2026 combined rates. Real brackets vary by province; refresh against CRA Schedule 1 if precision matters.
+    function getMarginalTaxRate(income) {
+      if (income <= 55000) return 0.20;
+      if (income <= 110000) return 0.305;
+      if (income <= 165000) return 0.36;
+      if (income <= 235000) return 0.41;
+      return 0.48;
+    }
+
+    // M3 [Schedule Builder]: year-by-year contributions, carry-forward, refunds, growth, ending balance.
+    function calculateFHSASchedule(inputs) {
+      const taxRate = getMarginalTaxRate(inputs.income);
+      let lifetimeRoom = LIFETIME_CAP;
+      let carryForwardRoom = 0;
+      let currentBalance = 0;
+      let previousYearRefund = 0;
+      
+      const schedule = [];
+      let totalOutOfPocket = 0;
+      let totalRefundsGenerated = 0;
+      let totalRefundsReinvested = 0;
+      let hitLifetimeCapEarly = false;
+      let capHitYear = null;
+
+      for (let year = 1; year <= inputs.years; year++) {
+        const theoreticalAnnualRoom = ANNUAL_BASE_CAP + carryForwardRoom;
+        const availableRoomThisYear = Math.min(lifetimeRoom, theoreticalAnnualRoom);
+        
+        const refundInvestedThisYear = inputs.reinvestRefund 
+          ? Math.min(previousYearRefund, availableRoomThisYear) 
+          : 0;
+        
+        const remainingRoomAfterRefund = availableRoomThisYear - refundInvestedThisYear;
+        const outOfPocketThisYear = Math.min(inputs.annualContribution, remainingRoomAfterRefund);
+        const totalDepositThisYear = refundInvestedThisYear + outOfPocketThisYear;
+        
+        lifetimeRoom -= totalDepositThisYear;
+        
+        const unusedRoomThisYear = Math.max(0, theoreticalAnnualRoom - totalDepositThisYear);
+        carryForwardRoom = Math.min(MAX_CARRY_FORWARD, unusedRoomThisYear);
+        
+        if (lifetimeRoom <= 0 && !hitLifetimeCapEarly && year < inputs.years) {
+          hitLifetimeCapEarly = true;
+          capHitYear = year;
+        }
+
+        const taxRefundGenerated = totalDepositThisYear * taxRate;
+        previousYearRefund = taxRefundGenerated;
+        
+        const returnEarned = (currentBalance + totalDepositThisYear) * inputs.returnRate;
+        const endingBalance = currentBalance + totalDepositThisYear + returnEarned;
+
+        schedule.push({
+          year,
+          openingBalance: currentBalance,
+          outOfPocket: outOfPocketThisYear,
+          refundReinvested: refundInvestedThisYear,
+          returnEarned,
+          endingBalance,
+          taxRefundGenerated
+        });
+
+        currentBalance = endingBalance;
+        totalOutOfPocket += outOfPocketThisYear;
+        totalRefundsGenerated += taxRefundGenerated;
+        totalRefundsReinvested += refundInvestedThisYear;
+      }
+
+      return {
+        schedule,
+        totalEndingBalance: currentBalance,
+        totalOutOfPocket,
+        totalRefundsGenerated,
+        totalRefundsReinvested,
+        hitLifetimeCapEarly,
+        capHitYear
+      };
+    }
+
+    // M4 [UI Component]: state, derived projection, formatters, render.
+    function FHSACalculator() {
+      const defaultInputs = { income: 85000, annualContribution: 8000, returnRate: 0.05, years: 5, reinvestRefund: true };
+
+      // M5 [State Persistence]: load saved inputs from localStorage; defaults if absent or corrupt.
+      const [inputs, setInputs] = useState(() => {
+        const savedData = localStorage.getItem('fhsa_user_inputs_final');
+        if (savedData) {
+          try { return JSON.parse(savedData); } catch (e) { }
+        }
+        return defaultInputs;
+      });
+
+      useEffect(() => {
+        localStorage.setItem('fhsa_user_inputs_final', JSON.stringify(inputs));
+      }, [inputs]);
+
+      const projection = useMemo(() => calculateFHSASchedule(inputs), [inputs]);
+
+      const formatCurrency = (val) => 
+        new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 }).format(val);
+
+      const handleInputChange = (field, value) => {
+        setInputs(prev => ({ ...prev, [field]: value }));
+      };
+
+      const handleReset = () => {
+        setInputs(defaultInputs);
+      };
+
+      const handleDownloadCSV = () => {
+        const headers = ["Year", "Opening Balance", "Out-of-Pocket", "Refund Reinvested", "Return Earned", "Ending Balance"];
+        const rows = projection.schedule.map(row => [
+          row.year,
+          row.openingBalance.toFixed(2),
+          row.outOfPocket.toFixed(2),
+          inputs.reinvestRefund ? row.refundReinvested.toFixed(2) : 0,
+          row.returnEarned.toFixed(2),
+          row.endingBalance.toFixed(2)
+        ]);
+        
+        const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+        const encodedUri = encodeURI(csvContent);
+        
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "FHSA_Projection.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      };
+
+      const getSliderFillPct = (value, min, max) => {
+        return ((value - min) / (max - min)) * 100;
+      };
+
+      const totalReturns = projection.totalEndingBalance - projection.totalOutOfPocket - projection.totalRefundsReinvested;
+      const outOfPocketPct = projection.totalEndingBalance > 0 ? (projection.totalOutOfPocket / projection.totalEndingBalance) * 100 : 0;
+      const refundsPct = projection.totalEndingBalance > 0 ? (projection.totalRefundsReinvested / projection.totalEndingBalance) * 100 : 0;
+      const returnsPct = projection.totalEndingBalance > 0 ? (totalReturns / projection.totalEndingBalance) * 100 : 0;
+      
+      const currentTaxRatePct = (getMarginalTaxRate(inputs.income) * 100).toFixed(1);
+
+      return (
+        <div className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 space-y-10 text-slate-800">
+          
+          <div className="text-center space-y-3 relative">
+            <a
+              href="../index.html"
+              className="no-print absolute top-0 left-0 mt-2 ml-2 text-sm text-slate-500 hover:text-indigo-600 transition-colors font-medium underline underline-offset-4"
+            >
+              ← Home
+            </a>
+            <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">FHSA Optimization Engine</h1>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Plan your First Home Savings Account. Maximize your tax refunds and map out your path to homeownership.
+            </p>
+
+            <button
+              onClick={handleReset}
+              className="no-print absolute top-0 right-0 mt-2 mr-2 text-sm text-slate-500 hover:text-indigo-600 transition-colors font-medium underline underline-offset-4"
+              aria-label="Reset all sliders to default values"
+            >
+              Reset Defaults
+            </button>
+          </div>
+
+          <div className="no-print bg-white p-6 sm:p-8 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+
+            <div className="flex flex-col justify-start">
+              <label htmlFor="income-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Annual Income</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{formatCurrency(inputs.income)}</span>
+              </label>
+              <input
+                id="income-slider"
+                type="range" min="40000" max="250000" step="1000"
+                value={inputs.income}
+                onChange={(e) => handleInputChange('income', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.income, 40000, 250000)}%, #e2e8f0 ${getSliderFillPct(inputs.income, 40000, 250000)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+              <p className="text-xs text-slate-500 mt-3 font-medium">
+                Estimated Tax Savings Rate: <span className="text-teal-600 font-bold">{currentTaxRatePct}%</span>
+              </p>
+            </div>
+
+            <div className="flex flex-col justify-start">
+              <label htmlFor="return-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Expected Return Rate</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{(inputs.returnRate * 100).toFixed(1)}%</span>
+              </label>
+              <input 
+                id="return-slider"
+                type="range" min="0" max="0.12" step="0.005" 
+                value={inputs.returnRate}
+                onChange={(e) => handleInputChange('returnRate', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.returnRate, 0, 0.12)}%, #e2e8f0 ${getSliderFillPct(inputs.returnRate, 0, 0.12)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+            </div>
+
+            {/* ROW 2: Contribution (Left) & Timeline (Right) */}
+            <div className="flex flex-col justify-start">
+              <label htmlFor="contribution-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Annual Contribution</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{formatCurrency(inputs.annualContribution)}</span>
+              </label>
+              <input 
+                id="contribution-slider"
+                type="range" min="0" max="8000" step="500" 
+                value={inputs.annualContribution}
+                onChange={(e) => handleInputChange('annualContribution', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.annualContribution, 0, 8000)}%, #e2e8f0 ${getSliderFillPct(inputs.annualContribution, 0, 8000)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+            </div>
+
+            <div className="flex flex-col justify-start">
+              <label htmlFor="years-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Timeline (Years)</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{inputs.years} Years</span>
+              </label>
+              <input 
+                id="years-slider"
+                type="range" min="1" max="15" step="1" 
+                value={inputs.years}
+                onChange={(e) => handleInputChange('years', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.years, 1, 15)}%, #e2e8f0 ${getSliderFillPct(inputs.years, 1, 15)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+            </div>
+
+            {/* ROW 3: The Toggle Switch */}
+            <div className="col-span-1 md:col-span-2 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <h3 className="font-semibold text-slate-900">Reinvest Tax Refunds</h3>
+                <p className="text-sm text-slate-600 mt-1">Automatically roll the previous year's generated tax savings into the next year's principal.</p>
+              </div>
+              <label htmlFor="reinvest-toggle" className="relative inline-flex items-center cursor-pointer shrink-0">
+                <input 
+                  id="reinvest-toggle"
+                  type="checkbox" 
+                  className="sr-only peer"
+                  checked={inputs.reinvestRefund}
+                  onChange={(e) => handleInputChange('reinvestRefund', e.target.checked)}
+                />
+                <div className="w-14 h-7 bg-slate-300 peer-focus:outline-none peer-focus-visible:ring-4 peer-focus-visible:ring-indigo-100 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-indigo-600"></div>
+              </label>
+            </div>
+          </div>
+
+          {/* Warning Banners */}
+          {projection.hitLifetimeCapEarly && (
+            <div className="bg-amber-50 border border-amber-200 p-5 rounded-xl flex items-start gap-4">
+              <svg className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-amber-800 text-sm md:text-base font-medium leading-relaxed">
+                You hit the maximum <span className="font-bold">$40,000 lifetime limit</span> in <strong>Year {projection.capHitYear}</strong>. Out-of-pocket contributions have stopped automatically.
+              </p>
+            </div>
+          )}
+
+          {inputs.years === 15 && (
+            <div className="bg-sky-50 border border-sky-200 p-5 rounded-xl flex items-start gap-4">
+              <svg className="w-6 h-6 text-sky-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-sky-800 text-sm md:text-base font-medium leading-relaxed">
+                <strong>The 15-Year Expiry Rule:</strong> An FHSA can only stay open for 15 years. You must either buy a qualifying home, transfer this money tax-free into your RRSP, or withdraw it as cash.
+              </p>
+            </div>
+          )}
+
+          {/* Summary Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-indigo-600 text-white p-6 sm:p-8 rounded-2xl shadow-lg shadow-indigo-600/20 transform transition duration-300 hover:-translate-y-1">
+              <p className="text-indigo-100 text-sm font-semibold tracking-wide uppercase mb-2">Projected Down Payment</p>
+              <p className="text-4xl font-extrabold">{formatCurrency(projection.totalEndingBalance)}</p>
+            </div>
+            <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm transform transition duration-300 hover:-translate-y-1">
+              <p className="text-slate-600 text-sm font-semibold tracking-wide uppercase mb-2">Total Tax Refunds</p>
+              <p className="text-4xl font-extrabold text-teal-600">{formatCurrency(projection.totalRefundsGenerated)}</p>
+            </div>
+            <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm transform transition duration-300 hover:-translate-y-1">
+              <p className="text-slate-600 text-sm font-semibold tracking-wide uppercase mb-2">Out-of-Pocket Cash</p>
+              <p className="text-4xl font-extrabold text-slate-800">{formatCurrency(projection.totalOutOfPocket)}</p>
+            </div>
+          </div>
+
+          {/* Composition Bar */}
+          <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm space-y-6">
+            <h3 className="font-bold text-slate-900 text-lg">Whose Money Is It? (Portfolio Composition)</h3>
+            <div className="w-full h-10 flex rounded-xl overflow-hidden border border-slate-100">
+              <div style={{ width: `${outOfPocketPct}%` }} className="bg-slate-700 transition-all duration-700 ease-out" title="Your Cash"></div>
+              <div style={{ width: `${refundsPct}%` }} className="bg-teal-500 transition-all duration-700 ease-out" title="Reinvested Refunds"></div>
+              <div style={{ width: `${returnsPct}%` }} className="bg-sky-400 transition-all duration-700 ease-out" title="Growth"></div>
+            </div>
+            <div className="flex flex-wrap gap-6 text-sm font-semibold text-slate-700">
+              <div className="flex items-center gap-2"><div className="w-4 h-4 bg-slate-700 rounded-md"></div>Your Cash ({outOfPocketPct.toFixed(1)}%)</div>
+              {inputs.reinvestRefund && <div className="flex items-center gap-2"><div className="w-4 h-4 bg-teal-500 rounded-md"></div>Tax Refunds ({refundsPct.toFixed(1)}%)</div>}
+              <div className="flex items-center gap-2"><div className="w-4 h-4 bg-sky-400 rounded-md"></div>Market Growth ({returnsPct.toFixed(1)}%)</div>
+            </div>
+          </div>
+
+          {/* Data Table */}
+          <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+            <div className="p-5 sm:p-6 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50/50">
+              <h3 className="font-bold text-slate-900 text-lg">Year-by-Year Growth</h3>
+              <button 
+                onClick={handleDownloadCSV}
+                className="no-print text-sm bg-white border border-slate-300 hover:bg-slate-50 hover:text-indigo-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 text-slate-700 py-2 px-5 rounded-lg shadow-sm transition-all font-semibold flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Export CSV
+              </button>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-white text-slate-500 font-semibold uppercase tracking-wider text-xs border-b border-slate-200">
+                  <tr>
+                    <th className="px-6 py-5">Year</th>
+                    <th className="px-6 py-5">Opening Balance</th>
+                    <th className="px-6 py-5">Out-of-Pocket</th>
+                    {inputs.reinvestRefund && <th className="px-6 py-5">Refund Reinvested</th>}
+                    <th className="px-6 py-5">Return Earned</th>
+                    <th className="px-6 py-5 text-right">Ending Balance</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {projection.schedule.map((row) => (
+                    <tr key={row.year} className="hover:bg-slate-50 transition-colors">
+                      <td className="px-6 py-5 font-bold text-slate-900">{row.year}</td>
+                      <td className="px-6 py-5 text-slate-600">{formatCurrency(row.openingBalance)}</td>
+                      <td className="px-6 py-5 font-medium text-slate-800">{formatCurrency(row.outOfPocket)}</td>
+                      {inputs.reinvestRefund && <td className="px-6 py-5 font-medium text-teal-600">{formatCurrency(row.refundReinvested)}</td>}
+                      <td className="px-6 py-5 font-medium text-sky-600">+{formatCurrency(row.returnEarned)}</td>
+                      <td className="px-6 py-5 text-right font-bold text-slate-900">{formatCurrency(row.endingBalance)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <details className="bg-slate-50 border border-slate-200 rounded-xl" open>
+            <summary className="cursor-pointer px-5 py-4 text-sm font-bold text-slate-800 hover:text-indigo-700 select-none">
+              Disclaimer &amp; sources
+            </summary>
+            <div className="px-5 pb-5 pt-1 text-sm text-slate-600 space-y-3">
+              <p>This tool is illustrative only. It uses a simplified combined federal+provincial marginal rate by income band, applies a constant annual return, and assumes contributions land on the same schedule each year. It does <strong>not</strong> model province-specific brackets, surtaxes, the FHSA-to-RRSP transfer mechanics, the qualifying-home rules, or what happens at the 15-year account-life limit beyond the warning banner above.</p>
+              <p>Your real FHSA room depends on what years you actually opened and contributed. Always confirm your participation room and unused carry-forward in <a href="https://www.canada.ca/en/revenue-agency/services/e-services/cra-my-account.html" target="_blank" rel="noopener" className="underline text-indigo-600">CRA My Account</a> and consult a Certified Professional Accountant before acting.</p>
+              <p className="text-xs text-slate-500">Not tax, legal, or investment advice.</p>
+            </div>
+          </details>
+
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<FHSACalculator />);
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+unit,tenant,charge_type,due_date,balance,days_overdue,bucket,late_fee,total_owed
+101,Ava Bennett,Rent,2026-06-20,1500.00,0,current,0.00,1500.00
+102,Liam Carter,Rent,2026-06-09,1800.00,3,1-30,0.00,1800.00
+103,Maya Singh,Rent,2026-05-13,1500.00,30,1-30,75.00,1575.00
+104,Noah Diaz,Rent,2026-05-12,2000.00,31,31-60,100.00,2100.00
+105,Priya Kaur,Utilities,2026-05-25,400.00,18,1-30,20.00,420.00
+106,Ethan Cole,Rent,2026-03-29,1500.00,75,61-90,75.00,1575.00
+107,Sofia Marin,Rent,2026-02-12,1750.00,120,90+,87.50,1837.50

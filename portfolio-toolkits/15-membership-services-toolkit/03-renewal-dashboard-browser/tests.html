@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Renewal dashboard tests</title>
+    <style>
+        body { font-family: "Segoe UI", Arial, sans-serif; margin: 32px; color: #1f2a44; }
+        h1 { font-size: 20px; }
+        .pass { color: #2c6b2c; }
+        .fail { color: #9b2c2c; font-weight: 700; }
+        .row { padding: 4px 0; font-variant-numeric: tabular-nums; }
+        #summary { margin-top: 16px; font-weight: 700; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Renewal dashboard tests</h1>
+    <div id="results"></div>
+    <div id="summary"></div>
+
+    <script src="sample-data.js"></script>
+    <script src="summary.js"></script>
+    <script>
+        var results = document.getElementById("results");
+        var passed = 0, failed = 0;
+
+        function check(label, got, want) {
+            var ok = (got === want);
+            ok ? passed++ : failed++;
+            var div = document.createElement("div");
+            div.className = "row " + (ok ? "pass" : "fail");
+            div.textContent = (ok ? "[PASS] " : "[FAIL] ") + label +
+                ": got " + got + ", expected " + want;
+            results.appendChild(div);
+        }
+
+        var rows = parseWorklistCsv(SAMPLE_CSV);
+        var s = summarize(rows);
+
+        // Money rounding mirrors the SQL and Excel tools.
+        check("HST on 173375 cents", hstCents(173375), 22539);
+        check("HST on 41250 cents (Associate)", hstCents(41250), 5363);
+        check("parse 6.25 to cents", parseMoneyToCents("6.25"), 625);
+        check("blank parses to null", parseMoneyToCents(""), null);
+
+        // Status counts.
+        check("expiring count", s.statusCounts.Expiring, 3);
+        check("lapsed count", s.statusCounts.Lapsed, 2);
+        check("paid count", s.statusCounts.Paid, 6);
+        check("need review count", s.needsReview, 2);
+
+        // Billable totals, to the cent.
+        check("billable members", s.totals.billableMembers, 10);
+        check("total dues cents", s.totals.duesCents, 173375);
+        check("HST cents", s.totals.hstCents, 22539);
+        check("late fee cents", s.totals.lateCents, 2500);
+        check("grand total cents", s.totals.grandCents, 198414);
+
+        // Dues by tier.
+        var prof = s.byTier.filter(function (t) { return t.tier === "Professional"; })[0];
+        check("Professional members", prof.members, 4);
+        check("Professional dues cents", prof.duesCents, 120000);
+        check("Professional HST cents", prof.hstCents, 15600);
+
+        // Reconciliation.
+        check("total rows", s.reconciliation.totalRows, 12);
+        check("distinct members", s.reconciliation.distinctMembers, 11);
+
+        var summary = document.getElementById("summary");
+        summary.className = failed === 0 ? "pass" : "fail";
+        summary.textContent = failed === 0
+            ? "All " + passed + " checks passed."
+            : failed + " of " + (passed + failed) + " checks FAILED.";
+    </script>
+</body>
+</html>

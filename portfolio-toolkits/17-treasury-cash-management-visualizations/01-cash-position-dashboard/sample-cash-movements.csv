@@ -1,0 +1,11 @@
+date,account,direction,amount,description
+2026-06-15,CAD-OPS,opening,250000.00,Opening balance
+2026-06-15,CAD-OPS,in,82000.00,Customer receipts
+2026-06-15,CAD-OPS,in,15500.50,Interest credit
+2026-06-15,CAD-OPS,out,64000.00,Supplier run
+2026-06-15,CAD-OPS,out,120000.00,Payroll transfer
+2026-06-15,CAD-PAYROLL,opening,40000.00,Opening balance
+2026-06-15,CAD-PAYROLL,out,38500.00,Payroll funding
+2026-06-15,CAD-TAX,opening,5000.00,Opening balance
+2026-06-15,CAD-TAX,out,22000.00,HST remittance
+2026-06-15,CAD-RESERVE,opening,500000.00,Opening balance

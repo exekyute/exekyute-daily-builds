@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard logic tests</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Minimal extra styling for the test list, reusing the shared variables. */
+      .test-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--surface);
+      }
+      .test-list li {
+        padding: var(--space-2) var(--space-3);
+        border-bottom: 1px solid var(--line);
+        font-variant-numeric: tabular-nums;
+      }
+      .test-list li:last-child {
+        border-bottom: none;
+      }
+      .test-list li.pass {
+        color: #1f6b34;
+      }
+      .test-list li.fail {
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-weight: 700;
+      }
+      .tag {
+        display: inline-block;
+        width: 56px;
+        font-weight: 700;
+      }
+      .scoreboard {
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .scoreboard.ok {
+        color: #1f6b34;
+      }
+      .scoreboard.bad {
+        color: var(--accent-strong);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="masthead">
+        <h1>Dashboard logic tests</h1>
+        <p class="lede">
+          Assertions over the pure functions in <code>dashboard_logic.js</code>.
+          No build tooling: open this file in a browser to run them.
+        </p>
+      </header>
+      <section id="scoreboard" class="scoreboard">Running...</section>
+      <ul id="results" class="test-list"></ul>
+    </main>
+
+    <script src="dashboard_logic.js"></script>
+    <script>
+      (function () {
+        "use strict";
+        var logic = window.DashboardLogic;
+        var results = document.getElementById("results");
+        var passed = 0;
+        var failed = 0;
+
+        function record(name, ok, detail) {
+          if (ok) {
+            passed++;
+          } else {
+            failed++;
+          }
+          var li = document.createElement("li");
+          li.className = ok ? "pass" : "fail";
+          var tag = ok ? "PASS" : "FAIL";
+          li.innerHTML = '<span class="tag">' + tag + "</span>";
+          li.appendChild(
+            document.createTextNode(name + (ok ? "" : "  ->  " + detail))
+          );
+          results.appendChild(li);
+        }
+
+        function check(name, fn) {
+          try {
+            fn();
+            record(name, true);
+          } catch (error) {
+            record(name, false, error.message);
+          }
+        }
+
+        function assert(condition, message) {
+          if (!condition) {
+            throw new Error(message || "assertion failed");
+          }
+        }
+
+        function assertEqual(actual, expected) {
+          if (actual !== expected) {
+            throw new Error("expected " + expected + " but got " + actual);
+          }
+        }
+
+        function assertThrows(fn) {
+          var threw = false;
+          try {
+            fn();
+          } catch (error) {
+            threw = true;
+          }
+          if (!threw) {
+            throw new Error("expected an error but none was thrown");
+          }
+        }
+
+        // The committed sample, mirroring data/landed_cost.csv.
+        var SAMPLE_CSV = [
+          "line_id,description,quantity,unit_cost,allocated_freight,landed_unit_cost",
+          "L001,Steel brackets (carton),7,5.00,25.93,8.70",
+          "L002,Hydraulic fittings (box),3,10.00,22.22,17.41",
+          "L003,Foam packing inserts,5,4.00,14.81,6.96",
+          "L004,Promo flyers (no charge),2,0.00,0.00,0.00",
+          "L005,Control cabinet (pallet),1,50.00,37.04,87.04",
+        ].join("\n");
+
+        check("toCents parses whole and fractional dollars", function () {
+          assertEqual(logic.toCents("25.93"), 2593);
+          assertEqual(logic.toCents("100"), 10000);
+          assertEqual(logic.toCents("0.05"), 5);
+          assertEqual(logic.toCents("0.5"), 50);
+        });
+
+        check("toCents rejects blanks and bad text", function () {
+          assertThrows(function () {
+            logic.toCents("");
+          });
+          assertThrows(function () {
+            logic.toCents("free");
+          });
+          assertThrows(function () {
+            logic.toCents("1.234");
+          });
+        });
+
+        check("formatMoney shows currency with no float artifacts", function () {
+          assertEqual(logic.formatMoney(2593), "$25.93");
+          assertEqual(logic.formatMoney(0), "$0.00");
+          assertEqual(logic.formatMoney(23500), "$235.00");
+        });
+
+        check("parseQuantity accepts positives, rejects the rest", function () {
+          assertEqual(logic.parseQuantity("7"), 7);
+          assertThrows(function () {
+            logic.parseQuantity("0");
+          });
+          assertThrows(function () {
+            logic.parseQuantity("2.5");
+          });
+        });
+
+        check("parseCsv reads header and every data row", function () {
+          var parsed = logic.parseCsv(SAMPLE_CSV);
+          assertEqual(parsed.header.length, 6);
+          assertEqual(parsed.records.length, 5);
+          assertEqual(parsed.records[0].values.line_id, "L001");
+        });
+
+        check("parseCsv handles a quoted field with a comma", function () {
+          var csv =
+            "line_id,description,quantity,unit_cost,allocated_freight,landed_unit_cost\n" +
+            'L001,"Brackets, steel",7,5.00,25.93,8.70';
+          var parsed = logic.parseCsv(csv);
+          assertEqual(parsed.records[0].values.description, "Brackets, steel");
+        });
+
+        check("missingColumns names absent required columns", function () {
+          var missing = logic.missingColumns(["line_id", "quantity"]);
+          assertEqual(missing.join(","), "description,unit_cost,allocated_freight,landed_unit_cost");
+        });
+
+        check("buildRows computes goods value and line landed cost", function () {
+          var parsed = logic.parseCsv(SAMPLE_CSV);
+          var built = logic.buildRows(parsed.records);
+          assertEqual(built.errors.length, 0);
+          assertEqual(built.rows.length, 5);
+          // L001: 7 * 500 = 3500 goods, + 2593 freight = 6093 landed.
+          assertEqual(built.rows[0].goodsValueCents, 3500);
+          assertEqual(built.rows[0].lineLandedCents, 6093);
+          // L004 promo line carries zero value and zero freight.
+          assertEqual(built.rows[3].goodsValueCents, 0);
+          assertEqual(built.rows[3].lineLandedCents, 0);
+        });
+
+        check("summary reconciles to the freight charge and landed total", function () {
+          var parsed = logic.parseCsv(SAMPLE_CSV);
+          var built = logic.buildRows(parsed.records);
+          var totals = logic.summarize(built.rows);
+          // Total freight ties back to the allocator's 100.00 charge.
+          assertEqual(totals.totalFreightCents, 10000);
+          assertEqual(logic.formatMoney(totals.totalFreightCents), "$100.00");
+          // Goods 135.00 + freight 100.00 = landed 235.00.
+          assertEqual(totals.totalGoodsCents, 13500);
+          assertEqual(totals.totalLandedCents, 23500);
+        });
+
+        check("buildRows reports bad rows by line number", function () {
+          var csv =
+            "line_id,description,quantity,unit_cost,allocated_freight,landed_unit_cost\n" +
+            "L001,Good,5,10.00,5.00,11.00\n" +
+            "L002,Bad qty,zero,10.00,5.00,11.00\n" +
+            "L003,Bad money,2,10.00,oops,11.00";
+          var parsed = logic.parseCsv(csv);
+          var built = logic.buildRows(parsed.records);
+          assertEqual(built.rows.length, 1);
+          assertEqual(built.errors.length, 2);
+          assert(built.errors[0].indexOf("Line 3") === 0, "first error on line 3");
+        });
+
+        var scoreboard = document.getElementById("scoreboard");
+        scoreboard.textContent =
+          passed + " passed, " + failed + " failed (" + (passed + failed) + " total)";
+        scoreboard.className = "scoreboard " + (failed === 0 ? "ok" : "bad");
+      })();
+    </script>
+  </body>
+</html>

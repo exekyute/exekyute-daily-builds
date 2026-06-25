@@ -1,0 +1,267 @@
+/*
+ * Two-tone palette: one base (ink/slate) plus one accent (amber). Every color
+ * on the page derives from these two through tints defined as variables. One
+ * spacing scale, all multiples of 8px, is reused for every margin, padding, and
+ * gap so nothing is cramped and everything aligns to a shared grid.
+ */
+:root {
+  /* Base tone */
+  --base: #1f2a37;
+  --base-strong: #111a24;
+  --base-soft: #41506180;
+  --surface: #ffffff;
+  --page-bg: #eef1f5;
+  --line: #d6dce4;
+  --text: #1f2a37;
+  --text-muted: #5b6776;
+
+  /* Accent tone */
+  --accent: #c9711a;
+  --accent-strong: #a85a12;
+  --accent-soft: #f6e6d4;
+
+  /* Spacing scale: multiples of 8px */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Keep the hidden attribute working even on elements that set their own
+ * display value (the summary grid would otherwise stay visible). */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.masthead {
+  border-left: var(--space-1) solid var(--accent);
+  padding: var(--space-1) var(--space-3);
+}
+
+.masthead h1 {
+  margin: 0 0 var(--space-1) 0;
+  font-size: 28px;
+  color: var(--base-strong);
+}
+
+.lede {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--text-muted);
+}
+
+/* Controls */
+.controls {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.file-label {
+  font-weight: 600;
+  color: var(--base-strong);
+}
+
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.file-input {
+  flex: 1 1 320px;
+  padding: var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--page-bg);
+  font-size: 15px;
+}
+
+.file-input::file-selector-button {
+  margin-right: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--base);
+  font: inherit;
+  cursor: pointer;
+}
+
+.button {
+  padding: var(--space-2) var(--space-4);
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--surface);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--accent-strong);
+}
+
+.button:focus-visible,
+.file-input:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 2px;
+}
+
+.hint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+code {
+  background: var(--page-bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 14px;
+}
+
+/* Message banner */
+.message {
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line);
+}
+
+.message.error {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.message.error ul {
+  margin: var(--space-1) 0 0 0;
+  padding-left: var(--space-3);
+}
+
+.message.error li {
+  margin: 4px 0;
+}
+
+.message.ok {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--text-muted);
+}
+
+/* Summary cards */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-2);
+}
+
+.summary-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.summary-card.accent {
+  border-color: var(--accent);
+  border-top: var(--space-1) solid var(--accent);
+}
+
+.summary-label {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.summary-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--base-strong);
+}
+
+/* Ledger table */
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ledger {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ledger th,
+.ledger td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.ledger thead th {
+  background: var(--base);
+  color: var(--surface);
+  font-weight: 600;
+  border-bottom: none;
+}
+
+.ledger .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.ledger tbody tr:nth-child(even) {
+  background: var(--page-bg);
+}
+
+.ledger tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Footer */
+.foot {
+  color: var(--text-muted);
+  font-size: 14px;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line);
+}
+
+.foot p {
+  margin: 0;
+}

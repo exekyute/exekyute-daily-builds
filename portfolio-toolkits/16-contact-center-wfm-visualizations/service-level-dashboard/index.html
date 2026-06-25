@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Service-Level Dashboard</title>
+    <style>
+      :root {
+        --base: #1f2a44;
+        --accent: #2f9e8f;
+        --ink: #1f2a44;
+        --muted: #5b6678;
+        --line: #e2e6ee;
+        --scheduled: #c9d4e8;
+        --bg: #f6f8fc;
+        --panel: #ffffff;
+        --breach: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 70ch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      .panel h2 {
+        margin: 0 0 calc(var(--space) * 2) 0;
+        font-size: 16px;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: calc(var(--space) * 3);
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="number"],
+      input[type="file"] {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eef6f4;
+        color: #246b60;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--breach);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 4);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-value.warn {
+        color: var(--breach);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 2);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .swatch {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        margin-right: var(--space);
+        vertical-align: -2px;
+      }
+
+      .swatch.met {
+        background: var(--accent);
+      }
+      .swatch.breach {
+        background: var(--breach);
+      }
+      .swatch.required {
+        background: var(--base);
+      }
+      .swatch.scheduled {
+        background: var(--scheduled);
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      .grid {
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+
+      .axis-label {
+        fill: var(--muted);
+        font-size: 11px;
+      }
+
+      .bar-met {
+        fill: var(--accent);
+      }
+      .bar-breach {
+        fill: var(--breach);
+      }
+      .bar-required {
+        fill: var(--base);
+      }
+      .bar-scheduled {
+        fill: var(--scheduled);
+      }
+      .bar-short {
+        fill: var(--breach);
+        opacity: 0.55;
+      }
+
+      .target-line {
+        stroke: var(--base);
+        stroke-width: 1.5;
+        stroke-dasharray: 6 4;
+      }
+
+      .target-label {
+        fill: var(--base);
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      tr.breach td {
+        background: #fbf1ef;
+      }
+
+      tr.breach td:first-child {
+        box-shadow: inset 3px 0 0 var(--breach);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Service-Level Dashboard</h1>
+        <p>
+          Load a day of interval actuals to see service level, abandon rate, average speed of answer, handle
+          time, and occupancy per interval. Add the staffing plan the Staffing Planner exports and each interval
+          is checked against the agents it was meant to have, so understaffed intervals stand out.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div>
+            <label for="actualsInput">Actuals CSV</label>
+            <input type="file" id="actualsInput" accept=".csv,text/csv" />
+          </div>
+          <div>
+            <label for="planInput">Staffing plan CSV (optional)</label>
+            <input type="file" id="planInput" accept=".csv,text/csv" />
+          </div>
+          <div>
+            <label for="intervalMinutes">Interval length (min)</label>
+            <input type="number" id="intervalMinutes" value="30" min="1" step="1" />
+          </div>
+          <div>
+            <label for="targetSlPct">Service-level target (%)</label>
+            <input type="number" id="targetSlPct" value="80" min="1" max="100" step="1" />
+          </div>
+        </div>
+        <div class="message" id="message"></div>
+      </section>
+
+      <section class="panel">
+        <div class="summary" id="summary">
+          <div class="stat"><span class="stat-value">--</span><span class="stat-label">load actuals to begin</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Service level by interval</h2>
+        <div class="legend">
+          <span><span class="swatch met"></span>Met target</span>
+          <span><span class="swatch breach"></span>Below target</span>
+        </div>
+        <svg id="slChart" viewBox="0 0 880 320" role="img" aria-label="Service level by interval"></svg>
+      </section>
+
+      <section class="panel" id="coverageSection" style="display: none">
+        <h2>Coverage: scheduled vs required</h2>
+        <div class="legend">
+          <span><span class="swatch required"></span>Required agents</span>
+          <span><span class="swatch scheduled"></span>Scheduled (covered)</span>
+          <span><span class="swatch breach"></span>Scheduled (short of plan)</span>
+        </div>
+        <svg id="coverageChart" viewBox="0 0 880 260" role="img" aria-label="Coverage by interval"></svg>
+      </section>
+
+      <section class="panel">
+        <table>
+          <thead>
+            <tr>
+              <th>Interval</th>
+              <th>Offered</th>
+              <th>SL</th>
+              <th>Abandon</th>
+              <th>ASA</th>
+              <th>AHT</th>
+              <th>Occupancy</th>
+              <th>Required</th>
+              <th>Scheduled</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody id="metricBody"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <script src="dist/metrics.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>

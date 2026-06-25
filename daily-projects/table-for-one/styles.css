@@ -1,0 +1,498 @@
+/* ============================================================
+   THE SLOW TABLE — minimalist food diary
+   ============================================================ */
+
+:root {
+  /* Base color: pearl off-white. Everything is tuned around this. */
+  --pearl:        #f7f4ec;
+  --pearl-rgb:    247, 244, 236;   /* same color, for gradient math */
+
+  /* Warm ink for text. Soft black with a touch of brown so it sits
+     comfortably on the pearl instead of fighting it. */
+  --ink:          #2c2823;
+  --ink-soft:     #6b6358;         /* dates, captions, quiet text */
+
+  /* A single restrained accent: aged umber. Used sparingly. */
+  --accent:       #7a5c44;
+  --hairline:     #e2dccd;         /* faint dividers */
+
+  /* ---- BACKDROP IMAGE ----
+     A faint, fixed food photo that sits behind the page as a backdrop.
+     Replace the URL below with your own (drop it in images/). Crop it so
+     the subject sits in the upper-middle, since the bottom is faded out. */
+  --banner-image: url('images/banner.jpg');  /* your photo; drop a new one in images/ to swap */
+
+  --backdrop-height: 44vh;         /* how tall the faint food band is */
+  --backdrop-strength: 0.26;       /* lower = more transparent / more pearl */
+
+  --measure: 38rem;                /* comfortable reading width */
+}
+
+/* ---- Dark theme ----
+   Only the variables change. A manual choice (html[data-theme]) always
+   wins; with no manual choice, the system setting is followed. */
+:root[data-theme="dark"] {
+  --pearl:        #17130f;   /* warm near-black becomes the base */
+  --pearl-rgb:    23, 19, 15;
+  --ink:          #ece5d6;
+  --ink-soft:     #a89a86;
+  --accent:       #cda06f;   /* lighter caramel reads on the dark base */
+  --hairline:     #342c22;
+  --backdrop-strength: 0.34; /* lift the photo a touch over the dark base */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --pearl:        #17130f;
+    --pearl-rgb:    23, 19, 15;
+    --ink:          #ece5d6;
+    --ink-soft:     #a89a86;
+    --accent:       #cda06f;
+    --hairline:     #342c22;
+    --backdrop-strength: 0.34;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+body {
+  margin: 0;
+  background-color: var(--pearl);
+  color: var(--ink);
+  font-family: 'Spectral', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  hanging-punctuation: first last;   /* refined edges where supported */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body::before { transition: opacity 0.3s ease; }
+
+/* Keyboard focus ring, kept on-brand. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip link for keyboard and screen-reader users. */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--pearl);
+  padding: 0.55rem 0.9rem;
+  border-radius: 0 0 6px 6px;
+  text-decoration: none;
+  transition: top 150ms ease;
+}
+.skip-link:focus { top: 0; }
+
+/* Theme toggle, injected by script.js and pinned to the corner. */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  background: rgba(var(--pearl-rgb), 0.72);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ============================================================
+   BACKDROP
+   A faint food photo pinned to the top of the viewport, behind
+   everything. It is fixed, so it stays put while the page scrolls
+   (the food keeps showing through along with the pearl). It is kept
+   very transparent so the title can sit over it and still read, and
+   it is masked top and bottom so it melts into the pearl with no
+   hard edge. Only a short horizontal band is used; the rest of the
+   page is pearl.
+   ============================================================ */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--backdrop-height);
+  z-index: -1;
+  pointer-events: none;
+
+  background: var(--banner-image) center top / cover no-repeat;
+  opacity: var(--backdrop-strength);
+
+  /* soften the top edge and melt the bottom into the pearl */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 20%,
+    rgba(0,0,0,1) 58%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,1) 20%,
+    rgba(0,0,0,1) 58%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+/* ============================================================
+   BANNER / MASTHEAD
+   A short header that sits over the faint backdrop band. No image of
+   its own; it just holds the title high on the page. Because the
+   backdrop is so transparent, dark ink reads cleanly over it.
+   ============================================================ */
+.banner {
+  position: relative;
+  min-height: var(--backdrop-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
+
+.banner__inner {
+  position: relative;
+  max-width: var(--measure);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.banner__kicker {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.banner__title {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+}
+
+.banner__subtitle {
+  margin: 0.8rem 0 0;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink-soft);
+  font-size: 1.2rem;
+}
+
+/* ============================================================
+   PAGE / ENTRIES
+   ============================================================ */
+.page {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 5vw, 2rem) 4rem;
+}
+
+.entry { padding: 2.6rem 0; }
+/* Divider only between two visible entries, so a month-filtered view
+   never shows a stray rule above its first post. */
+.entry:not([hidden]) + .entry:not([hidden]) {
+  border-top: 1px solid var(--hairline);
+}
+
+.entry__date {
+  display: block;
+  margin: 0 0 0.5rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------
+   ARCHIVE
+   A quiet month list, built from the entry dates by script.js.
+   It is two tiers: a year row that is always shown, and a month row
+   that appears only once a year is chosen. This stays compact even
+   after many years of posts. Clicking filters the visible entries.
+   ------------------------------------------------------------ */
+.archive {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.8rem;
+}
+
+.archive__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 1.1rem;
+}
+
+/* the months sit one quiet step below the chosen year */
+.archive__months {
+  padding-left: 0.1rem;
+  opacity: 0.92;
+}
+.archive__months .archive__item { font-size: 0.95em; }
+
+.archive__title {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--ink-soft);
+}
+
+.archive__item {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+  transition: color 120ms ease;
+}
+
+.archive__item:hover { color: var(--ink); }
+
+.archive__item.is-active { color: var(--accent); }
+.archive__item.is-active .archive__label {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.archive__count {
+  font-size: 0.72em;
+  color: var(--accent);
+  opacity: 0.65;
+}
+.archive__item.is-active .archive__count { color: inherit; opacity: 1; }
+
+.entry__title {
+  margin: 0 0 1.1rem;
+  font-weight: 600;
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.entry p { margin: 0 0 1.1rem; }
+.entry p:last-child { margin-bottom: 0; }
+
+/* ------------------------------------------------------------
+   SCROLL FADE
+   An entry is at full strength while it sits in the body of the
+   screen, and softly fades as it is left behind near the top (and
+   as it first rises in from the bottom). Scrubbed by scroll, so it
+   returns to normal whenever the entry comes back into full view.
+   Uses CSS scroll-driven animations where supported; everywhere
+   else the text simply stays at full opacity.
+   ------------------------------------------------------------ */
+@supports (animation-timeline: view()) {
+  @keyframes entry-read-fade {
+    0%   { opacity: 0.12; }   /* rising in from the bottom */
+    22%  { opacity: 1; }
+    74%  { opacity: 1; }
+    100% { opacity: 0.04; }   /* left behind past the top */
+  }
+
+  .entry {
+    animation: entry-read-fade linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+    will-change: opacity;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry { animation: none; opacity: 1; }
+}
+
+/* ------------------------------------------------------------
+   CONTROLS / SEARCH (built by script.js)
+   ------------------------------------------------------------ */
+.controls { margin-bottom: 1.2rem; }
+
+.search { position: relative; display: flex; align-items: center; }
+
+.search__input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  padding: 0.4rem 1.8rem 0.5rem 0;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 150ms ease;
+}
+.search__input::placeholder { color: var(--ink-soft); opacity: 0.85; }
+.search__input:focus { outline: none; border-color: var(--accent); }
+.search__input::-webkit-search-decoration,
+.search__input::-webkit-search-cancel-button { -webkit-appearance: none; }
+
+.search__clear {
+  position: absolute;
+  right: 0;
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0.2rem;
+  transition: color 120ms ease;
+}
+.search__clear:hover { color: var(--accent); }
+
+.controls__status {
+  margin: 0.6rem 0 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.controls__status em { color: var(--ink); font-style: normal; }
+
+/* ------------------------------------------------------------
+   ENTRY META: place + rating
+   ------------------------------------------------------------ */
+.entry p.entry__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.8rem;
+  margin: 0 0 0.9rem;
+  font-size: 0.92rem;
+}
+.entry__place { color: var(--ink-soft); font-style: italic; }
+.entry__rating {
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+}
+
+/* ------------------------------------------------------------
+   PERMALINK (injected onto each date by script.js)
+   ------------------------------------------------------------ */
+.entry__permalink {
+  position: relative;
+  margin-left: 0.55em;
+  text-decoration: none;
+  color: var(--ink-soft);
+  opacity: 0;
+  transition: opacity 120ms ease, color 120ms ease;
+}
+.entry:hover .entry__permalink,
+.entry__permalink:focus-visible { opacity: 1; }
+.entry__permalink:hover { color: var(--accent); }
+
+.entry__permalink::after {
+  content: "copied";
+  position: absolute;
+  left: 1.4em;
+  top: -0.1em;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+.entry__permalink.is-copied { opacity: 1; color: var(--accent); }
+.entry__permalink.is-copied::after { opacity: 1; }
+
+/* ------------------------------------------------------------
+   TYPOGRAPHY: drop cap on the first body paragraph of each entry
+   (the paragraph right after the title, so the meta line is skipped)
+   ------------------------------------------------------------ */
+.entry__title + p::first-letter {
+  float: left;
+  font-size: 3.1rem;
+  line-height: 0.78;
+  padding: 0.12rem 0.55rem 0 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 2.5rem clamp(1.5rem, 5vw, 2rem) 4rem;
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ============================================================
+   PRINT
+   Strip the backdrop, controls, archive, and toggle; print clean
+   ink on white with every entry shown at full strength.
+   ============================================================ */
+@media print {
+  body::before,
+  .theme-toggle,
+  .skip-link,
+  .controls,
+  .archive,
+  .banner__kicker,
+  .banner__subtitle,
+  .entry__permalink {
+    display: none !important;
+  }
+
+  body { background: #fff; color: #000; }
+
+  .banner { min-height: 0; padding: 0 0 0.5rem; }
+  .page { max-width: none; padding: 0; }
+
+  .entry {
+    animation: none !important;
+    opacity: 1 !important;
+    break-inside: avoid;
+  }
+  .entry[hidden] { display: block !important; } /* print the whole diary */
+
+  .entry__title + p::first-letter { color: #000; }
+  .entry__rating { color: #000; }
+
+  a { color: inherit; text-decoration: none; }
+}

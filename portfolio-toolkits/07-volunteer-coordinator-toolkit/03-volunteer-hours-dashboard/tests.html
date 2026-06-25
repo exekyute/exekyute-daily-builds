@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests: Volunteer Hours Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pass { color: #1b7f3b; }
+    .fail { color: #c62828; font-weight: 700; }
+    .result-line { font-variant-numeric: tabular-nums; }
+    #summary { font-size: 18px; font-weight: 700; margin: 0 0 16px; }
+    ol { line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tests: Volunteer Hours Dashboard</h1>
+    <p class="lede">
+      These checks run the pure logic in hours_logic.js against CSV worked out by
+      hand. Open this file in a browser. No build step.
+    </p>
+    <p id="summary"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <script src="hours_logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var passed = 0;
+      var failed = 0;
+      var list = document.getElementById("results");
+
+      function record(name, ok, detail) {
+        if (ok) { passed++; } else { failed++; }
+        var li = document.createElement("li");
+        li.className = "result-line";
+        li.innerHTML =
+          '<span class="' + (ok ? "pass" : "fail") + '">' +
+          (ok ? "PASS" : "FAIL") + "</span> " + name +
+          (detail ? " : " + detail : "");
+        list.appendChild(li);
+      }
+
+      function assertEqual(name, got, expected) {
+        record(name, got === expected, "expected " + expected + ", got " + got);
+      }
+
+      function hasAnomaly(result, type) {
+        return result.anomalies.some(function (a) { return a.type === type; });
+      }
+
+      function hasReason(parsed, fragment) {
+        return parsed.rejected.some(function (r) { return r.reason.indexOf(fragment) !== -1; });
+      }
+
+      // --- helpers ---------------------------------------------------------
+      assertEqual("formatHM keeps whole minutes", HoursLogic.formatHM(90), "1:30");
+      assertEqual("formatHM pads minutes", HoursLogic.formatHM(605), "10:05");
+      assertEqual("toMinutes reads a time", HoursLogic.toMinutes("09:30"), 570);
+      assertEqual("toMinutes rejects 9am", HoursLogic.toMinutes("9am"), null);
+      assertEqual("isYmd rejects month 13", HoursLogic.isYmd("2026-13-02"), false);
+      assertEqual("isYmd accepts a real date", HoursLogic.isYmd("2026-06-02"), true);
+      assertEqual("touching entries do not overlap", HoursLogic.overlaps(540, 720, 720, 900), false);
+      assertEqual("entries sharing a minute overlap", HoursLogic.overlaps(540, 720, 600, 780), true);
+
+      // --- the clean sample ------------------------------------------------
+      var SAMPLE = [
+        "entry_id,volunteer_id,volunteer_name,date,start_time,end_time",
+        "H-101,V-101,Ana Reyes,2026-06-02,09:00,12:00",
+        "H-102,V-101,Ana Reyes,2026-06-05,13:00,17:00",
+        "H-103,V-101,Ana Reyes,2026-06-09,09:00,12:00",
+        "H-104,V-102,Ben Cho,2026-06-01,08:00,16:00",
+        "H-105,V-102,Ben Cho,2026-06-03,08:00,16:00",
+        "H-106,V-102,Ben Cho,2026-06-06,09:00,14:00",
+        "H-107,V-102,Ben Cho,2026-06-10,09:00,15:00",
+        "H-108,V-103,Carmen Diaz,2026-06-04,10:00,12:30",
+        "H-109,V-103,Carmen Diaz,2026-06-07,10:00,13:00",
+        "H-110,V-104,Dev Patel,2026-06-08,09:00,12:00",
+        "H-111,V-106,Priya Nair,2026-06-02,09:00,12:00",
+        "H-112,V-106,Priya Nair,2026-06-02,13:00,15:00",
+        "H-113,V-106,Priya Nair,2026-06-11,09:00,17:00"
+      ].join("\n");
+
+      var sampleParsed = HoursLogic.parseCsv(SAMPLE);
+      assertEqual("sample parses every row", sampleParsed.rows.length, 13);
+      assertEqual("sample rejects nothing", sampleParsed.rejected.length, 0);
+      assertEqual("sample header is accepted", sampleParsed.headerError, "");
+
+      var sample = HoursLogic.summarize(sampleParsed.rows, HoursLogic.DEFAULT_CONFIG);
+      function total(result, id) {
+        return result.totals.filter(function (t) { return t.volunteer_id === id; })[0];
+      }
+      assertEqual("Ana totals five hundred minutes", total(sample, "V-101").minutes, 600);
+      assertEqual("Ana shows ten hours", total(sample, "V-101").formatted, "10:00");
+      assertEqual("Ana crosses the 10 hour milestone at exactly 10 hours", total(sample, "V-101").milestone, 10);
+      assertEqual("Ben crosses the 25 hour milestone", total(sample, "V-102").milestone, 25);
+      assertEqual("Carmen has no milestone yet", total(sample, "V-103").milestone, null);
+      assertEqual("three milestones in the sample", sample.milestones.length, 3);
+      assertEqual("the clean sample has no anomalies", sample.anomalies.length, 0);
+
+      // --- milestone boundary ----------------------------------------------
+      var justUnder = HoursLogic.summarize(
+        HoursLogic.parseCsv("entry_id,volunteer_id,volunteer_name,date,start_time,end_time\nB-1,V-9,Edge,2026-06-01,10:00,19:59").rows,
+        HoursLogic.DEFAULT_CONFIG);
+      assertEqual("nine hours and change earns no milestone", total(justUnder, "V-9").milestone, null);
+
+      // --- the messy file, one of every branch -----------------------------
+      var MESSY = [
+        "entry_id,volunteer_id,volunteer_name,date,start_time,end_time",
+        "H-1,V-101,Ana Reyes,2026-06-02,09:00,12:00",
+        "H-2,V-101,Ana Reyes,2026-06-02,11:00,13:00",
+        "H-3,V-102,Ben Cho,2026-06-03,06:00,19:00",
+        "H-9,V-102,Ben Cho,2026-06-03,19:30,22:00",
+        "H-4,V-103,Carmen Diaz,2026-06-04,10:00",
+        "H-5,V-104,Dev Patel,2026-06-05,9am,12:00",
+        "H-1,V-105,Jordan Lee,2026-06-06,09:00,10:00",
+        "H-6,V-106,Priya Nair,2026-06-07,09:00,12:00,extra",
+        "H-7,V-102,Ben Cho,2026-13-02,09:00,12:00",
+        "H-8,V-103,Carmen Diaz,2026-06-08,14:00,13:00"
+      ].join("\n");
+
+      var messyParsed = HoursLogic.parseCsv(MESSY);
+      assertEqual("messy keeps four clean rows", messyParsed.rows.length, 4);
+      assertEqual("messy rejects six rows", messyParsed.rejected.length, 6);
+      record("a short row is rejected", hasReason(messyParsed, "5 fields"));
+      record("an extra column is rejected", hasReason(messyParsed, "7 fields"));
+      record("a duplicate entry id is rejected", hasReason(messyParsed, "Duplicate entry id"));
+      record("a bad date is rejected", hasReason(messyParsed, "not a real YYYY-MM-DD"));
+      record("a bad time is rejected", hasReason(messyParsed, "not a real 24-hour"));
+      record("an end before start is rejected", hasReason(messyParsed, "not after start"));
+
+      var messy = HoursLogic.summarize(messyParsed.rows, HoursLogic.DEFAULT_CONFIG);
+      assertEqual("Ben's two clean entries total 15:30", total(messy, "V-102").formatted, "15:30");
+      assertEqual("messy finds three anomalies", messy.anomalies.length, 3);
+      record("an overlap is flagged", hasAnomaly(messy, "overlap"));
+      record("an excessive single entry is flagged", hasAnomaly(messy, "excessive-entry"));
+      record("an excessive daily total is flagged", hasAnomaly(messy, "excessive-daily"));
+
+      // --- summary ---------------------------------------------------------
+      var summary = document.getElementById("summary");
+      summary.textContent = passed + " passed, " + failed + " failed";
+      summary.className = failed === 0 ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

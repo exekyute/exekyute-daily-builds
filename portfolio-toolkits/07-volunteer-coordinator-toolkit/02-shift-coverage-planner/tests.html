@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests: Shift Coverage Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pass { color: #1b7f3b; }
+    .fail { color: #c62828; font-weight: 700; }
+    .result-line { font-variant-numeric: tabular-nums; }
+    #summary { font-size: 18px; font-weight: 700; margin: 0 0 16px; }
+    ol { line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tests: Shift Coverage Planner</h1>
+    <p class="lede">
+      These checks run the pure logic in coverage_logic.js against a schedule
+      worked out by hand. Open this file in a browser. No build step.
+    </p>
+    <p id="summary"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <script src="coverage_logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var passed = 0;
+      var failed = 0;
+      var list = document.getElementById("results");
+
+      function record(name, ok, detail) {
+        if (ok) { passed++; } else { failed++; }
+        var li = document.createElement("li");
+        li.className = "result-line";
+        li.innerHTML =
+          '<span class="' + (ok ? "pass" : "fail") + '">' +
+          (ok ? "PASS" : "FAIL") + "</span> " + name +
+          (detail ? " : " + detail : "");
+        list.appendChild(li);
+      }
+
+      function assertEqual(name, got, expected) {
+        record(name, got === expected, "expected " + expected + ", got " + got);
+      }
+
+      // --- time helpers ----------------------------------------------------
+      assertEqual("toMinutes reads a 24-hour time", CoverageLogic.toMinutes("09:30"), 570);
+      assertEqual("toMinutes rejects a bad hour", CoverageLogic.toMinutes("24:00"), null);
+      assertEqual("touching ranges do not overlap",
+        CoverageLogic.overlaps(540, 720, 720, 900), false);
+      assertEqual("ranges sharing a minute overlap",
+        CoverageLogic.overlaps(540, 720, 600, 780), true);
+
+      // --- shift validation ------------------------------------------------
+      assertEqual("a zero-length shift is invalid",
+        CoverageLogic.checkShift({ id: "X", start: "14:00", end: "14:00", min: 1, max: 1 }).valid, false);
+      assertEqual("max below min is invalid",
+        CoverageLogic.checkShift({ id: "X", start: "09:00", end: "10:00", min: 3, max: 2 }).valid, false);
+      assertEqual("a clean shift is valid",
+        CoverageLogic.checkShift({ id: "X", start: "09:00", end: "12:00", min: 2, max: 3 }).valid, true);
+
+      // --- the sample schedule, worked by hand -----------------------------
+      var ROSTER = [
+        { id: "V-101", name: "Ana Reyes", cleared: true },
+        { id: "V-102", name: "Ben Cho", cleared: true },
+        { id: "V-103", name: "Carmen Diaz", cleared: true },
+        { id: "V-104", name: "Dev Patel", cleared: true },
+        { id: "V-105", name: "Jordan Lee", cleared: false },
+        { id: "V-106", name: "Priya Nair", cleared: true }
+      ];
+      var SHIFTS = [
+        { id: "S-1", role: "Front desk morning", date: "2026-06-13", start: "09:00", end: "12:00", min: 2, max: 3 },
+        { id: "S-2", role: "Front desk midday", date: "2026-06-13", start: "12:00", end: "15:00", min: 2, max: 2 },
+        { id: "S-3", role: "Greeter", date: "2026-06-13", start: "10:00", end: "13:00", min: 1, max: 2 },
+        { id: "S-4", role: "Setup crew", date: "2026-06-13", start: "08:00", end: "10:00", min: 1, max: 1 },
+        { id: "S-5", role: "Tear down", date: "2026-06-13", start: "16:00", end: "18:00", min: 1, max: 2 },
+        { id: "S-6", role: "Inventory count", date: "2026-06-13", start: "14:00", end: "14:00", min: 1, max: 1 }
+      ];
+      var ASSIGNMENTS = [
+        { shiftId: "S-1", volunteerId: "V-101" },
+        { shiftId: "S-1", volunteerId: "V-102" },
+        { shiftId: "S-1", volunteerId: "V-101" },
+        { shiftId: "S-2", volunteerId: "V-101" },
+        { shiftId: "S-2", volunteerId: "V-106" },
+        { shiftId: "S-3", volunteerId: "V-102" },
+        { shiftId: "S-3", volunteerId: "V-103" },
+        { shiftId: "S-3", volunteerId: "V-104" },
+        { shiftId: "S-4", volunteerId: "V-105" },
+        { shiftId: "S-5", volunteerId: "V-104" },
+        { shiftId: "S-6", volunteerId: "V-103" },
+        { shiftId: "S-9", volunteerId: "V-102" }
+      ];
+
+      var result = CoverageLogic.planCoverage(SHIFTS, ASSIGNMENTS, ROSTER);
+      function shift(id) {
+        return result.shifts.filter(function (s) { return s.id === id; })[0];
+      }
+
+      assertEqual("S-1 is covered at its minimum", shift("S-1").status, "ok");
+      assertEqual("S-1 counts a duplicate assignment once", shift("S-1").clearedCount, 2);
+      assertEqual("S-2 is covered exactly", shift("S-2").status, "ok");
+      assertEqual("S-3 is overstaffed", shift("S-3").status, "overstaffed");
+      assertEqual("S-5 is covered", shift("S-5").status, "ok");
+      assertEqual("S-6 is marked invalid", shift("S-6").status, "invalid");
+
+      // --- the cross-tool proof: an uncleared volunteer cannot fill a shift -
+      assertEqual("S-4 has no cleared volunteer", shift("S-4").clearedCount, 0);
+      assertEqual("S-4 is understaffed because Jordan Lee is not cleared",
+        shift("S-4").status, "understaffed");
+      var jordanRejected = result.rejected.filter(function (r) {
+        return r.volunteerId === "V-105" && r.shiftId === "S-4";
+      });
+      assertEqual("Jordan Lee's assignment is rejected", jordanRejected.length, 1);
+      record("the rejection names him as not cleared",
+        jordanRejected.length === 1 && /not cleared/.test(jordanRejected[0].reason),
+        jordanRejected.length ? jordanRejected[0].reason : "no rejection found");
+
+      // --- double-booking and boundaries -----------------------------------
+      var benConflict = result.conflicts.filter(function (c) { return c.volunteerId === "V-102"; });
+      assertEqual("Ben Cho is double-booked across S-1 and S-3", benConflict.length, 1);
+      var anaConflict = result.conflicts.filter(function (c) { return c.volunteerId === "V-101"; });
+      assertEqual("Ana Reyes touching shifts at 12:00 are not a conflict", anaConflict.length, 0);
+      assertEqual("exactly one conflict in the sample", result.conflicts.length, 1);
+
+      // --- rejected assignments --------------------------------------------
+      var unknown = result.rejected.filter(function (r) { return r.shiftId === "S-9"; });
+      assertEqual("an assignment to an unknown shift is rejected", unknown.length, 1);
+      var dup = result.rejected.filter(function (r) { return /[Dd]uplicate/.test(r.reason); });
+      assertEqual("the duplicate assignment is rejected", dup.length, 1);
+      assertEqual("three assignments rejected in total", result.rejected.length, 3);
+
+      // --- summary ---------------------------------------------------------
+      var summary = document.getElementById("summary");
+      summary.textContent = passed + " passed, " + failed + " failed";
+      summary.className = failed === 0 ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

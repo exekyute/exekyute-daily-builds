@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests: Onboarding Eligibility Validator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pass { color: #1b7f3b; }
+    .fail { color: #c62828; font-weight: 700; }
+    .result-line { font-variant-numeric: tabular-nums; }
+    #summary { font-size: 18px; font-weight: 700; margin: 0 0 16px; }
+    ol { line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tests: Onboarding Eligibility Validator</h1>
+    <p class="lede">
+      These checks run the pure logic in eligibility_logic.js against rosters
+      worked out by hand. Open this file in a browser. No build step.
+    </p>
+    <p id="summary"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <script src="eligibility_logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var passed = 0;
+      var failed = 0;
+      var list = document.getElementById("results");
+
+      function record(name, ok, detail) {
+        if (ok) { passed++; } else { failed++; }
+        var li = document.createElement("li");
+        li.className = "result-line";
+        li.innerHTML =
+          '<span class="' + (ok ? "pass" : "fail") + '">' +
+          (ok ? "PASS" : "FAIL") + "</span> " + name +
+          (detail ? " : " + detail : "");
+        list.appendChild(li);
+      }
+
+      function assertEqual(name, got, expected) {
+        record(name, got === expected, "expected " + expected + ", got " + got);
+      }
+
+      function hasCode(result, code) {
+        return result.findings.some(function (f) { return f.code === code; });
+      }
+
+      function assertHasCode(name, result, code) {
+        record(name, hasCode(result, code),
+          "expected a finding with code '" + code + "', got " +
+          JSON.stringify(result.findings.map(function (f) { return f.code; })));
+      }
+
+      var CONFIG = {
+        as_of_date: "2026-06-01",
+        minimum_age: 18,
+        required_trainings: ["ORIENT", "SAFETY"],
+        background_check_valid_days: 365,
+        waiver_valid_days: 365
+      };
+
+      function cleared() {
+        return {
+          id: "V-900",
+          name: "Test Volunteer",
+          date_of_birth: "1990-01-01",
+          background_check: { status: "passed", date: "2026-01-01" },
+          trainings_completed: ["ORIENT", "SAFETY"],
+          waiver_signed_date: "2026-01-01"
+        };
+      }
+
+      // --- date helpers ----------------------------------------------------
+      assertEqual("daysBetween counts whole days",
+        EligibilityLogic.daysBetween("2025-06-01", "2026-06-01"), 365);
+      assertEqual("parseYmd rejects a rolled-over date",
+        EligibilityLogic.parseYmd("2026-02-30"), null);
+      assertEqual("age on an exact birthday counts the year",
+        EligibilityLogic.ageOn("2008-06-01", "2026-06-01"), 18);
+      assertEqual("age the day before a birthday does not",
+        EligibilityLogic.ageOn("2008-06-02", "2026-06-01"), 17);
+
+      // --- a fully cleared volunteer ---------------------------------------
+      var ok = EligibilityLogic.evaluate(cleared(), CONFIG);
+      assertEqual("clean volunteer is cleared", ok.cleared, true);
+      assertEqual("clean volunteer has no findings", ok.findings.length, 0);
+
+      // --- boundaries clear ------------------------------------------------
+      var exactlyMinAge = cleared();
+      exactlyMinAge.date_of_birth = "2008-06-01"; // turns 18 on the as-of date
+      assertEqual("exactly minimum age clears",
+        EligibilityLogic.evaluate(exactlyMinAge, CONFIG).cleared, true);
+
+      var bgLastValidDay = cleared();
+      bgLastValidDay.background_check.date = "2025-06-01"; // exactly 365 days
+      assertEqual("background check on its last valid day clears",
+        EligibilityLogic.evaluate(bgLastValidDay, CONFIG).cleared, true);
+
+      var bgOneDayPast = cleared();
+      bgOneDayPast.background_check.date = "2025-05-31"; // 366 days
+      assertHasCode("background check one day past the window is flagged",
+        EligibilityLogic.evaluate(bgOneDayPast, CONFIG), "bg-expired");
+
+      // --- one flag at a time ----------------------------------------------
+      var young = cleared();
+      young.date_of_birth = "2012-05-01";
+      assertHasCode("under age is flagged", EligibilityLogic.evaluate(young, CONFIG), "under-age");
+
+      var noBg = cleared();
+      noBg.background_check = { status: "none", date: "" };
+      assertHasCode("missing background check is flagged",
+        EligibilityLogic.evaluate(noBg, CONFIG), "bg-missing");
+
+      var failedBg = cleared();
+      failedBg.background_check = { status: "failed", date: "2026-01-01" };
+      assertHasCode("failed background check is flagged",
+        EligibilityLogic.evaluate(failedBg, CONFIG), "bg-not-passed");
+
+      var missTraining = cleared();
+      missTraining.trainings_completed = ["ORIENT"];
+      assertHasCode("missing training is flagged",
+        EligibilityLogic.evaluate(missTraining, CONFIG), "training-missing");
+
+      var noWaiver = cleared();
+      noWaiver.waiver_signed_date = "";
+      assertHasCode("missing waiver is flagged",
+        EligibilityLogic.evaluate(noWaiver, CONFIG), "waiver-missing");
+
+      var oldWaiver = cleared();
+      oldWaiver.waiver_signed_date = "2024-01-01";
+      assertHasCode("expired waiver is flagged",
+        EligibilityLogic.evaluate(oldWaiver, CONFIG), "waiver-expired");
+
+      // --- the sample roster, the cross-tool roster ------------------------
+      var SAMPLE = [
+        { id: "V-101", name: "Ana Reyes", date_of_birth: "1990-03-15", background_check: { status: "passed", date: "2026-01-10" }, trainings_completed: ["ORIENT", "SAFETY"], waiver_signed_date: "2026-01-10" },
+        { id: "V-102", name: "Ben Cho", date_of_birth: "1985-11-02", background_check: { status: "passed", date: "2025-12-01" }, trainings_completed: ["ORIENT", "SAFETY"], waiver_signed_date: "2025-12-01" },
+        { id: "V-103", name: "Carmen Diaz", date_of_birth: "2000-07-20", background_check: { status: "passed", date: "2026-02-14" }, trainings_completed: ["ORIENT", "SAFETY"], waiver_signed_date: "2026-02-14" },
+        { id: "V-104", name: "Dev Patel", date_of_birth: "2008-06-01", background_check: { status: "passed", date: "2025-09-15" }, trainings_completed: ["ORIENT", "SAFETY"], waiver_signed_date: "2025-09-15" },
+        { id: "V-105", name: "Jordan Lee", date_of_birth: "1998-04-22", background_check: { status: "none", date: "" }, trainings_completed: ["ORIENT", "SAFETY"], waiver_signed_date: "2026-01-05" },
+        { id: "V-106", name: "Priya Nair", date_of_birth: "1995-08-30", background_check: { status: "passed", date: "2025-06-01" }, trainings_completed: ["ORIENT", "SAFETY"], waiver_signed_date: "2025-06-01" }
+      ];
+      var rosterResult = EligibilityLogic.evaluateRoster(SAMPLE, CONFIG);
+      assertEqual("sample roster clears five", rosterResult.summary.clearedCount, 5);
+      assertEqual("sample roster blocks one", rosterResult.summary.blockedCount, 1);
+
+      var jordan = rosterResult.results.filter(function (r) { return r.id === "V-105"; })[0];
+      assertEqual("Jordan Lee is blocked", jordan.cleared, false);
+      assertHasCode("Jordan Lee is blocked for a missing background check", jordan, "bg-missing");
+
+      var roster = EligibilityLogic.toClearedRoster(rosterResult);
+      var jordanRow = roster.filter(function (r) { return r.id === "V-105"; })[0];
+      assertEqual("cleared roster marks Jordan Lee not cleared", jordanRow.cleared, false);
+      assertEqual("cleared roster keeps every volunteer", roster.length, 6);
+
+      // --- duplicate id ----------------------------------------------------
+      var dup = EligibilityLogic.evaluateRoster([cleared(), cleared()], CONFIG);
+      assertHasCode("the second use of an id is flagged as duplicate",
+        dup.results[1], "duplicate-id");
+      assertEqual("the duplicate is blocked", dup.results[1].cleared, false);
+
+      // --- summary ---------------------------------------------------------
+      var summary = document.getElementById("summary");
+      summary.textContent = passed + " passed, " + failed + " failed";
+      summary.className = failed === 0 ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

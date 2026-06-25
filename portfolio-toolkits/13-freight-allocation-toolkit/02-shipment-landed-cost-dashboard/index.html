@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shipment Landed-Cost Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="masthead">
+        <h1>Shipment Landed-Cost Dashboard</h1>
+        <p class="lede">
+          Load a landed-cost CSV from the Freight Cost Allocator to see each line
+          item's allocated freight and landed unit cost, with totals that tie
+          back to the freight charge. The file is read in your browser and is
+          never uploaded anywhere.
+        </p>
+      </header>
+
+      <section class="controls" aria-label="Load a file">
+        <label class="file-label" for="csv-input">Landed-cost CSV</label>
+        <div class="control-row">
+          <input id="csv-input" class="file-input" type="file" accept=".csv,text/csv" />
+          <button id="load-button" class="button" type="button">Load file</button>
+        </div>
+        <p class="hint">
+          A sample file is included at <code>data/landed_cost.csv</code>.
+        </p>
+      </section>
+
+      <section
+        id="message"
+        class="message"
+        role="status"
+        aria-live="polite"
+        hidden
+      ></section>
+
+      <section id="summary" class="summary" aria-label="Totals" hidden>
+        <div class="summary-card">
+          <span class="summary-label">Lines</span>
+          <span id="summary-lines" class="summary-value">0</span>
+        </div>
+        <div class="summary-card">
+          <span class="summary-label">Total goods value</span>
+          <span id="summary-goods" class="summary-value">$0.00</span>
+        </div>
+        <div class="summary-card accent">
+          <span class="summary-label">Total freight allocated</span>
+          <span id="summary-freight" class="summary-value">$0.00</span>
+        </div>
+        <div class="summary-card accent">
+          <span class="summary-label">Total landed cost</span>
+          <span id="summary-landed" class="summary-value">$0.00</span>
+        </div>
+      </section>
+
+      <section id="table-wrap" class="table-wrap" hidden>
+        <table class="ledger">
+          <thead>
+            <tr>
+              <th scope="col">Line</th>
+              <th scope="col">Description</th>
+              <th scope="col" class="num">Qty</th>
+              <th scope="col" class="num">Unit cost</th>
+              <th scope="col" class="num">Allocated freight</th>
+              <th scope="col" class="num">Landed unit cost</th>
+            </tr>
+          </thead>
+          <tbody id="ledger-body"></tbody>
+        </table>
+      </section>
+
+      <footer class="foot">
+        <p>
+          A personal portfolio project. Deterministic and rule-based, with no
+          backend and no data leaving the browser.
+        </p>
+      </footer>
+    </main>
+
+    <script src="dashboard_logic.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

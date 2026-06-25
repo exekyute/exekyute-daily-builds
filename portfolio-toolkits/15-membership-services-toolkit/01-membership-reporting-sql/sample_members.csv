@@ -1,0 +1,13 @@
+member_id,name,tier,join_month,status,dues,late_fee,expiry_date
+101,Ana Reyes,Professional,1,Paid,300.00,0.00,2026-12-31
+102,Ben Cho,Associate,4,Paid,112.50,0.00,2026-12-31
+103,Cara Diaz,Student,9,Paid,25.00,0.00,2026-12-31
+104,Dan Evans,Professional,1,Expiring,300.00,0.00,2026-07-10
+105,Erin Fox,Associate,1,Expiring,150.00,0.00,2026-07-02
+106,Gil Haig,Retired,1,Lapsed,90.00,0.00,2026-06-01
+107,Hana Ito,Professional,1,Lapsed,300.00,0.00,2026-05-22
+108,Ivy Lin,Professional,1,Paid,300.00,25.00,2026-12-31
+109,Jose Mata,Student,12,Paid,6.25,0.00,2026-12-31
+110,Kim Noor,Associate,1,Paid,150.00,0.00,2026-12-31
+110,Kim Noor,Associate,1,Duplicate,150.00,0.00,2026-12-31
+111,Lee Ortiz,,1,Expiring,,0.00,2026-07-05

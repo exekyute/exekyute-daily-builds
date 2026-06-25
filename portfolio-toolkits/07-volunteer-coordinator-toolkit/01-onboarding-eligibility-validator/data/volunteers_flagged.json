@@ -1,0 +1,75 @@
+{
+  "config": {
+    "as_of_date": "2026-06-01",
+    "minimum_age": 18,
+    "required_trainings": ["ORIENT", "SAFETY"],
+    "background_check_valid_days": 365,
+    "waiver_valid_days": 365
+  },
+  "volunteers": [
+    {
+      "id": "V-301",
+      "name": "Min Ortiz",
+      "date_of_birth": "2012-05-01",
+      "background_check": { "status": "passed", "date": "2026-03-01" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2026-03-01"
+    },
+    {
+      "id": "V-302",
+      "name": "Lee Park",
+      "date_of_birth": "1990-09-09",
+      "background_check": { "status": "none", "date": "" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2026-03-01"
+    },
+    {
+      "id": "V-303",
+      "name": "Sam Ray",
+      "date_of_birth": "1988-01-19",
+      "background_check": { "status": "failed", "date": "2026-03-01" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2026-03-01"
+    },
+    {
+      "id": "V-304",
+      "name": "Tess Vo",
+      "date_of_birth": "1991-06-06",
+      "background_check": { "status": "passed", "date": "2024-05-01" },
+      "trainings_completed": ["ORIENT"],
+      "waiver_signed_date": "2026-03-01"
+    },
+    {
+      "id": "V-305",
+      "name": "Uma Shah",
+      "date_of_birth": "1993-10-12",
+      "background_check": { "status": "passed", "date": "2026-03-01" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": ""
+    },
+    {
+      "id": "V-306",
+      "name": "Will Tan",
+      "date_of_birth": "1987-02-28",
+      "background_check": { "status": "passed", "date": "2026-03-01" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2024-01-01"
+    },
+    {
+      "id": "V-306",
+      "name": "",
+      "date_of_birth": "not-a-date",
+      "background_check": { "status": "passed", "date": "2026-03-01" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "2026-03-01"
+    },
+    {
+      "id": "",
+      "name": "Pat Vue",
+      "date_of_birth": "1992-02-02",
+      "background_check": { "status": "passed", "date": "2024-13-01" },
+      "trainings_completed": ["ORIENT", "SAFETY"],
+      "waiver_signed_date": "01-01-2024"
+    }
+  ]
+}

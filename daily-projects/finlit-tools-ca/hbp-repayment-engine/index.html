@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Canadian HBP Repayment & Refinancing Strategy Engine</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+
+    .number-input {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Print Layout */
+    @media print {
+      body { background-color: white !important; }
+      .no-print { display: none !important; }
+      .shadow-sm, .shadow-lg { box-shadow: none !important; border: 1px solid #e2e8f0; }
+    }
+
+    /* Subtle pulse on the active bracket band */
+    @keyframes softPulse {
+      0%, 100% { box-shadow: inset 0 0 0 2px rgba(79, 70, 229, 0.55); }
+      50%      { box-shadow: inset 0 0 0 2px rgba(79, 70, 229, 0.15); }
+    }
+    .active-bracket-band { animation: softPulse 2.4s ease-in-out infinite; }
+  </style>
+</head>
+<body class="bg-[#f8fafc] min-h-screen py-10">
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react,typescript">
+    // OPS CONTEXT: Models a 15-year Home Buyers' Plan repayment cycle so Canadians can see the long-term cash + tax + lost-RRSP-room cost of skipping repayments.
+    const { useState, useMemo, useEffect } = React;
+
+    // M1 [Constants & Rules]: HBP terms + federal/provincial bracket tables.
+    // PIVOT: 2026 CRA HBP rules. Withdrawal cap, repayment length, and grace-window dates each break the projection math and bracket-creep thermometer downstream — refresh annually against CRA Schedule 1.
+    const HBP_MAX_WITHDRAWAL = 60000;          // Budget 2024 raised from $35k
+    const HBP_REPAYMENT_YEARS = 15;            // 1/15th annual minimum
+    const HBP_GRACE_WINDOW = { startYear: 2022, endYear: 2025, graceYears: 5 };
+    const HBP_STANDARD_GRACE_YEARS = 2;
+    const CURRENT_TAX_YEAR = 2026;
+
+    // Federal brackets (2025 figures, indexed; treat as illustrative for 2026)
+    const FEDERAL_BRACKETS = [
+      { upTo: 57375,    rate: 0.15  },
+      { upTo: 114750,   rate: 0.205 },
+      { upTo: 177882,   rate: 0.26  },
+      { upTo: 253414,   rate: 0.29  },
+      { upTo: Infinity, rate: 0.33  },
+    ];
+
+    // Provincial / territorial brackets — illustrative recent figures
+    const PROVINCIAL_BRACKETS = {
+      ON: { name: 'Ontario', brackets: [
+        { upTo: 51446,    rate: 0.0505 },
+        { upTo: 102894,   rate: 0.0915 },
+        { upTo: 150000,   rate: 0.1116 },
+        { upTo: 220000,   rate: 0.1216 },
+        { upTo: Infinity, rate: 0.1316 },
+      ]},
+      BC: { name: 'British Columbia', brackets: [
+        { upTo: 47937,    rate: 0.0506 },
+        { upTo: 95875,    rate: 0.077  },
+        { upTo: 110076,   rate: 0.105  },
+        { upTo: 133664,   rate: 0.1229 },
+        { upTo: 181232,   rate: 0.147  },
+        { upTo: 252752,   rate: 0.168  },
+        { upTo: Infinity, rate: 0.205  },
+      ]},
+      AB: { name: 'Alberta', brackets: [
+        { upTo: 148269,   rate: 0.10 },
+        { upTo: 177922,   rate: 0.12 },
+        { upTo: 237230,   rate: 0.13 },
+        { upTo: 355845,   rate: 0.14 },
+        { upTo: Infinity, rate: 0.15 },
+      ]},
+      QC: { name: 'Quebec', brackets: [
+        { upTo: 51780,    rate: 0.14   },
+        { upTo: 103545,   rate: 0.19   },
+        { upTo: 126000,   rate: 0.24   },
+        { upTo: Infinity, rate: 0.2575 },
+      ]},
+      MB: { name: 'Manitoba', brackets: [
+        { upTo: 47000,    rate: 0.108  },
+        { upTo: 100000,   rate: 0.1275 },
+        { upTo: Infinity, rate: 0.174  },
+      ]},
+      SK: { name: 'Saskatchewan', brackets: [
+        { upTo: 52057,    rate: 0.105 },
+        { upTo: 148734,   rate: 0.125 },
+        { upTo: Infinity, rate: 0.145 },
+      ]},
+      NS: { name: 'Nova Scotia', brackets: [
+        { upTo: 29590,    rate: 0.0879 },
+        { upTo: 59180,    rate: 0.1495 },
+        { upTo: 93000,    rate: 0.1667 },
+        { upTo: 150000,   rate: 0.175  },
+        { upTo: Infinity, rate: 0.21   },
+      ]},
+      NB: { name: 'New Brunswick', brackets: [
+        { upTo: 49958,    rate: 0.094 },
+        { upTo: 99916,    rate: 0.14  },
+        { upTo: 185064,   rate: 0.16  },
+        { upTo: Infinity, rate: 0.195 },
+      ]},
+      NL: { name: 'Newfoundland and Labrador', brackets: [
+        { upTo: 43198,    rate: 0.087 },
+        { upTo: 86395,    rate: 0.145 },
+        { upTo: 154244,   rate: 0.158 },
+        { upTo: 215943,   rate: 0.178 },
+        { upTo: 275870,   rate: 0.198 },
+        { upTo: Infinity, rate: 0.218 },
+      ]},
+      PE: { name: 'Prince Edward Island', brackets: [
+        { upTo: 32656,    rate: 0.0965 },
+        { upTo: 64313,    rate: 0.1363 },
+        { upTo: 105000,   rate: 0.1665 },
+        { upTo: 140000,   rate: 0.18   },
+        { upTo: Infinity, rate: 0.1875 },
+      ]},
+      YT: { name: 'Yukon', brackets: [
+        { upTo: 57375,    rate: 0.064 },
+        { upTo: 114750,   rate: 0.09  },
+        { upTo: 177882,   rate: 0.109 },
+        { upTo: 500000,   rate: 0.128 },
+        { upTo: Infinity, rate: 0.15  },
+      ]},
+      NT: { name: 'Northwest Territories', brackets: [
+        { upTo: 51964,    rate: 0.059  },
+        { upTo: 103930,   rate: 0.086  },
+        { upTo: 168967,   rate: 0.122  },
+        { upTo: Infinity, rate: 0.1405 },
+      ]},
+      NU: { name: 'Nunavut', brackets: [
+        { upTo: 54707,    rate: 0.04  },
+        { upTo: 109413,   rate: 0.07  },
+        { upTo: 177881,   rate: 0.09  },
+        { upTo: Infinity, rate: 0.115 },
+      ]},
+    };
+
+    const INCOME_ARCHETYPES = [
+      { id: 'low',  label: 'Early Career',  bracket: 'Lower Bracket',   income: 45000,  color: '#fbbf24', severityLabel: 'Mild',    description: '~$45,000 Income' },
+      { id: 'mid',  label: 'Mid-Career',    bracket: 'Middle Bracket',  income: 85000,  color: '#f97316', severityLabel: 'Notable', description: '~$85,000 Income' },
+      { id: 'high', label: 'Peak Earnings', bracket: 'High Bracket',    income: 150000, color: '#dc2626', severityLabel: 'Severe',  description: '~$150,000 Income' },
+    ];
+
+    // Quebec residents get a 16.5% abatement of federal tax (compensation for
+    // Quebec administering its own income tax separately from CRA).
+    const QUEBEC_ABATEMENT = 0.165;
+
+    // Provincial surtaxes (Ontario and PEI) — applied as a multiplier on
+    // provincial tax owing once cumulative provincial tax crosses a threshold.
+    // Tiers are additive: ON pays 20% surtax above $5,710, plus an *additional*
+    // 36% above $7,307 (so the top combined multiplier is 1.56).
+    const PROVINCIAL_SURTAXES = {
+      ON: [
+        { onProvTaxOver: 5710, rate: 0.20 },
+        { onProvTaxOver: 7307, rate: 0.36 },
+      ],
+      PE: [
+        { onProvTaxOver: 12500, rate: 0.10 },
+      ],
+    };
+
+    // M2 [Math Primitives]: bracket lookup, stacked-tax projection, future-value of lost RRSP room.
+    // PIVOT: Quebec abatement (16.5% federal credit) + Ontario/PEI surtaxes baked into combined marginal rates. Skipping these multipliers misstates EMTR.
+    function getRateAt(brackets, income) {
+      for (const b of brackets) {
+        if (income <= b.upTo) return b.rate;
+      }
+      return brackets[brackets.length - 1].rate;
+    }
+
+    // Total provincial tax owing at a given income — walks brackets from $0
+    // summing tax in each band. Needed for surtax thresholding.
+    function getCumulativeProvincialTax(income, provinceCode) {
+      if (income <= 0) return 0;
+      const brackets = PROVINCIAL_BRACKETS[provinceCode].brackets;
+      let tax = 0;
+      let lowerEdge = 0;
+      for (const b of brackets) {
+        const upperEdge = Math.min(b.upTo, income);
+        if (upperEdge > lowerEdge) {
+          tax += (upperEdge - lowerEdge) * b.rate;
+        }
+        if (income <= b.upTo) return tax;
+        lowerEdge = b.upTo;
+      }
+      return tax;
+    }
+
+    // Marginal surtax multiplier at a given income. Returns 1.00 when no
+    // surtax applies. Surtaxes are levied on provincial tax owing, so at the
+    // margin the next dollar of provincial tax is amplified by (1 + sum of
+    // applicable tier rates).
+    function getSurtaxMultiplier(income, provinceCode) {
+      const tiers = PROVINCIAL_SURTAXES[provinceCode];
+      if (!tiers) return 1.0;
+      const provTax = getCumulativeProvincialTax(income, provinceCode);
+      let mult = 1.0;
+      for (const tier of tiers) {
+        if (provTax > tier.onProvTaxOver) mult += tier.rate;
+      }
+      return mult;
+    }
+
+    // Combined marginal rate on the next dollar of income, including:
+    //  - Federal bracket rate (reduced by 16.5% Quebec abatement for QC residents)
+    //  - Provincial bracket rate (amplified by surtax multiplier in ON / PE)
+    function getCombinedMarginalRate(income, provinceCode) {
+      let fed = getRateAt(FEDERAL_BRACKETS, income);
+      if (provinceCode === 'QC') fed *= (1 - QUEBEC_ABATEMENT);
+      const provBase = getRateAt(PROVINCIAL_BRACKETS[provinceCode].brackets, income);
+      const prov = provBase * getSurtaxMultiplier(income, provinceCode);
+      return fed + prov;
+    }
+
+    function getCombinedThresholds(provinceCode) {
+      const set = new Set();
+      FEDERAL_BRACKETS.forEach(b => { if (b.upTo !== Infinity) set.add(b.upTo); });
+      PROVINCIAL_BRACKETS[provinceCode].brackets.forEach(b => { if (b.upTo !== Infinity) set.add(b.upTo); });
+      return [...set].sort((a, b) => a - b);
+    }
+
+    // Walk the income range [baseIncome, baseIncome+additional], summing tax
+    // band by band so bracket-crossing is accurate.
+    function computeStackedTax(baseIncome, additional, provinceCode) {
+      if (additional <= 0) return 0;
+      const thresholds = [...getCombinedThresholds(provinceCode), Infinity];
+      const end = baseIncome + additional;
+      let cursor = baseIncome;
+      let tax = 0;
+      for (const t of thresholds) {
+        if (cursor >= end) break;
+        if (t <= cursor) continue;
+        const sliceEnd = Math.min(t, end);
+        // Rate slightly above cursor avoids landing exactly on a threshold
+        const rate = getCombinedMarginalRate(cursor + 0.01, provinceCode);
+        tax += (sliceEnd - cursor) * rate;
+        cursor = sliceEnd;
+      }
+      return tax;
+    }
+
+    // Returns the slices of the missed-repayment block, each with start/end income,
+    // height percentage of the thermometer, and combined rate — used to render
+    // bracket-creep severity in the visual.
+    function getStackSlices(baseIncome, additional, provinceCode, thermMax) {
+      const slices = [];
+      if (additional <= 0) return slices;
+      const thresholds = [...getCombinedThresholds(provinceCode), Infinity];
+      const end = baseIncome + additional;
+      let cursor = baseIncome;
+      for (const t of thresholds) {
+        if (cursor >= end) break;
+        if (t <= cursor) continue;
+        const sliceEnd = Math.min(t, end);
+        const rate = getCombinedMarginalRate(cursor + 0.01, provinceCode);
+        slices.push({
+          start: cursor,
+          end: sliceEnd,
+          rate,
+          heightPct: ((sliceEnd - cursor) / thermMax) * 100,
+        });
+        cursor = sliceEnd;
+      }
+      return slices;
+    }
+
+    function getGraceStatus(withdrawalYear, currentYear) {
+      const inExtendedWindow = withdrawalYear >= HBP_GRACE_WINDOW.startYear && withdrawalYear <= HBP_GRACE_WINDOW.endYear;
+      const graceYears = inExtendedWindow ? HBP_GRACE_WINDOW.graceYears : HBP_STANDARD_GRACE_YEARS;
+      const firstRepaymentYear = withdrawalYear + graceYears + 1;
+      const inGrace = currentYear < firstRepaymentYear;
+      return { inExtendedWindow, graceYears, firstRepaymentYear, inGrace };
+    }
+
+    // M3 [Severity Color]: maps combined marginal rate to thermometer slice colour (bracket creep heatmap).
+    function getSliceColor(rate) {
+      if (rate < 0.25) return '#fbbf24';      // amber-400
+      if (rate < 0.33) return '#f59e0b';      // amber-500
+      if (rate < 0.40) return '#f97316';      // orange-500
+      if (rate < 0.46) return '#ea580c';      // orange-600
+      if (rate < 0.50) return '#dc2626';      // red-600
+      return '#991b1b';                       // red-800
+    }
+
+    // M4 [Projection Engine]: builds and runs the 15-year strategy; reuses M2 tax functions unchanged.
+    function buildStrategy({ strategyMode, customYears, defaultIncome, firstRepaymentYear }) {
+      const years = [];
+      for (let i = 0; i < HBP_REPAYMENT_YEARS; i++) {
+        const override = (customYears && customYears[i]) || {};
+        let decision;
+        if (strategyMode === 'pay-all') decision = 'pay';
+        else if (strategyMode === 'skip-all') decision = 'skip';
+        else decision = override.decision || 'pay'; // custom default is pay
+        const income = (override.income != null && override.income !== '') ? Number(override.income) : defaultIncome;
+        years.push({
+          yearIndex: i,
+          year: i + 1,
+          calendarYear: firstRepaymentYear + i,
+          income,
+          decision,
+        });
+      }
+      return years;
+    }
+
+    // Walk the 15-year strategy. The HBP amortizes regardless of whether you
+    // pay (the balance comes down because the required minimum is consumed
+    // each year — if you skip, the minimum is consumed from your RRSP room
+    // rather than your bank account, but the balance still amortizes).
+    function runProjection(strategy, outstandingBalance, provinceCode) {
+      const rows = [];
+      let balance = outstandingBalance;
+      let cumulativeTax = 0;
+      let cumulativeRoomLost = 0;
+      for (let i = 0; i < strategy.length; i++) {
+        const s = strategy[i];
+        const yearsRemaining = HBP_REPAYMENT_YEARS - i;
+        const requiredMin = balance / yearsRemaining;
+        const marginalRate = getCombinedMarginalRate(s.income, provinceCode);
+        let taxThisYear = 0;
+        let roomLostThisYear = 0;
+        if (s.decision === 'skip') {
+          taxThisYear = computeStackedTax(s.income, requiredMin, provinceCode);
+          roomLostThisYear = requiredMin;
+        }
+        cumulativeTax += taxThisYear;
+        cumulativeRoomLost += roomLostThisYear;
+        const openingBalance = balance;
+        balance = Math.max(0, balance - requiredMin);
+        rows.push({
+          year: s.year,
+          calendarYear: s.calendarYear,
+          openingBalance,
+          requiredMin,
+          decision: s.decision,
+          income: s.income,
+          marginalRate,
+          taxThisYear,
+          cumulativeTax,
+          roomLostThisYear,
+          cumulativeRoomLost,
+          closingBalance: balance,
+        });
+      }
+      return rows;
+    }
+
+    // The projection row with the highest single-year tax. Used to focus the
+    // thermometer on the year that most demonstrates the cost of skipping.
+    function findWorstYear(projection) {
+      let worst = null;
+      for (const row of projection) {
+        if (row.taxThisYear > 0 && (!worst || row.taxThisYear > worst.taxThisYear)) {
+          worst = row;
+        }
+      }
+      return worst;
+    }
+
+    // Compound a single contribution to a future date at a constant rate.
+    function getFutureValue(amount, yearsToGrow, annualRate) {
+      if (amount <= 0 || yearsToGrow <= 0) return 0;
+      return amount * Math.pow(1 + annualRate, yearsToGrow);
+    }
+
+    // For each projection year where room was destroyed, compound that year's
+    // lost room from the year of the skip until retirement. Returns the
+    // running total + a parallel per-year array for the amortization table.
+    function calculateFVOfLostRoom(projection, currentAge, retirementAge, returnRate) {
+      let totalFV = 0;
+      const perYearFV = [];
+      for (let i = 0; i < projection.length; i++) {
+        const row = projection[i];
+        const ageInThisYear = currentAge + (row.calendarYear - CURRENT_TAX_YEAR);
+        const yearsToRetirement = Math.max(0, retirementAge - ageInThisYear);
+        const fv = getFutureValue(row.roomLostThisYear, yearsToRetirement, returnRate);
+        totalFV += fv;
+        perYearFV.push(fv);
+      }
+      return { totalFV, perYearFV };
+    }
+
+    // Build a CSV string and trigger a download. Pattern mirrors the TFSA
+    // Snowballer's handleDownloadCSV. Accepts perYearFV so the FV column
+    // matches what's shown on screen.
+    function downloadProjectionCSV(projection, perYearFV) {
+      const headers = [
+        'Year', 'Calendar Year', 'Opening Balance', 'Required Minimum',
+        'Decision', 'Income', 'Marginal Rate', 'Tax This Year',
+        'Cumulative Tax', 'Room Lost This Year', 'Cumulative Room Lost',
+        'Closing Balance', 'FV at Retirement',
+      ];
+      const rows = projection.map((r, i) => [
+        r.year, r.calendarYear, r.openingBalance.toFixed(2), r.requiredMin.toFixed(2),
+        r.decision, r.income.toFixed(2), (r.marginalRate * 100).toFixed(2) + '%',
+        r.taxThisYear.toFixed(2), r.cumulativeTax.toFixed(2),
+        r.roomLostThisYear.toFixed(2), r.cumulativeRoomLost.toFixed(2),
+        r.closingBalance.toFixed(2),
+        (perYearFV?.[i] ?? 0).toFixed(2),
+      ]);
+      const csv = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+      const link = document.createElement('a');
+      link.setAttribute('href', encodeURI(csv));
+      link.setAttribute('download', 'HBP_15Year_Projection.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // M5 [UI Component]: state, derived projection, formatters, render.
+    function HBPEngine() {
+      const defaultInputs = {
+        outstandingBalance: 30000,
+        archetypeId: 'mid',
+        customIncome: '',             // optional precise override; '' means use archetype
+        provinceCode: 'ON',
+        withdrawalYear: 2021,         // past grace by default
+        strategyMode: 'skip-all',     // 'pay-all' | 'skip-all' | 'custom'
+        customYears: {},              // { [yearIndex 0..14]: { income?, decision } }
+        // Iteration 2 — retirement assumptions for FV of lost room
+        currentAge: 35,
+        retirementAge: 65,
+        assumedReturnRate: 0.06,
+      };
+
+      // M6 [State Persistence]: load current saves; fall back to legacy schema if present.
+      const [inputs, setInputs] = useState(() => {
+        const v2 = localStorage.getItem('hbp_engine_inputs_v2');
+        if (v2) {
+          try { return { ...defaultInputs, ...JSON.parse(v2) }; } catch (e) {}
+        }
+        const v1 = localStorage.getItem('hbp_engine_inputs_v1');
+        if (v1) {
+          try {
+            const parsed = JSON.parse(v1);
+            const migrated = {
+              ...defaultInputs,
+              outstandingBalance: parsed.outstandingBalance ?? defaultInputs.outstandingBalance,
+              archetypeId: parsed.archetypeId ?? defaultInputs.archetypeId,
+              provinceCode: parsed.provinceCode ?? defaultInputs.provinceCode,
+              withdrawalYear: parsed.withdrawalYear ?? defaultInputs.withdrawalYear,
+              strategyMode: parsed.repaymentChoice === 'skip' ? 'skip-all' : 'pay-all',
+            };
+            return migrated;
+          } catch (e) {}
+        }
+        return defaultInputs;
+      });
+
+      useEffect(() => {
+        localStorage.setItem('hbp_engine_inputs_v2', JSON.stringify(inputs));
+      }, [inputs]);
+
+      const archetype = INCOME_ARCHETYPES.find(a => a.id === inputs.archetypeId);
+      const province = PROVINCIAL_BRACKETS[inputs.provinceCode];
+      const grace = getGraceStatus(inputs.withdrawalYear, CURRENT_TAX_YEAR);
+
+      // Effective default income: custom override wins if set, otherwise archetype.
+      const effectiveDefaultIncome = (() => {
+        const c = Number(inputs.customIncome);
+        return (inputs.customIncome !== '' && !Number.isNaN(c) && c > 0) ? c : archetype.income;
+      })();
+
+      // Build the 15-year strategy + projection. This is the single source of truth.
+      const projection = useMemo(() => {
+        const strategy = buildStrategy({
+          strategyMode: inputs.strategyMode,
+          customYears: inputs.customYears,
+          defaultIncome: effectiveDefaultIncome,
+          firstRepaymentYear: grace.firstRepaymentYear,
+        });
+        return runProjection(strategy, inputs.outstandingBalance, inputs.provinceCode);
+      }, [
+        inputs.outstandingBalance, inputs.provinceCode, inputs.strategyMode,
+        inputs.customYears, effectiveDefaultIncome, grace.firstRepaymentYear,
+      ]);
+
+      // Aggregate totals across the 15 years
+      const totals = useMemo(() => {
+        let totalCashOut = 0;       // sum of required minimums for years user pays
+        let totalCashKept = 0;      // sum of required minimums for years user skips
+        let totalTax = 0;
+        let totalRoomLost = 0;
+        for (const r of projection) {
+          if (r.decision === 'pay') totalCashOut += r.requiredMin;
+          else { totalCashKept += r.requiredMin; totalTax += r.taxThisYear; totalRoomLost += r.roomLostThisYear; }
+        }
+        const grossOriginalBalance = projection.length > 0 ? projection[0].openingBalance : 0;
+        const roomLostPct = grossOriginalBalance > 0 ? (totalRoomLost / grossOriginalBalance) * 100 : 0;
+        return { totalCashOut, totalCashKept, totalTax, totalRoomLost, roomLostPct, payAllCashOut: projection.reduce((a, r) => a + r.requiredMin, 0) };
+      }, [projection]);
+
+      // Pick the year that demonstrates the highest tax hit — drives the thermometer focus.
+      const worstYear = useMemo(() => findWorstYear(projection), [projection]);
+
+      // Future-value compounding of each year's lost RRSP room, growing
+      // tax-sheltered from the skip year until retirement.
+      const fvData = useMemo(
+        () => calculateFVOfLostRoom(projection, inputs.currentAge, inputs.retirementAge, inputs.assumedReturnRate),
+        [projection, inputs.currentAge, inputs.retirementAge, inputs.assumedReturnRate]
+      );
+
+      const handleChange = (field, value) => setInputs(prev => ({ ...prev, [field]: value }));
+      const handleReset  = () => setInputs(defaultInputs);
+      const handleCustomYearChange = (yearIndex, field, value) => {
+        setInputs(prev => ({
+          ...prev,
+          customYears: {
+            ...prev.customYears,
+            [yearIndex]: { ...(prev.customYears[yearIndex] || {}), [field]: value },
+          },
+        }));
+      };
+      const handleApplyIncomeToAllYears = () => {
+        setInputs(prev => {
+          const next = { ...prev.customYears };
+          for (let i = 0; i < HBP_REPAYMENT_YEARS; i++) {
+            next[i] = { ...(next[i] || {}), income: effectiveDefaultIncome };
+          }
+          return { ...prev, customYears: next };
+        });
+      };
+
+      const formatCurrency = (val) =>
+        new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 }).format(val);
+      const formatCurrencyPrecise = (val) =>
+        new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 2 }).format(val);
+
+      // Thermometer derives its inputs from the worst year (or baseline if no skipping)
+      const THERM_MAX = 260000;
+      const thermIncome = worstYear ? worstYear.income : effectiveDefaultIncome;
+      const thermShortfall = worstYear ? worstYear.requiredMin : 0;
+      const thermEffectiveRate = worstYear && worstYear.requiredMin > 0
+        ? worstYear.taxThisYear / worstYear.requiredMin
+        : getCombinedMarginalRate(thermIncome, inputs.provinceCode);
+      const baseHeightPct = Math.min(100, (thermIncome / THERM_MAX) * 100);
+      const stackSlices = getStackSlices(thermIncome, thermShortfall, inputs.provinceCode, THERM_MAX);
+      const isSkip = !!worstYear; // for legacy thermometer JSX
+
+      // Bracket bands for thermometer background
+      const bandThresholds = useMemo(() => {
+        const set = new Set([0]);
+        FEDERAL_BRACKETS.forEach(b => { if (b.upTo !== Infinity && b.upTo <= THERM_MAX) set.add(b.upTo); });
+        province.brackets.forEach(b => { if (b.upTo !== Infinity && b.upTo <= THERM_MAX) set.add(b.upTo); });
+        set.add(THERM_MAX);
+        return [...set].sort((a, b) => a - b);
+      }, [inputs.provinceCode]);
+
+      const bands = useMemo(() => {
+        const out = [];
+        for (let i = 0; i < bandThresholds.length - 1; i++) {
+          const low  = bandThresholds[i];
+          const high = bandThresholds[i + 1];
+          const rate = getCombinedMarginalRate(low + 0.01, inputs.provinceCode);
+          const isActive = thermIncome >= low && thermIncome < high;
+          out.push({
+            low, high, rate, isActive,
+            heightPct: ((high - low) / THERM_MAX) * 100,
+            bottomPct: (low / THERM_MAX) * 100,
+          });
+        }
+        return out;
+      }, [inputs.provinceCode, thermIncome]);
+
+      return (
+        <div className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8 text-slate-800">
+
+          <div className="text-center space-y-3 relative">
+            <a
+              href="../index.html"
+              className="no-print absolute top-0 left-0 mt-2 ml-2 text-sm text-slate-500 hover:text-indigo-600 transition-colors font-medium underline underline-offset-4"
+            >
+              ← Home
+            </a>
+            <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">The HBP Repayment &amp; Refinancing Strategy Engine</h1>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+              Quantify what really happens when you skip your annual Home Buyers' Plan repayment.
+              See the cash you'd keep now, the tax bill due next April, and the RRSP room you'd permanently lose.
+            </p>
+          </div>
+
+          {/* EXPLANATORY CARDS */}
+          <div className="no-print grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <div className="bg-white border border-slate-200 p-5 sm:p-6 rounded-2xl shadow-sm text-slate-700 leading-relaxed flex flex-col justify-center">
+              <h2 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                How to use this tool
+              </h2>
+              <p className="text-sm">
+                Type in your outstanding HBP balance, pick your income tier (or override with an exact figure), and choose your province.
+                Then pick a 15-year strategy: pay every year, skip every year, or build a custom year-by-year plan.
+                The thermometer focuses on your worst tax year, the outcome cards show 15-year cumulative totals, and the table at the
+                bottom breaks down every year with a CSV export.
+              </p>
+            </div>
+
+            <div className="bg-amber-50 border border-amber-200 p-5 sm:p-6 rounded-2xl shadow-sm text-amber-900 leading-relaxed">
+              <h2 className="font-bold text-amber-800 mb-2 flex items-center gap-2">
+                <svg className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                Finding your numbers safely
+              </h2>
+              <div className="text-sm space-y-3">
+                <p>
+                  <strong>1. Find your exact HBP balance:</strong> Log in to <a href="https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-individuals/account-individuals.html" target="_blank" className="underline font-semibold hover:text-amber-700">CRA My Account</a> and check your HBP statement of account for the current outstanding balance and your required minimum.
+                </p>
+                <p>
+                  <strong>2. Mind the grace period:</strong> Withdrawals between <strong>Jan 1, 2022 – Dec 31, 2025</strong> get a 5-year repayment grace (Budget 2024 extension). Older or newer withdrawals revert to the standard 2-year grace.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* INPUT ZONE */}
+          <div className="no-print bg-white p-6 sm:p-8 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200 space-y-8">
+
+            <div className="flex items-center justify-between -mb-2">
+              <h2 className="font-bold text-slate-900 text-lg">Your Inputs</h2>
+              <button
+                onClick={handleReset}
+                className="text-xs font-semibold text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-slate-50"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Reset all inputs
+              </button>
+            </div>
+
+            {/* Numeric inputs row */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex flex-col">
+                <label htmlFor="balance-input" className="font-semibold text-slate-800 mb-2">Total Outstanding HBP Balance</label>
+                <div className="relative">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-semibold">$</span>
+                  <input
+                    id="balance-input" type="number" min="0" max={HBP_MAX_WITHDRAWAL} step="500"
+                    value={inputs.outstandingBalance}
+                    onChange={(e) => handleChange('outstandingBalance', Math.max(0, Math.min(HBP_MAX_WITHDRAWAL, Number(e.target.value))))}
+                    className="number-input w-full pl-8 pr-4 py-3 border border-slate-300 rounded-xl text-lg font-bold text-slate-900 focus:outline-none focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 transition"
+                  />
+                </div>
+                <p className="text-xs text-slate-500 mt-2">Max individual limit: {formatCurrency(HBP_MAX_WITHDRAWAL)} (Budget 2024)</p>
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="year-input" className="font-semibold text-slate-800 mb-2">HBP Withdrawal Year</label>
+                <input
+                  id="year-input" type="number" min="2000" max={CURRENT_TAX_YEAR} step="1"
+                  value={inputs.withdrawalYear}
+                  onChange={(e) => handleChange('withdrawalYear', Number(e.target.value))}
+                  className="number-input w-full px-4 py-3 border border-slate-300 rounded-xl text-lg font-bold text-slate-900 focus:outline-none focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 transition"
+                />
+                <p className="text-xs text-slate-500 mt-2">
+                  {grace.inExtendedWindow
+                    ? <>5-year grace applies. Repayment begins <strong className="text-amber-700">{grace.firstRepaymentYear}</strong>.</>
+                    : <>2-year grace applies. Repayment begins <strong>{grace.firstRepaymentYear}</strong>.</>}
+                </p>
+              </div>
+
+              <div className="flex flex-col">
+                <label htmlFor="province-input" className="font-semibold text-slate-800 mb-2">Province / Territory</label>
+                <select
+                  id="province-input"
+                  value={inputs.provinceCode}
+                  onChange={(e) => handleChange('provinceCode', e.target.value)}
+                  className="number-input w-full px-4 py-3 border border-slate-300 rounded-xl text-lg font-bold text-slate-900 bg-white focus:outline-none focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 transition"
+                >
+                  {Object.entries(PROVINCIAL_BRACKETS).map(([code, p]) =>
+                    <option key={code} value={code}>{p.name}</option>
+                  )}
+                </select>
+                <p className="text-xs text-slate-500 mt-2">Drives provincial tax rates added to federal.</p>
+              </div>
+            </div>
+
+            {/* Archetype buttons */}
+            <div>
+              <label className="font-semibold text-slate-800 mb-3 block">Income Archetype</label>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {INCOME_ARCHETYPES.map(a => {
+                  const active = a.id === inputs.archetypeId;
+                  return (
+                    <button
+                      key={a.id}
+                      onClick={() => handleChange('archetypeId', a.id)}
+                      className={`text-left p-4 rounded-xl border-2 transition-all font-semibold ${
+                        active
+                          ? 'bg-indigo-600 border-indigo-600 text-white shadow-lg shadow-indigo-600/20'
+                          : 'bg-white border-slate-200 text-slate-700 hover:border-indigo-300 hover:bg-slate-50'
+                      }`}
+                    >
+                      <div className="text-sm">{a.label}</div>
+                      <div className={`text-xs mt-1 ${active ? 'text-indigo-100' : 'text-slate-500'}`}>{a.bracket} ({a.description})</div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Custom income override */}
+            <div className="flex flex-col sm:flex-row sm:items-end gap-4">
+              <div className="flex-1">
+                <label htmlFor="custom-income" className="font-semibold text-slate-800 mb-2 block">
+                  Custom Income <span className="text-slate-400 font-normal">(optional — overrides archetype)</span>
+                </label>
+                <div className="relative">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-semibold">$</span>
+                  <input
+                    id="custom-income" type="number" min="0" max="500000" step="1000"
+                    placeholder={`${archetype.income} (archetype default)`}
+                    value={inputs.customIncome}
+                    onChange={(e) => handleChange('customIncome', e.target.value)}
+                    className="number-input w-full pl-8 pr-4 py-3 border border-slate-300 rounded-xl text-lg font-bold text-slate-900 focus:outline-none focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 transition"
+                  />
+                </div>
+              </div>
+              <p className="text-xs text-slate-500 sm:w-64 sm:pb-4">
+                Effective income in use: <strong className="text-slate-900">{formatCurrency(effectiveDefaultIncome)}</strong>. Leave blank to use the archetype above.
+              </p>
+            </div>
+
+            {/* 3-way strategy toggle */}
+            <div>
+              <label className="font-semibold text-slate-800 mb-3 block">Repayment Strategy (15-Year Horizon)</label>
+              <div className="grid grid-cols-1 sm:grid-cols-3 p-1.5 bg-slate-100 rounded-2xl gap-1.5">
+                <button
+                  onClick={() => handleChange('strategyMode', 'pay-all')}
+                  className={`py-4 px-4 rounded-xl font-bold text-base transition-all ${
+                    inputs.strategyMode === 'pay-all'
+                      ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 scale-[1.01]'
+                      : 'bg-transparent text-slate-600 hover:bg-white/60'
+                  }`}
+                >
+                  Pay Every Year
+                </button>
+                <button
+                  onClick={() => handleChange('strategyMode', 'skip-all')}
+                  className={`py-4 px-4 rounded-xl font-bold text-base transition-all ${
+                    inputs.strategyMode === 'skip-all'
+                      ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 scale-[1.01]'
+                      : 'bg-transparent text-slate-600 hover:bg-white/60'
+                  }`}
+                >
+                  Skip Every Year
+                </button>
+                <button
+                  onClick={() => handleChange('strategyMode', 'custom')}
+                  className={`py-4 px-4 rounded-xl font-bold text-base transition-all ${
+                    inputs.strategyMode === 'custom'
+                      ? 'bg-slate-700 text-white shadow-lg shadow-slate-700/30 scale-[1.01]'
+                      : 'bg-transparent text-slate-600 hover:bg-white/60'
+                  }`}
+                >
+                  Custom Strategy
+                </button>
+              </div>
+            </div>
+
+            {/* Retirement Assumptions — drives Future Value of lost RRSP room */}
+            <div>
+              <label className="font-semibold text-slate-800 mb-3 block">Retirement Assumptions <span className="text-slate-400 font-normal">(for Future Value of lost room)</span></label>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="flex flex-col">
+                  <label htmlFor="current-age" className="text-xs font-semibold text-slate-600 mb-1.5">Current Age</label>
+                  <input
+                    id="current-age" type="number" min="18" max="70" step="1"
+                    value={inputs.currentAge}
+                    onChange={(e) => handleChange('currentAge', Math.max(18, Math.min(70, Number(e.target.value))))}
+                    className="number-input w-full px-4 py-2.5 border border-slate-300 rounded-xl text-base font-bold text-slate-900 focus:outline-none focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 transition"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="retirement-age" className="text-xs font-semibold text-slate-600 mb-1.5">Retirement Age</label>
+                  <input
+                    id="retirement-age" type="number" min={inputs.currentAge + 1} max="85" step="1"
+                    value={inputs.retirementAge}
+                    onChange={(e) => handleChange('retirementAge', Math.max(inputs.currentAge + 1, Math.min(85, Number(e.target.value))))}
+                    className="number-input w-full px-4 py-2.5 border border-slate-300 rounded-xl text-base font-bold text-slate-900 focus:outline-none focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 transition"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="return-rate" className="text-xs font-semibold text-slate-600 mb-1.5">Assumed Annual Return</label>
+                  <div className="relative">
+                    <input
+                      id="return-rate" type="number" min="0" max="15" step="0.5"
+                      value={(inputs.assumedReturnRate * 100).toFixed(1)}
+                      onChange={(e) => handleChange('assumedReturnRate', Math.max(0, Math.min(0.15, Number(e.target.value) / 100)))}
+                      className="number-input w-full pr-8 pl-4 py-2.5 border border-slate-300 rounded-xl text-base font-bold text-slate-900 focus:outline-none focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 transition"
+                    />
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 font-semibold">%</span>
+                  </div>
+                </div>
+              </div>
+              <p className="text-xs text-slate-500 mt-2">
+                With <strong className="text-slate-700">{inputs.retirementAge - inputs.currentAge} years</strong> until retirement at {(inputs.assumedReturnRate * 100).toFixed(1)}% annual return, each dollar of lost RRSP room compounds substantially. 6% is the common conservative diversified-portfolio default.
+              </p>
+            </div>
+
+            {/* Custom Strategy editor — only when mode === 'custom' */}
+            {inputs.strategyMode === 'custom' && (
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div>
+                    <h3 className="font-bold text-slate-900">Custom Strategy Editor</h3>
+                    <p className="text-xs text-slate-600 mt-1">
+                      Toggle each year between Pay and Skip. Override the income for years where you expect a different bracket
+                      (parental leave, sabbatical, peak earnings, etc.). Empty income cells use {formatCurrency(effectiveDefaultIncome)} by default.
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleApplyIncomeToAllYears}
+                    className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition-colors flex items-center gap-1.5 px-3 py-2 rounded-lg border border-indigo-200 bg-white whitespace-nowrap"
+                  >
+                    Apply {formatCurrency(effectiveDefaultIncome)} to all years
+                  </button>
+                </div>
+                <div className="max-h-[360px] overflow-y-auto rounded-xl border border-slate-200 bg-white">
+                  <table className="w-full text-sm">
+                    <thead className="bg-slate-100 text-slate-600 uppercase text-xs tracking-wider sticky top-0">
+                      <tr>
+                        <th className="px-4 py-3 text-left">Year</th>
+                        <th className="px-4 py-3 text-left">Calendar Yr</th>
+                        <th className="px-4 py-3 text-left">Income</th>
+                        <th className="px-4 py-3 text-right">Decision</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {Array.from({ length: HBP_REPAYMENT_YEARS }).map((_, i) => {
+                        const override = inputs.customYears[i] || {};
+                        const decision = override.decision || 'pay';
+                        const calYear = grace.firstRepaymentYear + i;
+                        return (
+                          <tr key={i} className="hover:bg-slate-50">
+                            <td className="px-4 py-2 font-bold text-slate-900">Year {i + 1}</td>
+                            <td className="px-4 py-2 text-slate-600">{calYear}</td>
+                            <td className="px-4 py-2">
+                              <div className="relative">
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs">$</span>
+                                <input
+                                  type="number" min="0" step="1000"
+                                  placeholder={String(effectiveDefaultIncome)}
+                                  value={override.income ?? ''}
+                                  onChange={(e) => handleCustomYearChange(i, 'income', e.target.value === '' ? undefined : Number(e.target.value))}
+                                  className="number-input w-32 pl-6 pr-2 py-1.5 border border-slate-300 rounded-md text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500"
+                                />
+                              </div>
+                            </td>
+                            <td className="px-4 py-2 text-right">
+                              <div className="inline-flex p-0.5 bg-slate-100 rounded-md gap-0.5">
+                                <button
+                                  onClick={() => handleCustomYearChange(i, 'decision', 'pay')}
+                                  className={`px-3 py-1 text-xs font-bold rounded transition-all ${
+                                    decision === 'pay' ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-white'
+                                  }`}
+                                >Pay</button>
+                                <button
+                                  onClick={() => handleCustomYearChange(i, 'decision', 'skip')}
+                                  className={`px-3 py-1 text-xs font-bold rounded transition-all ${
+                                    decision === 'skip' ? 'bg-red-600 text-white' : 'text-slate-600 hover:bg-white'
+                                  }`}
+                                >Skip</button>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* THERMOMETER + STAT CARDS */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            {/* Thermometer */}
+            <div className="lg:col-span-2 bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h3 className="font-bold text-slate-900 text-lg">Tax Bracket Thermometer</h3>
+                  <p className="text-sm text-slate-600 mt-1">
+                    {worstYear
+                      ? <>Showing your <strong>worst year</strong>: Year {worstYear.year} ({worstYear.calendarYear}) — {formatCurrency(worstYear.requiredMin)} taxable at an effective {(thermEffectiveRate * 100).toFixed(1)}% marginal rate.</>
+                      : <>No skipped years in this strategy. Filled column shows your income at the combined federal + provincial bracket ladder.</>}
+                  </p>
+                </div>
+                {worstYear && (
+                  <div className="text-right">
+                    <div className="text-xs uppercase tracking-wider text-slate-500 font-semibold">Severity</div>
+                    <div className="text-base font-bold" style={{ color: getSliceColor(thermEffectiveRate) }}>
+                      {thermEffectiveRate < 0.30 ? 'Mild' : thermEffectiveRate < 0.42 ? 'Notable' : 'Severe'}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex gap-4">
+                {/* The vertical column */}
+                <div className="relative w-32 h-[500px] rounded-xl bg-slate-50 border border-slate-200 overflow-hidden">
+
+                  {/* Bracket bands as background */}
+                  {bands.map((b, i) => (
+                    <div
+                      key={i}
+                      className={`absolute left-0 right-0 border-t border-slate-200 ${b.isActive ? 'active-bracket-band' : ''}`}
+                      style={{
+                        bottom: `${b.bottomPct}%`,
+                        height: `${b.heightPct}%`,
+                        background: `rgba(148, 163, 184, ${0.04 + i * 0.04})`,
+                      }}
+                    />
+                  ))}
+
+                  {/* Baseline income column */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-700 to-slate-500 transition-all duration-500"
+                    style={{ height: `${baseHeightPct}%` }}
+                  />
+
+                  {/* Stacked missed-repayment block (only on skip) — slices positioned from baseline upward */}
+                  {isSkip && stackSlices.length > 0 && (() => {
+                    let cum = 0;
+                    return stackSlices.map((s, i) => {
+                      const sliceBottomPct = baseHeightPct + cum;
+                      cum += s.heightPct;
+                      return (
+                        <div
+                          key={i}
+                          className="absolute left-0 right-0 transition-all duration-500"
+                          style={{
+                            bottom: `${sliceBottomPct}%`,
+                            height: `${s.heightPct}%`,
+                            background: getSliceColor(s.rate),
+                            borderTop: i > 0 ? '1px dashed rgba(255,255,255,0.6)' : 'none',
+                          }}
+                          title={`${formatCurrency(s.start)}–${formatCurrency(s.end)} @ ${(s.rate * 100).toFixed(1)}%`}
+                        />
+                      );
+                    });
+                  })()}
+                </div>
+
+                {/* Right-side labels — de-clustered to prevent squishing */}
+                <div className="relative flex-1 h-[500px]">
+                  {(() => {
+                    const MIN_GAP_PCT = 3.2;
+                    const stackTopPct = baseHeightPct + (thermShortfall / THERM_MAX) * 100;
+                    const stackColor = getSliceColor(thermEffectiveRate);
+
+                    // Priority markers always rendered
+                    const priorityMarkers = [];
+                    if (isSkip && stackSlices.length > 0 && (stackTopPct - baseHeightPct) >= MIN_GAP_PCT) {
+                      priorityMarkers.push({
+                        topPct: baseHeightPct,
+                        label: `Your income: ${formatCurrency(thermIncome)}`,
+                        color: '#0f172a',
+                      });
+                      priorityMarkers.push({
+                        topPct: stackTopPct,
+                        label: `+ ${formatCurrency(thermShortfall)} taxable`,
+                        color: stackColor,
+                      });
+                    } else if (isSkip && stackSlices.length > 0) {
+                      // Stack too small to label separately — show one combined marker
+                      priorityMarkers.push({
+                        topPct: baseHeightPct,
+                        label: `Income ${formatCurrency(thermIncome)} + ${formatCurrency(thermShortfall)} taxable`,
+                        color: stackColor,
+                      });
+                    } else {
+                      priorityMarkers.push({
+                        topPct: baseHeightPct,
+                        label: `Your income: ${formatCurrency(thermIncome)}`,
+                        color: '#0f172a',
+                      });
+                    }
+
+                    // Bracket labels (drop ones at the very top edge and ones colliding with priority markers)
+                    const bracketLabels = bands
+                      .map(b => ({
+                        topPct: b.bottomPct + b.heightPct,
+                        value: b.high >= THERM_MAX ? `${formatCurrency(b.low)}+` : formatCurrency(b.high),
+                        rate: b.rate,
+                      }))
+                      .filter(b => b.topPct < 99 && b.topPct > 1)
+                      .filter(b => !priorityMarkers.some(p => Math.abs(p.topPct - b.topPct) < MIN_GAP_PCT));
+
+                    // Cluster bracket labels that are too close together
+                    const sorted = [...bracketLabels].sort((a, b) => a.topPct - b.topPct);
+                    const clusters = [];
+                    for (const item of sorted) {
+                      const last = clusters[clusters.length - 1];
+                      if (last && (item.topPct - last.maxTopPct) < MIN_GAP_PCT) {
+                        last.items.push(item);
+                        last.maxTopPct = item.topPct;
+                      } else {
+                        clusters.push({ items: [item], maxTopPct: item.topPct });
+                      }
+                    }
+
+                    return (
+                      <>
+                        {clusters.map((c, i) => {
+                          const midPct = c.items.reduce((acc, it) => acc + it.topPct, 0) / c.items.length;
+                          const valueText = c.items.map(it => it.value).join(' / ');
+                          const rateText = c.items.length === 1
+                            ? `${(c.items[0].rate * 100).toFixed(1)}%`
+                            : `${(c.items[0].rate * 100).toFixed(1)}–${(c.items[c.items.length - 1].rate * 100).toFixed(1)}%`;
+                          return (
+                            <div
+                              key={`b-${i}`}
+                              className="absolute left-0 right-0 flex items-center text-xs"
+                              style={{ bottom: `${midPct}%`, transform: 'translateY(50%)' }}
+                            >
+                              <div className="w-3 h-px bg-slate-300 mr-2" />
+                              <span className="text-slate-600 font-medium">{valueText}</span>
+                              <span className="text-slate-400 ml-2">({rateText})</span>
+                            </div>
+                          );
+                        })}
+                        {priorityMarkers.map((p, i) => (
+                          <div
+                            key={`p-${i}`}
+                            className="absolute left-0 right-0 flex items-center text-xs"
+                            style={{ bottom: `${p.topPct}%`, transform: 'translateY(50%)' }}
+                          >
+                            <div className="w-3 h-px mr-2" style={{ background: p.color }} />
+                            <span className="font-bold" style={{ color: p.color }}>{p.label}</span>
+                          </div>
+                        ))}
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+
+              {isSkip && stackSlices.length > 1 && (
+                <p className="text-xs text-amber-700 mt-4 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                  <strong>Bracket creep detected:</strong> the skipped repayment crosses {stackSlices.length - 1} bracket
+                  threshold{stackSlices.length - 1 === 1 ? '' : 's'}. The effective tax rate on the missed amount
+                  is <strong>{(thermEffectiveRate * 100).toFixed(1)}%</strong>, higher than your starting marginal rate.
+                </p>
+              )}
+            </div>
+
+            {/* Side stat cards */}
+            <div className="flex flex-col gap-4">
+              <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+                <p className="text-xs uppercase tracking-wider text-slate-500 font-semibold">Year 1 Required Minimum</p>
+                <p className="text-3xl font-extrabold text-slate-900 mt-2">
+                  {formatCurrencyPrecise(projection[0]?.requiredMin ?? 0)}
+                </p>
+                <p className="text-xs text-slate-500 mt-2">
+                  = {formatCurrency(inputs.outstandingBalance)} ÷ {HBP_REPAYMENT_YEARS}. Re-amortizes each year on the remaining balance.
+                </p>
+              </div>
+              <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+                <p className="text-xs uppercase tracking-wider text-slate-500 font-semibold">
+                  {worstYear ? 'Worst-Year Marginal Rate' : 'Combined Marginal Rate'}
+                </p>
+                <p className="text-3xl font-extrabold text-slate-900 mt-2">
+                  {(getCombinedMarginalRate(thermIncome, inputs.provinceCode) * 100).toFixed(1)}%
+                </p>
+                <p className="text-xs text-slate-500 mt-2">
+                  Federal + {province.name} at {formatCurrency(thermIncome)}
+                </p>
+              </div>
+              {grace.inGrace && (
+                <div className="bg-emerald-50 border border-emerald-200 p-6 rounded-2xl shadow-sm">
+                  <p className="text-xs uppercase tracking-wider text-emerald-700 font-bold">Currently In Grace</p>
+                  <p className="text-sm text-emerald-900 mt-2">
+                    No minimum is required yet. Your first repayment year is <strong>{grace.firstRepaymentYear}</strong>.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* TWO OUTCOME CARDS — 15-Year Cumulative */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Card A — Pay Every Year baseline */}
+            {(() => {
+              const cardAActive = inputs.strategyMode === 'pay-all';
+              return (
+                <div className={`rounded-2xl shadow-sm border transition-all duration-300 ${
+                  cardAActive
+                    ? 'bg-indigo-600 border-indigo-600 text-white shadow-lg shadow-indigo-600/20 -translate-y-1'
+                    : 'bg-white border-slate-200 text-slate-700 opacity-70'
+                }`}>
+                  <div className="p-6 sm:p-8">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className={`w-3 h-3 rounded-full ${cardAActive ? 'bg-white' : 'bg-indigo-600'}`} />
+                      <p className={`text-xs uppercase tracking-wider font-bold ${cardAActive ? 'text-indigo-100' : 'text-indigo-600'}`}>
+                        Baseline — Pay Every Year
+                      </p>
+                    </div>
+                    <h3 className={`text-2xl font-extrabold mb-6 ${cardAActive ? 'text-white' : 'text-slate-900'}`}>You stay on the rails.</h3>
+                    <dl className="space-y-4">
+                      <div>
+                        <dt className={`text-xs uppercase font-semibold ${cardAActive ? 'text-indigo-200' : 'text-slate-500'}`}>Total Cash Out-of-Pocket (15 yrs)</dt>
+                        <dd className={`text-2xl font-extrabold ${cardAActive ? 'text-white' : 'text-slate-900'}`}>{formatCurrencyPrecise(totals.payAllCashOut)}</dd>
+                      </div>
+                      <div>
+                        <dt className={`text-xs uppercase font-semibold ${cardAActive ? 'text-indigo-200' : 'text-slate-500'}`}>Cumulative CRA Tax (Line 12900)</dt>
+                        <dd className={`text-2xl font-extrabold ${cardAActive ? 'text-white' : 'text-slate-900'}`}>$0</dd>
+                      </div>
+                      <div>
+                        <dt className={`text-xs uppercase font-semibold ${cardAActive ? 'text-indigo-200' : 'text-slate-500'}`}>Contribution Room Preserved</dt>
+                        <dd className={`text-2xl font-extrabold ${cardAActive ? 'text-white' : 'text-slate-900'}`}>100%</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Card B — Your Chosen Strategy */}
+            {(() => {
+              const cardBActive = inputs.strategyMode !== 'pay-all';
+              const headerLabel = inputs.strategyMode === 'skip-all'
+                ? 'Skip Every Year' : inputs.strategyMode === 'custom'
+                ? 'Custom Strategy' : 'Pay Every Year';
+              const headline = inputs.strategyMode === 'pay-all'
+                ? 'Same as baseline — no skips.'
+                : 'You absorb the tax hit.';
+              return (
+                <div className={`rounded-2xl shadow-sm border transition-all duration-300 ${
+                  cardBActive
+                    ? 'bg-red-600 border-red-600 text-white shadow-lg shadow-red-600/20 -translate-y-1'
+                    : 'bg-white border-slate-200 text-slate-700 opacity-70'
+                }`}>
+                  <div className="p-6 sm:p-8">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className={`w-3 h-3 rounded-full ${cardBActive ? 'bg-white' : 'bg-red-600'}`} />
+                      <p className={`text-xs uppercase tracking-wider font-bold ${cardBActive ? 'text-red-100' : 'text-red-600'}`}>
+                        Your Strategy — {headerLabel}
+                      </p>
+                    </div>
+                    <h3 className={`text-2xl font-extrabold mb-6 ${cardBActive ? 'text-white' : 'text-slate-900'}`}>{headline}</h3>
+                    <dl className="space-y-4">
+                      <div>
+                        <dt className={`text-xs uppercase font-semibold ${cardBActive ? 'text-red-100' : 'text-slate-500'}`}>Cumulative Cash Kept (15 yrs)</dt>
+                        <dd className={`text-2xl font-extrabold ${cardBActive ? 'text-white' : 'text-slate-900'}`}>+{formatCurrencyPrecise(totals.totalCashKept)}</dd>
+                      </div>
+                      <div>
+                        <dt className={`text-xs uppercase font-semibold ${cardBActive ? 'text-red-100' : 'text-slate-500'}`}>Cumulative CRA Tax Bill</dt>
+                        <dd className={`text-2xl font-extrabold ${cardBActive ? 'text-white' : 'text-slate-900'}`}>−{formatCurrencyPrecise(totals.totalTax)}</dd>
+                        {totals.totalCashKept > 0 && (
+                          <p className={`text-xs mt-1 ${cardBActive ? 'text-red-100' : 'text-slate-500'}`}>
+                            Effective rate {((totals.totalTax / totals.totalCashKept) * 100).toFixed(1)}% across all skipped amounts.
+                          </p>
+                        )}
+                      </div>
+                      <div>
+                        <dt className={`text-xs uppercase font-semibold ${cardBActive ? 'text-red-100' : 'text-slate-500'}`}>Permanent RRSP Room Lost</dt>
+                        <dd className={`text-2xl font-extrabold ${cardBActive ? 'text-white' : 'text-slate-900'}`}>−{formatCurrencyPrecise(totals.totalRoomLost)}</dd>
+                        <p className={`text-xs mt-1 ${cardBActive ? 'text-red-100' : 'text-slate-500'}`}>
+                          {totals.roomLostPct.toFixed(1)}% of your original $60k lifetime HBP capacity. This room cannot be recovered.
+                        </p>
+                      </div>
+                      {totals.totalRoomLost > 0 && (
+                        <div className={`pt-4 mt-2 border-t ${cardBActive ? 'border-red-400/40' : 'border-slate-200'}`}>
+                          <dt className={`text-xs uppercase font-semibold ${cardBActive ? 'text-red-100' : 'text-slate-500'}`}>
+                            Future Value at Retirement (age {inputs.retirementAge})
+                          </dt>
+                          <dd className={`text-3xl font-extrabold ${cardBActive ? 'text-white' : 'text-slate-900'}`}>
+                            −{formatCurrencyPrecise(fvData.totalFV)}
+                          </dd>
+                          <p className={`text-xs mt-1 ${cardBActive ? 'text-red-100' : 'text-slate-500'}`}>
+                            What the lost room <em>would have</em> been worth at {(inputs.assumedReturnRate * 100).toFixed(1)}% annual growth, compounded year-by-year from each skip until retirement. The real cost of the decision.
+                          </p>
+                        </div>
+                      )}
+                    </dl>
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* 15-YEAR AMORTIZATION TABLE */}
+          <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+            <div className="p-5 sm:p-6 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50/50">
+              <div>
+                <h3 className="font-bold text-slate-900 text-lg">Year-by-Year Projection</h3>
+                <p className="text-sm text-slate-600 mt-1">
+                  The full 15-year amortization of your HBP balance under the strategy you chose. Each year shows the required minimum, your decision, that year's marginal rate, and running totals.
+                </p>
+              </div>
+              <button
+                onClick={() => downloadProjectionCSV(projection, fvData.perYearFV)}
+                className="no-print text-sm bg-white border border-slate-300 hover:bg-slate-50 hover:text-indigo-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 text-slate-700 py-2 px-5 rounded-lg shadow-sm transition-all font-semibold flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Export CSV
+              </button>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-white text-slate-500 font-semibold uppercase tracking-wider text-xs border-b border-slate-200">
+                  <tr>
+                    <th className="px-4 py-4">Yr</th>
+                    <th className="px-4 py-4">Cal Yr</th>
+                    <th className="px-4 py-4 text-right">Balance</th>
+                    <th className="px-4 py-4 text-right">Required Min</th>
+                    <th className="px-4 py-4 text-center">Decision</th>
+                    <th className="px-4 py-4 text-right">Income</th>
+                    <th className="px-4 py-4 text-right">Marg. Rate</th>
+                    <th className="px-4 py-4 text-right">Tax This Yr</th>
+                    <th className="px-4 py-4 text-right">Cum. Tax</th>
+                    <th className="px-4 py-4 text-right">Cum. Room Lost</th>
+                    <th className="px-4 py-4 text-right">FV at Retirement</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {projection.map((row, i) => (
+                    <tr key={row.year} className={`hover:bg-slate-50 transition-colors ${row.decision === 'skip' ? 'bg-red-50/40' : ''}`}>
+                      <td className="px-4 py-3 font-bold text-slate-900">{row.year}</td>
+                      <td className="px-4 py-3 text-slate-600">{row.calendarYear}</td>
+                      <td className="px-4 py-3 text-right text-slate-700">{formatCurrency(row.openingBalance)}</td>
+                      <td className="px-4 py-3 text-right text-slate-700">{formatCurrencyPrecise(row.requiredMin)}</td>
+                      <td className="px-4 py-3 text-center">
+                        <span className={`inline-block px-2 py-0.5 text-xs font-bold rounded ${
+                          row.decision === 'pay' ? 'bg-indigo-100 text-indigo-700' : 'bg-red-100 text-red-700'
+                        }`}>
+                          {row.decision.toUpperCase()}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-right text-slate-600">{formatCurrency(row.income)}</td>
+                      <td className="px-4 py-3 text-right text-slate-600">{(row.marginalRate * 100).toFixed(1)}%</td>
+                      <td className={`px-4 py-3 text-right font-medium ${row.taxThisYear > 0 ? 'text-amber-600' : 'text-slate-400'}`}>
+                        {row.taxThisYear > 0 ? `−${formatCurrencyPrecise(row.taxThisYear)}` : '—'}
+                      </td>
+                      <td className="px-4 py-3 text-right font-medium text-amber-600">
+                        {row.cumulativeTax > 0 ? `−${formatCurrencyPrecise(row.cumulativeTax)}` : '$0.00'}
+                      </td>
+                      <td className="px-4 py-3 text-right font-medium text-red-600">
+                        {row.cumulativeRoomLost > 0 ? `−${formatCurrencyPrecise(row.cumulativeRoomLost)}` : '$0.00'}
+                      </td>
+                      <td className={`px-4 py-3 text-right font-medium ${fvData.perYearFV[i] > 0 ? 'text-rose-700' : 'text-slate-400'}`}>
+                        {fvData.perYearFV[i] > 0 ? `−${formatCurrencyPrecise(fvData.perYearFV[i])}` : '—'}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot className="bg-slate-50 border-t border-slate-200 font-bold">
+                  <tr>
+                    <td className="px-4 py-4 text-slate-900" colSpan="2">Total (15 yrs)</td>
+                    <td className="px-4 py-4 text-right text-slate-400">—</td>
+                    <td className="px-4 py-4 text-right text-slate-900">{formatCurrencyPrecise(totals.payAllCashOut)}</td>
+                    <td className="px-4 py-4"></td>
+                    <td className="px-4 py-4"></td>
+                    <td className="px-4 py-4"></td>
+                    <td className="px-4 py-4"></td>
+                    <td className="px-4 py-4 text-right text-amber-700">{totals.totalTax > 0 ? `−${formatCurrencyPrecise(totals.totalTax)}` : '$0.00'}</td>
+                    <td className="px-4 py-4 text-right text-red-700">{totals.totalRoomLost > 0 ? `−${formatCurrencyPrecise(totals.totalRoomLost)}` : '$0.00'}</td>
+                    <td className="px-4 py-4 text-right text-rose-700">{fvData.totalFV > 0 ? `−${formatCurrencyPrecise(fvData.totalFV)}` : '$0.00'}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          {/* EDUCATIONAL NOTE */}
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-3">
+            <h3 className="font-bold text-slate-900 text-lg flex items-center gap-2">
+              <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              How the tax hit actually happens
+            </h3>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              On your T1 General return, any HBP repayment shortfall flows through your <strong>Schedule 7</strong> calculation
+              and lands on <strong>Line 12900 — RRSP income</strong>. The CRA treats the missed amount as if you withdrew it
+              fresh from your RRSP that year — it's added to your taxable income and taxed at your full combined marginal rate.
+            </p>
+            <p className="text-sm text-slate-700 leading-relaxed">
+              The harder pill: <strong>the RRSP contribution room you originally used for that HBP dollar is gone for good.</strong>{' '}
+              Unlike a TFSA withdrawal, HBP contribution room is not restored when you fail to repay. You also can't deduct the
+              missed amount as a fresh RRSP contribution — there's nothing to deduct, because it was already deducted years ago
+              when you first put the money in.
+            </p>
+          </div>
+
+          <details className="bg-slate-50 border border-slate-200 rounded-xl" open>
+            <summary className="cursor-pointer px-5 py-4 text-sm font-bold text-slate-800 hover:text-indigo-700 select-none">
+              Disclaimer &amp; sources
+            </summary>
+            <div className="px-5 pb-5 pt-1 text-sm text-slate-600 space-y-3">
+              <p>This tool is illustrative only. Federal and provincial tax brackets shift annually with indexation, and grace-period rules are subject to federal budget changes. The bracket tables are recent published figures used as a 2026 estimate. The math includes Quebec's 16.5% federal abatement and Ontario/PEI provincial surtaxes, but <strong>ignores</strong> the basic personal amount and other non-refundable credits.</p>
+              <p>The 15-year projection assumes inputs stay constant unless you explicitly override a year. Future-value figures show the gross tax-sheltered balance at retirement and do <strong>not</strong> account for the income tax eventually owed on RRSP withdrawals. Verify your actual HBP balance and required minimum in <a href="https://www.canada.ca/en/revenue-agency/services/e-services/cra-my-account.html" target="_blank" rel="noopener" className="underline text-indigo-600">CRA My Account</a> and consult a qualified accountant or CFP before deciding to skip a repayment.</p>
+              <p className="text-xs text-slate-500">Not tax, legal, or investment advice.</p>
+            </div>
+          </details>
+
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<HBPEngine />);
+  </script>
+</body>
+</html>

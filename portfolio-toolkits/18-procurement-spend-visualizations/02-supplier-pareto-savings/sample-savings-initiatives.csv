@@ -1,0 +1,9 @@
+initiative_id,category,baseline_annual,current_annual,target_savings
+INIT-1,IT Hardware,70000.00,65000.00,4000.00
+INIT-2,Logistics,33000.00,29005.00,5000.00
+INIT-3,Professional Services,32000.00,30450.00,2000.00
+INIT-4,Office Supplies,9000.00,8000.00,1500.00
+INIT-5,Facilities,2000.00,2000.00,500.00
+INIT-6,Travel,4000.00,4600.00,300.00
+INIT-2,Logistics,33000.00,29005.00,5000.00
+INIT-9,,5000.00,4500.00,500.00

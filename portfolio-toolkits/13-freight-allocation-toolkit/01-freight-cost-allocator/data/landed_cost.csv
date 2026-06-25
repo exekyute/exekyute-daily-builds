@@ -1,0 +1,6 @@
+line_id,description,quantity,unit_cost,allocated_freight,landed_unit_cost
+L001,Steel brackets (carton),7,5.00,25.93,8.70
+L002,Hydraulic fittings (box),3,10.00,22.22,17.41
+L003,Foam packing inserts,5,4.00,14.81,6.96
+L004,Promo flyers (no charge),2,0.00,0.00,0.00
+L005,Control cabinet (pallet),1,50.00,37.04,87.04

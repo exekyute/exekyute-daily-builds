@@ -1,0 +1,4 @@
+line_id,description,quantity,unit_cost,allocated_freight,landed_unit_cost
+L001,Clean line,5,10.00,5.00,11.00
+L002,Bad quantity,zero,10.00,5.00,11.00
+L003,Non-numeric freight,2,10.00,oops,11.00

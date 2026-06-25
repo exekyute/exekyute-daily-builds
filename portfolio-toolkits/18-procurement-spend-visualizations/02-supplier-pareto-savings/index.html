@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Supplier Pareto and Savings Tracker</title>
+    <style>
+      :root {
+        --base: #1f3a5f;
+        --accent: #3b7a57;
+        --ink: #1f3a5f;
+        --muted: #5b6678;
+        --line: #e2e6ee;
+        --soft: #c9d4e8;
+        --bg: #f5f8fb;
+        --panel: #ffffff;
+        --danger: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 72ch;
+      }
+
+      h2 {
+        margin: 0 0 calc(var(--space) * 2) 0;
+        font-size: 18px;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="file"] {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eaf4f1;
+        color: #1f5f53;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--danger);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 4);
+        margin-bottom: calc(var(--space) * 2);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      .grid {
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+
+      .zero-line {
+        stroke: var(--muted);
+        stroke-width: 1.5;
+      }
+
+      .cut-line {
+        stroke: var(--danger);
+        stroke-width: 1.5;
+        stroke-dasharray: 6 4;
+      }
+
+      .axis-label {
+        fill: var(--ink);
+        font-size: 11px;
+      }
+
+      .axis-sub {
+        fill: var(--muted);
+        font-size: 10px;
+      }
+
+      .bar.vital {
+        fill: var(--accent);
+      }
+
+      .bar.tail {
+        fill: var(--soft);
+      }
+
+      .bar.target {
+        fill: var(--soft);
+      }
+
+      .bar.met {
+        fill: var(--accent);
+      }
+
+      .bar.missed {
+        fill: var(--danger);
+      }
+
+      .cum-line {
+        fill: none;
+        stroke: var(--base);
+        stroke-width: 2;
+      }
+
+      .cum-point {
+        fill: var(--base);
+      }
+
+      .cum-label {
+        fill: var(--base);
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin-top: calc(var(--space) * 2);
+      }
+
+      th,
+      td {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      tr.vital td {
+        background: #eef5f1;
+        font-weight: 600;
+      }
+
+      tr.flagged td {
+        background: #fbece9;
+        color: var(--danger);
+        font-weight: 600;
+      }
+
+      .legend {
+        display: flex;
+        gap: calc(var(--space) * 3);
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: var(--space);
+      }
+
+      .legend span::before {
+        content: "";
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        margin-right: 6px;
+        vertical-align: middle;
+      }
+
+      .legend .vital::before {
+        background: var(--accent);
+      }
+
+      .legend .tail::before {
+        background: var(--soft);
+      }
+
+      .legend .missed::before {
+        background: var(--danger);
+      }
+
+      #savingsWarnings {
+        display: none;
+        background: #fff7ec;
+        border: 1px solid #f0d9a8;
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 2) calc(var(--space) * 3);
+        margin-top: calc(var(--space) * 2);
+      }
+
+      #savingsWarnings h3 {
+        margin: 0 0 var(--space) 0;
+        font-size: 15px;
+        color: #8a6d1f;
+      }
+
+      #savingsWarnings ul {
+        margin: 0;
+        padding-left: calc(var(--space) * 3);
+        font-size: 14px;
+        color: var(--danger);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Supplier Pareto and Savings Tracker</h1>
+        <p>
+          Two views over the spend. The Pareto reads the normalized spend file the Spend Analysis Dashboard exports,
+          ranks suppliers from largest to smallest, and marks the vital few that make up the first 80 percent of
+          spend. The Savings Tracker reads a list of cost initiatives and compares realized savings against target.
+        </p>
+      </header>
+
+      <section class="panel">
+        <h2>Supplier Pareto</h2>
+        <label for="paretoFile">Normalized spend CSV (from the Spend Analysis Dashboard)</label>
+        <input type="file" id="paretoFile" accept=".csv,text/csv" />
+        <div class="message" id="paretoMessage"></div>
+        <div class="summary" id="paretoSummary"></div>
+        <svg id="paretoChart" viewBox="0 0 880 380" role="img" aria-label="Supplier spend Pareto"></svg>
+        <div class="legend">
+          <span class="vital">Vital few</span>
+          <span class="tail">Long tail</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Supplier</th>
+              <th class="num">Spend</th>
+              <th class="num">Share</th>
+              <th class="num">Cumulative</th>
+            </tr>
+          </thead>
+          <tbody id="paretoBody"></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>Savings Tracker</h2>
+        <label for="savingsFile">Savings initiatives CSV</label>
+        <input type="file" id="savingsFile" accept=".csv,text/csv" />
+        <div class="message" id="savingsMessage"></div>
+        <div class="summary" id="savingsSummary"></div>
+        <svg id="savingsChart" viewBox="0 0 880 360" role="img" aria-label="Target versus realized savings"></svg>
+        <div class="legend">
+          <span class="tail">Target</span>
+          <span class="vital">Realized, at or above target</span>
+          <span class="missed">Realized, below target</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Initiative</th>
+              <th class="num">Target</th>
+              <th class="num">Realized</th>
+              <th class="num">Attainment</th>
+            </tr>
+          </thead>
+          <tbody id="savingsBody"></tbody>
+        </table>
+        <div id="savingsWarnings"></div>
+      </section>
+    </div>
+
+    <script src="dist/pareto.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>

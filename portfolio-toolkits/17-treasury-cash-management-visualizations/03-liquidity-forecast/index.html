@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Liquidity Forecast (13-Week)</title>
+    <style>
+      :root {
+        --base: #16324f;
+        --accent: #2d7d6f;
+        --ink: #16324f;
+        --muted: #5b6678;
+        --line: #e2e6ee;
+        --soft: #c9d4e8;
+        --bg: #f5f8fb;
+        --panel: #ffffff;
+        --danger: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 74ch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: calc(var(--space) * 3);
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="file"],
+      input[type="text"] {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      button {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background: var(--soft);
+        cursor: not-allowed;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eaf4f1;
+        color: #1f5f53;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--danger);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 4);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .legend {
+        display: flex;
+        gap: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 2);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .swatch {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        margin-right: var(--space);
+        vertical-align: -2px;
+      }
+
+      .swatch.cash {
+        background: var(--accent);
+      }
+
+      .swatch.breach {
+        background: var(--danger);
+      }
+
+      .swatch.buffer {
+        background: var(--base);
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      .grid {
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+
+      .zero-line {
+        stroke: var(--muted);
+        stroke-width: 1.5;
+      }
+
+      .buffer-line {
+        stroke: var(--base);
+        stroke-width: 2;
+        stroke-dasharray: 6 4;
+      }
+
+      .buffer-label {
+        fill: var(--base);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .axis-label {
+        fill: var(--muted);
+        font-size: 11px;
+      }
+
+      .bar {
+        fill: var(--accent);
+      }
+
+      .bar.breach {
+        fill: var(--danger);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      tr.flagged td {
+        background: #fbece9;
+        color: var(--danger);
+        font-weight: 600;
+      }
+
+      .row-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: calc(var(--space) * 2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Liquidity Forecast (13-Week)</h1>
+        <p>
+          Projects cash week by week over the next 13 weeks. Start from opening cash, add each week's projected
+          inflows, subtract operating outflows and any debt coming due, carry the closing balance forward, and
+          flag any week that ends below a minimum-cash buffer. Opening cash can be imported from the Cash
+          Position Dashboard and debt from the Maturity Ladder, so the three line up on the same numbers.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div>
+            <label for="operatingInput">Operating cashflows CSV</label>
+            <input type="file" id="operatingInput" accept=".csv,text/csv" />
+          </div>
+          <div>
+            <label for="openingCash">Opening cash ($)</label>
+            <input type="text" id="openingCash" value="648000.50" />
+          </div>
+          <div>
+            <label for="buffer">Minimum buffer ($)</label>
+            <input type="text" id="buffer" value="100000.00" />
+          </div>
+          <div>
+            <label for="balancesInput">Import opening cash (closing-balances.csv)</label>
+            <input type="file" id="balancesInput" accept=".csv,text/csv" />
+          </div>
+          <div>
+            <label for="maturitiesInput">Import debt (maturities-by-week.csv)</label>
+            <input type="file" id="maturitiesInput" accept=".csv,text/csv" />
+          </div>
+        </div>
+        <div class="message" id="message"></div>
+      </section>
+
+      <section class="panel">
+        <div class="summary" id="summary">
+          <div class="stat"><span class="stat-value">--</span><span class="stat-label">load operating cashflows to begin</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="legend">
+          <span><span class="swatch cash"></span>Closing cash</span>
+          <span><span class="swatch breach"></span>Week below buffer</span>
+          <span><span class="swatch buffer"></span>Minimum buffer</span>
+        </div>
+        <svg id="chart" viewBox="0 0 880 360" role="img" aria-label="Closing cash per week against the buffer"></svg>
+      </section>
+
+      <section class="panel">
+        <table>
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Opening</th>
+              <th>Inflows</th>
+              <th>Total outflows</th>
+              <th>Net</th>
+              <th>Closing</th>
+              <th>Headroom</th>
+            </tr>
+          </thead>
+          <tbody id="forecastBody"></tbody>
+        </table>
+        <div class="row-actions">
+          <button id="exportBtn" disabled>Export forecast.csv</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="dist/forecast.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>

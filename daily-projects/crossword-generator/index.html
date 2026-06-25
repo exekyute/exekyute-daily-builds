@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crossword Generator</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --ink: #1f2328;
+    --muted: #6b7280;
+    --line: #d7d3cc;
+    --cell: #ffffff;
+    --block: #2b2b2b;
+    --accent: #2f6f4e;
+    --accent-soft: #d8ebe0;
+    --highlight: #fff4cc;
+    --select: #ffe08a;
+    --wrong: #f6d4d4;
+    --radius: 10px;
+    --shadow: 0 1px 2px rgba(0,0,0,.05), 0 6px 18px rgba(0,0,0,.04);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+
+  header h1 {
+    font-size: 26px;
+    font-weight: 650;
+    letter-spacing: -.01em;
+    margin: 0 0 4px;
+  }
+
+  header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+    margin: 24px 0 8px;
+    padding: 18px;
+    background: var(--cell);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--muted);
+  }
+
+  .segmented {
+    display: inline-flex;
+    background: var(--block);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .segmented button {
+    border: 0;
+    background: transparent;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 550;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .segmented button[aria-pressed="true"] {
+    background: var(--cell);
+    color: var(--ink);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+  }
+
+  select {
+    appearance: none;
+    background: var(--cell) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 12px center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 34px 9px 12px;
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+    min-width: 160px;
+  }
+
+  .spacer { flex: 1 1 auto; }
+
+  .btn {
+    border: 1px solid var(--line);
+    background: var(--cell);
+    color: var(--ink);
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 550;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+  .btn:hover { background: var(--block); }
+  .btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .btn.primary:hover { filter: brightness(1.05); }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 24px; }
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--cell);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .board-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto; /* safety net: rare oversized grids scroll here, not the page */
+  }
+
+  #grid {
+    --cell-size: 38px;
+    display: grid;
+    gap: 2px;
+    background: var(--line);
+    border: 2px solid var(--ink);
+    width: max-content;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    position: relative;
+    background: var(--cell);
+  }
+  .cell.block { background: var(--block); }
+  .cell input {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    text-align: center;
+    font-size: calc(var(--cell-size) * 0.56);
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--ink);
+    caret-color: transparent;
+    padding: 0;
+  }
+  .cell input:focus { outline: none; }
+  .cell.active { background: var(--select); }
+  .cell.word { background: var(--highlight); }
+  .cell.wrong input { color: #b42318; }
+  .cell.wrong { background: var(--wrong); }
+  .cell .num {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--muted);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .status {
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--muted);
+    min-height: 20px;
+    text-align: center;
+  }
+  .status.win { color: var(--accent); font-weight: 600; }
+
+  .clues { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 560px) { .clues { grid-template-columns: 1fr; } }
+
+  .clues h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--muted);
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .clue-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+  .clue-list li {
+    display: flex;
+    gap: 8px;
+    font-size: 15px;
+    line-height: 1.45;
+    padding: 7px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .clue-list li:hover { background: var(--block); }
+  .clue-list li.active { background: var(--accent-soft); }
+  .clue-list li .cnum { font-weight: 700; min-width: 18px; color: var(--accent); }
+
+  footer { margin-top: 40px; color: var(--muted); font-size: 12px; text-align: center; }
+
+  /* Mobile: trim padding so the grid keeps as much width as possible,
+     and bump text so it stays readable at arm's length. */
+  @media (max-width: 600px) {
+    .wrap { padding: 20px 12px 48px; }
+    .card { padding: 12px; }
+    .controls { padding: 14px; gap: 12px; }
+    header h1 { font-size: 22px; }
+    .field { flex: 1 1 auto; }
+    select { width: 100%; }
+    #regenerate { width: 100%; }
+    .actions .btn { flex: 1 1 auto; }
+    .clue-list li { font-size: 16px; }
+    .clues h2 { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Crossword Generator</h1>
+    <p>Compact micro puzzles. Pick a level and a topic, then solve. Every puzzle is freshly generated.</p>
+  </header>
+
+  <div class="controls">
+    <div class="field">
+      <label>Difficulty</label>
+      <div class="segmented" id="difficulty">
+        <button data-level="kids" aria-pressed="true">Kids</button>
+        <button data-level="teens" aria-pressed="false">Teens</button>
+        <button data-level="adults" aria-pressed="false">Adults</button>
+      </div>
+    </div>
+    <div class="field">
+      <label for="topic">Topic</label>
+      <select id="topic"></select>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn primary" id="regenerate">Regenerate</button>
+  </div>
+
+  <div class="actions">
+    <button class="btn" id="check">Check</button>
+    <button class="btn" id="reveal">Reveal answers</button>
+    <button class="btn" id="clear">Clear</button>
+  </div>
+
+  <div class="layout">
+    <div class="card board-card">
+      <div id="grid"></div>
+      <div class="status" id="status"></div>
+    </div>
+    <div class="card clues">
+      <div>
+        <h2>Across</h2>
+        <ul class="clue-list" id="across"></ul>
+      </div>
+      <div>
+        <h2>Down</h2>
+        <ul class="clue-list" id="down"></ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>Built as a single static file. No network needed.</footer>
+</div>
+
+<script>
+/* ----------------------------------------------------------
+   Word banks: difficulty -> topic -> [ [WORD, clue], ... ]
+   Kids words are short and concrete. Adults are longer/trickier.
+---------------------------------------------------------- */
+const DATA = {
+  kids: {
+    "Animals": [
+      ["CAT", "Pet that says meow"],
+      ["DOG", "Pet that barks"],
+      ["COW", "Farm animal that gives milk"],
+      ["PIG", "Pink farm animal that oinks"],
+      ["FROG", "Green hopper that says ribbit"],
+      ["FISH", "Animal that swims and has fins"],
+      ["BEAR", "Big furry animal that likes honey"],
+      ["LION", "King of the jungle"],
+      ["DUCK", "Bird that quacks and swims"],
+      ["GOAT", "Animal that eats almost anything"],
+      ["BIRD", "Animal with feathers that flies"],
+      ["MOUSE", "Tiny animal that likes cheese"],
+      ["HORSE", "Animal you can ride"],
+      ["SHEEP", "Wooly animal that says baa"]
+    ],
+    "Colors": [
+      ["RED", "Color of a stop sign"],
+      ["BLUE", "Color of the sky"],
+      ["PINK", "Light red color"],
+      ["GOLD", "Shiny yellow color of a medal"],
+      ["GREEN", "Color of grass"],
+      ["BLACK", "Color of the night sky"],
+      ["WHITE", "Color of snow"],
+      ["BROWN", "Color of mud and chocolate"],
+      ["ORANGE", "Color of a carrot"],
+      ["PURPLE", "Color of grapes"],
+      ["YELLOW", "Color of the sun"],
+      ["GRAY", "Color of a rain cloud"]
+    ],
+    "Food": [
+      ["EGG", "Breakfast food a hen lays"],
+      ["JAM", "Sweet spread for toast"],
+      ["MILK", "White drink from a cow"],
+      ["CAKE", "Sweet treat for birthdays"],
+      ["RICE", "Tiny white grains you eat"],
+      ["CORN", "Yellow veggie on a cob"],
+      ["SOUP", "Warm food you eat with a spoon"],
+      ["BREAD", "Food used to make a sandwich"],
+      ["APPLE", "Red or green crunchy fruit"],
+      ["PIZZA", "Round food with cheese on top"],
+      ["HONEY", "Sweet food made by bees"],
+      ["GRAPE", "Small round fruit in a bunch"]
+    ],
+    "School": [
+      ["PEN", "You write with this"],
+      ["BOOK", "You read this"],
+      ["DESK", "You sit at this in class"],
+      ["GLUE", "Sticky stuff for crafts"],
+      ["RULER", "Tool to measure and draw lines"],
+      ["CHALK", "You write with this on a board"],
+      ["PAPER", "You write or draw on this"],
+      ["CLASS", "A group of students"],
+      ["LUNCH", "Meal you eat at midday"],
+      ["TEACHER", "Person who helps you learn"],
+      ["PENCIL", "You write with this and can erase"]
+    ],
+    "Family": [
+      ["MOM", "Your female parent"],
+      ["DAD", "Your male parent"],
+      ["BABY", "A very young child"],
+      ["AUNT", "Your parent's sister"],
+      ["UNCLE", "Your parent's brother"],
+      ["SISTER", "A girl with the same parents as you"],
+      ["COUSIN", "Your aunt or uncle's child"],
+      ["GRANNY", "A name for your grandmother"],
+      ["TWINS", "Two siblings born the same day"],
+      ["FAMILY", "Parents and children together"],
+      ["NIECE", "Your brother's daughter"],
+      ["PARENT", "A mom or a dad"]
+    ],
+    "Body": [
+      ["EAR", "You hear with this"],
+      ["ARM", "Part from shoulder to hand"],
+      ["LEG", "You walk on these"],
+      ["EYE", "You see with this"],
+      ["NOSE", "You smell with this"],
+      ["HAND", "It has five fingers"],
+      ["FOOT", "It goes inside your shoe"],
+      ["HAIR", "It grows on your head"],
+      ["KNEE", "The middle of your leg"],
+      ["TOOTH", "You chew with this"],
+      ["THUMB", "The short, thick finger"],
+      ["TONGUE", "You taste with this"]
+    ],
+    "Nature": [
+      ["SUN", "It shines in the day"],
+      ["SKY", "It is blue up above"],
+      ["MOON", "It glows at night"],
+      ["STAR", "It twinkles in the night sky"],
+      ["TREE", "It has leaves and a trunk"],
+      ["RAIN", "Water that falls from clouds"],
+      ["SNOW", "White flakes that fall when it is cold"],
+      ["LEAF", "It grows on a tree"],
+      ["ROCK", "A hard stone on the ground"],
+      ["WIND", "Moving air you can feel"],
+      ["RIVER", "Water that flows to the sea"],
+      ["FLOWER", "A plant with colorful petals"]
+    ]
+  },
+  teens: {
+    "Sports": [
+      ["GOAL", "What you score in soccer"],
+      ["TEAM", "Group of players together"],
+      ["COURT", "Where basketball is played"],
+      ["MEDAL", "Award for first, second, or third"],
+      ["TENNIS", "Sport with rackets and a net"],
+      ["SOCCER", "Sport also called football"],
+      ["RACKET", "Tool to hit a tennis ball"],
+      ["REFEREE", "Person who enforces the rules"],
+      ["STADIUM", "Large venue for big games"],
+      ["OLYMPICS", "Global games held every four years"],
+      ["DRIBBLE", "Bounce the basketball while moving"],
+      ["JERSEY", "Shirt worn by a player"]
+    ],
+    "Music": [
+      ["BAND", "Group that plays together"],
+      ["BEAT", "Steady rhythm in a song"],
+      ["DRUM", "Instrument you hit with sticks"],
+      ["PIANO", "Instrument with black and white keys"],
+      ["GUITAR", "String instrument you strum"],
+      ["LYRICS", "The words of a song"],
+      ["TEMPO", "Speed of a piece of music"],
+      ["MELODY", "The main tune you hum"],
+      ["CHORUS", "The part of a song that repeats"],
+      ["VOLUME", "How loud or soft the sound is"],
+      ["CONCERT", "A live music performance"],
+      ["RHYTHM", "Pattern of sounds in time"]
+    ],
+    "Science": [
+      ["ATOM", "Tiny building block of matter"],
+      ["CELL", "Smallest unit of a living thing"],
+      ["FORCE", "A push or a pull"],
+      ["ENERGY", "What lets you do work"],
+      ["PLANET", "Earth, Mars, or Jupiter"],
+      ["GRAVITY", "Force that pulls things down"],
+      ["MAGNET", "Object that attracts iron"],
+      ["OXYGEN", "Gas in the air we breathe"],
+      ["FOSSIL", "Preserved remains of old life"],
+      ["VOLCANO", "Mountain that can erupt lava"],
+      ["GENE", "Unit that carries traits"],
+      ["LIQUID", "State of matter like water"]
+    ],
+    "Technology": [
+      ["CODE", "Instructions a computer runs"],
+      ["WIFI", "Wireless internet connection"],
+      ["FILE", "A saved document on a computer"],
+      ["PIXEL", "Tiny dot on a screen"],
+      ["MOUSE", "Device you click with"],
+      ["SCREEN", "Where the computer shows things"],
+      ["LAPTOP", "Portable computer"],
+      ["BROWSER", "App for visiting websites"],
+      ["KEYBOARD", "You type on this"],
+      ["BATTERY", "Stores power for a device"],
+      ["NETWORK", "Connected group of computers"],
+      ["DOWNLOAD", "Save a file from the internet"]
+    ],
+    "Space": [
+      ["MARS", "The red planet"],
+      ["MOON", "Earth's closest neighbor in space"],
+      ["STAR", "A bright point of light at night"],
+      ["COMET", "Space object with a glowing tail"],
+      ["ORBIT", "The path around a planet or star"],
+      ["SOLAR", "Having to do with the sun"],
+      ["EARTH", "The planet we live on"],
+      ["ROCKET", "Craft that blasts into space"],
+      ["GALAXY", "A huge group of stars"],
+      ["PLANET", "Earth, Mars, or Jupiter"],
+      ["LUNAR", "Having to do with the moon"],
+      ["METEOR", "A shooting star streaking by"]
+    ],
+    "Weather": [
+      ["RAIN", "Water that falls from clouds"],
+      ["SNOW", "White flakes on a cold day"],
+      ["WIND", "Moving air you can feel"],
+      ["HAIL", "Small balls of ice that fall"],
+      ["CLOUD", "Fluffy white shape in the sky"],
+      ["STORM", "Heavy rain with wind"],
+      ["SUNNY", "Bright and clear outside"],
+      ["FROST", "Thin ice on a cold morning"],
+      ["BREEZE", "A gentle wind"],
+      ["FOGGY", "Hard to see through the misty air"],
+      ["CHILLY", "A little bit cold"],
+      ["THUNDER", "The loud boom after lightning"]
+    ],
+    "Gaming": [
+      ["LEVEL", "A stage you play through"],
+      ["SCORE", "The points you earn"],
+      ["BOSS", "The tough enemy at the end"],
+      ["QUEST", "A mission to complete"],
+      ["PLAYER", "The person at the controls"],
+      ["AVATAR", "The character you control"],
+      ["CONSOLE", "A machine for playing games"],
+      ["RESPAWN", "Come back after losing a life"],
+      ["LOBBY", "Where players wait before a match"],
+      ["ARCADE", "A place full of game machines"],
+      ["CONTROL", "What you use to move a character"],
+      ["WINNER", "The one who comes first"]
+    ]
+  },
+  adults: {
+    "Geography": [
+      ["DELTA", "Where a river meets the sea"],
+      ["ISLAND", "Land with water all around it"],
+      ["RIVER", "Water that flows to the sea"],
+      ["VALLEY", "Low land between hills"],
+      ["CANYON", "A deep valley with steep sides"],
+      ["DESERT", "Dry land with little rain"],
+      ["HARBOR", "Safe place for boats to dock"],
+      ["BEACH", "Sandy shore by the sea"],
+      ["GLACIER", "A slow moving mass of ice"],
+      ["VOLCANO", "Mountain that can erupt"],
+      ["JUNGLE", "Thick tropical forest"],
+      ["LAKE", "A large body of water inland"]
+    ],
+    "History": [
+      ["EMPIRE", "Many lands under one ruler"],
+      ["TREATY", "An agreement that ends a war"],
+      ["MONARCH", "A king or queen"],
+      ["CASTLE", "A fortified home for royalty"],
+      ["KNIGHT", "A soldier in armor on horseback"],
+      ["BATTLE", "A fight between armies"],
+      ["COLONY", "Land ruled by a far away country"],
+      ["QUEEN", "A female ruler"],
+      ["PHARAOH", "A ruler of ancient Egypt"],
+      ["CROWN", "A ruler wears this on their head"],
+      ["THRONE", "The special chair a ruler sits on"],
+      ["SOLDIER", "A person who fights in an army"]
+    ],
+    "Cinema": [
+      ["GENRE", "A type like horror or comedy"],
+      ["SCENE", "One part of a movie"],
+      ["SCRIPT", "The written words of a movie"],
+      ["SEQUEL", "A movie's follow up"],
+      ["ACTOR", "A person who plays a role"],
+      ["SCREEN", "Where the movie is shown"],
+      ["TICKET", "You buy this to get in"],
+      ["COMEDY", "A funny movie"],
+      ["POPCORN", "A classic movie snack"],
+      ["TRAILER", "A short preview of a film"],
+      ["DIRECTOR", "Person in charge of a movie"],
+      ["CAMERA", "It records the movie"]
+    ],
+    "Cooking": [
+      ["BOIL", "Cook in bubbling water"],
+      ["BAKE", "Cook in an oven"],
+      ["DICE", "Cut into small cubes"],
+      ["OVEN", "Where you bake"],
+      ["WHISK", "Tool to beat eggs"],
+      ["KNIFE", "Tool used to chop"],
+      ["FLOUR", "Ground wheat used in baking"],
+      ["ROAST", "Cook meat in the oven"],
+      ["SAUCE", "Liquid topping for pasta"],
+      ["GRILL", "Cook over direct heat"],
+      ["RECIPE", "Steps for making a dish"],
+      ["SIMMER", "Cook gently below boiling"],
+      ["KETTLE", "Pot used to boil water"],
+      ["SKILLET", "Another name for a frying pan"],
+      ["SPATULA", "Tool to flip pancakes"],
+      ["BLENDER", "Appliance that purees food"]
+    ],
+    "Medical": [
+      ["VEIN", "Vessel that carries blood to the heart"],
+      ["PULSE", "Beat you feel at the wrist"],
+      ["GAUZE", "Soft material used to dress wounds"],
+      ["CHART", "Record of a patient's care"],
+      ["ARTERY", "Vessel that carries blood from the heart"],
+      ["SUTURE", "Stitch that closes a wound"],
+      ["OXYGEN", "Gas given to help a patient breathe"],
+      ["TRIAGE", "Sorting patients by urgency"],
+      ["SALINE", "Sterile salt water solution"],
+      ["DOSAGE", "Amount of medicine to give"],
+      ["VITALS", "Signs like pulse and temperature"],
+      ["SPLINT", "Support for a broken bone"],
+      ["SYRINGE", "Tool used to give an injection"],
+      ["INSULIN", "Hormone given to diabetics"],
+      ["BANDAGE", "Strip wrapped around a wound"],
+      ["SCALPEL", "Surgeon's small sharp knife"],
+      ["ALLERGY", "Bad reaction to a substance"],
+      ["INFUSION", "Slow delivery of fluid into a vein"]
+    ],
+    "Garden": [
+      ["SEED", "You plant this to grow a plant"],
+      ["SOIL", "The dirt plants grow in"],
+      ["WEED", "An unwanted plant you pull out"],
+      ["BLOOM", "What a flower does when it opens"],
+      ["PETAL", "A colorful part of a flower"],
+      ["SHRUB", "A small bush"],
+      ["PRUNE", "Trim back a plant"],
+      ["SPROUT", "A tiny new plant"],
+      ["SHOVEL", "Tool for digging"],
+      ["HARVEST", "Gather the crops"],
+      ["WATER", "Plants need this to grow"],
+      ["TULIP", "A spring flower from a bulb"]
+    ],
+    "Travel": [
+      ["HOTEL", "Where you stay on a trip"],
+      ["FLIGHT", "A trip on a plane"],
+      ["TICKET", "You need one to board"],
+      ["CABIN", "A small room or lodge"],
+      ["RESORT", "A vacation spot to relax"],
+      ["LUGGAGE", "Your bags for a trip"],
+      ["AIRPORT", "Where planes take off and land"],
+      ["VISA", "Permit to enter a country"],
+      ["MAP", "It shows you the way"],
+      ["BEACH", "Sunny spot by the sea"],
+      ["TRAIN", "Travel on rails"],
+      ["PASSPORT", "ID book for foreign travel"]
+    ],
+    "Office": [
+      ["EMAIL", "A message sent online"],
+      ["DESK", "Where you work and write"],
+      ["MEMO", "A short note to staff"],
+      ["REPORT", "A written summary of work"],
+      ["BUDGET", "A plan for spending money"],
+      ["MEETING", "When people gather to talk"],
+      ["FOLDER", "It holds your papers"],
+      ["PRINTER", "It puts files on paper"],
+      ["PHONE", "You make calls on it"],
+      ["STAPLER", "It joins pages together"],
+      ["COFFEE", "A common morning drink at work"],
+      ["INBOX", "Where new mail arrives"]
+    ]
+  }
+};
+
+/* ----------------------------------------------------------
+   Crossword layout generator
+---------------------------------------------------------- */
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildLayout(entries, opts = {}) {
+  const maxLen = opts.maxLen || 99;
+  const maxWords = opts.maxWords || 99;
+  const maxCols = opts.maxCols || 99; // hard width cap (columns)
+  const maxRows = opts.maxRows || 99; // hard height cap (rows)
+  // Normalize, drop words too long for the target grid width.
+  const words = entries
+    .map(e => ({ word: e[0].toUpperCase().replace(/[^A-Z]/g, ""), clue: e[1] }))
+    .filter(e => e.word.length >= 3 && e.word.length <= maxLen);
+
+  const ordered = shuffle(words).sort((a, b) => b.word.length - a.word.length);
+
+  const placed = []; // {word, clue, r, c, dir} dir: 'A' or 'D'
+  const grid = new Map(); // "r,c" -> letter
+  const key = (r, c) => r + "," + c;
+
+  // Running bounding box, kept in sync as words are placed.
+  let bMinR = 0, bMaxR = 0, bMinC = 0, bMaxC = 0;
+
+  // Would placing this word keep the whole grid within the caps?
+  function withinBounds(word, r, c, dir) {
+    const endR = dir === "D" ? r + word.length - 1 : r;
+    const endC = dir === "A" ? c + word.length - 1 : c;
+    const nMinR = Math.min(bMinR, r), nMaxR = Math.max(bMaxR, endR);
+    const nMinC = Math.min(bMinC, c), nMaxC = Math.max(bMaxC, endC);
+    return (nMaxC - nMinC + 1) <= maxCols && (nMaxR - nMinR + 1) <= maxRows;
+  }
+
+  function letterAt(r, c) {
+    return grid.has(key(r, c)) ? grid.get(key(r, c)) : null;
+  }
+
+  function canPlace(word, r, c, dir) {
+    const dr = dir === "D" ? 1 : 0;
+    const dc = dir === "A" ? 1 : 0;
+    let crossings = 0;
+
+    // Cell before start and after end must be empty.
+    if (letterAt(r - dr, c - dc) !== null) return -1;
+    if (letterAt(r + dr * word.length, c + dc * word.length) !== null) return -1;
+
+    for (let i = 0; i < word.length; i++) {
+      const rr = r + dr * i, cc = c + dc * i;
+      const existing = letterAt(rr, cc);
+      if (existing !== null) {
+        if (existing !== word[i]) return -1;
+        crossings++;
+      } else {
+        // Perpendicular neighbors must be empty to avoid run-ons.
+        if (dir === "A") {
+          if (letterAt(rr - 1, cc) !== null || letterAt(rr + 1, cc) !== null) return -1;
+        } else {
+          if (letterAt(rr, cc - 1) !== null || letterAt(rr, cc + 1) !== null) return -1;
+        }
+      }
+    }
+    return crossings;
+  }
+
+  function doPlace(item, r, c, dir) {
+    const dr = dir === "D" ? 1 : 0;
+    const dc = dir === "A" ? 1 : 0;
+    for (let i = 0; i < item.word.length; i++) {
+      grid.set(key(r + dr * i, c + dc * i), item.word[i]);
+    }
+    placed.push({ word: item.word, clue: item.clue, r, c, dir });
+    const endR = r + dr * (item.word.length - 1);
+    const endC = c + dc * (item.word.length - 1);
+    bMinR = Math.min(bMinR, r); bMaxR = Math.max(bMaxR, endR);
+    bMinC = Math.min(bMinC, c); bMaxC = Math.max(bMaxC, endC);
+  }
+
+  // Seed with the first word horizontally.
+  doPlace(ordered[0], 0, 0, "A");
+
+  for (let n = 1; n < ordered.length; n++) {
+    const item = ordered[n];
+    let best = null;
+
+    for (const p of placed) {
+      for (let i = 0; i < p.word.length; i++) {
+        for (let j = 0; j < item.word.length; j++) {
+          if (p.word[i] !== item.word[j]) continue;
+          // Cross perpendicular to the placed word.
+          const dir = p.dir === "A" ? "D" : "A";
+          let r, c;
+          if (p.dir === "A") {
+            r = p.r - j;
+            c = p.c + i;
+          } else {
+            r = p.r + i;
+            c = p.c - j;
+          }
+          if (!withinBounds(item.word, r, c, dir)) continue;
+          const score = canPlace(item.word, r, c, dir);
+          if (score > 0) {
+            const cand = { r, c, dir, score };
+            if (!best || cand.score > best.score) best = cand;
+          }
+        }
+      }
+    }
+
+    if (best) doPlace(item, best.r, best.c, best.dir);
+    if (placed.length >= maxWords) break;
+  }
+
+  // Normalize coordinates to a zero-based grid.
+  let minR = Infinity, minC = Infinity, maxR = -Infinity, maxC = -Infinity;
+  for (const k of grid.keys()) {
+    const [r, c] = k.split(",").map(Number);
+    minR = Math.min(minR, r); maxR = Math.max(maxR, r);
+    minC = Math.min(minC, c); maxC = Math.max(maxC, c);
+  }
+
+  const rows = maxR - minR + 1;
+  const cols = maxC - minC + 1;
+  const norm = placed.map(p => ({ ...p, r: p.r - minR, c: p.c - minC }));
+
+  // Assign clue numbers by scanning starting cells.
+  const starts = new Map(); // "r,c" -> number
+  const sorted = norm.slice().sort((a, b) =>
+    a.r - b.r || a.c - b.c || (a.dir === "A" ? -1 : 1)
+  );
+  let num = 0;
+  for (const p of sorted) {
+    const k = p.r + "," + p.c;
+    if (!starts.has(k)) starts.set(k, ++num);
+    p.num = starts.get(k);
+  }
+
+  return { rows, cols, words: norm };
+}
+
+/* ----------------------------------------------------------
+   Rendering and interaction
+---------------------------------------------------------- */
+const el = {
+  grid: document.getElementById("grid"),
+  across: document.getElementById("across"),
+  down: document.getElementById("down"),
+  topic: document.getElementById("topic"),
+  status: document.getElementById("status"),
+  difficulty: document.getElementById("difficulty")
+};
+
+let level = "kids";
+let layout = null;
+let cellMap = new Map();   // "r,c" -> { input, answer, words: [refs] }
+let direction = "A";
+let activeWord = null;
+
+function populateTopics() {
+  el.topic.innerHTML = "";
+  Object.keys(DATA[level]).forEach(t => {
+    const o = document.createElement("option");
+    o.value = t; o.textContent = t;
+    el.topic.appendChild(o);
+  });
+}
+
+// Smallest cell we will allow so letters stay readable (also keeps input
+// font at ~16px, which stops mobile browsers from zooming on focus).
+const MIN_READABLE = 30;
+
+// Grids stay box-bounded so they never overflow or run too tall. The bound
+// scales with the screen: small (micro) on phones, roomier on tablets and
+// desktops where there is space to keep cells readable.
+const SIZE_PROFILES = [
+  { maxWidth: 520,      maxCols: 9,  maxWords: 7 },   // phone
+  { maxWidth: 900,      maxCols: 12, maxWords: 10 },  // tablet
+  { maxWidth: Infinity, maxCols: 15, maxWords: 13 }   // desktop
+];
+const EXTRA_ROWS = 4; // a grid may be up to this many rows taller than it is wide
+
+function availableWidth() {
+  const card = el.grid.parentElement;
+  const cs = getComputedStyle(card);
+  const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+  return Math.max(220, card.clientWidth - pad);
+}
+
+function generate() {
+  const topic = el.topic.value || Object.keys(DATA[level])[0];
+  const entries = DATA[level][topic];
+
+  // Pick a size profile for this screen, then never exceed the columns that
+  // actually fit at a readable cell size.
+  const avail = availableWidth();
+  const profile = SIZE_PROFILES.find(p => avail <= p.maxWidth);
+  const fitCols = Math.max(6, Math.floor((avail + 2) / (MIN_READABLE + 2)));
+  const maxCols = Math.min(fitCols, profile.maxCols);
+  const maxRows = maxCols + EXTRA_ROWS;
+  const maxLen = maxCols;            // no word longer than the grid is wide
+  const maxWords = profile.maxWords;
+
+  // The layout engine enforces the box, so every result already fits.
+  // Generate a few and keep the one with the most words.
+  let best = null;
+  const opts = { maxLen, maxWords, maxCols, maxRows };
+  for (let attempt = 0; attempt < 40; attempt++) {
+    const l = buildLayout(entries, opts);
+    if (!best || l.words.length > best.words.length) best = l;
+    if (best.words.length >= Math.min(maxWords, entries.length)) break;
+  }
+  layout = best;
+  render();
+}
+
+function render() {
+  el.grid.innerHTML = "";
+  cellMap = new Map();
+  activeWord = null;
+
+  el.grid.style.gridTemplateColumns = `repeat(${layout.cols}, var(--cell-size))`;
+
+  // Determine filled cells and the number to print in each.
+  const filled = new Map(); // "r,c" -> { answer, num }
+  for (const w of layout.words) {
+    const dr = w.dir === "D" ? 1 : 0;
+    const dc = w.dir === "A" ? 1 : 0;
+    for (let i = 0; i < w.word.length; i++) {
+      const r = w.r + dr * i, c = w.c + dc * i;
+      const k = r + "," + c;
+      if (!filled.has(k)) filled.set(k, { answer: w.word[i], num: null });
+      filled.get(k).answer = w.word[i];
+    }
+    const sk = w.r + "," + w.c;
+    filled.get(sk).num = w.num;
+  }
+
+  for (let r = 0; r < layout.rows; r++) {
+    for (let c = 0; c < layout.cols; c++) {
+      const k = r + "," + c;
+      const div = document.createElement("div");
+      div.className = "cell";
+      if (!filled.has(k)) {
+        div.classList.add("block");
+        el.grid.appendChild(div);
+        continue;
+      }
+      const info = filled.get(k);
+      if (info.num) {
+        const n = document.createElement("span");
+        n.className = "num";
+        n.textContent = info.num;
+        div.appendChild(n);
+      }
+      const input = document.createElement("input");
+      input.maxLength = 1;
+      input.dataset.r = r;
+      input.dataset.c = c;
+      input.autocomplete = "off";
+      input.spellcheck = false;
+      div.appendChild(input);
+      el.grid.appendChild(div);
+
+      cellMap.set(k, { input, answer: info.answer, div });
+
+      input.addEventListener("focus", () => onCellFocus(r, c));
+      input.addEventListener("input", () => onInput(r, c, input));
+      input.addEventListener("keydown", e => onKey(e, r, c));
+      input.addEventListener("click", () => onCellClick(r, c));
+    }
+  }
+
+  renderClues();
+  applyCellSize();
+  setStatus("");
+}
+
+// Scale cells so the whole grid fits the card width, no horizontal scroll.
+function applyCellSize() {
+  if (!layout) return;
+  const card = el.grid.parentElement;
+  const styles = getComputedStyle(card);
+  const padding = parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+  const avail = card.clientWidth - padding;
+  const gaps = (layout.cols - 1) * 2; // grid gap
+  const border = 4; // 2px grid border each side
+  let size = Math.floor((avail - gaps - border) / layout.cols);
+  size = Math.max(26, Math.min(46, size));
+  el.grid.style.setProperty("--cell-size", size + "px");
+}
+
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(applyCellSize, 100);
+});
+
+function wordsAt(r, c) {
+  const res = [];
+  for (const w of layout.words) {
+    const dr = w.dir === "D" ? 1 : 0;
+    const dc = w.dir === "A" ? 1 : 0;
+    for (let i = 0; i < w.word.length; i++) {
+      if (w.r + dr * i === r && w.c + dc * i === c) { res.push(w); break; }
+    }
+  }
+  return res;
+}
+
+function renderClues() {
+  el.across.innerHTML = "";
+  el.down.innerHTML = "";
+  const byNum = (a, b) => a.num - b.num;
+  layout.words.filter(w => w.dir === "A").sort(byNum).forEach(w => addClue(el.across, w));
+  layout.words.filter(w => w.dir === "D").sort(byNum).forEach(w => addClue(el.down, w));
+}
+
+function addClue(list, w) {
+  const li = document.createElement("li");
+  li.dataset.num = w.num;
+  li.dataset.dir = w.dir;
+  li.innerHTML = `<span class="cnum">${w.num}</span><span>${w.clue}</span>`;
+  li.addEventListener("click", () => {
+    direction = w.dir;
+    focusWord(w);
+  });
+  list.appendChild(li);
+}
+
+function focusWord(w) {
+  const cell = cellMap.get(w.r + "," + w.c);
+  if (cell) cell.input.focus();
+}
+
+function clearHighlights() {
+  cellMap.forEach(c => c.div.classList.remove("word", "active"));
+  document.querySelectorAll(".clue-list li").forEach(li => li.classList.remove("active"));
+}
+
+function highlightWord(w, r, c) {
+  clearHighlights();
+  activeWord = w;
+  const dr = w.dir === "D" ? 1 : 0;
+  const dc = w.dir === "A" ? 1 : 0;
+  for (let i = 0; i < w.word.length; i++) {
+    const cell = cellMap.get((w.r + dr * i) + "," + (w.c + dc * i));
+    if (cell) cell.div.classList.add("word");
+  }
+  const active = cellMap.get(r + "," + c);
+  if (active) active.div.classList.add("active");
+  const li = document.querySelector(`.clue-list li[data-num="${w.num}"][data-dir="${w.dir}"]`);
+  if (li) li.classList.add("active");
+}
+
+function pickWord(r, c) {
+  const here = wordsAt(r, c);
+  if (here.length === 0) return null;
+  let pref = here.find(w => w.dir === direction);
+  if (!pref) { pref = here[0]; direction = pref.dir; }
+  return pref;
+}
+
+function onCellFocus(r, c) {
+  const w = pickWord(r, c);
+  if (w) highlightWord(w, r, c);
+}
+
+function onCellClick(r, c) {
+  const here = wordsAt(r, c);
+  if (here.length > 1) {
+    // Toggle direction when a cell belongs to both an across and down word.
+    if (activeWord && activeWord.dir === direction) {
+      const other = here.find(w => w.dir !== direction);
+      if (other) direction = other.dir;
+    }
+  }
+  const w = pickWord(r, c);
+  if (w) highlightWord(w, r, c);
+}
+
+function step(r, c, forward = true) {
+  if (!activeWord) return;
+  const dr = activeWord.dir === "D" ? 1 : 0;
+  const dc = activeWord.dir === "A" ? 1 : 0;
+  const nr = r + (forward ? dr : -dr);
+  const nc = c + (forward ? dc : -dc);
+  const next = cellMap.get(nr + "," + nc);
+  if (next) next.input.focus();
+}
+
+function onInput(r, c, input) {
+  input.value = input.value.toUpperCase().replace(/[^A-Z]/g, "");
+  const cell = cellMap.get(r + "," + c);
+  if (cell) cell.div.classList.remove("wrong");
+  if (input.value) step(r, c, true);
+  checkWin();
+}
+
+function onKey(e, r, c) {
+  const k = e.key;
+  if (k === "Backspace") {
+    const cell = cellMap.get(r + "," + c);
+    if (cell && !cell.input.value) {
+      e.preventDefault();
+      step(r, c, false);
+    }
+    return;
+  }
+  const moves = { ArrowRight: [0, 1, "A"], ArrowLeft: [0, -1, "A"], ArrowDown: [1, 0, "D"], ArrowUp: [-1, 0, "D"] };
+  if (moves[k]) {
+    e.preventDefault();
+    const [mr, mc, dir] = moves[k];
+    direction = dir;
+    const next = cellMap.get((r + mr) + "," + (c + mc));
+    if (next) next.input.focus();
+  }
+}
+
+function checkWin() {
+  let all = true;
+  cellMap.forEach(cell => {
+    if (cell.input.value !== cell.answer) all = false;
+  });
+  if (all && cellMap.size > 0) {
+    setStatus("Solved. Nicely done.", true);
+  }
+}
+
+function setStatus(msg, win = false) {
+  el.status.textContent = msg;
+  el.status.classList.toggle("win", win);
+}
+
+/* ----------------------------------------------------------
+   Buttons
+---------------------------------------------------------- */
+document.getElementById("regenerate").addEventListener("click", generate);
+
+document.getElementById("check").addEventListener("click", () => {
+  let wrong = 0, blank = 0;
+  cellMap.forEach(cell => {
+    cell.div.classList.remove("wrong");
+    if (!cell.input.value) { blank++; return; }
+    if (cell.input.value !== cell.answer) { cell.div.classList.add("wrong"); wrong++; }
+  });
+  if (wrong === 0 && blank === 0) setStatus("All correct. Solved.", true);
+  else setStatus(`${wrong} wrong, ${blank} blank. Wrong cells are marked.`);
+});
+
+document.getElementById("reveal").addEventListener("click", () => {
+  cellMap.forEach(cell => {
+    cell.input.value = cell.answer;
+    cell.div.classList.remove("wrong");
+  });
+  setStatus("Answers revealed.");
+});
+
+document.getElementById("clear").addEventListener("click", () => {
+  cellMap.forEach(cell => {
+    cell.input.value = "";
+    cell.div.classList.remove("wrong");
+  });
+  setStatus("");
+});
+
+el.topic.addEventListener("change", generate);
+
+el.difficulty.querySelectorAll("button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    level = btn.dataset.level;
+    el.difficulty.querySelectorAll("button").forEach(b =>
+      b.setAttribute("aria-pressed", b === btn ? "true" : "false"));
+    populateTopics();
+    generate();
+  });
+});
+
+/* Init */
+populateTopics();
+generate();
+</script>
+</body>
+</html>

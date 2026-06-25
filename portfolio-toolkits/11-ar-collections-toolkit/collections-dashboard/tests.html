@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Collections Aging Dashboard - Tests</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .test-row {
+        display: flex;
+        gap: var(--space-2);
+        align-items: baseline;
+        padding: var(--space-1) var(--space-2);
+        border-bottom: 1px solid var(--border);
+      }
+      .badge {
+        display: inline-block;
+        min-width: 56px;
+        text-align: center;
+        padding: 2px var(--space-1);
+        border-radius: var(--radius);
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .badge.pass {
+        background: rgba(31, 41, 51, 0.08);
+        color: var(--ink);
+      }
+      .badge.fail {
+        background: var(--accent);
+        color: var(--paper);
+      }
+      .tally {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0 0 var(--space-2) 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="masthead">
+        <h1>Dashboard logic tests</h1>
+        <p class="lede">
+          These assertions run the pure functions in <code>aging-logic.js</code>
+          with no build tooling. Open this file in a browser to see the results.
+        </p>
+      </header>
+
+      <section class="panel">
+        <p id="tally" class="tally"></p>
+        <div id="results"></div>
+      </section>
+    </main>
+
+    <script src="aging-logic.js"></script>
+    <script>
+      var results = [];
+
+      function assert(name, condition) {
+        results.push({ name: name, pass: !!condition });
+      }
+
+      var GOOD_CSV =
+        "invoice_number,customer,issue_date,due_date,amount,days_past_due,aging_bucket,late_fee,total_due\n" +
+        "INV-1001,Northwind Traders,2026-06-15,2026-07-15,500.00,-33,Current,0.00,500.00\n" +
+        "INV-1002,Acme Industrial,2026-04-28,2026-05-28,123.00,15,1-30,1.85,124.85\n" +
+        "INV-1004,Umbrella Supply,2026-02-12,2026-03-14,1000.00,90,61-90,15.00,1015.00\n";
+
+      var MALFORMED_CSV =
+        "invoice_number,customer,issue_date,due_date,amount,days_past_due,aging_bucket,late_fee,total_due\n" +
+        "INV-1004,Umbrella Supply,2026-02-12,2026-03-14,1000.00,90,61-90,15.00,1015.00\n" +
+        "INV-9099,Short Row Co,2026-04-13,2026-05-13,800.00,30,1-30\n" +
+        "INV-9098,Bad Amount Co,2026-02-12,2026-03-14,N/A,90,61-90,15.00,1015.00\n";
+
+      // dollarsToCents
+      assert("dollarsToCents('1015.00') is 101500", dollarsToCents("1015.00") === 101500);
+      assert("dollarsToCents('0.00') is 0", dollarsToCents("0.00") === 0);
+      assert("dollarsToCents('1.85') is 185", dollarsToCents("1.85") === 185);
+      assert("dollarsToCents('') is null", dollarsToCents("") === null);
+      assert("dollarsToCents('N/A') is null", dollarsToCents("N/A") === null);
+
+      // formatMoney (no floating-point artifacts)
+      assert("formatMoney(101500) is $1,015.00", formatMoney(101500) === "$1,015.00");
+      assert("formatMoney(1500) is $15.00", formatMoney(1500) === "$15.00");
+      assert("formatMoney(0) is $0.00", formatMoney(0) === "$0.00");
+
+      // bucketClass
+      assert("bucketClass('Current') is b-current", bucketClass("Current") === "b-current");
+      assert("bucketClass('90-plus') is b-90-plus", bucketClass("90-plus") === "b-90-plus");
+
+      // parseAgingCsv on a clean file
+      var good = parseAgingCsv(GOOD_CSV);
+      assert("clean file has no error", good.error === null);
+      assert("clean file parses 3 rows", good.rows.length === 3);
+      assert("clean file skips nothing", good.skipped === 0);
+
+      // Hand-checked invoice matches the Python engine to the cent
+      var inv1004 = good.rows.filter(function (r) {
+        return r.invoiceNumber === "INV-1004";
+      })[0];
+      assert("INV-1004 found", !!inv1004);
+      assert("INV-1004 days past due is 90", inv1004 && inv1004.daysPastDue === 90);
+      assert("INV-1004 bucket is 61-90", inv1004 && inv1004.bucket === "61-90");
+      assert("INV-1004 late fee is $15.00", inv1004 && formatMoney(inv1004.lateFeeCents) === "$15.00");
+      assert("INV-1004 total due is $1,015.00", inv1004 && formatMoney(inv1004.totalDueCents) === "$1,015.00");
+
+      // bucketTotals and grand total
+      var totals = bucketTotals(good.rows);
+      assert("Current bucket count is 1", totals["Current"].count === 1);
+      assert("1-30 bucket total is 124.85 + 0 = 12485 cents", totals["1-30"].totalCents === 12485);
+      assert("31-60 bucket count is 0", totals["31-60"].count === 0);
+      assert(
+        "grand total is 500.00 + 124.85 + 1015.00 = 163985 cents",
+        grandTotalCents(good.rows) === 163985
+      );
+
+      // Malformed handling
+      var bad = parseAgingCsv(MALFORMED_CSV);
+      assert("malformed file keeps the 1 valid row", bad.rows.length === 1);
+      assert("malformed file skips 2 rows", bad.skipped === 2);
+
+      // Empty and wrong-header files report an error
+      assert("empty file returns an error", parseAgingCsv("").error !== null);
+      assert(
+        "wrong header returns an error",
+        parseAgingCsv("a,b,c\n1,2,3\n").error !== null
+      );
+
+      // Render results to the page
+      var container = document.getElementById("results");
+      var passCount = 0;
+      results.forEach(function (result) {
+        if (result.pass) {
+          passCount++;
+        }
+        var row = document.createElement("div");
+        row.className = "test-row";
+        var badge = document.createElement("span");
+        badge.className = "badge " + (result.pass ? "pass" : "fail");
+        badge.textContent = result.pass ? "PASS" : "FAIL";
+        var label = document.createElement("span");
+        label.textContent = result.name;
+        row.appendChild(badge);
+        row.appendChild(label);
+        container.appendChild(row);
+      });
+
+      var tally = document.getElementById("tally");
+      var allPass = passCount === results.length;
+      tally.textContent =
+        passCount + " of " + results.length + " tests passed" + (allPass ? " (all green)" : "");
+      tally.style.color = allPass ? "var(--ink)" : "var(--accent)";
+    </script>
+  </body>
+</html>

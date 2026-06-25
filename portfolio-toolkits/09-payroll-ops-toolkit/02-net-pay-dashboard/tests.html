@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Net Pay Dashboard tests</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .result { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-border); }
+    .result:last-child { border-bottom: none; }
+    .pass { color: #1b7f4b; font-weight: 700; }
+    .fail { color: var(--color-accent); font-weight: 700; }
+    .tally { font-size: 1.2rem; font-weight: 700; padding: var(--space-2) 0 0 0; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>Net Pay Dashboard tests</h1>
+      <p class="lead">Assertions for the pure logic in dashboard_logic.js. Each line shows PASS or FAIL.</p>
+    </header>
+    <section class="panel">
+      <h2>Results</h2>
+      <div id="results"></div>
+      <p class="tally" id="tally"></p>
+    </section>
+  </main>
+
+  <script src="dashboard_logic.js"></script>
+  <script>
+    var results = document.getElementById("results");
+    var passed = 0;
+    var failed = 0;
+
+    function record(name, ok, detail) {
+      var line = document.createElement("div");
+      line.className = "result";
+      var tag = ok ? '<span class="pass">PASS</span>' : '<span class="fail">FAIL</span>';
+      line.innerHTML = tag + " " + name + (ok ? "" : " &mdash; " + detail);
+      results.appendChild(line);
+      if (ok) { passed++; } else { failed++; }
+    }
+
+    function assertEqual(name, actual, expected) {
+      record(name, actual === expected, "expected " + expected + ", got " + actual);
+    }
+
+    // The same five-employee register the calculator produces.
+    var sampleRegister =
+      "employee_id,name,pay_type,gross_pay,overtime_pay,pretax_deductions,cpp,ei,income_tax,posttax_deductions,total_deductions,net_pay\n" +
+      "E001,Avery Singh,salaried,2500.00,0.00,100.00,140.74,40.35,480.00,0.00,761.09,1738.91\n" +
+      "E002,Bianca Tran,hourly,1590.00,270.00,50.00,86.60,26.39,308.00,25.00,495.99,1094.01\n" +
+      "E003,Caleb Roy,hourly,950.00,0.00,0.00,48.52,15.77,190.00,0.00,254.29,695.71\n" +
+      "E004,Dana Lee,hourly,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00\n" +
+      "E005,Elena Cruz,salaried,8000.00,0.00,0.00,148.75,40.35,1600.00,0.00,1789.10,6210.90\n";
+
+    // toCents converts money strings to integer cents.
+    assertEqual("toCents('1590.00') is 159000", toCents("1590.00"), 159000);
+    assertEqual("toCents('0.00') is 0", toCents("0.00"), 0);
+    assertEqual("toCents('1094.01') is 109401", toCents("1094.01"), 109401);
+    assertEqual("toCents('abc') is null", toCents("abc"), null);
+    assertEqual("toCents('') is null", toCents(""), null);
+
+    // Header validation.
+    assertEqual("valid header has no errors", validateHeader(REGISTER_COLUMNS).length, 0);
+    record(
+      "missing column is flagged",
+      validateHeader(["employee_id", "name"]).length > 0,
+      "expected at least one error"
+    );
+    var extraHeader = REGISTER_COLUMNS.concat(["surprise"]);
+    record(
+      "extra column is flagged",
+      validateHeader(extraHeader).join(" ").indexOf("surprise") !== -1,
+      "expected 'surprise' to be named"
+    );
+
+    // Parsing the register.
+    var parsed = parseRegister(sampleRegister);
+    assertEqual("parses five records", parsed.records.length, 5);
+    assertEqual("no header errors", parsed.headerErrors.length, 0);
+    assertEqual("no row errors", parsed.rowErrors.length, 0);
+
+    // The hand-checked employee matches the calculator to the cent.
+    var bianca = parsed.records[1];
+    assertEqual("Bianca gross is 159000 cents", bianca.grossCents, 159000);
+    assertEqual("Bianca net is 109401 cents", bianca.netCents, 109401);
+    assertEqual("Bianca income tax is 30800 cents", bianca.incomeTaxCents, 30800);
+
+    // Summary totals in cents.
+    var totals = summarize(parsed.records);
+    assertEqual("total gross is 1304000 cents", totals.totalGrossCents, 1304000);
+    assertEqual("total net is 973953 cents", totals.totalNetCents, 973953);
+
+    // Display formatting in Canadian dollars.
+    assertEqual("formatCad(109401) is $1,094.01", formatCad(109401), "$1,094.01");
+    assertEqual("formatCad(0) is $0.00", formatCad(0), "$0.00");
+
+    // A row with the wrong field count is reported, not rendered.
+    var brokenRow =
+      REGISTER_COLUMNS.join(",") + "\n" +
+      "E009,Short Row,hourly,100.00\n";
+    var broken = parseRegister(brokenRow);
+    assertEqual("short row yields no records", broken.records.length, 0);
+    record(
+      "short row is reported",
+      broken.rowErrors.length === 1,
+      "expected one row error"
+    );
+
+    // A header-only file is handled without crashing.
+    var headerOnly = parseRegister(REGISTER_COLUMNS.join(",") + "\n");
+    assertEqual("header-only file has no records", headerOnly.records.length, 0);
+
+    var tally = document.getElementById("tally");
+    tally.textContent = passed + " passed, " + failed + " failed.";
+    tally.className = "tally " + (failed === 0 ? "pass" : "fail");
+  </script>
+</body>
+</html>

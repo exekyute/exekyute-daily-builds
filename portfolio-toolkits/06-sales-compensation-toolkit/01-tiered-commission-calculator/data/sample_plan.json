@@ -1,0 +1,10 @@
+{
+  "planName": "FY26 Field Sales Commission Plan",
+  "quota": 80000,
+  "accelerator": 1.5,
+  "tiers": [
+    { "label": "Tier 1", "from": 0, "to": 50000, "rate": 5 },
+    { "label": "Tier 2", "from": 50000, "to": 100000, "rate": 8 },
+    { "label": "Tier 3", "from": 100000, "to": null, "rate": 10 }
+  ]
+}

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MRR Movement Waterfall</title>
+    <style>
+      :root {
+        --base: #1f2a44;
+        --accent: #2f6f9e;
+        --ink: #1f2a44;
+        --muted: #5b6678;
+        --line: #e2e6ee;
+        --up: #2f9e8f;
+        --down: #b3402f;
+        --total: #1f2a44;
+        --bg: #f6f8fc;
+        --panel: #ffffff;
+        --danger: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 72ch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: calc(var(--space) * 3);
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="file"],
+      select {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      .toggle {
+        display: flex;
+        align-items: center;
+        gap: var(--space);
+        font-size: 14px;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .toggle input {
+        width: 18px;
+        height: 18px;
+      }
+
+      button {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background: #c9d4e8;
+        cursor: not-allowed;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eef3f8;
+        color: #2a5878;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--danger);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 5);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .legend {
+        display: flex;
+        gap: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 2);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .swatch {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        margin-right: var(--space);
+        vertical-align: -2px;
+      }
+
+      .swatch.total {
+        background: var(--total);
+      }
+
+      .swatch.up {
+        background: var(--up);
+      }
+
+      .swatch.down {
+        background: var(--down);
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      .grid {
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+
+      .axis-label {
+        fill: var(--muted);
+        font-size: 11px;
+      }
+
+      .bar-value {
+        fill: var(--ink);
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .bar-total {
+        fill: var(--total);
+      }
+
+      .bar-up {
+        fill: var(--up);
+      }
+
+      .bar-down {
+        fill: var(--down);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .row-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: calc(var(--space) * 2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>MRR Movement Waterfall</h1>
+        <p>
+          Load a monthly recurring-revenue ledger and this rolls each month forward from the one before
+          it, splitting the change into new, expansion, contraction, and churned revenue. Opening plus
+          new plus expansion minus contraction minus churn equals closing, every month. Pick a month to
+          see its waterfall, switch between MRR and ARR, and export the movement table the Churn and
+          Renewal Dashboard reads.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div>
+            <label for="fileInput">Ledger CSV</label>
+            <input type="file" id="fileInput" accept=".csv,text/csv" />
+          </div>
+          <div>
+            <label for="monthPick">Month</label>
+            <select id="monthPick"></select>
+          </div>
+          <div>
+            <label>View</label>
+            <span class="toggle"><input type="checkbox" id="annualize" /> Show ARR (MRR x 12)</span>
+          </div>
+        </div>
+        <div class="message" id="message"></div>
+      </section>
+
+      <section class="panel">
+        <div class="summary" id="summary">
+          <div class="stat"><span class="stat-value">--</span><span class="stat-label">load a ledger to begin</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="legend">
+          <span><span class="swatch total"></span>Opening / closing</span>
+          <span><span class="swatch up"></span>New and expansion</span>
+          <span><span class="swatch down"></span>Contraction and churn</span>
+        </div>
+        <svg id="chart" viewBox="0 0 880 380" role="img" aria-label="MRR movement waterfall"></svg>
+      </section>
+
+      <section class="panel">
+        <table>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Opening</th>
+              <th>New</th>
+              <th>Expansion</th>
+              <th>Contraction</th>
+              <th>Churn</th>
+              <th>Closing</th>
+            </tr>
+          </thead>
+          <tbody id="movementBody"></tbody>
+        </table>
+        <div class="row-actions">
+          <button id="exportBtn" disabled>Export mrr-movement.csv</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="dist/movement.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>

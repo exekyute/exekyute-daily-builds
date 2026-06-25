@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reserve Development Triangle</title>
+    <style>
+      :root {
+        --base: #143047;
+        --accent: #c2603a;
+        --ink: #143047;
+        --muted: #5d6b78;
+        --line: #e1e7ed;
+        --bg: #f5f8fa;
+        --panel: #ffffff;
+        --danger: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 74ch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: calc(var(--space) * 3);
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="file"],
+      select {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eef3f6;
+        color: #2a5878;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--danger);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 5);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      th[scope="row"] {
+        color: var(--ink);
+        font-size: 14px;
+        text-transform: none;
+        letter-spacing: 0;
+        white-space: nowrap;
+      }
+
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      td.empty {
+        background: var(--bg);
+      }
+
+      td.latest {
+        background: rgba(194, 96, 58, 0.14);
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      tr.factor-row td,
+      tr.factor-row th {
+        border-top: 2px solid var(--base);
+        border-bottom: 0;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      tr.factor-row th[scope="row"] {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .section-title {
+        margin: 0 0 calc(var(--space) * 2) 0;
+        font-size: 16px;
+      }
+
+      .note {
+        margin: calc(var(--space) * 2) 0 0 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Reserve Development Triangle</h1>
+        <p>
+          Load the clean claims file from the Claims Aging and Status Funnel and this pivots
+          cumulative paid losses into a triangle, accident year down the side and development month
+          across the top. It reads the age-to-age development factors off the overlapping diagonals,
+          chains them into a factor to ultimate, and projects each accident year's ultimate paid and
+          outstanding reserve.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div>
+            <label for="fileInput">Clean claims CSV</label>
+            <input type="file" id="fileInput" accept=".csv,text/csv" />
+          </div>
+          <div>
+            <label for="linePick">Line of business</label>
+            <select id="linePick"></select>
+          </div>
+        </div>
+        <div class="message" id="message"></div>
+      </section>
+
+      <section class="panel">
+        <div class="summary" id="summary">
+          <div class="stat"><span class="stat-value">--</span><span class="stat-label">load the clean claims file to begin</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">Cumulative paid by accident year and development month</h2>
+        <table id="triangle"></table>
+        <p class="note">
+          The shaded cell on each row is the latest valuation, the current diagonal. Age-to-age
+          factors are read off the years that share both columns; the factor to ultimate is their
+          running product.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">Projected ultimate and reserve</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Accident year</th>
+              <th scope="col">Latest age</th>
+              <th scope="col">Paid to date</th>
+              <th scope="col">To ultimate</th>
+              <th scope="col">Projected ultimate</th>
+              <th scope="col">Indicated reserve</th>
+            </tr>
+          </thead>
+          <tbody id="projBody"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <script src="dist/triangle.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>

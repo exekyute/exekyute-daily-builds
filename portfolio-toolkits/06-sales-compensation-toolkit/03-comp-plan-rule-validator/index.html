@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Comp Plan Rule Validator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>Comp Plan Rule Validator</h1>
+      <p class="lede">
+        Enter or load a commission plan and check it before it is used for a pay
+        cycle. The page flags gaps, overlaps, zero or negative rates, and
+        thresholds that run out of order, so a broken plan is caught before it
+        reaches the calculator. This checks the same plan format the Tiered
+        Commission Calculator consumes. All checks run in your browser.
+      </p>
+    </header>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Commission plan</h2>
+        <div class="plan-actions">
+          <button id="loadSample" type="button">Load approved sample</button>
+          <button id="loadBroken" type="button">Load plan with problems</button>
+          <label class="file-btn">
+            Load plan file (.json)
+            <input id="planFile" type="file" accept=".json,application/json" hidden />
+          </label>
+        </div>
+      </div>
+
+      <div class="plan-meta">
+        <div>
+          <label for="planName">Plan name</label>
+          <input id="planName" type="text" />
+        </div>
+        <div>
+          <label for="quota">Quota (USD)</label>
+          <input id="quota" type="text" inputmode="decimal" />
+        </div>
+        <div>
+          <label for="accelerator">Accelerator (multiplier above quota)</label>
+          <input id="accelerator" type="text" inputmode="decimal" />
+        </div>
+      </div>
+
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>From (USD)</th>
+            <th>To (USD, blank = open)</th>
+            <th>Rate (%)</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tierRows"></tbody>
+      </table>
+      <button id="addTier" type="button" class="ghost">Add tier</button>
+    </section>
+
+    <section class="card">
+      <button id="validate" type="button" class="primary">Validate plan</button>
+    </section>
+
+    <section id="approved" class="card approved" hidden>
+      <h2>Plan approved</h2>
+      <p>
+        No problems found. This plan is safe to use in the Tiered Commission
+        Calculator.
+      </p>
+    </section>
+
+    <section id="findings" class="card findings" hidden>
+      <h2 id="findingsHeading"></h2>
+      <table class="findings-table">
+        <thead>
+          <tr>
+            <th>Severity</th>
+            <th>Location</th>
+            <th>Problem</th>
+          </tr>
+        </thead>
+        <tbody id="findingRows"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="validator_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

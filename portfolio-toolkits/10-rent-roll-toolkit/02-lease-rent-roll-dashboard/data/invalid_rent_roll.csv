@@ -1,0 +1,3 @@
+unit,tenant,monthly_rent,prorated_rent,late_fee,lease_end
+201,Grace Hill,1500.00,1500.00,0.00,2026-07-15
+202,Liam Carter,1800.00,1800.00,0.00,2026-12-31

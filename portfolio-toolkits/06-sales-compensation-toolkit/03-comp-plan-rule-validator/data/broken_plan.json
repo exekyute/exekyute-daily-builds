@@ -1,0 +1,11 @@
+{
+  "planName": "Draft plan with problems",
+  "quota": 0,
+  "accelerator": 0.8,
+  "tiers": [
+    { "label": "Tier 1", "from": 0, "to": 50000, "rate": 5 },
+    { "label": "Tier 2", "from": 50000, "to": 100000, "rate": 0 },
+    { "label": "Tier 3", "from": 90000, "to": 80000, "rate": -3 },
+    { "label": "Tier 4", "from": 120000, "to": null, "rate": 8 }
+  ]
+}

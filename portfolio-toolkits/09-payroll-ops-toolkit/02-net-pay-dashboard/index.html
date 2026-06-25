@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Net Pay Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>Net Pay Dashboard</h1>
+      <p class="lead">
+        Load a payroll register CSV to review each employee's pay and the run
+        totals. The file is read in your browser and never leaves this page.
+      </p>
+    </header>
+
+    <section class="panel" aria-labelledby="load-heading">
+      <h2 id="load-heading">Load a register</h2>
+      <div class="controls">
+        <label class="file-field">
+          <span class="file-label">Payroll register CSV</span>
+          <input type="file" id="fileInput" accept=".csv,text/csv">
+        </label>
+      </div>
+      <p id="status" class="status" role="status">No file loaded yet.</p>
+      <ul id="messages" class="messages" hidden></ul>
+    </section>
+
+    <section class="panel" id="summaryPanel" aria-labelledby="summary-heading" hidden>
+      <h2 id="summary-heading">Run summary</h2>
+      <div class="summary">
+        <div class="summary-item">
+          <span class="summary-key">Employees</span>
+          <span class="summary-value" id="summaryCount">0</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-key">Total gross</span>
+          <span class="summary-value" id="summaryGross">$0.00</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-key">Total net</span>
+          <span class="summary-value accent" id="summaryNet">$0.00</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="tablePanel" aria-labelledby="table-heading" hidden>
+      <h2 id="table-heading">Pay register</h2>
+      <div class="table-scroll">
+        <table class="register">
+          <thead>
+            <tr>
+              <th scope="col">Employee</th>
+              <th scope="col">Type</th>
+              <th scope="col" class="num">Gross</th>
+              <th scope="col" class="num">Overtime</th>
+              <th scope="col" class="num">Total deductions</th>
+              <th scope="col" class="num">Income tax</th>
+              <th scope="col" class="num">Net pay</th>
+            </tr>
+          </thead>
+          <tbody id="registerBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="dashboard_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

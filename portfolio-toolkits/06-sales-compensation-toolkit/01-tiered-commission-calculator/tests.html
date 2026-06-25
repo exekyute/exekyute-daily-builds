@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests: Tiered Commission Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pass { color: #1b7f3b; }
+    .fail { color: #c62828; font-weight: 700; }
+    .result-line { font-variant-numeric: tabular-nums; }
+    #summary { font-size: 18px; font-weight: 700; margin: 0 0 16px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tests: Tiered Commission Calculator</h1>
+    <p class="lede">
+      These checks run the pure logic in commission_logic.js against numbers
+      worked out by hand. Open this file in a browser. No build step.
+    </p>
+    <p id="summary"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <script src="commission_logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var passed = 0;
+      var failed = 0;
+      var list = document.getElementById("results");
+
+      function record(name, ok, detail) {
+        if (ok) { passed++; } else { failed++; }
+        var li = document.createElement("li");
+        li.className = "result-line";
+        li.innerHTML =
+          '<span class="' + (ok ? "pass" : "fail") + '">' +
+          (ok ? "PASS" : "FAIL") + "</span> " + name +
+          (detail ? " &mdash; " + detail : "");
+        list.appendChild(li);
+      }
+
+      function assertEqual(name, got, expected) {
+        record(name, got === expected, "expected " + expected + ", got " + got);
+      }
+
+      function assertArrayEmpty(name, arr) {
+        record(name, arr.length === 0, "expected no problems, got " + JSON.stringify(arr));
+      }
+
+      function assertHasProblem(name, arr, needle) {
+        var found = arr.some(function (m) { return m.indexOf(needle) !== -1; });
+        record(name, found, "expected a problem mentioning '" + needle + "', got " + JSON.stringify(arr));
+      }
+
+      var samplePlan = {
+        planName: "FY26 Field Sales Commission Plan",
+        quota: 80000,
+        accelerator: 1.5,
+        tiers: [
+          { label: "Tier 1", from: 0, to: 50000, rate: 5 },
+          { label: "Tier 2", from: 50000, to: 100000, rate: 8 },
+          { label: "Tier 3", from: 100000, to: null, rate: 10 }
+        ]
+      };
+
+      // --- parsing ---------------------------------------------------------
+      assertEqual("parse $1,234.56 to cents", CommissionLogic.parseDollarsToCents("$1,234.56").cents, 123456);
+      assertEqual("parse plain 120000 to cents", CommissionLogic.parseDollarsToCents("120000").cents, 12000000);
+      assertEqual("reject negative revenue", CommissionLogic.parseDollarsToCents("-5").ok, false);
+      assertEqual("reject text revenue", CommissionLogic.parseDollarsToCents("abc").ok, false);
+      assertEqual("rate 7.5% to basis points", CommissionLogic.parseRateToBasisPoints("7.5").bp, 750);
+
+      // --- the hand-checked payout ----------------------------------------
+      var breakdown = CommissionLogic.computePayout(samplePlan, "120000");
+      assertEqual("hand-checked total is $10,300.00", breakdown.totalCents, 1030000);
+      assertEqual("Tier 1 contributes $2,500.00", breakdown.rows[0].tierTotalCents, 250000);
+      assertEqual("Tier 2 contributes $4,800.00", breakdown.rows[1].tierTotalCents, 480000);
+      assertEqual("Tier 3 contributes $3,000.00", breakdown.rows[2].tierTotalCents, 300000);
+      assertEqual("Tier 2 below-quota part is $2,400.00", breakdown.rows[1].belowCommissionCents, 240000);
+      assertEqual("Tier 2 above-quota part is $2,400.00", breakdown.rows[1].aboveCommissionCents, 240000);
+      assertEqual("Tier 2 straddles quota", breakdown.rows[1].accelerated, true);
+      assertEqual("Tier 1 has no accelerated part", breakdown.rows[0].accelerated, false);
+
+      // --- edge cases ------------------------------------------------------
+      var zero = CommissionLogic.computePayout(samplePlan, "0");
+      assertEqual("zero revenue pays $0.00", zero.totalCents, 0);
+
+      // Revenue below quota: no accelerator anywhere. $40,000 all in Tier 1 at 5%.
+      var belowQuota = CommissionLogic.computePayout(samplePlan, "40000");
+      assertEqual("revenue below quota pays base only", belowQuota.totalCents, 200000);
+      assertEqual("no accelerated tiers below quota", belowQuota.rows[0].accelerated, false);
+
+      // Revenue exactly at a tier boundary ($50,000): Tier 1 full, Tier 2 empty.
+      var boundary = CommissionLogic.computePayout(samplePlan, "50000");
+      assertEqual("revenue at boundary pays Tier 1 only", boundary.totalCents, 250000);
+      assertEqual("Tier 2 band is empty at boundary", boundary.rows[1].bandRevenueCents, 0);
+
+      // --- validation ------------------------------------------------------
+      assertArrayEmpty("clean plan passes validation", CommissionLogic.validatePlan(samplePlan));
+      assertArrayEmpty("clean revenue passes validation", CommissionLogic.validateRevenue("120000"));
+
+      var zeroRatePlan = JSON.parse(JSON.stringify(samplePlan));
+      zeroRatePlan.tiers[1].rate = 0;
+      assertHasProblem("zero rate is rejected", CommissionLogic.validatePlan(zeroRatePlan), "rate must be greater than 0");
+
+      var gapPlan = JSON.parse(JSON.stringify(samplePlan));
+      gapPlan.tiers[1].from = 60000; // leaves 50000..60000 uncovered
+      assertHasProblem("gap is rejected", CommissionLogic.validatePlan(gapPlan), "Gap");
+
+      var overlapPlan = JSON.parse(JSON.stringify(samplePlan));
+      overlapPlan.tiers[1].from = 40000; // overlaps Tier 1
+      assertHasProblem("overlap is rejected", CommissionLogic.validatePlan(overlapPlan), "Overlap");
+
+      assertHasProblem("bad revenue is rejected", CommissionLogic.validateRevenue("-1"), "negative");
+
+      // --- summary ---------------------------------------------------------
+      var summary = document.getElementById("summary");
+      summary.textContent = passed + " passed, " + failed + " failed";
+      summary.className = failed === 0 ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

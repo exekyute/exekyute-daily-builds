@@ -1,0 +1,9 @@
+obligation_id,counterparty,type,due_date,amount
+OB-1001,BMO Term Loan,loan_principal,2026-06-19,50000.00
+OB-1002,CRA,tax_remittance,2026-06-15,22000.00
+OB-1003,Equipment Lease Co,lease,2026-07-02,8500.00
+OB-1004,Series A Note,interest,2026-06-28,12000.00
+OB-1005,Acme Supplies,payable,2026-06-10,4750.00
+OB-1006,RBC Revolver,loan_principal,2026-09-13,75000.00
+OB-1007,Pension Trust,payable,2026-12-01,30000.00
+OB-1008,City Property Tax,tax_remittance,2026-07-06,9000.00

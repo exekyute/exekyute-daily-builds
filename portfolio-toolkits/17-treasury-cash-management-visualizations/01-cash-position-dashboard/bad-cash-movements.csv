@@ -1,0 +1,4 @@
+date,account,direction,amount,description
+2026-06-15,CAD-OPS,opening,250000.00,Opening balance
+2026-06-15,CAD-OPS,opening,90000.00,Second opening by mistake
+2026-06-15,CAD-OPS,out,64000.00,Supplier run

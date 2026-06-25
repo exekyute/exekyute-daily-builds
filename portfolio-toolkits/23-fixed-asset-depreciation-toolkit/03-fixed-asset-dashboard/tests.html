@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard tests</title>
+  <style>
+    body { font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1f2d3d; background: #eef1f4; margin: 0; padding: 32px; }
+    h1 { font-size: 22px; }
+    .summary { display: inline-block; padding: 8px 16px; border-radius: 999px; font-weight: 700; margin-bottom: 24px; }
+    .summary.ok { background: #d7ecec; color: #1f8a8a; }
+    .summary.fail { background: #f6dde0; color: #b23a48; }
+    ul { list-style: none; padding: 0; max-width: 720px; }
+    li { padding: 10px 16px; border-radius: 8px; margin-bottom: 8px; background: #fff; border: 1px solid #dde3ea; font-size: 14px; }
+    li.pass { color: #2f6f4f; }
+    li.fail { color: #b23a48; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Fixed-asset dashboard tests</h1>
+  <div id="summary" class="summary">running...</div>
+  <ul id="results"></ul>
+
+  <script src="src/dashboard.js"></script>
+  <script src="src/sample-data.js"></script>
+  <script src="src/tests.js"></script>
+</body>
+</html>

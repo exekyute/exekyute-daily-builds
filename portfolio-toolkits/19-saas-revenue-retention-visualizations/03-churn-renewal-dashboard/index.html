@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Churn and Renewal Dashboard</title>
+    <style>
+      :root {
+        --base: #1f2a44;
+        --accent: #2f6f9e;
+        --ink: #1f2a44;
+        --muted: #5b6678;
+        --line: #e2e6ee;
+        --bg: #f6f8fc;
+        --panel: #ffffff;
+        --danger: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 72ch;
+      }
+
+      h2 {
+        font-size: 18px;
+        margin: 0 0 calc(var(--space) * 2) 0;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: calc(var(--space) * 3);
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="file"],
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eef3f8;
+        color: #2a5878;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--danger);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 5);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .legend {
+        display: flex;
+        gap: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 2);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .swatch {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        margin-right: var(--space);
+        vertical-align: -2px;
+      }
+
+      .swatch.nrr {
+        background: var(--accent);
+      }
+
+      .swatch.grr {
+        background: var(--base);
+      }
+
+      .swatch.churn {
+        background: rgba(31, 42, 68, 0.18);
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      .grid {
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+
+      .ref-line {
+        stroke: #9aa6bd;
+        stroke-width: 1;
+        stroke-dasharray: 4 4;
+      }
+
+      .axis-label {
+        fill: var(--muted);
+        font-size: 11px;
+      }
+
+      .bar-value {
+        fill: var(--ink);
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .churn-bar {
+        fill: rgba(31, 42, 68, 0.16);
+      }
+
+      .renewal-bar {
+        fill: var(--accent);
+      }
+
+      .nrr-line {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 2.5;
+      }
+
+      .nrr-line-dot {
+        fill: var(--accent);
+      }
+
+      .grr-line {
+        fill: none;
+        stroke: var(--base);
+        stroke-width: 2.5;
+      }
+
+      .grr-line-dot {
+        fill: var(--base);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Churn and Renewal Dashboard</h1>
+        <p>
+          Load the movement file the MRR Movement Waterfall exports and this turns it into the retention
+          metrics an analyst reports each month: the MRR churn rate, gross revenue retention, and net
+          revenue retention. Load a renewals file as well to see the contracts coming up for renewal in
+          the months ahead. Money shows in Canadian dollars.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div>
+            <label for="movementInput">Movement CSV (from the waterfall)</label>
+            <input type="file" id="movementInput" accept=".csv,text/csv" />
+          </div>
+          <div>
+            <label for="renewalInput">Renewals CSV</label>
+            <input type="file" id="renewalInput" accept=".csv,text/csv" />
+          </div>
+        </div>
+        <div class="message" id="movementMessage"></div>
+        <div class="message" id="renewalMessage"></div>
+      </section>
+
+      <section class="panel">
+        <div class="summary" id="summary">
+          <div class="stat"><span class="stat-value">--</span><span class="stat-label">load the movement file to begin</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Retention over time</h2>
+        <div class="legend">
+          <span><span class="swatch nrr"></span>Net revenue retention</span>
+          <span><span class="swatch grr"></span>Gross revenue retention</span>
+          <span><span class="swatch churn"></span>MRR churn rate</span>
+        </div>
+        <svg id="retentionChart" viewBox="0 0 880 340" role="img" aria-label="Retention over time"></svg>
+        <table>
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Opening MRR</th>
+              <th>Churn rate</th>
+              <th>Gross retention</th>
+              <th>Net retention</th>
+            </tr>
+          </thead>
+          <tbody id="retentionBody"></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>Upcoming renewals</h2>
+        <div class="controls">
+          <div>
+            <label for="asOf">As of month</label>
+            <select id="asOf"></select>
+          </div>
+          <div>
+            <label for="horizon">Horizon (months ahead)</label>
+            <input type="number" id="horizon" value="3" min="1" max="24" step="1" />
+          </div>
+        </div>
+        <svg id="renewalChart" viewBox="0 0 880 260" role="img" aria-label="Upcoming renewals"></svg>
+        <table>
+          <thead>
+            <tr>
+              <th>Renewal month</th>
+              <th>Renewals</th>
+              <th>Value up for renewal</th>
+            </tr>
+          </thead>
+          <tbody id="renewalBody"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <script src="dist/retention.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>

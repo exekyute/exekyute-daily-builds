@@ -1,0 +1,10 @@
+invoice_id,consultant,currency,amount
+INV-001,Amara Okafor,USD,45000.00
+INV-002,Lucas Moreau,EUR,60000.00
+INV-003,Priya Nair,GBP,50000.00
+INV-004,Kenji Tanaka,JPY,9000000
+INV-005,Sofia Castillo,USD,15000.00
+INV-006,Diego Herrera,XYZ,5000.00
+INV-003,Priya Nair,GBP,99999.00
+INV-007,Hassan Ali,USD,
+INV-008,Mei Lin,EUR,not-a-number

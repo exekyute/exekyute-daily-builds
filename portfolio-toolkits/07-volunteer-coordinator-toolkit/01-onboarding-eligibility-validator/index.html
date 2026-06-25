@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Onboarding Eligibility Validator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1>Onboarding Eligibility Validator</h1>
+    <p class="lede">
+      Check each volunteer's completed requirements before they are scheduled.
+      The page flags an under-age volunteer, a missing or expired background
+      check, any incomplete required training, and a missing or expired waiver.
+      A volunteer is cleared only when every requirement is met. The cleared
+      roster at the bottom is the same roster the Shift Coverage Planner uses.
+    </p>
+
+    <section class="card">
+      <h2>Requirements in effect</h2>
+      <div class="config-grid">
+        <div>
+          <label for="asOfDate">As-of date (YYYY-MM-DD)</label>
+          <input type="text" id="asOfDate" value="2026-06-01" />
+        </div>
+        <div>
+          <label for="minimumAge">Minimum age</label>
+          <input type="number" id="minimumAge" value="18" />
+        </div>
+        <div>
+          <label for="requiredTrainings">Required trainings (comma separated)</label>
+          <input type="text" id="requiredTrainings" value="ORIENT, SAFETY" />
+        </div>
+        <div>
+          <label for="bgValidDays">Background check valid for (days)</label>
+          <input type="number" id="bgValidDays" value="365" />
+        </div>
+        <div>
+          <label for="waiverValidDays">Waiver valid for (days)</label>
+          <input type="number" id="waiverValidDays" value="365" />
+        </div>
+      </div>
+      <p class="hint">
+        Clearance is judged as of the as-of date. A background check or waiver
+        counts as current when it is no older than its valid window on that date.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Volunteers</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Date of birth</th>
+            <th>Check status</th>
+            <th>Check date</th>
+            <th>Trainings done</th>
+            <th>Waiver date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="volunteerRows"></tbody>
+      </table>
+      <p class="hint">
+        Check status is one of <code>passed</code>, <code>failed</code>, or
+        <code>none</code>. Trainings done is a comma separated list of codes.
+        Dates are YYYY-MM-DD.
+      </p>
+    </section>
+
+    <div class="controls">
+      <button id="validate" type="button">Check eligibility</button>
+      <button id="addVolunteer" type="button" class="ghost">Add volunteer</button>
+      <button id="loadSample" type="button" class="ghost">Load sample roster</button>
+      <button id="loadFlagged" type="button" class="ghost">Load roster with problems</button>
+      <label class="file-label">
+        Load roster file
+        <input type="file" id="rosterFile" accept=".json,application/json" />
+      </label>
+    </div>
+
+    <section class="card">
+      <p id="summary"></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Volunteer</th>
+            <th>Status</th>
+            <th>Reasons</th>
+          </tr>
+        </thead>
+        <tbody id="resultRows"></tbody>
+      </table>
+
+      <div class="roster-out">
+        <h2>Cleared roster for the Shift Coverage Planner</h2>
+        <p class="hint">
+          This is the exact shape the planner reads. Cleared volunteers can be
+          scheduled. Blocked volunteers cannot.
+        </p>
+        <pre class="roster-json" id="rosterJson"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="eligibility_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Investor Allocation Dashboard, tests</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="page__header">
+        <h1 class="page__title">Dashboard logic tests</h1>
+        <p class="page__intro">
+          Each line checks one piece of the pure logic in allocation-logic.js.
+          Open this file in a browser by double-clicking it to see the results.
+        </p>
+      </header>
+
+      <p id="summary-line" class="tests-summary"></p>
+      <section id="results" class="results"></section>
+    </main>
+
+    <script src="allocation-logic.js"></script>
+    <script>
+      (function () {
+        var results = document.getElementById("results");
+        var summaryLine = document.getElementById("summary-line");
+        var passed = 0;
+        var failed = 0;
+
+        function record(name, ok, detail) {
+          if (ok) {
+            passed += 1;
+          } else {
+            failed += 1;
+          }
+          var row = document.createElement("div");
+          row.className = "result " + (ok ? "result--pass" : "result--fail");
+          row.textContent =
+            (ok ? "PASS  " : "FAIL  ") + name + (ok ? "" : "  ->  " + detail);
+          results.appendChild(row);
+        }
+
+        function check(name, fn) {
+          try {
+            var outcome = fn();
+            record(name, outcome === true, outcome === true ? "" : String(outcome));
+          } catch (error) {
+            record(name, false, error.message);
+          }
+        }
+
+        function equals(actual, expected) {
+          return actual === expected
+            ? true
+            : "expected " + expected + " but got " + actual;
+        }
+
+        function shouldThrow(fn) {
+          try {
+            fn();
+            return "expected an error but none was thrown";
+          } catch (error) {
+            return true;
+          }
+        }
+
+        var SAMPLE = [
+          "investor,commitment,ownership_pct,called_amount",
+          "Aurora Capital,4000000.00,36.3636,90909.09",
+          "Brightwater LP,3500000.00,31.8182,79545.46",
+          "Cedar Grove Partners,2500000.00,22.7273,56818.18",
+          "Dunes Family Office,1000000.00,9.0909,22727.27",
+          "Echo Ventures,0.00,0.0000,0.00",
+        ].join("\n");
+
+        check("parseDollarsToCents reads plain dollars", function () {
+          return equals(parseDollarsToCents("90909.09"), 9090909);
+        });
+        check("parseDollarsToCents reads commas", function () {
+          return equals(parseDollarsToCents("1,000,000.00"), 100000000);
+        });
+        check("parseDollarsToCents reads zero", function () {
+          return equals(parseDollarsToCents("0.00"), 0);
+        });
+        check("parseDollarsToCents rejects words", function () {
+          return shouldThrow(function () {
+            parseDollarsToCents("abc");
+          });
+        });
+
+        var rows = buildAllocationRows(parseCsv(SAMPLE));
+
+        check("parses five investor rows", function () {
+          return equals(rows.length, 5);
+        });
+        check("Echo Ventures has a zero called amount", function () {
+          return equals(rows[4].calledCents, 0);
+        });
+
+        var totals = summarize(rows);
+
+        check("total called equals the 250,000.00 call", function () {
+          return equals(totals.totalCalled, 25000000);
+        });
+        check("total commitment is 11,000,000.00", function () {
+          return equals(totals.totalCommitment, 1100000000);
+        });
+        check("total remaining is commitment minus called", function () {
+          return equals(totals.totalRemaining, 1100000000 - 25000000);
+        });
+        check("Brightwater remaining unfunded is exact", function () {
+          return equals(
+            computeRemainingCents(rows[1].commitmentCents, rows[1].calledCents),
+            350000000 - 7954546
+          );
+        });
+        check("recomputed ownership matches the allocator (Aurora)", function () {
+          return equals(
+            computeOwnershipPct(rows[0].commitmentCents, totals.totalCommitment).toFixed(4),
+            "36.3636"
+          );
+        });
+        check("currency display has no float artifacts", function () {
+          return equals(centsToDisplay(7954546), "$79,545.46");
+        });
+
+        check("rejects a row with a missing field", function () {
+          return shouldThrow(function () {
+            buildAllocationRows(
+              parseCsv("investor,commitment,ownership_pct,called_amount\nA,1,2")
+            );
+          });
+        });
+        check("rejects a wrong header", function () {
+          return shouldThrow(function () {
+            buildAllocationRows(parseCsv("a,b,c,d\nA,1,2,3"));
+          });
+        });
+        check("rejects an empty file", function () {
+          return shouldThrow(function () {
+            parseCsv("   ");
+          });
+        });
+
+        summaryLine.textContent = passed + " passed, " + failed + " failed";
+        summaryLine.className =
+          "tests-summary " + (failed === 0 ? "tests-summary--pass" : "tests-summary--fail");
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+unit,tenant,monthly_rent,prorated_rent,late_fee,amount_due,lease_end
+201,Grace Hill,1500.00,1500.00,0.00,1500.00,2026-07-15
+202,Short Row,1600.00,1600.00,0.00,1600.00
+201,Dupe Unit,1700.00,1700.00,0.00,1700.00,2026-09-30
+204,Bad Money,1800.00,oops,0.00,1800.00,2026-10-31
+205,Henry Vale,1900.00,1900.00,0.00,1900.00,2027-02-28

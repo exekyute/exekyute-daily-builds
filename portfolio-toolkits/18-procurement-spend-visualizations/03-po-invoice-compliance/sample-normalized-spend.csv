@@ -1,0 +1,13 @@
+line_id,supplier,category,contract_id,on_contract,po_amount,received_amount,invoice_amount,invoice_date
+L001,Northwind Supply,IT Hardware,C-1001,Y,40000.00,40000.00,40000.00,2026-01-15
+L002,Northwind Supply,IT Hardware,C-1001,Y,25000.00,25000.00,25000.00,2026-02-10
+L003,Granite IT,Professional Services,C-1002,Y,18000.00,18000.00,18000.00,2026-01-20
+L004,Granite IT,Professional Services,C-1002,Y,12000.00,12000.00,12450.00,2026-02-05
+L005,Maple Logistics,Logistics,C-1003,Y,15000.00,15000.00,15000.00,2026-01-25
+L006,Maple Logistics,Logistics,,N,8000.00,8000.00,8000.00,2026-02-12
+L007,Cedar Office,Office Supplies,C-1004,Y,5000.00,5000.00,5000.00,2026-01-30
+L008,Cedar Office,Office Supplies,C-1004,Y,3000.00,2950.00,3000.00,2026-02-15
+L009,Harbour Freight Co,Facilities,,N,2000.00,2000.00,2000.00,2026-02-18
+L010,Harbour Freight Co,Facilities,C-1005,Y,0.00,0.00,0.00,2026-02-20
+L013,Cedar Office,Stationery,C-1004,Y,1500.00,1500.00,1500.00,2026-02-23
+L014,Maple Logistics,Logistics,C-1003,Y,6000.00,6000.00,6005.00,2026-02-24

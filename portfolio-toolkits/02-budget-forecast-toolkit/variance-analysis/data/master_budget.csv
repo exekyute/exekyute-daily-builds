@@ -1,0 +1,15 @@
+department,category,amount
+Facilities,Cleaning,3000.00
+Facilities,Rent,20000.00
+Marketing,Advertising,1200.50
+Marketing,Events,4300.00
+Marketing,Office Supplies,999.50
+Operations,Maintenance,8000.00
+Operations,Travel,5000.00
+Operations,Utilities,12000.00
+Research,Equipment,15000.00
+Research,Lab Supplies,10000.00
+Sales,Commissions,90000.00
+Sales,Salaries,45000.00
+Sales,Software,1250.00
+Sales,Travel,13750.00

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Renewal Pipeline Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="page-head">
+      <h1>Renewal Pipeline Tracker</h1>
+      <p class="lede">
+        Load a renewals CSV to see the renewal pipeline at a glance, with each lease
+        grouped by status and the table sortable so the most urgent come first. The
+        file is read in your browser and never sent anywhere.
+      </p>
+    </header>
+
+    <section class="controls" aria-label="Controls">
+      <div class="field">
+        <label for="file">Renewals CSV</label>
+        <input type="file" id="file" accept=".csv,text/csv" />
+        <p class="hint">Sample included at <code>data/renewals.csv</code>.</p>
+      </div>
+    </section>
+
+    <p id="message" class="message" role="status"></p>
+
+    <section id="summary" class="summary" hidden></section>
+
+    <section id="table-panel" class="panel" hidden>
+      <h2>Leases</h2>
+      <p class="hint sort-hint">Click a column heading to sort. Click again to reverse.</p>
+      <div class="table-scroll">
+        <table id="pipeline">
+          <thead>
+            <tr>
+              <th class="sortable" data-key="unit">Unit</th>
+              <th class="sortable" data-key="tenant">Tenant</th>
+              <th class="sortable num" data-key="current_rent">Current rent</th>
+              <th class="sortable num" data-key="escalated_rent">Escalated rent</th>
+              <th class="sortable" data-key="lease_end">Lease end</th>
+              <th>Renewal term</th>
+              <th class="sortable" data-key="notice_due_date">Notice due</th>
+              <th class="sortable num" data-key="days_to_notice">Days to notice</th>
+              <th class="sortable" data-key="status">Status</th>
+            </tr>
+          </thead>
+          <tbody id="pipeline-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="issues-panel" class="panel issues" hidden>
+      <h2>Skipped rows</h2>
+      <ul id="issues-list"></ul>
+    </section>
+  </main>
+
+  <script src="tracker_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

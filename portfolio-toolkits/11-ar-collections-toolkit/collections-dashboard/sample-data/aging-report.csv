@@ -1,0 +1,7 @@
+invoice_number,customer,issue_date,due_date,amount,days_past_due,aging_bucket,late_fee,total_due
+INV-1001,Northwind Traders,2026-06-15,2026-07-15,500.00,-33,Current,0.00,500.00
+INV-1002,Acme Industrial,2026-04-28,2026-05-28,123.00,15,1-30,1.85,124.85
+INV-1003,Globex Corp,2026-04-13,2026-05-13,800.00,30,1-30,12.00,812.00
+INV-1010,Initech LLC,2026-03-28,2026-04-28,1200.00,45,31-60,18.00,1218.00
+INV-1004,Umbrella Supply,2026-02-12,2026-03-14,1000.00,90,61-90,15.00,1015.00
+INV-1005,Soylent Foods,2026-01-13,2026-02-12,2000.00,120,90-plus,30.00,2030.00

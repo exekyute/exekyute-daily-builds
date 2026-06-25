@@ -1,0 +1,4 @@
+line_id,supplier,category,contract_id,on_contract,po_amount,received_amount,invoice_amount,invoice_date
+L001,Northwind Supply,IT Hardware,C-1001,Y,40000.00,40000.00,40000.00,2026-01-15
+L002,Granite IT,Professional Services,C-1002,maybe,18000.00,18000.00,18000.00,2026-02-05
+L003,Maple Logistics,Logistics,C-1003,Y,15000.00,15000.00,15000.00,2026-01-25

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tiered Commission Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>Tiered Commission Calculator</h1>
+      <p class="lede">
+        Enter a revenue figure and a commission plan. The page splits the
+        revenue across the plan's marginal tiers, applies the accelerator to the
+        portion above quota, and shows how much each tier contributed to the
+        payout. All math runs in your browser. Nothing is sent anywhere.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>1. Revenue</h2>
+      <label for="revenue">Revenue for the period (USD)</label>
+      <input id="revenue" type="text" inputmode="decimal" value="120000" />
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>2. Commission plan</h2>
+        <div class="plan-actions">
+          <button id="loadSample" type="button">Load sample plan</button>
+          <label class="file-btn">
+            Load plan file (.json)
+            <input id="planFile" type="file" accept=".json,application/json" hidden />
+          </label>
+        </div>
+      </div>
+
+      <div class="plan-meta">
+        <div>
+          <label for="planName">Plan name</label>
+          <input id="planName" type="text" />
+        </div>
+        <div>
+          <label for="quota">Quota (USD)</label>
+          <input id="quota" type="text" inputmode="decimal" />
+        </div>
+        <div>
+          <label for="accelerator">Accelerator (multiplier above quota)</label>
+          <input id="accelerator" type="text" inputmode="decimal" />
+        </div>
+      </div>
+
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>From (USD)</th>
+            <th>To (USD, blank = open)</th>
+            <th>Rate (%)</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tierRows"></tbody>
+      </table>
+      <button id="addTier" type="button" class="ghost">Add tier</button>
+    </section>
+
+    <section class="card">
+      <button id="calculate" type="button" class="primary">Calculate payout</button>
+    </section>
+
+    <section id="problems" class="card problems" hidden>
+      <h2>Please fix these before calculating</h2>
+      <ul id="problemList"></ul>
+    </section>
+
+    <section id="results" class="card" hidden>
+      <h2>Payout breakdown</h2>
+      <p id="resultSummary" class="summary"></p>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Band</th>
+            <th>Revenue in band</th>
+            <th>Below quota</th>
+            <th>Above quota (accelerated)</th>
+            <th>Tier payout</th>
+          </tr>
+        </thead>
+        <tbody id="resultRows"></tbody>
+        <tfoot>
+          <tr>
+            <th colspan="5">Total payout</th>
+            <th id="resultTotal"></th>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+  </main>
+
+  <script src="commission_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") {
+          document.documentElement.setAttribute("data-theme", t);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <title>Table for One</title>
+  <meta name="description" content="A quiet food diary, written from the eating side of the table." />
+  <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)" />
+
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Table for One" />
+  <meta property="og:description" content="A quiet food diary, written from the eating side of the table." />
+  <meta property="og:image" content="images/og-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Table for One" />
+  <meta name="twitter:description" content="A quiet food diary, written from the eating side of the table." />
+  <meta name="twitter:image" content="images/og-cover.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#content">Skip to the entries</a>
+
+  <header class="banner">
+    <div class="banner__inner">
+      <p class="banner__kicker">meals, remembered</p>
+      <h1 class="banner__title">Table for One</h1>
+      <p class="banner__subtitle">Notes from wherever I happen to be eating.</p>
+    </div>
+  </header>
+
+  <main class="page" id="content">
+
+    <div class="controls" hidden></div>
+    <nav class="archive" aria-label="Archive by month" hidden></nav>
+
+    <article class="entry" id="entry-2026-05-30">
+      <time class="entry__date" datetime="2026-05-30">Friday, 30 May 2026</time>
+      <p class="entry__meta">
+        <span class="entry__place">Lorem Ipsum, Dolor</span>
+        <span class="entry__rating" role="img" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </p>
+      <h2 class="entry__title">Lorem ipsum dolor sit amet</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident.
+      </p>
+    </article>
+
+    <article class="entry" id="entry-2026-05-27">
+      <time class="entry__date" datetime="2026-05-27">Tuesday, 27 May 2026</time>
+      <p class="entry__meta">
+        <span class="entry__place">Consectetur, Amet</span>
+        <span class="entry__rating" role="img" aria-label="4 out of 5">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </p>
+      <h2 class="entry__title">Consectetur adipiscing elit</h2>
+      <p>
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+        doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+        inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+      </p>
+      <p>
+        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+        sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+        nesciunt.
+      </p>
+    </article>
+
+    <article class="entry" id="entry-2026-05-25">
+      <time class="entry__date" datetime="2026-05-25">Sunday, 25 May 2026</time>
+      <p class="entry__meta">
+        <span class="entry__place">Sit Amet House</span>
+        <span class="entry__rating" role="img" aria-label="4 out of 5">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </p>
+      <h2 class="entry__title">Sed do eiusmod tempor</h2>
+      <p>
+        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+        consectetur, adipisci velit, sed quia non numquam eius modi tempora
+        incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+      </p>
+    </article>
+
+    <article class="entry" id="entry-2026-04-19">
+      <time class="entry__date" datetime="2026-04-19">Saturday, 19 April 2026</time>
+      <p class="entry__meta">
+        <span class="entry__place">Elit Kitchen</span>
+        <span class="entry__rating" role="img" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      </p>
+      <h2 class="entry__title">Ut labore et dolore magna</h2>
+      <p>
+        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
+        nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
+        nulla pariatur.
+      </p>
+      <p>
+        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+        praesentium voluptatum deleniti atque corrupti.
+      </p>
+    </article>
+
+    <article class="entry" id="entry-2026-04-02">
+      <time class="entry__date" datetime="2026-04-02">Wednesday, 2 April 2026</time>
+      <p class="entry__meta">
+        <span class="entry__place">Tempor &amp; Co</span>
+        <span class="entry__rating" role="img" aria-label="4 out of 5">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+      </p>
+      <h2 class="entry__title">Quis nostrud exercitation</h2>
+      <p>
+        Et harum quidem rerum facilis est et expedita distinctio. Nam libero
+        tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus
+        id quod maxime placeat facere possimus.
+      </p>
+      <p>
+        Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus
+        saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+      </p>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <p>Table for One &middot; written by hand, eaten slowly</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

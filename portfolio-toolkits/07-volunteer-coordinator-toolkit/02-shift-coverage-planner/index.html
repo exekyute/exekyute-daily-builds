@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shift Coverage Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1>Shift Coverage Planner</h1>
+    <p class="lede">
+      Enter the shifts that need filling and the volunteers signed up for them.
+      The page flags understaffed and overstaffed shifts and any volunteer
+      double-booked across overlapping shifts. Only cleared volunteers count
+      toward coverage. Assigning an uncleared volunteer is rejected and named,
+      so a shift cannot be filled by someone who is not cleared.
+    </p>
+
+    <section class="card">
+      <h2>Cleared roster</h2>
+      <p class="hint">
+        This is the roster produced by the Onboarding Eligibility Validator.
+        Cleared volunteers can be scheduled. Blocked volunteers cannot. Load the
+        <code>cleared_roster.json</code> from that tool to use a fresh roster.
+      </p>
+      <ul class="roster-list" id="rosterList"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Shifts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Role</th>
+            <th>Date</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Min</th>
+            <th>Max</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="shiftRows"></tbody>
+      </table>
+      <p class="hint">Dates are YYYY-MM-DD. Times are 24-hour HH:MM. Min and max are whole numbers.</p>
+    </section>
+
+    <section class="card">
+      <h2>Assignments</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Shift id</th>
+            <th>Volunteer id</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="assignmentRows"></tbody>
+      </table>
+      <p class="hint">Each row signs one volunteer up for one shift.</p>
+    </section>
+
+    <div class="controls">
+      <button id="plan" type="button">Plan coverage</button>
+      <button id="addShift" type="button" class="ghost">Add shift</button>
+      <button id="addAssignment" type="button" class="ghost">Add assignment</button>
+      <button id="loadSample" type="button" class="ghost">Load sample schedule</button>
+      <label class="file-label">
+        Load cleared roster file
+        <input type="file" id="rosterFile" accept=".json,application/json" />
+      </label>
+    </div>
+
+    <section class="card">
+      <p id="summary"></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Shift</th>
+            <th>Time</th>
+            <th>Cleared / min, max</th>
+            <th>Status</th>
+            <th>Filled by</th>
+          </tr>
+        </thead>
+        <tbody id="coverageRows"></tbody>
+      </table>
+
+      <div class="panel conflicts">
+        <h2>Double-booked volunteers</h2>
+        <div id="conflictsBody"></div>
+      </div>
+
+      <div class="panel rejected">
+        <h2>Rejected assignments</h2>
+        <div id="rejectedBody"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="coverage_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+unit,tenant,move_out_date,deposit_held,unpaid_rent,cleaning,damages,total_deductions,refund_due,balance_owed,result
+101,Ava Bennett,2026-05-31,1500.00,0.00,0.00,0.00,0.00,1500.00,0.00,refund
+102,Liam Carter,2026-06-05,1800.00,0.00,150.00,250.00,400.00,1400.00,0.00,refund
+103,Maya Singh,2026-06-10,1650.00,1650.00,0.00,0.00,1650.00,0.00,0.00,even
+104,Noah Diaz,2026-06-12,2000.00,1500.00,300.00,500.00,2300.00,0.00,300.00,balance
+105,Priya Kaur,2026-06-01,1400.00,0.00,0.00,0.00,0.00,1400.00,0.00,refund

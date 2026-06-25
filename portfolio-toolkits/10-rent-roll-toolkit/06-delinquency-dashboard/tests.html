@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests: Delinquency Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pass { color: #1b7f3b; font-weight: 700; }
+    .fail { color: #c2410c; font-weight: 700; }
+    .result-line { font-variant-numeric: tabular-nums; }
+    #summary-line { font-size: 18px; font-weight: 700; margin: 0 0 var(--s3); }
+    ol { padding-left: var(--s3); }
+    li { margin-bottom: var(--s1); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tests: Delinquency Dashboard</h1>
+    <p class="lede">
+      These checks run the pure logic in delinquency_logic.js against small CSV
+      strings worked out by hand. Open this file in a browser. No build step.
+    </p>
+    <p id="summary-line"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <script src="delinquency_logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var passed = 0;
+      var failed = 0;
+      var list = document.getElementById("results");
+
+      function record(name, ok, detail) {
+        if (ok) { passed += 1; } else { failed += 1; }
+        var li = document.createElement("li");
+        li.className = "result-line";
+        li.innerHTML =
+          '<span class="' + (ok ? "pass" : "fail") + '">' +
+          (ok ? "PASS" : "FAIL") + "</span> " + name +
+          (ok ? "" : (detail ? " : " + detail : ""));
+        list.appendChild(li);
+      }
+
+      function assertEqual(name, got, expected) {
+        record(name, got === expected, "expected " + expected + ", got " + got);
+      }
+
+      // A clean aging file matching what the ledger produces.
+      var CLEAN =
+        "unit,tenant,charge_type,due_date,balance,days_overdue,bucket,late_fee,total_owed\n" +
+        "101,Ava Bennett,Rent,2026-06-20,1500.00,0,current,0.00,1500.00\n" +
+        "103,Maya Singh,Rent,2026-05-13,1500.00,30,1-30,75.00,1575.00\n" +
+        "104,Noah Diaz,Rent,2026-05-12,2000.00,31,31-60,100.00,2100.00\n" +
+        "107,Sofia Marin,Rent,2026-02-12,1750.00,120,90+,87.50,1837.50\n";
+
+      // Money and helpers.
+      assertEqual("parseMoneyToCents plain", parseMoneyToCents("1575.00"), 157500);
+      assertEqual("formatCents 183750", formatCents(183750), "$1,837.50");
+      assertEqual("parseIntStrict zero", parseIntStrict("0"), 0);
+      assertEqual("bucketRank current", bucketRank("current"), 0);
+      assertEqual("bucketRank 90+", bucketRank("90+"), 4);
+      assertEqual("bucketRank unknown", bucketRank("nope"), -1);
+
+      var clean = analyzeAging(CLEAN);
+      assertEqual("clean read ok", clean.ok, true);
+      assertEqual("clean row count", clean.rows.length, 4);
+
+      // Overall totals: balances 1500+1500+2000+1750 = 6750; fees 0+75+100+87.50 = 262.50.
+      assertEqual("total balance", clean.summary.totalBalanceCents, 675000);
+      assertEqual("total late fees", clean.summary.totalLateFeeCents, 26250);
+      assertEqual("total owed", formatCents(clean.summary.totalOwedCents), "$7,012.50");
+
+      // Per-bucket totals.
+      assertEqual("current count", clean.summary.buckets["current"].count, 1);
+      assertEqual("1-30 count", clean.summary.buckets["1-30"].count, 1);
+      assertEqual("31-60 owed", formatCents(clean.summary.buckets["31-60"].owedCents), "$2,100.00");
+      assertEqual("90+ owed", formatCents(clean.summary.buckets["90+"].owedCents), "$1,837.50");
+      assertEqual("61-90 empty", clean.summary.buckets["61-90"].count, 0);
+
+      // Worst-first sort: 90+ leads, current trails.
+      var sorted = sortWorstFirst(clean.rows);
+      assertEqual("worst first is 90+", sorted[0].bucket, "90+");
+      assertEqual("worst first unit is 107", sorted[0].unit, "107");
+      assertEqual("last is current", sorted[3].bucket, "current");
+      assertEqual("sort does not mutate", clean.rows[0].unit, "101");
+
+      // Whole-file rejection: a missing required column stops the read.
+      var bad = analyzeAging(
+        "unit,tenant,charge_type,due_date,balance,days_overdue,bucket,late_fee\n" +
+          "101,Ava,Rent,2026-06-20,1500.00,0,current,0.00\n"
+      );
+      assertEqual("missing column rejected", bad.ok, false);
+      record("names missing total_owed", bad.error.indexOf("total_owed") !== -1, bad.error);
+
+      // Row-level skips, including an unknown bucket.
+      var messy =
+        "unit,tenant,charge_type,due_date,balance,days_overdue,bucket,late_fee,total_owed\n" +
+        "201,Good,Rent,2026-05-20,1500.00,23,1-30,75.00,1575.00\n" +
+        "202,Short,Rent,2026-05-12,2000.00,31,31-60,100.00\n" +
+        "201,Dupe,Rent,2026-05-12,1700.00,31,31-60,85.00,1785.00\n" +
+        "204,BadMoney,Rent,2026-03-29,oops,75,61-90,75.00,1575.00\n" +
+        "205,BadBucket,Utilities,2026-02-12,900.00,120,bad-bucket,45.00,945.00\n";
+      var messyResult = analyzeAging(messy);
+      assertEqual("messy read still ok", messyResult.ok, true);
+      assertEqual("one valid row survives", messyResult.rows.length, 1);
+      assertEqual("four rows skipped", messyResult.issues.length, 4);
+      record(
+        "unknown bucket reported",
+        messyResult.issues.some(function (i) { return i.reason.indexOf("unknown bucket") !== -1; }),
+        "no unknown-bucket issue found"
+      );
+
+      assertEqual("empty file rejected", analyzeAging("").ok, false);
+
+      var summaryLine = document.getElementById("summary-line");
+      summaryLine.textContent = passed + " passed, " + failed + " failed";
+      summaryLine.className = failed === 0 ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

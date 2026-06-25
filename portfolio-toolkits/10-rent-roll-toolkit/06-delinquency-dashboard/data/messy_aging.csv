@@ -1,0 +1,7 @@
+unit,tenant,charge_type,due_date,balance,days_overdue,bucket,late_fee,total_owed
+201,Grace Hill,Rent,2026-05-20,1500.00,23,1-30,75.00,1575.00
+202,Short Row,Rent,2026-05-12,2000.00,31,31-60,100.00
+201,Dupe Unit,Rent,2026-05-12,1700.00,31,31-60,85.00,1785.00
+204,Bad Money,Rent,2026-03-29,oops,75,61-90,75.00,1575.00
+205,Henry Vale,Utilities,2026-02-12,900.00,120,bad-bucket,45.00,945.00
+206,Iris Wong,Rent,2026-04-15,1200.00,58,31-60,60.00,1260.00

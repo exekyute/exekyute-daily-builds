@@ -1,0 +1,9 @@
+rep_id,rep_name,quota,actual_revenue
+R-101,Dana Cole,100000,125000
+R-102,Eli Frost,100000,100000
+R-103,Priya Nair,100000
+R-104,Sam Ortega,100000,90000,west region
+R-101,Dana Cole,100000,70000
+R-105,Tom Reed,0,50000
+R-106,Uma Shah,abc,60000
+R-107,Val Diaz,100000,80000

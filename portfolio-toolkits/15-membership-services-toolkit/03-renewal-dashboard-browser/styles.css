@@ -1,0 +1,231 @@
+/* Two-tone palette: one base (slate) and one accent (teal), plus neutral tints.
+   One spacing scale, all multiples of 8px. */
+:root {
+    --base: #1f2a44;
+    --base-soft: #33405e;
+    --accent: #2f8f83;
+    --accent-soft: #e1efed;
+    --ink: #1f2a44;
+    --muted: #6b7280;
+    --line: #dfe3ea;
+    --panel: #ffffff;
+    --page: #f4f6f9;
+
+    --s1: 8px;
+    --s2: 16px;
+    --s3: 24px;
+    --s4: 32px;
+    --s5: 40px;
+
+    /* muted status tints, used only on the small flag badges */
+    --paid: #dff0df;
+    --paid-ink: #2c6b2c;
+    --expiring: #fdf2cf;
+    --expiring-ink: #8a6d00;
+    --lapsed: #f9d8d8;
+    --lapsed-ink: #9b2c2c;
+    --review: #e7e9ee;
+    --review-ink: #54607a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: var(--s4) var(--s3);
+}
+
+header h1 {
+    margin: 0 0 var(--s1) 0;
+    font-size: 24px;
+    color: var(--base);
+}
+
+header p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.controls {
+    display: flex;
+    gap: var(--s2);
+    align-items: center;
+    flex-wrap: wrap;
+    margin: var(--s3) 0;
+    padding: var(--s2);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: var(--s1) var(--s3);
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover { background: #287a70; }
+
+.controls label {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s2);
+    margin-bottom: var(--s3);
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: var(--s3);
+}
+
+.card .num {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--base);
+}
+
+.card .lbl {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: var(--s1);
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s3);
+    margin-bottom: var(--s3);
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: var(--s3);
+}
+
+.panel h2 {
+    margin: 0 0 var(--s3) 0;
+    font-size: 17px;
+    color: var(--base);
+}
+
+/* dues-by-tier bars, drawn in the accent color */
+.bar-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 96px;
+    align-items: center;
+    gap: var(--s2);
+    margin-bottom: var(--s2);
+}
+
+.bar-track {
+    background: var(--accent-soft);
+    border-radius: 4px;
+    height: 24px;
+}
+
+.bar-fill {
+    background: var(--accent);
+    height: 24px;
+    border-radius: 4px;
+    min-width: 2px;
+}
+
+.bar-row .amt {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--base);
+}
+
+.totals dt { color: var(--muted); }
+
+.totals .line {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--s1) 0;
+    border-bottom: 1px solid var(--line);
+    font-variant-numeric: tabular-nums;
+}
+
+.totals .grand {
+    border-bottom: none;
+    border-top: 2px solid var(--base);
+    margin-top: var(--s1);
+    padding-top: var(--s2);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--base);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    text-align: left;
+    padding: var(--s2);
+    border-bottom: 1px solid var(--line);
+}
+
+th {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+td.num, th.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge.Paid { background: var(--paid); color: var(--paid-ink); }
+.badge.Expiring { background: var(--expiring); color: var(--expiring-ink); }
+.badge.Lapsed { background: var(--lapsed); color: var(--lapsed-ink); }
+.badge.Duplicate { background: var(--review); color: var(--review-ink); }
+.badge.Review { background: var(--review); color: var(--review-ink); }
+
+.note {
+    margin-top: var(--s2);
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.empty {
+    color: var(--muted);
+    padding: var(--s3);
+    text-align: center;
+}

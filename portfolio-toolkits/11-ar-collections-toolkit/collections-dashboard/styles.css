@@ -1,0 +1,277 @@
+/*
+ * Collections Aging Dashboard styling.
+ *
+ * Two-tone palette: one base (slate) plus one accent (red). Overdue buckets use
+ * the accent at increasing strength so severity reads as one escalating tone.
+ * One spacing scale (multiples of 8px) is reused for every margin, padding, and
+ * gap so elements line up and never feel cramped.
+ */
+
+:root {
+  /* Base tone (slate) and surfaces */
+  --ink: #1f2933;
+  --ink-soft: #52606d;
+  --paper: #ffffff;
+  --surface: #f5f7fa;
+  --border: #d7dee6;
+
+  /* Accent tone (red) used for overdue severity */
+  --accent: #d64545;
+  --accent-rgb: 214, 69, 69;
+
+  /* Spacing scale: multiples of 8px */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.masthead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+h2 {
+  margin: 0 0 var(--space-2) 0;
+  font-size: 18px;
+  color: var(--ink);
+}
+
+.lede {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--ink-soft);
+}
+
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.file-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.file-label {
+  font-weight: 600;
+}
+
+input[type="file"] {
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  width: 100%;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.hint {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px var(--space-1);
+  font-size: 13px;
+}
+
+/* Messages */
+.message {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--ink);
+}
+
+.skipped {
+  margin: 0 0 var(--space-2) 0;
+  padding: var(--space-1) var(--space-2);
+  border-left: 4px solid var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--ink);
+  font-size: 14px;
+}
+
+/* Results layout */
+#results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Summary cards */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-2);
+}
+
+.summary-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.summary-card .card-label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.summary-card .card-total {
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-card .card-count {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.summary-card.grand {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.summary-card.grand .card-count {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Table */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+td.num,
+th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.bucket-tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Two-tone severity ramp: base tint for current, accent grows for overdue */
+.b-current {
+  background: rgba(var(--accent-rgb), 0);
+}
+.b-current .bucket-tag {
+  background: rgba(31, 41, 51, 0.08);
+  color: var(--ink);
+}
+
+.b-1-30 {
+  background: rgba(var(--accent-rgb), 0.06);
+}
+.b-1-30 .bucket-tag {
+  background: rgba(var(--accent-rgb), 0.18);
+  color: var(--ink);
+}
+
+.b-31-60 {
+  background: rgba(var(--accent-rgb), 0.12);
+}
+.b-31-60 .bucket-tag {
+  background: rgba(var(--accent-rgb), 0.3);
+  color: var(--ink);
+}
+
+.b-61-90 {
+  background: rgba(var(--accent-rgb), 0.2);
+}
+.b-61-90 .bucket-tag {
+  background: rgba(var(--accent-rgb), 0.5);
+  color: var(--paper);
+}
+
+.b-90-plus {
+  background: rgba(var(--accent-rgb), 0.3);
+  font-weight: 600;
+}
+.b-90-plus .bucket-tag {
+  background: var(--accent);
+  color: var(--paper);
+}

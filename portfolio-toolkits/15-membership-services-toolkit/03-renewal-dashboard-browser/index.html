@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Renewal dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>Membership renewal dashboard</h1>
+            <p>Reads the renewal worklist and shows the week at a glance: who is
+               expiring or lapsed, dues by tier, and the totals with HST.</p>
+        </header>
+
+        <div class="controls">
+            <button id="loadSample">Load sample data</button>
+            <label for="fileInput">or load your own renewal_worklist.csv:</label>
+            <input type="file" id="fileInput" accept=".csv">
+        </div>
+
+        <section id="dashboard" hidden>
+            <div class="cards">
+                <div class="card"><div class="num" id="cExpiring">0</div><div class="lbl">Expiring (next 30 days)</div></div>
+                <div class="card"><div class="num" id="cLapsed">0</div><div class="lbl">Lapsed (past 30 days)</div></div>
+                <div class="card"><div class="num" id="cPaid">0</div><div class="lbl">Paid / current</div></div>
+                <div class="card"><div class="num" id="cReview">0</div><div class="lbl">Need review</div></div>
+            </div>
+
+            <div class="grid-2">
+                <div class="panel">
+                    <h2>Dues by tier</h2>
+                    <div id="bars"></div>
+                </div>
+                <div class="panel">
+                    <h2>Dues summary</h2>
+                    <div class="totals" id="totals"></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Renewal worklist</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th><th>Name</th><th>Tier</th><th>Status</th>
+                            <th>Expiry</th><th class="num">Dues</th>
+                            <th class="num">HST</th><th class="num">Total</th><th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="worklistBody"></tbody>
+                </table>
+                <p class="note" id="reconNote"></p>
+            </div>
+        </section>
+
+        <section id="placeholder" class="panel empty">
+            Load the sample data or a renewal_worklist.csv to see the dashboard.
+        </section>
+    </div>
+
+    <script src="sample-data.js"></script>
+    <script src="summary.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

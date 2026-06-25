@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claims Aging and Status Funnel</title>
+    <style>
+      :root {
+        --base: #143047;
+        --accent: #c2603a;
+        --ink: #143047;
+        --muted: #5d6b78;
+        --line: #e1e7ed;
+        --bg: #f5f8fa;
+        --panel: #ffffff;
+        --danger: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 74ch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: calc(var(--space) * 3);
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="file"] {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      button {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background: #d8c3b8;
+        cursor: not-allowed;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eef3f6;
+        color: #2a5878;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--danger);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 5);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      .funnel-bar {
+        fill: var(--accent);
+      }
+
+      .funnel-bar.empty {
+        fill: var(--line);
+      }
+
+      .funnel-label {
+        fill: var(--ink);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .funnel-count {
+        fill: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .row-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: calc(var(--space) * 2);
+      }
+
+      .section-title {
+        margin: 0 0 calc(var(--space) * 2) 0;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Claims Aging and Status Funnel</h1>
+        <p>
+          Load a claims valuation register and this rolls each claim up to its latest valuation,
+          buckets the still-open inventory by age since the report date, counts the open, pending,
+          and closed mix, and works out the average days to close. Export the clean claims file the
+          Loss Ratio Dashboard and the Reserve Development Triangle read.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div>
+            <label for="fileInput">Claims register CSV</label>
+            <input type="file" id="fileInput" accept=".csv,text/csv" />
+          </div>
+        </div>
+        <div class="message" id="message"></div>
+      </section>
+
+      <section class="panel">
+        <div class="summary" id="summary">
+          <div class="stat"><span class="stat-value">--</span><span class="stat-label">load a register to begin</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">Open inventory by age</h2>
+        <svg id="chart" viewBox="0 0 880 360" role="img" aria-label="Claims aging funnel"></svg>
+      </section>
+
+      <section class="panel">
+        <h2 class="section-title">Age buckets</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Age bucket</th>
+              <th>Open claims</th>
+              <th>Share</th>
+            </tr>
+          </thead>
+          <tbody id="bucketBody"></tbody>
+        </table>
+        <div class="row-actions">
+          <button id="exportBtn" disabled>Export clean-claims.csv</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="dist/aging.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests: Quota Attainment Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pass { color: #1b7f3b; }
+    .fail { color: #c62828; font-weight: 700; }
+    .result-line { font-variant-numeric: tabular-nums; }
+    #summary { font-size: 18px; font-weight: 700; margin: 0 0 16px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tests: Quota Attainment Dashboard</h1>
+    <p class="lede">
+      These checks run the pure logic in dashboard_logic.js against small CSV
+      strings worked out by hand. Open this file in a browser. No build step.
+    </p>
+    <p id="summary"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <script src="dashboard_logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var passed = 0;
+      var failed = 0;
+      var list = document.getElementById("results");
+
+      function record(name, ok, detail) {
+        if (ok) { passed++; } else { failed++; }
+        var li = document.createElement("li");
+        li.className = "result-line";
+        li.innerHTML =
+          '<span class="' + (ok ? "pass" : "fail") + '">' +
+          (ok ? "PASS" : "FAIL") + "</span> " + name +
+          (detail ? " &mdash; " + detail : "");
+        list.appendChild(li);
+      }
+
+      function assertEqual(name, got, expected) {
+        record(name, got === expected, "expected " + expected + ", got " + got);
+      }
+
+      function assertContains(name, haystack, needle) {
+        var ok = String(haystack).indexOf(needle) !== -1;
+        record(name, ok, "expected text containing '" + needle + "', got '" + haystack + "'");
+      }
+
+      var cleanCsv = [
+        "rep_id,rep_name,quota,actual_revenue",
+        "R-001,Ana Beltran,100000,110000",
+        "R-002,Ben Carter,100000,80000",
+        "R-003,Carmen Diaz,100000,100000",
+        "R-004,David Eze,120000,119880",
+        "R-005,Elena Frost,90000,90900"
+      ].join("\n");
+
+      var messyCsv = [
+        "rep_id,rep_name,quota,actual_revenue",
+        "R-101,Dana Cole,100000,125000",
+        "R-102,Eli Frost,100000,100000",
+        "R-103,Priya Nair,100000",
+        "R-104,Sam Ortega,100000,90000,west region",
+        "R-101,Dana Cole,100000,70000",
+        "R-105,Tom Reed,0,50000",
+        "R-106,Uma Shah,abc,60000",
+        "R-107,Val Diaz,100000,80000"
+      ].join("\n");
+
+      // --- CSV parsing -----------------------------------------------------
+      assertEqual("parse plain line field count", DashboardLogic.parseCsvLine("a,b,c").length, 3);
+      assertEqual("quoted field with comma stays whole",
+        DashboardLogic.parseCsvLine('R-1,"Diaz, Ana",100,90')[1], "Diaz, Ana");
+      assertEqual("money $1,250.50 to cents", DashboardLogic.parseMoneyToCents("$1,250.50").cents, 125050);
+
+      // --- banding ---------------------------------------------------------
+      assertEqual("over band", DashboardLogic.bandFor(110, 100), "over");
+      assertEqual("under band", DashboardLogic.bandFor(90, 100), "under");
+      assertEqual("at band when equal", DashboardLogic.bandFor(100, 100), "at");
+
+      // --- clean file ------------------------------------------------------
+      var clean = DashboardLogic.analyze(cleanCsv);
+      assertEqual("clean file is ok", clean.ok, true);
+      assertEqual("clean file has 5 valid reps", clean.summary.validCount, 5);
+      assertEqual("clean file has 0 issues", clean.summary.issueCount, 0);
+      assertEqual("clean over count", clean.summary.over, 2);
+      assertEqual("clean at count", clean.summary.at, 1);
+      assertEqual("clean under count", clean.summary.under, 2);
+      assertEqual("rep at exactly 100% is banded 'at'", clean.reps[2].band, "at");
+      assertEqual("rep at exactly 100% attainment is 1", clean.reps[2].attainment, 1);
+      assertEqual("just-under-boundary rep is 'under'", clean.reps[3].band, "under");
+      assertEqual("just-over-boundary rep is 'over'", clean.reps[4].band, "over");
+
+      // --- messy file ------------------------------------------------------
+      var messy = DashboardLogic.analyze(messyCsv);
+      assertEqual("messy file is still ok (header valid)", messy.ok, true);
+      assertEqual("messy file keeps 3 valid reps", messy.summary.validCount, 3);
+      assertEqual("messy file collects 5 issues", messy.summary.issueCount, 5);
+
+      function issueText(result, lineNumber) {
+        var found = result.issues.filter(function (i) { return i.lineNumber === lineNumber; })[0];
+        return found ? found.reason : "(no issue on that line)";
+      }
+      assertContains("missing field flagged", issueText(messy, 4), "found 3");
+      assertContains("extra field flagged", issueText(messy, 5), "found 5");
+      assertContains("duplicate rep_id flagged", issueText(messy, 6), "duplicate rep_id");
+      assertContains("zero quota flagged", issueText(messy, 7), "greater than 0");
+      assertContains("non-numeric quota flagged", issueText(messy, 8), "not a number");
+
+      // --- structural failures --------------------------------------------
+      var missingCol = DashboardLogic.analyze("rep_id,rep_name,quota\nR-1,Ana,100");
+      assertEqual("missing required column is rejected", missingCol.ok, false);
+      assertContains("names the missing column", missingCol.error, "actual_revenue");
+
+      var empty = DashboardLogic.analyze("   \n  ");
+      assertEqual("empty file is rejected", empty.ok, false);
+
+      // --- summary ---------------------------------------------------------
+      var summary = document.getElementById("summary");
+      summary.textContent = passed + " passed, " + failed + " failed";
+      summary.className = failed === 0 ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

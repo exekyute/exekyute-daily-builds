@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NYK vs SAS Matchup Projector (2025-26)</title>
+<style>
+  :root {
+    --nyk: #006bb6;      /* Knicks blue */
+    --nyk-accent: #f58426;/* Knicks orange */
+    --sas: #c4ced4;      /* Spurs silver */
+    --sas-dark: #1a1a1a; /* Spurs black */
+    --bg: #0e1116;
+    --panel: #171c24;
+    --panel-2: #1f2731;
+    --text: #e8edf2;
+    --muted: #9aa7b4;
+    --line: #2a3340;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(1200px 600px at 50% -10%, #1b2230, var(--bg));
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 28px 20px 60px; }
+  header h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: 0.3px; }
+  header p { margin: 0; color: var(--muted); font-size: 14px; }
+  .badge {
+    display: inline-block; font-size: 12px; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px;
+  }
+  .refresh {
+    font-size: 12px; color: var(--text); background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; cursor: pointer;
+  }
+  .refresh:hover { border-color: var(--nyk-accent); }
+  .grid { display: grid; gap: 16px; }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 720px) { .cols-3, .cols-2 { grid-template-columns: 1fr; } }
+  .panel {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 18px;
+  }
+  .panel h2 { margin: 0 0 14px; font-size: 16px; }
+  .stat { text-align: center; }
+  .stat .big { font-size: 30px; font-weight: 700; }
+  .stat .lbl { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; }
+  .nyk { color: var(--nyk-accent); }
+  .sas { color: var(--sas); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td.score { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .win-nyk { color: var(--nyk-accent); }
+  .win-sas { color: #dfe6ec; }
+  .note { color: var(--muted); font-size: 12px; }
+  .controls label { display: block; font-size: 13px; color: var(--muted); margin: 12px 0 6px; }
+  .hosted {
+    display: flex; flex-direction: column; gap: 2px;
+    background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 9px; padding: 9px 12px;
+  }
+  .hosted .host-city { font-size: 15px; font-weight: 700; }
+  .hosted .host-sub { font-size: 12px; color: var(--muted); }
+  .seg { display: flex; gap: 6px; }
+  .seg button {
+    flex: 1; background: var(--panel-2); color: var(--text); border: 1px solid var(--line);
+    padding: 9px; border-radius: 9px; cursor: pointer; font-size: 13px; transition: 0.15s;
+  }
+  .seg button.active { background: var(--nyk); border-color: var(--nyk); color: #fff; }
+  input[type=range] { width: 100%; accent-color: var(--nyk-accent); }
+  .proj-score { font-size: 40px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .winbar {
+    position: relative; height: 34px; border-radius: 8px; overflow: hidden;
+    border: 1px solid var(--line);
+    /* two-color gradient: NYK color on the left half, SAS color on the right half */
+    background: linear-gradient(90deg, var(--nyk) 0%, var(--nyk) 32%, var(--sas) 68%, var(--sas) 100%);
+  }
+  .winbar .wb-label {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    font-size: 13px; font-weight: 700; white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.45);
+  }
+  .winbar .wb-nyk { left: 10px; }
+  .winbar .wb-sas { right: 10px; }
+  .barchart { display: flex; gap: 24px; align-items: flex-end; height: 320px; padding: 14px 10px 0; }
+  .barchart .col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+  .barchart .bar { width: 72%; border-radius: 10px 10px 0 0; transition: height 0.3s; }
+  .barchart .v { font-size: 13px; margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+  .barchart .k { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  canvas { width: 100%; height: auto; display: block; }
+  button.run {
+    margin-top: 14px; width: 100%; background: var(--nyk-accent); color: #1a1a1a; border: 0;
+    padding: 11px; border-radius: 9px; font-weight: 700; cursor: pointer; font-size: 14px;
+  }
+  button.run:hover { filter: brightness(1.05); }
+  .foot { margin-top: 26px; color: var(--muted); font-size: 12px; }
+  .foot a { color: var(--nyk-accent); }
+  .mc-summary { font-size: 13px; color: var(--muted); margin-top: 8px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Knicks vs Spurs Matchup Projector</h1>
+    <p>Projections built from every completed 2025-26 game between these two, regular season and playoffs (NBA Cup included).</p>
+    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:10px;">
+      <span class="badge" id="dataBadge"></span>
+      <span class="badge" id="modeBadge">loading live data…</span>
+      <button id="refreshBtn" class="refresh">Refresh</button>
+    </div>
+  </header>
+
+  <!-- Series summary -->
+  <div class="grid cols-3" style="margin-top:22px;">
+    <div class="panel stat"><div class="big" id="recordVal">2-1</div><div class="lbl">NYK series record</div></div>
+    <div class="panel stat"><div class="big nyk" id="nykAvg">--</div><div class="lbl">NYK avg points</div></div>
+    <div class="panel stat"><div class="big sas" id="sasAvg">--</div><div class="lbl">SAS avg points</div></div>
+  </div>
+
+  <!-- Game log -->
+  <div class="panel" style="margin-top:16px;">
+    <h2>Completed games this season</h2>
+    <p class="note" style="margin-top:-8px;">Regular season and playoffs. They are now in the 2026 NBA Finals, so completed Finals games will appear here as they finish.</p>
+    <table id="gameTable">
+      <thead><tr><th>Date</th><th>Setting</th><th>Result</th><th>Notable</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="grid cols-2" style="margin-top:16px;">
+    <!-- Projection controls + output -->
+    <div class="panel">
+      <h2>Next-meeting projection</h2>
+      <div class="controls">
+        <label>Hosted by</label>
+        <div class="hosted" id="hostedBy"><span class="host-city">--</span></div>
+        <label>Recency weighting: <span id="rwLabel">balanced</span></label>
+        <input type="range" id="rw" min="0" max="100" value="40" />
+        <div class="note">Slide right to lean more on the most recent game, left to weight all three games equally.</div>
+      </div>
+
+      <div style="text-align:center; margin-top:18px;">
+        <div class="proj-score"><span class="nyk" id="projNYK">--</span> <span style="color:var(--muted)">to</span> <span class="sas" id="projSAS">--</span></div>
+        <div class="note" id="projMargin"></div>
+      </div>
+
+      <label style="margin-top:16px; display:block; color:var(--muted); font-size:13px;">Win probability</label>
+      <div class="winbar">
+        <span class="wb-label wb-nyk" id="nykWin">NYK</span>
+        <span class="wb-label wb-sas" id="sasWin">SAS</span>
+      </div>
+    </div>
+
+    <!-- Avg points bar chart -->
+    <div class="panel">
+      <h2>Series scoring (per game)</h2>
+      <div class="barchart" id="barchart">
+        <div class="col">
+          <div class="v nyk" id="barNykV">--</div>
+          <div class="bar" id="barNyk" style="background:var(--nyk-accent);"></div>
+          <div class="k">NYK</div>
+        </div>
+        <div class="col">
+          <div class="v sas" id="barSasV">--</div>
+          <div class="bar" id="barSas" style="background:var(--sas);"></div>
+          <div class="k">SAS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monte Carlo -->
+  <div class="panel" style="margin-top:16px;">
+    <h2>Monte Carlo simulation</h2>
+    <div class="note">Simulates the projected next game 5,000 times, drawing the final margin from the spread of the real games. Bars show how often each margin range came up; blue means a Knicks win.</div>
+    <canvas id="mcCanvas" width="900" height="260"></canvas>
+    <div class="mc-summary" id="mcSummary"></div>
+    <button class="run" id="runMC">Run 5,000 simulations</button>
+  </div>
+
+  <div class="foot">
+    <span id="dataNote"></span>
+    This is a for-fun toy model, not betting advice.
+  </div>
+</div>
+
+<script>
+/* ----- Real 2025-26 NYK vs SAS games (chronological) ----- */
+/* Offline fallback: real completed games as of June 3, 2026. Used only if the
+   live ESPN fetch fails (no network, API change, etc.). */
+const FALLBACK_GAMES = [
+  { date: "Dec 16, 2025", setting: "NBA Cup Championship, neutral",
+    nyk: 124, sas: 113, note: "Top: O. Anunoby 28 (NYK), D. Harper 21 (SAS)" },
+  { date: "Dec 31, 2025", setting: "at San Antonio",
+    nyk: 132, sas: 134, note: "Top: J. Brunson (NYK), J. Champagnie 36 (SAS)" },
+  { date: "Mar 1, 2026", setting: "at New York",
+    nyk: 114, sas: 89, note: "Top: M. Bridges 25 (NYK)" }
+];
+const DATA_AS_OF = "June 3, 2026"; // fallback snapshot date
+
+/* Next scheduled meeting, used as the (locked) host for the projection.
+   Auto-set from the live schedule; this is the snapshot fallback. */
+const FALLBACK_NEXT = { host: "SAS", city: "San Antonio (Spurs)", label: "NBA Finals - Game 1" };
+
+let GAMES = FALLBACK_GAMES.slice();
+let nextGame = FALLBACK_NEXT;
+let dataMode = "snapshot"; // becomes "live" once the ESPN fetch succeeds
+let lastUpdated = null;
+
+const HCA = 2.5; // home-court advantage in points
+
+/* Win-bar half colors (must match the CSS gradient in .winbar) */
+const NYK_SECONDARY = "#006bb6"; // NYK color, left half
+const SAS_SECONDARY = "#c4ced4"; // SAS color, right half
+
+/* ----- Helpers ----- */
+function pickTextColor(hex){
+  // relative luminance, then black or white for best contrast
+  const c = hex.replace('#', '');
+  const r = parseInt(c.substr(0, 2), 16) / 255;
+  const g = parseInt(c.substr(2, 2), 16) / 255;
+  const b = parseInt(c.substr(4, 2), 16) / 255;
+  const lin = (v) => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  const L = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+  return L > 0.5 ? '#1a1a1a' : '#ffffff';
+}
+function erf(x){
+  // Abramowitz-Stegun approximation
+  const t = 1 / (1 + 0.3275911 * Math.abs(x));
+  const y = 1 - (((((1.061405429*t - 1.453152027)*t) + 1.421413741)*t - 0.284496736)*t + 0.254829592)*t*Math.exp(-x*x);
+  return x >= 0 ? y : -y;
+}
+function normCdf(z){ return 0.5 * (1 + erf(z / Math.SQRT2)); }
+function gaussian(){ // Box-Muller
+  let u = 0, v = 0;
+  while(u === 0) u = Math.random();
+  while(v === 0) v = Math.random();
+  return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
+}
+
+/* ----- State ----- */
+let host = nextGame.host; // locked to the next game's host (no manual switching)
+
+/* ----- Weighted model ----- */
+function computeModel(){
+  const n = GAMES.length;
+  const rw = parseInt(document.getElementById('rw').value, 10) / 100; // 0..1
+  const decay = 1 - rw; // 1 = equal weights, 0 = only newest game
+  // weight_i = decay ^ (distance from newest game)
+  const weights = GAMES.map((g, i) => Math.pow(decay, (n - 1 - i)));
+  const wSum = weights.reduce((a, b) => a + b, 0);
+
+  let wNyk = 0, wSas = 0, wMargin = 0;
+  GAMES.forEach((g, i) => {
+    wNyk += weights[i] * g.nyk;
+    wSas += weights[i] * g.sas;
+    wMargin += weights[i] * (g.nyk - g.sas);
+  });
+  wNyk /= wSum; wSas /= wSum; wMargin /= wSum;
+
+  // weighted std of margin
+  let varSum = 0;
+  GAMES.forEach((g, i) => {
+    const m = g.nyk - g.sas;
+    varSum += weights[i] * Math.pow(m - wMargin, 2);
+  });
+  let std = Math.sqrt(varSum / wSum);
+  if (std < 4) std = 4; // floor so a small sample never looks like a lock
+
+  // apply host advantage
+  let nykProj = wNyk, sasProj = wSas;
+  if (host === "NYK") nykProj += HCA;
+  else if (host === "SAS") sasProj += HCA;
+  const margin = nykProj - sasProj;
+  const pNyk = normCdf(margin / std);
+
+  return { wNyk, wSas, nykProj, sasProj, margin, std, pNyk };
+}
+
+/* ----- Render ----- */
+function render(){
+  const m = computeModel();
+
+  document.getElementById('projNYK').textContent = Math.round(m.nykProj);
+  document.getElementById('projSAS').textContent = Math.round(m.sasProj);
+  const leader = m.margin >= 0 ? 'NYK' : 'SAS';
+  const cls = m.margin >= 0 ? 'nyk' : 'sas';
+  document.getElementById('projMargin').innerHTML =
+    'projected <span class="' + cls + '">' + leader + '</span> by ' + Math.abs(m.margin).toFixed(1) +
+    ' (spread &plusmn;' + m.std.toFixed(1) + ')';
+
+  const pN = Math.round(m.pNyk * 100);
+  const nLbl = document.getElementById('nykWin');
+  const sLbl = document.getElementById('sasWin');
+  nLbl.textContent = 'NYK ' + pN + '%';
+  sLbl.textContent = (100 - pN) + '% SAS';
+  // each label sits over its team's color, so pick text color for best contrast there
+  nLbl.style.color = pickTextColor(NYK_SECONDARY); // left half color
+  sLbl.style.color = pickTextColor(SAS_SECONDARY); // right half color
+  // gradient transition tracks the win %: NYK color fills its share, then blends to SAS color
+  const b = Math.min(10, pN, 100 - pN); // blend width, shrinks to 0 at the extremes
+  document.querySelector('.winbar').style.background =
+    'linear-gradient(90deg, var(--nyk) 0%, var(--nyk) ' + pN + '%, var(--sas) ' + (pN + b) + '%, var(--sas) 100%)';
+
+  // bar chart of weighted avg points (scaled to fill the panel space)
+  const maxV = Math.max(m.wNyk, m.wSas);
+  const barMax = 250; // px for the taller bar
+  document.getElementById('barNyk').style.height = (m.wNyk / maxV * barMax) + 'px';
+  document.getElementById('barSas').style.height = (m.wSas / maxV * barMax) + 'px';
+  document.getElementById('barNykV').textContent = m.wNyk.toFixed(1);
+  document.getElementById('barSasV').textContent = m.wSas.toFixed(1);
+
+  // recency label
+  const rw = parseInt(document.getElementById('rw').value, 10);
+  const lbl = rw < 20 ? 'all games equal' : rw < 55 ? 'balanced' : rw < 85 ? 'recent-leaning' : 'newest game heavy';
+  document.getElementById('rwLabel').textContent = lbl;
+}
+
+/* ----- Monte Carlo ----- */
+function runMonteCarlo(){
+  const m = computeModel();
+  const N = 5000;
+  const buckets = {}; // margin rounded to nearest 4
+  let nykWins = 0;
+  const bucketSize = 4;
+  for (let i = 0; i < N; i++){
+    const sample = m.margin + m.std * gaussian();
+    if (sample > 0) nykWins++;
+    const b = Math.round(sample / bucketSize) * bucketSize;
+    buckets[b] = (buckets[b] || 0) + 1;
+  }
+  drawHistogram(buckets, bucketSize);
+  const pct = Math.round(nykWins / N * 100);
+  document.getElementById('mcSummary').innerHTML =
+    'NYK won <b>' + pct + '%</b> of 5,000 simulated games. ' +
+    'Median outcome lands near the projected score above.';
+}
+
+function drawHistogram(buckets, bucketSize){
+  const c = document.getElementById('mcCanvas');
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const keys = Object.keys(buckets).map(Number).sort((a, b) => a - b);
+  if (!keys.length) return;
+  const minK = keys[0], maxK = keys[keys.length - 1];
+  const maxCount = Math.max(...keys.map(k => buckets[k]));
+  const padX = 30, padTop = 28, padBottom = 50;
+  const baseY = H - padBottom;
+  const plotW = W - padX * 2, plotH = baseY - padTop;
+  const span = (maxK - minK) || bucketSize;
+  const barW = Math.max(6, plotW / ((span / bucketSize) + 1) - 3);
+
+  // zero line (NYK win threshold)
+  const zeroX = padX + ((0 - minK) / span) * plotW;
+  ctx.strokeStyle = '#5a6675';
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(zeroX, padTop - 8); ctx.lineTo(zeroX, baseY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#9aa7b4';
+  ctx.font = '11px sans-serif';
+  ctx.fillText('NYK win >', zeroX + 4, padTop - 12);
+  ctx.fillText('< SAS win', zeroX - 56, padTop - 12);
+
+  keys.forEach(k => {
+    const x = padX + ((k - minK) / span) * plotW;
+    const h = (buckets[k] / maxCount) * plotH;
+    ctx.fillStyle = k > 0 ? '#006bb6' : '#3a444f';
+    ctx.fillRect(x - barW / 2, baseY - h, barW, h);
+  });
+
+  // x-axis tick labels (well above the axis title)
+  ctx.fillStyle = '#9aa7b4';
+  ctx.font = '11px sans-serif';
+  [minK, Math.round((minK + maxK) / 2 / bucketSize) * bucketSize, maxK].forEach(k => {
+    const x = padX + ((k - minK) / span) * plotW;
+    const txt = (k > 0 ? '+' : '') + k;
+    ctx.fillText(txt, x - 8, baseY + 18);
+  });
+  // axis title, given its own line below the ticks
+  ctx.fillStyle = '#6f7d8c';
+  ctx.fillText('NYK margin', W / 2 - 30, baseY + 38);
+}
+
+/* ----- Wire up ----- */
+function buildTable(){
+  const tb = document.querySelector('#gameTable tbody');
+  tb.innerHTML = '';
+  GAMES.forEach(g => {
+    const nykWon = g.nyk > g.sas;
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + g.date + '</td>' +
+      '<td class="note">' + g.setting + '</td>' +
+      '<td class="score"><span class="' + (nykWon ? 'win-nyk' : '') + '">NYK ' + g.nyk + '</span>, ' +
+        '<span class="' + (!nykWon ? 'win-nyk' : '') + '">SAS ' + g.sas + '</span></td>' +
+      '<td class="note">' + g.note + '</td>';
+    tb.appendChild(tr);
+  });
+}
+
+function initSummary(){
+  const n = GAMES.length;
+  const nykAvg = GAMES.reduce((a, g) => a + g.nyk, 0) / n;
+  const sasAvg = GAMES.reduce((a, g) => a + g.sas, 0) / n;
+  const nykWins = GAMES.filter(g => g.nyk > g.sas).length;
+  document.getElementById('recordVal').textContent = nykWins + '-' + (n - nykWins);
+  document.getElementById('nykAvg').textContent = nykAvg.toFixed(1);
+  document.getElementById('sasAvg').textContent = sasAvg.toFixed(1);
+  const lead = nykWins >= (n - nykWins) ? 'NYK leads ' + nykWins + '-' + (n - nykWins)
+                                        : 'SAS leads ' + (n - nykWins) + '-' + nykWins;
+  document.getElementById('dataBadge').textContent = n + ' completed games | ' + lead;
+}
+
+function buildAll(){
+  buildTable();
+  initSummary();
+  updateHostDisplay();
+  render();
+  runMonteCarlo();
+}
+
+function updateHostDisplay(){
+  const el = document.getElementById('hostedBy');
+  const cls = nextGame.host === "NYK" ? "nyk" : nextGame.host === "SAS" ? "sas" : "";
+  el.innerHTML = '<span class="host-city ' + cls + '">' + nextGame.city + '</span>' +
+    (nextGame.label ? '<span class="host-sub">' + nextGame.label + '</span>' : '');
+}
+
+function updateDataNote(){
+  const note = document.getElementById('dataNote');
+  const mode = document.getElementById('modeBadge');
+  if (dataMode === 'live') {
+    mode.textContent = 'LIVE | updated ' + lastUpdated.toLocaleTimeString();
+    mode.style.color = '#4ade80';
+    note.innerHTML = 'Live data pulled from ESPN’s public API each time you open or refresh this page, ' +
+      'including any newly completed playoff games. Last updated ' + lastUpdated.toLocaleString() + '. ';
+  } else {
+    mode.textContent = 'SNAPSHOT';
+    mode.style.color = 'var(--muted)';
+    note.innerHTML = 'Live fetch was unavailable, so this is the built-in snapshot. ' +
+      'Data accurate as of ' + DATA_AS_OF + '. ';
+  }
+}
+
+/* ----- Live data from ESPN public API ----- */
+const ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba";
+const KNICKS_ID = 18, OPP_ABBR = "SA";
+
+async function fetchLiveGames(){
+  const events = [];
+  for (const stype of [2, 3]) { // 2 = regular season (incl. NBA Cup), 3 = playoffs
+    const j = await (await fetch(ESPN + "/teams/" + KNICKS_ID + "/schedule?season=2026&seasontype=" + stype)).json();
+    (j.events || []).forEach(e => { e._stype = stype; events.push(e); });
+  }
+  const completed = events.filter(e => {
+    const comp = e.competitions && e.competitions[0];
+    if (!comp) return false;
+    const done = comp.status && comp.status.type && comp.status.type.completed;
+    const vsSpurs = (comp.competitors || []).some(c => c.team && c.team.abbreviation === OPP_ABBR);
+    return done && vsSpurs;
+  });
+
+  const games = await Promise.all(completed.map(async e => {
+    const comp = e.competitions[0];
+    const nykC = comp.competitors.find(c => c.team.abbreviation === "NY");
+    const sasC = comp.competitors.find(c => c.team.abbreviation === OPP_ABBR);
+    const nyk = parseInt((nykC.score && nykC.score.displayValue) || nykC.score, 10);
+    const sas = parseInt((sasC.score && sasC.score.displayValue) || sasC.score, 10);
+
+    const homeAb = (comp.competitors.find(c => c.homeAway === "home") || {}).team.abbreviation;
+    const noteHead = (comp.notes && comp.notes[0] && comp.notes[0].headline) || "";
+    const venuePart = comp.neutralSite ? "neutral" : ("at " + (homeAb === "NY" ? "New York" : "San Antonio"));
+    const setting = noteHead ? (noteHead + ", " + venuePart) : venuePart;
+
+    // leading scorer per team for the notable column (factual, no AI)
+    let note = "";
+    try {
+      const sum = await (await fetch(ESPN + "/summary?event=" + e.id)).json();
+      const topScorer = (ab) => {
+        const tl = (sum.leaders || []).find(t => t.team && t.team.abbreviation === ab);
+        const pts = tl && tl.leaders.find(l => l.name === "points");
+        const top = pts && pts.leaders && pts.leaders[0];
+        return top ? ((top.athlete || {}).shortName + " " + top.displayValue) : null;
+      };
+      const ln = topScorer("NY"), ls = topScorer(OPP_ABBR);
+      if (ln || ls) note = "Top: " + (ln || "--") + " (NYK), " + (ls || "--") + " (SAS)";
+    } catch (_) { /* leave note blank if summary fails */ }
+
+    const ts = new Date(e.date).getTime();
+    const date = new Date(e.date).toLocaleDateString("en-US",
+      { timeZone: "America/New_York", month: "short", day: "numeric", year: "numeric" });
+    return { _ts: ts, date, setting, nyk, sas, note };
+  }));
+
+  games.sort((a, b) => a._ts - b._ts); // oldest first so recency weighting works
+
+  // next scheduled meeting: earliest not-yet-completed game vs the Spurs
+  const upcoming = events.filter(e => {
+    const c = e.competitions && e.competitions[0];
+    if (!c) return false;
+    const notDone = !(c.status && c.status.type && c.status.type.completed);
+    const vsSpurs = (c.competitors || []).some(x => x.team && x.team.abbreviation === OPP_ABBR);
+    return notDone && vsSpurs;
+  }).sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  let next = null;
+  if (upcoming.length) {
+    const c = upcoming[0].competitions[0];
+    const homeAb = (c.competitors.find(x => x.homeAway === "home") || {}).team.abbreviation;
+    const label = (c.notes && c.notes[0] && c.notes[0].headline) || "";
+    if (c.neutralSite) next = { host: "NEU", city: "Neutral site", label };
+    else if (homeAb === "NY") next = { host: "NYK", city: "New York (Knicks)", label };
+    else next = { host: "SAS", city: "San Antonio (Spurs)", label };
+  }
+
+  return { games, next };
+}
+
+async function loadData(){
+  const mode = document.getElementById('modeBadge');
+  mode.textContent = 'loading live data…';
+  try {
+    const live = await fetchLiveGames();
+    if (live && live.games && live.games.length) {
+      GAMES = live.games;
+      nextGame = live.next || { host: "NEU", city: "No upcoming game scheduled", label: "" };
+      host = nextGame.host;
+      dataMode = 'live';
+      lastUpdated = new Date();
+      buildAll();
+    }
+  } catch (_) { /* keep fallback snapshot */ }
+  updateDataNote();
+}
+
+document.getElementById('rw').addEventListener('input', render);
+document.getElementById('runMC').addEventListener('click', runMonteCarlo);
+document.getElementById('refreshBtn').addEventListener('click', loadData);
+
+buildAll();   // instant paint from fallback
+loadData();   // then replace with live data
+</script>
+</body>
+</html>

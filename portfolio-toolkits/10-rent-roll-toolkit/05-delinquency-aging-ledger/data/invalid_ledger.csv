@@ -1,0 +1,3 @@
+unit,tenant,charge_type,amount_charged,amount_paid
+101,Ava Bennett,Rent,1500.00,0.00
+102,Liam Carter,Rent,1800.00,0.00

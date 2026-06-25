@@ -1,0 +1,6 @@
+asset_id,description,cca_class,capital_cost,in_service_date,useful_life_years,salvage_value,disposed,disposal_proceeds,prior_accum_book_dep
+FA-101,Mystery machine,99,5000.00,2026-02-01,5,0.00,N,,0.00
+FA-102,Negative cost desk,8,-300.00,2026-02-01,5,0.00,N,,0.00
+FA-103,Missing life chair,8,400.00,2026-02-01,,0.00,N,,0.00
+FA-104,Bad date cabinet,8,400.00,02-01-2026,5,0.00,N,,0.00
+FA-105,Salvage too high,8,400.00,2026-02-01,5,900.00,N,,0.00

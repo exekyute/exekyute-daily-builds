@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finlit Tools — Canada</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .tool-card { transition: transform .15s ease, box-shadow .15s ease; }
+    .tool-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -10px rgba(15, 23, 42, .15); }
+  </style>
+</head>
+
+<body class="bg-[#f8fafc] min-h-screen py-10 text-slate-800">
+
+  <!-- OPS CONTEXT: Hub page that ties seven self-contained Canadian personal-finance calculators together. -->
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+    <header class="text-center space-y-3">
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900">Finlit Tools — Canada</h1>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        Seven self-contained, browser-based calculators for Canadian benefit and tax rules — built to make hidden math visible.
+      </p>
+    </header>
+
+    <!-- M1 [Tool Grid]: each card links into a sibling folder's index.html. -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <a href="./benefit-clawback-radar/index.html" class="tool-card bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <div class="text-xs font-bold tracking-wider uppercase text-indigo-600 mb-2">Benefits &amp; clawbacks</div>
+        <h2 class="text-xl font-bold text-slate-900 mb-2">Benefit Clawback Radar</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">EMTR cliffs from CCB and GIS phase-outs, plus an RRSP escape hatch to flatten them.</p>
+      </a>
+
+      <a href="./cpp-oas-deferral-optimizer/index.html" class="tool-card bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <div class="text-xs font-bold tracking-wider uppercase text-indigo-600 mb-2">Retirement</div>
+        <h2 class="text-xl font-bold text-slate-900 mb-2">CPP &amp; OAS Deferral Optimizer</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">Lifetime payout against expected lifespan as you slide your CPP and OAS start ages.</p>
+      </a>
+
+      <a href="./fhsa-calculator/index.html" class="tool-card bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <div class="text-xs font-bold tracking-wider uppercase text-indigo-600 mb-2">First home</div>
+        <h2 class="text-xl font-bold text-slate-900 mb-2">FHSA Optimization Engine</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">Year-by-year FHSA growth toward a down payment, including refund reinvestment and the $40K lifetime cap.</p>
+      </a>
+
+      <a href="./hbp-repayment-engine/index.html" class="tool-card bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <div class="text-xs font-bold tracking-wider uppercase text-indigo-600 mb-2">Home Buyers' Plan</div>
+        <h2 class="text-xl font-bold text-slate-900 mb-2">HBP Repayment Engine</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">15-year cost of skipping HBP repayments: cash kept, tax owed, RRSP room permanently lost.</p>
+      </a>
+
+      <a href="./llp-vs-wealth-advisor/index.html" class="tool-card bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <div class="text-xs font-bold tracking-wider uppercase text-indigo-600 mb-2">Education</div>
+        <h2 class="text-xl font-bold text-slate-900 mb-2">LLP vs. Wealth Advisor</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">The invisible opportunity cost of pulling RRSP money to fund school, even with perfect repayment.</p>
+      </a>
+
+      <a href="./resp-cesg-optimizer/index.html" class="tool-card bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <div class="text-xs font-bold tracking-wider uppercase text-indigo-600 mb-2">Kids' education</div>
+        <h2 class="text-xl font-bold text-slate-900 mb-2">RESP + CESG Optimizer</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">Plan an RESP that captures the full $7,200 CESG grant before the 16–17 eligibility cutoff.</p>
+      </a>
+
+      <a href="./tfsa-snowballer/index.html" class="tool-card bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+        <div class="text-xs font-bold tracking-wider uppercase text-indigo-600 mb-2">Tax-free investing</div>
+        <h2 class="text-xl font-bold text-slate-900 mb-2">TFSA Snowballer</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">Tax-free TFSA growth side by side with a taxable account drift over the same timeline.</p>
+      </a>
+
+    </section>
+
+    <!-- M2 [Self-Learning Note]: short statement of intent so visitors understand why the tools exist. -->
+    <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-3">
+      <h2 class="text-xl font-bold text-slate-900">Why these exist</h2>
+      <p class="text-slate-600 leading-relaxed">
+        I built these to refresh hands-on coding fundamentals while practicing the harder skill: explaining dense Canadian tax-and-benefit rules in plain language, with the rules themselves as the constraint that forces clarity.
+        Each tool is one HTML file — no build step, no server, no install. Double-click to run, or use the hosted version.
+      </p>
+    </section>
+
+    <!-- M3 [Disclaimer]: same baseline as each tool. -->
+    <footer class="pt-6 border-t border-slate-200">
+      <details class="bg-slate-50 border border-slate-200 rounded-xl" open>
+        <summary class="cursor-pointer px-5 py-4 text-sm font-bold text-slate-800 hover:text-indigo-700 select-none">
+          Disclaimer &amp; sources
+        </summary>
+        <div class="px-5 pb-5 pt-1 text-sm text-slate-600 space-y-3">
+          <p>These tools are illustrative only. They use 2026-indexed estimates of federal and provincial rules and simplify many real-world variables. Each tool documents what it does and does not model in its own footer.</p>
+          <p>Verify your personal numbers in <a href="https://www.canada.ca/en/revenue-agency/services/e-services/cra-my-account.html" target="_blank" rel="noopener" class="underline text-indigo-600">CRA My Account</a> or <a href="https://www.canada.ca/en/employment-social-development/services/my-account.html" target="_blank" rel="noopener" class="underline text-indigo-600">My Service Canada Account</a> and consult a Certified Professional Accountant or qualified financial advisor before acting.</p>
+          <p class="text-xs text-slate-500">Not tax, legal, or investment advice.</p>
+        </div>
+      </details>
+      <div class="text-[11px] text-slate-400 mt-4 tracking-wider uppercase text-center">© Finlit Tools · 2026 Parameter Frame</div>
+    </footer>
+
+  </main>
+
+</body>
+</html>

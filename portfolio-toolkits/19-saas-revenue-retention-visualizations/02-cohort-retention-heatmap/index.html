@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cohort Retention Heatmap</title>
+    <style>
+      :root {
+        --base: #1f2a44;
+        --accent: #2f6f9e;
+        --ink: #1f2a44;
+        --muted: #5b6678;
+        --line: #e2e6ee;
+        --bg: #f6f8fc;
+        --panel: #ffffff;
+        --danger: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 72ch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: calc(var(--space) * 3);
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="file"],
+      select {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      button {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background: #c9d4e8;
+        cursor: not-allowed;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eef3f8;
+        color: #2a5878;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--danger);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 5);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .heatmap {
+        display: grid;
+        gap: var(--space);
+        align-items: stretch;
+      }
+
+      .hm-corner {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: var(--space);
+      }
+
+      .hm-head {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+        text-align: center;
+        align-self: end;
+        padding-bottom: var(--space);
+      }
+
+      .hm-rowlabel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-right: calc(var(--space) * 2);
+      }
+
+      .hm-cohort {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .hm-sub {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .hm-cell {
+        min-height: 52px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        border: 1px solid var(--line);
+      }
+
+      .hm-blank {
+        background: repeating-linear-gradient(
+          45deg,
+          #f1f3f8,
+          #f1f3f8 6px,
+          #e9edf5 6px,
+          #e9edf5 12px
+        );
+        border: 1px dashed var(--line);
+      }
+
+      .legend {
+        display: flex;
+        align-items: center;
+        gap: var(--space);
+        margin-top: calc(var(--space) * 3);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .legend-bar {
+        height: 14px;
+        width: 220px;
+        border-radius: 7px;
+        background: linear-gradient(to right, rgba(47, 111, 158, 0.06), rgba(47, 111, 158, 1));
+        border: 1px solid var(--line);
+      }
+
+      .row-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: calc(var(--space) * 3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Cohort Retention Heatmap</h1>
+        <p>
+          Load the same recurring-revenue ledger and this groups customers by the month they signed up,
+          then tracks how much of each cohort is still there in the months that follow. Read it as revenue
+          retained against the cohort's starting revenue, or as customers retained against the starting
+          count. Darker cells held more of their base; a cell above 100% means the cohort grew.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div>
+            <label for="fileInput">Ledger CSV</label>
+            <input type="file" id="fileInput" accept=".csv,text/csv" />
+          </div>
+          <div>
+            <label for="modePick">Measure</label>
+            <select id="modePick">
+              <option value="revenue">Revenue retention</option>
+              <option value="logo">Logo retention</option>
+            </select>
+          </div>
+        </div>
+        <div class="message" id="message"></div>
+      </section>
+
+      <section class="panel">
+        <div class="summary" id="summary">
+          <div class="stat"><span class="stat-value">--</span><span class="stat-label">load a ledger to begin</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="heatmap" id="heatmap"></div>
+        <div class="legend">
+          <span>0%</span>
+          <span class="legend-bar"></span>
+          <span>100%+</span>
+          <span style="margin-left:16px;">M0 is each cohort's signup month.</span>
+        </div>
+        <div class="row-actions">
+          <button id="exportBtn" disabled>Export cohort-retention.csv</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="dist/cohort.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>

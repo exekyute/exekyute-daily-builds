@@ -1,0 +1,8 @@
+sku,description,category,on_hand_qty,stock_unit,wac_unit_cost,inventory_value,integrity_flag
+RM-MALT-2ROW,2-Row Pale Malt,raw_material,500,kg,1.2933,646.67,
+RM-HOPS-CASCADE,Cascade Hops (imported),raw_material,50,kg,15.0334,751.67,
+PKG-CAN-355,355mL Can Blank,packaging_material,30000,each,0.0870,2610.00,
+PKG-LABEL-IPA,IPA Can Label,packaging_material,-5000,each,0.0200,-100.00,negative on-hand
+FG-LAGER-CAN,Lager 355mL Can (case of 24),finished_goods,500,case,28.8000,14400.00,
+FG-KEG-IPA,IPA Half-Barrel Keg,finished_goods,50,keg,90.0000,4500.00,
+FG-RADLER-CAN,Radler 355mL Can (case of 24),finished_goods,100,case,26.4000,2640.00,

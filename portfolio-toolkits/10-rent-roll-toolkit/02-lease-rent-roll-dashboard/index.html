@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lease and Rent Roll Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="page-head">
+      <h1>Lease and Rent Roll Dashboard</h1>
+      <p class="lede">
+        Load a rent roll CSV to see what every unit owes this month and which
+        leases are due for renewal. The file is read in your browser and never
+        sent anywhere.
+      </p>
+    </header>
+
+    <section class="controls" aria-label="Controls">
+      <div class="field">
+        <label for="file">Rent roll CSV</label>
+        <input type="file" id="file" accept=".csv,text/csv" />
+        <p class="hint">Sample included at <code>data/sample_rent_roll.csv</code>.</p>
+      </div>
+      <div class="field">
+        <label for="as-of">As of date</label>
+        <input type="date" id="as-of" value="2026-06-12" />
+        <p class="hint">The reference date for renewal flags.</p>
+      </div>
+      <div class="field">
+        <label for="window">Expiry window (days)</label>
+        <input type="number" id="window" value="60" min="0" step="1" />
+        <p class="hint">Flag leases ending within this many days.</p>
+      </div>
+    </section>
+
+    <p id="message" class="message" role="status"></p>
+
+    <section id="summary" class="summary" hidden></section>
+
+    <section id="table-panel" class="panel" hidden>
+      <h2>Units</h2>
+      <div class="table-scroll">
+        <table id="roll">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Tenant</th>
+              <th class="num">Monthly rent</th>
+              <th class="num">Prorated rent</th>
+              <th class="num">Late fee</th>
+              <th class="num">Amount due</th>
+              <th>Lease end</th>
+              <th class="num">Days to expiry</th>
+            </tr>
+          </thead>
+          <tbody id="roll-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="issues-panel" class="panel issues" hidden>
+      <h2>Skipped rows</h2>
+      <ul id="issues-list"></ul>
+    </section>
+  </main>
+
+  <script src="dashboard_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

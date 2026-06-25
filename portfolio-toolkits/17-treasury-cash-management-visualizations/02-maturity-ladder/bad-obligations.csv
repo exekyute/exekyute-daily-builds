@@ -1,0 +1,4 @@
+obligation_id,counterparty,type,due_date,amount
+OB-2001,BMO Term Loan,loan_principal,2026-06-19,50000.00
+OB-2001,Duplicate Id Co,payable,2026-07-01,1200.00
+OB-2003,City Property Tax,tax_remittance,2026-02-30,9000.00

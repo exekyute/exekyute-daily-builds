@@ -1,0 +1,4 @@
+# Count .sql files in the repository language statistics. Linguist treats
+# generic SQL as a data language and leaves it out of the Languages bar by
+# default; this forces it to be included.
+*.sql linguist-detectable=true

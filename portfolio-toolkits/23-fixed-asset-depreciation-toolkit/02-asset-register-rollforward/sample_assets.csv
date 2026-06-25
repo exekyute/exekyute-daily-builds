@@ -1,0 +1,6 @@
+asset_id,description,cca_class,capital_cost,in_service_date,useful_life_years,salvage_value,disposed,disposal_proceeds,prior_accum_book_dep
+FA-001,Warehouse shelving,8,8000.00,2019-03-15,10,0.00,N,,5600.00
+FA-002,Electric forklift,8,5000.00,2026-06-01,5,500.00,N,,0.00
+FA-003,Delivery van,10,9000.00,2021-01-10,6,1000.00,Y,7000.00,4000.00
+FA-004,Server rack,50,2000.00,2022-08-01,4,0.00,Y,300.00,1500.00
+FA-005,Hand tool set,12,1200.00,2018-05-01,3,0.00,N,,1200.00

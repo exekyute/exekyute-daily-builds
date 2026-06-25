@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loan Balance Dashboard, tests</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Minimal extra styling just for the test list. */
+      .results {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+      }
+      .results li {
+        padding: var(--space-2) var(--space-3);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        background: var(--color-surface);
+        font-variant-numeric: tabular-nums;
+      }
+      .pass {
+        border-left: 6px solid var(--color-accent);
+      }
+      .fail {
+        border-left: 6px solid var(--color-error);
+        color: var(--color-error);
+        font-weight: 700;
+      }
+      .tally {
+        font-size: 22px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <h1>Loan Balance Dashboard, tests</h1>
+        <p class="lede">
+          These checks run the pure logic in <code>balance-logic.js</code> with
+          no build tooling. Open this file in a browser and read the results
+          below.
+        </p>
+      </header>
+
+      <p id="tally" class="tally"></p>
+      <ul id="results" class="results"></ul>
+    </main>
+
+    <script src="balance-logic.js"></script>
+    <script>
+      (function () {
+        var results = document.getElementById("results");
+        var tally = document.getElementById("tally");
+        var passed = 0;
+        var failed = 0;
+
+        function record(name, ok, detail) {
+          if (ok) {
+            passed++;
+          } else {
+            failed++;
+          }
+          var li = document.createElement("li");
+          li.className = ok ? "pass" : "fail";
+          li.textContent =
+            (ok ? "PASS" : "FAIL") +
+            " - " +
+            name +
+            (ok || !detail ? "" : " (" + detail + ")");
+          results.appendChild(li);
+        }
+
+        function assertEqual(name, actual, expected) {
+          record(name, actual === expected, "got " + actual + ", expected " + expected);
+        }
+
+        // dollarsToCents
+        assertEqual("dollarsToCents parses whole dollars", dollarsToCents("172"), 17200);
+        assertEqual("dollarsToCents parses cents", dollarsToCents("172.55"), 17255);
+        assertEqual("dollarsToCents pads one decimal", dollarsToCents("3.4"), 340);
+        assertEqual("dollarsToCents reads zero", dollarsToCents("0.00"), 0);
+        assertEqual("dollarsToCents rejects letters", dollarsToCents("abc"), null);
+        assertEqual("dollarsToCents rejects negatives", dollarsToCents("-5.07"), null);
+        assertEqual("dollarsToCents rejects three decimals", dollarsToCents("1.234"), null);
+
+        // formatCents
+        assertEqual("formatCents formats a total", formatCents(103528), "$1,035.28");
+        assertEqual("formatCents formats zero", formatCents(0), "$0.00");
+
+        // parseSchedule, the shipped sample
+        var sample =
+          "period,payment,interest,principal,balance\n" +
+          "1,172.55,10.00,162.55,837.45\n" +
+          "2,172.55,8.37,164.18,673.27\n" +
+          "3,172.55,6.73,165.82,507.45\n" +
+          "4,172.55,5.07,167.48,339.97\n" +
+          "5,172.55,3.40,169.15,170.82\n" +
+          "6,172.53,1.71,170.82,0.00\n";
+        var good = parseSchedule(sample);
+        record("parseSchedule accepts the sample", good.ok === true, good.ok ? "" : good.errors.join("; "));
+        assertEqual("parseSchedule counts six periods", good.totals.periods, 6);
+        assertEqual("parseSchedule totals interest to 35.28", good.totals.totalInterest, "$35.28");
+        assertEqual("parseSchedule totals payments to 1035.28", good.totals.totalPayment, "$1,035.28");
+        assertEqual("parseSchedule closes the balance at 0.00", good.totals.finalBalance, "$0.00");
+        assertEqual("parseSchedule formats a row amount", good.rows[0].payment, "$172.55");
+
+        // parseSchedule, failure paths
+        var empty = parseSchedule("");
+        record("parseSchedule rejects an empty file", empty.ok === false, "");
+
+        var badHeader = parseSchedule("a,b,c,d,e\n1,2,3,4,5\n");
+        record("parseSchedule rejects a wrong header", badHeader.ok === false, "");
+
+        var ragged = parseSchedule(
+          "period,payment,interest,principal,balance\n1,172.55,10.00,162.55\n"
+        );
+        record("parseSchedule rejects a short row", ragged.ok === false, "");
+
+        var nonNumeric = parseSchedule(
+          "period,payment,interest,principal,balance\n1,172.55,10.00,abc,837.45\n"
+        );
+        record("parseSchedule rejects a non-numeric amount", nonNumeric.ok === false, "");
+
+        var negative = parseSchedule(
+          "period,payment,interest,principal,balance\n1,172.55,-10.00,162.55,837.45\n"
+        );
+        record("parseSchedule rejects a negative amount", negative.ok === false, "");
+
+        var manyErrors = parseSchedule(
+          "period,payment,interest,principal,balance\n2,172.55,8.37,164.18\n3,172.55,6.73,abc,507.45\n"
+        );
+        record(
+          "parseSchedule reports every problem at once",
+          manyErrors.ok === false && manyErrors.errors.length >= 2,
+          manyErrors.ok ? "" : manyErrors.errors.length + " errors"
+        );
+
+        tally.textContent =
+          (failed === 0 ? "ALL PASS" : "SOME FAILED") +
+          " - " +
+          passed +
+          " passed, " +
+          failed +
+          " failed";
+        tally.className = "tally " + (failed === 0 ? "pass" : "fail");
+        tally.style.padding = "var(--space-2) var(--space-3)";
+        tally.style.borderRadius = "var(--radius)";
+      })();
+    </script>
+  </body>
+</html>

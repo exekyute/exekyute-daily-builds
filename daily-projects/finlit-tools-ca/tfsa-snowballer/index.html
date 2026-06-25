@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The TFSA Snowballer</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent; 
+    }
+    
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #4f46e5; 
+      cursor: pointer;
+      border: 3px solid white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4); 
+    }
+    
+    input[type=range]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #4f46e5;
+      cursor: pointer;
+      border: 3px solid white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+    @media print {
+      body { background-color: white !important; }
+      .no-print { display: none !important; }
+      .shadow-sm, .shadow-lg { box-shadow: none !important; border: 1px solid #e2e8f0; }
+    }
+  </style>
+</head>
+<body class="bg-[#f8fafc] min-h-screen py-10">
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react,typescript">
+    // OPS CONTEXT: Shows the gap between TFSA tax-free compounding and a taxable account holding the same investments, year by year.
+    const { useState, useMemo, useEffect } = React;
+
+    // M1 [Tax Bracket Estimator]: simplified combined federal+provincial marginal rate by income band.
+    // PIVOT: Approximate 2026 rates; real provincial brackets vary. Tax-drag derivation below assumes 50% of marginal rate hits investment growth.
+    function getMarginalTaxRate(income) {
+      if (income <= 55000) return 0.20;
+      if (income <= 110000) return 0.305;
+      if (income <= 165000) return 0.36;
+      if (income <= 235000) return 0.41;
+      return 0.48;
+    }
+
+    // M2 [Schedule Builder]: parallel TFSA and taxable account growth from currentAge to retirementAge.
+    function calculateTFSASchedule(inputs) {
+      const marginalRate = getMarginalTaxRate(inputs.income);
+      // PIVOT: 50% blend assumes a mix of interest/dividends/capital gains. Pure-interest portfolios drag harder; pure-cap-gains drag less.
+      const taxDrag = marginalRate * 0.5;
+      const taxableReturnRate = inputs.returnRate * (1 - taxDrag);
+
+      let tfsaBalance = inputs.currentBalance || 0;
+      let taxableBalance = inputs.currentBalance || 0;
+      let totalContributed = inputs.currentBalance || 0;
+      
+      const schedule = [];
+      const yearsToGrow = inputs.retirementAge - inputs.currentAge;
+
+      for (let year = 1; year <= yearsToGrow; year++) {
+        const annualContribution = inputs.monthlyContribution * 12;
+        
+        const tfsaReturn = (tfsaBalance + annualContribution / 2) * inputs.returnRate;
+        tfsaBalance += annualContribution + tfsaReturn;
+
+        const taxableReturn = (taxableBalance + annualContribution / 2) * taxableReturnRate;
+        taxableBalance += annualContribution + taxableReturn;
+        
+        totalContributed += annualContribution;
+
+        schedule.push({
+          year,
+          age: inputs.currentAge + year,
+          totalContributed,
+          tfsaBalance,
+          taxableBalance,
+          difference: tfsaBalance - taxableBalance
+        });
+      }
+
+      return {
+        schedule,
+        finalTfsa: tfsaBalance,
+        finalTaxable: taxableBalance,
+        totalContributed,
+        totalLostToTaxes: tfsaBalance - taxableBalance,
+        effectiveTaxDrag: (taxDrag * 100).toFixed(1)
+      };
+    }
+
+    // M3 [UI Component]: state, derived projection, formatters, render.
+    function TFSACalculator() {
+      const defaultInputs = {
+        currentBalance: 0,
+        currentAge: 25,
+        retirementAge: 65,
+        monthlyContribution: 500,
+        returnRate: 0.07,
+        income: 75000
+      };
+
+      // M4 [State Persistence]: load saved inputs; backfill currentBalance for older saves missing the field.
+      const [inputs, setInputs] = useState(() => {
+        const savedData = localStorage.getItem('tfsa_user_inputs_final');
+        if (savedData) {
+          try {
+            const parsed = JSON.parse(savedData);
+            if (typeof parsed.currentBalance === 'undefined') {
+              parsed.currentBalance = 0;
+            }
+            return parsed;
+          } catch (e) { }
+        }
+        return defaultInputs;
+      });
+
+      useEffect(() => {
+        localStorage.setItem('tfsa_user_inputs_final', JSON.stringify(inputs));
+      }, [inputs]);
+
+      const projection = useMemo(() => calculateTFSASchedule(inputs), [inputs]);
+
+      const formatCurrency = (val) => 
+        new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 }).format(val);
+
+      const handleInputChange = (field, value) => {
+        setInputs(prev => ({ ...prev, [field]: value }));
+      };
+
+      const handleReset = () => setInputs(defaultInputs);
+
+      const handleDownloadCSV = () => {
+        const headers = ["Age", "Total Contributed", "TFSA Balance (Tax-Free)", "Taxable Account Balance", "Money Lost to Taxes"];
+        const rows = projection.schedule.map(row => [
+          row.age,
+          row.totalContributed.toFixed(2),
+          row.tfsaBalance.toFixed(2),
+          row.taxableBalance.toFixed(2),
+          row.difference.toFixed(2)
+        ]);
+        
+        const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+        const encodedUri = encodeURI(csvContent);
+        
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "TFSA_Snowball_Projection.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      };
+
+      const getSliderFillPct = (value, min, max) => ((value - min) / (max - min)) * 100;
+
+      const maxBalance = Math.max(projection.finalTfsa, 1);
+      const contributedPct = (projection.totalContributed / maxBalance) * 100;
+      const tfsaGrowthPct = ((projection.finalTfsa - projection.totalContributed) / maxBalance) * 100;
+
+      return (
+        <div className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8 text-slate-800">
+          
+          <div className="text-center space-y-3 relative">
+            <a
+              href="../index.html"
+              className="no-print absolute top-0 left-0 mt-2 ml-2 text-sm text-slate-500 hover:text-indigo-600 transition-colors font-medium underline underline-offset-4"
+            >
+              ← Home
+            </a>
+            <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">The TFSA Snowballer</h1>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              See the raw mathematical advantage of tax-free compounding versus a standard taxable investment account.
+            </p>
+            <button
+              onClick={handleReset}
+              className="no-print absolute top-0 right-0 mt-2 mr-2 text-sm text-slate-500 hover:text-indigo-600 transition-colors font-medium underline underline-offset-4"
+            >
+              Reset Defaults
+            </button>
+          </div>
+
+          <div className="no-print grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <div className="bg-white border border-slate-200 p-5 sm:p-6 rounded-2xl shadow-sm text-slate-700 leading-relaxed flex flex-col justify-center">
+              <h2 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                How to use this tool
+              </h2>
+              <p className="text-sm">
+                Adjust the sliders below to enter your current savings, future contribution goals, and expected timeline. 
+                As you change the numbers, the calculator automatically proves exactly how much wealth is lost to yearly "tax drag" 
+                if you were to hold those exact same investments in a standard non-registered account instead of shielding them inside a TFSA.
+              </p>
+            </div>
+
+            <div className="bg-amber-50 border border-amber-200 p-5 sm:p-6 rounded-2xl shadow-sm text-amber-900 leading-relaxed">
+              <h2 className="font-bold text-amber-800 mb-2 flex items-center gap-2">
+                <svg className="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                Finding your numbers safely
+              </h2>
+              <div className="text-sm space-y-3">
+                <p>
+                  <strong>1. Find your exact room:</strong> Your cumulative limit is unique based on your age and past withdrawals. Log in to <a href="https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-individuals/account-individuals.html" target="_blank" className="underline font-semibold hover:text-amber-700">CRA My Account</a> to find your exact available contribution room and enter it in the slider below.
+                </p>
+                <p>
+                  <strong>2. Avoid the penalty:</strong> Do not guess. The Canada Revenue Agency enforces a strict penalty tax of <strong>1% per month</strong> on any over-contributed amount. Always verify your exact room before moving real money.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* M5 [Input Sliders]: balance, ages, contribution, return, income. */}
+          <div className="no-print bg-white p-6 sm:p-8 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+
+            <div className="flex flex-col justify-start">
+              <label htmlFor="balance-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Current TFSA Balance</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{formatCurrency(inputs.currentBalance || 0)}</span>
+              </label>
+              <input 
+                id="balance-slider" type="range" min="0" max="250000" step="1000" 
+                value={inputs.currentBalance || 0}
+                onChange={(e) => handleInputChange('currentBalance', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.currentBalance || 0, 0, 250000)}%, #e2e8f0 ${getSliderFillPct(inputs.currentBalance || 0, 0, 250000)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+            </div>
+
+            <div className="flex flex-col justify-start">
+              <label htmlFor="age-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Current Age</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{inputs.currentAge} Years</span>
+              </label>
+              <input 
+                id="age-slider" type="range" min="18" max="60" step="1" 
+                value={inputs.currentAge}
+                onChange={(e) => handleInputChange('currentAge', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.currentAge, 18, 60)}%, #e2e8f0 ${getSliderFillPct(inputs.currentAge, 18, 60)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+            </div>
+
+            <div className="flex flex-col justify-start">
+              <label htmlFor="retire-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Withdrawal Age</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{inputs.retirementAge} Years</span>
+              </label>
+              <input 
+                id="retire-slider" type="range" min={inputs.currentAge + 1} max="85" step="1" 
+                value={inputs.retirementAge}
+                onChange={(e) => handleInputChange('retirementAge', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.retirementAge, inputs.currentAge + 1, 85)}%, #e2e8f0 ${getSliderFillPct(inputs.retirementAge, inputs.currentAge + 1, 85)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+            </div>
+
+            <div className="flex flex-col justify-start">
+              <label htmlFor="contrib-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Future Monthly Contribution</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{formatCurrency(inputs.monthlyContribution)}/mo</span>
+              </label>
+              <input 
+                id="contrib-slider" type="range" min="50" max="2500" step="25" 
+                value={inputs.monthlyContribution}
+                onChange={(e) => handleInputChange('monthlyContribution', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.monthlyContribution, 50, 2500)}%, #e2e8f0 ${getSliderFillPct(inputs.monthlyContribution, 50, 2500)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+            </div>
+
+            <div className="flex flex-col justify-start">
+              <label htmlFor="return-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Expected Return Rate</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{(inputs.returnRate * 100).toFixed(1)}%</span>
+              </label>
+              <input 
+                id="return-slider" type="range" min="0" max="0.12" step="0.005" 
+                value={inputs.returnRate}
+                onChange={(e) => handleInputChange('returnRate', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.returnRate, 0, 0.12)}%, #e2e8f0 ${getSliderFillPct(inputs.returnRate, 0, 0.12)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+            </div>
+
+            <div className="flex flex-col justify-start">
+              <label htmlFor="income-slider" className="flex justify-between font-semibold text-slate-800 mb-3">
+                <span>Annual Income (For Tax Drag)</span>
+                <span className="text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full text-sm">{formatCurrency(inputs.income)}</span>
+              </label>
+              <input 
+                id="income-slider" type="range" min="30000" max="250000" step="5000" 
+                value={inputs.income}
+                onChange={(e) => handleInputChange('income', Number(e.target.value))}
+                style={{ background: `linear-gradient(to right, #4f46e5 ${getSliderFillPct(inputs.income, 30000, 250000)}%, #e2e8f0 ${getSliderFillPct(inputs.income, 30000, 250000)}%)` }}
+                className="w-full h-2 rounded-lg appearance-none focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 cursor-pointer"
+              />
+              <p className="text-xs text-slate-500 mt-3 font-medium">
+                Estimated Tax Drag on Growth: <span className="text-amber-600 font-bold">{projection.effectiveTaxDrag}%</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-indigo-600 text-white p-6 sm:p-8 rounded-2xl shadow-lg shadow-indigo-600/20 transform transition duration-300 hover:-translate-y-1">
+              <p className="text-indigo-100 text-sm font-semibold tracking-wide uppercase mb-2">Final TFSA Balance</p>
+              <p className="text-4xl font-extrabold">{formatCurrency(projection.finalTfsa)}</p>
+            </div>
+            <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm transform transition duration-300 hover:-translate-y-1">
+              <p className="text-slate-600 text-sm font-semibold tracking-wide uppercase mb-2">Taxable Account Balance</p>
+              <p className="text-4xl font-extrabold text-slate-800">{formatCurrency(projection.finalTaxable)}</p>
+            </div>
+            <div className="bg-white border border-amber-200 p-6 sm:p-8 rounded-2xl shadow-sm transform transition duration-300 hover:-translate-y-1 bg-amber-50">
+              <p className="text-amber-800 text-sm font-semibold tracking-wide uppercase mb-2">Total Lost to Taxes</p>
+              <p className="text-4xl font-extrabold text-amber-600">-{formatCurrency(projection.totalLostToTaxes)}</p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm space-y-6">
+            <h3 className="font-bold text-slate-900 text-lg">TFSA Portfolio Composition</h3>
+            <div className="w-full h-10 flex rounded-xl overflow-hidden border border-slate-100">
+              <div style={{ width: `${contributedPct}%` }} className="bg-slate-700 transition-all duration-700 ease-out" title="Your Cash"></div>
+              <div style={{ width: `${tfsaGrowthPct}%` }} className="bg-sky-400 transition-all duration-700 ease-out" title="Tax-Free Growth"></div>
+            </div>
+            <div className="flex flex-wrap gap-6 text-sm font-semibold text-slate-700">
+              <div className="flex items-center gap-2"><div className="w-4 h-4 bg-slate-700 rounded-md"></div>Your Contributions ({contributedPct.toFixed(1)}%)</div>
+              <div className="flex items-center gap-2"><div className="w-4 h-4 bg-sky-400 rounded-md"></div>Tax-Free Growth ({tfsaGrowthPct.toFixed(1)}%)</div>
+            </div>
+          </div>
+
+          <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+            <div className="p-5 sm:p-6 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50/50">
+              <h3 className="font-bold text-slate-900 text-lg">Year-by-Year Growth</h3>
+              
+              <button 
+                onClick={handleDownloadCSV}
+                className="no-print text-sm bg-white border border-slate-300 hover:bg-slate-50 hover:text-indigo-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-100 text-slate-700 py-2 px-5 rounded-lg shadow-sm transition-all font-semibold flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Export CSV
+              </button>
+            </div>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-white text-slate-500 font-semibold uppercase tracking-wider text-xs border-b border-slate-200">
+                  <tr>
+                    <th className="px-6 py-5">Age</th>
+                    <th className="px-6 py-5">Total Contributed</th>
+                    <th className="px-6 py-5">TFSA (Tax-Free)</th>
+                    <th className="px-6 py-5">Taxable Account</th>
+                    <th className="px-6 py-5 text-right">Lost to Taxes</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {projection.schedule.map((row) => (
+                    <tr key={row.year} className="hover:bg-slate-50 transition-colors">
+                      <td className="px-6 py-5 font-bold text-slate-900">{row.age}</td>
+                      <td className="px-6 py-5 font-medium text-slate-800">{formatCurrency(row.totalContributed)}</td>
+                      <td className="px-6 py-5 font-bold text-indigo-600">{formatCurrency(row.tfsaBalance)}</td>
+                      <td className="px-6 py-5 text-slate-600">{formatCurrency(row.taxableBalance)}</td>
+                      <td className="px-6 py-5 text-right font-medium text-amber-600">-{formatCurrency(row.difference)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <details className="bg-slate-50 border border-slate-200 rounded-xl" open>
+            <summary className="cursor-pointer px-5 py-4 text-sm font-bold text-slate-800 hover:text-indigo-700 select-none">
+              Disclaimer &amp; sources
+            </summary>
+            <div className="px-5 pb-5 pt-1 text-sm text-slate-600 space-y-3">
+              <p>This tool is illustrative only. It uses a simplified combined federal+provincial marginal rate by income band and assumes a constant annual return. Tax drag is modelled as 50% of your marginal rate applied to growth — a blend approximating mixed interest, dividends, and capital gains. Pure-interest portfolios drag harder; pure-capital-gains portfolios drag less.</p>
+              <p>This tool does <strong>not</strong> model your specific contribution room, the 1% per-month over-contribution penalty, foreign-withholding tax inside the TFSA, or withdrawal-and-recontribution timing rules. Verify your exact room in <a href="https://www.canada.ca/en/revenue-agency/services/e-services/cra-my-account.html" target="_blank" rel="noopener" className="underline text-indigo-600">CRA My Account</a> before contributing and consult a Certified Professional Accountant for tax planning.</p>
+              <p className="text-xs text-slate-500">Not tax, legal, or investment advice.</p>
+            </div>
+          </details>
+
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<TFSACalculator />);
+  </script>
+</body>
+</html>

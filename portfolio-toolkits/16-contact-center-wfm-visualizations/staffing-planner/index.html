@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Staffing Planner</title>
+    <style>
+      :root {
+        --base: #1f2a44;
+        --accent: #2f9e8f;
+        --ink: #1f2a44;
+        --muted: #5b6678;
+        --line: #e2e6ee;
+        --roster: #c9d4e8;
+        --bg: #f6f8fc;
+        --panel: #ffffff;
+        --danger: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 70ch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: calc(var(--space) * 3);
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="number"],
+      input[type="file"] {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      button {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background: var(--roster);
+        cursor: not-allowed;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eef6f4;
+        color: #246b60;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--danger);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 4);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .legend {
+        display: flex;
+        gap: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 2);
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .swatch {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        margin-right: var(--space);
+        vertical-align: -2px;
+      }
+
+      .swatch.required {
+        background: var(--accent);
+      }
+
+      .swatch.roster {
+        background: var(--roster);
+      }
+
+      .swatch.sl {
+        background: var(--base);
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      .grid {
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+
+      .axis-label {
+        fill: var(--muted);
+        font-size: 11px;
+      }
+
+      .bar-required {
+        fill: var(--accent);
+      }
+
+      .bar-roster {
+        fill: var(--roster);
+      }
+
+      .sl-line {
+        fill: none;
+        stroke: var(--base);
+        stroke-width: 2;
+      }
+
+      .sl-dot {
+        fill: var(--base);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .row-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: calc(var(--space) * 2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Staffing Planner</h1>
+        <p>
+          Load an interval forecast and this works out how many agents each interval needs to hit your
+          service-level target, using the Erlang C staffing model. Adjust the target, answer-time threshold,
+          and shrinkage and the plan redraws. Export the result as a plan the Service-Level Dashboard reads.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div>
+            <label for="fileInput">Forecast CSV</label>
+            <input type="file" id="fileInput" accept=".csv,text/csv" />
+          </div>
+          <div>
+            <label for="intervalMinutes">Interval length (min)</label>
+            <input type="number" id="intervalMinutes" value="30" min="1" step="1" />
+          </div>
+          <div>
+            <label for="targetSlPct">Service-level target (%)</label>
+            <input type="number" id="targetSlPct" value="80" min="1" max="100" step="1" />
+          </div>
+          <div>
+            <label for="targetAnswerSeconds">Answer within (sec)</label>
+            <input type="number" id="targetAnswerSeconds" value="20" min="1" step="1" />
+          </div>
+          <div>
+            <label for="shrinkagePct">Shrinkage (%)</label>
+            <input type="number" id="shrinkagePct" value="30" min="0" max="99" step="1" />
+          </div>
+        </div>
+        <div class="message" id="message"></div>
+      </section>
+
+      <section class="panel">
+        <div class="summary" id="summary">
+          <div class="stat"><span class="stat-value">--</span><span class="stat-label">load a forecast to begin</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="legend">
+          <span><span class="swatch required"></span>Required agents</span>
+          <span><span class="swatch roster"></span>Rostered (with shrinkage)</span>
+          <span><span class="swatch sl"></span>Projected service level</span>
+        </div>
+        <svg id="chart" viewBox="0 0 880 360" role="img" aria-label="Staffing chart"></svg>
+      </section>
+
+      <section class="panel">
+        <table>
+          <thead>
+            <tr>
+              <th>Interval</th>
+              <th>Erlangs</th>
+              <th>Required</th>
+              <th>Projected SL</th>
+              <th>Occupancy</th>
+              <th>Rostered</th>
+            </tr>
+          </thead>
+          <tbody id="planBody"></tbody>
+        </table>
+        <div class="row-actions">
+          <button id="exportBtn" disabled>Export staffing-plan.csv</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="dist/erlang.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>

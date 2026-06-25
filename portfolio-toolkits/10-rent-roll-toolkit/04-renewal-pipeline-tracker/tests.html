@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests: Renewal Pipeline Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pass { color: #1b7f3b; font-weight: 700; }
+    .fail { color: #c2410c; font-weight: 700; }
+    .result-line { font-variant-numeric: tabular-nums; }
+    #summary-line { font-size: 18px; font-weight: 700; margin: 0 0 var(--s3); }
+    ol { padding-left: var(--s3); }
+    li { margin-bottom: var(--s1); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tests: Renewal Pipeline Tracker</h1>
+    <p class="lede">
+      These checks run the pure logic in tracker_logic.js against small CSV strings
+      worked out by hand. Open this file in a browser. No build step.
+    </p>
+    <p id="summary-line"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <script src="tracker_logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var passed = 0;
+      var failed = 0;
+      var list = document.getElementById("results");
+
+      function record(name, ok, detail) {
+        if (ok) { passed += 1; } else { failed += 1; }
+        var li = document.createElement("li");
+        li.className = "result-line";
+        li.innerHTML =
+          '<span class="' + (ok ? "pass" : "fail") + '">' +
+          (ok ? "PASS" : "FAIL") + "</span> " + name +
+          (ok ? "" : (detail ? " : " + detail : ""));
+        list.appendChild(li);
+      }
+
+      function assertEqual(name, got, expected) {
+        record(name, got === expected, "expected " + expected + ", got " + got);
+      }
+
+      // A small clean renewals file, matching what the scheduler produces.
+      var CLEAN =
+        "unit,tenant,current_rent,lease_end,renewal_start,renewal_end,escalated_rent,notice_due_date,days_to_notice,status\n" +
+        "101,Ava Bennett,1500.00,2027-05-31,2027-06-01,2028-05-31,1560.00,2027-03-02,263,upcoming\n" +
+        "103,Maya Singh,1650.00,2026-06-30,2026-07-01,2027-06-30,1716.00,2026-04-01,-72,due_now\n" +
+        "104,Noah Diaz,2000.00,2026-08-11,2026-08-12,2027-08-11,2080.00,2026-05-13,-30,due_now\n" +
+        "109,Sofia Marin,1750.00,2026-05-31,2026-06-01,2027-05-31,1820.00,2026-03-02,-102,expired\n";
+
+      // Money helpers.
+      assertEqual("parseMoneyToCents plain", parseMoneyToCents("1560.00"), 156000);
+      assertEqual("formatCents 156000", formatCents(156000), "$1,560.00");
+      assertEqual("parseIntStrict negative", parseIntStrict("-72"), -72);
+      assertEqual("parseIntStrict junk is null", parseIntStrict("soon"), null);
+      assertEqual("isValidDate good", isValidDate("2027-05-31"), true);
+      assertEqual("isValidDate bad", isValidDate("2026-02-30"), false);
+
+      var clean = analyzeRenewals(CLEAN);
+      assertEqual("clean read ok", clean.ok, true);
+      assertEqual("clean row count", clean.rows.length, 4);
+
+      // Hand-checked match with the scheduler: Unit 101 escalated rent is $1,560.00.
+      assertEqual(
+        "Unit 101 escalated matches scheduler",
+        formatCents(clean.rows[0].escalatedCents),
+        "$1,560.00"
+      );
+
+      // Status counts.
+      assertEqual("due_now count", clean.summary.counts.due_now, 2);
+      assertEqual("upcoming count", clean.summary.counts.upcoming, 1);
+      assertEqual("expired count", clean.summary.counts.expired, 1);
+
+      // Default sort: due_now first (by soonest notice), then upcoming, then expired.
+      var def = sortRows(clean.rows, "default", "asc");
+      assertEqual("default first is due_now", def[0].status, "due_now");
+      assertEqual("default first unit is 103 (most overdue)", def[0].unit, "103");
+      assertEqual("default second unit is 104", def[1].unit, "104");
+      assertEqual("default last is expired", def[3].status, "expired");
+
+      // Sort by escalated rent ascending and descending.
+      var byRentAsc = sortRows(clean.rows, "escalated_rent", "asc");
+      assertEqual("rent asc first is 101", byRentAsc[0].unit, "101");
+      var byRentDesc = sortRows(clean.rows, "escalated_rent", "desc");
+      assertEqual("rent desc first is 104", byRentDesc[0].unit, "104");
+
+      // Sort by days to notice ascending puts the most overdue first.
+      var byDaysAsc = sortRows(clean.rows, "days_to_notice", "asc");
+      assertEqual("days asc first is 109", byDaysAsc[0].unit, "109");
+
+      // Dates sort chronologically as plain text.
+      var byLeaseEnd = sortRows(clean.rows, "lease_end", "asc");
+      assertEqual("lease_end asc first is 109", byLeaseEnd[0].unit, "109");
+
+      // Sorting does not mutate the original array.
+      assertEqual("original order preserved", clean.rows[0].unit, "101");
+
+      // Whole-file rejection: a missing required column stops the read.
+      var bad = analyzeRenewals(
+        "unit,tenant,current_rent,lease_end,renewal_start,renewal_end,escalated_rent,notice_due_date,days_to_notice\n" +
+          "101,Ava,1500.00,2027-05-31,2027-06-01,2028-05-31,1560.00,2027-03-02,263\n"
+      );
+      assertEqual("missing column rejected", bad.ok, false);
+      record("names missing status", bad.error.indexOf("status") !== -1, bad.error);
+
+      // Row-level skips: short row, duplicate unit, non-numeric days.
+      var messy =
+        "unit,tenant,current_rent,lease_end,renewal_start,renewal_end,escalated_rent,notice_due_date,days_to_notice,status\n" +
+        "201,Good,1500.00,2026-07-15,2026-07-16,2027-07-15,1560.00,2026-04-16,-57,due_now\n" +
+        "202,Short,1600.00,2026-09-30,2026-10-01,2027-09-30,1664.00,2026-07-02\n" +
+        "201,Dupe,1700.00,2026-09-30,2026-10-01,2027-09-30,1768.00,2026-07-02,20,upcoming\n" +
+        "204,BadDays,1800.00,2026-10-31,2026-11-01,2027-10-31,1872.00,2026-08-02,soon,upcoming\n";
+      var messyResult = analyzeRenewals(messy);
+      assertEqual("messy read still ok", messyResult.ok, true);
+      assertEqual("one valid row survives", messyResult.rows.length, 1);
+      assertEqual("three rows skipped", messyResult.issues.length, 3);
+
+      assertEqual("empty file rejected", analyzeRenewals("").ok, false);
+
+      var summaryLine = document.getElementById("summary-line");
+      summaryLine.textContent = passed + " passed, " + failed + " failed";
+      summaryLine.className = failed === 0 ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

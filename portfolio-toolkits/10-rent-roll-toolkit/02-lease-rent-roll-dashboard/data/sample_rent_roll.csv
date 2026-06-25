@@ -1,0 +1,6 @@
+unit,tenant,monthly_rent,billing_month,days_in_month,occupied_days,prorated_rent,overdue_balance,late_fee,amount_due,lease_end
+101,Ava Bennett,1500.00,2026-06,30,15,750.00,0.00,0.00,750.00,2027-05-31
+102,Liam Carter,1800.00,2026-06,30,30,1800.00,0.00,0.00,1800.00,2026-12-31
+103,Maya Singh,1650.00,2026-06,30,10,550.00,0.00,0.00,550.00,2026-06-30
+104,Noah Diaz,2000.00,2026-06,30,30,2000.00,500.00,25.00,2525.00,2026-08-11
+105,Priya Kaur,1400.00,2026-06,30,30,1400.00,0.00,0.00,1400.00,2027-01-31

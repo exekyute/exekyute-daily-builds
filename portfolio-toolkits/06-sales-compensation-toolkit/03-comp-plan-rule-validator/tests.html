@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tests: Comp Plan Rule Validator</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .pass { color: #1b7f3b; }
+    .fail { color: #c62828; font-weight: 700; }
+    .result-line { font-variant-numeric: tabular-nums; }
+    #summary { font-size: 18px; font-weight: 700; margin: 0 0 16px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Tests: Comp Plan Rule Validator</h1>
+    <p class="lede">
+      These checks run the pure logic in validator_logic.js against plans worked
+      out by hand. Open this file in a browser. No build step.
+    </p>
+    <p id="summary"></p>
+    <ol id="results"></ol>
+  </main>
+
+  <script src="validator_logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var passed = 0;
+      var failed = 0;
+      var list = document.getElementById("results");
+
+      function record(name, ok, detail) {
+        if (ok) { passed++; } else { failed++; }
+        var li = document.createElement("li");
+        li.className = "result-line";
+        li.innerHTML =
+          '<span class="' + (ok ? "pass" : "fail") + '">' +
+          (ok ? "PASS" : "FAIL") + "</span> " + name +
+          (detail ? " : " + detail : "");
+        list.appendChild(li);
+      }
+
+      function assertEqual(name, got, expected) {
+        record(name, got === expected, "expected " + expected + ", got " + got);
+      }
+
+      function hasCode(result, code) {
+        return result.findings.some(function (f) { return f.code === code; });
+      }
+
+      function assertHasCode(name, result, code) {
+        record(name, hasCode(result, code),
+          "expected a finding with code '" + code + "', got " +
+          JSON.stringify(result.findings.map(function (f) { return f.code; })));
+      }
+
+      var samplePlan = {
+        planName: "FY26 Field Sales Commission Plan",
+        quota: 80000,
+        accelerator: 1.5,
+        tiers: [
+          { label: "Tier 1", from: 0, to: 50000, rate: 5 },
+          { label: "Tier 2", from: 50000, to: 100000, rate: 8 },
+          { label: "Tier 3", from: 100000, to: null, rate: 10 }
+        ]
+      };
+
+      var brokenPlan = {
+        planName: "Draft plan with problems",
+        quota: 0,
+        accelerator: 0.8,
+        tiers: [
+          { label: "Tier 1", from: 0, to: 50000, rate: 5 },
+          { label: "Tier 2", from: 50000, to: 100000, rate: 0 },
+          { label: "Tier 3", from: 90000, to: 80000, rate: -3 },
+          { label: "Tier 4", from: 120000, to: null, rate: 8 }
+        ]
+      };
+
+      // --- the approved sample --------------------------------------------
+      var ok = ValidatorLogic.validate(samplePlan);
+      assertEqual("sample plan is approved", ok.approved, true);
+      assertEqual("sample plan has no findings", ok.findings.length, 0);
+
+      // --- the broken sample, one of every flag ---------------------------
+      var bad = ValidatorLogic.validate(brokenPlan);
+      assertEqual("broken plan is not approved", bad.approved, false);
+      assertHasCode("zero quota flagged", bad, "quota");
+      assertHasCode("accelerator below 1 flagged", bad, "accelerator");
+      assertHasCode("out-of-order threshold flagged", bad, "tier-order");
+      assertHasCode("overlap flagged", bad, "overlap");
+      assertHasCode("gap flagged", bad, "gap");
+      assertHasCode("bad rate flagged", bad, "tier-rate");
+      var rateProblems = bad.findings.filter(function (f) { return f.code === "tier-rate"; });
+      assertEqual("both the zero and negative rates are caught", rateProblems.length, 2);
+
+      // --- targeted single-rule checks ------------------------------------
+      function clonePlan() { return JSON.parse(JSON.stringify(samplePlan)); }
+
+      var gapPlan = clonePlan();
+      gapPlan.tiers[1].from = 60000; // leaves 50000..60000 uncovered
+      assertHasCode("isolated gap flagged", ValidatorLogic.validate(gapPlan), "gap");
+
+      var overlapPlan = clonePlan();
+      overlapPlan.tiers[1].from = 40000; // overlaps Tier 1
+      assertHasCode("isolated overlap flagged", ValidatorLogic.validate(overlapPlan), "overlap");
+
+      var firstStartPlan = clonePlan();
+      firstStartPlan.tiers[0].from = 10; // does not start at 0
+      assertHasCode("first tier not starting at 0 flagged", ValidatorLogic.validate(firstStartPlan), "first-tier-start");
+
+      var midOpenPlan = clonePlan();
+      midOpenPlan.tiers[1].to = null; // a non-top tier left open
+      assertHasCode("open ended middle tier flagged", ValidatorLogic.validate(midOpenPlan), "tier-to");
+
+      // --- warning, not error ---------------------------------------------
+      var closedTopPlan = clonePlan();
+      closedTopPlan.tiers[2].to = 200000; // top tier given an upper bound
+      var closedTop = ValidatorLogic.validate(closedTopPlan);
+      assertHasCode("closed top tier raises a note", closedTop, "top-tier-open");
+      assertEqual("a warning alone still approves the plan", closedTop.approved, true);
+
+      // --- summary ---------------------------------------------------------
+      var summary = document.getElementById("summary");
+      summary.textContent = passed + " passed, " + failed + " failed";
+      summary.className = failed === 0 ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

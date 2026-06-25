@@ -1,0 +1,8 @@
+[
+  { "id": "S-1", "role": "Front desk morning", "date": "2026-06-13", "start": "09:00", "end": "12:00", "min": 2, "max": 3 },
+  { "id": "S-2", "role": "Front desk midday", "date": "2026-06-13", "start": "12:00", "end": "15:00", "min": 2, "max": 2 },
+  { "id": "S-3", "role": "Greeter", "date": "2026-06-13", "start": "10:00", "end": "13:00", "min": 1, "max": 2 },
+  { "id": "S-4", "role": "Setup crew", "date": "2026-06-13", "start": "08:00", "end": "10:00", "min": 1, "max": 1 },
+  { "id": "S-5", "role": "Tear down", "date": "2026-06-13", "start": "16:00", "end": "18:00", "min": 1, "max": 2 },
+  { "id": "S-6", "role": "Inventory count", "date": "2026-06-13", "start": "14:00", "end": "14:00", "min": 1, "max": 1 }
+]

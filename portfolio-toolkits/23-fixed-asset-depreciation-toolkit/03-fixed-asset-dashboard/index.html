@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fixed-asset dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <h1>Fixed-asset dashboard</h1>
+      <p class="subtitle">
+        Capital Cost Allowance by class, book-versus-tax timing, and the asset
+        register rollforward, read from the depreciation engine output.
+      </p>
+    </header>
+
+    <section class="controls">
+      <label class="file-button">
+        Load a per_class_cca.csv
+        <input type="file" id="file" accept=".csv" />
+      </label>
+      <button type="button" id="load-sample" class="ghost-button">Load sample data</button>
+      <span id="error" class="error"></span>
+    </section>
+
+    <section id="summary" class="summary"></section>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Capital cost allowance by class</h2>
+        <div id="cca-chart" class="chart"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Book net book value versus tax UCC</h2>
+        <div id="timing-chart" class="chart"></div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>Class rollforward</h2>
+      <div class="table-wrap">
+        <table id="rollforward" class="table"></table>
+      </div>
+      <p id="identity-note" class="note"></p>
+    </section>
+  </main>
+
+  <script src="src/dashboard.js"></script>
+  <script src="src/sample-data.js"></script>
+  <script src="src/ui.js"></script>
+</body>
+</html>

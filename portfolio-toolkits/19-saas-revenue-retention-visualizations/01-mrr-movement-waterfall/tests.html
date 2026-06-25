@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MRR Movement Waterfall tests</title>
+    <style>
+      :root {
+        --pass: #246b60;
+        --fail: #b3402f;
+        --space: 8px;
+      }
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, sans-serif;
+        color: #1f2a44;
+        background: #f6f8fc;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      .summary {
+        font-size: 18px;
+        font-weight: 700;
+        padding: calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-bottom: calc(var(--space) * 3);
+        display: inline-block;
+      }
+      .summary.pass {
+        background: #e7f3f0;
+        color: var(--pass);
+      }
+      .summary.fail {
+        background: #fbece9;
+        color: var(--fail);
+      }
+      .test-row {
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 14px;
+        padding: calc(var(--space) * 1) calc(var(--space) * 2);
+        border-bottom: 1px solid #e2e6ee;
+        white-space: pre-wrap;
+      }
+      .test-row.pass {
+        color: var(--pass);
+      }
+      .test-row.fail {
+        color: var(--fail);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>MRR Movement Waterfall tests</h1>
+    <div class="summary" id="summary">running...</div>
+    <div id="results"></div>
+
+    <script src="dist/movement.js"></script>
+    <script src="dist/tests.js"></script>
+  </body>
+</html>

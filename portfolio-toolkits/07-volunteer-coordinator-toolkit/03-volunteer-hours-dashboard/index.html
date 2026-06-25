@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Volunteer Hours Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1>Volunteer Hours Dashboard</h1>
+    <p class="lede">
+      Load a CSV of logged volunteer hours. The page totals the hours for each
+      volunteer, flags the recognition milestones they have crossed, and calls
+      out anomalies such as overlapping entries, an entry that runs too long, or
+      too many hours logged in one day. Rows that do not parse are listed
+      separately with the reason, so the totals only ever count clean data.
+    </p>
+
+    <section class="card">
+      <h2>Load hours</h2>
+      <p class="hint">
+        The CSV columns are
+        <code>entry_id, volunteer_id, volunteer_name, date, start_time, end_time</code>.
+        Dates are YYYY-MM-DD and times are 24-hour HH:MM. Files you load are read
+        in your browser and never sent anywhere.
+      </p>
+      <div class="controls">
+        <button id="loadSample" type="button">Load sample data</button>
+        <button id="loadMessy" type="button" class="ghost">Load data with problems</button>
+        <label class="file-label">
+          Load CSV file
+          <input type="file" id="csvFile" accept=".csv,text/csv" />
+        </label>
+      </div>
+      <p class="note" id="note" hidden></p>
+    </section>
+
+    <section class="card">
+      <p id="summary"></p>
+
+      <h2>Totals per volunteer</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Volunteer</th>
+            <th class="num">Entries</th>
+            <th class="num">Total hours</th>
+            <th>Milestone</th>
+          </tr>
+        </thead>
+        <tbody id="totalRows"></tbody>
+      </table>
+
+      <div class="panel anomalies">
+        <h2>Anomalies</h2>
+        <div id="anomaliesBody"></div>
+      </div>
+
+      <div class="panel rejected">
+        <h2>Rejected rows</h2>
+        <div id="rejectedBody"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="hours_logic.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

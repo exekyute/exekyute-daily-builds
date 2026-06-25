@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spend Analysis Dashboard</title>
+    <style>
+      :root {
+        --base: #1f3a5f;
+        --accent: #3b7a57;
+        --ink: #1f3a5f;
+        --muted: #5b6678;
+        --line: #e2e6ee;
+        --soft: #c9d4e8;
+        --bg: #f5f8fb;
+        --panel: #ffffff;
+        --danger: #b3402f;
+        --space: 8px;
+        --radius: 10px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: calc(var(--space) * 4);
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      header h1 {
+        margin: 0 0 var(--space) 0;
+        font-size: 26px;
+      }
+
+      header p {
+        margin: 0 0 calc(var(--space) * 3) 0;
+        color: var(--muted);
+        max-width: 72ch;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      h2 {
+        margin: 0 0 calc(var(--space) * 2) 0;
+        font-size: 18px;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: calc(var(--space) * 3);
+        align-items: end;
+      }
+
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-bottom: var(--space);
+      }
+
+      input[type="file"] {
+        width: 100%;
+        padding: calc(var(--space) * 1.5);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 15px;
+        background: #fff;
+      }
+
+      button {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 3);
+        border: 0;
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background: var(--soft);
+        cursor: not-allowed;
+      }
+
+      .message {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        border-radius: 8px;
+        margin-top: calc(var(--space) * 2);
+        font-size: 14px;
+        display: none;
+      }
+
+      .message.info {
+        display: block;
+        background: #eaf4f1;
+        color: #1f5f53;
+      }
+
+      .message.error {
+        display: block;
+        background: #fbece9;
+        color: var(--danger);
+      }
+
+      .summary {
+        display: flex;
+        flex-wrap: wrap;
+        gap: calc(var(--space) * 4);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--base);
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+      }
+
+      .bar {
+        fill: var(--accent);
+      }
+
+      .bar.flagged {
+        fill: var(--danger);
+      }
+
+      .axis-label {
+        fill: var(--ink);
+        font-size: 12px;
+      }
+
+      .bar-value {
+        fill: var(--muted);
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: calc(var(--space) * 1.5) calc(var(--space) * 2);
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      tr.flagged td {
+        background: #fbece9;
+        color: var(--danger);
+        font-weight: 600;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: calc(var(--space) * 3);
+      }
+
+      #warnings {
+        display: none;
+        background: #fff7ec;
+        border: 1px solid #f0d9a8;
+        border-radius: var(--radius);
+        padding: calc(var(--space) * 2) calc(var(--space) * 3);
+        margin-bottom: calc(var(--space) * 3);
+      }
+
+      #warnings h3 {
+        margin: 0 0 var(--space) 0;
+        font-size: 15px;
+        color: #8a6d1f;
+      }
+
+      #warnings ul {
+        margin: 0;
+        padding-left: calc(var(--space) * 3);
+        font-size: 14px;
+      }
+
+      #warnings li {
+        margin-bottom: calc(var(--space) * 0.5);
+      }
+
+      .warn-skipped {
+        color: var(--danger);
+      }
+
+      .warn-flagged {
+        color: #8a6d1f;
+      }
+
+      .row-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: calc(var(--space) * 2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Spend Analysis Dashboard</h1>
+        <p>
+          Load a list of procurement spend lines and this totals the spend and breaks it down by category and by
+          supplier, with each share of the total. Rows that cannot be analyzed are skipped with a note, and a line
+          whose category is not in the taxonomy is kept but flagged. Export the clean lines as a normalized file the
+          Supplier Pareto and the PO/Invoice Compliance views read.
+        </p>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <div>
+            <label for="fileInput">Spend lines CSV</label>
+            <input type="file" id="fileInput" accept=".csv,text/csv" />
+          </div>
+        </div>
+        <div class="message" id="message"></div>
+      </section>
+
+      <section class="panel">
+        <div class="summary" id="summary">
+          <div class="stat"><span class="stat-value">--</span><span class="stat-label">load a file to begin</span></div>
+        </div>
+      </section>
+
+      <div id="warnings"></div>
+
+      <section class="panel">
+        <h2>Spend by category</h2>
+        <svg id="categoryChart" viewBox="0 0 880 240" role="img" aria-label="Spend by category"></svg>
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th class="num">Spend</th>
+              <th class="num">Share</th>
+            </tr>
+          </thead>
+          <tbody id="categoryBody"></tbody>
+        </table>
+      </section>
+
+      <section class="panel">
+        <h2>Spend by supplier</h2>
+        <svg id="supplierChart" viewBox="0 0 880 240" role="img" aria-label="Spend by supplier"></svg>
+        <table>
+          <thead>
+            <tr>
+              <th>Supplier</th>
+              <th class="num">Spend</th>
+              <th class="num">Share</th>
+            </tr>
+          </thead>
+          <tbody id="supplierBody"></tbody>
+        </table>
+        <div class="row-actions">
+          <button id="exportBtn" disabled>Export normalized-spend.csv</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="dist/spend.js"></script>
+    <script src="dist/ui.js"></script>
+  </body>
+</html>
