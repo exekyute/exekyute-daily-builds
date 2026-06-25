@@ -1,0 +1,20 @@
+# Normalize line endings for text files; leave binaries untouched.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+
+# This repo is built in HTML, Python, TypeScript, JavaScript, CSS, VBA, and SQL.
+
+# The TypeScript toolkits commit their compiled output under dist/. That JavaScript
+# is a build artifact of the TypeScript in src/, not hand-written, so mark it
+# generated. This keeps the language stats crediting the TypeScript source instead
+# of double-counting the compiled JavaScript.
+portfolio-toolkits/**/dist/** linguist-generated
+
+# Excel VBA modules detect as VBA rather than Basic or FreeBASIC.
+*.bas linguist-language=VBA
+*.cls linguist-language=VBA
+*.frm linguist-language=VBA
