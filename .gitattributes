@@ -12,7 +12,7 @@
 # is a build artifact of the TypeScript in src/, not hand-written, so mark it
 # generated. This keeps the language stats crediting the TypeScript source instead
 # of double-counting the compiled JavaScript.
-portfolio-toolkits/**/dist/** linguist-generated
+job-modeled-toolkits/**/dist/** linguist-generated
 
 # Excel VBA modules detect as VBA rather than Basic or FreeBASIC.
 *.bas linguist-language=VBA
