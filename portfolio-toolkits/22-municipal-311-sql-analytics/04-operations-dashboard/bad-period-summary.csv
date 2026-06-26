@@ -1,0 +1,10 @@
+period,department,opening,new_requests,closed,closing,cost_to_serve_cents
+2024-12,Bylaw,0,1,0,1,0
+2024-12,Parks,0,0,0,0,0
+2024-12,Roads,0,2,0,2,0
+2025-01,Bylaw,1,2,2,1,10525
+2025-01,Parks,0,1,0,1,0
+2025-01,Roads,2,4,3,9,25650
+2025-02,Bylaw,1,1,2,0,10525
+2025-02,Parks,1,1,0,2,0
+2025-02,Roads,3,2,2,3,24150

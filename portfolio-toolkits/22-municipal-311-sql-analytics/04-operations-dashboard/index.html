@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>311 operations dashboard</title>
+  <style>
+    :root {
+      /* Two-tone palette: one base and one accent. */
+      --base: #1f3a5f;
+      --accent: #e07a3f;
+      /* Tints derived from the base, so the page stays two-tone. */
+      --ink: #16263d;
+      --muted: #5b6b80;
+      --line: #d7dee7;
+      --panel: #ffffff;
+      --bg: #eef2f6;
+      --base-soft: #c7d3e0;
+      --accent-soft: #f6d8c5;
+      /* One 8px spacing scale. */
+      --s1: 8px;
+      --s2: 16px;
+      --s3: 24px;
+      --s4: 32px;
+      --s5: 48px;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: var(--s5) var(--s3);
+    }
+
+    header h1 {
+      margin: 0 0 var(--s1);
+      font-size: 28px;
+      color: var(--base);
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .loader {
+      margin: var(--s4) 0;
+      padding: var(--s3);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .loader label {
+      display: inline-block;
+      background: var(--base);
+      color: #fff;
+      padding: var(--s1) var(--s3);
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .loader input { display: none; }
+
+    .loader .hint {
+      margin: var(--s2) 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    #status { margin-top: var(--s2); font-size: 14px; color: var(--base); }
+
+    #error {
+      display: none;
+      margin-top: var(--s2);
+      padding: var(--s2);
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      border-radius: 4px;
+      color: #8a3a14;
+      font-size: 14px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--s2);
+      margin-bottom: var(--s4);
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s3);
+    }
+
+    .card.alert { border-color: var(--accent); }
+    .card-value { font-size: 26px; font-weight: 700; color: var(--base); }
+    .card.alert .card-value { color: var(--accent); }
+    .card-label { margin-top: var(--s1); font-weight: 600; }
+    .card-note { color: var(--muted); font-size: 13px; }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s3);
+      margin-bottom: var(--s3);
+    }
+
+    section h2 {
+      margin: 0 0 var(--s3);
+      font-size: 19px;
+      color: var(--base);
+    }
+
+    .empty { color: var(--muted); margin: 0; }
+
+    .chart { display: flex; flex-direction: column; gap: var(--s2); }
+    .chart-row { display: grid; grid-template-columns: 160px 1fr 64px; align-items: center; gap: var(--s2); }
+    .chart-key { font-size: 13px; color: var(--muted); }
+    .chart-val { font-size: 14px; text-align: right; font-variant-numeric: tabular-nums; }
+
+    .track { position: relative; background: var(--bg); border-radius: 4px; height: 20px; overflow: hidden; }
+    .bar { display: block; height: 100%; border-radius: 4px; }
+    .fill-base { background: var(--base); }
+    .fill-accent { background: var(--accent); }
+    .track .target {
+      position: absolute; top: -3px; bottom: -3px; width: 2px;
+      background: var(--ink); overflow: visible;
+    }
+
+    table.grid { width: 100%; border-collapse: collapse; margin-top: var(--s3); font-size: 14px; }
+    table.grid th, table.grid td { text-align: right; padding: var(--s1) var(--s2); border-bottom: 1px solid var(--line); }
+    table.grid th:first-child, table.grid td:first-child,
+    table.grid th:nth-child(2), table.grid td:nth-child(2) { text-align: left; }
+    table.grid th { color: var(--muted); font-weight: 600; }
+    table.grid tr.row-alert td { background: var(--accent-soft); color: #8a3a14; font-weight: 600; }
+
+    .columns { display: flex; align-items: flex-end; gap: var(--s3); height: 220px; padding-top: var(--s2); }
+    .col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1; height: 100%; }
+    .col-stack { display: flex; flex-direction: column-reverse; justify-content: flex-start; width: 56px; height: 160px; }
+    .col-fill { width: 100%; display: block; }
+    .col-fill.fill-base { border-radius: 0 0 4px 4px; }
+    .col-val { margin-top: var(--s1); font-weight: 700; color: var(--base); }
+    .col-key { font-size: 13px; color: var(--muted); }
+
+    .legend { margin-top: var(--s3); font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: var(--s1); flex-wrap: wrap; }
+    .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-left: var(--s2); }
+    .swatch.line { width: 2px; height: 14px; background: var(--ink); border-radius: 0; }
+
+    footer { color: var(--muted); font-size: 13px; margin-top: var(--s4); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>311 operations dashboard</h1>
+      <p>
+        Reads the CSVs written by the SQL tools and shows the backlog and flow by
+        department and month, the open requests by age, and time to close against
+        target. Every file is read in the browser on your machine.
+      </p>
+    </header>
+
+    <div class="loader">
+      <label for="file-input">Choose CSV files</label>
+      <input id="file-input" type="file" accept=".csv" multiple />
+      <p class="hint">
+        Pick the three CSVs together: <code>period-summary.csv</code>,
+        <code>sla-aging.csv</code>, and <code>category-sla.csv</code>. Each file is
+        recognized by its columns, so the order does not matter.
+      </p>
+      <div id="status">No data loaded yet.</div>
+      <div id="error"></div>
+    </div>
+
+    <div id="metrics" class="metrics"></div>
+
+    <section>
+      <h2>Backlog and flow</h2>
+      <div id="backlog"></div>
+    </section>
+
+    <section>
+      <h2>Open requests by age</h2>
+      <div id="aging"></div>
+    </section>
+
+    <section>
+      <h2>Time to close by category</h2>
+      <div id="ttc"></div>
+    </section>
+
+    <footer>One of several personal projects modeling real job descriptions.</footer>
+  </div>
+
+  <script src="dist/dashboard.js"></script>
+  <script src="dist/ui.js"></script>
+</body>
+</html>
