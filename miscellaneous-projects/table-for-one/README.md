@@ -2,7 +2,7 @@
 
 A concept food blog: a quiet diary kept from the eating side of the table rather than the kitchen. Each post is a short, unhurried note about a single meal, where it was, and how it landed, set against a faint photo backdrop and a warm pearl off-white page. The tone is calm and personal, closer to a journal than a review site.
 
-**Live site:** https://exekyute.github.io/table-for-one/
+**Live site:** https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/table-for-one/
 
 > **Note:** The entries shipped in `index.html` are placeholder (Lorem Ipsum) sample posts that demonstrate the layout. Swap them for real entries to make it your own.
 

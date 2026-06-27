@@ -2,7 +2,7 @@
 
 I just wanted something small to tinker with while the Finals were on, so here it is: a single web page that grabs the actual Knicks vs Spurs games from this season and takes a guess at how the next one might go. Nothing serious, just a fun way to stare at numbers between possessions.
 
-**Live page:** https://exekyute.github.io/knicks-spurs-matchup-projector/
+**Live page:** https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/knicks-spurs-matchup-projector/
 
 ## What it does
 

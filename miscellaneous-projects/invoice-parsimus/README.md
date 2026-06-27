@@ -70,7 +70,7 @@ Either path returns the same structured JSON, so the table, charts, and export a
 
 ## 🚀 Live Demo
 
-🔗 [**Launch InvoiceParsimus**](https://exekyute.github.io/invoice-parsimus)
+🔗 [**Launch InvoiceParsimus**](https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/invoice-parsimus/)
 
 ## 📖 How to Use
 
