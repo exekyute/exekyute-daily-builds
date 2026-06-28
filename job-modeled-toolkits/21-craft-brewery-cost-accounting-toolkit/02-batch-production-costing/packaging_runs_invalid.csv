@@ -1,0 +1,3 @@
+batch_id,fg_sku,description,container_sku,label_sku,units,litres_per_unit
+BATCH-L01,FG-LAGER-CAN,Harbourview Lager 355 mL can,PKG-CAN-355,PKG-LABEL,1500.5,0.355
+BATCH-X9,FG-MYSTERY-CAN,Mystery 355 mL can,PKG-UNKNOWN,PKG-LABEL,1000,0

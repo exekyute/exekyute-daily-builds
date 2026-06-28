@@ -1,0 +1,7 @@
+po_id,line_id,sku,description,category,quantity,unit,unit_price,extended_value,freight_alloc,duty,landed_total,landed_unit_cost
+PO-1001,1,RM-MALT,2-row pale malt,raw_material,3000,kg,1.20,3600.00,150.00,0.00,3750.00,1.2500
+PO-1001,2,PKG-CAN-355,355 mL can,packaging_material,40000,each,0.09,3600.00,150.00,0.00,3750.00,0.0938
+PO-1002,1,RM-HOPS,Cascade hops (imported),raw_material,200,kg,18.00,3600.00,120.00,216.00,3936.00,19.6800
+PO-1003,1,PKG-KEG-50L,50 L keg,packaging_material,100,each,45.00,4500.00,76.42,0.00,4576.42,45.7642
+PO-1003,2,PKG-LABEL,can label,packaging_material,40000,each,0.02,800.00,13.58,0.00,813.58,0.0203
+PO-1004,1,RM-MALT,2-row pale malt,raw_material,1000,kg,1.30,1300.00,0.00,0.00,1300.00,1.3000

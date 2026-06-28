@@ -1,0 +1,4 @@
+fg_sku,description,product_line,abv_class,batch_id,container_sku,units,packaged_litres,beer_cost,packaging_material_cost,line_cost,unit_cost
+FG-LAGER-CAN,Harbourview Lager 355 mL can,Lager,over_2_5,BATCH-L01,PKG-CAN-355,3000,1065.000,960.67,342.27,1302.94,0.4343
+,Headland IPA 355 mL can,IPA,strong,BATCH-I01,PKG-CAN-355,2000,710.000,1089.66,228.18,1317.84,0.6589
+FG-RADLER-CAN,Shoreline Radler 355 mL can,Radler,over_1_2_to_2_5,BATCH-R01,PKG-CAN-355,4000,-1420,690.86,456.36,1147.22,0.2868

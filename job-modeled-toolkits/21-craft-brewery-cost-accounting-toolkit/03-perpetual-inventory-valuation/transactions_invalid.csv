@@ -1,0 +1,8 @@
+txn_id,date,sku,description,category,txn_type,quantity,unit,value
+T001,2026-05-01,RM-MALT,2-row pale malt,raw_material,opening,500,kg,631.25
+T001,2026-05-04,RM-MALT,2-row pale malt,raw_material,receipt,3000,kg,3750.00
+T002,2026-05-04,PKG-CAN-355,355 mL can,supplies,receipt,40000,each,3750.00
+T003,2026-05-06,RM-HOPS,Cascade hops,raw_material,transfer,200,kg,3936.00
+T004,2026-05-20,RM-MALT,2-row pale malt,raw_material,issue,-830,kg,
+T005,2026-05-09,PKG-KEG-50L,50 L keg,packaging_material,receipt,100,each,-4576.42
+T006,2026-05-09,PKG-LABEL,can label,packaging_material,receipt,40000,each,

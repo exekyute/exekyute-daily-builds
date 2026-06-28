@@ -1,0 +1,260 @@
+/*
+ * Two-tone palette: a slate base and a single amber accent, defined once and
+ * reused. One spacing scale, multiples of 8px. Roomy, even padding throughout.
+ */
+:root {
+  --base: #1f2a37;        /* slate, the base tone */
+  --base-soft: #33414f;   /* lighter slate for tracks and lines */
+  --base-faint: #eef1f4;  /* page background */
+  --surface: #ffffff;
+  --accent: #c0703a;      /* amber/copper, the single accent */
+  --accent-soft: #e8c4a6;
+  --text: #1f2a37;
+  --text-soft: #5b6b7a;
+  --flag: #b23a48;
+  --flag-soft: #f6dde0;
+  --ok-soft: #e3ece4;
+  --ok-text: #3f6b4a;
+
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 40px;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--base-faint);
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--s3);
+}
+
+.topbar {
+  background: var(--base);
+  color: #fff;
+  padding: var(--s4) 0 var(--s4);
+}
+
+.topbar h1 {
+  margin: 0 0 var(--s1);
+  font-size: 28px;
+  letter-spacing: 0.2px;
+}
+
+.topbar .sub {
+  margin: 0 0 var(--s3);
+  color: #c6d0da;
+  font-size: 15px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  flex-wrap: wrap;
+}
+
+button, .file-label {
+  font: inherit;
+  cursor: pointer;
+}
+
+#sample-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: var(--s2) var(--s3);
+  font-weight: 600;
+}
+
+#sample-btn:hover { background: #a85f2f; }
+
+.file-label {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--s1);
+  color: #c6d0da;
+  font-size: 13px;
+}
+
+.file-label input {
+  color: #fff;
+  font-size: 13px;
+}
+
+.status {
+  margin: var(--s3) 0 0;
+  padding: var(--s2) var(--s3);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+  color: #dce3ea;
+  font-size: 14px;
+}
+
+.status.ok { background: var(--ok-soft); color: var(--ok-text); }
+.status.error { background: var(--flag-soft); color: var(--flag); }
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s3);
+  margin-top: var(--s4);
+  margin-bottom: var(--s4);
+}
+
+.dashboard.hidden { display: none; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid #e2e7ec;
+  border-radius: var(--radius);
+  padding: var(--s3);
+  box-shadow: 0 1px 2px rgba(31, 42, 55, 0.05);
+  /* A grid item defaults to min-width:auto, which would let a wide table push
+     the card (and the page) past its track. min-width:0 keeps the card within
+     its column so the table-scroll wrapper can take over when space is tight. */
+  min-width: 0;
+}
+
+.span-2 { grid-column: span 2; }
+.span-4 { grid-column: span 4; }
+
+/* Holds a wide table. On a roomy card the table fits and this does nothing; on a
+   narrow single-column card the table scrolls sideways here instead of pushing
+   the card out of shape. */
+.table-scroll { overflow-x: auto; }
+
+.card h2 {
+  margin: 0 0 var(--s1);
+  font-size: 17px;
+}
+
+.caption {
+  margin: 0 0 var(--s3);
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.big {
+  margin: var(--s1) 0 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--base);
+}
+
+.rows { display: flex; flex-direction: column; gap: var(--s2); }
+
+.row {
+  display: grid;
+  grid-template-columns: 150px 1fr 110px;
+  align-items: center;
+  gap: var(--s2);
+}
+
+.row-label { font-size: 14px; }
+.row-label em { color: var(--text-soft); font-style: normal; font-size: 12px; }
+
+.row-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.track {
+  background: var(--base-faint);
+  border-radius: 6px;
+  height: 18px;
+  display: flex;
+  overflow: hidden;
+}
+
+.track.inline { display: inline-flex; width: 90px; vertical-align: middle; margin-right: var(--s1); }
+
+.bar { height: 100%; display: block; border-radius: 6px; }
+.bar.accent { background: var(--accent); }
+.bar.base { background: var(--base); }
+.bar.spacer { background: transparent; border-radius: 0; }
+
+.row.total .row-label { font-weight: 700; }
+.row.total .row-value { color: var(--base); }
+
+table.data {
+  width: 100%;
+  /* separate (not collapsed) borders so the exception row can carry rounded
+     corners; border-spacing 0 keeps the rows flush. */
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+table.data th, table.data td {
+  text-align: left;
+  padding: var(--s2);
+  border-bottom: 1px solid #e7ecf0;
+  white-space: nowrap;
+}
+
+table.data th {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-soft);
+}
+
+table.data td.num, table.data th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The exception rows read as a tidy banded row: a soft fill, a left accent, and
+   rounded ends so they sit cleanly inside the card. */
+table.data tr.exception td { background: var(--flag-soft); }
+table.data tr.exception td:first-child {
+  border-left: 3px solid var(--flag);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+table.data tr.exception td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.pct { font-variant-numeric: tabular-nums; font-size: 13px; color: var(--text-soft); }
+
+.pill {
+  display: inline-block;
+  padding: 2px var(--s2);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pill.ok { background: var(--ok-soft); color: var(--ok-text); }
+.pill.flag { background: var(--flag); color: #fff; }
+
+.foot {
+  color: var(--text-soft);
+  font-size: 13px;
+  padding-bottom: var(--s5);
+}
+
+@media (max-width: 760px) {
+  .dashboard { grid-template-columns: 1fr; }
+  .span-2, .span-4 { grid-column: span 1; }
+  .row { grid-template-columns: 120px 1fr 90px; }
+}

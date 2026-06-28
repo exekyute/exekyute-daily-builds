@@ -1,0 +1,7 @@
+fg_sku,channel,units_sold,unit_price
+FG-LAGER-CAN,retail,2500,2.50
+FG-LAGER-KEG,on_premise,12,220.00
+FG-IPA-CAN,retail,1200,2.95
+FG-IPA-CAN,distributor,500,2.60
+FG-IPA-KEG,on_premise,8,260.00
+FG-RADLER-CAN,retail,3500,2.75

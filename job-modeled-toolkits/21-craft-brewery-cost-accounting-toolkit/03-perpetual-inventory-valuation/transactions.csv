@@ -1,0 +1,29 @@
+txn_id,date,sku,description,category,txn_type,quantity,unit,value
+T001,2026-05-01,RM-MALT,2-row pale malt,raw_material,opening,500,kg,631.25
+T002,2026-05-01,RM-HOPS,Cascade hops,raw_material,opening,20,kg,393.60
+T003,2026-05-01,PKG-CAN-355,355 mL can,packaging_material,opening,5000,each,468.75
+T004,2026-05-01,PKG-KEG-50L,50 L keg,packaging_material,opening,10,each,457.64
+T005,2026-05-01,PKG-LABEL,can label,packaging_material,opening,5000,each,101.70
+T006,2026-05-01,RM-FININGS,clarifying finings,raw_material,opening,5,kg,20.00
+T007,2026-05-04,RM-MALT,2-row pale malt,raw_material,receipt,3000,kg,3750.00
+T008,2026-05-04,PKG-CAN-355,355 mL can,packaging_material,receipt,40000,each,3750.00
+T009,2026-05-06,RM-HOPS,Cascade hops,raw_material,receipt,200,kg,3936.00
+T010,2026-05-09,PKG-KEG-50L,50 L keg,packaging_material,receipt,100,each,4576.42
+T011,2026-05-09,PKG-LABEL,can label,packaging_material,receipt,40000,each,813.58
+T012,2026-05-18,RM-MALT,2-row pale malt,raw_material,receipt,1000,kg,1300.00
+T013,2026-05-20,RM-MALT,2-row pale malt,raw_material,issue,830,kg,
+T014,2026-05-20,RM-HOPS,Cascade hops,raw_material,issue,40,kg,
+T015,2026-05-22,PKG-CAN-355,355 mL can,packaging_material,issue,9000,each,
+T016,2026-05-22,PKG-KEG-50L,50 L keg,packaging_material,issue,25,each,
+T017,2026-05-22,PKG-LABEL,can label,packaging_material,issue,9000,each,
+T018,2026-05-22,RM-FININGS,clarifying finings,raw_material,issue,7,kg,
+T019,2026-05-24,FG-LAGER-CAN,Harbourview Lager 355 mL can,finished_goods,receipt,3000,each,1302.94
+T020,2026-05-24,FG-LAGER-KEG,Harbourview Lager 50 L keg,finished_goods,receipt,15,each,1362.98
+T021,2026-05-25,FG-IPA-CAN,Headland IPA 355 mL can,finished_goods,receipt,2000,each,1317.84
+T022,2026-05-25,FG-IPA-KEG,Headland IPA 50 L keg,finished_goods,receipt,10,each,1225.01
+T023,2026-05-26,FG-RADLER-CAN,Shoreline Radler 355 mL can,finished_goods,receipt,4000,each,1147.22
+T024,2026-05-28,FG-LAGER-CAN,Harbourview Lager 355 mL can,finished_goods,issue,2500,each,
+T025,2026-05-28,FG-LAGER-KEG,Harbourview Lager 50 L keg,finished_goods,issue,12,each,
+T026,2026-05-29,FG-IPA-CAN,Headland IPA 355 mL can,finished_goods,issue,1700,each,
+T027,2026-05-29,FG-IPA-KEG,Headland IPA 50 L keg,finished_goods,issue,8,each,
+T028,2026-05-30,FG-RADLER-CAN,Shoreline Radler 355 mL can,finished_goods,issue,3500,each,

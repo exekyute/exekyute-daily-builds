@@ -1,0 +1,6 @@
+batch_id,fg_sku,description,container_sku,label_sku,units,litres_per_unit
+BATCH-L01,FG-LAGER-CAN,Harbourview Lager 355 mL can,PKG-CAN-355,PKG-LABEL,3000,0.355
+BATCH-L01,FG-LAGER-KEG,Harbourview Lager 50 L keg,PKG-KEG-50L,,15,50
+BATCH-I01,FG-IPA-CAN,Headland IPA 355 mL can,PKG-CAN-355,PKG-LABEL,2000,0.355
+BATCH-I01,FG-IPA-KEG,Headland IPA 50 L keg,PKG-KEG-50L,,10,50
+BATCH-R01,FG-RADLER-CAN,Shoreline Radler 355 mL can,PKG-CAN-355,PKG-LABEL,4000,0.355

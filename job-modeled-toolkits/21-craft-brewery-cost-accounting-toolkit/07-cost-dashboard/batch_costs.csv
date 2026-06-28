@@ -1,0 +1,4 @@
+batch_id,beer,product_line,abv_class,brewed_litres,finished_litres,yield_pct,ingredient_cost,labour_cost,overhead_cost,brew_cost,packaging_material_cost,total_batch_cost,cost_per_finished_litre,volume_flag
+BATCH-L01,Harbourview Lager,Lager,over_2_5,1900,1815,95.53,637.19,600.00,400.00,1637.19,1028.73,2665.92,0.902033,
+BATCH-I01,Headland IPA,IPA,over_2_5,1300,1210,93.08,1007.03,500.00,350.00,1857.03,685.82,2542.85,1.534736,
+BATCH-R01,Shoreline Radler,Radler,over_1_2_to_2_5,1500,1420,94.67,190.86,300.00,200.00,690.86,456.36,1147.22,0.486521,

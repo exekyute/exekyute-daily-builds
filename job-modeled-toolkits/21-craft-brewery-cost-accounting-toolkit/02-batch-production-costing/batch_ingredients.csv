@@ -1,0 +1,7 @@
+batch_id,material_sku,quantity,unit
+BATCH-L01,RM-MALT,380,kg
+BATCH-L01,RM-HOPS,8,kg
+BATCH-I01,RM-MALT,330,kg
+BATCH-I01,RM-HOPS,30,kg
+BATCH-R01,RM-MALT,120,kg
+BATCH-R01,RM-HOPS,2,kg

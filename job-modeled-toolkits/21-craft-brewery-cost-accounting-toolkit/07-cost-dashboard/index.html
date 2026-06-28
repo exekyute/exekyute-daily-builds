@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brewery Cost Accounting Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <h1>Brewery Cost Accounting Dashboard</h1>
+      <p class="sub">The period close at a glance: inventory value, batch cost, SKU margins, excise duty, and count variances.</p>
+      <div class="controls">
+        <button id="sample-btn" type="button">Load sample data</button>
+        <label class="file-label">
+          <span>Load your own CSVs</span>
+          <input id="file-input" type="file" accept=".csv" multiple />
+        </label>
+      </div>
+      <p id="status" class="status">Click "Load sample data" to draw the dashboard, or load the pipeline CSVs from your machine. Nothing is uploaded.</p>
+    </div>
+  </header>
+
+  <main id="dashboard" class="wrap dashboard hidden">
+    <section class="card span-2">
+      <h2>Inventory valuation by category</h2>
+      <p class="big" id="valuation-total">$0.00</p>
+      <p class="caption">Total book inventory at period end</p>
+      <div id="valuation-rows" class="rows"></div>
+    </section>
+
+    <section class="card span-2">
+      <h2>Excise duty by ABV class</h2>
+      <p class="big" id="excise-total">$0.00</p>
+      <p class="caption">Federal beer excise on packaged volume</p>
+      <div id="excise-rows" class="rows"></div>
+    </section>
+
+    <section class="card span-4">
+      <h2>Batch cost waterfall</h2>
+      <p class="caption">How the period's batch cost builds, ingredients through packaging</p>
+      <div id="waterfall-rows" class="rows"></div>
+    </section>
+
+    <section class="card span-4">
+      <h2>Month-end variances</h2>
+      <p class="caption"><span id="exception-count">0</span> exception(s) past the $50.00 tolerance or carrying an integrity flag</p>
+      <div class="table-scroll">
+        <table id="variance-table" class="data"></table>
+      </div>
+    </section>
+
+    <section class="card span-4">
+      <h2>SKU margin ranking</h2>
+      <p class="caption">Gross margin by sales line, highest first</p>
+      <div class="table-scroll">
+        <table id="margin-table" class="data"></table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>Runs entirely in your browser. No framework, no build step, and no server.</p>
+  </footer>
+
+  <script src="src/dashboard.js"></script>
+  <script src="src/sample-data.js"></script>
+  <script src="src/ui.js"></script>
+</body>
+</html>

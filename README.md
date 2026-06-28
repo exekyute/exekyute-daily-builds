@@ -32,6 +32,7 @@ Business utilities modeled on real job descriptions. Most are no-backend tools: 
 | [18 Procurement Spend](job-modeled-toolkits/18-procurement-spend-visualizations) | Spend dashboard, supplier Pareto, and PO/invoice compliance. | 06/23/2026 |
 | [19 SaaS Revenue and Retention](job-modeled-toolkits/19-saas-revenue-retention-visualizations) | MRR waterfall, cohort heatmap, and churn dashboard. | 06/19/2026 |
 | [20 Property and Casualty Claims](job-modeled-toolkits/20-property-casualty-claims-visualizations) | Claims aging funnel, loss ratio, and reserve triangle. | 06/23/2026 |
+| [21 Craft Brewery Cost Accounting](job-modeled-toolkits/21-craft-brewery-cost-accounting-toolkit) | Landed cost, batch costing, valuation, CRA excise, SKU margins, a SQL close, and a dashboard. | 06/27/2026 |
 | [22 Municipal 311 SQL Analytics](job-modeled-toolkits/22-municipal-311-sql-analytics) | SQL intake, backlog flow, SLA aging, and operations dashboard. | 06/26/2026 |
 | [23 Fixed-Asset Depreciation](job-modeled-toolkits/23-fixed-asset-depreciation-toolkit) | Canadian CRA CCA engine, rollforward, and dashboard. | 06/24/2026 |
 

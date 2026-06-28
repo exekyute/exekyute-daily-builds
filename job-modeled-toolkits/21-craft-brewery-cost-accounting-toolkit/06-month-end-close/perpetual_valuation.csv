@@ -1,0 +1,12 @@
+sku,description,category,on_hand_qty,unit,wac_unit_cost,inventory_value,integrity_flag
+RM-MALT,2-row pale malt,raw_material,3670,kg,1.2625,4633.37,
+RM-HOPS,Cascade hops,raw_material,180,kg,19.6800,3542.40,
+PKG-CAN-355,355 mL can,packaging_material,36000,each,0.0938,3375.00,
+PKG-KEG-50L,50 L keg,packaging_material,85,each,45.7642,3889.96,
+PKG-LABEL,can label,packaging_material,36000,each,0.0203,732.22,
+RM-FININGS,clarifying finings,raw_material,-2,kg,4.0000,-8.00,negative on-hand
+FG-LAGER-CAN,Harbourview Lager 355 mL can,finished_goods,500,each,0.4343,217.16,
+FG-LAGER-KEG,Harbourview Lager 50 L keg,finished_goods,3,each,90.8667,272.60,
+FG-IPA-CAN,Headland IPA 355 mL can,finished_goods,300,each,0.6589,197.68,
+FG-IPA-KEG,Headland IPA 50 L keg,finished_goods,2,each,122.5000,245.00,
+FG-RADLER-CAN,Shoreline Radler 355 mL can,finished_goods,500,each,0.2868,143.40,

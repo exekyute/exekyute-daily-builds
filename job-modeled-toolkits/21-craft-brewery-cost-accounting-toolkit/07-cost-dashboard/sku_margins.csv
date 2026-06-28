@@ -1,0 +1,7 @@
+fg_sku,product_line,channel,units_sold,unit_price,revenue,cogs_production,cogs_excise,cogs_total,gross_margin,margin_pct
+FG-LAGER-CAN,Lager,retail,2500,2.50,6250.00,1085.78,33.45,1119.23,5130.77,82.09
+FG-LAGER-KEG,Lager,on_premise,12,220.00,2640.00,1090.38,22.61,1112.99,1527.01,57.84
+FG-IPA-CAN,IPA,retail,1200,2.95,3540.00,790.70,16.06,806.76,2733.24,77.21
+FG-IPA-CAN,IPA,distributor,500,2.60,1300.00,329.46,6.69,336.15,963.85,74.14
+FG-IPA-KEG,IPA,on_premise,8,260.00,2080.00,980.01,15.08,995.09,1084.91,52.16
+FG-RADLER-CAN,Radler,retail,3500,2.75,9625.00,1003.82,30.77,1034.59,8590.41,89.25
