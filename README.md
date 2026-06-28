@@ -46,6 +46,8 @@ Smaller builds, made to learn something or for fun.
 | [Contact List Cleaner](miscellaneous-projects/contact-list-cleaner) | Command-line tool that tidies a messy contact list. | 06/02/2026 |
 | [Crossword Generator](miscellaneous-projects/crossword-generator) | Single-file browser crossword generator, no build step. | 05/31/2026 |
 | [Canadian FinLit Tools](miscellaneous-projects/finlit-tools-ca) | Seven browser calculators for Canadian benefit and tax rules. | 05/25/2026 |
+| [FF7 Materia Graph](miscellaneous-projects/ff7-materia-graph) | Knowledge graph of Final Fantasy VII materia, with a Python query tool and a browser explorer. | 06/27/2026 |
+| [Insertion Order PDF Builder](miscellaneous-projects/io-pdf-builder) | Single-file browser form that builds a one-page insertion order PDF, with live preview and DocuSign anchor tags. | 05/29/2026 |
 | [Insertion Order Renamer](miscellaneous-projects/insertion-order-renamer) | Command-line tool that normalizes messy IO file names. | 06/01/2026 |
 | [InvoiceParsimus](miscellaneous-projects/invoice-parsimus) | Browser-based invoice parser and financial dashboard powered by Gemini. | 05/29/2026 |
 | [Knicks vs Spurs Matchup Projector](miscellaneous-projects/knicks-spurs-matchup-projector) | Single web page that projects the next Knicks vs Spurs game. | 06/03/2026 |

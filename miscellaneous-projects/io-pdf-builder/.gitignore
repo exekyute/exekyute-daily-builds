@@ -1,0 +1,16 @@
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editor junk ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Local notes / scratch ---
+# Anywhere you might jot down a real client name while testing.
+scratch/
+notes.local.md
+*.local

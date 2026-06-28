@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>IO Builder</title>
+<style>
+  :root {
+    --accent:        #1F3A7A;
+    --accent-ink:    #FFFFFF;
+    --ink:           #1A1A1A;
+    --ink-muted:     #5A5A5A;
+    --label:         #6B6B6B;
+    --rule:          #D6D6D6;
+    --rule-soft:     #ECECEC;
+    --tint:          #F7F8FB;
+    --tint-strong:   #EEF1F8;
+    --row-alt:       #FAFAFB;
+
+    --form-bg:       #F3F4F6;
+    --form-card:     #FFFFFF;
+    --form-border:   #E5E7EB;
+    --form-ink:      #111827;
+    --form-muted:    #6B7280;
+    --warn:          #B45309;
+    --warn-bg:       #FEF3C7;
+    --err:           #B91C1C;
+  }
+
+  @page {
+    size: Letter;
+    margin: 0.6in 0.6in 0.55in 0.6in;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--form-bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    color: var(--form-ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ============================================================
+     SCREEN LAYOUT: split form (left) + preview (right)
+     ============================================================ */
+  .builder {
+    display: grid;
+    grid-template-columns: 440px 1fr;
+    min-height: 100vh;
+  }
+
+  .builder-form {
+    background: var(--form-card);
+    border-right: 1px solid var(--form-border);
+    padding: 20px 22px 0;
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-footer {
+    position: sticky;
+    bottom: 0;
+    background: var(--form-card);
+    margin: auto -22px 0;
+    padding: 12px 22px;
+    border-top: 1px solid var(--form-border);
+    display: flex;
+    gap: 8px;
+    z-index: 5;
+  }
+  .form-footer .btn { flex: 1; }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: #9CA3AF;
+    font-style: italic;
+  }
+
+  .builder-preview {
+    padding: 18px 0;
+    overflow-y: auto;
+    height: 100vh;
+  }
+
+  .toolbar {
+    position: sticky;
+    top: 0;
+    background: var(--form-card);
+    margin: -20px -22px 20px;
+    padding: 14px 22px 12px;
+    border-bottom: 1px solid var(--form-border);
+    box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.08);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .toolbar h1 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .toolbar .subtitle {
+    font-size: 11px;
+    color: var(--form-muted);
+    margin-top: 2px;
+  }
+
+  .btn {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: none;
+    padding: 9px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .btn:hover { background: #16306B; }
+
+  .btn.secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+
+  .btn.secondary:hover { background: var(--tint-strong); }
+
+  .btn.ghost {
+    background: transparent;
+    color: var(--form-muted);
+    border: 1px solid var(--form-border);
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .btn.ghost:hover { color: var(--form-ink); border-color: var(--form-ink); }
+
+  /* Form fieldsets */
+  fieldset {
+    border: none;
+    margin: 0 0 18px;
+    padding: 0;
+  }
+
+  legend {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--form-border);
+    width: 100%;
+  }
+
+  .field {
+    margin-bottom: 10px;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--form-muted);
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    border: 1px solid var(--form-border);
+    border-radius: 5px;
+    padding: 7px 9px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--form-ink);
+    background: #FFFFFF;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: -1px;
+    border-color: var(--accent);
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 62px;
+    line-height: 1.4;
+  }
+
+  .field .hint {
+    font-size: 10.5px;
+    color: var(--form-muted);
+    margin-top: 3px;
+  }
+
+  .field .hint.warn { color: var(--warn); }
+  .field .hint.err  { color: var(--err); font-weight: 600; }
+
+  /* Placement rows in form */
+  .placement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .placement-card {
+    background: var(--form-bg);
+    border: 1px solid var(--form-border);
+    border-radius: 7px;
+    padding: 10px 11px;
+  }
+
+  .placement-card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .placement-card .idx {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .placement-card .field { margin-bottom: 7px; }
+
+  .placement-card .computed {
+    font-size: 11px;
+    color: var(--form-muted);
+    margin-top: 4px;
+  }
+  .placement-card .computed strong { color: var(--ink); }
+
+  .row-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  .row-actions button {
+    background: transparent;
+    border: 1px solid var(--form-border);
+    border-radius: 4px;
+    width: 24px;
+    height: 22px;
+    cursor: pointer;
+    font-size: 11px;
+    color: var(--form-muted);
+    padding: 0;
+    line-height: 1;
+  }
+  .row-actions button:hover { color: var(--form-ink); border-color: var(--form-ink); }
+  .row-actions button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .add-placement {
+    margin-top: 6px;
+    width: 100%;
+    background: transparent;
+    border: 1px dashed var(--form-border);
+    color: var(--form-muted);
+    padding: 9px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .add-placement:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); }
+  .add-placement:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .overflow-warn {
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: var(--warn-bg);
+    color: var(--warn);
+    border-radius: 5px;
+    font-size: 11.5px;
+    line-height: 1.45;
+    display: none;
+  }
+  .overflow-warn.show { display: block; }
+
+  /* ============================================================
+     PREVIEW: the IO page
+     ============================================================ */
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto;
+    padding: 0.6in;
+    background: #FFFFFF;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    font-size: 10.5pt;
+    line-height: 1.45;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+  }
+
+  h1, h2, h3, h4 { margin: 0; font-weight: 700; }
+
+  .section-title {
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 8px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .page .label {
+    display: block;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--label);
+    margin-bottom: 2px;
+  }
+
+  .page .value { font-size: 10.5pt; color: var(--ink); }
+  .page .value.strong { font-weight: 700; }
+
+  .page .header {
+    background: var(--accent);
+    color: var(--accent-ink);
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+  .page .header .brand { display: flex; flex-direction: column; gap: 2px; max-width: 60%; }
+  .page .header .brand .company { font-size: 15pt; font-weight: 700; letter-spacing: 0.02em; line-height: 1.1; }
+  .page .header .brand .contact { font-size: 9pt; opacity: 0.85; line-height: 1.35; }
+  .page .header .title-block { text-align: right; }
+  .page .header .doc-title { font-size: 17pt; font-weight: 700; letter-spacing: 0.18em; line-height: 1; }
+
+  .page .meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--tint);
+    border: 1px solid var(--rule);
+    border-top: none;
+    margin-bottom: 10px;
+  }
+  .page .meta .col { padding: 6px 12px; }
+  .page .meta .col + .col { border-left: 1px solid var(--rule); }
+  .page .meta .row { display: grid; grid-template-columns: 100px 1fr; align-items: baseline; padding: 2px 0; }
+  .page .meta .row + .row { border-top: 1px dotted var(--rule-soft); }
+  .page .meta .row .label { margin: 0; padding-top: 2px; }
+
+  .page .campaign {
+    display: grid;
+    grid-template-columns: 1fr 215px;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+  .page .campaign .description p { margin: 2px 0 0 0; font-size: 10pt; line-height: 1.4; }
+
+  .page .budget-card {
+    background: var(--tint-strong);
+    border: 1px solid var(--accent);
+    border-left-width: 4px;
+    padding: 8px 12px;
+  }
+  .page .budget-card .label { color: var(--accent); }
+  .page .budget-card .amount { font-size: 18pt; font-weight: 700; color: var(--accent); line-height: 1; margin-top: 1px; }
+  .page .budget-card .note { font-size: 8.5pt; color: var(--ink-muted); margin-top: 2px; }
+  .page .budget-card .card-dates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid var(--rule);
+  }
+  .page .budget-card .card-dates .label { color: var(--label); }
+  .page .budget-card .card-dates .value { font-size: 9.5pt; }
+
+  .page .items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    font-size: 9.5pt;
+  }
+  .page .items thead th {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 700;
+    text-align: left;
+    padding: 6px 10px;
+    font-size: 8.5pt;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+  }
+  .page .items tbody td {
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .page .items tbody tr:nth-child(even) td { background: var(--row-alt); }
+  .page .items .col-num    { width: 28px; text-align: center; }
+  .page .items .col-format { width: 90px; }
+  .page .items .col-qty    { width: 80px; text-align: right; }
+  .page .items .col-rate   { width: 90px; text-align: right; }
+  .page .items .col-total  { width: 95px; text-align: right; }
+  .page .items td.num      { font-variant-numeric: tabular-nums; }
+
+  .page .totals {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 18px;
+    margin-bottom: 14px;
+  }
+  .page .totals .notes { font-size: 9pt; color: var(--ink-muted); line-height: 1.5; }
+  .page .totals .summary { border: 1px solid var(--rule); }
+  .page .totals .summary .line {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: 5px 12px;
+    font-size: 10pt;
+  }
+  .page .totals .summary .line + .line { border-top: 1px solid var(--rule-soft); }
+  .page .totals .summary .line .k { color: var(--ink-muted); }
+  .page .totals .summary .line .v { font-variant-numeric: tabular-nums; }
+  .page .totals .summary .line.total {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 10pt;
+    font-weight: 700;
+    padding: 5px 12px;
+  }
+  .page .totals .summary .line.total .k { font-weight: 700; }
+  .page .totals .summary .line.total .v { font-weight: 700; }
+  .page .totals .summary .line.total .k { color: var(--accent-ink); }
+
+  .page .signatures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid var(--accent);
+  }
+  .page .sig-block .role {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .page .sig-block .party { font-size: 10.5pt; font-weight: 700; margin-bottom: 6px; }
+  .page .sig-row { margin-bottom: 5px; }
+  .page .sig-row .sig-label {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--label);
+    margin-bottom: 1px;
+  }
+  .page .sig-line {
+    border-bottom: 1px solid var(--ink);
+    height: 20px;
+    padding-bottom: 2px;
+    position: relative;
+  }
+  .page .sig-row.split { display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px; }
+
+  .ds-anchor {
+    color: #FFFFFF;
+    font-size: 1pt;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .page .footnote {
+    margin-top: 10px;
+    padding-top: 6px;
+    border-top: 1px solid var(--rule-soft);
+    font-size: 8pt;
+    color: var(--ink-muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .page .items, .page .totals, .page .signatures { page-break-inside: avoid; }
+
+  /* ============================================================
+     PRINT: only the page, nothing else
+     ============================================================ */
+  @media print {
+    html, body { background: #FFFFFF; margin: 0; padding: 0; }
+    .builder { display: block; min-height: 0; }
+    .builder-form { display: none !important; }
+    .builder-preview { padding: 0; overflow: visible; height: auto; min-height: 0; }
+    .page {
+      display: block;
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+    }
+    .page .signatures { margin-top: 6px; }
+    .page .footnote {
+      margin-top: 4px;
+      padding-top: 3px;
+      border-top: none;
+      font-size: 7.5pt;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="builder">
+
+  <!-- =================== FORM (LEFT) =================== -->
+  <aside class="builder-form">
+    <div class="toolbar">
+      <div>
+        <h1>Insertion Order Builder</h1>
+        <div class="subtitle">Fill the form, then print to PDF</div>
+      </div>
+      <button class="btn" id="print-btn">Print / Save PDF</button>
+    </div>
+
+    <fieldset>
+      <legend>Publisher</legend>
+      <div class="field">
+        <label for="f-company-name">Company name</label>
+        <input id="f-company-name" type="text" maxlength="38" placeholder="Northwind Media Inc." />
+      </div>
+      <div class="field">
+        <label for="f-company-address">Address</label>
+        <input id="f-company-address" type="text" maxlength="60" placeholder="220 King Street West, Suite 1400, Toronto, ON  M5H 1K4" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-company-phone">Phone</label>
+          <input id="f-company-phone" type="text" maxlength="20" placeholder="(416) 555-0188" />
+        </div>
+        <div class="field">
+          <label for="f-company-email">Email</label>
+          <input id="f-company-email" type="text" maxlength="36" placeholder="sales@northwindmedia.ca" />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Document</legend>
+      <div class="field">
+        <label for="f-io-number">IO number</label>
+        <input id="f-io-number" type="text" maxlength="18" placeholder="IO-2026-0418" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-issue-date">Issue date</label>
+          <input id="f-issue-date" type="date" />
+        </div>
+        <div class="field">
+          <label for="f-valid-from">Valid from</label>
+          <input id="f-valid-from" type="date" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-valid-to">Valid to</label>
+        <input id="f-valid-to" type="date" />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Advertiser</legend>
+      <div class="field">
+        <label for="f-adv-name">Advertiser name</label>
+        <input id="f-adv-name" type="text" maxlength="32" placeholder="Glacier Outfitters Ltd." />
+      </div>
+      <div class="field">
+        <label for="f-adv-contact">Contact</label>
+        <input id="f-adv-contact" type="text" maxlength="32" placeholder="Priya Anand" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-adv-email">Email</label>
+          <input id="f-adv-email" type="text" maxlength="34" placeholder="priya@glacieroutfitters.com" />
+        </div>
+        <div class="field">
+          <label for="f-adv-phone">Phone</label>
+          <input id="f-adv-phone" type="text" maxlength="24" placeholder="(416) 555-0142" />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Campaign</legend>
+      <div class="field">
+        <label for="f-camp-name">Campaign name</label>
+        <input id="f-camp-name" type="text" maxlength="54" placeholder="Summit Series: Summer 2026" />
+      </div>
+      <div class="field">
+        <label for="f-camp-desc">Description</label>
+        <textarea id="f-camp-desc" maxlength="320" placeholder="Six-week cross-platform brand campaign promoting the Summit Series technical apparel line. Reaches outdoor and adventure-travel audiences across Northwind Media's display, newsletter, video, and podcast inventory in Canada."></textarea>
+        <div class="hint" id="desc-hint">Up to 320 chars — keep ~3 lines or signatures overflow</div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-camp-start">Flight start</label>
+          <input id="f-camp-start" type="date" />
+        </div>
+        <div class="field">
+          <label for="f-camp-end">Flight end</label>
+          <input id="f-camp-end" type="date" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-payment-terms">Payment terms</label>
+        <input id="f-payment-terms" type="text" maxlength="42" value="Net 30, payable on invoice" />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Placements <span style="float:right; font-weight:500; color:var(--form-muted); letter-spacing:0;">max 4 rows</span></legend>
+      <div class="placement-list" id="placement-list"></div>
+      <button class="add-placement" id="add-placement">+ Add placement</button>
+      <div class="overflow-warn" id="overflow-warn">
+        Page fits 4 placements. Additional placements should be listed in a second-page appendix table (named in the <em>Attachment reference</em> field below) and totals rolled up here.
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Tax & Overflow</legend>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-tax-rate">Tax rate (%)</label>
+          <input id="f-tax-rate" type="number" min="0" max="99" step="0.1" value="14" />
+        </div>
+        <div class="field"></div>
+      </div>
+      <div class="field">
+        <label for="f-attachment">Attachment reference</label>
+        <input id="f-attachment" type="text" maxlength="56" value="Appendix A: Additional Placements" />
+      </div>
+    </fieldset>
+
+    <div class="form-footer">
+      <button class="btn secondary" id="prefill-btn" title="Fill the form with sample data">Prefill</button>
+      <button class="btn secondary" id="clear-btn" title="Clear all fields (defaults kept)">Clear</button>
+    </div>
+  </aside>
+
+  <!-- =================== PREVIEW (RIGHT) =================== -->
+  <main class="builder-preview">
+    <main class="page" id="io-page">
+
+      <header class="header">
+        <div class="brand">
+          <div class="company" id="p-company-name">—</div>
+          <div class="contact">
+            <span id="p-company-address">—</span><br />
+            <span id="p-company-phone">—</span> &nbsp;·&nbsp; <span id="p-company-email">—</span>
+          </div>
+        </div>
+        <div class="title-block">
+          <div class="doc-title">INSERTION ORDER</div>
+        </div>
+      </header>
+
+      <section class="meta" aria-label="Document details">
+        <div class="col">
+          <div class="row"><span class="label">IO Number</span><span class="value strong" id="p-io-number">—</span></div>
+          <div class="row"><span class="label">Issue Date</span><span class="value" id="p-issue-date">—</span></div>
+          <div class="row"><span class="label">Valid From</span><span class="value" id="p-valid-from">—</span></div>
+          <div class="row"><span class="label">Valid To</span><span class="value" id="p-valid-to">—</span></div>
+        </div>
+        <div class="col">
+          <div class="row"><span class="label">Advertiser</span><span class="value strong" id="p-adv-name">—</span></div>
+          <div class="row"><span class="label">Contact</span><span class="value" id="p-adv-contact">—</span></div>
+          <div class="row"><span class="label">Email</span><span class="value" id="p-adv-email">—</span></div>
+          <div class="row"><span class="label">Phone</span><span class="value" id="p-adv-phone">—</span></div>
+        </div>
+      </section>
+
+      <section class="campaign">
+        <div>
+          <h2 class="section-title">Campaign</h2>
+          <span class="label">Campaign Name</span>
+          <div class="value strong" id="p-camp-name">—</div>
+          <div class="description">
+            <span class="label" style="margin-top:6px;">Description</span>
+            <p id="p-camp-desc">—</p>
+          </div>
+        </div>
+        <aside class="budget-card">
+          <span class="label">Total Spend</span>
+          <div class="amount" id="p-budget">$0</div>
+          <div class="note">CAD · <span id="p-payment-terms">—</span></div>
+          <div class="card-dates">
+            <div>
+              <span class="label">Flight Start</span>
+              <div class="value" id="p-camp-start">—</div>
+            </div>
+            <div>
+              <span class="label">Flight End</span>
+              <div class="value" id="p-camp-end">—</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section>
+        <h2 class="section-title">Placements</h2>
+        <table class="items">
+          <thead>
+            <tr>
+              <th class="col-num">#</th>
+              <th>Placement / Description</th>
+              <th class="col-format">Format</th>
+              <th class="col-qty">Qty / Units</th>
+              <th class="col-rate">Rate</th>
+              <th class="col-total">Total (CAD)</th>
+            </tr>
+          </thead>
+          <tbody id="p-items"></tbody>
+        </table>
+      </section>
+
+      <section class="totals">
+        <div class="notes">
+          <strong>Notes.</strong> All rates are net and quoted in Canadian dollars (CAD).
+          Taxes calculated at point of invoice. This IO carries up to 4 placements on
+          page 1; campaigns with additional placements are continued in
+          <em id="p-attachment">—</em>, attached as a second-page table sharing the
+          same totals.
+        </div>
+        <div class="summary">
+          <div class="line"><span class="k">Subtotal</span><span class="v" id="p-subtotal">$0.00</span></div>
+          <div class="line"><span class="k">HST (<span id="p-tax-rate">0%</span>)</span><span class="v" id="p-tax-amount">$0.00</span></div>
+          <div class="line total"><span class="k">Total Due</span><span class="v" id="p-total">$0.00</span></div>
+        </div>
+      </section>
+
+      <section class="signatures">
+        <div class="sig-block">
+          <div class="role">Advertiser</div>
+          <div class="party" id="p-adv-name-sig">—</div>
+          <div class="sig-row">
+            <div class="sig-label">Signature</div>
+            <div class="sig-line"><span class="ds-anchor">\sig_advertiser\</span></div>
+          </div>
+          <div class="sig-row split">
+            <div>
+              <div class="sig-label">Printed Name</div>
+              <div class="sig-line"><span class="ds-anchor">\name_advertiser\</span></div>
+            </div>
+            <div>
+              <div class="sig-label">Date</div>
+              <div class="sig-line"><span class="ds-anchor">\date_advertiser\</span></div>
+            </div>
+          </div>
+          <div class="sig-row">
+            <div class="sig-label">Title</div>
+            <div class="sig-line"><span class="ds-anchor">\title_advertiser\</span></div>
+          </div>
+        </div>
+
+        <div class="sig-block">
+          <div class="role">Publisher</div>
+          <div class="party" id="p-company-name-sig">—</div>
+          <div class="sig-row">
+            <div class="sig-label">Signature</div>
+            <div class="sig-line"><span class="ds-anchor">\sig_publisher\</span></div>
+          </div>
+          <div class="sig-row split">
+            <div>
+              <div class="sig-label">Printed Name</div>
+              <div class="sig-line"><span class="ds-anchor">\name_publisher\</span></div>
+            </div>
+            <div>
+              <div class="sig-label">Date</div>
+              <div class="sig-line"><span class="ds-anchor">\date_publisher\</span></div>
+            </div>
+          </div>
+          <div class="sig-row">
+            <div class="sig-label">Title</div>
+            <div class="sig-line"><span class="ds-anchor">\title_publisher\</span></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footnote">
+        <span>Insertion Order <span id="p-io-number-footer">—</span> · <span id="p-company-name-footer">—</span></span>
+        <span>Confidential</span>
+      </footer>
+
+    </main>
+  </main>
+</div>
+
+<script>
+'use strict';
+
+const MAX_PLACEMENTS = 4;
+
+// =================== Placement type catalog ===================
+const PLACEMENT_TYPES = {
+  'Display Banner': {
+    formats: ['728 x 90', '300 x 250', '160 x 600', '300 x 600', '970 x 250', '320 x 50'],
+    unit: 'impressions',
+    rateModel: 'CPM',
+  },
+  'Native': {
+    formats: ['Native', 'In-feed', 'Content Recommendation'],
+    unit: 'impressions',
+    rateModel: 'CPM',
+  },
+  'Newsletter / Email': {
+    formats: ['Email · 600 x 200', 'Email · 600 x 150', 'Text + logo'],
+    unit: 'sends',
+    rateModel: 'Flat',
+  },
+  'Video Pre-Roll': {
+    formats: ['16:9 · :15s', '16:9 · :30s', '16:9 · :06s (bumper)'],
+    unit: 'impressions',
+    rateModel: 'CPM',
+  },
+  'Video Mid-Roll': {
+    formats: ['16:9 · :15s', '16:9 · :30s'],
+    unit: 'impressions',
+    rateModel: 'CPM',
+  },
+  'Podcast / Audio': {
+    formats: ['Audio · :30s', 'Audio · :60s', 'Host-read'],
+    unit: 'episodes',
+    rateModel: 'Flat',
+  },
+  'Mobile Interstitial': {
+    formats: ['320 x 480', '300 x 250', 'Full-screen'],
+    unit: 'impressions',
+    rateModel: 'CPM',
+  },
+  'Social': {
+    formats: ['1080 x 1080', '1080 x 1920 (story)', '16:9'],
+    unit: 'impressions',
+    rateModel: 'CPM',
+  },
+  'Sponsorship / Takeover': {
+    formats: ['Homepage', 'Section', 'Custom'],
+    unit: 'days',
+    rateModel: 'Flat',
+  },
+};
+
+// =================== State ===================
+function rid() { return 'p_' + Math.random().toString(36).slice(2, 9); }
+
+const SAMPLE_FIELDS = {
+  'f-company-name':    'Northwind Media Inc.',
+  'f-company-address': '220 King Street West, Suite 1400, Toronto, ON  M5H 1K4',
+  'f-company-phone':   '(416) 555-0188',
+  'f-company-email':   'sales@northwindmedia.ca',
+  'f-io-number':       'IO-2026-0418',
+  'f-issue-date':      '2026-05-28',
+  'f-valid-from':      '2026-06-01',
+  'f-valid-to':        '2026-06-30',
+  'f-adv-name':        'Glacier Outfitters Ltd.',
+  'f-adv-contact':     'Priya Anand',
+  'f-adv-email':       'priya@glacieroutfitters.com',
+  'f-adv-phone':       '(416) 555-0142',
+  'f-camp-name':       'Summit Series: Summer 2026',
+  'f-camp-desc':       "Six-week cross-platform brand campaign promoting the Summit Series technical apparel line. Reaches outdoor and adventure-travel audiences across Northwind Media's display, newsletter, video, and podcast inventory in Canada.",
+  'f-camp-start':      '2026-06-08',
+  'f-camp-end':        '2026-07-19',
+};
+
+const SAMPLE_PLACEMENTS = [
+  { type: 'Display Banner',     name: 'Homepage Takeover',           description: 'Northwind.ca homepage, top-of-page leaderboard',     format: '728 x 90',           quantity: 1200000, rate: 18 },
+  { type: 'Native',             name: 'Article Sponsorship',         description: 'Outdoor & Travel vertical, native in-feed unit',     format: 'Native',             quantity: 800000,  rate: 24 },
+  { type: 'Newsletter / Email', name: 'Weekend Briefing Newsletter', description: 'Top sponsor slot, 4 consecutive Saturday sends',     format: 'Email · 600 x 200',  quantity: 4,       rate: 8500 },
+  { type: 'Podcast / Audio',    name: 'Podcast Mid-Roll Sponsorship', description: 'Trail Notes & The Long Way Home, host-read',        format: 'Audio · :60s',       quantity: 6,       rate: 4750 },
+];
+
+const PRESERVED_DEFAULTS = {
+  'f-payment-terms': 'Net 30, payable on invoice',
+  'f-tax-rate':      '14',
+  'f-attachment':    'Appendix A: Additional Placements',
+};
+
+let placements = [];
+
+// =================== Formatting helpers ===================
+function fmtMoney(n) {
+  if (!isFinite(n)) n = 0;
+  return '$' + n.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function fmtMoneyShort(n) {
+  if (!isFinite(n)) n = 0;
+  return '$' + Math.round(n).toLocaleString('en-CA');
+}
+function fmtInt(n) { return Number(n || 0).toLocaleString('en-CA'); }
+function fmtDate(iso) {
+  if (!iso) return '—';
+  const [y, m, d] = iso.split('-').map(Number);
+  if (!y || !m || !d) return iso;
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dd = String(d).padStart(2, '0');
+  return `${dd} ${MONTHS[m - 1]} ${y}`;
+}
+
+function lineTotal(p) {
+  const cfg = PLACEMENT_TYPES[p.type];
+  if (!cfg) return 0;
+  const qty = Number(p.quantity) || 0;
+  const rate = Number(p.rate) || 0;
+  return cfg.rateModel === 'CPM' ? (qty / 1000) * rate : qty * rate;
+}
+
+function fmtQty(p) {
+  const cfg = PLACEMENT_TYPES[p.type];
+  if (!cfg) return '';
+  const unit = cfg.unit;
+  return `${fmtInt(p.quantity)} ${unit}`;
+}
+
+function fmtRate(p) {
+  const cfg = PLACEMENT_TYPES[p.type];
+  if (!cfg) return '';
+  const rate = Number(p.rate) || 0;
+  if (cfg.rateModel === 'CPM') {
+    return `$${rate.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} CPM`;
+  }
+  return `$${rate.toLocaleString('en-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+// =================== DOM bindings ===================
+const $ = id => document.getElementById(id);
+
+function bindSimple(formId, previewIds, transform = v => v || '—') {
+  const el = $(formId);
+  const previews = (Array.isArray(previewIds) ? previewIds : [previewIds]).map($);
+  const update = () => {
+    const v = transform(el.value);
+    previews.forEach(p => { if (p) p.textContent = v; });
+  };
+  el.addEventListener('input', update);
+  update();
+}
+
+function bindAll() {
+  bindSimple('f-company-name', ['p-company-name', 'p-company-name-sig', 'p-company-name-footer']);
+  bindSimple('f-company-address', 'p-company-address');
+  bindSimple('f-company-phone', 'p-company-phone');
+  bindSimple('f-company-email', 'p-company-email');
+
+  bindSimple('f-io-number', ['p-io-number', 'p-io-number-footer']);
+  bindSimple('f-issue-date', 'p-issue-date', fmtDate);
+  bindSimple('f-valid-from', 'p-valid-from', fmtDate);
+  bindSimple('f-valid-to',   'p-valid-to',   fmtDate);
+
+  bindSimple('f-adv-name', ['p-adv-name', 'p-adv-name-sig']);
+  bindSimple('f-adv-contact', 'p-adv-contact');
+  bindSimple('f-adv-email', 'p-adv-email');
+  bindSimple('f-adv-phone', 'p-adv-phone');
+
+  bindSimple('f-camp-name', 'p-camp-name');
+  bindSimple('f-camp-desc', 'p-camp-desc');
+  bindSimple('f-camp-start', 'p-camp-start', fmtDate);
+  bindSimple('f-camp-end',   'p-camp-end',   fmtDate);
+  bindSimple('f-payment-terms', 'p-payment-terms');
+
+  bindSimple('f-attachment', 'p-attachment');
+
+  $('f-tax-rate').addEventListener('input', recomputeTotals);
+
+  $('f-camp-desc').addEventListener('input', () => {
+    const len = $('f-camp-desc').value.length;
+    const hint = $('desc-hint');
+    if (len > 320) { hint.className = 'hint err'; hint.textContent = `${len}/320 — over hard limit`; }
+    else if (len > 220) { hint.className = 'hint warn'; hint.textContent = `${len}/320 — getting long, may push signatures down`; }
+    else { hint.className = 'hint'; hint.textContent = `${len}/320`; }
+  });
+  $('f-camp-desc').dispatchEvent(new Event('input'));
+}
+
+// =================== Placements UI ===================
+function renderPlacementsForm() {
+  const list = $('placement-list');
+  list.innerHTML = '';
+  placements.forEach((p, i) => list.appendChild(buildPlacementCard(p, i)));
+  $('add-placement').disabled = placements.length >= MAX_PLACEMENTS;
+  $('add-placement').textContent = placements.length >= MAX_PLACEMENTS
+    ? `Max ${MAX_PLACEMENTS} placements reached`
+    : '+ Add placement';
+  $('overflow-warn').classList.toggle('show', placements.length >= MAX_PLACEMENTS);
+  renderPlacementsPreview();
+}
+
+function buildPlacementCard(p, idx) {
+  const card = document.createElement('div');
+  card.className = 'placement-card';
+  card.dataset.id = p.id;
+
+  const cfg = PLACEMENT_TYPES[p.type];
+  const typeOptions = Object.keys(PLACEMENT_TYPES).map(t =>
+    `<option value="${t}" ${t === p.type ? 'selected' : ''}>${t}</option>`).join('');
+  const formatOptions = (cfg ? cfg.formats : []).map(f =>
+    `<option value="${f}" ${f === p.format ? 'selected' : ''}>${f}</option>`).join('') +
+    `<option value="__other__">Other…</option>`;
+
+  const isOther = cfg && !cfg.formats.includes(p.format);
+  const unit = cfg ? cfg.unit : '';
+  const rateModel = cfg ? cfg.rateModel : '';
+  const total = lineTotal(p);
+
+  card.innerHTML = `
+    <div class="head">
+      <div class="idx">Placement ${idx + 1}</div>
+      <div class="row-actions">
+        <button data-act="up" ${idx === 0 ? 'disabled' : ''} title="Move up">↑</button>
+        <button data-act="down" ${idx === placements.length - 1 ? 'disabled' : ''} title="Move down">↓</button>
+        <button data-act="del" title="Remove">✕</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>Placement type</label>
+      <select data-f="type">${typeOptions}</select>
+    </div>
+    <div class="field">
+      <label>Name (bold title)</label>
+      <input type="text" maxlength="42" data-f="name" value="${escAttr(p.name)}" />
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <input type="text" maxlength="80" data-f="description" value="${escAttr(p.description)}" />
+    </div>
+    <div class="field">
+      <label>Format</label>
+      <select data-f="format">${formatOptions}</select>
+      ${isOther ? `<input type="text" maxlength="15" data-f="format-other" value="${escAttr(p.format)}" style="margin-top:5px;" placeholder="Custom format" />` : ''}
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Quantity (${unit})</label>
+        <input type="number" min="0" step="1" data-f="quantity" value="${p.quantity}" />
+      </div>
+      <div class="field">
+        <label>Rate ${rateModel === 'CPM' ? '(CPM $)' : '($ per ' + (unit.endsWith('s') ? unit.slice(0, -1) : unit) + ')'}</label>
+        <input type="number" min="0" step="0.01" data-f="rate" value="${p.rate}" />
+      </div>
+    </div>
+    <div class="computed">
+      ${rateModel === 'CPM'
+        ? `<strong>CPM</strong> · (${fmtInt(p.quantity)} / 1000) × $${Number(p.rate).toFixed(2)} = <strong>${fmtMoney(total)}</strong>`
+        : `<strong>Flat</strong> · ${fmtInt(p.quantity)} × $${Number(p.rate).toFixed(2)} = <strong>${fmtMoney(total)}</strong>`}
+    </div>
+  `;
+
+  // wire up inputs
+  card.querySelectorAll('[data-f]').forEach(inp => {
+    inp.addEventListener('input', e => onPlacementInput(p.id, e.target));
+    inp.addEventListener('change', e => onPlacementInput(p.id, e.target));
+  });
+  card.querySelectorAll('[data-act]').forEach(btn => {
+    btn.addEventListener('click', () => onPlacementAction(p.id, btn.dataset.act));
+  });
+
+  return card;
+}
+
+function onPlacementInput(id, target) {
+  const p = placements.find(x => x.id === id);
+  if (!p) return;
+  const field = target.dataset.f;
+  if (field === 'type') {
+    p.type = target.value;
+    const cfg = PLACEMENT_TYPES[p.type];
+    if (cfg && !cfg.formats.includes(p.format)) p.format = cfg.formats[0];
+    renderPlacementsForm();
+    return;
+  }
+  if (field === 'format') {
+    if (target.value === '__other__') {
+      p.format = '';
+      renderPlacementsForm();
+      return;
+    }
+    p.format = target.value;
+  } else if (field === 'format-other') {
+    p.format = target.value;
+  } else if (field === 'quantity' || field === 'rate') {
+    p[field] = Number(target.value) || 0;
+    updateCardComputed(id);
+    renderPlacementsPreview();
+    return;
+  } else {
+    p[field] = target.value;
+  }
+  renderPlacementsPreview();
+}
+
+function updateCardComputed(id) {
+  const p = placements.find(x => x.id === id);
+  if (!p) return;
+  const card = document.querySelector(`.placement-card[data-id="${id}"] .computed`);
+  if (!card) return;
+  const cfg = PLACEMENT_TYPES[p.type];
+  const total = lineTotal(p);
+  card.innerHTML = cfg && cfg.rateModel === 'CPM'
+    ? `<strong>CPM</strong> · (${fmtInt(p.quantity)} / 1000) × $${Number(p.rate).toFixed(2)} = <strong>${fmtMoney(total)}</strong>`
+    : `<strong>Flat</strong> · ${fmtInt(p.quantity)} × $${Number(p.rate).toFixed(2)} = <strong>${fmtMoney(total)}</strong>`;
+}
+
+function onPlacementAction(id, act) {
+  const idx = placements.findIndex(x => x.id === id);
+  if (idx < 0) return;
+  if (act === 'del') {
+    placements.splice(idx, 1);
+  } else if (act === 'up' && idx > 0) {
+    [placements[idx - 1], placements[idx]] = [placements[idx], placements[idx - 1]];
+  } else if (act === 'down' && idx < placements.length - 1) {
+    [placements[idx], placements[idx + 1]] = [placements[idx + 1], placements[idx]];
+  }
+  renderPlacementsForm();
+}
+
+function addBlankPlacement() {
+  if (placements.length >= MAX_PLACEMENTS) return;
+  placements.push({
+    id: rid(),
+    type: 'Display Banner',
+    name: '',
+    description: '',
+    format: '728 x 90',
+    quantity: 0,
+    rate: 0,
+  });
+  renderPlacementsForm();
+}
+
+// =================== Preview render ===================
+function renderPlacementsPreview() {
+  const tbody = $('p-items');
+  tbody.innerHTML = '';
+  const rowCount = Math.max(placements.length, MAX_PLACEMENTS);
+  for (let i = 0; i < rowCount; i++) {
+    const p = placements[i];
+    const tr = document.createElement('tr');
+    if (p) {
+      tr.innerHTML = `
+        <td class="col-num num">${i + 1}</td>
+        <td>
+          <strong>${esc(p.name) || '—'}</strong><br />
+          <span style="color:var(--ink-muted); font-size:9pt;">${esc(p.description) || ''}</span>
+        </td>
+        <td>${esc(p.format) || '—'}</td>
+        <td class="col-qty num">${fmtQty(p)}</td>
+        <td class="col-rate num">${fmtRate(p)}</td>
+        <td class="col-total num">${fmtMoney(lineTotal(p))}</td>
+      `;
+    } else {
+      tr.innerHTML = `
+        <td class="col-num num" style="color:var(--rule);">${i + 1}</td>
+        <td style="color:var(--rule);">—</td>
+        <td style="color:var(--rule);">—</td>
+        <td class="col-qty num" style="color:var(--rule);">—</td>
+        <td class="col-rate num" style="color:var(--rule);">—</td>
+        <td class="col-total num" style="color:var(--rule);">—</td>
+      `;
+    }
+    tbody.appendChild(tr);
+  }
+  recomputeTotals();
+}
+
+function recomputeTotals() {
+  const subtotal = placements.reduce((sum, p) => sum + lineTotal(p), 0);
+  const rate = Number($('f-tax-rate').value) || 0;
+  const tax = subtotal * (rate / 100);
+  const total = subtotal + tax;
+  $('p-subtotal').textContent = fmtMoney(subtotal);
+  $('p-tax-amount').textContent = fmtMoney(tax);
+  $('p-total').textContent = fmtMoney(total);
+  $('p-tax-rate').textContent = `${rate}%`;
+  $('p-budget').textContent = fmtMoneyShort(subtotal);
+}
+
+// =================== Escaping ===================
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function escAttr(s) { return esc(s).replace(/"/g, '&quot;'); }
+
+// =================== Preview / Clear ===================
+function applySample() {
+  Object.entries(SAMPLE_FIELDS).forEach(([id, v]) => {
+    const el = $(id);
+    if (el) { el.value = v; el.dispatchEvent(new Event('input')); }
+  });
+  Object.entries(PRESERVED_DEFAULTS).forEach(([id, v]) => {
+    const el = $(id);
+    if (el) { el.value = v; el.dispatchEvent(new Event('input')); }
+  });
+  placements = SAMPLE_PLACEMENTS.map(p => ({ ...p, id: rid() }));
+  renderPlacementsForm();
+}
+
+function clearAll() {
+  Object.keys(SAMPLE_FIELDS).forEach(id => {
+    const el = $(id);
+    if (el) { el.value = ''; el.dispatchEvent(new Event('input')); }
+  });
+  Object.entries(PRESERVED_DEFAULTS).forEach(([id, v]) => {
+    const el = $(id);
+    if (el) { el.value = v; el.dispatchEvent(new Event('input')); }
+  });
+  placements = [];
+  renderPlacementsForm();
+}
+
+$('prefill-btn').addEventListener('click', applySample);
+$('clear-btn').addEventListener('click', clearAll);
+$('print-btn').addEventListener('click', () => window.print());
+$('add-placement').addEventListener('click', addBlankPlacement);
+
+// =================== Init ===================
+bindAll();
+renderPlacementsForm();
+</script>
+</body>
+</html>
