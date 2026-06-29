@@ -1,0 +1,4 @@
+eval_id,model,task_type,gold_label,predicted_label,latency_ms,cost_usd
+E-L01,frontier-large,ticket-triage,reject,reject,900,0.10
+E-L02,frontier-large,ticket-triage,approve,maybe,950,0.10
+E-L03,frontier-large,ticket-triage,reject,approve,1000,0.10
