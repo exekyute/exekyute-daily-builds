@@ -45,6 +45,7 @@ Smaller builds, made to learn something or for fun.
 | [Beginner Blog API](miscellaneous-projects/beginner-blog-api) | A first real backend: HTTP, auth, and a relational database. | 05/28/2026 |
 | [Contact List Cleaner](miscellaneous-projects/contact-list-cleaner) | Command-line tool that tidies a messy contact list. | 06/02/2026 |
 | [Crossword Generator](miscellaneous-projects/crossword-generator) | Single-file browser crossword generator, no build step. | 05/31/2026 |
+| [FF7 Materia Graph](miscellaneous-projects/ff7-materia-graph) | A knowledge graph of Final Fantasy VII materia, with a Python/SQLite command-line tool and a browser explorer. | 06/27/2026 |
 | [Canadian FinLit Tools](miscellaneous-projects/finlit-tools-ca) | Seven browser calculators for Canadian benefit and tax rules. | 05/25/2026 |
 | [Insertion Order PDF Builder](miscellaneous-projects/io-pdf-builder) | Single-file browser form that builds a one-page insertion order PDF, with live preview and DocuSign anchor tags. | 05/29/2026 |
 | [Insertion Order Renamer](miscellaneous-projects/insertion-order-renamer) | Command-line tool that normalizes messy IO file names. | 06/01/2026 |

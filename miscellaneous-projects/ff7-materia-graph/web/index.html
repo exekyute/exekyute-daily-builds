@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FF7 Materia Graph</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="page-head">
+    <h1>FF7 Materia Graph</h1>
+    <p class="sub">An explorable knowledge graph of the materia in Final Fantasy VII (1997). Browse one materia at a time, or open the Map to see the whole web of connections at once.</p>
+    <p class="stats" id="stats"></p>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-view="browse" role="tab">Browse</button>
+      <button class="tab" data-view="map" role="tab">Map</button>
+    </div>
+  </header>
+
+  <div id="browse-view">
+    <section class="controls">
+      <input type="search" id="search" placeholder="Search materia by name or note..." autocomplete="off">
+      <div class="chips" id="category-chips" role="group" aria-label="Filter by category"></div>
+      <label class="element-label">Element
+        <select id="element-filter"></select>
+      </label>
+    </section>
+
+    <main class="layout">
+      <aside class="list-panel">
+        <p class="list-count" id="list-count"></p>
+        <ul class="materia-list" id="materia-list"></ul>
+      </aside>
+
+      <section class="detail-panel" id="detail" aria-live="polite">
+        <p class="empty">Select a materia to explore its connections.</p>
+      </section>
+    </main>
+  </div>
+
+  <section id="map-view" class="map-view" hidden>
+    <div class="map-controls">
+      <p class="map-hint">Drag a node to move it, scroll to zoom, drag the background to pan. Click a node to open it in Browse.</p>
+      <div class="type-toggles" id="type-toggles"></div>
+      <button id="map-clear" class="chip">Clear selection</button>
+      <button id="map-reset" class="chip">Reset view</button>
+    </div>
+    <div class="map-canvas-wrap">
+      <canvas id="graph-canvas"></canvas>
+    </div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <footer class="page-foot">
+    <p>Spell and ability names follow the original North American PlayStation release. Data is curated for this project. Final Fantasy VII is the property of Square Enix; this is a fan-made reference tool.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="graph-logic.js"></script>
+  <script src="force-graph.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

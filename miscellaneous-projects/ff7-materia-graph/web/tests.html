@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FF7 Materia Graph - Tests</title>
+  <style>
+    body { font-family: "Segoe UI", system-ui, Arial, sans-serif; background: #0f141b; color: #e7eef6; margin: 0; padding: 32px; }
+    h1 { font-size: 22px; }
+    .summary { font-size: 18px; padding: 16px; border-radius: 8px; margin-bottom: 24px; }
+    .summary.pass { background: rgba(87, 201, 138, 0.16); color: #57c98a; }
+    .summary.fail { background: rgba(226, 98, 119, 0.16); color: #e26277; }
+    ul { list-style: none; padding: 0; max-width: 760px; }
+    li { padding: 8px 16px; border-bottom: 1px solid #2a3848; display: flex; gap: 12px; }
+    .ok { color: #57c98a; }
+    .bad { color: #e26277; }
+    .name { color: #e7eef6; }
+    .detail { color: #93a3b6; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>FF7 Materia Graph - Test Suite</h1>
+  <div id="summary" class="summary"></div>
+  <ul id="results"></ul>
+
+  <script src="data.js"></script>
+  <script src="graph-logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var tests = [];
+      function test(name, fn) { tests.push({ name: name, fn: fn }); }
+      function assert(cond, msg) { if (!cond) throw new Error(msg || "assertion failed"); }
+      function eq(a, b, msg) {
+        if (JSON.stringify(a) !== JSON.stringify(b)) {
+          throw new Error((msg || "not equal") + " (got " + JSON.stringify(a) + ", wanted " + JSON.stringify(b) + ")");
+        }
+      }
+
+      function sampleData() {
+        return {
+          categories: [
+            { id: "magic", name: "Magic", color: "Green" },
+            { id: "summon", name: "Summon", color: "Red" },
+            { id: "support", name: "Support", color: "Blue" }
+          ],
+          elements: ["Fire", "Ice"],
+          materia: [
+            { id: "fire", name: "Fire", category: "magic", elements: ["Fire"], abilities: ["Fire", "Fire2"], found_at: ["Item Shops"], notes: "basic fire" },
+            { id: "ifrit", name: "Ifrit", category: "summon", elements: ["Fire"], abilities: ["Hellfire"], found_at: ["Cargo Ship"], notes: "fire summon" },
+            { id: "all", name: "All", category: "support", elements: [], abilities: [], found_at: ["Item Shops"], notes: "hits everything" }
+          ],
+          combos: [{ support: "all", target: "fire", slot: "weapon", effect: "Fire on all enemies." }]
+        };
+      }
+
+      // -- logic on the small sample --------------------------------------
+
+      test("slug normalizes labels", function () {
+        eq(FF7Graph.slug("Gold Saucer"), "gold-saucer");
+        eq(FF7Graph.slug("D.Blow"), "d-blow");
+        eq(FF7Graph.slug("HP<->MP"), "hp-mp");
+      });
+
+      test("buildGraph creates the right nodes and edges", function () {
+        var g = FF7Graph.buildGraph(sampleData());
+        var c = g.counts();
+        eq(c.nodes_by_type.materia, 3, "materia count");
+        eq(c.edges_by_rel.BELONGS_TO, 3, "belongs_to");
+        eq(c.edges_by_rel.HAS_ELEMENT, 2, "has_element");
+        eq(c.edges_by_rel.PAIRS_WITH, 1, "pairs_with");
+      });
+
+      test("resolve handles ids, names, and case", function () {
+        var g = FF7Graph.buildGraph(sampleData());
+        eq(g.resolve("materia:fire"), "materia:fire");
+        eq(g.resolve("fire"), "materia:fire");
+        eq(g.resolve("IFRIT"), "materia:ifrit");
+        eq(g.resolve("Fire"), "materia:fire", "materia wins over element");
+        assert(g.resolve("Chocobo Sandwich") === null, "unknown is null");
+      });
+
+      test("shortest path runs through a shared element", function () {
+        var g = FF7Graph.buildGraph(sampleData());
+        var chain = g.shortestPath("materia:fire", "materia:ifrit");
+        eq(chain[0].node.label, "Fire");
+        eq(chain[chain.length - 1].node.label, "Ifrit");
+        assert(chain.length === 3, "two hops through Fire element");
+      });
+
+      test("no path between isolated nodes returns empty", function () {
+        var g = new FF7Graph.Graph();
+        g.addNode("a", "materia", "A", {});
+        g.addNode("b", "materia", "B", {});
+        eq(g.shortestPath("a", "b"), []);
+      });
+
+      test("find filters by category, element, location, text", function () {
+        var g = FF7Graph.buildGraph(sampleData());
+        eq(g.find({ category: "summon" }).map(function (n) { return n.label; }), ["Ifrit"]);
+        eq(g.find({ element: "fire" }).map(function (n) { return n.label; }), ["Fire", "Ifrit"]);
+        eq(g.find({ location: "Item Shops" }).map(function (n) { return n.label; }), ["All", "Fire"]);
+        eq(g.find({ text: "summon" }).map(function (n) { return n.label; }), ["Ifrit"]);
+      });
+
+      test("context groups neighbors by relation", function () {
+        var g = FF7Graph.buildGraph(sampleData());
+        var pack = g.context("materia:fire");
+        eq(pack.label, "Fire");
+        var keys = Object.keys(pack.links).join(" ");
+        assert(keys.indexOf("BELONGS_TO") !== -1, "has belongs_to");
+        assert(keys.indexOf("GRANTS") !== -1, "has grants");
+      });
+
+      // -- the real dataset -----------------------------------------------
+
+      test("real dataset loads", function () {
+        assert(window.FF7_DATA && window.FF7_DATA.materia.length > 0, "data.js present");
+      });
+
+      test("real dataset: 17 summon materia", function () {
+        var g = FF7Graph.buildGraph(window.FF7_DATA);
+        eq(g.find({ category: "summon" }).length, 17);
+      });
+
+      test("real dataset: Fire grants the original names", function () {
+        var g = FF7Graph.buildGraph(window.FF7_DATA);
+        eq(g.nodes["materia:fire"].attrs.abilities, ["Fire", "Fire2", "Fire3"]);
+      });
+
+      test("real dataset: Lightning uses Bolt names", function () {
+        var g = FF7Graph.buildGraph(window.FF7_DATA);
+        assert(g.nodes["materia:lightning"].attrs.abilities.indexOf("Bolt2") !== -1);
+      });
+
+      test("real dataset: All pairs with Restore", function () {
+        var g = FF7Graph.buildGraph(window.FF7_DATA);
+        var targets = g.neighbors("materia:all")
+          .filter(function (h) { return h.rel === "PAIRS_WITH" && h.direction === "out"; })
+          .map(function (h) { return h.node.id; });
+        assert(targets.indexOf("materia:restore") !== -1);
+      });
+
+      test("real dataset: path from Fire to Ifrit exists", function () {
+        var g = FF7Graph.buildGraph(window.FF7_DATA);
+        var chain = g.shortestPath("materia:fire", "materia:ifrit");
+        assert(chain.length > 0, "connected");
+        eq(chain[0].node.label, "Fire");
+        eq(chain[chain.length - 1].node.label, "Ifrit");
+      });
+
+      // -- run ------------------------------------------------------------
+
+      var passed = 0, failed = 0;
+      var out = [];
+      tests.forEach(function (t) {
+        try {
+          t.fn();
+          passed++;
+          out.push('<li><span class="ok">PASS</span> <span class="name">' + t.name + "</span></li>");
+        } catch (err) {
+          failed++;
+          out.push('<li><span class="bad">FAIL</span> <span class="name">' + t.name +
+            '</span> <span class="detail">' + err.message + "</span></li>");
+        }
+      });
+      document.getElementById("results").innerHTML = out.join("");
+      var summary = document.getElementById("summary");
+      summary.className = "summary " + (failed === 0 ? "pass" : "fail");
+      summary.textContent = failed === 0
+        ? ("All " + passed + " tests passed.")
+        : (failed + " of " + (passed + failed) + " tests failed.");
+    })();
+  </script>
+</body>
+</html>
