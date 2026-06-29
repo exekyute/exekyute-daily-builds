@@ -1,0 +1,7 @@
+job_id,job_name,contract_value,estimated_total_cost,cost_to_date,billed_to_date
+J-1001,Riverside Transit Hub,1200000,800000,480000,700000
+J-1002,Maple Street Reno,500000,350000,70000,150000
+J-1003,Harbour Warehouse Fit-Out,250000,200000,200000,250000
+J-1004,Northgate Parkade,600000,420000,0,60000
+J-1005,Lakeshore Civic Centre,2400000,1800000,900000,1150000
+J-1006,Elm Court Townhomes,380000,360000,351000,372000
