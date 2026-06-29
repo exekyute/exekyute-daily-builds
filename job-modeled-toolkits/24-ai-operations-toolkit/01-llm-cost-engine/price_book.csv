@@ -1,0 +1,5 @@
+model,input_per_1m,cached_input_per_1m,output_per_1m
+frontier-large,5.00,0.50,15.00
+balanced-mid,0.80,0.08,4.00
+frontier-mini,0.15,0.015,0.60
+open-8b-self,0.05,0.00,0.10

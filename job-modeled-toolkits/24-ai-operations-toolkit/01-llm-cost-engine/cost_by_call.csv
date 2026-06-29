@@ -1,0 +1,14 @@
+record_id,usage_date,team,project,model,requests,input_tokens,cached_input_tokens,output_tokens,cost
+U-2001,2026-06-03,Engineering,code-assist,frontier-large,800,40000000,10000000,8000000,275.00
+U-2002,2026-06-07,Engineering,code-review,balanced-mid,1500,60000000,20000000,12000000,81.60
+U-2003,2026-06-18,Engineering,agent-eval,frontier-large,300,25000000,5000000,6000000,192.50
+U-3001,2026-06-04,Sales,email-draft,balanced-mid,2000,30000000,6000000,9000000,55.68
+U-3002,2026-06-11,Sales,call-summary,frontier-mini,5000,50000000,25000000,10000000,10.13
+U-3003,2026-06-15,Sales,faq-bot,frontier-mini,1000,5000000,5000000,500000,0.38
+U-4001,2026-06-02,Support,ticket-triage,frontier-mini,9000,80000000,40000000,16000000,16.20
+U-4002,2026-06-09,Support,kb-search,open-8b-self,12000,100000000,0,20000000,7.00
+U-4003,2026-06-14,Support,escalation-summary,balanced-mid,600,8000000,2000000,1500000,10.96
+U-4004,2026-06-19,Support,moderation-check,frontier-mini,4000,6000000,0,0,0.90
+U-5001,2026-06-06,DataScience,labeling-assist,frontier-large,200,12000000,0,3000000,105.00
+U-5002,2026-06-12,DataScience,experiment-eval,balanced-mid,400,10000000,0,2500000,18.00
+U-5003,2026-06-20,DataScience,synthetic-data,open-8b-self,3000,40000000,0,5000000,2.50
