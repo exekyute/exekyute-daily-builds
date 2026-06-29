@@ -1,0 +1,4 @@
+rank,model,accuracy,precision,recall,f1,p50_latency_ms,p95_latency_ms,cost_usd,cost_per_correct,score
+1,frontier-mini,0.6000,0.6000,0.6000,0.6000,250,500,0.10,0.0167,80.00
+2,balanced-mid,0.8000,0.8000,0.8000,0.8000,500,900,0.40,0.0500,74.08
+3,frontier-large,0.9000,0.8333,1.0000,0.9091,1100,2000,1.00,0.1111,45.45

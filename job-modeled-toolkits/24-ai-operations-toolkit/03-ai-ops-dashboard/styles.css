@@ -1,0 +1,240 @@
+/* Two-tone palette: one base (slate teal) and one accent (warm coral), with neutral
+   grays for surfaces and text. Spacing is one 8px scale, reused everywhere. */
+:root {
+  --base: #0f6e6e;
+  --base-soft: #d7ecec;
+  --accent: #d2553f;
+  --accent-soft: #f7ddd5;
+  --ink: #1f2d3d;
+  --muted: #5c6b7a;
+  --surface: #ffffff;
+  --bg: #eef1f4;
+  --line: #dde3ea;
+
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 40px;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--s5) var(--s4);
+}
+
+.header { margin-bottom: var(--s4); }
+
+h1 {
+  margin: 0 0 var(--s1) 0;
+  font-size: 28px;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  max-width: 640px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2);
+  margin-bottom: var(--s4);
+}
+
+.primary-button {
+  border: none;
+  background: var(--base);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: var(--s2) var(--s3);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.primary-button:hover { background: #0c5a5a; }
+
+.file-button {
+  display: inline-flex;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s2) var(--s3);
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.file-button input { display: none; }
+
+.error {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* KPI summary cards */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s3);
+  margin-bottom: var(--s4);
+}
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+
+.kpi-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--base);
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Panels */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s4);
+  margin-bottom: var(--s4);
+}
+
+.panel h2 {
+  margin: 0 0 var(--s1) 0;
+  font-size: 19px;
+}
+
+.panel-note {
+  margin: 0 0 var(--s3) 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Budget bars */
+.budget-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.team-row { display: flex; flex-direction: column; gap: var(--s1); }
+
+.team-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team-name { font-weight: 600; }
+
+.badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: var(--s1) var(--s2);
+  border-radius: 999px;
+}
+
+.badge.within { background: var(--base-soft); color: var(--base); }
+.badge.near { background: var(--surface); color: var(--accent); border: 1px solid var(--accent); }
+.badge.over { background: var(--accent-soft); color: var(--accent); }
+
+.bar-track {
+  position: relative;
+  height: var(--s4);
+  background: var(--bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.bar-budget {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-right: 2px dashed var(--muted);
+}
+
+.bar-loaded {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.bar-loaded.within { background: var(--base); }
+.bar-loaded.near { background: var(--base); opacity: 0.85; }
+.bar-loaded.over { background: var(--accent); }
+
+.team-figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Tables */
+.table-wrap { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: var(--s2);
+  border-bottom: 1px solid var(--line);
+}
+
+.table th {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.score-row.best {
+  background: var(--base-soft);
+}
+
+.score-row.best td { font-weight: 600; }
+
+.score-cell { font-weight: 700; color: var(--base); }
+
+@media (max-width: 720px) {
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .page { padding: var(--s4) var(--s3); }
+}

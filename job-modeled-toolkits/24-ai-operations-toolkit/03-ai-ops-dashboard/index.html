@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI operations dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <h1>AI operations dashboard</h1>
+      <p class="subtitle">
+        Spend against budget by team, the month-end forecast, and the model scorecard,
+        read from the cost engine and the scorecard tool.
+      </p>
+    </header>
+
+    <section class="controls">
+      <button type="button" id="load-sample" class="primary-button">Load sample data</button>
+      <label class="file-button">
+        Load cost_by_team.csv
+        <input type="file" id="team-file" accept=".csv" />
+      </label>
+      <label class="file-button">
+        Load model_scorecard.csv
+        <input type="file" id="scorecard-file" accept=".csv" />
+      </label>
+      <span id="error" class="error"></span>
+    </section>
+
+    <section id="summary" class="summary-grid"></section>
+
+    <section class="panel">
+      <h2>Spend against budget</h2>
+      <p class="panel-note">
+        Each bar shows a team's loaded cost (direct usage plus its share of the shared
+        pool) against its monthly budget. The forecast is the straight run rate to month end.
+      </p>
+      <div id="budget-panel" class="budget-panel"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Model scorecard</h2>
+      <p class="panel-note">
+        Models ranked by a weighted score of quality, cost, and speed. The top row is
+        the current pick for this task.
+      </p>
+      <div id="scorecard-panel" class="table-wrap"></div>
+    </section>
+  </main>
+
+  <script src="src/dashboard.js"></script>
+  <script src="src/sample-data.js"></script>
+  <script src="src/ui.js"></script>
+</body>
+</html>

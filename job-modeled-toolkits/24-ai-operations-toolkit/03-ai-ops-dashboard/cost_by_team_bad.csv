@@ -1,0 +1,2 @@
+team,requests,input_tokens,output_tokens,direct_cost,allocated_shared,monthly_budget,remaining,utilization_pct,status,forecast_loaded,forecast_status
+Engineering,2600,125000000,26000000,549.10,594.50,1000.00,-143.60,114.4,Over budget,1418.15,Over budget
