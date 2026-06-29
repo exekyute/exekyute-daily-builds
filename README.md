@@ -35,6 +35,7 @@ Business utilities modeled on real job descriptions. Most are no-backend tools: 
 | [21 Craft Brewery Cost Accounting](job-modeled-toolkits/21-craft-brewery-cost-accounting-toolkit) | Landed cost, batch costing, valuation, CRA excise, SKU margins, a SQL close, and a dashboard. | 06/27/2026 |
 | [22 Municipal 311 SQL Analytics](job-modeled-toolkits/22-municipal-311-sql-analytics) | SQL intake, backlog flow, SLA aging, and operations dashboard. | 06/26/2026 |
 | [23 Fixed-Asset Depreciation](job-modeled-toolkits/23-fixed-asset-depreciation-toolkit) | Canadian CRA CCA engine, rollforward, and dashboard. | 06/24/2026 |
+| [24 AI Operations](job-modeled-toolkits/24-ai-operations-toolkit) | LLM cost engine, model scorecard, and an AI ops dashboard. | 06/28/2026 |
 
 ## Miscellaneous Projects
 
