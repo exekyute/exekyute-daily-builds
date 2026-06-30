@@ -1,0 +1,7 @@
+sub_id,vendor,plan,plan_type,monthly_unit_cost,seats_owned,seats_used,renewal_date,auto_renew
+S-01,Atlas CRM,Team,per_seat,12,50,38,2026-09-15,yes
+S-02,Beacon Analytics,Pro,per_seat,25,40,18,2026-07-20,yes
+S-03,Cirrus Storage,Business,flat,300,10,10,2026-12-01,no
+S-04,Delta Security,Enterprise,per_seat,8,100,100,2027-01-31,yes
+S-05,Echo Design,Studio,per_seat,15,25,9,2026-06-10,no
+S-06,Forge CI,Growth,per_seat,50,12,11,2026-07-05,yes

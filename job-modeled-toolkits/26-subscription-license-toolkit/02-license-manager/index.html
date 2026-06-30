@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>License Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Subscription and license manager</h1>
+      <p class="subtitle">Track every SaaS plan, the seats you pay for against the seats you use, and the renewals coming up. Edits are saved in this browser.</p>
+    </header>
+
+    <section class="summary" aria-label="Portfolio summary">
+      <div class="card"><span class="card-label">Monthly spend</span><span class="card-value" id="total-monthly">--</span></div>
+      <div class="card"><span class="card-label">Annual spend</span><span class="card-value" id="total-annual">--</span></div>
+      <div class="card"><span class="card-label">Annual seat waste</span><span class="card-value" id="total-waste">--</span></div>
+      <div class="card accent"><span class="card-label">Savings if right-sized</span><span class="card-value" id="what-if">--</span></div>
+    </section>
+
+    <section class="badges" aria-label="Renewal counts">
+      <span class="badge due">Due soon: <strong id="count-due">0</strong></span>
+      <span class="badge expired">Expired: <strong id="count-expired">0</strong></span>
+      <span class="badge underused">Underused: <strong id="count-underused">0</strong></span>
+    </section>
+
+    <section class="controls">
+      <label class="control">As of <input type="date" id="asof"></label>
+      <button id="add" class="button">Add subscription</button>
+      <label class="button file-button">Import CSV<input type="file" id="import" accept=".csv" hidden></label>
+      <button id="reset" class="button ghost">Reset to sample</button>
+      <button id="print" class="button">Print report</button>
+      <span id="note" class="note" role="status"></span>
+    </section>
+
+    <div class="table-wrap">
+      <table class="grid">
+        <thead>
+          <tr>
+            <th>ID</th><th>Vendor</th><th>Plan</th><th>Type</th><th>Unit/mo</th>
+            <th>Owned</th><th>Used</th><th>Renewal date</th><th>Auto</th>
+            <th>Monthly</th><th>Annual</th><th>Unused</th><th>Waste/yr</th><th>Util</th>
+            <th>Renewal</th><th>Action</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <div id="report" aria-hidden="true"></div>
+
+  <script src="src/subscriptions.js"></script>
+  <script src="src/sample-data.js"></script>
+  <script src="src/ui.js"></script>
+</body>
+</html>
