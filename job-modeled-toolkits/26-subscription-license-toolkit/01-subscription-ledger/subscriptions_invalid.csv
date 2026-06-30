@@ -1,0 +1,2 @@
+sub_id,vendor,plan,plan_type,monthly_unit_cost,seats_owned,seats_used,renewal_date,auto_renew
+S-99,Glitch Co,Overloaded,per_seat,10,5,9,2026-08-01,yes
