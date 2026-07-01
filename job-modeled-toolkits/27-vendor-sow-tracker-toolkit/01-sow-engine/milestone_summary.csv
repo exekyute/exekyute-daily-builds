@@ -1,0 +1,6 @@
+milestone_id,name,budget,actual_cost,variance,percent_spent,status
+M1,Discovery,20000.00,21000.00,-1000.00,1.0500,Over budget
+M2,Design,15000.00,16000.00,-1000.00,1.0667,Over budget
+M3,Build A,15000.00,15000.00,0.00,1.0000,On budget
+M4,Build B,18000.00,18000.00,0.00,1.0000,On budget
+M5,Launch,12000.00,15000.00,-3000.00,1.2500,Over budget
