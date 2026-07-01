@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SOW Timeline</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Vendor SOW earned-value timeline</h1>
+      <p class="subtitle">Effort logged against milestone budgets, week by week. The chart tracks cost to date and earned value against the contract budget, so an overrun shows up before the final invoice.</p>
+    </header>
+
+    <section class="summary" id="summary" aria-label="SOW summary"></section>
+
+    <section class="controls">
+      <label class="button file-button">Import timeline.csv<input type="file" id="import" accept=".csv" hidden></label>
+      <button id="reset" class="button ghost">Reset to sample</button>
+      <span class="legend"><span class="swatch cost"></span>Cost to date <span class="swatch earned"></span>Earned value <span class="swatch budget"></span>Budget</span>
+      <span id="note" class="note" role="status"></span>
+    </section>
+
+    <section class="chart-wrap">
+      <div id="chart"></div>
+    </section>
+
+    <section class="tables">
+      <h2>By period</h2>
+      <div id="weeks"></div>
+      <div id="milestones"></div>
+    </section>
+  </main>
+
+  <script src="src/timeline.js"></script>
+  <script src="src/sample-data.js"></script>
+  <script src="src/chart.js"></script>
+</body>
+</html>
