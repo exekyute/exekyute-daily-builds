@@ -38,6 +38,7 @@ Business utilities modeled on real job descriptions. Most are no-backend tools: 
 | [24 AI Operations](job-modeled-toolkits/24-ai-operations-toolkit) | LLM cost engine, model scorecard, and an AI ops dashboard. | 06/28/2026 |
 | [25 Construction WIP and Job-Cost](job-modeled-toolkits/25-construction-wip-job-cost-toolkit) | Cost-to-cost WIP engine, an Excel workbook with live formulas, and a sort macro. | 06/29/2026 |
 | [26 Subscription and License Manager](job-modeled-toolkits/26-subscription-license-toolkit) | Subscription cost and seat-waste ledger, and an editable browser license manager with renewals. | 06/30/2026 |
+| [27 Vendor SOW Earned-Value Tracker](job-modeled-toolkits/27-vendor-sow-tracker-toolkit) | Earned-value SOW engine and a browser burn-down timeline against budget. | 07/01/2026 |
 
 ## Miscellaneous Projects
 
