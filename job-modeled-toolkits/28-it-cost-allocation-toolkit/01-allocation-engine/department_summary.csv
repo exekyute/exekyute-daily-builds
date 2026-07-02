@@ -1,0 +1,5 @@
+department,driver_value,allocated_total,pct_of_pool
+Engineering,40,40000.00,0.4000
+Finance,15,15000.00,0.1500
+Sales,25,25000.00,0.2500
+Support,20,20000.00,0.2000
