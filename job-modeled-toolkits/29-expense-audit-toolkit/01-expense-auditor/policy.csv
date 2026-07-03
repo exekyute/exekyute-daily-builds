@@ -1,0 +1,7 @@
+param,value
+mileage_rate_per_km,0.70
+receipt_threshold,25.00
+cap.Meals,75.00
+cap.Lodging,250.00
+cap.Supplies,200.00
+cap.Transport,150.00

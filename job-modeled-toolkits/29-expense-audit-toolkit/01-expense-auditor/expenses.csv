@@ -1,0 +1,8 @@
+expense_id,date,employee,category,amount,km,receipt
+E-01,2026-06-02,J. Tremblay,Mileage,175.00,250,no
+E-02,2026-06-03,J. Tremblay,Mileage,220.00,300,no
+E-03,2026-06-04,A. Singh,Meals,95.00,,yes
+E-04,2026-06-05,A. Singh,Supplies,40.00,,no
+E-05,2026-06-06,M. Chen,Lodging,240.00,,yes
+E-06,2026-06-07,M. Chen,Meals,60.00,,yes
+E-07,2026-06-07,M. Chen,Meals,60.00,,yes

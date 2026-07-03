@@ -1,0 +1,8 @@
+expense_id,date,employee,category,amount,km,receipt,computed_amount,flags,status
+E-01,2026-06-02,J. Tremblay,Mileage,175.00,250,no,175.00,,Approved
+E-02,2026-06-03,J. Tremblay,Mileage,220.00,300,no,210.00,MILEAGE_MISMATCH,Flagged
+E-03,2026-06-04,A. Singh,Meals,95.00,0,yes,95.00,OVER_CAP,Flagged
+E-04,2026-06-05,A. Singh,Supplies,40.00,0,no,40.00,NO_RECEIPT,Flagged
+E-05,2026-06-06,M. Chen,Lodging,240.00,0,yes,240.00,,Approved
+E-06,2026-06-07,M. Chen,Meals,60.00,0,yes,60.00,DUPLICATE,Flagged
+E-07,2026-06-07,M. Chen,Meals,60.00,0,yes,60.00,DUPLICATE,Flagged
