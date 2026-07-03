@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu | Kev Wing Wah, Your City</title>
+  <meta name="description" content="The full Kev Wing Wah menu: appetizers, soups, chicken, beef, pork, seafood, fried rice, noodles, chef specials, combination plates, and set dinners. Search by dish or category.">
+  <meta name="theme-color" content="#b3252b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23b3252b'/%3E%3Cpath d='M7 14h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9Z' fill='%23f4dca6'/%3E%3Crect x='6' y='24' width='20' height='2.4' rx='1.2' fill='%23f4dca6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="menu">
+  <a class="skip-link" href="#menu-main">Skip to content</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-bowl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M2 21h20"/><path d="M12 11V8M12 5V3M9 8V6"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Kev Wing Wah home">
+        <span class="brand__mark"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span>
+        <span>
+          <span class="brand__name">Kev Wing Wah</span>
+          <span class="brand__tag">Your City &middot; Est. Year</span>
+        </span>
+      </a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html#favourites">Favourites</a></li>
+        <li><a href="menu.html" class="is-active" aria-current="page">Menu</a></li>
+        <li><a href="index.html#visit">Hours &amp; Location</a></li>
+        <li><a href="menucn.html" lang="zh">中文菜單</a></li>
+        <li><a class="btn btn-primary nav__cta" href="tel:+10000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>(000) 000-0000</a></li>
+      </ul>
+      <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <svg class="icon-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Made fresh to order</p>
+      <h1>Our menu</h1>
+      <p>Classic Cantonese cooking, chef specials, and Canadian comfort food. Search for a dish or jump to a category below.</p>
+    </div>
+  </section>
+
+  <!-- Sticky controls: live search plus category chips -->
+  <div class="menu-controls">
+    <div class="container">
+      <div class="menu-search">
+        <svg aria-hidden="true"><use href="#i-search"/></svg>
+        <label class="visually-hidden" for="menu-search-input">Search the menu</label>
+        <input id="menu-search-input" type="search" placeholder="Search dishes, for example lemon chicken" autocomplete="off">
+      </div>
+      <nav class="chips" aria-label="Menu categories">
+        <a href="#app">Appetizers</a>
+        <a href="#sou">Soups</a>
+        <a href="#chk">Chicken</a>
+        <a href="#bef">Beef</a>
+        <a href="#por">Pork</a>
+        <a href="#sea">Seafood</a>
+        <a href="#veg">Vegetable</a>
+        <span class="chips-break" aria-hidden="true"></span>
+        <a href="#fri">Fried Rice</a>
+        <a href="#nod">Noodles</a>
+        <a href="#egg">Egg Foo Young</a>
+        <a href="#che">Chef Specials</a>
+        <a href="#cac">Canadian</a>
+        <a href="#com">Combos</a>
+        <a href="#set">Set Dinners</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="menu-main" class="container section--tight">
+    <p class="note" style="margin-top: var(--s-5)">Prices are confirmed in store and on the printable menu, and may change on holidays without notice. To order, call <a href="tel:+10000000000">(000) 000-0000</a>.</p>
+
+    <p class="menu-empty" id="menu-empty" role="status">No dishes match your search. Try a different word, or <a href="tel:+10000000000">give us a call</a>.</p>
+    <p class="visually-hidden" id="menu-results-status" role="status"></p>
+
+    <!-- Appetizers -->
+    <section class="menu-section" id="app">
+      <h2>Appetizers <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">A1</span><span class="menu-item__name">Egg Roll</span></li>
+        <li class="menu-item"><span class="menu-item__code">A2</span><span class="menu-item__name">Spring Roll (Vegetarian)</span></li>
+        <li class="menu-item"><span class="menu-item__code">A3</span><span class="menu-item__name">Deep Fried Wontons (12)</span></li>
+        <li class="menu-item"><span class="menu-item__code">A4</span><span class="menu-item__name">Deep Fried Chicken Wings (8)</span></li>
+        <li class="menu-item"><span class="menu-item__code">A5</span><span class="menu-item__name">B.B.Q. Pork Slices</span></li>
+        <li class="menu-item"><span class="menu-item__code">A6</span><span class="menu-item__name">Fried Dumplings</span></li>
+      </ul>
+    </section>
+
+    <!-- Soups -->
+    <section class="menu-section" id="sou">
+      <h2>Soups <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">A7</span><span class="menu-item__name">Hot &amp; Sour Soup</span></li>
+        <li class="menu-item"><span class="menu-item__code">A8</span><span class="menu-item__name">Wonton Soup</span></li>
+        <li class="menu-item"><span class="menu-item__code">A9</span><span class="menu-item__name">Mushroom Egg Drop Soup</span></li>
+        <li class="menu-item"><span class="menu-item__code">A10</span><span class="menu-item__name">Chicken Noodle Soup</span></li>
+        <li class="menu-item"><span class="menu-item__code">A11</span><span class="menu-item__name">Chicken Corn Soup</span></li>
+        <li class="menu-item"><span class="menu-item__code">A12</span><span class="menu-item__name">Wor Wonton Soup</span></li>
+        <li class="menu-item"><span class="menu-item__code">A13</span><span class="menu-item__name">Mixed Seafood &amp; Tofu Soup</span></li>
+      </ul>
+    </section>
+
+    <!-- Chicken -->
+    <section class="menu-section" id="chk">
+      <h2>Chicken Dishes <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">C1</span><span class="menu-item__name">Ginger Chicken</span></li>
+        <li class="menu-item"><span class="menu-item__code">C2</span><span class="menu-item__name">Sweet &amp; Sour Chicken Balls</span></li>
+        <li class="menu-item"><span class="menu-item__code">C3</span><span class="menu-item__name">Almond Chicken Soo Guy (Breaded Chicken)</span></li>
+        <li class="menu-item"><span class="menu-item__code">C4</span><span class="menu-item__name">Almond Chicken Guy Ding</span></li>
+        <li class="menu-item"><span class="menu-item__code">C5</span><span class="menu-item__name">Chicken with Broccoli</span></li>
+        <li class="menu-item"><span class="menu-item__code">C6</span><span class="menu-item__name">Chicken with Mixed Vegetables</span></li>
+        <li class="menu-item"><span class="menu-item__code">C7</span><span class="menu-item__name">Lemon Chicken</span></li>
+        <li class="menu-item"><span class="menu-item__code">C8</span><span class="menu-item__name">Chicken Chow Mein</span></li>
+        <li class="menu-item"><span class="menu-item__code">C9</span><span class="menu-item__name">Chicken Chop Suey</span></li>
+        <li class="menu-item"><span class="menu-item__code">C10</span><span class="menu-item__name">Chicken with Black Bean Sauce</span></li>
+        <li class="menu-item"><span class="menu-item__code">C11</span><span class="menu-item__name">Curry Chicken</span></li>
+      </ul>
+    </section>
+
+    <!-- Beef -->
+    <section class="menu-section" id="bef">
+      <h2>Beef Dishes <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">B1</span><span class="menu-item__name">Ginger Beef</span></li>
+        <li class="menu-item"><span class="menu-item__code">B2</span><span class="menu-item__name">Beef with Broccoli</span></li>
+        <li class="menu-item"><span class="menu-item__code">B3</span><span class="menu-item__name">Beef Chow Mein</span></li>
+        <li class="menu-item"><span class="menu-item__code">B4</span><span class="menu-item__name">Beef Chop Suey</span></li>
+        <li class="menu-item"><span class="menu-item__code">B5</span><span class="menu-item__name">Beef with Mixed Vegetables</span></li>
+        <li class="menu-item"><span class="menu-item__code">B6</span><span class="menu-item__name">Beef with Black Bean Sauce</span></li>
+        <li class="menu-item"><span class="menu-item__code">B7</span><span class="menu-item__name">Curry Beef</span></li>
+      </ul>
+    </section>
+
+    <!-- Pork -->
+    <section class="menu-section" id="por">
+      <h2>Pork Dishes <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">P1</span><span class="menu-item__name">Honey Garlic Spareribs</span></li>
+        <li class="menu-item"><span class="menu-item__code">P2</span><span class="menu-item__name">Ribs with Black Bean Sauce</span></li>
+        <li class="menu-item"><span class="menu-item__code">P3</span><span class="menu-item__name">Pork with Broccoli</span></li>
+        <li class="menu-item"><span class="menu-item__code">P4</span><span class="menu-item__name">Pork Chow Mein</span></li>
+        <li class="menu-item"><span class="menu-item__code">P5</span><span class="menu-item__name">Pork Chop Suey</span></li>
+        <li class="menu-item"><span class="menu-item__code">P6</span><span class="menu-item__name">Pork with Mixed Vegetables</span></li>
+        <li class="menu-item"><span class="menu-item__code">P7</span><span class="menu-item__name">Sweet &amp; Sour Pork</span></li>
+        <li class="menu-item"><span class="menu-item__code">P8</span><span class="menu-item__name">Lemon Pork</span></li>
+      </ul>
+    </section>
+
+    <!-- Seafood -->
+    <section class="menu-section" id="sea">
+      <h2>Seafood Dishes <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">S1</span><span class="menu-item__name">Sweet &amp; Sour Shrimp</span></li>
+        <li class="menu-item"><span class="menu-item__code">S2</span><span class="menu-item__name">Shrimp or Scallop with Broccoli</span></li>
+        <li class="menu-item"><span class="menu-item__code">S3</span><span class="menu-item__name">Shrimp or Scallop Chow Mein</span></li>
+        <li class="menu-item"><span class="menu-item__code">S4</span><span class="menu-item__name">Shrimp or Scallop Chop Suey</span></li>
+        <li class="menu-item"><span class="menu-item__code">S5</span><span class="menu-item__name">Shrimp or Scallop with Mixed Vegetables</span></li>
+        <li class="menu-item"><span class="menu-item__code">S6</span><span class="menu-item__name">Shrimp or Scallop with Black Bean Sauce</span></li>
+        <li class="menu-item"><span class="menu-item__code">S7</span><span class="menu-item__name">Mixed Seafood with Broccoli</span></li>
+        <li class="menu-item"><span class="menu-item__code">S8</span><span class="menu-item__name">Mixed Seafood Chow Mein</span></li>
+        <li class="menu-item"><span class="menu-item__code">S9</span><span class="menu-item__name">Mixed Seafood Chop Suey</span></li>
+        <li class="menu-item"><span class="menu-item__code">S10</span><span class="menu-item__name">Mixed Seafood with Vegetables</span></li>
+      </ul>
+    </section>
+
+    <!-- Vegetable -->
+    <section class="menu-section" id="veg">
+      <h2>Vegetable Dishes <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">V1</span><span class="menu-item__name">Vegetable Chow Mein</span></li>
+        <li class="menu-item"><span class="menu-item__code">V2</span><span class="menu-item__name">Vegetable Chop Suey</span></li>
+        <li class="menu-item"><span class="menu-item__code">V3</span><span class="menu-item__name">House Special Mixed Vegetables</span></li>
+        <li class="menu-item"><span class="menu-item__code">V4</span><span class="menu-item__name">Almond Vegetable Ding</span></li>
+      </ul>
+    </section>
+
+    <!-- Fried Rice -->
+    <section class="menu-section" id="fri">
+      <h2>Fried Rice <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">R1</span><span class="menu-item__name">House Special Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">R2</span><span class="menu-item__name">Yang Chow Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">R3</span><span class="menu-item__name">Chicken Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">R4</span><span class="menu-item__name">Beef Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">R5</span><span class="menu-item__name">Pork Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">R6</span><span class="menu-item__name">Shrimp Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">R7</span><span class="menu-item__name">Mixed Vegetables Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">R8</span><span class="menu-item__name">Mushroom Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">R9</span><span class="menu-item__name">Plain Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">R10</span><span class="menu-item__name">Steamed Rice</span></li>
+      </ul>
+    </section>
+
+    <!-- Noodles -->
+    <section class="menu-section" id="nod">
+      <h2>Noodles <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">N1</span><span class="menu-item__name">Cantonese Seafood Chow Mein</span></li>
+        <li class="menu-item"><span class="menu-item__code">N2</span><span class="menu-item__name">Cantonese House Special Chow Mein</span></li>
+        <li class="menu-item"><span class="menu-item__code">N3</span><span class="menu-item__name">Cantonese Mixed Vegetables Chow Mein</span></li>
+        <li class="menu-item"><span class="menu-item__code">N4</span><span class="menu-item__name">Shanghai Fried Noodles</span></li>
+        <li class="menu-item"><span class="menu-item__code">N5</span><span class="menu-item__name">Beef with Rice Noodles</span></li>
+        <li class="menu-item"><span class="menu-item__code">N6</span><span class="menu-item__name">Singapore Fried Noodles</span></li>
+        <li class="menu-item"><span class="menu-item__code">N7</span><span class="menu-item__name">Lo Mein (Pork, Beef or Chicken)</span></li>
+      </ul>
+    </section>
+
+    <!-- Egg Foo Young -->
+    <section class="menu-section" id="egg">
+      <h2>Egg Foo Young <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">E1</span><span class="menu-item__name">House Special Foo Young</span></li>
+        <li class="menu-item"><span class="menu-item__code">E2</span><span class="menu-item__name">Chicken Foo Young</span></li>
+        <li class="menu-item"><span class="menu-item__code">E3</span><span class="menu-item__name">Beef Foo Young</span></li>
+        <li class="menu-item"><span class="menu-item__code">E4</span><span class="menu-item__name">Pork Foo Young</span></li>
+        <li class="menu-item"><span class="menu-item__code">E5</span><span class="menu-item__name">Shrimp Foo Young</span></li>
+        <li class="menu-item"><span class="menu-item__code">E6</span><span class="menu-item__name">Mixed Vegetables Foo Young</span></li>
+        <li class="menu-item"><span class="menu-item__code">E7</span><span class="menu-item__name">Mushroom Foo Young</span></li>
+      </ul>
+    </section>
+
+    <!-- Chef Specials -->
+    <section class="menu-section" id="che">
+      <h2>Chef Specials <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">SP1</span><span class="menu-item__name">Sizzling Beef Tenderloin</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP2</span><span class="menu-item__name">Sizzling Chicken</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP3</span><span class="menu-item__name">Sizzling Mixed Seafood</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP4</span><span class="menu-item__name">General Tao's Chicken</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP5</span><span class="menu-item__name">Diced Chicken with Peppers in Szechuan Style</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP6</span><span class="menu-item__name">Kung Po Chicken</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP7</span><span class="menu-item__name">Diced Chicken with Cashew Nuts</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP8</span><span class="menu-item__name">Chicken with Black Bean Sauce</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP9</span><span class="menu-item__name">Ginger Chicken</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP10</span><span class="menu-item__name">Fried Shrimp with Rock Salt &amp; Peppers</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP11</span><span class="menu-item__name">Shrimp with Cashew Nuts</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP12</span><span class="menu-item__name">Sauteed Shrimp with Peppers in Szechuan Style</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP13</span><span class="menu-item__name">Fried Squid with Rock Salt &amp; Peppers</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP14</span><span class="menu-item__name">General Tao's Beef</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP15</span><span class="menu-item__name">Pork Loin with Special Sweet &amp; Sour Sauce</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP16</span><span class="menu-item__name">Cantonese Sweet &amp; Sour Pork</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP17</span><span class="menu-item__name">Bean Curd with Minced Beef in Szechuan Sauce</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP18</span><span class="menu-item__name">Mixed Seafood &amp; Pineapple Fried Rice</span></li>
+        <li class="menu-item"><span class="menu-item__code">SP19</span><span class="menu-item__name">Special Chow Mein Cantonese Style</span></li>
+      </ul>
+    </section>
+
+    <!-- Canadian Cuisine -->
+    <section class="menu-section" id="cac">
+      <h2>Canadian Cuisine <span class="count"></span></h2>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">CC1</span><span class="menu-item__name">French Fries</span></li>
+        <li class="menu-item"><span class="menu-item__code">CC2</span><span class="menu-item__name">Poutine</span></li>
+        <li class="menu-item"><span class="menu-item__code">CC3</span><span class="menu-item__name">Onion Rings</span></li>
+        <li class="menu-item"><span class="menu-item__code">CC4</span><span class="menu-item__name">Fish &amp; Chips (3 pcs)</span></li>
+        <li class="menu-item"><span class="menu-item__code">CC5</span><span class="menu-item__name">Grilled Cheese</span></li>
+        <li class="menu-item"><span class="menu-item__code">CC6</span><span class="menu-item__name">Club House Sandwich</span></li>
+        <li class="menu-item"><span class="menu-item__code">CC7</span><span class="menu-item__name">Chicken Nugget &amp; Fries</span></li>
+        <li class="menu-item"><span class="menu-item__code">CC8</span><span class="menu-item__name">Hot Chicken Sandwich</span></li>
+      </ul>
+    </section>
+
+    <!-- Combination Plates -->
+    <section class="menu-section" id="com">
+      <h2>Combination Plates <span class="count"></span></h2>
+      <p class="note" style="margin-top:0">Every combo includes an egg roll and chicken fried rice.</p>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">1</span><span class="menu-item__name">Combo 1<span class="menu-item__sub">Sweet &amp; Sour Pork</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">2</span><span class="menu-item__name">Combo 2<span class="menu-item__sub">Chicken Chow Mein</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">3</span><span class="menu-item__name">Combo 3<span class="menu-item__sub">Honey Garlic Spareribs</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">4</span><span class="menu-item__name">Combo 4<span class="menu-item__sub">Sweet &amp; Sour Chicken</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">5</span><span class="menu-item__name">Combo 5<span class="menu-item__sub">Almond Chicken Guy Ding</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">6</span><span class="menu-item__name">Combo 6<span class="menu-item__sub">Ginger Chicken</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">7</span><span class="menu-item__name">Combo 7<span class="menu-item__sub">Sweet &amp; Sour Chicken, Chicken Chow Mein</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">8</span><span class="menu-item__name">Combo 8<span class="menu-item__sub">Sweet &amp; Sour Chicken, Chicken Guy Ding</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">9</span><span class="menu-item__name">Combo 9<span class="menu-item__sub">Sweet &amp; Sour Chicken, Beef &amp; Broccoli</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">10</span><span class="menu-item__name">Combo 10<span class="menu-item__sub">Sweet &amp; Sour Chicken, Honey Garlic Spareribs, Chicken Chow Mein</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">11</span><span class="menu-item__name">Combo 11<span class="menu-item__sub">Sweet &amp; Sour Chicken, Chicken Wings, Chicken Guy Ding</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">12</span><span class="menu-item__name">Combo 12<span class="menu-item__sub">Sweet &amp; Sour Chicken, Ginger Chicken, Beef &amp; Broccoli</span></span></li>
+      </ul>
+    </section>
+
+    <!-- Set Dinners -->
+    <section class="menu-section" id="set">
+      <h2>Set Dinners <span class="count"></span></h2>
+      <p class="note" style="margin-top:0">Family-style dinners. Each includes an egg roll and chicken fried rice.</p>
+      <ul class="menu-grid">
+        <li class="menu-item"><span class="menu-item__code">x2</span><span class="menu-item__name">Dinner for 2<span class="menu-item__sub">Chicken Chow Mein, Sweet &amp; Sour Chicken</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">x3</span><span class="menu-item__name">Dinner for 3<span class="menu-item__sub">Beef &amp; Broccoli, Chicken Chow Mein, Sweet &amp; Sour Chicken</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">x4</span><span class="menu-item__name">Dinner for 4<span class="menu-item__sub">Honey Garlic Spareribs, Chicken Chow Mein, Beef &amp; Broccoli, Chicken Soo Guy</span></span></li>
+        <li class="menu-item"><span class="menu-item__code">x5</span><span class="menu-item__name">Dinner for 5<span class="menu-item__sub">Beef Chow Mein, Honey Garlic Spareribs, Chicken Guy Ding, Ginger Chicken, Sweet &amp; Sour Pork</span></span></li>
+      </ul>
+    </section>
+
+    <div style="margin-top: var(--s-7); display:flex; flex-wrap:wrap; gap: var(--s-3); align-items:center;">
+      <a class="btn btn-gold" href="menu.pdf"><svg aria-hidden="true"><use href="#i-download"/></svg>Download menu (PDF)</a>
+      <a class="btn btn-ghost" href="tel:+10000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call to order</a>
+      <span class="note" style="margin:0">PDF link is a placeholder. Point it at your real menu file.</span>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand__mark"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span>
+            <span class="brand__name" style="color:#fff">Kev Wing Wah</span>
+          </a>
+          <p>Fresh, made-to-order Chinese takeout on Example Street in Your City.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="index.html#favourites">Favourites</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="menucn.html" lang="zh">中文菜單</a></li>
+            <li><a href="index.html#visit">Hours &amp; Location</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Order</h2>
+          <ul>
+            <li><a href="tel:+10000000000">(000) 000-0000</a></li>
+            <li>123 Example Street</li>
+            <li>Your City, Region 00000</li>
+            <li>Tue to Sun, 11:00 am to 9:00 pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Copyright &copy; <span id="year">2026</span> Kev Wing Wah Restaurant. All rights reserved.</span>
+        <span>Website template. Replace with your own details.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

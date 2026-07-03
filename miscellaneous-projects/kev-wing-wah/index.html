@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kev Wing Wah | Chinese Takeout in Your City, Region</title>
+  <meta name="description" content="Kev Wing Wah serves fresh, made-to-order Chinese food and combo plates for takeout in Your City. Open Tuesday to Sunday. Call (000) 000-0000.">
+  <meta name="theme-color" content="#b3252b">
+
+  <!-- Open Graph / social preview. Add og:url and og:image at deploy time. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kev Wing Wah | Chinese Takeout in Your City, Region">
+  <meta property="og:description" content="Fresh, made-to-order Chinese food and combo plates for takeout in Your City. Open Tuesday to Sunday.">
+  <meta property="og:locale" content="en_CA">
+
+  <!-- Inline SVG favicon, no binary asset needed -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23b3252b'/%3E%3Cpath d='M7 14h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9Z' fill='%23f4dca6'/%3E%3Crect x='6' y='24' width='20' height='2.4' rx='1.2' fill='%23f4dca6'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Structured data for local search results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Kev Wing Wah",
+    "servesCuisine": "Chinese",
+    "telephone": "+1-000-000-0000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Example Street",
+      "addressLocality": "Your City",
+      "addressRegion": "Region",
+      "postalCode": "00000",
+      "addressCountry": "CA"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "11:00", "closes": "21:00" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- =====================================================================
+       Icon sprite: defined once, referenced with <use> across the site
+       ===================================================================== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-bowl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M2 21h20"/><path d="M12 11V8M12 5V3M9 8V6"/>
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+      </symbol>
+      <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor">
+        <path d="m12 2 3 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.9 21l1.2-6.8-5-4.9 6.9-1Z"/>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6 6 18"/>
+      </symbol>
+      <symbol id="i-directions" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m21.7 11.3-9-9a1 1 0 0 0-1.4 0l-9 9a1 1 0 0 0 0 1.4l9 9a1 1 0 0 0 1.4 0l9-9a1 1 0 0 0 0-1.4Z"/><path d="M9 13v-2a2 2 0 0 1 2-2h4"/><path d="m13 7 2 2-2 2"/>
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- =====================================================================
+       Header
+       ===================================================================== -->
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Kev Wing Wah home">
+        <span class="brand__mark"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span>
+        <span>
+          <span class="brand__name">Kev Wing Wah</span>
+          <span class="brand__tag">Your City &middot; Est. Year</span>
+        </span>
+      </a>
+
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#favourites">Favourites</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="#visit">Hours &amp; Location</a></li>
+        <li><a href="menucn.html" lang="zh">中文菜單</a></li>
+        <li><a class="btn btn-primary nav__cta" href="tel:+10000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>(000) 000-0000</a></li>
+      </ul>
+
+      <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <svg class="icon-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- =================================================================
+         Hero
+         ================================================================= -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">Authentic Chinese takeout</p>
+          <h1 class="hero__title">Fresh wok cooking, <em>made to order</em> in Your City.</h1>
+          <p class="hero__lead">A family-run neighbourhood kitchen. Generous combo plates, classic Cantonese dishes, and chef specials, ready for pickup six nights a week.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn-primary" href="tel:+10000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>Call to order</a>
+            <a class="btn btn-ghost" href="menu.html">View the menu <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+
+          <div class="hero__badges">
+            <div class="badge">
+              <span class="badge__stars" aria-hidden="true">
+                <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
+              </span>
+              <span><strong>Guest favourite</strong><small>Add your rating</small></span>
+            </div>
+            <div class="badge">
+              <span><strong>Your accolade</strong><small>Award or press mention</small></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__media">
+          <div class="media" data-label="Signature combo plate" role="img" aria-label="Photo placeholder: signature combo plate">
+            <svg aria-hidden="true"><use href="#i-bowl"/></svg>
+          </div>
+          <div class="media" data-label="Wok in action" role="img" aria-label="Photo placeholder: wok in action"><svg aria-hidden="true"><use href="#i-bowl"/></svg></div>
+          <div class="media" data-label="Dining counter" role="img" aria-label="Photo placeholder: dining counter"><svg aria-hidden="true"><use href="#i-bowl"/></svg></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         Top combos
+         ================================================================= -->
+    <section class="section section--paper" id="combos">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Our top combos</p>
+          <h2 class="section-title">Built for one, easily shared</h2>
+          <p class="section-sub">Every combo includes an egg roll and chicken fried rice. Pick a favourite or call and we will guide you.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="media media--wide" data-label="Combo 1 photo" role="img" aria-label="Photo placeholder: Combo 1"><svg aria-hidden="true"><use href="#i-bowl"/></svg></div>
+            <div class="card__body">
+              <span class="card__kicker">Combo 1</span>
+              <h3 class="card__title">Sweet &amp; Sour Pork</h3>
+              <p class="card__desc">Egg roll, chicken fried rice, and our crisp sweet and sour pork.</p>
+              <a class="card__link" href="menu.html#com">See combos <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="media media--wide" data-label="Combo 2 photo" role="img" aria-label="Photo placeholder: Combo 2"><svg aria-hidden="true"><use href="#i-bowl"/></svg></div>
+            <div class="card__body">
+              <span class="card__kicker">Combo 2</span>
+              <h3 class="card__title">Chicken Chow Mein</h3>
+              <p class="card__desc">Egg roll, chicken fried rice, and a classic chicken chow mein.</p>
+              <a class="card__link" href="menu.html#com">See combos <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="media media--wide" data-label="Combo 3 photo" role="img" aria-label="Photo placeholder: Combo 3"><svg aria-hidden="true"><use href="#i-bowl"/></svg></div>
+            <div class="card__body">
+              <span class="card__kicker">Combo 3</span>
+              <h3 class="card__title">Honey Garlic Spareribs</h3>
+              <p class="card__desc">Egg roll, chicken fried rice, and sticky honey garlic spareribs.</p>
+              <a class="card__link" href="menu.html#com">See combos <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         Customer favourites
+         ================================================================= -->
+    <section class="section section--cream" id="favourites">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Great Chinese food</p>
+          <h2 class="section-title">Dishes our regulars come back for</h2>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="media media--wide" data-label="Lemon Chicken" role="img" aria-label="Photo placeholder: Lemon Chicken"><svg aria-hidden="true"><use href="#i-bowl"/></svg></div>
+            <div class="card__body"><span class="card__kicker">Chicken</span><h3 class="card__title">Lemon Chicken</h3></div>
+          </article>
+          <article class="card">
+            <div class="media media--wide" data-label="Ginger Beef" role="img" aria-label="Photo placeholder: Ginger Beef"><svg aria-hidden="true"><use href="#i-bowl"/></svg></div>
+            <div class="card__body"><span class="card__kicker">Beef</span><h3 class="card__title">Ginger Beef</h3></div>
+          </article>
+          <article class="card">
+            <div class="media media--wide" data-label="General Tao's Chicken" role="img" aria-label="Photo placeholder: General Tao's Chicken"><svg aria-hidden="true"><use href="#i-bowl"/></svg></div>
+            <div class="card__body"><span class="card__kicker">Chef special</span><h3 class="card__title">General Tao's Chicken</h3></div>
+          </article>
+          <article class="card">
+            <div class="media media--wide" data-label="Singapore Fried Noodles" role="img" aria-label="Photo placeholder: Singapore Fried Noodles"><svg aria-hidden="true"><use href="#i-bowl"/></svg></div>
+            <div class="card__body"><span class="card__kicker">Noodles</span><h3 class="card__title">Singapore Fried Noodles</h3></div>
+          </article>
+        </div>
+
+        <div style="margin-top: var(--s-6); text-align:center;">
+          <a class="btn btn-gold" href="menu.html">Browse the full menu <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================
+         Visit: hours and location
+         ================================================================= -->
+    <section class="section section--paper" id="visit">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Plan your visit</p>
+          <h2 class="section-title">Hours &amp; location</h2>
+        </div>
+
+        <div class="info">
+          <div class="panel">
+            <h3><svg aria-hidden="true"><use href="#i-clock"/></svg> Takeout hours</h3>
+            <ul class="hours">
+              <li class="is-closed"><span class="day">Monday</span><span>Closed</span></li>
+              <li><span class="day">Tuesday</span><span>11:00 am to 9:00 pm</span></li>
+              <li><span class="day">Wednesday</span><span>11:00 am to 9:00 pm</span></li>
+              <li><span class="day">Thursday</span><span>11:00 am to 9:00 pm</span></li>
+              <li><span class="day">Friday</span><span>11:00 am to 9:00 pm</span></li>
+              <li><span class="day">Saturday</span><span>11:00 am to 9:00 pm</span></li>
+              <li><span class="day">Sunday</span><span>11:00 am to 9:00 pm</span></li>
+            </ul>
+            <p class="note">Prices may change on holidays and special occasions without notice.</p>
+          </div>
+
+          <div class="panel">
+            <h3><svg aria-hidden="true"><use href="#i-pin"/></svg> Find us</h3>
+            <ul class="contact-list">
+              <li><svg aria-hidden="true"><use href="#i-pin"/></svg><span>123 Example Street<br>Your City, Region 00000</span></li>
+              <li><svg aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+10000000000">(000) 000-0000</a></li>
+            </ul>
+
+            <div class="media media--wide" data-label="Map of 123 Example Street" role="img" aria-label="Map placeholder: 123 Example Street" style="margin-top: var(--s-5);">
+              <svg aria-hidden="true"><use href="#i-pin"/></svg>
+            </div>
+
+            <div class="contact-actions">
+              <a class="btn btn-primary" href="https://maps.google.com/?q=123+Example+Street+Your+City" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-directions"/></svg>Get directions</a>
+              <a class="btn btn-ghost" href="tel:+10000000000">Call to order</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       Footer
+       ===================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand__mark"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span>
+            <span class="brand__name" style="color:#fff">Kev Wing Wah</span>
+          </a>
+          <p>Fresh, made-to-order Chinese takeout on Example Street in Your City.</p>
+        </div>
+
+        <div class="footer-col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="#favourites">Favourites</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="menucn.html" lang="zh">中文菜單</a></li>
+            <li><a href="#visit">Hours &amp; Location</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2>Order</h2>
+          <ul>
+            <li><a href="tel:+10000000000">(000) 000-0000</a></li>
+            <li>123 Example Street</li>
+            <li>Your City, Region 00000</li>
+            <li>Tue to Sun, 11:00 am to 9:00 pm</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Copyright &copy; <span id="year">2026</span> Kev Wing Wah Restaurant. All rights reserved.</span>
+        <span>Website template. Replace with your own details.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

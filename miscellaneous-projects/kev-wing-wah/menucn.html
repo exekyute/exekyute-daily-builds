@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中文菜單 | Kev Wing Wah, Your City</title>
+  <meta name="description" content="Kev Wing Wah Chinese-language menu (中文菜單) placeholder.">
+  <meta name="theme-color" content="#b3252b">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23b3252b'/%3E%3Cpath d='M7 14h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9Z' fill='%23f4dca6'/%3E%3Crect x='6' y='24' width='20' height='2.4' rx='1.2' fill='%23f4dca6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    [lang="zh-Hant"] h1,
+    .cn-chips a { font-family: "Noto Serif TC", var(--font-display); }
+    .cn-chips { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+    .cn-chips a {
+      padding: 0.6rem 1.1rem; border-radius: var(--radius-pill);
+      background: var(--paper); border: 1px solid var(--line);
+      text-decoration: none; color: var(--ink); font-size: 1.05rem;
+    }
+    .cn-chips a:hover { border-color: var(--red); color: var(--red-700); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main" lang="en">Skip to content</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-bowl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0Z"/><path d="M2 21h20"/><path d="M12 11V8M12 5V3M9 8V6"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header" lang="en">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Kev Wing Wah home">
+        <span class="brand__mark"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span>
+        <span>
+          <span class="brand__name">Kev Wing Wah</span>
+          <span class="brand__tag">Your City &middot; Est. Year</span>
+        </span>
+      </a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html#favourites">Favourites</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="index.html#visit">Hours &amp; Location</a></li>
+        <li><a href="menucn.html" lang="zh" class="is-active" aria-current="page">中文菜單</a></li>
+        <li><a class="btn btn-primary nav__cta" href="tel:+10000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>(000) 000-0000</a></li>
+      </ul>
+      <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <svg class="icon-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="section section--cream" lang="zh-Hant">
+      <div class="container" style="max-width: 760px;">
+        <p class="eyebrow">中文菜單</p>
+        <h1 style="font-size: clamp(2rem, 5vw, 3rem);">Kev Wing Wah 中文菜單</h1>
+        <p class="section-sub" lang="en">This is a placeholder for the Chinese-language menu. The dishes match the English menu, so the categories below link straight to those sections. Drop the translated dish names in here when ready.</p>
+
+        <nav class="cn-chips" aria-label="菜單分類">
+          <a href="menu.html#app">前菜</a>
+          <a href="menu.html#sou">湯</a>
+          <a href="menu.html#chk">雞</a>
+          <a href="menu.html#bef">牛肉</a>
+          <a href="menu.html#por">豬肉</a>
+          <a href="menu.html#sea">海鮮</a>
+          <a href="menu.html#veg">蔬菜</a>
+          <a href="menu.html#fri">炒飯</a>
+          <a href="menu.html#nod">麵</a>
+          <a href="menu.html#egg">芙蓉蛋</a>
+          <a href="menu.html#che">廚師特選</a>
+          <a href="menu.html#cac">加拿大風味</a>
+          <a href="menu.html#com">配套餐</a>
+          <a href="menu.html#set">套餐</a>
+        </nav>
+
+        <div class="hero__actions" style="margin-top: var(--s-7);">
+          <a class="btn btn-primary" href="tel:+10000000000"><svg aria-hidden="true"><use href="#i-phone"/></svg>(000) 000-0000</a>
+          <a class="btn btn-ghost" href="menu.html" lang="en">English menu <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" lang="en">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand__mark"><svg aria-hidden="true"><use href="#i-bowl"/></svg></span>
+            <span class="brand__name" style="color:#fff">Kev Wing Wah</span>
+          </a>
+          <p>Fresh, made-to-order Chinese takeout on Example Street in Your City.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="index.html#favourites">Favourites</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="menucn.html" lang="zh">中文菜單</a></li>
+            <li><a href="index.html#visit">Hours &amp; Location</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Order</h2>
+          <ul>
+            <li><a href="tel:+10000000000">(000) 000-0000</a></li>
+            <li>123 Example Street</li>
+            <li>Your City, Region 00000</li>
+            <li>Tue to Sun, 11:00 am to 9:00 pm</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Copyright &copy; <span id="year">2026</span> Kev Wing Wah Restaurant. All rights reserved.</span>
+        <span>Website template. Replace with your own details.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
