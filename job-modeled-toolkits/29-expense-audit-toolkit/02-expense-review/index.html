@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Expense Review</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Travel and expense review</h1>
+      <p class="subtitle">Each expense is checked against policy: mileage rate, category caps, receipt rules, and duplicates. Clean lines are approved on their own; flagged lines wait here for an approve or reject. Decisions are saved in this browser.</p>
+    </header>
+
+    <section class="summary" aria-label="Audit summary">
+      <div class="card"><span class="card-label">Total claimed</span><span class="card-value" id="total-claimed">--</span></div>
+      <div class="card"><span class="card-label">Flagged</span><span class="card-value flag" id="flagged-amount">--</span></div>
+      <div class="card"><span class="card-label">Approved</span><span class="card-value ok" id="approved-amount">--</span></div>
+      <div class="card"><span class="card-label">Rejected</span><span class="card-value bad" id="rejected-amount">--</span></div>
+      <div class="card"><span class="card-label">Pending</span><span class="card-value" id="pending-count">--</span></div>
+    </section>
+
+    <section class="controls">
+      <label class="toggle"><input type="checkbox" id="filter"> Flagged only</label>
+      <label class="button file-button">Import CSV<input type="file" id="import" accept=".csv" hidden></label>
+      <button id="reset" class="button ghost">Reset to sample</button>
+      <button id="print" class="button">Print report</button>
+      <span id="note" class="note" role="status"></span>
+    </section>
+
+    <div class="table-wrap">
+      <table class="grid">
+        <thead>
+          <tr><th>ID</th><th>Date</th><th>Employee</th><th>Category</th><th>Amount</th><th>Flags</th><th>Decision</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <div id="report" aria-hidden="true"></div>
+
+  <script src="src/audit.js"></script>
+  <script src="src/sample-data.js"></script>
+  <script src="src/ui.js"></script>
+</body>
+</html>
