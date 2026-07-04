@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grant Compliance Tests</title>
+  <style>
+    body { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; margin: 32px; color: #1c2733; }
+    h1 { color: #1f3a5f; }
+    .count { font-size: 18px; margin: 16px 0; }
+    .pass { color: #2f7d3b; font-weight: 700; }
+    .fail { color: #b4451f; font-weight: 700; }
+    table { border-collapse: collapse; margin-top: 16px; }
+    td, th { border: 1px solid #d4dde6; padding: 6px 12px; text-align: left; font-size: 14px; }
+    .row-pass td:first-child { color: #2f7d3b; }
+    .row-fail td:first-child { color: #b4451f; }
+  </style>
+</head>
+<body>
+  <h1>Grant compliance tests</h1>
+  <div class="count" id="count"></div>
+  <table id="table"><thead><tr><th>Result</th><th>Check</th><th>Got</th><th>Want</th></tr></thead><tbody></tbody></table>
+
+  <script src="src/timeline.js"></script>
+  <script src="src/sample-data.js"></script>
+  <script src="src/tests.js"></script>
+  <script>
+    var report = window.runTests();
+    var count = document.getElementById("count");
+    count.innerHTML = report.failed === 0
+      ? '<span class="pass">PASS</span> ' + report.passed + ' of ' + report.passed + ' checks'
+      : '<span class="fail">FAIL</span> ' + report.failed + ' of ' + (report.passed + report.failed) + ' checks failed';
+    var tbody = document.querySelector("#table tbody");
+    report.results.forEach(function (c) {
+      var tr = document.createElement("tr");
+      tr.className = c.ok ? "row-pass" : "row-fail";
+      tr.innerHTML = "<td>" + (c.ok ? "PASS" : "FAIL") + "</td><td>" + c.name +
+        "</td><td>" + String(c.got) + "</td><td>" + String(c.want) + "</td>";
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
+</html>

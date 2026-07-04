@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grant Compliance</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Grant drawdown and compliance</h1>
+      <p class="subtitle">Allowable spend drawn against the award, period by period. The chart tracks the actual drawdown and where the run rate is heading by the award end, so an overspend shows up early. Disallowed costs are kept out, and overdue reports are flagged.</p>
+    </header>
+
+    <section class="summary" id="summary" aria-label="Grant summary"></section>
+
+    <section class="controls">
+      <label class="button file-button">Import timeline.csv<input type="file" id="import" accept=".csv" hidden></label>
+      <button id="reset" class="button ghost">Reset to sample</button>
+      <span class="legend"><span class="swatch actual"></span>Drawn <span class="swatch projected"></span>Projected <span class="swatch award"></span>Award</span>
+      <span id="note" class="note" role="status"></span>
+    </section>
+
+    <section class="chart-wrap">
+      <div id="chart"></div>
+    </section>
+
+    <section class="panels">
+      <div class="panel">
+        <h2>Budget by category</h2>
+        <div id="categories" class="categories"></div>
+      </div>
+      <div class="panel">
+        <h2>Reporting deadlines</h2>
+        <ul id="deadlines" class="deadlines"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="src/timeline.js"></script>
+  <script src="src/sample-data.js"></script>
+  <script src="src/chart.js"></script>
+</body>
+</html>
