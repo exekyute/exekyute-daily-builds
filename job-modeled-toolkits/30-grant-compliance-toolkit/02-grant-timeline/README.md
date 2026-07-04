@@ -36,13 +36,9 @@ The drawdown chart. The solid line is the allowable spend drawn so far, the dash
 is the run-rate projection, and the dashed rule is the award. The projection crosses the
 award early, which is the overspend the run rate is heading for.
 
-![Summary cards](images/02-summary.png)
+![Summary and import](images/02-summary-import.png)
 
-The headline figures: 100,000.00 drawn on allowable costs, 5,000.00 disallowed and kept
-out of the drawdown, 150,000.00 remaining, a 300,000.00 projection at the award end, and
-one report overdue.
-
-![Imported run](images/03-imported-run.png)
-
-The same view after importing a timeline.csv from the engine, with the status note
-confirming the four periods loaded from file. The view reads the engine's own output.
+The headline cards read straight off the timeline: 100,000.00 drawn on allowable costs,
+5,000.00 disallowed and kept out, 150,000.00 remaining, a 300,000.00 projection at the
+award end, and one report overdue. Import timeline.csv loads a fresh run from the engine,
+and the status note confirms the four periods read from file.
