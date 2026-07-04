@@ -1,0 +1,12 @@
+period,category,amount
+1,Salaries,14000
+1,Travel,2000
+2,Salaries,22000
+2,Equipment,8000
+2,Entertainment,5000
+3,Salaries,22000
+3,Equipment,4000
+3,Travel,3000
+3,Indirect,1000
+4,Salaries,22000
+4,Indirect,2000

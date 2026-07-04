@@ -1,0 +1,5 @@
+period,cumulative_allowable,cumulative_disallowed,burn_rate,remaining,projected_total,projected_variance,status,reports_overdue
+1,16000.00,0.00,16000.00,234000.00,192000.00,58000.00,On track,0
+2,46000.00,5000.00,23000.00,204000.00,276000.00,-26000.00,Over budget,0
+3,76000.00,5000.00,25333.33,174000.00,304000.00,-54000.00,Over budget,1
+4,100000.00,5000.00,25000.00,150000.00,300000.00,-50000.00,Over budget,1
