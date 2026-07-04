@@ -32,3 +32,21 @@ python cli.py --transactions transactions_invalid.csv
 ```
 
 That file has a zero period, so the run stops with a message naming the transaction.
+
+## In action
+
+![Drawdown output](images/01-drawdown.png)
+
+The engine printing the drawdown from the sample grant. By period 4 it has drawn
+100,000.00 on allowable costs, kept 5,000.00 of disallowed cost out, and the 25,000.00
+run rate projects 300,000.00 at the award end, 50,000.00 over, with one report overdue.
+
+![Passing tests](images/02-unit-tests.png)
+
+The 13 unit tests passing, covering the allowable check, the burn rate and projection,
+the runway, the overdue-report count, and every validation rule.
+
+![Rejected input](images/03-rejected-input.png)
+
+A run against the invalid sample stopping with a clear message. A transaction with a
+zero period is rejected before any drawdown is computed.
