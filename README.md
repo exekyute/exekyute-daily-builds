@@ -41,6 +41,7 @@ Business utilities modeled on real job descriptions. Most are no-backend tools: 
 | [27 Vendor SOW Earned-Value Tracker](job-modeled-toolkits/27-vendor-sow-tracker-toolkit) | Earned-value SOW engine and a browser burn-down timeline against budget. | 07/01/2026 |
 | [28 IT Cost Allocation and Showback](job-modeled-toolkits/28-it-cost-allocation-toolkit) | Driver-based shared-cost allocation engine and an Excel chargeback workbook with live formulas. | 07/02/2026 |
 | [29 Expense and T&E Audit](job-modeled-toolkits/29-expense-audit-toolkit) | Policy-audit engine for mileage, caps, receipts, and duplicates, and a browser review queue with approve/reject. | 07/03/2026 |
+| [30 Grant Drawdown and Compliance](job-modeled-toolkits/30-grant-compliance-toolkit) | Allowable-cost drawdown engine with run-rate projection and report deadlines, and a browser timeline against the award. | 07/04/2026 |
 
 ## Miscellaneous Projects
 
