@@ -29,12 +29,10 @@ Smaller builds, made to learn something or for fun.
 | [Steam Global Achievements Downloader](miscellaneous-projects/steam-achievements-scraper) | Firefox userscript that downloads every achievement's name, icon, and description from a Steam game page. | 05/28/2026 |
 | [Table for One](miscellaneous-projects/table-for-one) | A concept food blog written from the eating side of the table. | 05/30/2026 |
 
-## Job-Modeled Toolkits (1-30)
+<details>
+<summary><h2>Job-Modeled Toolkits (1-30)</h2></summary>
 
 Business utilities modeled on real job descriptions. Most are no-backend tools: Python command-line scripts, SQLite analytics, Excel VBA, or browser dashboards.
-
-<details>
-<summary>Show all 30 toolkits</summary>
 
 | Project | What it does | Last Updated |
 |---|---|---|
