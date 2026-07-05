@@ -1,14 +1,40 @@
 # exekyute-daily-builds
 
-A running collection of the small projects I build. Two kinds live here: job-modeled toolkits, where I turn a real job description into working software, and miscellaneous projects, the smaller things I make to learn something or just to tinker.
+A running collection of the small projects I build. Three kinds live here: job-modeled toolkits, where I turn a real job description into working software; Nova Scotia open-data analyses, where the logic lives in plain SQL; and miscellaneous projects, the smaller things I make to learn something or just to tinker.
 
 Each project is self-contained in its own folder with its own README, so you can open any one on its own.
 
 > **Note:** On June 25, 2026, I used Claude Code to consolidate my separate daily-build repositories into a single source. Folding them together cuts down on repo clutter and makes the whole collection easier to browse, track, and manage from one place. The "Last Updated" column shows when each project was last worked on. For projects folded in during the merge, that is their date beforehand; anything I add or update later carries its own date.
 
-## Job-Modeled Toolkits
+## Nova Scotia Open Data
+
+Small SQL analyses built on real datasets from the Nova Scotia Open Data portal. Each build keeps a checked-in snapshot of its source data and a golden copy of the expected output, so the numbers reproduce exactly every time the SQL runs.
+
+## Miscellaneous Projects
+
+Smaller builds, made to learn something or for fun.
+
+| Project | What it does | Last Updated |
+|---|---|---|
+| [Beginner Blog API](miscellaneous-projects/beginner-blog-api) | A first real backend: HTTP, auth, and a relational database. | 05/28/2026 |
+| [Contact List Cleaner](miscellaneous-projects/contact-list-cleaner) | Command-line tool that tidies a messy contact list. | 06/02/2026 |
+| [Crossword Generator](miscellaneous-projects/crossword-generator) | Single-file browser crossword generator, no build step. | 05/31/2026 |
+| [FF7 Materia Graph](miscellaneous-projects/ff7-materia-graph) | A knowledge graph of Final Fantasy VII materia, with a Python/SQLite command-line tool and a browser explorer. | 06/27/2026 |
+| [Canadian FinLit Tools](miscellaneous-projects/finlit-tools-ca) | Seven browser calculators for Canadian benefit and tax rules. | 05/25/2026 |
+| [Insertion Order PDF Builder](miscellaneous-projects/io-pdf-builder) | Single-file browser form that builds a one-page insertion order PDF, with live preview and DocuSign anchor tags. | 05/29/2026 |
+| [Insertion Order Renamer](miscellaneous-projects/insertion-order-renamer) | Command-line tool that normalizes messy IO file names. | 06/01/2026 |
+| [InvoiceParsimus](miscellaneous-projects/invoice-parsimus) | Browser-based invoice parser and financial dashboard powered by Gemini. | 05/29/2026 |
+| [Kev Wing Wah](miscellaneous-projects/kev-wing-wah) | A complete restaurant website template for a fictional takeout spot, with a searchable 120-dish menu. | 07/03/2026 |
+| [Knicks vs Spurs Matchup Projector](miscellaneous-projects/knicks-spurs-matchup-projector) | Single web page that projects the next Knicks vs Spurs game. | 06/03/2026 |
+| [Steam Global Achievements Downloader](miscellaneous-projects/steam-achievements-scraper) | Firefox userscript that downloads every achievement's name, icon, and description from a Steam game page. | 05/28/2026 |
+| [Table for One](miscellaneous-projects/table-for-one) | A concept food blog written from the eating side of the table. | 05/30/2026 |
+
+## Job-Modeled Toolkits (1-30)
 
 Business utilities modeled on real job descriptions. Most are no-backend tools: Python command-line scripts, SQLite analytics, Excel VBA, or browser dashboards.
+
+<details>
+<summary>Show all 30 toolkits</summary>
 
 | Project | What it does | Last Updated |
 |---|---|---|
@@ -43,24 +69,7 @@ Business utilities modeled on real job descriptions. Most are no-backend tools: 
 | [29 Expense and T&E Audit](job-modeled-toolkits/29-expense-audit-toolkit) | Policy-audit engine for mileage, caps, receipts, and duplicates, and a browser review queue with approve/reject. | 07/03/2026 |
 | [30 Grant Drawdown and Compliance](job-modeled-toolkits/30-grant-compliance-toolkit) | Allowable-cost drawdown engine with run-rate projection and report deadlines, and a browser timeline against the award. | 07/04/2026 |
 
-## Miscellaneous Projects
-
-Smaller builds, made to learn something or for fun.
-
-| Project | What it does | Last Updated |
-|---|---|---|
-| [Beginner Blog API](miscellaneous-projects/beginner-blog-api) | A first real backend: HTTP, auth, and a relational database. | 05/28/2026 |
-| [Contact List Cleaner](miscellaneous-projects/contact-list-cleaner) | Command-line tool that tidies a messy contact list. | 06/02/2026 |
-| [Crossword Generator](miscellaneous-projects/crossword-generator) | Single-file browser crossword generator, no build step. | 05/31/2026 |
-| [FF7 Materia Graph](miscellaneous-projects/ff7-materia-graph) | A knowledge graph of Final Fantasy VII materia, with a Python/SQLite command-line tool and a browser explorer. | 06/27/2026 |
-| [Canadian FinLit Tools](miscellaneous-projects/finlit-tools-ca) | Seven browser calculators for Canadian benefit and tax rules. | 05/25/2026 |
-| [Insertion Order PDF Builder](miscellaneous-projects/io-pdf-builder) | Single-file browser form that builds a one-page insertion order PDF, with live preview and DocuSign anchor tags. | 05/29/2026 |
-| [Insertion Order Renamer](miscellaneous-projects/insertion-order-renamer) | Command-line tool that normalizes messy IO file names. | 06/01/2026 |
-| [InvoiceParsimus](miscellaneous-projects/invoice-parsimus) | Browser-based invoice parser and financial dashboard powered by Gemini. | 05/29/2026 |
-| [Kev Wing Wah](miscellaneous-projects/kev-wing-wah) | A complete restaurant website template for a fictional takeout spot, with a searchable 120-dish menu. | 07/03/2026 |
-| [Knicks vs Spurs Matchup Projector](miscellaneous-projects/knicks-spurs-matchup-projector) | Single web page that projects the next Knicks vs Spurs game. | 06/03/2026 |
-| [Steam Global Achievements Downloader](miscellaneous-projects/steam-achievements-scraper) | Firefox userscript that downloads every achievement's name, icon, and description from a Steam game page. | 05/28/2026 |
-| [Table for One](miscellaneous-projects/table-for-one) | A concept food blog written from the eating side of the table. | 05/30/2026 |
+</details>
 
 ## License
 
