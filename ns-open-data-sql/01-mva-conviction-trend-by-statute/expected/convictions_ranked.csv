@@ -1,0 +1,29 @@
+window_rank,window_trend,offence_statute,description,year_convicted,convictions,rank_in_year,prev_convictions,yoy_change,yoy_pct_change,first_year,last_year,first_convictions,last_convictions,window_change,window_pct_change
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2011,43,2,,,,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2012,43,2,43,0,0.0,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2013,47,2,43,4,9.3,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2014,35,2,47,-12,-25.5,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2015,61,2,35,26,74.3,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2016,69,2,61,8,13.1,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2017,128,2,69,59,85.5,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2018,67,2,128,-61,-47.7,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2019,63,2,67,-4,-6.0,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2020,29,2,63,-34,-54.0,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2021,57,2,29,28,96.6,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2022,60,2,57,3,5.3,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2023,98,2,60,38,63.3,2011,2024,43,61,18,41.9
+1,rising,MVA 103(3),Passing a school bus with red lights flashing,2024,61,2,98,-37,-37.8,2011,2024,43,61,18,41.9
+2,falling,MVA 100D,Cellphone distracted driving,2011,2964,1,,,,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2012,3529,1,2964,565,19.1,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2013,4319,1,3529,790,22.4,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2014,5107,1,4319,788,18.2,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2015,4354,1,5107,-753,-14.7,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2016,2664,1,4354,-1690,-38.8,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2017,3013,1,2664,349,13.1,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2018,2738,1,3013,-275,-9.1,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2019,2613,1,2738,-125,-4.6,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2020,1097,1,2613,-1516,-58.0,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2021,980,1,1097,-117,-10.7,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2022,2203,1,980,1223,124.8,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2023,2146,1,2203,-57,-2.6,2011,2024,2964,1564,-1400,-47.2
+2,falling,MVA 100D,Cellphone distracted driving,2024,1564,1,2146,-582,-27.1,2011,2024,2964,1564,-1400,-47.2

@@ -10,6 +10,10 @@ Each project is self-contained in its own folder with its own README, so you can
 
 Small SQL analyses built on real datasets from the Nova Scotia Open Data portal. Each build keeps a checked-in snapshot of its source data and a golden copy of the expected output, so the numbers reproduce exactly every time the SQL runs.
 
+| Project | What it does | Last Updated |
+|---|---|---|
+| [01 MVA Conviction Trend](ns-open-data-sql/01-mva-conviction-trend-by-statute) | Ranks two selected Motor Vehicle Act offences by yearly conviction count and tracks which are rising or falling across 2011 to 2024, in DuckDB SQL. | 07/05/2026 |
+
 ## Miscellaneous Projects
 
 Smaller builds, made to learn something or for fun.

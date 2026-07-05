@@ -1,0 +1,6 @@
+# generated output
+out/
+
+# local working databases
+*.duckdb
+*.db
