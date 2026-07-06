@@ -13,6 +13,7 @@ Small SQL analyses built on real datasets from the Nova Scotia Open Data portal.
 | Project | What it does | Last Updated |
 |---|---|---|
 | [01 MVA Conviction Trend](ns-open-data-sql/01-mva-conviction-trend-by-statute) | Ranks two selected Motor Vehicle Act offences by yearly conviction count and tracks which are rising or falling across 2011 to 2024, in DuckDB SQL. | 07/05/2026 |
+| [02 Farm Commodity-Mix Shift](ns-open-data-sql/02-farm-commodity-mix-shift) | Tracks the commodity mix of registered farms by fiscal year and ranks which commodities gained or lost the most share from 2015-2016 to 2024-2025, in DuckDB SQL. | 07/06/2026 |
 
 ## Miscellaneous Projects
 
