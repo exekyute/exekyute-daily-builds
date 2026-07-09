@@ -16,6 +16,7 @@ Small SQL analyses built on real datasets from the Nova Scotia Open Data portal.
 | [02 Farm Commodity-Mix Shift](ns-open-data-sql/02-farm-commodity-mix-shift) | Tracks the commodity mix of registered farms by fiscal year and ranks which commodities gained or lost the most share from 2015-2016 to 2024-2025, in DuckDB SQL. | 07/06/2026 |
 | [03 Small-Business Grant Audit](ns-open-data-sql/03-small-business-grant-audit) | Counts recipients of two 2020 pandemic small-business grants by business type and year and ranks which types received the most, in DuckDB SQL. | 07/07/2026 |
 | [04 Hatchery Stocking Summary](ns-open-data-sql/04-hatchery-stocking-summary) | Sums hatchery fish releases by waterbody, county, species, and year, ranks the top species and most stocked water, and tracks the release trend from 1976 to 2025, in DuckDB SQL. | 07/08/2026 |
+| [05 Busiest-Corridor AADT Ranking](ns-open-data-sql/05-busiest-corridor-aadt-ranking) | Ranks provincial highway segments by annual average daily traffic, tracks each segment's year-over-year growth with a window function, and flags the segments at or above a two-lane capacity threshold, in DuckDB SQL. | 07/09/2026 |
 
 ## Miscellaneous Projects
 
