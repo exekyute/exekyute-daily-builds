@@ -1,0 +1,707 @@
+community,community_total_licenses,community_rank,license_type,type_count,type_share_pct,is_dominant_type
+Halifax,603,1,Eating Establishment,337,55.9,1
+Halifax,603,1,Lounge,144,23.9,0
+Halifax,603,1,Special Premises,86,14.3,0
+Halifax,603,1,Club,17,2.8,0
+Halifax,603,1,Beverage Room,8,1.3,0
+Halifax,603,1,Cabaret,8,1.3,0
+Halifax,603,1,Military,3,0.5,0
+Dartmouth,209,2,Eating Establishment,119,56.9,1
+Dartmouth,209,2,Lounge,48,23.0,0
+Dartmouth,209,2,Special Premises,24,11.5,0
+Dartmouth,209,2,Club,12,5.7,0
+Dartmouth,209,2,Beverage Room,5,2.4,0
+Dartmouth,209,2,Military,1,0.5,0
+Sydney,106,3,Eating Establishment,44,41.5,1
+Sydney,106,3,Lounge,24,22.6,0
+Sydney,106,3,Special Premises,21,19.8,0
+Sydney,106,3,Club,14,13.2,0
+Sydney,106,3,Beverage Room,1,0.9,0
+Sydney,106,3,Cabaret,1,0.9,0
+Sydney,106,3,Military,1,0.9,0
+Truro,67,4,Eating Establishment,35,52.2,1
+Truro,67,4,Lounge,13,19.4,0
+Truro,67,4,Special Premises,10,14.9,0
+Truro,67,4,Club,7,10.4,0
+Truro,67,4,Beverage Room,2,3.0,0
+Bedford,64,5,Eating Establishment,43,67.2,1
+Bedford,64,5,Special Premises,10,15.6,0
+Bedford,64,5,Lounge,8,12.5,0
+Bedford,64,5,Club,2,3.1,0
+Bedford,64,5,Cabaret,1,1.6,0
+Yarmouth,41,6,Eating Establishment,19,46.3,1
+Yarmouth,41,6,Special Premises,9,22.0,0
+Yarmouth,41,6,Lounge,8,19.5,0
+Yarmouth,41,6,Club,5,12.2,0
+New Glasgow,40,7,Eating Establishment,16,40.0,1
+New Glasgow,40,7,Lounge,9,22.5,0
+New Glasgow,40,7,Special Premises,8,20.0,0
+New Glasgow,40,7,Club,6,15.0,0
+New Glasgow,40,7,Beverage Room,1,2.5,0
+Wolfville,38,8,Eating Establishment,14,36.8,1
+Wolfville,38,8,Special Premises,11,28.9,0
+Wolfville,38,8,Lounge,9,23.7,0
+Wolfville,38,8,Club,4,10.5,0
+Antigonish,36,9,Eating Establishment,16,44.4,1
+Antigonish,36,9,Special Premises,9,25.0,0
+Antigonish,36,9,Club,5,13.9,0
+Antigonish,36,9,Lounge,5,13.9,0
+Antigonish,36,9,Cabaret,1,2.8,0
+Bridgewater,36,9,Eating Establishment,18,50.0,1
+Bridgewater,36,9,Special Premises,9,25.0,0
+Bridgewater,36,9,Lounge,6,16.7,0
+Bridgewater,36,9,Club,2,5.6,0
+Bridgewater,36,9,Cabaret,1,2.8,0
+Lower Sackville,34,10,Eating Establishment,19,55.9,1
+Lower Sackville,34,10,Club,6,17.6,0
+Lower Sackville,34,10,Lounge,5,14.7,0
+Lower Sackville,34,10,Special Premises,3,8.8,0
+Lower Sackville,34,10,Beverage Room,1,2.9,0
+Lunenburg,34,10,Eating Establishment,20,58.8,1
+Lunenburg,34,10,Lounge,5,14.7,0
+Lunenburg,34,10,Special Premises,5,14.7,0
+Lunenburg,34,10,Club,4,11.8,0
+Amherst,31,11,Eating Establishment,11,35.5,1
+Amherst,31,11,Club,8,25.8,0
+Amherst,31,11,Lounge,7,22.6,0
+Amherst,31,11,Special Premises,4,12.9,0
+Amherst,31,11,Beverage Room,1,3.2,0
+Baddeck,27,12,Eating Establishment,15,55.6,1
+Baddeck,27,12,Special Premises,10,37.0,0
+Baddeck,27,12,Club,2,7.4,0
+Windsor,27,12,Eating Establishment,13,48.1,1
+Windsor,27,12,Lounge,7,25.9,0
+Windsor,27,12,Special Premises,4,14.8,0
+Windsor,27,12,Club,2,7.4,0
+Windsor,27,12,Beverage Room,1,3.7,0
+Digby,26,13,Eating Establishment,15,57.7,1
+Digby,26,13,Lounge,5,19.2,0
+Digby,26,13,Special Premises,4,15.4,0
+Digby,26,13,Club,2,7.7,0
+Glace Bay,24,14,Club,10,41.7,1
+Glace Bay,24,14,Eating Establishment,7,29.2,0
+Glace Bay,24,14,Lounge,4,16.7,0
+Glace Bay,24,14,Special Premises,3,12.5,0
+Liverpool,23,15,Eating Establishment,8,34.8,1
+Liverpool,23,15,Lounge,6,26.1,0
+Liverpool,23,15,Special Premises,6,26.1,0
+Liverpool,23,15,Club,3,13.0,0
+North Sydney,23,15,Eating Establishment,7,30.4,1
+North Sydney,23,15,Special Premises,7,30.4,0
+North Sydney,23,15,Club,5,21.7,0
+North Sydney,23,15,Lounge,3,13.0,0
+North Sydney,23,15,Cabaret,1,4.3,0
+Inverness,21,16,Eating Establishment,8,38.1,1
+Inverness,21,16,Lounge,6,28.6,0
+Inverness,21,16,Special Premises,5,23.8,0
+Inverness,21,16,Club,2,9.5,0
+Annapolis Royal,20,17,Eating Establishment,9,45.0,1
+Annapolis Royal,20,17,Special Premises,6,30.0,0
+Annapolis Royal,20,17,Beverage Room,2,10.0,0
+Annapolis Royal,20,17,Club,2,10.0,0
+Annapolis Royal,20,17,Lounge,1,5.0,0
+New Minas,20,17,Eating Establishment,13,65.0,1
+New Minas,20,17,Lounge,4,20.0,0
+New Minas,20,17,Special Premises,2,10.0,0
+New Minas,20,17,Club,1,5.0,0
+Chester,19,18,Eating Establishment,8,42.1,1
+Chester,19,18,Club,4,21.1,0
+Chester,19,18,Special Premises,3,15.8,0
+Chester,19,18,Lounge,2,10.5,0
+Chester,19,18,Beverage Room,1,5.3,0
+Chester,19,18,Permanent Special Occasion,1,5.3,0
+Pictou,18,19,Eating Establishment,7,38.9,1
+Pictou,18,19,Club,5,27.8,0
+Pictou,18,19,Lounge,4,22.2,0
+Pictou,18,19,Special Premises,2,11.1,0
+Shelburne,17,20,Eating Establishment,8,47.1,1
+Shelburne,17,20,Club,4,23.5,0
+Shelburne,17,20,Lounge,3,17.6,0
+Shelburne,17,20,Special Premises,2,11.8,0
+Kentville,16,21,Eating Establishment,5,31.3,1
+Kentville,16,21,Club,4,25.0,0
+Kentville,16,21,Special Premises,4,25.0,0
+Kentville,16,21,Lounge,3,18.8,0
+Port Hawkesbury,16,21,Eating Establishment,6,37.5,1
+Port Hawkesbury,16,21,Lounge,5,31.3,0
+Port Hawkesbury,16,21,Club,3,18.8,0
+Port Hawkesbury,16,21,Special Premises,2,12.5,0
+Enfield,15,22,Special Premises,6,40.0,1
+Enfield,15,22,Eating Establishment,4,26.7,0
+Enfield,15,22,Lounge,3,20.0,0
+Enfield,15,22,Club,2,13.3,0
+Cheticamp,14,23,Eating Establishment,7,50.0,1
+Cheticamp,14,23,Club,4,28.6,0
+Cheticamp,14,23,Lounge,3,21.4,0
+Stellarton,13,24,Club,4,30.8,1
+Stellarton,13,24,Eating Establishment,4,30.8,0
+Stellarton,13,24,Special Premises,3,23.1,0
+Stellarton,13,24,Lounge,2,15.4,0
+Tatamagouche,13,24,Eating Establishment,6,46.2,1
+Tatamagouche,13,24,Special Premises,4,30.8,0
+Tatamagouche,13,24,Cabaret,1,7.7,0
+Tatamagouche,13,24,Club,1,7.7,0
+Tatamagouche,13,24,Lounge,1,7.7,0
+Mahone Bay,12,25,Eating Establishment,9,75.0,1
+Mahone Bay,12,25,Club,1,8.3,0
+Mahone Bay,12,25,Lounge,1,8.3,0
+Mahone Bay,12,25,Special Premises,1,8.3,0
+Parrsboro,11,26,Club,3,27.3,1
+Parrsboro,11,26,Eating Establishment,3,27.3,0
+Parrsboro,11,26,Lounge,2,18.2,0
+Parrsboro,11,26,Special Premises,2,18.2,0
+Parrsboro,11,26,Beverage Room,1,9.1,0
+Bible Hill,10,27,Eating Establishment,4,40.0,1
+Bible Hill,10,27,Lounge,3,30.0,0
+Bible Hill,10,27,Club,2,20.0,0
+Bible Hill,10,27,Special Premises,1,10.0,0
+Canning,10,27,Special Premises,4,40.0,1
+Canning,10,27,Eating Establishment,3,30.0,0
+Canning,10,27,Club,2,20.0,0
+Canning,10,27,Lounge,1,10.0,0
+New Waterford,10,27,Club,4,40.0,1
+New Waterford,10,27,Eating Establishment,3,30.0,0
+New Waterford,10,27,Lounge,2,20.0,0
+New Waterford,10,27,Special Premises,1,10.0,0
+Dominion,9,28,Club,4,44.4,1
+Dominion,9,28,Eating Establishment,2,22.2,0
+Dominion,9,28,Lounge,2,22.2,0
+Dominion,9,28,Special Premises,1,11.1,0
+Eastern Passage,9,28,Special Premises,4,44.4,1
+Eastern Passage,9,28,Club,2,22.2,0
+Eastern Passage,9,28,Eating Establishment,1,11.1,0
+Eastern Passage,9,28,Lounge,1,11.1,0
+Eastern Passage,9,28,Permanent Special Occasion,1,11.1,0
+Fall River,9,28,Eating Establishment,4,44.4,1
+Fall River,9,28,Lounge,3,33.3,0
+Fall River,9,28,Club,1,11.1,0
+Fall River,9,28,Special Premises,1,11.1,0
+Louisbourg,9,28,Eating Establishment,4,44.4,1
+Louisbourg,9,28,Club,2,22.2,0
+Louisbourg,9,28,Lounge,2,22.2,0
+Louisbourg,9,28,Special Premises,1,11.1,0
+Westville,9,28,Club,3,33.3,1
+Westville,9,28,Eating Establishment,2,22.2,0
+Westville,9,28,Lounge,2,22.2,0
+Westville,9,28,Special Premises,2,22.2,0
+Berwick,8,29,Club,4,50.0,1
+Berwick,8,29,Eating Establishment,2,25.0,0
+Berwick,8,29,Lounge,1,12.5,0
+Berwick,8,29,Special Premises,1,12.5,0
+Greenwood,8,29,Eating Establishment,4,50.0,1
+Greenwood,8,29,Cabaret,1,12.5,0
+Greenwood,8,29,Lounge,1,12.5,0
+Greenwood,8,29,Military,1,12.5,0
+Greenwood,8,29,Special Premises,1,12.5,0
+Hubbards,8,29,Eating Establishment,4,50.0,1
+Hubbards,8,29,Special Premises,2,25.0,0
+Hubbards,8,29,Club,1,12.5,0
+Hubbards,8,29,Lounge,1,12.5,0
+Kingston,8,29,Eating Establishment,4,50.0,1
+Kingston,8,29,Club,3,37.5,0
+Kingston,8,29,Lounge,1,12.5,0
+Middleton,8,29,Eating Establishment,5,62.5,1
+Middleton,8,29,Club,2,25.0,0
+Middleton,8,29,Lounge,1,12.5,0
+Port Hood,8,29,Eating Establishment,4,50.0,1
+Port Hood,8,29,Lounge,2,25.0,0
+Port Hood,8,29,Club,1,12.5,0
+Port Hood,8,29,Special Premises,1,12.5,0
+Sydney Mines,8,29,Club,3,37.5,1
+Sydney Mines,8,29,Eating Establishment,3,37.5,0
+Sydney Mines,8,29,Lounge,2,25.0,0
+Tantallon,8,29,Eating Establishment,5,62.5,1
+Tantallon,8,29,Lounge,3,37.5,0
+Arichat,7,30,Eating Establishment,3,42.9,1
+Arichat,7,30,Club,2,28.6,0
+Arichat,7,30,Lounge,2,28.6,0
+Hammonds Plains,7,30,Eating Establishment,4,57.1,1
+Hammonds Plains,7,30,Special Premises,2,28.6,0
+Hammonds Plains,7,30,Lounge,1,14.3,0
+Ingonish Beach,7,30,Eating Establishment,3,42.9,1
+Ingonish Beach,7,30,Special Premises,3,42.9,0
+Ingonish Beach,7,30,Lounge,1,14.3,0
+Lr. Sackville,7,30,Eating Establishment,4,57.1,1
+Lr. Sackville,7,30,Lounge,3,42.9,0
+Sheet Harbour,7,30,Eating Establishment,3,42.9,1
+Sheet Harbour,7,30,Club,2,28.6,0
+Sheet Harbour,7,30,Beverage Room,1,14.3,0
+Sheet Harbour,7,30,Lounge,1,14.3,0
+Springhill,7,30,Eating Establishment,2,28.6,1
+Springhill,7,30,Lounge,2,28.6,0
+Springhill,7,30,Special Premises,2,28.6,0
+Springhill,7,30,Club,1,14.3,0
+Timberlea,7,30,Eating Establishment,3,42.9,1
+Timberlea,7,30,Lounge,2,28.6,0
+Timberlea,7,30,Club,1,14.3,0
+Timberlea,7,30,Special Premises,1,14.3,0
+Barrington Passage,6,31,Eating Establishment,3,50.0,1
+Barrington Passage,6,31,Club,2,33.3,0
+Barrington Passage,6,31,Special Premises,1,16.7,0
+Bridgetown,6,31,Club,4,66.7,1
+Bridgetown,6,31,Eating Establishment,1,16.7,0
+Bridgetown,6,31,Lounge,1,16.7,0
+Elmsdale,6,31,Eating Establishment,4,66.7,1
+Elmsdale,6,31,Club,1,16.7,0
+Elmsdale,6,31,Special Premises,1,16.7,0
+Mabou,6,31,Eating Establishment,3,50.0,1
+Mabou,6,31,Lounge,2,33.3,0
+Mabou,6,31,Special Premises,1,16.7,0
+Port Williams,6,31,Special Premises,4,66.7,1
+Port Williams,6,31,Eating Establishment,1,16.7,0
+Port Williams,6,31,Permanent Special Occasion,1,16.7,0
+Stewiacke,6,31,Eating Establishment,3,50.0,1
+Stewiacke,6,31,Club,1,16.7,0
+Stewiacke,6,31,Lounge,1,16.7,0
+Stewiacke,6,31,Special Premises,1,16.7,0
+Whycocomagh,6,31,Club,2,33.3,1
+Whycocomagh,6,31,Eating Establishment,2,33.3,0
+Whycocomagh,6,31,Lounge,1,16.7,0
+Whycocomagh,6,31,Special Premises,1,16.7,0
+Bras d'Or,5,32,Club,2,40.0,1
+Bras d'Or,5,32,Eating Establishment,2,40.0,0
+Bras d'Or,5,32,Lounge,1,20.0,0
+Canso,5,32,Club,3,60.0,1
+Canso,5,32,Eating Establishment,1,20.0,0
+Canso,5,32,Lounge,1,20.0,0
+Dartmouth Crossing,5,32,Eating Establishment,3,60.0,1
+Dartmouth Crossing,5,32,Lounge,1,20.0,0
+Dartmouth Crossing,5,32,Special Premises,1,20.0,0
+Guysborough,5,32,Eating Establishment,2,40.0,1
+Guysborough,5,32,Special Premises,2,40.0,0
+Guysborough,5,32,Lounge,1,20.0,0
+Ingonish,5,32,Eating Establishment,4,80.0,1
+Ingonish,5,32,Lounge,1,20.0,0
+Mount Uniacke,5,32,Eating Establishment,3,60.0,1
+Mount Uniacke,5,32,Club,1,20.0,0
+Mount Uniacke,5,32,Lounge,1,20.0,0
+St. Peters,5,32,Eating Establishment,3,60.0,1
+St. Peters,5,32,Lounge,2,40.0,0
+Sydney River,5,32,Special Premises,2,40.0,1
+Sydney River,5,32,Club,1,20.0,0
+Sydney River,5,32,Eating Establishment,1,20.0,0
+Sydney River,5,32,Lounge,1,20.0,0
+Ben Eoin,4,33,Special Premises,2,50.0,1
+Ben Eoin,4,33,Club,1,25.0,0
+Ben Eoin,4,33,Eating Establishment,1,25.0,0
+Coldbrook,4,33,Eating Establishment,2,50.0,1
+Coldbrook,4,33,Club,1,25.0,0
+Coldbrook,4,33,Lounge,1,25.0,0
+Cookville,4,33,Eating Establishment,2,50.0,1
+Cookville,4,33,Lounge,1,25.0,0
+Cookville,4,33,Special Premises,1,25.0,0
+D'Escousse,4,33,Club,2,50.0,1
+D'Escousse,4,33,Eating Establishment,1,25.0,0
+D'Escousse,4,33,Lounge,1,25.0,0
+Debert,4,33,Special Premises,3,75.0,1
+Debert,4,33,Club,1,25.0,0
+Goffs,4,33,Special Premises,2,50.0,1
+Goffs,4,33,Eating Establishment,1,25.0,0
+Goffs,4,33,Lounge,1,25.0,0
+Grand Pre,4,33,Eating Establishment,2,50.0,1
+Grand Pre,4,33,Special Premises,2,50.0,0
+Hunts Point,4,33,Eating Establishment,2,50.0,1
+Hunts Point,4,33,Lounge,1,25.0,0
+Hunts Point,4,33,Special Premises,1,25.0,0
+Lakeside,4,33,Eating Establishment,3,75.0,1
+Lakeside,4,33,Club,1,25.0,0
+Louisdale,4,33,Club,2,50.0,1
+Louisdale,4,33,Eating Establishment,1,25.0,0
+Louisdale,4,33,Lounge,1,25.0,0
+Lower West Pubnico,4,33,Eating Establishment,2,50.0,1
+Lower West Pubnico,4,33,Cabaret,1,25.0,0
+Lower West Pubnico,4,33,Special Premises,1,25.0,0
+Pugwash,4,33,Club,2,50.0,1
+Pugwash,4,33,Eating Establishment,2,50.0,0
+River John,4,33,Club,3,75.0,1
+River John,4,33,Eating Establishment,1,25.0,0
+Tusket,4,33,Club,2,50.0,1
+Tusket,4,33,Beverage Room,1,25.0,0
+Tusket,4,33,Eating Establishment,1,25.0,0
+Upper Tantallon,4,33,Eating Establishment,3,75.0,1
+Upper Tantallon,4,33,Special Premises,1,25.0,0
+Walton,4,33,Club,1,25.0,1
+Walton,4,33,Eating Establishment,1,25.0,0
+Walton,4,33,Lounge,1,25.0,0
+Walton,4,33,Special Premises,1,25.0,0
+Western Shore,4,33,Club,1,25.0,1
+Western Shore,4,33,Eating Establishment,1,25.0,0
+Western Shore,4,33,Lounge,1,25.0,0
+Western Shore,4,33,Special Premises,1,25.0,0
+Advocate Harbour,3,34,Eating Establishment,3,100.0,1
+Albert Bridge,3,34,Club,2,66.7,1
+Albert Bridge,3,34,Eating Establishment,1,33.3,0
+Bayers Lake,3,34,Eating Establishment,1,33.3,1
+Bayers Lake,3,34,Lounge,1,33.3,0
+Bayers Lake,3,34,Special Premises,1,33.3,0
+Belle Cote,3,34,Eating Establishment,2,66.7,1
+Belle Cote,3,34,Lounge,1,33.3,0
+Blandford,3,34,Club,1,33.3,1
+Blandford,3,34,Eating Establishment,1,33.3,0
+Blandford,3,34,Special Premises,1,33.3,0
+Brooklyn,3,34,Club,2,66.7,1
+Brooklyn,3,34,Eating Establishment,1,33.3,0
+Chester Basin,3,34,Eating Establishment,2,66.7,1
+Chester Basin,3,34,Club,1,33.3,0
+Church Point,3,34,Club,1,33.3,1
+Church Point,3,34,Eating Establishment,1,33.3,0
+Church Point,3,34,Special Premises,1,33.3,0
+Dingwall,3,34,Eating Establishment,2,66.7,1
+Dingwall,3,34,Special Premises,1,33.3,0
+Englishtown,3,34,Club,1,33.3,1
+Englishtown,3,34,Eating Establishment,1,33.3,0
+Englishtown,3,34,Special Premises,1,33.3,0
+Indian Harbour,3,34,Eating Establishment,2,66.7,1
+Indian Harbour,3,34,Special Premises,1,33.3,0
+Ingonish Ferry,3,34,Eating Establishment,1,33.3,1
+Ingonish Ferry,3,34,Lounge,1,33.3,0
+Ingonish Ferry,3,34,Special Premises,1,33.3,0
+Iona,3,34,Club,1,33.3,1
+Iona,3,34,Eating Establishment,1,33.3,0
+Iona,3,34,Lounge,1,33.3,0
+Judique,3,34,Club,2,66.7,1
+Judique,3,34,Special Premises,1,33.3,0
+Lantz,3,34,Eating Establishment,1,33.3,1
+Lantz,3,34,Lounge,1,33.3,0
+Lantz,3,34,Special Premises,1,33.3,0
+Margaree Valley,3,34,Special Premises,2,66.7,1
+Margaree Valley,3,34,Eating Establishment,1,33.3,0
+Meaghers Grant,3,34,Special Premises,2,66.7,1
+Meaghers Grant,3,34,Eating Establishment,1,33.3,0
+Middle Sackville,3,34,Club,1,33.3,1
+Middle Sackville,3,34,Eating Establishment,1,33.3,0
+Middle Sackville,3,34,Special Premises,1,33.3,0
+Mulgrave,3,34,Club,2,66.7,1
+Mulgrave,3,34,Eating Establishment,1,33.3,0
+Oxford,3,34,Club,1,33.3,1
+Oxford,3,34,Eating Establishment,1,33.3,0
+Oxford,3,34,Special Premises,1,33.3,0
+Pleasant Bay,3,34,Eating Establishment,2,66.7,1
+Pleasant Bay,3,34,Club,1,33.3,0
+Porters Lake,3,34,Eating Establishment,2,66.7,1
+Porters Lake,3,34,Lounge,1,33.3,0
+Saulnierville,3,34,Eating Establishment,2,66.7,1
+Saulnierville,3,34,Club,1,33.3,0
+Sherbrooke,3,34,Eating Establishment,2,66.7,1
+Sherbrooke,3,34,Club,1,33.3,0
+Shubenacadie,3,34,Club,1,33.3,1
+Shubenacadie,3,34,Eating Establishment,1,33.3,0
+Shubenacadie,3,34,Special Premises,1,33.3,0
+West Dover,3,34,Eating Establishment,3,100.0,1
+West Pubnico,3,34,Club,2,66.7,1
+West Pubnico,3,34,Special Premises,1,33.3,0
+Westphal,3,34,Special Premises,2,66.7,1
+Westphal,3,34,Eating Establishment,1,33.3,0
+Arcadia,2,35,Club,2,100.0,1
+Arisaig,2,35,Eating Establishment,1,50.0,1
+Arisaig,2,35,Special Premises,1,50.0,0
+Auld's Cove,2,35,Eating Establishment,1,50.0,1
+Auld's Cove,2,35,Special Premises,1,50.0,0
+Bayport,2,35,Eating Establishment,2,100.0,1
+Beaver Bank,2,35,Club,2,100.0,1
+Bedford West,2,35,Eating Establishment,1,50.0,1
+Bedford West,2,35,Lounge,1,50.0,0
+Ben Eion,2,35,Eating Establishment,1,50.0,1
+Ben Eion,2,35,Lounge,1,50.0,0
+Big Tancook Island,2,35,Eating Establishment,2,100.0,1
+Black Point,2,35,Eating Establishment,1,50.0,1
+Black Point,2,35,Special Premises,1,50.0,0
+Brier Island,2,35,Eating Establishment,1,50.0,1
+Brier Island,2,35,Lounge,1,50.0,0
+Brookfield,2,35,Special Premises,2,100.0,1
+Caledonia,2,35,Eating Establishment,1,50.0,1
+Caledonia,2,35,Special Premises,1,50.0,0
+Cape North,2,35,Eating Establishment,2,100.0,1
+Charlos Cove,2,35,Eating Establishment,1,50.0,1
+Charlos Cove,2,35,Special Premises,1,50.0,0
+Clyde River,2,35,Eating Establishment,1,50.0,1
+Clyde River,2,35,Special Premises,1,50.0,0
+Comeauville,2,35,Club,2,100.0,1
+Cornwallis,2,35,Eating Establishment,1,50.0,1
+Cornwallis,2,35,Lounge,1,50.0,0
+Dayton,2,35,Eating Establishment,2,100.0,1
+Donkin,2,35,Club,2,100.0,1
+Five Islands,2,35,Eating Establishment,2,100.0,1
+Freeport,2,35,Club,2,100.0,1
+Gardiner Mines,2,35,Club,1,50.0,1
+Gardiner Mines,2,35,Special Premises,1,50.0,0
+Garlands Crossing,2,35,Eating Establishment,1,50.0,1
+Garlands Crossing,2,35,Lounge,1,50.0,0
+Glen Haven,2,35,Club,1,50.0,1
+Glen Haven,2,35,Eating Establishment,1,50.0,0
+Glenville,2,35,Eating Establishment,1,50.0,1
+Glenville,2,35,Lounge,1,50.0,0
+Grand Etang,2,35,Eating Establishment,2,100.0,1
+Grand Narrows,2,35,Club,1,50.0,1
+Grand Narrows,2,35,Eating Establishment,1,50.0,0
+Gulf Shore,2,35,Club,1,50.0,1
+Gulf Shore,2,35,Eating Establishment,1,50.0,0
+Hantsport,2,35,Eating Establishment,1,50.0,1
+Hantsport,2,35,Special Premises,1,50.0,0
+Head of Jeddore,2,35,Eating Establishment,1,50.0,1
+Head of Jeddore,2,35,Lounge,1,50.0,0
+Herring Cove,2,35,Eating Establishment,1,50.0,1
+Herring Cove,2,35,Special Premises,1,50.0,0
+Joggins,2,35,Club,1,50.0,1
+Joggins,2,35,Eating Establishment,1,50.0,0
+Jordan Bay,2,35,Club,1,50.0,1
+Jordan Bay,2,35,Special Premises,1,50.0,0
+Kennetcook,2,35,Eating Establishment,1,50.0,1
+Kennetcook,2,35,Lounge,1,50.0,0
+Lake Echo,2,35,Eating Establishment,1,50.0,1
+Lake Echo,2,35,Special Premises,1,50.0,0
+Lawrencetown,2,35,Beverage Room,1,50.0,1
+Lawrencetown,2,35,Club,1,50.0,0
+Lockeport,2,35,Eating Establishment,2,100.0,1
+Lower Argyle,2,35,Eating Establishment,1,50.0,1
+Lower Argyle,2,35,Special Premises,1,50.0,0
+Lwr. Sackville,2,35,Special Premises,2,100.0,1
+Margaree Harbour,2,35,Eating Establishment,2,100.0,1
+Merigomish,2,35,Special Premises,2,100.0,1
+Meteghan,2,35,Club,2,100.0,1
+Meteghan Centre,2,35,Club,1,50.0,1
+Meteghan Centre,2,35,Eating Establishment,1,50.0,0
+Meteghan River,2,35,Eating Establishment,1,50.0,1
+Meteghan River,2,35,Lounge,1,50.0,0
+Mill Cove,2,35,Eating Establishment,1,50.0,1
+Mill Cove,2,35,Special Premises,1,50.0,0
+Millbrook,2,35,Eating Establishment,1,50.0,1
+Millbrook,2,35,Special Premises,1,50.0,0
+Millville,2,35,Club,1,50.0,1
+Millville,2,35,Eating Establishment,1,50.0,0
+Milton,2,35,Special Premises,2,100.0,1
+Musquodoboit Harbour,2,35,Eating Establishment,2,100.0,1
+New Ross,2,35,Club,1,50.0,1
+New Ross,2,35,Eating Establishment,1,50.0,0
+Newport,2,35,Special Premises,2,100.0,1
+Noel,2,35,Club,2,100.0,1
+Peggy's Cove,2,35,Eating Establishment,2,100.0,1
+Port Hastings,2,35,Eating Establishment,1,50.0,1
+Port Hastings,2,35,Lounge,1,50.0,0
+Porter's Lake,2,35,Eating Establishment,2,100.0,1
+Reserve Mines,2,35,Club,2,100.0,1
+Riverport,2,35,Eating Establishment,1,50.0,1
+Riverport,2,35,Special Premises,1,50.0,0
+Ross Ferry,2,35,Club,1,50.0,1
+Ross Ferry,2,35,Eating Establishment,1,50.0,0
+Sackville,2,35,Eating Establishment,1,50.0,1
+Sackville,2,35,Lounge,1,50.0,0
+Seabright,2,35,Club,1,50.0,1
+Seabright,2,35,Eating Establishment,1,50.0,0
+Smith's Cove,2,35,Eating Establishment,1,50.0,1
+Smith's Cove,2,35,Lounge,1,50.0,0
+Smiths Cove,2,35,Special Premises,2,100.0,1
+Spryfield,2,35,Beverage Room,1,50.0,1
+Spryfield,2,35,Special Premises,1,50.0,0
+Summerville,2,35,Eating Establishment,1,50.0,1
+Summerville,2,35,Special Premises,1,50.0,0
+Summerville Centre,2,35,Eating Establishment,1,50.0,1
+Summerville Centre,2,35,Special Premises,1,50.0,0
+Wallace,2,35,Eating Establishment,1,50.0,1
+Wallace,2,35,Special Premises,1,50.0,0
+Wedgeport,2,35,Club,1,50.0,1
+Wedgeport,2,35,Special Premises,1,50.0,0
+Wellington,2,35,Club,1,50.0,1
+Wellington,2,35,Eating Establishment,1,50.0,0
+West River,2,35,Eating Establishment,1,50.0,1
+West River,2,35,Lounge,1,50.0,0
+Westport,2,35,Eating Establishment,1,50.0,1
+Westport,2,35,Lounge,1,50.0,0
+Weymouth,2,35,Club,1,50.0,1
+Weymouth,2,35,Eating Establishment,1,50.0,0
+(Unknown),1,36,Eating Establishment,1,100.0,1
+Amirault's Hill,1,36,Club,1,100.0,1
+Antigonish Co.,1,36,Eating Establishment,1,100.0,1
+Ardoise,1,36,Club,1,100.0,1
+Avondale,1,36,Special Premises,1,100.0,1
+Aylesford,1,36,Special Premises,1,100.0,1
+Baddeck Forks,1,36,Special Premises,1,100.0,1
+Baddeck Inlet,1,36,Eating Establishment,1,100.0,1
+Bateston,1,36,Club,1,100.0,1
+Bayside,1,36,Special Premises,1,100.0,1
+Beach Meadows,1,36,Special Premises,1,100.0,1
+Bear River,1,36,Club,1,100.0,1
+Beaverbank,1,36,Special Premises,1,100.0,1
+Beechville,1,36,Eating Establishment,1,100.0,1
+Belliveau Cove,1,36,Eating Establishment,1,100.0,1
+Belliveau's Cove,1,36,Eating Establishment,1,100.0,1
+Bickerton West,1,36,Special Premises,1,100.0,1
+Big Pond,1,36,Club,1,100.0,1
+Birch Grove,1,36,Club,1,100.0,1
+Blockhouse,1,36,Eating Establishment,1,100.0,1
+Boisdale,1,36,Club,1,100.0,1
+Boularderie,1,36,Eating Establishment,1,100.0,1
+Boutilier's Point,1,36,Eating Establishment,1,100.0,1
+Boylston,1,36,Club,1,100.0,1
+Cambridge,1,36,Special Premises,1,100.0,1
+Carroll's Corner,1,36,Special Premises,1,100.0,1
+Catalone,1,36,Club,1,100.0,1
+Centreville,1,36,Special Premises,1,100.0,1
+Clark's Harbour,1,36,Eating Establishment,1,100.0,1
+Clementsport,1,36,Club,1,100.0,1
+Cole Harbour,1,36,Eating Establishment,1,100.0,1
+Cornwallis Park,1,36,Special Premises,1,100.0,1
+Country Harbour,1,36,Club,1,100.0,1
+Creignish,1,36,Club,1,100.0,1
+Deep Brook,1,36,Club,1,100.0,1
+Digby Co.,1,36,Club,1,100.0,1
+Duncan's Cove,1,36,Club,1,100.0,1
+Earltown,1,36,Eating Establishment,1,100.0,1
+East Bay,1,36,Club,1,100.0,1
+East Dover,1,36,Special Premises,1,100.0,1
+East Kemptville,1,36,Special Premises,1,100.0,1
+East Margaretsville,1,36,Special Premises,1,100.0,1
+East Mountain,1,36,Special Premises,1,100.0,1
+East Preston,1,36,Special Premises,1,100.0,1
+Economy,1,36,Club,1,100.0,1
+Egerton,1,36,Eating Establishment,1,100.0,1
+Ellershouse,1,36,Special Premises,1,100.0,1
+Erinville,1,36,Club,1,100.0,1
+Falmouth,1,36,Special Premises,1,100.0,1
+Florence,1,36,Club,1,100.0,1
+Fox Point,1,36,Club,1,100.0,1
+Frambroise,1,36,Club,1,100.0,1
+Gaetz Brook,1,36,Club,1,100.0,1
+Georges River,1,36,Club,1,100.0,1
+Glendale,1,36,Special Premises,1,100.0,1
+Goff's,1,36,Special Premises,1,100.0,1
+Goodwood,1,36,Special Premises,1,100.0,1
+Grand Anse,1,36,Club,1,100.0,1
+Grand Desert,1,36,Eating Establishment,1,100.0,1
+Grand Mira South,1,36,Club,1,100.0,1
+Great Village,1,36,Special Premises,1,100.0,1
+Greenfield,1,36,Special Premises,1,100.0,1
+Hackett's Cove,1,36,Eating Establishment,1,100.0,1
+Halifax Co.,1,36,Special Premises,1,100.0,1
+Hallifax,1,36,Cabaret,1,100.0,1
+Halls Harbour,1,36,Eating Establishment,1,100.0,1
+Hants Border,1,36,Special Premises,1,100.0,1
+Harrietsfield,1,36,Special Premises,1,100.0,1
+Hatchett Lake,1,36,Special Premises,1,100.0,1
+Havre Boucher,1,36,Special Premises,1,100.0,1
+Hazel Hill,1,36,Eating Establishment,1,100.0,1
+Heatherton,1,36,Special Premises,1,100.0,1
+Hebbs Cross,1,36,Eating Establishment,1,100.0,1
+Hermans Island,1,36,Club,1,100.0,1
+Hillsburn,1,36,Eating Establishment,1,100.0,1
+Hortonville,1,36,Special Premises,1,100.0,1
+Indian Brook,1,36,Club,1,100.0,1
+Indpls,1,36,Special Premises,1,100.0,1
+James River,1,36,Special Premises,1,100.0,1
+Lake Charlotte,1,36,Special Premises,1,100.0,1
+Lake George,1,36,Club,1,100.0,1
+Lakevale,1,36,Special Premises,1,100.0,1
+"Larry Uteck, Bedford",1,36,Eating Establishment,1,100.0,1
+Larrys River,1,36,Club,1,100.0,1
+Lewis Lake,1,36,Special Premises,1,100.0,1
+Linacy,1,36,Club,1,100.0,1
+Liscomb,1,36,Special Premises,1,100.0,1
+Little Anse,1,36,Club,1,100.0,1
+Little Harbour,1,36,Special Premises,1,100.0,1
+Loch Lomond,1,36,Special Premises,1,100.0,1
+Lorneville,1,36,Eating Establishment,1,100.0,1
+Louisburg,1,36,Eating Establishment,1,100.0,1
+Lower Five Islands,1,36,Club,1,100.0,1
+Lower L'Ardoise,1,36,Club,1,100.0,1
+Lower River Inhabitants,1,36,Special Premises,1,100.0,1
+Lower Truro,1,36,Eating Establishment,1,100.0,1
+Lower Wedgeport,1,36,Eating Establishment,1,100.0,1
+MacKinnon's Harbour,1,36,Eating Establishment,1,100.0,1
+Maitland,1,36,Eating Establishment,1,100.0,1
+Maitland Bridge,1,36,Eating Establishment,1,100.0,1
+Malagash,1,36,Special Premises,1,100.0,1
+Malagash Mine,1,36,Club,1,100.0,1
+Margaree Forks,1,36,Club,1,100.0,1
+Marion Bridge,1,36,Special Premises,1,100.0,1
+Martock,1,36,Special Premises,1,100.0,1
+Mavillette,1,36,Eating Establishment,1,100.0,1
+Membertou,1,36,Special Premises,1,100.0,1
+Mid. Musquodoboit,1,36,Special Premises,1,100.0,1
+Mid. West Pubnico,1,36,Eating Establishment,1,100.0,1
+Middle East Pubnico,1,36,Club,1,100.0,1
+Middle Musquodoboit,1,36,Eating Establishment,1,100.0,1
+Middle River,1,36,Special Premises,1,100.0,1
+Milford,1,36,Special Premises,1,100.0,1
+Mill Village,1,36,Eating Establishment,1,100.0,1
+Morristown,1,36,Club,1,100.0,1
+Mount Pleasant,1,36,Eating Establishment,1,100.0,1
+Mushaboom,1,36,Club,1,100.0,1
+Musq. Hbr.,1,36,Club,1,100.0,1
+Musqudoboit Harbour,1,36,Beverage Room,1,100.0,1
+Musquodoboit Hbr.,1,36,Special Premises,1,100.0,1
+Neil's Harbour,1,36,Eating Establishment,1,100.0,1
+New Germany,1,36,Club,1,100.0,1
+Nictaux Falls,1,36,Club,1,100.0,1
+Nine Mile River,1,36,Special Premises,1,100.0,1
+North East Harbour,1,36,Club,1,100.0,1
+North East Margaree,1,36,Eating Establishment,1,100.0,1
+North Ingonish,1,36,Club,1,100.0,1
+North River Bridge,1,36,Eating Establishment,1,100.0,1
+North Shore,1,36,Eating Establishment,1,100.0,1
+Northside East Bay,1,36,Club,1,100.0,1
+Nyanza,1,36,Eating Establishment,1,100.0,1
+Onslow,1,36,Special Premises,1,100.0,1
+Petit De Grat,1,36,Special Premises,1,100.0,1
+Petite Riviere,1,36,Eating Establishment,1,100.0,1
+Pine Grove,1,36,Club,1,100.0,1
+Pinkney's Point,1,36,Club,1,100.0,1
+Pinkney's Pt.,1,36,Beverage Room,1,100.0,1
+Pleasantville,1,36,Special Premises,1,100.0,1
+Point Edward,1,36,Special Premises,1,100.0,1
+Port Medway,1,36,Special Premises,1,100.0,1
+Port Morien,1,36,Club,1,100.0,1
+Port Mouton,1,36,Club,1,100.0,1
+Port Philip,1,36,Eating Establishment,1,100.0,1
+Prime Brook,1,36,Club,1,100.0,1
+Prospect,1,36,Special Premises,1,100.0,1
+Pubnico Head,1,36,Club,1,100.0,1
+Queensland,1,36,Eating Establishment,1,100.0,1
+River Hebert,1,36,Club,1,100.0,1
+Rose Bay,1,36,Eating Establishment,1,100.0,1
+Saint Andrews,1,36,Special Premises,1,100.0,1
+Salmon River,1,36,Eating Establishment,1,100.0,1
+Saltsprings,1,36,Club,1,100.0,1
+Sandy Point,1,36,Club,1,100.0,1
+Scotsburn,1,36,Special Premises,1,100.0,1
+Shelburne Co,1,36,Club,1,100.0,1
+Sherwood,1,36,Special Premises,1,100.0,1
+Ship Harbour,1,36,Eating Establishment,1,100.0,1
+South Bar,1,36,Club,1,100.0,1
+South Haven,1,36,Eating Establishment,1,100.0,1
+South Milford,1,36,Special Premises,1,100.0,1
+Southside Boularderie,1,36,Club,1,100.0,1
+Spanish Ship Bay,1,36,Club,1,100.0,1
+St. Andrews,1,36,Club,1,100.0,1
+St. Ann's,1,36,Special Premises,1,100.0,1
+St. Anne du Ruisseau,1,36,Club,1,100.0,1
+St. Croix,1,36,Club,1,100.0,1
+St. Peter's,1,36,Eating Establishment,1,100.0,1
+Tangier,1,36,Club,1,100.0,1
+Terence Bay,1,36,Special Premises,1,100.0,1
+Three Mile Plains,1,36,Special Premises,1,100.0,1
+Trenton,1,36,Club,1,100.0,1
+Upper Musquodoboit,1,36,Club,1,100.0,1
+Upper Onslow,1,36,Eating Establishment,1,100.0,1
+Urbania,1,36,Special Premises,1,100.0,1
+Waterville,1,36,Club,1,100.0,1
+Waverley,1,36,Club,1,100.0,1
+Wentworth,1,36,Special Premises,1,100.0,1
+West Arichat,1,36,Special Premises,1,100.0,1
+West Bay,1,36,Special Premises,1,100.0,1
+West Dublin,1,36,Eating Establishment,1,100.0,1
+West Gore,1,36,Club,1,100.0,1
+West Kingston,1,36,Special Premises,1,100.0,1
+West Northfield,1,36,Club,1,100.0,1
+West Paradise,1,36,Club,1,100.0,1
+West Petpeswick,1,36,Eating Establishment,1,100.0,1
+West Pugwash,1,36,Eating Establishment,1,100.0,1
+Westchester Station,1,36,Club,1,100.0,1
+Westmount,1,36,Club,1,100.0,1
+Weston,1,36,Special Premises,1,100.0,1
+Whites Lake,1,36,Club,1,100.0,1
+Wilmot,1,36,Eating Establishment,1,100.0,1
+Windermere,1,36,Club,1,100.0,1
+Windsor Forks,1,36,Eating Establishment,1,100.0,1
+Windsor Jct.,1,36,Club,1,100.0,1
+Wolfivlle,1,36,Eating Establishment,1,100.0,1
+Woods Harbour,1,36,Special Premises,1,100.0,1
