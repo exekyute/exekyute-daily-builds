@@ -1,0 +1,43 @@
+---
+/**
+ * Spoiler - a real click-to-reveal toggle, not a blur-on-hover.
+ * Built on <details> so it works with zero JS and is keyboard accessible.
+ * Usage: <Spoiler label="Final boss weakness">It is weak to Fire.</Spoiler>
+ */
+interface Props {
+  label?: string;
+}
+const { label = "Reveal spoiler" } = Astro.props;
+---
+<details class="spoiler">
+  <summary>
+    <span class="spoiler-eye" aria-hidden="true">👁</span>
+    <span>{label}</span>
+    <span class="spoiler-hint">click to reveal</span>
+  </summary>
+  <div class="spoiler-body"><slot /></div>
+</details>
+
+<style>
+  .spoiler {
+    border: 1px dashed var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--ink-850);
+    margin: var(--space-3) 0;
+    overflow: hidden;
+  }
+  .spoiler > summary {
+    cursor: pointer; list-style: none; user-select: none;
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: var(--space-2) var(--space-3); font-weight: 650; color: var(--text-soft);
+  }
+  .spoiler > summary::-webkit-details-marker { display: none; }
+  .spoiler > summary:hover { color: var(--text); }
+  .spoiler-hint {
+    margin-left: auto; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--text-faint); text-transform: uppercase;
+  }
+  .spoiler[open] .spoiler-hint { display: none; }
+  .spoiler-body { padding: 0 var(--space-3) var(--space-2); }
+  .spoiler-body :global(p:last-child) { margin-bottom: 0; }
+</style>

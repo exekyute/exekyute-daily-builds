@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "./BaseLayout.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import { SITE } from "../consts";
+import { formatDate, isoDate } from "../utils";
+
+interface Props {
+  entry: any;
+  headings: { depth: number; slug: string; text: string }[];
+}
+const { entry, headings } = Astro.props;
+const { data } = entry;
+const showToc = headings.filter((h) => h.depth === 2).length >= 3;
+---
+<BaseLayout title={data.title} description={data.summary} type="article" image={data.cover ? data.cover.src : undefined}>
+  <article class="post wrap">
+    <header class="post-header">
+      <p class="eyebrow">Blog</p>
+      <h1>{data.title}</h1>
+      <p class="post-lead muted">{data.summary}</p>
+      <div class="post-meta faint">
+        <span>By {data.author}</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={isoDate(data.published)}>{formatDate(data.published)}</time>
+        <div class="post-tags">
+          {data.tags.map((t: string) => <a href={`/blog/?tag=${encodeURIComponent(t)}`} class="chip">{t}</a>)}
+        </div>
+      </div>
+    </header>
+
+    {data.cover && (
+      <Image class="post-cover" src={data.cover} alt={data.coverAlt} width={1200} height={630} loading="eager" />
+    )}
+
+    <div class={showToc ? "post-grid" : ""}>
+      {showToc && (
+        <aside class="post-aside">
+          <div class="post-aside-sticky"><TableOfContents headings={headings} /></div>
+        </aside>
+      )}
+      <div class="post-body prose">
+        <slot />
+        <footer class="post-footer">
+          <hr />
+          <p class="faint">Thanks for reading. New guides and posts go out in the <a href="/support/">newsletter</a>.</p>
+        </footer>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .post { padding-top: var(--space-4); }
+    .post-header { max-width: 50rem; }
+    .post-lead { font-size: 1.15rem; }
+    .post-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .post-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+    .post-cover { width: 100%; height: auto; border-radius: var(--radius); margin: var(--space-3) 0; border: 1px solid var(--line); }
+    .post-body { max-width: var(--measure); margin-inline: auto; }
+    .post-body :global(h2), .post-body :global(h3) { scroll-margin-top: 5rem; }
+    .post-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-top: var(--space-4); }
+    .post-aside { display: none; }
+    .post-footer { margin-top: var(--space-5); }
+    @media (min-width: 60rem) {
+      .post-grid { grid-template-columns: 1fr 15rem; }
+      .post-aside { display: block; order: 2; }
+      .post-body { order: 1; }
+      .post-aside-sticky { position: sticky; top: 5rem; }
+    }
+  </style>
+</BaseLayout>

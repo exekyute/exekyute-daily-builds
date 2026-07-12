@@ -1,0 +1,82 @@
+---
+/**
+ * Tabs - consolidate multi-version content onto one URL.
+ * Perfect for JRPG remakes/ports: "Original | Remake | Rerelease" on one page.
+ *
+ * Astro slot names must be static, so panels use fixed slots tab1..tab6.
+ * Pass labels in `tabs`; fill the matching slot per tab.
+ *
+ * <Tabs tabs={["Original", "Remake"]}>
+ *   <Fragment slot="tab1">...original content...</Fragment>
+ *   <Fragment slot="tab2">...remake content...</Fragment>
+ * </Tabs>
+ */
+interface Props {
+  tabs: string[];
+  label?: string;
+}
+const { tabs = [], label = "Versions" } = Astro.props;
+const gid = "tabs-" + Math.random().toString(36).slice(2, 8);
+---
+<div class="tabs" data-tabs={gid}>
+  <div class="tablist" role="tablist" aria-label={label}>
+    {tabs.map((t, i) => (
+      <button
+        role="tab"
+        type="button"
+        class={`tab${i === 0 ? " is-active" : ""}`}
+        aria-selected={i === 0 ? "true" : "false"}
+        data-tab-index={i}
+      >{t}</button>
+    ))}
+  </div>
+  {tabs[0] && <div role="tabpanel" class="tabpanel is-active" data-panel="0"><slot name="tab1" /></div>}
+  {tabs[1] && <div role="tabpanel" class="tabpanel" data-panel="1" hidden><slot name="tab2" /></div>}
+  {tabs[2] && <div role="tabpanel" class="tabpanel" data-panel="2" hidden><slot name="tab3" /></div>}
+  {tabs[3] && <div role="tabpanel" class="tabpanel" data-panel="3" hidden><slot name="tab4" /></div>}
+  {tabs[4] && <div role="tabpanel" class="tabpanel" data-panel="4" hidden><slot name="tab5" /></div>}
+  {tabs[5] && <div role="tabpanel" class="tabpanel" data-panel="5" hidden><slot name="tab6" /></div>}
+</div>
+
+<style>
+  .tabs { margin: var(--space-4) 0; }
+  .tablist {
+    display: flex; gap: 0.25rem; flex-wrap: wrap;
+    border-bottom: 1px solid var(--line); margin-bottom: var(--space-3);
+  }
+  .tab {
+    border: none; background: none; cursor: pointer; color: var(--text-soft);
+    padding: 0.6rem 0.9rem; font-weight: 650; font-size: 0.95rem;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.is-active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tabpanel[hidden] { display: none; }
+  .tabpanel :global(> :first-child) { margin-top: 0; }
+</style>
+
+<script>
+  function initTabs() {
+    document.querySelectorAll<HTMLElement>(".tabs").forEach((root) => {
+      const tabs = Array.from(root.querySelectorAll<HTMLElement>(".tab"));
+      const panels = Array.from(root.querySelectorAll<HTMLElement>(".tabpanel"));
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const idx = tab.dataset.tabIndex;
+          tabs.forEach((t) => {
+            const on = t === tab;
+            t.classList.toggle("is-active", on);
+            t.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          panels.forEach((p) => {
+            const on = p.dataset.panel === idx;
+            p.classList.toggle("is-active", on);
+            p.hidden = !on;
+          });
+        });
+      });
+    });
+  }
+  if (document.readyState !== "loading") initTabs();
+  else document.addEventListener("DOMContentLoaded", initTabs);
+</script>

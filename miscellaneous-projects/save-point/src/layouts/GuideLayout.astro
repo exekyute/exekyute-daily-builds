@@ -1,0 +1,217 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "./BaseLayout.astro";
+import TableOfContents from "../components/TableOfContents.astro";
+import { CATEGORY_LABELS, SITE } from "../consts";
+import { formatDate, isoDate, gameSlug } from "../utils";
+
+interface Props {
+  entry: any;
+  headings: { depth: number; slug: string; text: string }[];
+  related?: any[];
+}
+const { entry, headings, related = [] } = Astro.props;
+const { data } = entry;
+const spoilerCopy: Record<string, string> = {
+  minor: "This guide contains minor spoilers (mechanics, early areas).",
+  major: "This guide contains major story spoilers.",
+};
+---
+<BaseLayout
+  title={data.title}
+  description={data.summary}
+  type="article"
+  image={data.cover ? data.cover.src : undefined}
+>
+  <article class="guide wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/guides/">Guides</a>
+      <span aria-hidden="true">/</span>
+      <a href={`/games/${gameSlug(data.game)}/`}>{data.game}</a>
+    </nav>
+
+    <header class="guide-header">
+      <p class="eyebrow">{CATEGORY_LABELS[data.category] ?? data.category}</p>
+      <h1>{data.title}</h1>
+      <p class="guide-lead muted">{data.summary}</p>
+      <div class="guide-meta faint">
+        <span>By {data.author}</span>
+        <span aria-hidden="true">·</span>
+        <span>Updated <time datetime={isoDate(data.updated ?? data.published)}>{formatDate(data.updated ?? data.published)}</time></span>
+        {data.platforms.length > 0 && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>{data.platforms.join(", ")}</span>
+          </>
+        )}
+        {data.difficulty && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span class="chip">{data.difficulty}</span>
+          </>
+        )}
+      </div>
+    </header>
+
+    {data.spoilers !== "none" && (
+      <p class={`guide-spoiler-banner sp-${data.spoilers}`}>
+        <span aria-hidden="true">⚠</span> {spoilerCopy[data.spoilers]}
+      </p>
+    )}
+
+    {data.cover && (
+      <Image
+        class="guide-cover"
+        src={data.cover}
+        alt={data.coverAlt}
+        width={1200}
+        height={630}
+        loading="eager"
+      />
+    )}
+
+    <div class="guide-grid">
+      <aside class="guide-aside">
+        <div class="guide-aside-sticky">
+          <TableOfContents headings={headings} />
+          <div class="supporter-mini">
+            <p class="supporter-mini-title">Found this useful?</p>
+            <p class="faint">Supporters get the whole site ad-free and every guide as a PDF.</p>
+            <a class="btn" href="/support/">Support the site</a>
+          </div>
+        </div>
+      </aside>
+
+      <div class="guide-body prose">
+        <slot />
+
+        <footer class="guide-footer">
+          <hr />
+          <div class="guide-share">
+            <span class="faint">Share:</span>
+            <a class="chip" href={`https://bsky.app/intent/compose?text=${encodeURIComponent(data.title + " - " + SITE.name)}`} rel="noopener" target="_blank">Bluesky</a>
+            <a class="chip" href={`https://reddit.com/submit?title=${encodeURIComponent(data.title)}`} rel="noopener" target="_blank">Reddit</a>
+            <a class="chip" href="#" data-copy-link>Copy link</a>
+          </div>
+
+          {data.changelog.length > 0 && (
+            <details class="changelog">
+              <summary>Update history ({data.changelog.length} {data.changelog.length === 1 ? "entry" : "entries"})</summary>
+              <ul role="list">
+                {[...data.changelog].reverse().map((c: any) => (
+                  <li>
+                    <time datetime={isoDate(c.date)}>{formatDate(c.date)}</time>
+                    <span>{c.note}</span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+
+          {related.length > 0 && (
+            <section class="related">
+              <h2>More {data.game} guides</h2>
+              <ul role="list" class="related-list">
+                {related.map((r) => (
+                  <li>
+                    <a href={`/guides/${r.id}/`}>
+                      <span class="chip chip-accent">{CATEGORY_LABELS[r.data.category] ?? r.data.category}</span>
+                      {r.data.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <!-- Comments: opt-in, privacy-friendly. Swap in your giscus repo to enable. -->
+          <section class="comments" aria-label="Comments">
+            <h2>Comments &amp; tips</h2>
+            <p class="faint comments-note">
+              Community corrections and tips appear here. Powered by GitHub Discussions
+              via <a href="https://giscus.app" rel="noopener" target="_blank">giscus</a> - 
+              no tracking, no ad scripts. Add your repo in <code>src/components/Comments.astro</code> to switch it on.
+            </p>
+          </section>
+        </footer>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .guide { padding-top: var(--space-4); }
+    .breadcrumb { display: flex; gap: 0.5rem; font-size: 0.85rem; color: var(--text-soft); margin-bottom: var(--space-2); }
+    .breadcrumb a { color: var(--text-soft); }
+    .guide-header { max-width: 50rem; }
+    .guide-lead { font-size: 1.15rem; margin: 0 0 var(--space-2); }
+    .guide-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.88rem; }
+    .guide-spoiler-banner {
+      margin: var(--space-3) 0 0; padding: 0.7rem 1rem; border-radius: var(--radius-sm);
+      border: 1px solid var(--line); background: var(--ink-800); font-weight: 600; color: var(--text-soft);
+    }
+    .sp-major { border-left: 4px solid var(--danger); }
+    .sp-minor { border-left: 4px solid var(--warn); }
+    .guide-cover { width: 100%; height: auto; border-radius: var(--radius); margin: var(--space-3) 0 0; border: 1px solid var(--line); }
+
+    .guide-grid {
+      display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-top: var(--space-4);
+    }
+    .guide-aside { display: none; }
+    .guide-body { max-width: var(--measure); }
+    /* Headings get scroll anchors via rehype-slug (configured in MDX). */
+    .guide-body :global(h2), .guide-body :global(h3) { scroll-margin-top: 5rem; }
+    .guide-body :global(img) { border-radius: var(--radius-sm); }
+    .guide-body :global(table) { width: 100%; border-collapse: collapse; }
+
+    .guide-footer { margin-top: var(--space-5); }
+    .guide-share { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: var(--space-4); }
+    .guide-share a.chip { cursor: pointer; }
+    .related h2, .comments h2 { font-size: 1.3rem; }
+    .related-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+    .related-list a {
+      display: flex; gap: 0.6rem; align-items: center; padding: 0.7rem 0.9rem;
+      border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--ink-800); color: var(--text);
+    }
+    .related-list a:hover { border-color: var(--ink-500); text-decoration: none; }
+    .comments-note { font-size: 0.9rem; line-height: 1.6; }
+    .changelog {
+      margin-bottom: var(--space-4); border: 1px solid var(--line);
+      border-radius: var(--radius-sm); background: var(--ink-850);
+    }
+    .changelog summary {
+      cursor: pointer; padding: 0.7rem 1rem; font-weight: 650; color: var(--text-soft);
+      list-style: none;
+    }
+    .changelog summary::-webkit-details-marker { display: none; }
+    .changelog summary::before { content: "▸ "; color: var(--accent); }
+    .changelog[open] summary::before { content: "▾ "; }
+    .changelog[open] summary { border-bottom: 1px solid var(--line); }
+    .changelog ul { list-style: none; margin: 0; padding: 0.7rem 1rem; display: grid; gap: 0.5rem; }
+    .changelog li { display: flex; gap: 0.9rem; font-size: 0.9rem; align-items: baseline; }
+    .changelog time { color: var(--accent-soft); font-weight: 650; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .changelog span { color: var(--text-soft); }
+    .supporter-mini {
+      margin-top: var(--space-3); padding: var(--space-3); border: 1px solid var(--line);
+      border-radius: var(--radius); background: var(--ink-800);
+    }
+    .supporter-mini-title { font-weight: 700; margin: 0 0 0.3rem; }
+    .supporter-mini .faint { font-size: 0.85rem; margin-bottom: var(--space-2); }
+
+    @media (min-width: 60rem) {
+      .guide-grid { grid-template-columns: 16rem 1fr; }
+      .guide-aside { display: block; }
+      .guide-aside-sticky { position: sticky; top: 5rem; max-height: calc(100vh - 6rem); overflow-y: auto; }
+    }
+  </style>
+
+  <script>
+    document.querySelector("[data-copy-link]")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      navigator.clipboard?.writeText(location.href);
+      const el = e.currentTarget as HTMLElement;
+      const old = el.textContent;
+      el.textContent = "Copied!";
+      setTimeout(() => (el.textContent = old), 1500);
+    });
+  </script>
+</BaseLayout>

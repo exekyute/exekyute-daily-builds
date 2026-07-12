@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import { CATEGORY_LABELS } from "../consts";
+import { formatDate, gameSlug } from "../utils";
+
+interface Props {
+  guide: any;
+  compact?: boolean;
+}
+const { guide } = Astro.props;
+const { data } = guide;
+const href = `/guides/${guide.id}/`;
+---
+<article class="card guide-card">
+  <a href={href} class="guide-card-media" aria-hidden="true" tabindex="-1">
+    {data.cover ? (
+      <Image src={data.cover} alt="" width={520} height={273} loading="lazy" />
+    ) : (
+      <span class="guide-card-fallback">◈</span>
+    )}
+    <span class="guide-card-cat chip chip-accent">{CATEGORY_LABELS[data.category] ?? data.category}</span>
+  </a>
+  <div class="card-body">
+    <a href={`/games/${gameSlug(data.game)}/`} class="guide-card-game">{data.game}</a>
+    <h3 class="guide-card-title"><a href={href}>{data.title}</a></h3>
+    <p class="guide-card-summary muted">{data.summary}</p>
+    <div class="guide-card-foot faint">
+      <span>{formatDate(data.updated ?? data.published)}</span>
+      {data.spoilers !== "none" && <span class="chip guide-card-spoiler">{data.spoilers} spoilers</span>}
+    </div>
+  </div>
+</article>
+
+<style>
+  .guide-card-media {
+    position: relative; display: block; aspect-ratio: 16 / 9; background: var(--ink-700);
+    overflow: hidden;
+  }
+  .guide-card-media :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+  .guide-card:hover .guide-card-media :global(img) { transform: scale(1.04); }
+  .guide-card-fallback { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.5rem; color: var(--ink-500); }
+  /* Solid pill: this chip sits on cover art, so it can't be translucent. */
+  .guide-card-cat {
+    position: absolute; left: 0.6rem; top: 0.6rem;
+    background: var(--accent); color: var(--accent-ink); border-color: transparent;
+  }
+  .guide-card-game { font-family: var(--font-label); font-size: 0.78rem; font-weight: 700; color: var(--accent-soft); text-transform: uppercase; letter-spacing: 0.04em; }
+  .guide-card-title { margin: 0.1rem 0 0; font-size: 1.12rem; line-height: 1.25; }
+  .guide-card-title a { color: var(--text); }
+  .guide-card-title a:hover { color: var(--accent); text-decoration: none; }
+  .guide-card-summary { font-size: 0.9rem; margin: 0; flex: 1; }
+  .guide-card-foot { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; margin-top: 0.3rem; }
+  .guide-card-spoiler { font-size: 0.68rem; padding: 0.15rem 0.45rem; }
+</style>

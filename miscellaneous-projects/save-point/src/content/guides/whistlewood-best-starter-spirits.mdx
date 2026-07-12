@@ -1,0 +1,56 @@
+---
+title: "Whistlewood: Best Starter Spirits (Tier Picks)"
+summary: "Which early spirits carry you to the mid-game, ranked, with a sortable stat table and a side-by-side gallery."
+game: "Whistlewood"
+platforms: ["PC", "Console", "Handheld"]
+category: "reference"
+tags: ["tier list", "builds", "early game"]
+cover: ../../assets/starter-spirits.png
+coverAlt: "Best starter spirits tier picks"
+spoilers: "none"
+difficulty: "easy"
+published: 2025-06-22
+order: 2
+---
+import DataTable from "../../components/DataTable.astro";
+import Gallery from "../../components/Gallery.astro";
+import Callout from "../../components/Callout.astro";
+
+The early game lives and dies on your first three spirits. These are the ones worth
+recording before anything else, ranked by how far they carry you.
+
+<Callout type="tip" title="Spoiler-free by design">
+Nothing here spoils the story. It is pure team-building, safe to read on a fresh save.
+</Callout>
+
+## The picks at a glance
+
+Click any column to sort. **Cinderpuff** tops raw damage, but **Tidalisk** is the smoother
+pick if you want fewer resets.
+
+<DataTable
+  caption="Starter spirit ratings (first 10 hours)"
+  columns={["Spirit", "Type", "Tier", "Damage", "Survivability", "Where"]}
+  numeric={[3, 4]}
+  rows={[
+    ["Cinderpuff", "Ember", "S", "9", "5", "Bellport rooftops"],
+    ["Tidalisk", "Tide", "S", "7", "8", "Any rainy tile"],
+    ["Copperling", "Chime", "A", "6", "9", "Mt. Carillon cable-lift"],
+    ["Fernfox", "Verdant", "A", "8", "5", "Bellport Square (noon)"],
+    ["Marshlight", "Gloam", "B", "5", "6", "Foghollow Cave (night)"],
+  ]}
+/>
+
+## Side by side
+
+<Gallery view="grid" images={[
+  { src: "/images/gallery/shot-3.png", alt: "Cinderpuff", caption: "Cinderpuff - best single-target damage." },
+  { src: "/images/gallery/shot-4.png", alt: "Tidalisk duet", caption: "Tidalisk - the consistency pick." },
+  { src: "/images/gallery/shot-7.png", alt: "Copperling", caption: "Copperling - your early wall." },
+  { src: "/images/gallery/shot-2.png", alt: "Fernfox", caption: "Fernfox - glassy but hits hard." },
+]} />
+
+## The one-line verdict
+
+Record **Tidalisk first**, **Cinderpuff second**, and grab **Copperling** the moment you
+reach Mt. Carillon. That trio handles every early Warden fight without a single grind.

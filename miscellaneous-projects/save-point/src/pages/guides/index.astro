@@ -1,0 +1,108 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import GuideCard from "../../components/GuideCard.astro";
+import { CATEGORY_LABELS } from "../../consts";
+
+const isProd = import.meta.env.PROD;
+const guides = (await getCollection("guides", (d) => !(isProd && d.data.draft))).sort(
+  (a, b) => +new Date(b.data.updated ?? b.data.published) - +new Date(a.data.updated ?? a.data.published)
+);
+const games = [...new Set(guides.map((g) => g.data.game))].sort();
+const categories = [...new Set(guides.map((g) => g.data.category))];
+---
+<BaseLayout title="All guides" description="Browse every completion guide, walkthrough, and checklist.">
+  <div class="wrap guides-page">
+    <header class="guides-header">
+      <h1>Guides</h1>
+      <p class="muted">{guides.length} guides and counting. Filter by game, type, or just search.</p>
+    </header>
+
+    <div class="filters" role="search">
+      <input
+        type="search"
+        id="guide-search"
+        class="filter-search"
+        placeholder="Search guides…"
+        aria-label="Search guides"
+        autocomplete="off"
+      />
+      <div class="filter-row">
+        <select id="filter-game" class="filter-select" aria-label="Filter by game">
+          <option value="">All games</option>
+          {games.map((g) => <option value={g}>{g}</option>)}
+        </select>
+        <select id="filter-cat" class="filter-select" aria-label="Filter by type">
+          <option value="">All types</option>
+          {categories.map((c) => <option value={c}>{CATEGORY_LABELS[c] ?? c}</option>)}
+        </select>
+      </div>
+    </div>
+
+    <p class="results-count faint" id="results-count" aria-live="polite"></p>
+
+    <div class="grid" id="guide-grid">
+      {guides.map((g) => (
+        <div
+          class="guide-cell"
+          data-game={g.data.game}
+          data-cat={g.data.category}
+          data-text={`${g.data.title} ${g.data.game} ${g.data.summary} ${g.data.tags.join(" ")}`.toLowerCase()}
+        >
+          <GuideCard guide={g} />
+        </div>
+      ))}
+    </div>
+    <p class="no-results" id="no-results" hidden>No guides match those filters. Try clearing the search.</p>
+  </div>
+
+  <style>
+    .guides-page { padding-top: var(--space-4); }
+    .guides-header { margin-bottom: var(--space-3); }
+    .guides-header h1 { margin-bottom: 0.3rem; }
+    .filters { display: grid; gap: var(--space-2); margin-bottom: var(--space-3); }
+    .filter-search {
+      width: 100%; background: var(--ink-800); border: 1px solid var(--line); color: var(--text);
+      border-radius: 999px; padding: 0.7rem 1.1rem; font-size: 1rem;
+    }
+    .filter-search:focus, .filter-select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .filter-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .filter-select {
+      background: var(--ink-800); border: 1px solid var(--line); color: var(--text);
+      border-radius: 999px; padding: 0.5rem 0.9rem; font-size: 0.9rem; cursor: pointer;
+    }
+    .results-count { margin: 0 0 var(--space-2); }
+    .no-results { color: var(--text-soft); padding: var(--space-4) 0; }
+  </style>
+
+  <script>
+    const search = document.getElementById("guide-search") as HTMLInputElement;
+    const game = document.getElementById("filter-game") as HTMLSelectElement;
+    const cat = document.getElementById("filter-cat") as HTMLSelectElement;
+    const cells = Array.from(document.querySelectorAll<HTMLElement>(".guide-cell"));
+    const count = document.getElementById("results-count")!;
+    const none = document.getElementById("no-results")!;
+
+    function apply() {
+      const q = search.value.trim().toLowerCase();
+      const g = game.value;
+      const c = cat.value;
+      let shown = 0;
+      cells.forEach((cell) => {
+        const ok =
+          (!q || cell.dataset.text!.includes(q)) &&
+          (!g || cell.dataset.game === g) &&
+          (!c || cell.dataset.cat === c);
+        cell.hidden = !ok;
+        if (ok) shown++;
+      });
+      count.textContent = `Showing ${shown} of ${cells.length}`;
+      none.hidden = shown !== 0;
+    }
+    // Preselect game/tag from URL (?game= / ?tag=) for deep links.
+    const params = new URLSearchParams(location.search);
+    if (params.get("game")) game.value = params.get("game")!;
+    [search, game, cat].forEach((el) => el.addEventListener("input", apply));
+    apply();
+  </script>
+</BaseLayout>

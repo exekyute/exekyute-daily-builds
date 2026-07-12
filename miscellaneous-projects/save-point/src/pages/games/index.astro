@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { gameSlug } from "../../utils";
+
+const isProd = import.meta.env.PROD;
+const guides = await getCollection("guides", (d) => !(isProd && d.data.draft));
+const byGame = new Map<string, number>();
+for (const g of guides) byGame.set(g.data.game, (byGame.get(g.data.game) ?? 0) + 1);
+const games = [...byGame.entries()].sort((a, b) => b[1] - a[1]);
+---
+<BaseLayout title="Games" description="Every game with guides on the site.">
+  <div class="wrap games-page">
+    <header class="games-header">
+      <h1>Games</h1>
+      <p class="muted">Pick a game to see its full guide hub.</p>
+    </header>
+    <ul class="games-list" role="list">
+      {games.map(([game, n]) => (
+        <li>
+          <a href={`/games/${gameSlug(game)}/`} class="game-row">
+            <span class="game-row-name">{game}</span>
+            <span class="chip">{n} {n === 1 ? "guide" : "guides"}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <style>
+    .games-page { padding-top: var(--space-4); }
+    .games-header { margin-bottom: var(--space-3); }
+    .games-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+    .game-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius-sm);
+      background: var(--ink-800); color: var(--text);
+    }
+    .game-row:hover { border-color: var(--ink-500); text-decoration: none; }
+    .game-row-name { font-weight: 650; }
+  </style>
+</BaseLayout>

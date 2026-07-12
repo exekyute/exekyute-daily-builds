@@ -37,6 +37,7 @@ Smaller builds, made to learn something or for fun.
 | [InvoiceParsimus](miscellaneous-projects/invoice-parsimus) | Browser-based invoice parser and financial dashboard powered by Gemini. | 05/29/2026 |
 | [Kev Wing Wah](miscellaneous-projects/kev-wing-wah) | A complete restaurant website template for a fictional takeout spot, with a searchable 120-dish menu. | 07/03/2026 |
 | [Knicks vs Spurs Matchup Projector](miscellaneous-projects/knicks-spurs-matchup-projector) | Single web page that projects the next Knicks vs Spurs game. | 06/03/2026 |
+| [Save Point](miscellaneous-projects/save-point) | An Astro guide and blog template for game guide sites, with persistent checklists, sortable tables, image galleries, and three themes. | 07/12/2026 |
 | [Steam Global Achievements Downloader](miscellaneous-projects/steam-achievements-scraper) | Firefox userscript that downloads every achievement's name, icon, and description from a Steam game page. | 05/28/2026 |
 | [Table for One](miscellaneous-projects/table-for-one) | A concept food blog written from the eating side of the table. | 05/30/2026 |
 

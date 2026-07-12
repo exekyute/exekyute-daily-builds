@@ -1,0 +1,23 @@
+{
+  "name": "save-point",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A fast, no-bloat guide and blog template for game guide sites",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "new:guide": "node scripts/new-content.mjs guide",
+    "new:post": "node scripts/new-content.mjs post"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.2.0",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.7.0",
+    "sharp": "^0.33.5"
+  }
+}

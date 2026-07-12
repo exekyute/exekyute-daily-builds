@@ -1,0 +1,21 @@
+---
+import { getCollection, render } from "astro:content";
+import GuideLayout from "../../layouts/GuideLayout.astro";
+
+export async function getStaticPaths() {
+  const isProd = import.meta.env.PROD;
+  const guides = await getCollection("guides", (d) => !(isProd && d.data.draft));
+  return guides.map((entry) => {
+    const related = guides
+      .filter((g) => g.id !== entry.id && g.data.game === entry.data.game)
+      .slice(0, 4);
+    return { params: { slug: entry.id }, props: { entry, related } };
+  });
+}
+
+const { entry, related } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+<GuideLayout entry={entry} headings={headings} related={related}>
+  <Content />
+</GuideLayout>

@@ -1,0 +1,405 @@
+---
+/**
+ * Gallery - the signature image component.
+ * One component, four views, plus a shared fullscreen lightbox.
+ *
+ *   view="carousel"  rolling scroll-snap strip with prev/next + dots (default)
+ *   view="grid"      responsive thumbnail grid
+ *   view="masonry"   staggered columns for mixed aspect ratios
+ *   view="filmstrip" one big stage image + a clickable thumbnail rail
+ *
+ * Usage in MDX:
+ *   <Gallery view="carousel" images={[
+ *     { src: "/images/gallery/shot-1.png", alt: "Coastal Route", caption: "..." },
+ *   ]} />
+ *
+ * Images are served from /public by path (no unique-name uploads, no caps - 
+ * no unique-name uploads, no storage caps). JS is tiny and runs once per page.
+ */
+interface ImageItem {
+  src: string;
+  alt: string;
+  caption?: string;
+  thumb?: string;
+}
+interface Props {
+  images: ImageItem[];
+  view?: "carousel" | "grid" | "masonry" | "filmstrip";
+  autoplay?: boolean;
+  title?: string;
+}
+const { images = [], view = "carousel", autoplay = false, title } = Astro.props;
+// Group id ties a set of images together inside the lightbox.
+const gid = "gal-" + Math.random().toString(36).slice(2, 9);
+---
+
+{title && <p class="gallery-title eyebrow">{title}</p>}
+
+<figure class="gallery" data-view={view} data-gallery={gid} data-autoplay={autoplay ? "1" : "0"}>
+  {view === "carousel" && (
+    <div class="gallery-carousel-wrap">
+      <button class="gal-nav gal-prev" type="button" aria-label="Previous image">‹</button>
+      <ul class="gallery-carousel" role="list">
+        {images.map((img, i) => (
+          <li class="gal-slide">
+            <button
+              class="gal-open"
+              type="button"
+              data-gid={gid}
+              data-index={i}
+              data-src={img.src}
+              data-caption={img.caption ?? img.alt}
+              aria-label={`Open image: ${img.alt}`}
+            >
+              <img src={img.thumb ?? img.src} alt={img.alt} loading="lazy" decoding="async" />
+              {img.caption && <figcaption class="gal-cap">{img.caption}</figcaption>}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <button class="gal-nav gal-next" type="button" aria-label="Next image">›</button>
+      <div class="gal-dots" role="tablist" aria-label="Gallery position"></div>
+    </div>
+  )}
+
+  {(view === "grid" || view === "masonry") && (
+    <ul class={`gallery-${view}`} role="list">
+      {images.map((img, i) => (
+        <li>
+          <button
+            class="gal-open"
+            type="button"
+            data-gid={gid}
+            data-index={i}
+            data-src={img.src}
+            data-caption={img.caption ?? img.alt}
+            aria-label={`Open image: ${img.alt}`}
+          >
+            <img src={img.thumb ?? img.src} alt={img.alt} loading="lazy" decoding="async" />
+            {img.caption && <figcaption class="gal-cap">{img.caption}</figcaption>}
+          </button>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {view === "filmstrip" && (
+    <div class="gallery-filmstrip">
+      <div class="film-stage">
+        <button
+          class="gal-open film-stage-btn"
+          type="button"
+          data-gid={gid}
+          data-index="0"
+          data-src={images[0]?.src}
+          data-caption={images[0]?.caption ?? images[0]?.alt}
+          aria-label="Open large image"
+        >
+          <img src={images[0]?.src} alt={images[0]?.alt} loading="lazy" decoding="async" />
+        </button>
+        <figcaption class="film-cap">{images[0]?.caption ?? images[0]?.alt}</figcaption>
+      </div>
+      <ul class="film-rail" role="list">
+        {images.map((img, i) => (
+          <li>
+            <button
+              class={`film-thumb${i === 0 ? " is-active" : ""}`}
+              type="button"
+              data-gid={gid}
+              data-index={i}
+              data-src={img.src}
+              data-caption={img.caption ?? img.alt}
+              aria-label={`Show ${img.alt}`}
+            >
+              <img src={img.thumb ?? img.src} alt={img.alt} loading="lazy" decoding="async" />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</figure>
+
+<style>
+  .gallery { margin: var(--space-4) 0; }
+  .gallery-title { margin-bottom: var(--space-1); }
+
+  /* ---- Carousel (rolling) ---- */
+  .gallery-carousel-wrap { position: relative; }
+  .gallery-carousel {
+    list-style: none; margin: 0; padding: 0 0 0.5rem;
+    display: flex; gap: var(--space-2);
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+  .gal-slide { scroll-snap-align: center; flex: 0 0 min(82%, 40rem); }
+  .gallery-carousel .gal-open img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+
+  .gal-nav {
+    position: absolute; top: calc(50% - 1.2rem); transform: translateY(-50%);
+    width: 2.6rem; height: 2.6rem; border-radius: 999px; z-index: 2;
+    background: rgba(13, 17, 23, 0.78); color: #fff; border: 1px solid var(--line);
+    font-size: 1.5rem; line-height: 1; cursor: pointer; display: grid; place-items: center;
+    backdrop-filter: blur(4px);
+  }
+  .gal-nav:hover { background: var(--accent); color: var(--accent-ink); }
+  .gal-prev { left: 0.4rem; } .gal-next { right: 0.4rem; }
+
+  .gal-dots { display: flex; gap: 0.4rem; justify-content: center; margin-top: 0.6rem; }
+  .gal-dots button {
+    width: 0.55rem; height: 0.55rem; border-radius: 999px; padding: 0; cursor: pointer;
+    border: none; background: var(--ink-500);
+  }
+  .gal-dots button[aria-selected="true"] { background: var(--accent); transform: scale(1.25); }
+
+  /* ---- Grid ---- */
+  .gallery-grid {
+    list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  }
+  .gallery-grid .gal-open img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+
+  /* ---- Masonry ---- */
+  .gallery-masonry {
+    list-style: none; margin: 0; padding: 0;
+    columns: 3 14rem; column-gap: var(--space-2);
+  }
+  .gallery-masonry li { break-inside: avoid; margin-bottom: var(--space-2); }
+
+  /* ---- Filmstrip ---- */
+  .gallery-filmstrip { display: grid; gap: var(--space-2); }
+  .film-stage { position: relative; }
+  .film-stage-btn { width: 100%; display: block; }
+  .film-stage-btn img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .film-cap {
+    margin-top: 0.5rem; color: var(--text-soft); font-size: 0.9rem; text-align: center;
+  }
+  .film-rail {
+    list-style: none; margin: 0; padding: 0.2rem 0; display: flex; gap: 0.5rem;
+    overflow-x: auto; scrollbar-width: thin;
+  }
+  .film-thumb {
+    flex: 0 0 6rem; padding: 0; border: 2px solid transparent; border-radius: var(--radius-sm);
+    overflow: hidden; cursor: pointer; background: none; line-height: 0;
+  }
+  .film-thumb img { width: 6rem; height: 4rem; object-fit: cover; }
+  .film-thumb.is-active { border-color: var(--accent); }
+
+  /* ---- Shared figure/button styling ---- */
+  .gal-open {
+    display: block; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-sm);
+    overflow: hidden; cursor: zoom-in; background: var(--ink-800); width: 100%; line-height: 0;
+  }
+  .gal-open:hover { border-color: var(--ink-500); }
+  .gal-cap {
+    line-height: 1.4; font-size: 0.82rem; color: var(--text-soft);
+    padding: 0.5rem 0.6rem; text-align: left;
+  }
+
+  @media (max-width: 38rem) {
+    .gal-slide { flex-basis: 90%; }
+    .gallery-masonry { columns: 2 9rem; }
+  }
+</style>
+
+<script>
+  // Runs once per page (Astro bundles this module once regardless of instances).
+  function initGalleries() {
+    // ---- Lightbox (built lazily on first open) ----
+    let lb: HTMLDivElement | null = null;
+    let current: { gid: string; index: number } | null = null;
+
+    function items(gid: string) {
+      return Array.from(
+        document.querySelectorAll<HTMLElement>(`.gal-open[data-gid="${gid}"]`)
+      );
+    }
+    function buildLightbox() {
+      lb = document.createElement("div");
+      lb.className = "lightbox";
+      lb.setAttribute("role", "dialog");
+      lb.setAttribute("aria-modal", "true");
+      lb.hidden = true;
+      lb.innerHTML = `
+        <button class="lb-close" aria-label="Close (Esc)">×</button>
+        <button class="lb-arrow lb-prev" aria-label="Previous (Left arrow)">‹</button>
+        <figure class="lb-figure">
+          <img class="lb-img" alt="" />
+          <figcaption class="lb-cap"></figcaption>
+        </figure>
+        <button class="lb-arrow lb-next" aria-label="Next (Right arrow)">›</button>
+        <span class="lb-counter" aria-live="polite"></span>`;
+      document.body.appendChild(lb);
+      lb.querySelector(".lb-close")!.addEventListener("click", close);
+      lb.querySelector(".lb-prev")!.addEventListener("click", () => step(-1));
+      lb.querySelector(".lb-next")!.addEventListener("click", () => step(1));
+      lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
+    }
+    function render() {
+      if (!lb || !current) return;
+      const list = items(current.gid);
+      const el = list[current.index];
+      if (!el) return;
+      (lb.querySelector(".lb-img") as HTMLImageElement).src = el.dataset.src || "";
+      (lb.querySelector(".lb-img") as HTMLImageElement).alt = el.dataset.caption || "";
+      lb.querySelector(".lb-cap")!.textContent = el.dataset.caption || "";
+      lb.querySelector(".lb-counter")!.textContent = `${current.index + 1} / ${list.length}`;
+      const multi = list.length > 1;
+      (lb.querySelector(".lb-prev") as HTMLElement).style.display = multi ? "" : "none";
+      (lb.querySelector(".lb-next") as HTMLElement).style.display = multi ? "" : "none";
+    }
+    function open(gid: string, index: number) {
+      if (!lb) buildLightbox();
+      current = { gid, index };
+      lb!.hidden = false;
+      document.body.style.overflow = "hidden";
+      render();
+    }
+    function close() {
+      if (!lb) return;
+      lb.hidden = true;
+      document.body.style.overflow = "";
+      current = null;
+    }
+    function step(dir: number) {
+      if (!current) return;
+      const list = items(current.gid);
+      current.index = (current.index + dir + list.length) % list.length;
+      render();
+    }
+
+    document.querySelectorAll<HTMLElement>(".gal-open").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const gid = btn.dataset.gid!;
+        const index = parseInt(btn.dataset.index || "0", 10);
+        // Filmstrip stage: clicking a rail thumb just swaps the stage image.
+        const gallery = btn.closest(".gallery");
+        if (gallery?.getAttribute("data-view") === "filmstrip" && !btn.classList.contains("film-stage-btn")) {
+          return;
+        }
+        open(gid, index);
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!lb || lb.hidden) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") step(-1);
+      else if (e.key === "ArrowRight") step(1);
+    });
+
+    // ---- Filmstrip thumb swapping ----
+    document.querySelectorAll<HTMLElement>(".gallery-filmstrip").forEach((fs) => {
+      const stageImg = fs.querySelector<HTMLImageElement>(".film-stage-btn img")!;
+      const stageBtn = fs.querySelector<HTMLElement>(".film-stage-btn")!;
+      const stageCap = fs.querySelector<HTMLElement>(".film-cap")!;
+      fs.querySelectorAll<HTMLElement>(".film-thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          stageImg.src = thumb.dataset.src || "";
+          stageImg.alt = thumb.dataset.caption || "";
+          stageCap.textContent = thumb.dataset.caption || "";
+          stageBtn.dataset.src = thumb.dataset.src || "";
+          stageBtn.dataset.index = thumb.dataset.index || "0";
+          stageBtn.dataset.caption = thumb.dataset.caption || "";
+          fs.querySelectorAll(".film-thumb").forEach((t) => t.classList.remove("is-active"));
+          thumb.classList.add("is-active");
+        });
+      });
+    });
+
+    // ---- Carousel controls + dots + optional autoplay ----
+    document.querySelectorAll<HTMLElement>('.gallery[data-view="carousel"]').forEach((gallery) => {
+      const track = gallery.querySelector<HTMLElement>(".gallery-carousel")!;
+      const slides = Array.from(track.children) as HTMLElement[];
+      const dotsWrap = gallery.querySelector<HTMLElement>(".gal-dots")!;
+      const scrollToIndex = (i: number) => {
+        const t = slides[Math.max(0, Math.min(slides.length - 1, i))];
+        track.scrollTo({ left: t.offsetLeft - track.offsetLeft, behavior: "smooth" });
+      };
+      const currentIndex = () => {
+        let best = 0, bestDist = Infinity;
+        slides.forEach((s, i) => {
+          const d = Math.abs(s.offsetLeft - track.scrollLeft - track.offsetLeft);
+          if (d < bestDist) { bestDist = d; best = i; }
+        });
+        return best;
+      };
+      slides.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.setAttribute("role", "tab");
+        dot.setAttribute("aria-label", `Go to image ${i + 1}`);
+        if (i === 0) dot.setAttribute("aria-selected", "true");
+        dot.addEventListener("click", () => scrollToIndex(i));
+        dotsWrap.appendChild(dot);
+      });
+      const dots = Array.from(dotsWrap.children) as HTMLElement[];
+      const syncDots = () => {
+        const idx = currentIndex();
+        dots.forEach((d, i) => d.setAttribute("aria-selected", i === idx ? "true" : "false"));
+      };
+      let ticking = false;
+      track.addEventListener("scroll", () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { syncDots(); ticking = false; });
+      });
+      gallery.querySelector(".gal-prev")!.addEventListener("click", () => scrollToIndex(currentIndex() - 1));
+      gallery.querySelector(".gal-next")!.addEventListener("click", () => scrollToIndex(currentIndex() + 1));
+
+      if (gallery.dataset.autoplay === "1" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        let timer: number;
+        const tick = () => {
+          const next = (currentIndex() + 1) % slides.length;
+          scrollToIndex(next);
+        };
+        const startTimer = () => { timer = window.setInterval(tick, 4000); };
+        const stopTimer = () => window.clearInterval(timer);
+        startTimer();
+        gallery.addEventListener("mouseenter", stopTimer);
+        gallery.addEventListener("mouseleave", startTimer);
+        gallery.addEventListener("focusin", stopTimer);
+      }
+    });
+  }
+
+  if (document.readyState !== "loading") initGalleries();
+  else document.addEventListener("DOMContentLoaded", initGalleries);
+</script>
+
+<style is:global>
+  /* Lightbox lives at <body> level, so its styles are global. */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(8, 11, 16, 0.92);
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+    gap: 0.5rem; padding: clamp(0.5rem, 3vw, 2rem);
+  }
+  .lightbox[hidden] { display: none; }
+  .lb-figure { margin: 0; display: grid; justify-items: center; gap: 0.75rem; min-width: 0; }
+  .lb-img {
+    max-width: 100%; max-height: 82vh; width: auto; border-radius: 8px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+  }
+  .lb-cap { color: #e8edf4; font-size: 0.95rem; text-align: center; max-width: 60ch; }
+  .lb-close {
+    position: fixed; top: 1rem; right: 1.2rem; width: 2.8rem; height: 2.8rem;
+    border-radius: 999px; border: none; background: rgba(255,255,255,0.08); color: #fff;
+    font-size: 1.8rem; line-height: 1; cursor: pointer;
+  }
+  .lb-close:hover { background: var(--accent); color: var(--accent-ink); }
+  .lb-arrow {
+    width: 3rem; height: 3rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06); color: #fff; font-size: 2rem; line-height: 1; cursor: pointer;
+  }
+  .lb-arrow:hover { background: var(--accent); color: var(--accent-ink); }
+  .lb-counter {
+    position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%);
+    /* The lightbox overlay is always dark, so this stays light in every theme. */
+    color: #aeb9c8; font-size: 0.85rem; letter-spacing: 0.04em;
+  }
+  @media (max-width: 38rem) {
+    .lightbox { grid-template-columns: 1fr; }
+    .lb-arrow { position: fixed; top: 50%; transform: translateY(-50%); }
+    .lb-prev { left: 0.5rem; } .lb-next { right: 0.5rem; }
+  }
+</style>

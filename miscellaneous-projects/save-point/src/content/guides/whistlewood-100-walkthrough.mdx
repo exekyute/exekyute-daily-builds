@@ -1,0 +1,161 @@
+---
+title: "Whistlewood: 100% Completion Walkthrough"
+summary: "A spoiler-light path to every achievement, with a spirit-recording checklist, region galleries, and a duet damage table you can sort."
+game: "Whistlewood"
+platforms: ["PC", "Console", "Handheld"]
+category: "walkthrough"
+tags: ["100%", "achievements", "collectibles", "monster collector"]
+cover: ../../assets/whistlewood-walkthrough.png
+coverAlt: "Whistlewood walkthrough cover art"
+spoilers: "minor"
+difficulty: "medium"
+published: 2025-06-20
+updated: 2025-06-29
+featured: true
+order: 1
+changelog:
+  - date: 2025-06-20
+    note: First published with the full region route.
+  - date: 2025-06-29
+    note: Added the duet damage table and the version-differences tabs.
+---
+import Gallery from "../../components/Gallery.astro";
+import Checklist from "../../components/Checklist.astro";
+import StatBlock from "../../components/StatBlock.astro";
+import DataTable from "../../components/DataTable.astro";
+import Callout from "../../components/Callout.astro";
+import Spoiler from "../../components/Spoiler.astro";
+import Infobox from "../../components/Infobox.astro";
+import Tabs from "../../components/Tabs.astro";
+
+<StatBlock
+  difficulty="6 / 10"
+  time="35-45 hours"
+  playthroughs="1 (+ cleanup)"
+  missable="3 missable"
+  trophies="40 achievements"
+  note="No difficulty-locked achievements. Everything here is reachable on a single save with light backtracking."
+/>
+
+This is the route I use for a clean 100% of **Whistlewood** without burning out on random
+encounters. It assumes you have finished the prologue and can record your first spirit.
+Story beats are kept vague; mechanics and region names are fair game.
+
+<Callout type="tip" title="Read this first">
+Turn on **auto-save** and keep one manual save before each major Warden fight. Two of the
+missables sit behind story walls that close after a boss.
+</Callout>
+
+## How completion breaks down
+
+You need four things for 100%: clear the main story, record every spirit species, complete
+the charm-crafting objectives, and win the post-game Festival Bracket. The story carries
+you through most of the recording naturally, so the only real *grind* is mop-up at the end.
+
+<Gallery view="carousel" autoplay={false} title="A tour of the regions" images={[
+  { src: "/images/gallery/shot-1.png", alt: "Coastal Path", caption: "Coastal Path - your first recording ground." },
+  { src: "/images/gallery/shot-2.png", alt: "Bellport Square", caption: "Bellport Square - fast-travel hub and shops." },
+  { src: "/images/gallery/shot-5.png", alt: "Mt. Carillon", caption: "Mt. Carillon - cold region, two missable spirits." },
+  { src: "/images/gallery/shot-8.png", alt: "Night Bazaar", caption: "Night Bazaar - only open after dusk." },
+]} />
+
+## Region-by-region recording checklist
+
+Tick these off as you go. Progress is saved in your browser - close the tab and it stays.
+The three **missable** spirits are flagged; grab them before the listed boss.
+
+<Checklist id="ww-spirits" title="Recordable spirits by region" items={[
+  { id: "cinderpuff", label: "Cinderpuff - Bellport rooftops (day)" },
+  { id: "marshlight", label: "Marshlight - Foghollow Cave", note: "Night only; bring a lantern." },
+  { id: "gloamoth", label: "Gloamoth - Shrine of Chimes", missable: true, note: "Closes after the Warden Sorrel fight." },
+  { id: "tidalisk", label: "Tidalisk - any rainy overworld tile" },
+  { id: "bellowbat", label: "Bellowbat - Night Bazaar back alley", missable: true, note: "Dusk only, pre-festival." },
+  { id: "fernfox", label: "Fernfox - Bellport Square at noon" },
+  { id: "copperling", label: "Copperling - Mt. Carillon cable-lift" },
+  { id: "auric", label: "Auric - Festival Bracket reward", missable: true, note: "One shot in the final round." },
+]} />
+
+<Callout type="missable" title="Do not skip Gloamoth">
+Gloamoth is the most common 100% blocker. The shrine seals the moment you beat **Warden
+Sorrel**, and there is no second window on the same save. Record it the first time you reach
+the summit.
+</Callout>
+
+## Duet resonance reference
+
+Duets are where the achievement *"Perfect Harmony"* lives. Sort by **Avg dmg** to see
+which pairs hit hardest, or filter by a spirit you already have.
+
+<DataTable
+  caption="Tested duet outputs (level 30, neutral matchup)"
+  columns={["Duet", "Types", "Avg dmg", "Cost (AP)", "Notes"]}
+  numeric={[2, 3]}
+  rows={[
+    ["Cinderpuff + Copperling", "Ember / Chime", "284", "5", "Best raw single-target"],
+    ["Tidalisk + Marshlight", "Tide / Gloam", "201", "4", "Stacks soak ticks"],
+    ["Fernfox + Auric", "Verdant / Gilt", "247", "6", "Crit-leaning, swingy"],
+    ["Gloamoth + Cinderpuff", "Gloam / Ember", "262", "5", "Cheap, reliable"],
+    ["Bellowbat + Marshlight", "Chime / Gloam", "176", "3", "Lowest AP, good for chaining"],
+  ]}
+/>
+
+## A tricky boss: the wardens
+
+<Infobox
+  title="Warden Sorrel & Warden Ash"
+  subtitle="Mt. Carillon summit · paired fight"
+  image="/images/gallery/shot-6.png"
+  imageAlt="Warden boss arena"
+  fields={[
+    ["Weak to", "Tide, Gloam"],
+    ["Resists", "Ember"],
+    ["Gimmick", "Shared turn meter"],
+    ["Reward", "Summit key + Gloamoth window closes"],
+  ]}
+/>
+
+The wardens share a turn meter, so burst one down before the other can swap in a duet.
+Lead with **Tidalisk + Marshlight** to stack soak, then focus Ash - she is the healer.
+
+<Spoiler label="Exact phase-two trigger (story spoiler)">
+At 40% combined HP they merge into a single Gilt form and gain a full-party sleep move.
+Pack an item or move that clears sleep, or the run can snowball against you here.
+</Spoiler>
+
+## Version differences
+
+Patch timing and one spirit location differ slightly by platform. Pick your version:
+
+<Tabs tabs={["PC", "Console", "Handheld"]}>
+  <Fragment slot="tab1">
+    All achievements unlock through the launcher overlay. The Night Bazaar opens at 18:00
+    in-game time. Mods are fine for cosmetics but disable them before the Festival Bracket
+    to avoid a known soft-lock.
+  </Fragment>
+  <Fragment slot="tab2">
+    Identical achievement set. Loading into the Night Bazaar is slower; give it a few
+    seconds before the Bellowbat spawn registers, or it can read as empty.
+  </Fragment>
+  <Fragment slot="tab3">
+    Achievement parity with PC. On handheld the final achievement pops after the bracket,
+    not after the final spirit - record Auric first, then claim the trophy round.
+  </Fragment>
+</Tabs>
+
+## Cleanup checklist
+
+Once the story is done, this is all that is usually left:
+
+<Checklist id="ww-cleanup" title="Post-game mop-up" items={[
+  { id: "all-charms", label: "Craft one charm of each rarity" },
+  { id: "duet-20", label: "Perform 20 unique duets (use the table above)" },
+  { id: "bracket", label: "Win the post-game Festival Bracket" },
+  { id: "auric", label: "Record Auric from the final round", missable: true },
+  { id: "songbook", label: "Songbook reads 100%" },
+]} />
+
+<Callout type="tip" title="That's the hundred">
+If the songbook shows 100% and the bracket is cleared, every achievement should have
+popped. If one is missing, it is almost always a duet you have not tried - the table
+above lists five you can knock out in a single battle each.
+</Callout>

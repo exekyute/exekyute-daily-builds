@@ -1,0 +1,78 @@
+---
+title: "Banners of Ashvale: 100% Achievement Guide"
+summary: "A missable-aware completion route for the full campaign, with a petitions ledger you can sort and a chapter-by-chapter checklist."
+game: "Banners of Ashvale"
+platforms: ["PC", "Console"]
+category: "trophies"
+tags: ["100%", "achievements", "tactics", "missable"]
+cover: ../../assets/ashvale-achievements.png
+coverAlt: "Banners of Ashvale achievement guide cover"
+spoilers: "minor"
+difficulty: "hard"
+published: 2025-06-25
+updated: 2025-06-29
+order: 1
+---
+import StatBlock from "../../components/StatBlock.astro";
+import Checklist from "../../components/Checklist.astro";
+import DataTable from "../../components/DataTable.astro";
+import Callout from "../../components/Callout.astro";
+
+<StatBlock
+  difficulty="8 / 10"
+  time="60-80 hours"
+  playthroughs="1 (no missable classes)"
+  missable="5 missable"
+  trophies="38 achievements"
+  note="One save is enough, but you must plan recruits and petitions around chapter walls."
+/>
+
+Ashvale is a long 100%, and most of the pain is *missable recruits and rare petitions*
+that lock at chapter transitions. This route front-loads them so you never have to replay
+a chapter.
+
+<Callout type="danger" title="The five that end runs">
+Dame Ilsa's survival, the Corvin and Petra recruitment, the envoy side-chain, the Sunken
+Archive treasure, and the Gloamsworn bonus fight all sit behind narrow windows. Miss one
+and the only fix is a new campaign. The checklist below is ordered to catch every one in
+a single playthrough.
+</Callout>
+
+## Story-gated checklist
+
+Tick these as you clear each chapter. Anything flagged **missable** closes when the next
+chapter starts.
+
+<Checklist id="ashvale-route" title="Chapter-by-chapter completion route" items={[
+  { id: "ch1-mount", label: "Ch.1 - Recruit a courier bird before the river crossing" },
+  { id: "ch2-serren", label: "Ch.2 - Recruit Serren the engineer (story)" },
+  { id: "ch3-ilsa", label: "Ch.3 - Keep Dame Ilsa alive through the siege", missable: true },
+  { id: "ch4-duo", label: "Ch.4 - Recruit Corvin and Petra", missable: true, note: "Collier's Rest, before the story advances." },
+  { id: "ch4-envoy", label: "Ch.4 - Finish the envoy side-chain", missable: true, note: "Requires the market-square event first." },
+  { id: "archive", label: "Ch.4 - Loot the Sunken Archive treasure", missable: true },
+  { id: "undercroft", label: "Endgame - Clear the Undercroft (optional dungeon)" },
+  { id: "gloamsworn", label: "Endgame - Win the Gloamsworn bonus fight", missable: true },
+]} />
+
+## Petitions worth doing
+
+War-council petitions feed two achievements and a lot of coin. Sort by **Coin** for the
+money run, or by **Days** if you are clearing them between story battles.
+
+<DataTable
+  caption="High-value petitions (Chapter 3+)"
+  columns={["Petition", "Type", "Days", "Coin", "Reward"]}
+  numeric={[2, 3]}
+  rows={[
+    ["The Stolen Signet", "Negotiation", "4", "6800", "Rare accessory"],
+    ["A Call for Watchmen", "Battle", "6", "5200", "Knight recruit chance"],
+    ["Ghosts of the Mill Road", "Exploration", "8", "9100", "Map fragment"],
+    ["The Drowned Library", "Exploration", "10", "12400", "Relic helm"],
+    ["A Lost Heirloom", "Negotiation", "3", "3100", "Coin only"],
+  ]}
+/>
+
+<Callout type="tip" title="One save is enough">
+No class or ending is locked to a second campaign. Plan the five missables above and the
+100% falls out of a normal completionist run.
+</Callout>

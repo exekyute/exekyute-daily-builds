@@ -1,0 +1,74 @@
+---
+/**
+ * StatBlock - the roadmap metadata panel that sets reader
+ * expectations instantly. Drop it at the top of a completion guide.
+ * Every field is optional; only what you pass renders.
+ *
+ * <StatBlock
+ *   difficulty="6 / 10"
+ *   time="35-45 hours"
+ *   playthroughs="1"
+ *   missable="4 missable"
+ *   trophies="48 achievements"
+ *   note="No difficulty trophies; everything is cleanup-friendly." />
+ */
+interface Props {
+  difficulty?: string;
+  time?: string;
+  playthroughs?: string;
+  missable?: string;
+  trophies?: string;
+  note?: string;
+}
+const { difficulty, time, playthroughs, missable, trophies, note } = Astro.props;
+const rows = [
+  ["Difficulty", difficulty, "◆"],
+  ["Time to 100%", time, "⏱"],
+  ["Playthroughs", playthroughs, "↻"],
+  ["Missables", missable, "⚑"],
+  ["Achievements", trophies, "🏆"],
+].filter(([, v]) => v) as [string, string, string][];
+---
+<section class="statblock" aria-label="Completion roadmap summary">
+  <p class="eyebrow statblock-eyebrow">Roadmap at a glance</p>
+  <dl class="statblock-grid">
+    {rows.map(([label, value, icon]) => (
+      <div class="statblock-cell">
+        <dt><span class="statblock-icon" aria-hidden="true">{icon}</span>{label}</dt>
+        <dd>{value}</dd>
+      </div>
+    ))}
+  </dl>
+  {note && <p class="statblock-note">{note}</p>}
+</section>
+
+<style>
+  .statblock {
+    background: linear-gradient(180deg, var(--ink-800), var(--ink-850));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    margin: var(--space-4) 0;
+  }
+  .statblock-eyebrow { margin: 0 0 var(--space-2); }
+  .statblock-grid {
+    margin: 0; display: grid; gap: var(--space-2);
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  }
+  .statblock-cell {
+    background: var(--ink-900); border: 1px solid var(--line);
+    border-radius: var(--radius-sm); padding: var(--space-2);
+  }
+  .statblock-cell dt {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-family: var(--font-label);
+    font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-faint); margin-bottom: 0.3rem; font-weight: 700;
+  }
+  .statblock-cell dd { margin: 0; font-size: 1.05rem; font-weight: 700; color: var(--text); }
+  .statblock-icon { color: var(--accent); }
+  .statblock-note {
+    margin: var(--space-2) 0 0; font-size: 0.9rem; color: var(--text-soft);
+    border-top: 1px solid var(--line); padding-top: var(--space-2);
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+/**
+ * Infobox - structured data panel ("infobox as schema").
+ * Define fields once, render consistently. The base unit for a monster
+ * database, boss cards, or character stat panels.
+ *
+ * <Infobox title="Cinderpuff" image="/images/gallery/shot-3.png"
+ *   subtitle="Ember type · Recordable"
+ *   fields={[["Type","Ember"],["Found","Bellport rooftops"],["Star Rating","★★☆"]]} />
+ */
+interface Props {
+  title: string;
+  subtitle?: string;
+  image?: string;
+  imageAlt?: string;
+  fields: [string, string][];
+  align?: "right" | "full";
+}
+const { title, subtitle, image, imageAlt = "", fields = [], align = "right" } = Astro.props;
+---
+<aside class={`infobox infobox-${align}`}>
+  <p class="infobox-title">{title}</p>
+  {subtitle && <p class="infobox-sub">{subtitle}</p>}
+  {image && <img class="infobox-img" src={image} alt={imageAlt || title} loading="lazy" decoding="async" />}
+  <dl class="infobox-fields">
+    {fields.map(([k, v]) => (
+      <div class="infobox-row">
+        <dt>{k}</dt>
+        <dd set:html={v} />
+      </div>
+    ))}
+  </dl>
+</aside>
+
+<style>
+  .infobox {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--ink-800); padding: var(--space-2); margin: 0 0 var(--space-3);
+  }
+  .infobox-right { float: right; width: min(18rem, 42%); margin: 0.3rem 0 var(--space-2) var(--space-3); }
+  .infobox-full { width: 100%; }
+  .infobox-title {
+    margin: 0; font-weight: 800; font-size: 1.15rem; text-align: center;
+    color: var(--accent); letter-spacing: -0.01em;
+  }
+  .infobox-sub { margin: 0.15rem 0 0.6rem; text-align: center; font-size: 0.82rem; color: var(--text-soft); }
+  .infobox-img { width: 100%; border-radius: var(--radius-sm); margin-bottom: 0.6rem; aspect-ratio: 16/10; object-fit: cover; }
+  .infobox-fields { margin: 0; }
+  .infobox-row {
+    display: grid; grid-template-columns: minmax(5rem, 40%) 1fr; gap: 0.5rem;
+    padding: 0.4rem 0.2rem; border-top: 1px solid var(--line); font-size: 0.9rem;
+  }
+  .infobox-row dt { color: var(--text-faint); font-weight: 600; }
+  .infobox-row dd { margin: 0; color: var(--text); }
+  @media (max-width: 34rem) {
+    .infobox-right { float: none; width: 100%; margin-left: 0; }
+  }
+</style>

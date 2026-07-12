@@ -1,0 +1,73 @@
+---
+/**
+ * TableOfContents - sticky, auto-generated from the guide's headings, with
+ * scroll-spy highlighting the current section. Long guide pages should never
+ * leave the reader without in-page navigation.
+ * Headings come from Astro's render().headings (depth 2-3 only).
+ */
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props {
+  headings: Heading[];
+}
+const { headings = [] } = Astro.props;
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+{toc.length > 0 && (
+  <nav class="toc" aria-label="On this page">
+    <p class="toc-title">On this page</p>
+    <ul role="list">
+      {toc.map((h) => (
+        <li class={`toc-d${h.depth}`}>
+          <a href={`#${h.slug}`} data-toc={h.slug}>{h.text}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .toc { font-size: 0.9rem; }
+  .toc-title {
+    text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.7rem;
+    color: var(--text-faint); font-weight: 700; margin: 0 0 0.6rem;
+  }
+  .toc ul { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
+  .toc li { margin: 0; }
+  .toc a {
+    display: block; padding: 0.3rem 0.75rem; color: var(--text-soft);
+    border-left: 2px solid transparent; margin-left: -2px; line-height: 1.35;
+  }
+  .toc a:hover { color: var(--text); text-decoration: none; }
+  .toc-d3 a { padding-left: 1.4rem; font-size: 0.85rem; }
+  .toc a.is-current { color: var(--accent); border-left-color: var(--accent); font-weight: 650; }
+</style>
+
+<script>
+  function initToc() {
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".toc a[data-toc]"));
+    if (!links.length) return;
+    const map = new Map(links.map((l) => [l.dataset.toc!, l]));
+    const targets = links
+      .map((l) => document.getElementById(l.dataset.toc!))
+      .filter((el): el is HTMLElement => !!el);
+
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            links.forEach((l) => l.classList.remove("is-current"));
+            map.get(e.target.id)?.classList.add("is-current");
+          }
+        });
+      },
+      { rootMargin: "-15% 0px -75% 0px", threshold: 0 }
+    );
+    targets.forEach((t) => spy.observe(t));
+  }
+  if (document.readyState !== "loading") initToc();
+  else document.addEventListener("DOMContentLoaded", initToc);
+</script>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Support the site" description="How the site stays free, fast, and ad-light - and how to support it.">
+  <div class="wrap prose support">
+    <h1>Support the site</h1>
+    <p class="lead muted">
+      The whole point is to stay fast and clean. That shapes how the site earns its keep:
+      lightly, transparently, and never at the cost of the reading experience.
+    </p>
+
+    <div class="tiers">
+      <div class="tier card">
+        <h2>Free, forever</h2>
+        <p class="muted">Every guide, every checklist, every table.</p>
+        <ul>
+          <li>All guides and blog posts</li>
+          <li>Persistent checklists &amp; trackers</li>
+          <li>At most one quiet, static ad slot - never autoplay, never pop-ups</li>
+        </ul>
+        <p class="tier-price">$0</p>
+      </div>
+
+      <div class="tier card tier-feature">
+        <span class="chip chip-accent tier-tag">Most support comes from here</span>
+        <h2>Supporter</h2>
+        <p class="muted">A few dollars a month. Keeps the lights on.</p>
+        <ul>
+          <li><strong>Zero ads</strong>, site-wide</li>
+          <li><strong>Every guide as a clean PDF</strong> for offline reading on any device</li>
+          <li>Early access to new walkthroughs</li>
+          <li>Supporter Discord + a name in the credits</li>
+        </ul>
+        <p class="tier-price">~$3<span>/mo</span></p>
+        <a class="btn" href="#" rel="noopener">Become a supporter</a>
+        <p class="faint tier-fine">Wire up Ko-fi or Patreon membership here.</p>
+      </div>
+    </div>
+
+    <h2>How the money actually works</h2>
+    <ul class="money">
+      <li><strong>Supporter memberships</strong> are the backbone - a model proven across the guide space: people happily pay for ad-free plus downloadable guides.</li>
+      <li><strong>Affiliate links</strong> on game-storefront mentions. Always disclosed, never the reason a recommendation exists.</li>
+      <li><strong>One optional ad slot</strong> for free readers, from an ethical, lightweight network - or none at all while the audience is small.</li>
+      <li><strong>The newsletter</strong> builds a direct audience that no aggregator can take away.</li>
+    </ul>
+
+    <h2>What you will never see here</h2>
+    <ul class="never">
+      <li>Autoplay or sticky video</li>
+      <li>Anti-adblock walls or "turn off your blocker" nags</li>
+      <li>Pop-up stacks, interstitials, or consent-wall friction</li>
+      <li>Pages that take ten seconds and twelve megabytes to load</li>
+    </ul>
+
+    <div class="newsletter card">
+      <h2>Get new guides in your inbox</h2>
+      <p class="muted">New walkthroughs and patch-day update notes for the niche RPGs you actually play.</p>
+      <form class="newsletter-form" onsubmit="return false">
+        <input type="email" placeholder="you@example.com" aria-label="Email address" required />
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+      <p class="faint">Connect this to your email provider (Buttondown, Listmonk, etc.). No spam, unsubscribe anytime.</p>
+    </div>
+  </div>
+  <style>
+    .support { padding-top: var(--space-4); margin-inline: auto; }
+    .support .lead { font-size: 1.2rem; }
+    .tiers { display: grid; gap: var(--space-3); grid-template-columns: 1fr; margin: var(--space-4) 0; }
+    .tier { padding: var(--space-4); gap: 0.4rem; }
+    .tier h2 { margin-top: 0; }
+    .tier ul { margin: 0.5rem 0; padding-left: 1.1rem; }
+    .tier-feature { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+    .tier-tag { align-self: flex-start; }
+    .tier-price { font-size: 2rem; font-weight: 800; margin: 0.5rem 0; }
+    .tier-price span { font-size: 1rem; color: var(--text-soft); font-weight: 600; }
+    .tier-fine { margin: 0.5rem 0 0; }
+    .money li, .never li { margin-bottom: 0.4rem; }
+    .newsletter { padding: var(--space-4); margin-top: var(--space-4); }
+    .newsletter-form { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: var(--space-2) 0; }
+    .newsletter-form input {
+      flex: 1; min-width: 14rem; background: var(--ink-900); border: 1px solid var(--line);
+      color: var(--text); border-radius: 999px; padding: 0.7rem 1.1rem;
+    }
+    @media (min-width: 48rem) { .tiers { grid-template-columns: 1fr 1fr; } }
+  </style>
+</BaseLayout>

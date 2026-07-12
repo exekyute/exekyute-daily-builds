@@ -1,0 +1,56 @@
+---
+/**
+ * Callout - info / tip / warn / danger / spoiler-safe note boxes.
+ * Styled note boxes for BBCode-free guide writing. Zero JS.
+ * Usage: <Callout type="tip" title="Missable!">Grab the key item before...</Callout>
+ */
+interface Props {
+  type?: "info" | "tip" | "warn" | "danger" | "missable";
+  title?: string;
+}
+const { type = "info", title } = Astro.props;
+const icons: Record<string, string> = {
+  info: "ℹ",
+  tip: "★",
+  warn: "▲",
+  danger: "✖",
+  missable: "⏳",
+};
+const labels: Record<string, string> = {
+  info: "Note",
+  tip: "Tip",
+  warn: "Heads up",
+  danger: "Warning",
+  missable: "Missable",
+};
+---
+<aside class={`callout callout-${type}`}>
+  <p class="callout-head">
+    <span class="callout-icon" aria-hidden="true">{icons[type]}</span>
+    <span>{title ?? labels[type]}</span>
+  </p>
+  <div class="callout-body"><slot /></div>
+</aside>
+
+<style>
+  .callout {
+    --c: var(--accent);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--c);
+    background: var(--ink-800);
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-3);
+    margin: var(--space-3) 0;
+  }
+  .callout-head {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin: 0 0 0.35rem; font-weight: 700; color: var(--c);
+  }
+  .callout-icon { font-size: 0.95em; }
+  .callout-body :global(p:last-child) { margin-bottom: 0; }
+  .callout-info { --c: var(--co-info, #6aa6ff); }
+  .callout-tip { --c: var(--accent); }
+  .callout-warn { --c: var(--warn); }
+  .callout-danger { --c: var(--danger); }
+  .callout-missable { --c: var(--co-missable, #d98cf0); }
+</style>

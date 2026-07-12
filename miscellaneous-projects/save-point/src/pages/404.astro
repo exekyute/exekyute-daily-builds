@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Page not found">
+  <div class="wrap notfound">
+    <p class="nf-code">404</p>
+    <h1>This page wandered off the map.</h1>
+    <p class="muted">The guide you are after may have moved, or never existed. Try the guide library.</p>
+    <div class="nf-actions">
+      <a class="btn" href="/guides/">Browse guides</a>
+      <a class="btn btn-ghost" href="/">Back home</a>
+    </div>
+  </div>
+  <style>
+    .notfound { padding: var(--space-6) 0; text-align: center; max-width: 36rem; margin-inline: auto; }
+    .nf-code { font-size: 4rem; font-weight: 800; color: var(--accent); margin: 0; line-height: 1; }
+    .nf-actions { display: flex; gap: 0.6rem; justify-content: center; margin-top: var(--space-3); flex-wrap: wrap; }
+  </style>
+</BaseLayout>

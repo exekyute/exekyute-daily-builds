@@ -1,0 +1,141 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GuideCard from "../components/GuideCard.astro";
+import PostCard from "../components/PostCard.astro";
+import { SITE } from "../consts";
+import { gameSlug } from "../utils";
+
+const isProd = import.meta.env.PROD;
+const pub = (d: any) => !(isProd && d.data.draft);
+
+const guides = (await getCollection("guides", pub)).sort(
+  (a, b) => +new Date(b.data.updated ?? b.data.published) - +new Date(a.data.updated ?? a.data.published)
+);
+const posts = (await getCollection("blog", pub)).sort(
+  (a, b) => +new Date(b.data.published) - +new Date(a.data.published)
+);
+
+const featured = guides.find((g) => g.data.featured) ?? guides[0];
+const latestGuides = guides.filter((g) => g.id !== featured?.id).slice(0, 6);
+const latestPosts = posts.slice(0, 3);
+
+const games = [...new Set(guides.map((g) => g.data.game))];
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">RPG &amp; JRPG guides · tactics · completion</p>
+      <h1 class="hero-title">Finish the games you love. <span class="hero-accent">100%.</span></h1>
+      <p class="hero-sub muted">
+        Checklist-driven walkthroughs, collectible trackers, and achievement roadmaps for
+        tactics RPGs and JRPGs. Built to load fast and read clean. No autoplay video, no
+        anti-adblock walls, no wall of pop-ups.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="/guides/">Browse guides</a>
+        <a class="btn btn-ghost" href="/blog/">Read the blog</a>
+      </div>
+      <ul class="hero-points" role="list">
+        <li><span aria-hidden="true">✓</span> Persistent collectible checklists</li>
+        <li><span aria-hidden="true">✓</span> Sortable stat &amp; profit tables</li>
+        <li><span aria-hidden="true">✓</span> Real image galleries &amp; lightbox</li>
+        <li><span aria-hidden="true">✓</span> Sub-100KB pages</li>
+      </ul>
+    </div>
+  </section>
+
+  {featured && (
+    <section class="wrap section">
+      <div class="section-head">
+        <h2>Featured guide</h2>
+        <a class="section-more" href="/guides/">All guides →</a>
+      </div>
+      <a href={`/guides/${featured.id}/`} class="featured card">
+        <div class="featured-media">
+          {featured.data.cover ? (
+            <img src={featured.data.cover.src} alt="" loading="eager" />
+          ) : (
+            <span class="featured-fallback">◈</span>
+          )}
+        </div>
+        <div class="featured-body">
+          <p class="eyebrow">{featured.data.game}</p>
+          <h3>{featured.data.title}</h3>
+          <p class="muted">{featured.data.summary}</p>
+          <span class="featured-cta">Open guide →</span>
+        </div>
+      </a>
+    </section>
+  )}
+
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>Latest guides</h2>
+      <a class="section-more" href="/guides/">All guides →</a>
+    </div>
+    <div class="grid">
+      {latestGuides.map((g) => <GuideCard guide={g} />)}
+    </div>
+  </section>
+
+  {games.length > 0 && (
+    <section class="wrap section">
+      <div class="section-head"><h2>Games covered</h2><a class="section-more" href="/games/">All games →</a></div>
+      <div class="game-chips">
+        {games.map((game) => (
+          <a class="game-chip" href={`/games/${gameSlug(game)}/`}>{game}</a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {latestPosts.length > 0 && (
+    <section class="wrap section">
+      <div class="section-head"><h2>From the blog</h2><a class="section-more" href="/blog/">All posts →</a></div>
+      <div class="grid">
+        {latestPosts.map((p) => <PostCard post={p} />)}
+      </div>
+    </section>
+  )}
+
+  <style>
+    .hero { background:
+      radial-gradient(1200px 400px at 70% -10%,
+        color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%); }
+    .hero-inner { padding: var(--space-6) 0 var(--space-5); max-width: 48rem; }
+    .hero-title { font-size: clamp(2.2rem, 1.4rem + 3.6vw, 3.8rem); margin: var(--space-2) 0; }
+    .hero-accent { color: var(--accent); }
+    .hero-sub { font-size: 1.15rem; max-width: 40rem; }
+    .hero-actions { display: flex; gap: 0.75rem; margin: var(--space-3) 0; flex-wrap: wrap; }
+    .hero-points { list-style: none; margin: var(--space-3) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; color: var(--text-soft); font-size: 0.92rem; }
+    .hero-points li { display: flex; align-items: center; gap: 0.4rem; }
+    .hero-points span { color: var(--good); font-weight: 800; }
+
+    .section { padding-top: var(--space-5); }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: var(--space-3); }
+    .section-head h2 { margin: 0; }
+    .section-more { font-weight: 650; white-space: nowrap; }
+
+    .featured { display: grid; grid-template-columns: 1fr; overflow: hidden; }
+    .featured:hover { text-decoration: none; }
+    .featured-media { aspect-ratio: 16/9; background: var(--ink-700); position: relative; overflow: hidden; }
+    .featured-media img { width: 100%; height: 100%; object-fit: cover; }
+    .featured-fallback { position: absolute; inset: 0; display: grid; place-items: center; font-size: 3rem; color: var(--ink-500); }
+    .featured-body { padding: var(--space-4); display: flex; flex-direction: column; gap: 0.5rem; }
+    .featured-body h3 { margin: 0; font-size: 1.6rem; }
+    .featured-cta { color: var(--accent); font-weight: 700; margin-top: 0.5rem; }
+
+    .game-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .game-chip {
+      padding: 0.5rem 0.9rem; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--ink-800); color: var(--text-soft); font-weight: 600; font-size: 0.92rem;
+    }
+    .game-chip:hover { color: var(--accent); border-color: var(--ink-500); text-decoration: none; }
+
+    @media (min-width: 50rem) {
+      .featured { grid-template-columns: 1.3fr 1fr; }
+      .featured-media { aspect-ratio: auto; }
+    }
+  </style>
+</BaseLayout>

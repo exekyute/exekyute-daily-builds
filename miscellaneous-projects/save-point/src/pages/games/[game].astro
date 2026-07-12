@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import GuideCard from "../../components/GuideCard.astro";
+import { gameSlug } from "../../utils";
+import { CATEGORY_LABELS } from "../../consts";
+
+export async function getStaticPaths() {
+  const isProd = import.meta.env.PROD;
+  const guides = await getCollection("guides", (d) => !(isProd && d.data.draft));
+  const games = [...new Set(guides.map((g) => g.data.game))];
+  return games.map((game) => ({
+    params: { game: gameSlug(game) },
+    props: {
+      game,
+      guides: guides
+        .filter((g) => g.data.game === game)
+        .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)),
+    },
+  }));
+}
+const { game, guides } = Astro.props;
+const platforms = [...new Set(guides.flatMap((g) => g.data.platforms))];
+// Group guides by category so the hub reads like a real game wiki index.
+const groups = new Map<string, any[]>();
+for (const g of guides) {
+  const k = g.data.category;
+  if (!groups.has(k)) groups.set(k, []);
+  groups.get(k)!.push(g);
+}
+---
+<BaseLayout title={`${game} guides`} description={`Every guide, walkthrough, and checklist for ${game}.`}>
+  <div class="wrap gamehub">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/games/">Games</a><span aria-hidden="true">/</span><span>{game}</span>
+    </nav>
+    <header class="gamehub-header">
+      <h1>{game} guides</h1>
+      <p class="muted">
+        {guides.length} {guides.length === 1 ? "guide" : "guides"}
+        {platforms.length > 0 && <> · {platforms.join(", ")}</>}
+      </p>
+    </header>
+
+    {[...groups.entries()].map(([cat, list]) => (
+      <section class="gamehub-section">
+        <h2>{CATEGORY_LABELS[cat] ?? cat}</h2>
+        <div class="grid">
+          {list.map((g) => <GuideCard guide={g} />)}
+        </div>
+      </section>
+    ))}
+  </div>
+  <style>
+    .gamehub { padding-top: var(--space-4); }
+    .breadcrumb { display: flex; gap: 0.5rem; font-size: 0.85rem; color: var(--text-soft); margin-bottom: var(--space-2); }
+    .breadcrumb a { color: var(--text-soft); }
+    .gamehub-header { margin-bottom: var(--space-4); }
+    .gamehub-header h1 { margin-bottom: 0.3rem; }
+    .gamehub-section { margin-bottom: var(--space-5); }
+    .gamehub-section h2 { margin-bottom: var(--space-3); }
+  </style>
+</BaseLayout>

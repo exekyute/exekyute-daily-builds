@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../consts";
+---
+<BaseLayout title="About" description="Who runs the site and why it exists.">
+  <div class="wrap prose about">
+    <h1>About {SITE.name}</h1>
+    <p class="lead muted">
+      A home for serious completion guides - the kind with checklists you can actually
+      check off, tables you can sort, and screenshots you can flick through. Built by one
+      completionist who got tired of fighting forum BBCode.
+    </p>
+
+    <h2>Why this exists</h2>
+    <p>
+      Completion guides are structured data: checklists, drop tables, profit ledgers,
+      ordered routes. The formats most guides get written in cannot keep up with that: no
+      real tables, no persistent checkboxes, no galleries, no in-guide search, no way to
+      make a guide look like anything other than every other guide. The data tools end up
+      cramped into a format that fights them.
+    </p>
+    <p>This site is the fix. Same guides, finally in a format that fits them.</p>
+
+    <h2>What makes it different</h2>
+    <ul>
+      <li><strong>Persistent checklists.</strong> Tick off collectibles and achievements; your progress is saved in your browser, no account needed.</li>
+      <li><strong>Sortable, filterable tables.</strong> Order a profit ledger by yield, filter a drop table by enemy - instantly.</li>
+      <li><strong>Real galleries.</strong> Rolling carousels, grids, and a full-screen lightbox, not stacked full-width images.</li>
+      <li><strong>Fast and quiet.</strong> No autoplay video, no anti-adblock wall, no pop-up stack. Pages are tiny and load instantly.</li>
+    </ul>
+
+    <h2>The niche</h2>
+    <p>
+      Tactics RPGs, JRPGs, and monster collectors, with the occasional detour - the games
+      that reward going for 100%, and sometimes need a guide to get there. The sample
+      guides here cover Whistlewood and Banners of Ashvale; the backlog decides what
+      comes next.
+    </p>
+
+    <p><a class="btn" href="/guides/">Browse the guides</a></p>
+  </div>
+  <style>
+    .about { padding-top: var(--space-4); margin-inline: auto; }
+    .about .lead { font-size: 1.2rem; }
+  </style>
+</BaseLayout>

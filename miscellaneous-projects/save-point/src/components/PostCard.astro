@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import { formatDate } from "../utils";
+
+interface Props {
+  post: any;
+}
+const { post } = Astro.props;
+const { data } = post;
+const href = `/blog/${post.id}/`;
+---
+<article class="card post-card">
+  {data.cover && (
+    <a href={href} class="post-card-media" aria-hidden="true" tabindex="-1">
+      <Image src={data.cover} alt="" width={520} height={273} loading="lazy" />
+    </a>
+  )}
+  <div class="card-body">
+    <div class="post-card-tags">
+      {data.tags.slice(0, 2).map((t: string) => <span class="chip">{t}</span>)}
+    </div>
+    <h3 class="post-card-title"><a href={href}>{data.title}</a></h3>
+    <p class="muted post-card-summary">{data.summary}</p>
+    <p class="faint post-card-date">{formatDate(data.published)}</p>
+  </div>
+</article>
+
+<style>
+  .post-card-media { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--ink-700); }
+  .post-card-media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .post-card-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+  .post-card-title { margin: 0.2rem 0 0; font-size: 1.15rem; line-height: 1.25; }
+  .post-card-title a { color: var(--text); }
+  .post-card-title a:hover { color: var(--accent); text-decoration: none; }
+  .post-card-summary { font-size: 0.9rem; margin: 0; flex: 1; }
+  .post-card-date { font-size: 0.8rem; margin: 0.2rem 0 0; }
+</style>

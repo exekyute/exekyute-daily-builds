@@ -1,0 +1,145 @@
+---
+/**
+ * Checklist - the killer feature for completion guides.
+ * Persistent, per-reader checkboxes (localStorage, no login) with a live
+ * progress bar and a "hide done" toggle. This is the single thing BBCode
+ * structurally cannot do, and it is exactly what 100% guides need.
+ *
+ * <Checklist id="region-spirits" title="Spirits to record" items={[
+ *   { id: "cinderpuff", label: "Cinderpuff - Bellport rooftops", missable: false },
+ *   { id: "marshlight", label: "Marshlight - Foghollow Cave (night only)", missable: true },
+ * ]} />
+ */
+interface Item {
+  id: string;
+  label: string;
+  note?: string;
+  missable?: boolean;
+}
+interface Props {
+  id: string;
+  title?: string;
+  items: Item[];
+}
+const { id, title = "Checklist", items = [] } = Astro.props;
+---
+<section class="checklist" data-checklist={id} aria-label={title}>
+  <header class="checklist-head">
+    <h3 class="checklist-title">{title}</h3>
+    <div class="checklist-meta">
+      <span class="checklist-count" aria-live="polite">0 / {items.length}</span>
+      <label class="checklist-hide">
+        <input type="checkbox" class="checklist-hidedone" /> Hide done
+      </label>
+      <button type="button" class="checklist-reset btn-ghost btn">Reset</button>
+    </div>
+  </header>
+  <div class="checklist-bar" aria-hidden="true"><span class="checklist-fill"></span></div>
+  <ul class="checklist-items" role="list">
+    {items.map((it) => (
+      <li class="checklist-item" data-item={it.id}>
+        <label>
+          <input type="checkbox" data-id={it.id} />
+          <span class="checklist-label">
+            {it.label}
+            {it.missable && <span class="chip chip-missable">missable</span>}
+            {it.note && <span class="checklist-note">{it.note}</span>}
+          </span>
+        </label>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .checklist {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--ink-800); padding: var(--space-3); margin: var(--space-4) 0;
+  }
+  .checklist-head {
+    display: flex; flex-wrap: wrap; gap: var(--space-2);
+    align-items: center; justify-content: space-between;
+  }
+  .checklist-title { margin: 0; font-size: 1.1rem; }
+  .checklist-meta { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+  .checklist-count {
+    font-family: var(--font-label);
+    font-variant-numeric: tabular-nums; font-weight: 700; color: var(--accent);
+  }
+  .checklist-hide { font-size: 0.85rem; color: var(--text-soft); display: flex; gap: 0.35rem; align-items: center; cursor: pointer; }
+  .checklist-reset { padding: 0.35rem 0.7rem; font-size: 0.8rem; }
+  .checklist-bar {
+    height: 8px; background: var(--ink-600); border-radius: 999px; overflow: hidden;
+    margin: var(--space-2) 0; border: 1px solid var(--line);
+  }
+  .checklist-fill {
+    display: block; height: 100%; width: 0%; border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    transition: width 0.25s ease;
+  }
+  .checklist-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; }
+  .checklist-item label {
+    display: flex; gap: 0.65rem; align-items: flex-start; cursor: pointer;
+    padding: 0.5rem 0.6rem; border-radius: var(--radius-sm);
+  }
+  .checklist-item label:hover { background: var(--ink-700); }
+  .checklist-item input { margin-top: 0.28rem; width: 1.05rem; height: 1.05rem; accent-color: var(--accent); flex: none; }
+  .checklist-label { line-height: 1.5; }
+  .checklist-note { display: block; font-size: 0.85rem; color: var(--text-soft); }
+  .chip-missable {
+    background: color-mix(in srgb, var(--co-missable, #d98cf0) 14%, transparent);
+    color: var(--co-missable, #d98cf0);
+    border-color: color-mix(in srgb, var(--co-missable, #d98cf0) 30%, transparent);
+    margin-left: 0.4rem;
+  }
+  .checklist-item.is-done .checklist-label { color: var(--text-faint); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .checklist.hide-done .checklist-item.is-done { display: none; }
+</style>
+
+<script>
+  function initChecklists() {
+    document.querySelectorAll<HTMLElement>(".checklist").forEach((root) => {
+      const id = root.dataset.checklist!;
+      const key = `checklist:${location.pathname}:${id}`;
+      const boxes = Array.from(root.querySelectorAll<HTMLInputElement>('input[type="checkbox"][data-id]'));
+      const fill = root.querySelector<HTMLElement>(".checklist-fill")!;
+      const count = root.querySelector<HTMLElement>(".checklist-count")!;
+      const hideToggle = root.querySelector<HTMLInputElement>(".checklist-hidedone")!;
+      const reset = root.querySelector<HTMLButtonElement>(".checklist-reset")!;
+
+      let saved: Record<string, boolean> = {};
+      try { saved = JSON.parse(localStorage.getItem(key) || "{}"); } catch {}
+
+      function persist() {
+        const state: Record<string, boolean> = {};
+        boxes.forEach((b) => { if (b.checked) state[b.dataset.id!] = true; });
+        try { localStorage.setItem(key, JSON.stringify(state)); } catch {}
+      }
+      function refresh() {
+        let done = 0;
+        boxes.forEach((b) => {
+          const li = b.closest(".checklist-item")!;
+          li.classList.toggle("is-done", b.checked);
+          if (b.checked) done++;
+        });
+        const pct = boxes.length ? Math.round((done / boxes.length) * 100) : 0;
+        fill.style.width = pct + "%";
+        count.textContent = `${done} / ${boxes.length}`;
+      }
+
+      boxes.forEach((b) => {
+        if (saved[b.dataset.id!]) b.checked = true;
+        b.addEventListener("change", () => { persist(); refresh(); });
+      });
+      hideToggle.addEventListener("change", () => root.classList.toggle("hide-done", hideToggle.checked));
+      reset.addEventListener("click", () => {
+        boxes.forEach((b) => (b.checked = false));
+        try { localStorage.removeItem(key); } catch {}
+        refresh();
+      });
+      refresh();
+    });
+  }
+  if (document.readyState !== "loading") initChecklists();
+  else document.addEventListener("DOMContentLoaded", initChecklists);
+</script>

@@ -1,0 +1,124 @@
+---
+/**
+ * DataTable - sortable, filterable, sticky-header tables for drop tables,
+ * stat lines, and profit ledgers. Click a header to sort; type to filter.
+ *
+ * <DataTable
+ *   caption="Shipping profits"
+ *   columns={["Crop", "Season", "Sell", "Profit/day"]}
+ *   numeric={[2, 3]}
+ *   rows={[["Glowberry", "Spring", "120", "47"], ...]} />
+ */
+interface Props {
+  columns: string[];
+  rows: (string | number)[][];
+  caption?: string;
+  numeric?: number[];     // column indexes that sort numerically
+  filter?: boolean;       // show the filter box (default true)
+}
+const { columns = [], rows = [], caption, numeric = [], filter = true } = Astro.props;
+const tid = "dt-" + Math.random().toString(36).slice(2, 8);
+---
+<div class="datatable" data-table={tid} data-numeric={numeric.join(",")}>
+  <div class="dt-head">
+    {caption && <p class="dt-caption">{caption}</p>}
+    {filter && (
+      <input type="search" class="dt-filter" placeholder="Filter rows…" aria-label="Filter table rows" />
+    )}
+  </div>
+  <div class="dt-scroll">
+    <table>
+      <thead>
+        <tr>
+          {columns.map((c, i) => (
+            <th>
+              <button type="button" class="dt-sort" data-col={i} aria-label={`Sort by ${c}`}>
+                {c}<span class="dt-arrow" aria-hidden="true"></span>
+              </button>
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr>{r.map((cell) => <td>{cell}</td>)}</tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="dt-empty" hidden>No rows match that filter.</p>
+</div>
+
+<style>
+  .datatable { margin: var(--space-4) 0; }
+  .dt-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .dt-caption { margin: 0; font-weight: 650; color: var(--text-soft); }
+  .dt-filter {
+    background: var(--ink-800); border: 1px solid var(--line); color: var(--text);
+    border-radius: 999px; padding: 0.4rem 0.85rem; font-size: 0.9rem; min-width: 12rem;
+  }
+  .dt-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+  thead th {
+    position: sticky; top: 0; background: var(--ink-700); text-align: left;
+    border-bottom: 1px solid var(--line); white-space: nowrap;
+  }
+  .dt-sort {
+    width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+    color: var(--text); font-weight: 700; padding: 0.6rem 0.8rem; display: flex;
+    align-items: center; gap: 0.4rem;
+  }
+  .dt-sort:hover { color: var(--accent); }
+  .dt-arrow { font-size: 0.7em; color: var(--accent); min-width: 0.7em; }
+  .dt-sort[data-dir="asc"] .dt-arrow::after { content: "▲"; }
+  .dt-sort[data-dir="desc"] .dt-arrow::after { content: "▼"; }
+  tbody td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--line); }
+  tbody tr:nth-child(even) { background: var(--ink-850); }
+  tbody tr:hover { background: var(--ink-700); }
+  .dt-empty { color: var(--text-soft); padding: var(--space-2); }
+</style>
+
+<script>
+  function initTables() {
+    document.querySelectorAll<HTMLElement>(".datatable").forEach((root) => {
+      const numeric = (root.dataset.numeric || "").split(",").filter(Boolean).map(Number);
+      const tbody = root.querySelector("tbody")!;
+      const empty = root.querySelector<HTMLElement>(".dt-empty")!;
+      const getRows = () => Array.from(tbody.querySelectorAll("tr"));
+      const filterInput = root.querySelector<HTMLInputElement>(".dt-filter");
+
+      root.querySelectorAll<HTMLButtonElement>(".dt-sort").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const col = Number(btn.dataset.col);
+          const dir = btn.dataset.dir === "asc" ? "desc" : "asc";
+          root.querySelectorAll<HTMLElement>(".dt-sort").forEach((b) => delete b.dataset.dir);
+          btn.dataset.dir = dir;
+          const isNum = numeric.includes(col);
+          const rows = getRows();
+          rows.sort((a, b) => {
+            const av = a.children[col].textContent!.trim();
+            const bv = b.children[col].textContent!.trim();
+            let cmp: number;
+            if (isNum) cmp = (parseFloat(av.replace(/[^0-9.\-]/g, "")) || 0) - (parseFloat(bv.replace(/[^0-9.\-]/g, "")) || 0);
+            else cmp = av.localeCompare(bv);
+            return dir === "asc" ? cmp : -cmp;
+          });
+          rows.forEach((r) => tbody.appendChild(r));
+        });
+      });
+
+      filterInput?.addEventListener("input", () => {
+        const q = filterInput.value.trim().toLowerCase();
+        let visible = 0;
+        getRows().forEach((r) => {
+          const match = r.textContent!.toLowerCase().includes(q);
+          (r as HTMLElement).hidden = !match;
+          if (match) visible++;
+        });
+        empty.hidden = visible !== 0;
+      });
+    });
+  }
+  if (document.readyState !== "loading") initTables();
+  else document.addEventListener("DOMContentLoaded", initTables);
+</script>
