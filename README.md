@@ -8,18 +8,18 @@ Each project is self-contained in its own folder with its own README, so you can
 
 ## Nova Scotia Open Data
 
-Small SQL analyses built on real datasets from the Nova Scotia Open Data portal. Each build keeps a checked-in snapshot of its source data and a golden copy of the expected output, so the numbers reproduce exactly every time the SQL runs.
+Small DuckDB SQL analyses built on real datasets from the Nova Scotia Open Data portal. Each build keeps a checked-in snapshot of its source data and a golden copy of the expected output, so the numbers reproduce exactly every time the SQL runs.
 
 | Project | What it does | Last Updated |
 |---|---|---|
-| [01 MVA Conviction Trend](ns-open-data-sql/01-mva-conviction-trend-by-statute) | Ranks two selected Motor Vehicle Act offences by yearly conviction count and tracks which are rising or falling across 2011 to 2024, in DuckDB SQL. | 07/05/2026 |
-| [02 Farm Commodity-Mix Shift](ns-open-data-sql/02-farm-commodity-mix-shift) | Tracks the commodity mix of registered farms by fiscal year and ranks which commodities gained or lost the most share from 2015-2016 to 2024-2025, in DuckDB SQL. | 07/06/2026 |
-| [03 Small-Business Grant Audit](ns-open-data-sql/03-small-business-grant-audit) | Counts recipients of two 2020 pandemic small-business grants by business type and year and ranks which types received the most, in DuckDB SQL. | 07/07/2026 |
-| [04 Hatchery Stocking Summary](ns-open-data-sql/04-hatchery-stocking-summary) | Sums hatchery fish releases by waterbody, county, species, and year, ranks the top species and most stocked water, and tracks the release trend from 1976 to 2025, in DuckDB SQL. | 07/08/2026 |
-| [05 Busiest-Corridor AADT Ranking](ns-open-data-sql/05-busiest-corridor-aadt-ranking) | Ranks provincial highway segments by annual average daily traffic, tracks each segment's year-over-year growth with a window function, and flags the segments at or above a two-lane capacity threshold, in DuckDB SQL. | 07/09/2026 |
-| [06 Liquor-License Density](ns-open-data-sql/06-liquor-license-density) | Counts permanent liquor licenses per community, ranks communities by total, and breaks down each community's license-type mix with a dominant-type flag, in DuckDB SQL. | 07/10/2026 |
-| [07 Municipal Surplus League Table](ns-open-data-sql/07-municipal-surplus-league-table) | Computes each municipality's operating surplus (revenue minus expenditure) by fiscal year, ranks the largest surpluses and deficits, and tracks year-over-year change with a window function, in DuckDB SQL. | 07/11/2026 |
-| [08 Procurement Spend Pareto](ns-open-data-sql/08-procurement-spend-pareto) | Sums awarded public-tender dollars by vendor after merging name variants, ranks vendors, and traces a running-total 80/20 curve with window functions to show how few vendors reach 80 percent of spend, in DuckDB SQL. | 07/12/2026 |
+| [01 MVA Conviction Trend](ns-open-data-sql/01-mva-conviction-trend-by-statute) | Ranks two Motor Vehicle Act offences by yearly convictions and tracks which is rising or falling, 2011 to 2024. | 07/05/2026 |
+| [02 Farm Commodity-Mix Shift](ns-open-data-sql/02-farm-commodity-mix-shift) | Tracks the commodity mix of registered farms and ranks which gained or lost the most share, 2015-2016 to 2024-2025. | 07/06/2026 |
+| [03 Small-Business Grant Audit](ns-open-data-sql/03-small-business-grant-audit) | Counts recipients of two 2020 pandemic grants by business type and ranks which types got the most. | 07/07/2026 |
+| [04 Hatchery Stocking Summary](ns-open-data-sql/04-hatchery-stocking-summary) | Sums hatchery fish releases by water, county, and species, and tracks the trend from 1976 to 2025. | 07/08/2026 |
+| [05 Busiest-Corridor AADT Ranking](ns-open-data-sql/05-busiest-corridor-aadt-ranking) | Ranks highway segments by average daily traffic, tracks each one's year-over-year growth, and flags those near two-lane capacity. | 07/09/2026 |
+| [06 Liquor-License Density](ns-open-data-sql/06-liquor-license-density) | Counts permanent liquor licenses per community, ranks communities by total, and flags each one's dominant license type. | 07/10/2026 |
+| [07 Municipal Surplus League Table](ns-open-data-sql/07-municipal-surplus-league-table) | Computes each municipality's operating surplus by fiscal year and ranks the largest surpluses and deficits. | 07/11/2026 |
+| [08 Procurement Spend Pareto](ns-open-data-sql/08-procurement-spend-pareto) | Sums awarded tender dollars by vendor (merging name variants) and traces an 80/20 curve of how few vendors reach 80 percent of spend. | 07/12/2026 |
 
 ## Miscellaneous Projects
 
