@@ -19,6 +19,7 @@ Small SQL analyses built on real datasets from the Nova Scotia Open Data portal.
 | [05 Busiest-Corridor AADT Ranking](ns-open-data-sql/05-busiest-corridor-aadt-ranking) | Ranks provincial highway segments by annual average daily traffic, tracks each segment's year-over-year growth with a window function, and flags the segments at or above a two-lane capacity threshold, in DuckDB SQL. | 07/09/2026 |
 | [06 Liquor-License Density](ns-open-data-sql/06-liquor-license-density) | Counts permanent liquor licenses per community, ranks communities by total, and breaks down each community's license-type mix with a dominant-type flag, in DuckDB SQL. | 07/10/2026 |
 | [07 Municipal Surplus League Table](ns-open-data-sql/07-municipal-surplus-league-table) | Computes each municipality's operating surplus (revenue minus expenditure) by fiscal year, ranks the largest surpluses and deficits, and tracks year-over-year change with a window function, in DuckDB SQL. | 07/11/2026 |
+| [08 Procurement Spend Pareto](ns-open-data-sql/08-procurement-spend-pareto) | Sums awarded public-tender dollars by vendor after merging name variants, ranks vendors, and traces a running-total 80/20 curve with window functions to show how few vendors reach 80 percent of spend, in DuckDB SQL. | 07/12/2026 |
 
 ## Miscellaneous Projects
 
