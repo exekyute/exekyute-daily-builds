@@ -29,16 +29,16 @@ Smaller builds, made to learn something or for fun.
 |---|---|---|
 | [Beginner Blog API](miscellaneous-projects/beginner-blog-api) | A first real backend: HTTP, auth, and a relational database. | 05/28/2026 |
 | [Contact List Cleaner](miscellaneous-projects/contact-list-cleaner) | Command-line tool that tidies a messy contact list. | 06/02/2026 |
-| [Crossword Generator](miscellaneous-projects/crossword-generator) | Single-file browser crossword generator, no build step. | 05/31/2026 |
-| [FF7 Materia Graph](miscellaneous-projects/ff7-materia-graph) | A knowledge graph of Final Fantasy VII materia, with a Python/SQLite command-line tool and a browser explorer. | 06/27/2026 |
+| [Crossword Generator](miscellaneous-projects/crossword-generator) | Browser crossword generator that ships as one HTML file. | 05/31/2026 |
+| [FF7 Materia Graph](miscellaneous-projects/ff7-materia-graph) | Knowledge graph of Final Fantasy VII materia, with a Python/SQLite command-line tool and a browser explorer. | 06/27/2026 |
 | [Canadian FinLit Tools](miscellaneous-projects/finlit-tools-ca) | Seven browser calculators for Canadian benefit and tax rules. | 05/25/2026 |
-| [Insertion Order PDF Builder](miscellaneous-projects/io-pdf-builder) | Single-file browser form that builds a one-page insertion order PDF, with live preview and DocuSign anchor tags. | 05/29/2026 |
+| [Insertion Order PDF Builder](miscellaneous-projects/io-pdf-builder) | Browser form that builds a one-page insertion order PDF, with live preview and DocuSign anchor tags. | 05/29/2026 |
 | [Insertion Order Renamer](miscellaneous-projects/insertion-order-renamer) | Command-line tool that normalizes messy IO file names. | 06/01/2026 |
-| [InvoiceParsimus](miscellaneous-projects/invoice-parsimus) | Browser-based invoice parser and financial dashboard powered by Gemini. | 05/29/2026 |
-| [Kev Wing Wah](miscellaneous-projects/kev-wing-wah) | A complete restaurant website template for a fictional takeout spot, with a searchable 120-dish menu. | 07/03/2026 |
+| [InvoiceParsimus](miscellaneous-projects/invoice-parsimus) | Browser invoice parser and financial dashboard powered by Gemini. | 05/29/2026 |
+| [Kev Wing Wah](miscellaneous-projects/kev-wing-wah) | Restaurant website template for a fictional takeout spot, with a searchable 120-dish menu. | 07/03/2026 |
 | [Knicks vs Spurs Matchup Projector](miscellaneous-projects/knicks-spurs-matchup-projector) | Single web page that projects the next Knicks vs Spurs game. | 06/03/2026 |
-| [Save Point](miscellaneous-projects/save-point) | An Astro guide and blog template for game guide sites, with persistent checklists, sortable tables, image galleries, and three themes. | 07/12/2026 |
-| [Steam Global Achievements Downloader](miscellaneous-projects/steam-achievements-scraper) | Firefox userscript that downloads every achievement's name, icon, and description from a Steam game page. | 05/28/2026 |
+| [Save Point](miscellaneous-projects/save-point) | Astro guide and blog template for game guide sites: persistent checklists, sortable tables, galleries, and three themes. | 07/12/2026 |
+| [Steam Global Achievements Downloader](miscellaneous-projects/steam-achievements-scraper) | Firefox userscript that downloads a Steam game's achievement names, icons, and descriptions. | 05/28/2026 |
 | [Table for One](miscellaneous-projects/table-for-one) | A concept food blog written from the eating side of the table. | 05/30/2026 |
 
 <details>
