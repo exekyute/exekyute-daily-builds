@@ -20,6 +20,7 @@ Small DuckDB SQL analyses built on real datasets from the Nova Scotia Open Data 
 | [06 Liquor-License Density](ns-open-data-sql/06-liquor-license-density) | Counts permanent liquor licenses per community, ranks communities by total, and flags each one's dominant license type. | 07/10/2026 |
 | [07 Municipal Surplus League Table](ns-open-data-sql/07-municipal-surplus-league-table) | Computes each municipality's operating surplus by fiscal year and ranks the largest surpluses and deficits. | 07/11/2026 |
 | [08 Procurement Spend Pareto](ns-open-data-sql/08-procurement-spend-pareto) | Sums awarded tender dollars by vendor (merging name variants) and traces an 80/20 curve of how few vendors reach 80 percent of spend. | 07/12/2026 |
+| [09 Impaired-Driving Toxicology Trend](ns-open-data-sql/09-impaired-driving-toxicology-trend) | Groups driver deaths by toxicology result each year, tracks the share testing positive, and totals deaths by month, 2015 to 2024. | 07/13/2026 |
 
 ## Miscellaneous Projects
 
