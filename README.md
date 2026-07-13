@@ -28,6 +28,7 @@ Smaller builds, made to learn something or for fun.
 | Project | What it does | Last Updated |
 |---|---|---|
 | [Beginner Blog API](miscellaneous-projects/beginner-blog-api) | A first real backend: HTTP, auth, and a relational database. | 05/28/2026 |
+| [Bibliotheca Dantalian](miscellaneous-projects/bibliotheca-dantalian) | Zero-dependency static wiki engine with scoped spoiler blocks, wikilinks, and search, demoed on a wiki for a fictional anime. | 07/12/2026 |
 | [Contact List Cleaner](miscellaneous-projects/contact-list-cleaner) | Command-line tool that tidies a messy contact list. | 06/02/2026 |
 | [Crossword Generator](miscellaneous-projects/crossword-generator) | Browser crossword generator that ships as one HTML file. | 05/31/2026 |
 | [FF7 Materia Graph](miscellaneous-projects/ff7-materia-graph) | Knowledge graph of Final Fantasy VII materia, with a Python/SQLite command-line tool and a browser explorer. | 06/27/2026 |

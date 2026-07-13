@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About This Wiki | Veilharbor Archive</title>
+<meta name="description" content="What the Veilharbor Archive is, what it refuses to do, and how it is built.">
+<meta property="og:title" content="About This Wiki | Veilharbor Archive">
+<meta property="og:description" content="What the Veilharbor Archive is, what it refuses to do, and how it is built.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='16' r='8' fill='%23a33327'/%3E%3Ccircle cx='21' cy='16' r='8' fill='none' stroke='%23a33327' stroke-width='2.5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<style>html[data-spoil-anime="on"] .spoiler[data-scope="anime"] .spoiler-body{display:block}html[data-spoil-manga="on"] .spoiler[data-scope="manga"] .spoiler-body{display:block}</style>
+<script>
+(function () {
+  var t = null;
+  try { t = localStorage.getItem("dantalian-theme"); } catch (e) {}
+  if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  document.documentElement.dataset.theme = t;
+  try {
+    var s = JSON.parse(localStorage.getItem("dantalian-spoilers") || "{}");
+    for (var k in s) if (s[k]) document.documentElement.setAttribute("data-spoil-" + k, "on");
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <a class="brand" href="index.html"><span class="brand-mark"></span>Veilharbor Archive</a>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search the wiki  ( / )" autocomplete="off"
+           aria-label="Search the wiki">
+    <div id="search-results" hidden></div>
+  </div>
+  <details class="spoiler-menu">
+    <summary>Spoilers</summary>
+    <div class="spoiler-panel">
+      <label><input type="checkbox" class="spoil-pref" data-scope="anime"> Show anime spoilers</label><label><input type="checkbox" class="spoil-pref" data-scope="manga"> Show manga spoilers</label>
+      <p>Hidden by default. Your choice is remembered on this device.</p>
+    </div>
+  </details>
+  <button id="theme-toggle" type="button" aria-label="Toggle dark mode">◐</button>
+</header>
+<div class="layout">
+  <nav class="sidebar" aria-label="Wiki navigation"><details class="nav-fold" open><summary>Browse</summary><section class="nav-group"><h2>Series</h2><ul><li><a href="manga.html">Manga</a></li><li><a href="anime.html">Anime</a></li></ul></section><section class="nav-group"><h2>Characters</h2><ul><li><a href="characters.html">Characters</a></li><li><a href="genzo-ukai.html">Genzo Ukai</a></li><li><a href="homura.html">Homura</a></li><li><a href="iori-tatsumi.html">Iori Tatsumi</a></li><li><a href="saya-kanemori.html">Saya Kanemori</a></li><li><a href="shirasu.html">Shirasu</a></li><li><a href="the-palefinger.html">The Palefinger</a></li><li><a href="toji-orihara.html">Toji Orihara</a></li></ul></section><section class="nav-group"><h2>World</h2><ul><li><a href="lantern-spirits.html">Lantern Spirits</a></li><li><a href="veilharbor.html">Veilharbor</a></li><li><a href="wickkeepers-guild.html">Wickkeepers&#x27; Guild</a></li></ul></section><section class="nav-group"><h2>Episodes</h2><ul><li><a href="episode-1.html">Episode 1</a></li><li><a href="episode-13.html">Episode 13</a></li></ul></section><section class="nav-group"><h2>Meta</h2><ul><li class="current"><a href="about.html">About This Wiki</a></li><li><a href="editorial-policy.html">Editorial Policy</a></li><li><a href="contribute.html">How to Contribute</a></li><li><a href="rin-kasahara.html">Rin Kasahara</a></li></ul></section></details></nav>
+  <main id="main">
+    <article>
+      <div class="page-meta"><span class="type-badge">Meta</span><div class="chips"><a class="chip" href="category-wiki-governance.html">Wiki Governance</a></div></div>
+      <h1>About This Wiki</h1>
+      <p class="page-summary">What the Veilharbor Archive is, what it refuses to do, and how it is built.</p>
+      
+      <nav class="toc"><h2>Contents</h2><ol><li><a href="#what-this-wiki-refuses-to-do">What this wiki refuses to do</a></li><li><a href="#how-it-is-built">How it is built</a></li><li><a href="#licensing">Licensing</a></li></ol></nav>
+      <div class="page-body"><p>The <strong>Veilharbor Archive</strong> is an unofficial fan encyclopedia for <em>Lanternfall</em> by <a class="wl" href="rin-kasahara.html">Rin Kasahara</a>. It is also the example wiki that ships with the Bibliotheca Dantalian engine: <em>Lanternfall</em>, its author, its publisher, and everything else described here are fictional, invented so the engine can be demonstrated on a complete wiki without touching anyone's copyrighted work.</p><p>Within the fiction, the archive plays it straight, and its rules are the rules a real fan wiki needs.</p><h2 id="what-this-wiki-refuses-to-do">What this wiki refuses to do</h2><ul><li><strong>No ads, no trackers, no popups.</strong> The site is static files; nothing loads from anywhere else.</li><li><strong>No spoilers by ambush.</strong> Plot beyond a page's premise lives in scoped blocks, hidden until you opt in, with your choice remembered on this device. Infoboxes and page summaries are always spoiler-free.</li><li><strong>No speculation as fact.</strong> Claims cite sources; theories are labeled as theories or left out.</li><li><strong>No copyrighted images.</strong> Text only, by policy.</li></ul><h2 id="how-it-is-built">How it is built</h2><p>The site runs on <strong>Bibliotheca Dantalian</strong>, a zero-dependency static wiki engine: the entire wiki is plain Markdown files compiled to static HTML by one Python script. There is no database, no server-side code, and no wiki-farm landlord: every page's full history lives in git. Editing happens through pull requests, reviewed against the <a class="wl" href="editorial-policy.html">Editorial Policy</a>; see <a class="wl" href="contribute.html">How to Contribute</a>.</p><h2 id="licensing">Licensing</h2><p>Wiki text is CC BY-SA 4.0. The engine's code is MIT licensed.</p></div>
+      <section class="backlinks"><h2>What links here</h2><ul><li><a class="wl" href="index.html">Main Page</a></li></ul></section>
+      
+      <div class="page-foot">
+        <a href="https://github.com/exekyute/exekyute-daily-builds/edit/main/miscellaneous-projects/bibliotheca-dantalian/example/content/about.md" rel="noopener">Edit this page on GitHub</a>
+        <span>Last built 2026-07-12</span>
+      </div>
+    </article>
+  </main>
+</div>
+<footer class="site-foot">
+<p>The Veilharbor Archive is the example wiki that ships with the Bibliotheca Dantalian engine. Lanternfall, its author, and everything described here are fictional, invented for this demonstration.</p><p>Wiki text is available under CC BY-SA 4.0. Site code is MIT licensed. <a href="https://github.com/exekyute/exekyute-daily-builds/tree/main/miscellaneous-projects/bibliotheca-dantalian" rel="noopener">Source on GitHub</a></p>
+</footer>
+<script src="search-index.js" defer></script>
+<script src="wiki.js" defer></script>
+</body>
+</html>

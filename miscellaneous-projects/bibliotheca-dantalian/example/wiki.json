@@ -1,0 +1,29 @@
+{
+  "name": "Veilharbor Archive",
+  "tagline": "An unofficial Lanternfall wiki",
+  "repo_url": "https://github.com/exekyute/exekyute-daily-builds/tree/main/miscellaneous-projects/bibliotheca-dantalian",
+  "edit_base": "https://github.com/exekyute/exekyute-daily-builds/edit/main/miscellaneous-projects/bibliotheca-dantalian/example/content/",
+  "spoiler_scopes": [
+    { "id": "anime", "label": "Anime spoilers", "menu_label": "Show anime spoilers" },
+    { "id": "manga", "label": "Manga spoilers", "menu_label": "Show manga spoilers" }
+  ],
+  "nav": [
+    { "group": "Series", "types": ["series"] },
+    { "group": "Characters", "types": ["character"] },
+    { "group": "World", "types": ["world"] },
+    { "group": "Episodes", "types": ["episode"] },
+    { "group": "Meta", "types": ["meta"] }
+  ],
+  "type_labels": {
+    "home": "Home",
+    "series": "Series",
+    "character": "Character",
+    "world": "World",
+    "episode": "Episode",
+    "meta": "Meta"
+  },
+  "footer": [
+    "The Veilharbor Archive is the example wiki that ships with the Bibliotheca Dantalian engine. Lanternfall, its author, and everything described here are fictional, invented for this demonstration.",
+    "Wiki text is available under CC BY-SA 4.0. Site code is MIT licensed. [Source on GitHub](https://github.com/exekyute/exekyute-daily-builds/tree/main/miscellaneous-projects/bibliotheca-dantalian)"
+  ]
+}
