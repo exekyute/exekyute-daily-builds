@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "4e09339a9e4ac8f6f47a",
+  "position": {
+    "x": 9.72644376899696,
+    "y": 289.84802431610944,
+    "z": 1000,
+    "height": 280.1215805471125,
+    "width": 170.21276595744681,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_permits"
+                    }
+                  },
+                  "Property": "Permit Count"
+                }
+              },
+              "queryRef": "mart_permits.Permit Count",
+              "nativeQueryRef": "Permit Count"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_permits"
+                  }
+                },
+                "Property": "Permit Count"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

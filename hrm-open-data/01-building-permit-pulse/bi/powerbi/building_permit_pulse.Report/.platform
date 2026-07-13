@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "building_permit_pulse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1e7e2012-a6de-4949-9463-cbd7c25dacb8"
+  }
+}

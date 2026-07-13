@@ -1,0 +1,260 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "d5f8adc6260d387fcebb",
+  "position": {
+    "x": 179.93920972644378,
+    "y": 0,
+    "z": 4000,
+    "height": 280.1215805471125,
+    "width": 718.78419452887545,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "decompositionTreeVisual",
+    "query": {
+      "queryState": {
+        "Analyze": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_permits"
+                    }
+                  },
+                  "Property": "Total Value"
+                }
+              },
+              "queryRef": "mart_permits.Total Value",
+              "nativeQueryRef": "Total Value"
+            }
+          ]
+        },
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_permits"
+                    }
+                  },
+                  "Property": "work_type"
+                }
+              },
+              "queryRef": "mart_permits.work_type",
+              "nativeQueryRef": "work_type",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_permits"
+                    }
+                  },
+                  "Property": "community"
+                }
+              },
+              "queryRef": "mart_permits.community",
+              "nativeQueryRef": "community",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_permits"
+                    }
+                  },
+                  "Property": "issue_year"
+                }
+              },
+              "queryRef": "mart_permits.issue_year",
+              "nativeQueryRef": "issue_year",
+              "active": true
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_permits"
+                  }
+                },
+                "Property": "Total Value"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "ExplainBy"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "mart_permits.work_type"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_permits"
+                    }
+                  },
+                  "Property": "work_type"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "mart_permits.community"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_permits"
+                    }
+                  },
+                  "Property": "community"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "mart_permits.issue_year"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'New Building'"
+                  }
+                }
+              ],
+              "isToggled": true,
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'HALIFAX'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "tree": [
+        {
+          "properties": {
+            "effectiveBarsPerLevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "17d84802fcf2fa369898",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_permits"
+              }
+            },
+            "Property": "Total Value"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a5b7f52d4be0535bbc81",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_permits"
+              }
+            },
+            "Property": "work_type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4700acaff3f320cd7e37",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_permits"
+              }
+            },
+            "Property": "community"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e53d2673237e011d58d1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_permits"
+              }
+            },
+            "Property": "issue_year"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

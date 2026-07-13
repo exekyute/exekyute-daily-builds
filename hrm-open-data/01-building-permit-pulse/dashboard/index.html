@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halifax building permit pulse</title>
+<style>
+/* Two-tone palette: harbour navy + permit amber on a cool paper background. */
+:root {
+  --ink: #12283f;
+  --ink-soft: #3c4f66;
+  --ink-faint: #8593a6;
+  --amber: #e0801d;
+  --amber-deep: #b8630c;
+  --amber-wash: #fbf0dd;
+  --paper: #f4f6f9;
+  --card: #ffffff;
+  --line: #e2e7ee;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.55;
+  padding: 48px 24px 72px;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; }
+
+header { margin-bottom: 8px; }
+header h1 { font-size: 31px; letter-spacing: -0.3px; margin-bottom: 10px; }
+header p.sub { color: var(--ink-soft); max-width: 760px; }
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+  margin: 34px 0 44px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+}
+
+.stat-card .label {
+  color: var(--ink-faint);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.stat-card .value { font-size: 27px; font-weight: 700; letter-spacing: -0.5px; }
+.stat-card .detail { color: var(--ink-soft); font-size: 13px; margin-top: 6px; }
+
+section.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 32px 32px;
+  margin-bottom: 32px;
+}
+
+section.panel h2 { font-size: 19px; margin-bottom: 6px; }
+section.panel p.hint { color: var(--ink-faint); font-size: 13px; margin-bottom: 22px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 22px; margin-bottom: 16px; font-size: 13px; color: var(--ink-soft); }
+.legend .key { display: inline-flex; align-items: center; gap: 8px; }
+.legend .swatch { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+.legend .swatch.bar { background: var(--amber); }
+.legend .swatch.line { background: var(--ink); }
+
+#growth-chart svg, #district-chart svg { width: 100%; height: auto; display: block; }
+#growth-chart .year-bar { cursor: pointer; }
+#growth-chart .year-bar:hover { fill: var(--amber-deep); }
+#growth-chart .year-bar.selected { fill: var(--ink); }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+
+.rank-list { list-style: none; }
+.rank-list li {
+  display: grid;
+  grid-template-columns: 168px 1fr 132px;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 0;
+}
+.rank-list .name { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rank-list .bar-track { background: var(--amber-wash); border-radius: 6px; height: 18px; overflow: hidden; }
+.rank-list .bar-fill { background: var(--amber); height: 100%; border-radius: 6px; min-width: 2px; }
+.rank-list.by-units .bar-fill { background: var(--ink-soft); }
+.rank-list .num { text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; color: var(--ink-soft); }
+
+.year-controls { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+.year-controls label { font-size: 13px; color: var(--ink-soft); font-weight: 600; }
+.year-controls select {
+  font: inherit; font-size: 14px; padding: 8px 14px;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink);
+}
+
+.wt-grid { display: grid; gap: 14px; }
+.wt-row { display: grid; grid-template-columns: 120px 1fr 190px; align-items: center; gap: 14px; }
+.wt-row .wt-name { font-weight: 600; font-size: 13px; }
+.wt-row .wt-track { background: var(--amber-wash); border-radius: 6px; height: 22px; overflow: hidden; }
+.wt-row .wt-fill { background: var(--amber); height: 100%; border-radius: 6px; min-width: 2px; }
+.wt-row .wt-num { text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; color: var(--ink-soft); }
+
+footer { color: var(--ink-faint); font-size: 12px; text-align: center; margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Halifax building permit pulse</h1>
+    <p class="sub">Issued building permits across the Halifax Regional Municipality by year,
+    work type, community, and district. Every figure on this page is re-derived in the browser
+    from the exported dataset; nothing is hardcoded, and the totals match the SQL golden output
+    to the cent.</p>
+  </header>
+
+  <div class="stat-row" id="headline"></div>
+
+  <section class="panel">
+    <h2>Permits and declared value by year</h2>
+    <p class="hint">Bars are permits issued each year; the line is total declared project value.
+    Click a bar to load that year in the work-type panel below. The final year is a partial
+    year of data.</p>
+    <div class="legend">
+      <span class="key"><span class="swatch bar"></span>Permits issued</span>
+      <span class="key"><span class="swatch line"></span>Declared project value</span>
+    </div>
+    <div id="growth-chart"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Declared value by work type</h2>
+    <div class="year-controls">
+      <label for="year-select">Issue year</label>
+      <select id="year-select"></select>
+    </div>
+    <div class="wt-grid" id="worktype"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Net new residential units by district, cumulative over the years</h2>
+    <p class="hint">Each line is one council district's running total of net new residential
+    units. The five districts with the most cumulative units are drawn in colour; the rest are
+    faint. This is the running-total view the Tableau build renders as an area chart.</p>
+    <div id="district-legend" class="legend"></div>
+    <div id="district-chart"></div>
+  </section>
+
+  <div class="two-col">
+    <section class="panel">
+      <h2>Top communities by declared value</h2>
+      <p class="hint">All issued permits, every year combined.</p>
+      <ol class="rank-list" id="top-community-value"></ol>
+    </section>
+    <section class="panel">
+      <h2>Top districts by net new units</h2>
+      <p class="hint">Cumulative net new residential units through the latest data.</p>
+      <ol class="rank-list by-units" id="top-district-units"></ol>
+    </section>
+  </div>
+
+  <footer>Data: Halifax Data Mapping and Analytics Hub, PPL&amp;C Building Permits and PPL&amp;C
+  Building Permits Geolocated. Contains information licenced under the Open Government Licence, Halifax.</footer>
+
+</div>
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  function round2(x) { return Math.round(x * 100) / 100; }
+  function fmtInt(n) { return Math.round(n).toLocaleString("en-CA"); }
+  function fmtMoney(n) {
+    return "$" + round2(n).toLocaleString("en-CA", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function fmtCompact(n) {
+    var a = Math.abs(n);
+    if (a >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
+    if (a >= 1e6) return "$" + (n / 1e6).toFixed(1) + "M";
+    if (a >= 1e3) return "$" + (n / 1e3).toFixed(0) + "K";
+    return "$" + n.toFixed(0);
+  }
+
+  var latestFullYear = parseInt(PULL_DATE.slice(0, 4), 10) - 1;
+
+  /* ---- Aggregate BY_YEAR_TYPE into per-year totals ---- */
+  var byYear = {};   // year -> {permits, value, units}
+  var years = [];
+  BY_YEAR_TYPE.forEach(function (r) {
+    if (!byYear[r.year]) { byYear[r.year] = { permits: 0, value: 0, units: 0 }; years.push(r.year); }
+    byYear[r.year].permits += r.permits;
+    byYear[r.year].value += r.value;
+    byYear[r.year].units += r.net_new_units;
+  });
+  years.sort(function (a, b) { return a - b; });
+
+  var totalPermits = 0, totalValue = 0, totalUnits = 0;
+  years.forEach(function (y) {
+    totalPermits += byYear[y].permits;
+    totalValue += byYear[y].value;
+    totalUnits += byYear[y].units;
+  });
+  totalValue = round2(totalValue);
+
+  var latest = byYear[latestFullYear] || { permits: 0, value: 0, units: 0 };
+  var latestValue = round2(latest.value);
+
+  /* ---- Headline cards (re-derived; latest value must equal the SQL golden) ---- */
+  document.getElementById("headline").innerHTML =
+    card("Declared value, " + latestFullYear, fmtCompact(latestValue), fmtMoney(latestValue)) +
+    card("Permits issued, " + latestFullYear, fmtInt(latest.permits), "latest full issue year") +
+    card("Net new units, " + latestFullYear, fmtInt(latest.units), "residential units, net") +
+    card("All years " + years[0] + " to " + years[years.length - 1],
+         fmtInt(totalPermits) + " permits",
+         fmtMoney(totalValue) + " declared, " + fmtInt(totalUnits) + " net new units");
+
+  function card(label, value, detail) {
+    return '<div class="stat-card"><div class="label">' + label +
+      '</div><div class="value">' + value +
+      '</div><div class="detail">' + detail + "</div></div>";
+  }
+
+  /* ---- Growth chart: permit bars + value line ---- */
+  function buildGrowth() {
+    var W = 1020, H = 380, padL = 60, padR = 78, padT = 20, padB = 44;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxP = 0, maxV = 0;
+    years.forEach(function (y) {
+      if (byYear[y].permits > maxP) maxP = byYear[y].permits;
+      if (byYear[y].value > maxV) maxV = byYear[y].value;
+    });
+    maxP = niceCeil(maxP); maxV = niceCeil(maxV);
+
+    var n = years.length, slot = plotW / n, barW = Math.min(slot * 0.6, 68);
+    var s = '<svg viewBox="0 0 ' + W + " " + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Permits and value by year">';
+
+    for (var g = 0; g <= 4; g++) {
+      var gy = padT + plotH - (plotH * g / 4);
+      s += '<line x1="' + padL + '" y1="' + gy + '" x2="' + (W - padR) + '" y2="' + gy + '" stroke="#e2e7ee" stroke-width="1"/>';
+      s += '<text x="' + (padL - 10) + '" y="' + (gy + 4) + '" text-anchor="end" font-size="12" fill="#8593a6">' + fmtInt(maxP * g / 4) + "</text>";
+      s += '<text x="' + (W - padR + 10) + '" y="' + (gy + 4) + '" text-anchor="start" font-size="12" fill="#8593a6">' + fmtCompact(maxV * g / 4) + "</text>";
+    }
+
+    years.forEach(function (y, i) {
+      var cx = padL + slot * i + slot / 2;
+      var bh = plotH * byYear[y].permits / maxP;
+      s += '<rect class="year-bar" data-year="' + y + '" x="' + (cx - barW / 2) + '" y="' + (padT + plotH - bh) +
+           '" width="' + barW + '" height="' + bh + '" rx="4" fill="#e0801d"><title>' + y + ": " + fmtInt(byYear[y].permits) + " permits</title></rect>";
+      s += '<text x="' + cx + '" y="' + (H - padB + 24) + '" text-anchor="middle" font-size="12" fill="#3c4f66">' + y + "</text>";
+    });
+
+    var pts = years.map(function (y, i) {
+      return [padL + slot * i + slot / 2, padT + plotH - (plotH * byYear[y].value / maxV)];
+    });
+    var path = pts.map(function (p, i) { return (i === 0 ? "M" : "L") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" ");
+    s += '<path d="' + path + '" fill="none" stroke="#12283f" stroke-width="2.5"/>';
+    pts.forEach(function (p, i) {
+      s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="4" fill="#12283f"><title>' +
+           years[i] + ": " + fmtMoney(byYear[years[i]].value) + "</title></circle>";
+    });
+    s += "</svg>";
+    document.getElementById("growth-chart").innerHTML = s;
+
+    var bars = document.querySelectorAll("#growth-chart .year-bar");
+    for (var b = 0; b < bars.length; b++) {
+      bars[b].addEventListener("click", function () { selectYear(parseInt(this.getAttribute("data-year"), 10)); });
+    }
+  }
+
+  function niceCeil(v) {
+    if (v <= 10) return 10;
+    var mag = Math.pow(10, Math.floor(Math.log10(v)));
+    var step = mag / 2;
+    return Math.ceil(v / step) * step;
+  }
+
+  /* ---- Work-type panel for a selected year ---- */
+  var sel = document.getElementById("year-select");
+  sel.innerHTML = years.map(function (y) { return '<option value="' + y + '">' + y + "</option>"; }).join("");
+  sel.addEventListener("change", function () { selectYear(parseInt(sel.value, 10)); });
+
+  function selectYear(year) {
+    sel.value = String(year);
+    var bars = document.querySelectorAll("#growth-chart .year-bar");
+    for (var b = 0; b < bars.length; b++) {
+      bars[b].classList.toggle("selected", parseInt(bars[b].getAttribute("data-year"), 10) === year);
+    }
+    var rows = BY_YEAR_TYPE.filter(function (r) { return r.year === year; })
+      .sort(function (a, b) { return b.value - a.value; });
+    var max = rows.reduce(function (m, r) { return Math.max(m, r.value); }, 0);
+    document.getElementById("worktype").innerHTML = rows.map(function (r) {
+      var pct = max > 0 ? 100 * r.value / max : 0;
+      return '<div class="wt-row"><span class="wt-name">' + r.work_type + "</span>" +
+        '<span class="wt-track"><span class="wt-fill" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="wt-num">' + fmtMoney(r.value) + " &middot; " + fmtInt(r.permits) + " permits</span></div>";
+    }).join("");
+  }
+
+  /* ---- District cumulative running-total chart ---- */
+  var districts = {};   // name -> {years:{year:cum}, final}
+  DISTRICT_RUN.forEach(function (r) {
+    if (!districts[r.district]) districts[r.district] = { name: r.district, pts: {}, final: 0 };
+    districts[r.district].pts[r.year] = r.cumulative;
+    districts[r.district].final = r.cumulative; // rows are ordered by year, last wins
+  });
+  var districtList = Object.keys(districts).map(function (k) { return districts[k]; })
+    .sort(function (a, b) { return b.final - a.final || a.name.localeCompare(b.name); });
+  var topFive = districtList.slice(0, 5).map(function (d) { return d.name; });
+  var palette = ["#e0801d", "#12283f", "#b8630c", "#3c4f66", "#c9971f"];
+
+  function buildDistricts() {
+    var W = 1020, H = 400, padL = 62, padR = 20, padT = 16, padB = 40;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxCum = 0;
+    districtList.forEach(function (d) {
+      years.forEach(function (y) { if ((d.pts[y] || 0) > maxCum) maxCum = d.pts[y] || 0; });
+    });
+    maxCum = niceCeil(maxCum);
+    var n = years.length;
+    function px(i) { return padL + (n === 1 ? plotW / 2 : plotW * i / (n - 1)); }
+    function py(v) { return padT + plotH - (plotH * v / maxCum); }
+
+    var s = '<svg viewBox="0 0 ' + W + " " + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cumulative net new units by district">';
+    for (var g = 0; g <= 4; g++) {
+      var gy = padT + plotH - (plotH * g / 4);
+      s += '<line x1="' + padL + '" y1="' + gy + '" x2="' + (W - padR) + '" y2="' + gy + '" stroke="#e2e7ee" stroke-width="1"/>';
+      s += '<text x="' + (padL - 10) + '" y="' + (gy + 4) + '" text-anchor="end" font-size="12" fill="#8593a6">' + fmtInt(maxCum * g / 4) + "</text>";
+    }
+    years.forEach(function (y, i) {
+      s += '<text x="' + px(i) + '" y="' + (H - padB + 24) + '" text-anchor="middle" font-size="12" fill="#3c4f66">' + y + "</text>";
+    });
+
+    // faint background lines first
+    districtList.forEach(function (d) {
+      if (topFive.indexOf(d.name) !== -1) return;
+      s += line(d, "#d4dae2", 1.2, 0.9);
+    });
+    // highlighted top five on top
+    districtList.forEach(function (d) {
+      var idx = topFive.indexOf(d.name);
+      if (idx === -1) return;
+      s += line(d, palette[idx], 2.6, 1);
+    });
+    s += "</svg>";
+
+    function line(d, colour, width, opacity) {
+      var run = 0;
+      var path = years.map(function (y, i) {
+        var v = d.pts[y];
+        if (v === undefined) v = run; // district with no permit that year holds its cumulative
+        run = v;
+        return (i === 0 ? "M" : "L") + px(i).toFixed(1) + " " + py(v).toFixed(1);
+      }).join(" ");
+      return '<path d="' + path + '" fill="none" stroke="' + colour + '" stroke-width="' + width +
+        '" opacity="' + opacity + '"><title>' + d.name + ": " + fmtInt(d.final) + " cumulative</title></path>";
+    }
+
+    document.getElementById("district-chart").innerHTML = s;
+    document.getElementById("district-legend").innerHTML = topFive.map(function (name, i) {
+      return '<span class="key"><span class="swatch" style="background:' + palette[i] + '"></span>' + name + "</span>";
+    }).join("");
+  }
+
+  /* ---- Ranked lists ---- */
+  function renderRank(el, rows, label, value, fmt, cls) {
+    var max = rows.length ? value(rows[0]) : 0;
+    el.className = "rank-list" + (cls ? " " + cls : "");
+    el.innerHTML = rows.map(function (r, i) {
+      var pct = max > 0 ? 100 * value(r) / max : 0;
+      return "<li><span class=\"name\">" + (i + 1) + ". " + label(r) + "</span>" +
+        '<span class="bar-track"><span class="bar-fill" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="num">' + fmt(value(r)) + "</span></li>";
+    }).join("");
+  }
+
+  var topCommunity = BY_COMMUNITY.slice().sort(function (a, b) {
+    return b.value - a.value || a.community.localeCompare(b.community);
+  }).slice(0, 10);
+  renderRank(document.getElementById("top-community-value"), topCommunity,
+    function (r) { return r.community; }, function (r) { return r.value; }, fmtCompact, null);
+
+  renderRank(document.getElementById("top-district-units"), districtList.slice(0, 10),
+    function (r) { return r.name; }, function (r) { return r.final; }, fmtInt, "by-units");
+
+  /* ---- boot ---- */
+  buildGrowth();
+  buildDistricts();
+  selectYear(latestFullYear);
+
+  /* Exposed for verification: re-run the same derivations from the console. */
+  window.PERMIT_DERIVED = {
+    latestFullYear: latestFullYear,
+    latestValue: latestValue,
+    latestPermits: latest.permits,
+    latestUnits: latest.units,
+    totalValue: totalValue,
+    totalPermits: totalPermits,
+    totalUnits: totalUnits
+  };
+})();
+</script>
+</body>
+</html>

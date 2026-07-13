@@ -1,0 +1,162 @@
+table mart_permits
+	lineageTag: 98b60ca2-abe9-47a2-b644-33286b4667de
+
+	measure 'Total Value' = SUM ( mart_permits[project_value] )
+		lineageTag: b0901ccf-b3fe-4275-8ce2-18f5dbf7bca6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Permit Count' = COUNTROWS ( mart_permits )
+		formatString: 0
+		lineageTag: 5eeb94ee-672c-418b-b2d9-a0baea8ca597
+
+	measure 'Net New Units' = SUM ( mart_permits[net_new_units] )
+		formatString: 0
+		lineageTag: 5a3737b5-4660-4c28-91fc-b31279434bf1
+
+	measure 'Latest Year' = CALCULATE ( MAX ( mart_permits[issue_year] ), ALL ( mart_permits ) )
+		formatString: 0
+		lineageTag: 0cf64187-ae47-44c4-925e-5b36a1ccd1c8
+
+	measure 'Value Prev Year' = VAR y = MAX ( mart_permits[issue_year] ) RETURN CALCULATE ( [Total Value], REMOVEFILTERS ( mart_permits[issue_year] ), mart_permits[issue_year] = y - 1 )
+		lineageTag: f23b9a42-7fb9-46f2-a071-39d8482c6952
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Value YoY' = VAR p = [Value Prev Year] RETURN IF ( ISBLANK ( p ), BLANK ( ), [Total Value] - p )
+		lineageTag: 42826943-03a0-403d-bbaf-391adc4e708b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Community Rank' = RANKX ( ALLSELECTED ( mart_permits[community] ), [Total Value], , DESC, Skip )
+		formatString: 0
+		lineageTag: 151f5e1d-b7ef-46b6-9f71-a29c7e3c68e6
+
+	column permit_number
+		dataType: string
+		lineageTag: 2480e793-e816-41ff-86b9-78d4d40c5ae1
+		summarizeBy: none
+		sourceColumn: permit_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bf00580-178f-46a2-8dad-786cbe1885fa
+		summarizeBy: none
+		sourceColumn: issue_year
+
+		annotation SummarizationSetBy = User
+
+	column issue_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 90b6f040-4558-4c95-98d6-800767154189
+		summarizeBy: sum
+		sourceColumn: issue_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column community
+		dataType: string
+		lineageTag: 5274b72e-2eb5-4282-a4ba-c68f6c915339
+		summarizeBy: none
+		sourceColumn: community
+
+		annotation SummarizationSetBy = Automatic
+
+	column district
+		dataType: string
+		lineageTag: 59760d26-56ae-442b-9ee5-e8eb87526db8
+		summarizeBy: none
+		sourceColumn: district
+
+		annotation SummarizationSetBy = Automatic
+
+	column work_type
+		dataType: string
+		lineageTag: 7945902e-1daf-4868-87e4-8b29e67331b9
+		summarizeBy: none
+		sourceColumn: work_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_work_scope
+		dataType: string
+		lineageTag: b5a37261-2c71-4126-8646-6390f95e464d
+		summarizeBy: none
+		sourceColumn: primary_work_scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_value
+		dataType: double
+		lineageTag: 2ef74e80-c388-4b83-86e1-3d105062d67e
+		summarizeBy: sum
+		sourceColumn: project_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_new_units
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b48fe2f-c3bf-41c8-801c-d87e237095f4
+		summarizeBy: sum
+		sourceColumn: net_new_units
+
+		annotation SummarizationSetBy = Automatic
+
+	column storeys
+		dataType: int64
+		formatString: 0
+		lineageTag: 53e9ac08-e6c8-4040-9202-84e0a368cfd9
+		summarizeBy: sum
+		sourceColumn: storeys
+
+		annotation SummarizationSetBy = Automatic
+
+	column permit_status
+		dataType: string
+		lineageTag: e1571e39-53a8-432e-b537-f57cfb17759a
+		summarizeBy: none
+		sourceColumn: permit_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		lineageTag: 1a2abaa9-51f6-4eb3-b0b8-e9e60cb631bf
+		summarizeBy: sum
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lon
+		dataType: double
+		lineageTag: 1bef0007-7e94-4bb6-ae13-48785accd160
+		summarizeBy: sum
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_permits = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\01-building-permit-pulse\bi\exports\mart_permits.csv"), [Delimiter = ",", Columns = 13, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"permit_number", type text}, {"issue_year", Int64.Type}, {"issue_month", Int64.Type}, {"community", type text}, {"district", type text}, {"work_type", type text}, {"primary_work_scope", type text}, {"project_value", type number}, {"net_new_units", Int64.Type}, {"storeys", Int64.Type}, {"permit_status", type text}, {"lat", type number}, {"lon", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

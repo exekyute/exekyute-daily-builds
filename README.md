@@ -1,10 +1,19 @@
 # exekyute-daily-builds
 
-A running collection of the small projects I build. Three kinds live here: job-modeled toolkits, where I turn a real job description into working software; Nova Scotia open-data analyses, where the logic lives in plain SQL; and miscellaneous projects, the smaller things I make to learn something or just to tinker.
+A running collection of the small projects I build. Four kinds live here: job-modeled toolkits, where I turn a real job description into working software; Nova Scotia open-data analyses, where the logic lives in plain SQL; Halifax open-data builds, which put **Tableau** and **Power BI** dashboards on top of that same SQL; and miscellaneous projects, the smaller things I make to learn something or just to tinker.
 
 Each project is self-contained in its own folder with its own README, so you can open any one on its own.
 
 > **Note:** On June 25, 2026, I used Claude Code to consolidate my separate daily-build repositories into a single source. Folding them together cuts down on repo clutter and makes the whole collection easier to browse, track, and manage from one place. The "Last Updated" column shows when each project was last worked on. For projects folded in during the merge, that is their date beforehand; anything I add or update later carries its own date.
+
+## Halifax Open Data
+
+DuckDB SQL analyses built on real datasets from the Halifax Regional Municipality's open data hub. The ground rules match the Nova Scotia series below: a checked-in snapshot of the source data, a golden copy of the expected output, and SQL that reproduces it exactly. On top of that, each build ships a published **Tableau** dashboard and a committed **Power BI** report. Both read the same frozen CSV the SQL exports, so the two tools show identical figures to the cent.
+
+<table>
+<tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="hrm-open-data/01-building-permit-pulse">01 Building Permit Pulse</a></td><td>Tracks permit activity and declared construction value across 18,316 Halifax building permits and follows where net new housing units land: a permit point map in <strong>Tableau</strong>, a value decomposition tree in <strong>Power BI</strong>.</td><td>07/13/2026</td></tr>
+</table>
 
 ## Nova Scotia Open Data
 
@@ -26,22 +35,23 @@ Small DuckDB SQL analyses built on real datasets from the Nova Scotia Open Data 
 
 Smaller builds, made to learn something or for fun.
 
-| Project | What it does | Last Updated |
-|---|---|---|
-| [Beginner Blog API](miscellaneous-projects/beginner-blog-api) | A first real backend: HTTP, auth, and a relational database. | 05/28/2026 |
-| [Bibliotheca Dantalian](miscellaneous-projects/bibliotheca-dantalian) | Zero-dependency static wiki engine with scoped spoiler blocks, wikilinks, and search, demoed on a wiki for a fictional anime. | 07/12/2026 |
-| [Contact List Cleaner](miscellaneous-projects/contact-list-cleaner) | Command-line tool that tidies a messy contact list. | 06/02/2026 |
-| [Crossword Generator](miscellaneous-projects/crossword-generator) | Browser crossword generator that ships as one HTML file. | 05/31/2026 |
-| [FF7 Materia Graph](miscellaneous-projects/ff7-materia-graph) | Knowledge graph of Final Fantasy VII materia, with a Python/SQLite command-line tool and a browser explorer. | 06/27/2026 |
-| [Canadian FinLit Tools](miscellaneous-projects/finlit-tools-ca) | Seven browser calculators for Canadian benefit and tax rules. | 05/25/2026 |
-| [Insertion Order PDF Builder](miscellaneous-projects/io-pdf-builder) | Browser form that builds a one-page insertion order PDF, with live preview and DocuSign anchor tags. | 05/29/2026 |
-| [Insertion Order Renamer](miscellaneous-projects/insertion-order-renamer) | Command-line tool that normalizes messy IO file names. | 06/01/2026 |
-| [InvoiceParsimus](miscellaneous-projects/invoice-parsimus) | Browser invoice parser and financial dashboard powered by Gemini. | 05/29/2026 |
-| [Kev Wing Wah](miscellaneous-projects/kev-wing-wah) | Restaurant website template for a fictional takeout spot, with a searchable 120-dish menu. | 07/03/2026 |
-| [Knicks vs Spurs Matchup Projector](miscellaneous-projects/knicks-spurs-matchup-projector) | Single web page that projects the next Knicks vs Spurs game. | 06/03/2026 |
-| [Save Point](miscellaneous-projects/save-point) | Astro guide and blog template for game guide sites: persistent checklists, sortable tables, galleries, and three themes. | 07/12/2026 |
-| [Steam Global Achievements Downloader](miscellaneous-projects/steam-achievements-scraper) | Firefox userscript that downloads a Steam game's achievement names, icons, and descriptions. | 05/28/2026 |
-| [Table for One](miscellaneous-projects/table-for-one) | A concept food blog written from the eating side of the table. | 05/30/2026 |
+<table>
+<tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/bibliotheca-dantalian">Bibliotheca Dantalian</a></td><td>Zero-dependency static wiki engine with scoped spoiler blocks, wikilinks, and search, demoed on a wiki for a fictional anime.</td><td rowspan="2">07/12/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/save-point">Save Point</a></td><td>Astro guide and blog template for game guide sites: persistent checklists, sortable tables, galleries, and three themes.</td></tr>
+<tr><td><a href="miscellaneous-projects/kev-wing-wah">Kev Wing Wah</a></td><td>Restaurant website template for a fictional takeout spot, with a searchable 120-dish menu.</td><td>07/03/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/ff7-materia-graph">FF7 Materia Graph</a></td><td>Knowledge graph of Final Fantasy VII materia, with a Python/SQLite command-line tool and a browser explorer.</td><td>06/27/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/knicks-spurs-matchup-projector">Knicks vs Spurs Matchup Projector</a></td><td>Single web page that projects the next Knicks vs Spurs game.</td><td>06/03/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/contact-list-cleaner">Contact List Cleaner</a></td><td>Command-line tool that tidies a messy contact list.</td><td>06/02/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/insertion-order-renamer">Insertion Order Renamer</a></td><td>Command-line tool that normalizes messy IO file names.</td><td>06/01/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/crossword-generator">Crossword Generator</a></td><td>Browser crossword generator that ships as one HTML file.</td><td>05/31/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/table-for-one">Table for One</a></td><td>A concept food blog written from the eating side of the table.</td><td>05/30/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/io-pdf-builder">Insertion Order PDF Builder</a></td><td>Browser form that builds a one-page insertion order PDF, with live preview and DocuSign anchor tags.</td><td rowspan="2">05/29/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/invoice-parsimus">InvoiceParsimus</a></td><td>Browser invoice parser and financial dashboard powered by Gemini.</td></tr>
+<tr><td><a href="miscellaneous-projects/beginner-blog-api">Beginner Blog API</a></td><td>A first real backend: HTTP, auth, and a relational database.</td><td rowspan="2">05/28/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/steam-achievements-scraper">Steam Global Achievements Downloader</a></td><td>Firefox userscript that downloads a Steam game's achievement names, icons, and descriptions.</td></tr>
+<tr><td><a href="miscellaneous-projects/finlit-tools-ca">Canadian FinLit Tools</a></td><td>Seven browser calculators for Canadian benefit and tax rules.</td><td>05/25/2026</td></tr>
+</table>
 
 <details>
 <summary><h2>Job-Modeled Toolkits (1-30)</h2></summary>
