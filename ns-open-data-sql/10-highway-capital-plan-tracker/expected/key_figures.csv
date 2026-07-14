@@ -1,0 +1,58 @@
+metric,key,value
+total_projects,,393
+projects_by_source,bridges,56
+projects_by_source,roads,337
+leading_county,,Pictou
+leading_county_projects,,39
+top_type,,Gravel Road Program
+top_type_share,,0.3359
+projects_by_county,Annapolis,17
+projects_by_county,Antigonish,17
+projects_by_county,Cape Breton,37
+projects_by_county,Colchester,30
+projects_by_county,Cumberland,18
+projects_by_county,Digby,15
+projects_by_county,Guysborough,12
+projects_by_county,Halifax,38
+projects_by_county,Hants,32
+projects_by_county,Inverness,25
+projects_by_county,Kings,28
+projects_by_county,Lunenburg,30
+projects_by_county,Pictou,39
+projects_by_county,Queens,17
+projects_by_county,Richmond,9
+projects_by_county,Shelburne,6
+projects_by_county,Victoria,13
+projects_by_county,Yarmouth,10
+projects_by_year,2021-2022,3
+projects_by_year,2022-2023,3
+projects_by_year,2023-2024,2
+projects_by_year,2024-2024,1
+projects_by_year,2024-2025,22
+projects_by_year,2025-2026,229
+projects_by_year,2026-2027,133
+type_share_overall,100 Series Expansion & Other Major Road Upgrades,0.0356
+type_share_overall,Asphalt Projects for 2026-27,0.0025
+type_share_overall,Bridge Rehabilitation,0.0204
+type_share_overall,Construction 100 Series Highways,0.0051
+type_share_overall,Construction Arterial/Collector,0.0127
+type_share_overall,Construction Local Road,0.0051
+type_share_overall,Double Chip Resurfacing,0.0153
+type_share_overall,Gravel Road Program,0.3359
+type_share_overall,Maintenance Paving,0.1043
+type_share_overall,Major Bridge Projects,0.0611
+type_share_overall,Other Bridge Projects,0.0585
+type_share_overall,Pavement Strengthening,0.0102
+type_share_overall,Paving Subdivision Roads,0.0229
+type_share_overall,Repaving 100 Series Highways,0.0560
+type_share_overall,Repaving Arterial/Collectors,0.0891
+type_share_overall,Repaving Local Roads,0.1603
+type_share_overall,Single Lift Overlay,0.0051
+road_km_by_year,2021-2022,2.50
+road_km_by_year,2022-2023,0.00
+road_km_by_year,2023-2024,0.00
+road_km_by_year,2024-2024,0.00
+road_km_by_year,2024-2025,33.95
+road_km_by_year,2025-2026,576.21
+road_km_by_year,2026-2027,374.75
+road_km_total,,987.41

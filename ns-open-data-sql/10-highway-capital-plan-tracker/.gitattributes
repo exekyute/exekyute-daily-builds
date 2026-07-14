@@ -1,0 +1,4 @@
+*.xlsx binary
+data/** linguist-vendored
+*.csv linguist-vendored
+*.md linguist-documentation

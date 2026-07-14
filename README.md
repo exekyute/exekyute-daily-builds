@@ -18,19 +18,20 @@ DuckDB SQL analyses built on real datasets from the Halifax Regional Municipalit
 
 ## Nova Scotia Open Data
 
-Small DuckDB SQL analyses built on real datasets from the Nova Scotia Open Data portal. Each build keeps a checked-in snapshot of its source data and a golden copy of the expected output, so the numbers reproduce exactly every time the SQL runs.
+Small DuckDB SQL analyses built on real datasets from the Nova Scotia Open Data portal, plus one formula-driven Excel model. Each build keeps a checked-in snapshot of its source data and a golden copy of the expected output, so the numbers reproduce exactly every time the build runs.
 
 | Project | What it does | Last Updated |
 |---|---|---|
-| [01 MVA Conviction Trend](ns-open-data-sql/01-mva-conviction-trend-by-statute) | Ranks two Motor Vehicle Act offences by yearly convictions and tracks which is rising or falling, 2011 to 2024. | 07/05/2026 |
-| [02 Farm Commodity-Mix Shift](ns-open-data-sql/02-farm-commodity-mix-shift) | Tracks the commodity mix of registered farms and ranks which gained or lost the most share, 2015-2016 to 2024-2025. | 07/06/2026 |
-| [03 Small-Business Grant Audit](ns-open-data-sql/03-small-business-grant-audit) | Counts recipients of two 2020 pandemic grants by business type and ranks which types got the most. | 07/07/2026 |
-| [04 Hatchery Stocking Summary](ns-open-data-sql/04-hatchery-stocking-summary) | Sums hatchery fish releases by water, county, and species, and tracks the trend from 1976 to 2025. | 07/08/2026 |
-| [05 Busiest-Corridor AADT Ranking](ns-open-data-sql/05-busiest-corridor-aadt-ranking) | Ranks highway segments by average daily traffic, tracks each one's year-over-year growth, and flags those near two-lane capacity. | 07/09/2026 |
-| [06 Liquor-License Density](ns-open-data-sql/06-liquor-license-density) | Counts permanent liquor licenses per community, ranks communities by total, and flags each one's dominant license type. | 07/10/2026 |
-| [07 Municipal Surplus League Table](ns-open-data-sql/07-municipal-surplus-league-table) | Computes each municipality's operating surplus by fiscal year and ranks the largest surpluses and deficits. | 07/11/2026 |
-| [08 Procurement Spend Pareto](ns-open-data-sql/08-procurement-spend-pareto) | Sums awarded tender dollars by vendor (merging name variants) and traces an 80/20 curve of how few vendors reach 80 percent of spend. | 07/12/2026 |
+| [10 Highway Capital-Plan Tracker](ns-open-data-sql/10-highway-capital-plan-tracker) | Pivots 393 planned road and bridge projects by county, fiscal year, and type in a formula-driven Excel workbook, with Pictou County leading and the Gravel Road Program the largest type. | 07/14/2026 |
 | [09 Impaired-Driving Toxicology Trend](ns-open-data-sql/09-impaired-driving-toxicology-trend) | Groups driver deaths by toxicology result each year, tracks the share testing positive, and totals deaths by month, 2015 to 2024. | 07/13/2026 |
+| [08 Procurement Spend Pareto](ns-open-data-sql/08-procurement-spend-pareto) | Sums awarded tender dollars by vendor (merging name variants) and traces an 80/20 curve of how few vendors reach 80 percent of spend. | 07/12/2026 |
+| [07 Municipal Surplus League Table](ns-open-data-sql/07-municipal-surplus-league-table) | Computes each municipality's operating surplus by fiscal year and ranks the largest surpluses and deficits. | 07/11/2026 |
+| [06 Liquor-License Density](ns-open-data-sql/06-liquor-license-density) | Counts permanent liquor licenses per community, ranks communities by total, and flags each one's dominant license type. | 07/10/2026 |
+| [05 Busiest-Corridor AADT Ranking](ns-open-data-sql/05-busiest-corridor-aadt-ranking) | Ranks highway segments by average daily traffic, tracks each one's year-over-year growth, and flags those near two-lane capacity. | 07/09/2026 |
+| [04 Hatchery Stocking Summary](ns-open-data-sql/04-hatchery-stocking-summary) | Sums hatchery fish releases by water, county, and species, and tracks the trend from 1976 to 2025. | 07/08/2026 |
+| [03 Small-Business Grant Audit](ns-open-data-sql/03-small-business-grant-audit) | Counts recipients of two 2020 pandemic grants by business type and ranks which types got the most. | 07/07/2026 |
+| [02 Farm Commodity-Mix Shift](ns-open-data-sql/02-farm-commodity-mix-shift) | Tracks the commodity mix of registered farms and ranks which gained or lost the most share, 2015-2016 to 2024-2025. | 07/06/2026 |
+| [01 MVA Conviction Trend](ns-open-data-sql/01-mva-conviction-trend-by-statute) | Ranks two Motor Vehicle Act offences by yearly convictions and tracks which is rising or falling, 2011 to 2024. | 07/05/2026 |
 
 ## Miscellaneous Projects
 
