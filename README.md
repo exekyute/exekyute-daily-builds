@@ -62,36 +62,36 @@ Business utilities modeled on real job descriptions. Most are no-backend tools: 
 
 | Project | What it does | Last Updated |
 |---|---|---|
-| [01 Pricing and Profitability](job-modeled-toolkits/01-pricing-profitability-toolkit) | Margin and pricing models for profitability work. | 06/14/2026 |
-| [02 Budget and Forecast](job-modeled-toolkits/02-budget-forecast-toolkit) | Budgeting and forecasting calculators. | 06/05/2026 |
-| [03 Site Compliance](job-modeled-toolkits/03-site-compliance-toolkit) | Tracking tools for site compliance. | 06/06/2026 |
-| [04 Global Project Coordination](job-modeled-toolkits/04-global-project-coordination-toolkit) | Cross-region project coordination tools. | 06/09/2026 |
-| [05 Pension Administration](job-modeled-toolkits/05-pension-admin-toolkit) | Pension administration calculators. | 06/05/2026 |
-| [06 Sales Compensation](job-modeled-toolkits/06-sales-compensation-toolkit) | Commission and quota calculator with a validator. | 06/14/2026 |
-| [07 Volunteer Coordinator](job-modeled-toolkits/07-volunteer-coordinator-toolkit) | Volunteer scheduling and coordination tools. | 06/14/2026 |
-| [08 Fund Administration](job-modeled-toolkits/08-fund-administration-toolkit) | Fund accounting and NAV tools. | 06/11/2026 |
-| [09 Payroll Operations](job-modeled-toolkits/09-payroll-ops-toolkit) | Canadian CPP/EI net-pay calculator and dashboard. | 06/14/2026 |
-| [10 Rent Roll](job-modeled-toolkits/10-rent-roll-toolkit) | Rent roll modeling tools. | 06/16/2026 |
-| [11 AR Collections](job-modeled-toolkits/11-ar-collections-toolkit) | Python aging engine and collections dashboard. | 06/14/2026 |
-| [12 Loan Servicing](job-modeled-toolkits/12-loan-servicing-toolkit) | Loan servicing and amortization tools. | 06/15/2026 |
-| [13 Freight Allocation](job-modeled-toolkits/13-freight-allocation-toolkit) | Landed-cost allocation for inbound logistics. | 06/12/2026 |
-| [14 Brewery Inventory Costing](job-modeled-toolkits/14-brewery-inventory-costing-toolkit) | Weighted-average costing and CRA excise engine. | 06/20/2026 |
-| [15 Membership Services](job-modeled-toolkits/15-membership-services-toolkit) | Dues and HST reporting, worklist, and dashboard. | 06/22/2026 |
-| [16 Contact Centre WFM](job-modeled-toolkits/16-contact-center-wfm-visualizations) | Erlang C planner and service-level dashboard. | 06/17/2026 |
-| [17 Treasury Cash Management](job-modeled-toolkits/17-treasury-cash-management-visualizations) | Cash position, maturity ladder, and 13-week forecast. | 06/21/2026 |
-| [18 Procurement Spend](job-modeled-toolkits/18-procurement-spend-visualizations) | Spend dashboard, supplier Pareto, and PO/invoice compliance. | 06/23/2026 |
-| [19 SaaS Revenue and Retention](job-modeled-toolkits/19-saas-revenue-retention-visualizations) | MRR waterfall, cohort heatmap, and churn dashboard. | 06/19/2026 |
-| [20 Property and Casualty Claims](job-modeled-toolkits/20-property-casualty-claims-visualizations) | Claims aging funnel, loss ratio, and reserve triangle. | 06/23/2026 |
+| [30 Grant Drawdown and Compliance](job-modeled-toolkits/30-grant-compliance-toolkit) | Allowable-cost drawdown engine with run-rate projection and report deadlines, and a browser timeline against the award. | 07/04/2026 |
+| [29 Expense and T&E Audit](job-modeled-toolkits/29-expense-audit-toolkit) | Policy-audit engine for mileage, caps, receipts, and duplicates, and a browser review queue with approve/reject. | 07/03/2026 |
+| [28 IT Cost Allocation and Showback](job-modeled-toolkits/28-it-cost-allocation-toolkit) | Driver-based shared-cost allocation engine and an Excel chargeback workbook with live formulas. | 07/02/2026 |
+| [27 Vendor SOW Earned-Value Tracker](job-modeled-toolkits/27-vendor-sow-tracker-toolkit) | Earned-value SOW engine and a browser burn-down timeline against budget. | 07/01/2026 |
+| [26 Subscription and License Manager](job-modeled-toolkits/26-subscription-license-toolkit) | Subscription cost and seat-waste ledger, and an editable browser license manager with renewals. | 06/30/2026 |
+| [25 Construction WIP and Job-Cost](job-modeled-toolkits/25-construction-wip-job-cost-toolkit) | Cost-to-cost WIP engine, an Excel workbook with live formulas, and a sort macro. | 06/29/2026 |
+| [24 AI Operations](job-modeled-toolkits/24-ai-operations-toolkit) | LLM cost engine, model scorecard, and an AI ops dashboard. | 06/28/2026 |
 | [21 Craft Brewery Cost Accounting](job-modeled-toolkits/21-craft-brewery-cost-accounting-toolkit) | Landed cost, batch costing, valuation, CRA excise, SKU margins, a SQL close, and a dashboard. | 06/27/2026 |
 | [22 Municipal 311 SQL Analytics](job-modeled-toolkits/22-municipal-311-sql-analytics) | SQL intake, backlog flow, SLA aging, and operations dashboard. | 06/26/2026 |
 | [23 Fixed-Asset Depreciation](job-modeled-toolkits/23-fixed-asset-depreciation-toolkit) | Canadian CRA CCA engine, rollforward, and dashboard. | 06/24/2026 |
-| [24 AI Operations](job-modeled-toolkits/24-ai-operations-toolkit) | LLM cost engine, model scorecard, and an AI ops dashboard. | 06/28/2026 |
-| [25 Construction WIP and Job-Cost](job-modeled-toolkits/25-construction-wip-job-cost-toolkit) | Cost-to-cost WIP engine, an Excel workbook with live formulas, and a sort macro. | 06/29/2026 |
-| [26 Subscription and License Manager](job-modeled-toolkits/26-subscription-license-toolkit) | Subscription cost and seat-waste ledger, and an editable browser license manager with renewals. | 06/30/2026 |
-| [27 Vendor SOW Earned-Value Tracker](job-modeled-toolkits/27-vendor-sow-tracker-toolkit) | Earned-value SOW engine and a browser burn-down timeline against budget. | 07/01/2026 |
-| [28 IT Cost Allocation and Showback](job-modeled-toolkits/28-it-cost-allocation-toolkit) | Driver-based shared-cost allocation engine and an Excel chargeback workbook with live formulas. | 07/02/2026 |
-| [29 Expense and T&E Audit](job-modeled-toolkits/29-expense-audit-toolkit) | Policy-audit engine for mileage, caps, receipts, and duplicates, and a browser review queue with approve/reject. | 07/03/2026 |
-| [30 Grant Drawdown and Compliance](job-modeled-toolkits/30-grant-compliance-toolkit) | Allowable-cost drawdown engine with run-rate projection and report deadlines, and a browser timeline against the award. | 07/04/2026 |
+| [18 Procurement Spend](job-modeled-toolkits/18-procurement-spend-visualizations) | Spend dashboard, supplier Pareto, and PO/invoice compliance. | 06/23/2026 |
+| [20 Property and Casualty Claims](job-modeled-toolkits/20-property-casualty-claims-visualizations) | Claims aging funnel, loss ratio, and reserve triangle. | 06/23/2026 |
+| [15 Membership Services](job-modeled-toolkits/15-membership-services-toolkit) | Dues and HST reporting, worklist, and dashboard. | 06/22/2026 |
+| [17 Treasury Cash Management](job-modeled-toolkits/17-treasury-cash-management-visualizations) | Cash position, maturity ladder, and 13-week forecast. | 06/21/2026 |
+| [14 Brewery Inventory Costing](job-modeled-toolkits/14-brewery-inventory-costing-toolkit) | Weighted-average costing and CRA excise engine. | 06/20/2026 |
+| [19 SaaS Revenue and Retention](job-modeled-toolkits/19-saas-revenue-retention-visualizations) | MRR waterfall, cohort heatmap, and churn dashboard. | 06/19/2026 |
+| [16 Contact Centre WFM](job-modeled-toolkits/16-contact-center-wfm-visualizations) | Erlang C planner and service-level dashboard. | 06/17/2026 |
+| [10 Rent Roll](job-modeled-toolkits/10-rent-roll-toolkit) | Rent roll modeling tools. | 06/16/2026 |
+| [12 Loan Servicing](job-modeled-toolkits/12-loan-servicing-toolkit) | Loan servicing and amortization tools. | 06/15/2026 |
+| [01 Pricing and Profitability](job-modeled-toolkits/01-pricing-profitability-toolkit) | Margin and pricing models for profitability work. | 06/14/2026 |
+| [06 Sales Compensation](job-modeled-toolkits/06-sales-compensation-toolkit) | Commission and quota calculator with a validator. | 06/14/2026 |
+| [07 Volunteer Coordinator](job-modeled-toolkits/07-volunteer-coordinator-toolkit) | Volunteer scheduling and coordination tools. | 06/14/2026 |
+| [09 Payroll Operations](job-modeled-toolkits/09-payroll-ops-toolkit) | Canadian CPP/EI net-pay calculator and dashboard. | 06/14/2026 |
+| [11 AR Collections](job-modeled-toolkits/11-ar-collections-toolkit) | Python aging engine and collections dashboard. | 06/14/2026 |
+| [13 Freight Allocation](job-modeled-toolkits/13-freight-allocation-toolkit) | Landed-cost allocation for inbound logistics. | 06/12/2026 |
+| [08 Fund Administration](job-modeled-toolkits/08-fund-administration-toolkit) | Fund accounting and NAV tools. | 06/11/2026 |
+| [04 Global Project Coordination](job-modeled-toolkits/04-global-project-coordination-toolkit) | Cross-region project coordination tools. | 06/09/2026 |
+| [03 Site Compliance](job-modeled-toolkits/03-site-compliance-toolkit) | Tracking tools for site compliance. | 06/06/2026 |
+| [02 Budget and Forecast](job-modeled-toolkits/02-budget-forecast-toolkit) | Budgeting and forecasting calculators. | 06/05/2026 |
+| [05 Pension Administration](job-modeled-toolkits/05-pension-admin-toolkit) | Pension administration calculators. | 06/05/2026 |
 
 </details>
 
