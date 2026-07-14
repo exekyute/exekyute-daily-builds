@@ -12,6 +12,7 @@ DuckDB SQL analyses built on real datasets from the Halifax Regional Municipalit
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="hrm-open-data/02-collision-safety-map">02 Traffic Collision Safety Map</a></td><td>Maps where and when 46,285 Halifax traffic collisions cluster and what share involve pedestrians, cyclists, or impaired and distracted driving: a point density map and month-by-hour calendar heatmap in <strong>Tableau</strong>, factor-share measures with a what-if slicer in <strong>Power BI</strong>.</td><td>07/14/2026</td></tr>
 <tr><td><a href="hrm-open-data/01-building-permit-pulse">01 Building Permit Pulse</a></td><td>Tracks permit activity and declared construction value across 18,316 Halifax building permits and follows where net new housing units land: a permit point map in <strong>Tableau</strong>, a value decomposition tree in <strong>Power BI</strong>.</td><td>07/13/2026</td></tr>
 </table>
 

@@ -1,0 +1,21 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["mart_collisions","Factor"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table mart_collisions
+ref table DateTableTemplate_1dcb9a84-7c73-4580-99ae-a9721ad7379a
+ref table LocalDateTable_94a68548-c70d-4f2c-816d-659a1fe20bf1
+ref table Factor
+
+ref cultureInfo en-US
+

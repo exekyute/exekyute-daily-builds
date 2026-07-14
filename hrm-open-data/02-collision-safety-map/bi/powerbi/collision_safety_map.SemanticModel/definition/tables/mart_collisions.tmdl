@@ -1,0 +1,247 @@
+table mart_collisions
+	lineageTag: 597f16ef-4f9b-4b9a-9873-a76ac331beae
+
+	measure Collisions = COUNTROWS ( mart_collisions )
+		formatString: 0
+		lineageTag: f193eacc-a691-48fa-9e46-18dc848d8a91
+
+	measure 'Pedestrian %' = DIVIDE ( CALCULATE ( [Collisions], mart_collisions[PEDESTRIAN_COLLISIONS] = 1 ), [Collisions] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7dc2b2b2-96d8-4ac9-8ee4-9d862fecf383
+
+	measure 'Bicycle %' = DIVIDE ( CALCULATE ( [Collisions], mart_collisions[BICYCLE_COLLISIONS] = 1 ), [Collisions] )
+		lineageTag: 592a4649-48a5-4f2e-8bc0-85535a8be41d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Distracted %' = DIVIDE ( CALCULATE ( [Collisions], mart_collisions[DISTRACTED_DRIVING] = 1 ), [Collisions] )
+		lineageTag: b0c59184-49cf-40e7-9660-3845f99c846a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Collisions Prev Year' = VAR y = MAX ( mart_collisions[year] ) RETURN CALCULATE ( [Collisions], REMOVEFILTERS ( mart_collisions[year] ), mart_collisions[year] = y - 1 )
+		formatString: 0
+		lineageTag: 73143130-e80d-41d4-99d4-5c7fddb24fd1
+
+	measure 'Collisions YoY' = VAR p = [Collisions Prev Year] RETURN IF ( ISBLANK ( p ), BLANK (), [Collisions] - p )
+		formatString: 0
+		lineageTag: 9b6b0223-2f7f-46ff-ba65-7873a05b8619
+
+	measure 'Pedestrian Collisions' = CALCULATE ( [Collisions], mart_collisions[PEDESTRIAN_COLLISIONS] = 1 )
+		formatString: 0
+		lineageTag: 56cd81eb-d3a0-4ced-80bb-7154dfafdade
+
+	measure 'Impaired %' = DIVIDE ( CALCULATE ( [Collisions], mart_collisions[IMPAIRED_DRIVING] = 1 ), [Collisions] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: de619c96-afde-41cb-a368-779403ff9306
+
+	measure 'Selected Factor %' = SWITCH ( SELECTEDVALUE ( 'Factor'[Factor] ), "Pedestrian", [Pedestrian %], "Bicycle", [Bicycle %], "Impaired", [Impaired %], "Distracted", [Distracted %], "Intersection", DIVIDE ( CALCULATE ( [Collisions], mart_collisions[INTERSECTION_RELATED] = 1 ), [Collisions] ), [Pedestrian %] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3379a37b-c2ae-4d15-b7aa-f4eb9b576314
+
+	column collision_id
+		dataType: string
+		lineageTag: 0ead6c43-8104-4d49-a9cd-da22b9352255
+		summarizeBy: none
+		sourceColumn: collision_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column accident_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4b71ea6f-6d78-4d87-9ab1-0a4862cf3e64
+		summarizeBy: none
+		sourceColumn: accident_date
+
+		variation Variation
+			isDefault
+			relationship: 2195da48-2f2e-446e-82e8-342d57ab344b
+			defaultHierarchy: LocalDateTable_94a68548-c70d-4f2c-816d-659a1fe20bf1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a3c240e-cdcb-4b44-b68c-d2f1fcedbe11
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: a23f41b6-ee9b-45af-a97c-818204d91435
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 11f3f719-8876-47cc-a01b-d06055ef12f7
+		summarizeBy: sum
+		sourceColumn: hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekday
+		dataType: int64
+		formatString: 0
+		lineageTag: ccbacf88-439f-42f6-bf58-9fc5b59389cd
+		summarizeBy: sum
+		sourceColumn: weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		lineageTag: f91f07af-3611-4887-a871-4847146f9dcd
+		summarizeBy: sum
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lon
+		dataType: double
+		lineageTag: 299550c0-82a9-4419-b084-9e9635ae32e6
+		summarizeBy: sum
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column road_location_1
+		dataType: string
+		lineageTag: 7a971368-1604-4b9d-b8b8-8d47b6f23ca6
+		summarizeBy: none
+		sourceColumn: road_location_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_location_2
+		dataType: string
+		lineageTag: 52ff1cd1-26b5-49b6-9cc5-21553fe0bdb8
+		summarizeBy: none
+		sourceColumn: road_location_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column collision_configuration
+		dataType: string
+		lineageTag: 44792d26-5d8c-4531-b949-463183bda587
+		summarizeBy: none
+		sourceColumn: collision_configuration
+
+		annotation SummarizationSetBy = Automatic
+
+	column light_condition
+		dataType: string
+		lineageTag: 98cf896d-2a27-4cc3-9a71-9f9940e3e75d
+		summarizeBy: none
+		sourceColumn: light_condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column weather_condition
+		dataType: string
+		lineageTag: 4771b027-d780-4e5c-95e0-f075cf6cc6b5
+		summarizeBy: none
+		sourceColumn: weather_condition
+
+		annotation SummarizationSetBy = Automatic
+
+	column PEDESTRIAN_COLLISIONS
+		dataType: int64
+		formatString: 0
+		lineageTag: 451280d9-bdb1-4da6-ae77-09d7c1f1352c
+		summarizeBy: sum
+		sourceColumn: PEDESTRIAN_COLLISIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column BICYCLE_COLLISIONS
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d119721-7569-4163-bc23-96483b6b9a2b
+		summarizeBy: sum
+		sourceColumn: BICYCLE_COLLISIONS
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMPAIRED_DRIVING
+		dataType: int64
+		formatString: 0
+		lineageTag: 290cdba2-99e5-4182-81c9-a9e54985526d
+		summarizeBy: sum
+		sourceColumn: IMPAIRED_DRIVING
+
+		annotation SummarizationSetBy = Automatic
+
+	column DISTRACTED_DRIVING
+		dataType: int64
+		formatString: 0
+		lineageTag: 2050906f-4b9b-44ce-b70a-61a536ca8c35
+		summarizeBy: sum
+		sourceColumn: DISTRACTED_DRIVING
+
+		annotation SummarizationSetBy = Automatic
+
+	column AGRESSIVE_DRIVING
+		dataType: int64
+		formatString: 0
+		lineageTag: f0e5e855-2174-4abe-b082-3f17445ba9ab
+		summarizeBy: sum
+		sourceColumn: AGRESSIVE_DRIVING
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTERSECTION_RELATED
+		dataType: int64
+		formatString: 0
+		lineageTag: ca12a6d3-e37f-454f-afab-107a7ffb490b
+		summarizeBy: sum
+		sourceColumn: INTERSECTION_RELATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column FATAL_INJURY
+		dataType: int64
+		formatString: 0
+		lineageTag: eda10d2f-8c18-4acd-90e9-a7c734521afd
+		summarizeBy: sum
+		sourceColumn: FATAL_INJURY
+
+		annotation SummarizationSetBy = Automatic
+
+	column NON_FATAL_INJURY
+		dataType: int64
+		formatString: 0
+		lineageTag: 7446a418-9d3b-4d59-be0e-f8194a1db43e
+		summarizeBy: sum
+		sourceColumn: NON_FATAL_INJURY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mart_collisions = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\02-collision-safety-map\bi\exports\mart_collisions.csv"), [Delimiter = ",", Columns = 21, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"collision_id", type text}, {"accident_date", type date}, {"year", Int64.Type}, {"month", Int64.Type}, {"hour", Int64.Type}, {"weekday", Int64.Type}, {"lat", type number}, {"lon", type number}, {"road_location_1", type text}, {"road_location_2", type text}, {"collision_configuration", type text}, {"light_condition", type text}, {"weather_condition", type text}, {"PEDESTRIAN_COLLISIONS", Int64.Type}, {"BICYCLE_COLLISIONS", Int64.Type}, {"IMPAIRED_DRIVING", Int64.Type}, {"DISTRACTED_DRIVING", Int64.Type}, {"AGRESSIVE_DRIVING", Int64.Type}, {"INTERSECTION_RELATED", Int64.Type}, {"FATAL_INJURY", Int64.Type}, {"NON_FATAL_INJURY", Int64.Type}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "3a49df09baf506eec24d",
+  "position": {
+    "x": 247.95242141036533,
+    "y": 0,
+    "z": 1,
+    "height": 162.03908241291418,
+    "width": 231.63976210705181,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_collisions"
+                    }
+                  },
+                  "Property": "Pedestrian %"
+                }
+              },
+              "queryRef": "mart_collisions.Pedestrian %",
+              "nativeQueryRef": "Pedestrian %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_collisions"
+                  }
+                },
+                "Property": "Pedestrian %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9dc6bc292b8df6b6aa48",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_collisions"
+              }
+            },
+            "Property": "Pedestrian %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

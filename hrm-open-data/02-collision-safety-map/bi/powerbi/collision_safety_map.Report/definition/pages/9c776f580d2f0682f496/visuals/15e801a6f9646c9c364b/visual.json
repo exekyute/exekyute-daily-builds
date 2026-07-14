@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "15e801a6f9646c9c364b",
+  "position": {
+    "x": 675,
+    "y": 0,
+    "z": 7,
+    "height": 162,
+    "width": 211,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_collisions"
+                    }
+                  },
+                  "Property": "Pedestrian Collisions"
+                }
+              },
+              "queryRef": "mart_collisions.Pedestrian Collisions",
+              "nativeQueryRef": "Pedestrian Collisions"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_collisions"
+                  }
+                },
+                "Property": "Pedestrian Collisions"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "85982e13868ee5942337",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_collisions"
+              }
+            },
+            "Property": "Pedestrian Collisions"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

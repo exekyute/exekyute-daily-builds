@@ -1,0 +1,5 @@
+relationship 2195da48-2f2e-446e-82e8-342d57ab344b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: mart_collisions.accident_date
+	toColumn: LocalDateTable_94a68548-c70d-4f2c-816d-659a1fe20bf1.Date
+

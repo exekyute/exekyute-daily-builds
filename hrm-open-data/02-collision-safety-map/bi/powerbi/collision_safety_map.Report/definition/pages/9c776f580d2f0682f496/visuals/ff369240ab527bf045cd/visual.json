@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "ff369240ab527bf045cd",
+  "position": {
+    "x": 0,
+    "y": 401,
+    "z": 4,
+    "height": 149,
+    "width": 188,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_collisions"
+                    }
+                  },
+                  "Property": "Selected Factor %"
+                }
+              },
+              "queryRef": "mart_collisions.Selected Factor %",
+              "nativeQueryRef": "Selected Factor %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_collisions"
+                  }
+                },
+                "Property": "Selected Factor %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cbdd89927de67f5586f2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_collisions"
+              }
+            },
+            "Property": "Selected Factor %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

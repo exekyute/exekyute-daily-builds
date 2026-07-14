@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "eb0931d5cabc950c72da",
+  "position": {
+    "x": 9.7875955819881053,
+    "y": 0,
+    "z": 0,
+    "height": 162.03908241291418,
+    "width": 238.16482582837722,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_collisions"
+                    }
+                  },
+                  "Property": "Collisions"
+                }
+              },
+              "queryRef": "mart_collisions.Collisions",
+              "nativeQueryRef": "Collisions",
+              "format": "0"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_collisions"
+                  }
+                },
+                "Property": "Collisions"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_collisions.Collisions"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6340ec15578eb42c4d62",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_collisions"
+              }
+            },
+            "Property": "Collisions"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

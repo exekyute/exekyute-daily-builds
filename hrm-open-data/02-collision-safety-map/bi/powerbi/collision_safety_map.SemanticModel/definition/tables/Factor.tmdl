@@ -1,0 +1,23 @@
+table Factor
+	lineageTag: 4cefcab0-dc1d-4f7e-b5ec-35ec2c7a2da4
+
+	column Factor
+		dataType: string
+		lineageTag: 23cd6b6b-ccf0-4360-9cd9-2351c42cc3c0
+		summarizeBy: none
+		sourceColumn: Factor
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Factor = m
+		mode: import
+		source =
+				let
+				  Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCkhNSS0uKcpMzFOK1YlWcspMrkzOSQWzPXMLEjOLUlPAHJdMoKrE5BIo1zOvJLWoODW5JDMfqDEWAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Factor = _t])
+				in
+				  Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
