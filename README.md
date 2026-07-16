@@ -22,6 +22,7 @@ Small DuckDB SQL analyses built on real datasets from the Nova Scotia Open Data 
 
 | Project | What it does | Last Updated |
 |---|---|---|
+| [11 Property Tax Burden Index](ns-open-data-sql/11-property-tax-burden-index) | Ranks all 64 municipalities by the gap between their commercial and residential tax rates, flags the widest as outliers, and tracks each one's year-over-year change, with Clark's Harbour widest in 2025/2026. | 07/15/2026 |
 | [10 Highway Capital-Plan Tracker](ns-open-data-sql/10-highway-capital-plan-tracker) | Pivots 393 planned road and bridge projects by county, fiscal year, and type in a formula-driven Excel workbook, with Pictou County leading and the Gravel Road Program the largest type. | 07/14/2026 |
 | [09 Impaired-Driving Toxicology Trend](ns-open-data-sql/09-impaired-driving-toxicology-trend) | Groups driver deaths by toxicology result each year, tracks the share testing positive, and totals deaths by month, 2015 to 2024. | 07/13/2026 |
 | [08 Procurement Spend Pareto](ns-open-data-sql/08-procurement-spend-pareto) | Sums awarded tender dollars by vendor (merging name variants) and traces an 80/20 curve of how few vendors reach 80 percent of spend. | 07/12/2026 |
