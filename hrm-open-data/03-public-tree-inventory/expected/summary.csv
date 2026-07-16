@@ -1,0 +1,12 @@
+metric,value
+total_trees,78896
+identified_trees,74133
+unidentified_trees,4763
+distinct_species,250
+top_species,Norway Maple
+top_species_count,10276
+top_species_share_pct,13.02
+most_common_dbh_class,Class 1-2
+trees_with_install_year,9997
+install_year_earliest,2013
+install_year_latest,2025

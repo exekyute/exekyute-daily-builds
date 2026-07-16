@@ -1,0 +1,251 @@
+species_rank,species_common,species_scientific,tree_count,share_of_all_pct
+1,Norway Maple,Acer platanoides,10276,13.02
+2,Red Maple,Acer rubrum,7563,9.59
+3,American Elm,Ulmus americana,4094,5.19
+4,Northern Red Oak,Quercus rubra,3282,4.16
+5,Japanese Tree Lilac,Syringa reticulata,3276,4.15
+6,Sugar Maple,Acer saccharum,2432,3.08
+7,Linden,Tilia (genus),2096,2.66
+8,Littleleaf Linden,Tilia cordata,1994,2.53
+9,Green Ash,Fraxinus pennsylvanica,1921,2.43
+10,Freeman Maple,Acer freemanii,1810,2.29
+11,American Basswood,Tilia americana,1751,2.22
+12,Northern Hackberry,Celtis occidentalis,1586,2.01
+13,Callery Pear,Pyrus calleryana,1573,1.99
+14,Maple,Acer (genus),1565,1.98
+15,White Spruce,Picea glauca,1519,1.93
+16,Ginkgo,Ginkgo biloba,1153,1.46
+17,Paper Birch,Betula papyrifera,959,1.22
+18,Apple,Malus (genus),899,1.14
+19,Red Pine,Pinus resinosa,835,1.06
+20,Honeylocust,Gleditisia triacanthos,794,1.01
+21,Accolade Elm,Ulmus accolade,769,0.97
+22,Pin Oak,Quercus palustris,757,0.96
+23,Eastern White Pine,Pinus strobus,754,0.96
+24,Silver Maple,Acer saccharinum,734,0.93
+25,Northern White Cedar,Thuja occidentalis,725,0.92
+26,Serviceberry,Amelanchier (genus),691,0.88
+27,Bur Oak,Quercus macrocarpa,649,0.82
+28,London Planetree,Platanus hybrida,580,0.74
+29,White Ash,Fraxinus americana,553,0.70
+30,European Beech,Fagus sylvatica,523,0.66
+31,Blue Spruce,Picea pungens,500,0.63
+32,Elm,Elm (genus),476,0.60
+33,Common Lilac,Syringa vulgaris,473,0.60
+34,Tulip Tree,Liriodendron tulipifera,457,0.58
+35,English Oak,Quercus robur,454,0.58
+36,Oak,Quercus (genus),404,0.51
+37,Spruce,Picea (genus),398,0.50
+38,European Mountain Ash,Sorbus aucuparia,390,0.49
+39,Red Spruce,Picea rubens,389,0.49
+40,Sweetgum,Liguidambar styraciflua,376,0.48
+41,Scotch Pine,Pinus sylvestris,359,0.46
+42,Black Walnut,Juglans nigra,350,0.44
+43,Burning Bush,Euonymus alatus,313,0.40
+44,Quaking Aspen,Populus tremuloides,309,0.39
+45,Amur Maple,Acer ginnala,291,0.37
+46,Austrian Pine,Pinus nigra,281,0.36
+47,Swamp White Oak,Quercus bicolor,274,0.35
+48,Kentucky Coffeetree,Gymnocladus dioicus,271,0.34
+49,Silver Linden,Tilia tomentosa,255,0.32
+50,Yellow Birch,Betula alleghaniensis,250,0.32
+51,River Birch,Betula nigra,248,0.31
+52,Japanese Maple,Acer palmatum,245,0.31
+53,Amur Corktree,Phellodendron amurense,239,0.30
+54,Gray Birch,Betula populifolia,233,0.30
+55,Eastern Hophornbeam,Ostrya virginiana,228,0.29
+56,Hedge Maple,Acer campestre,224,0.28
+57,Sour Cherry,Prunus cerasus,209,0.26
+58,Japanese Zelkova,Zelkova serrata,195,0.25
+59,Black Locust,Robinia pseudoacacia,186,0.24
+60,Norway Spruce,Picea abies,181,0.23
+61,Birch,Betula (genus),180,0.23
+62,Pine,Pinus (genus),180,0.23
+63,Ash,Fraxinus (genus),179,0.23
+64,Eastern Red Cedar,Juniperus virginiana,176,0.22
+65,Horsechestnut,Aesculus hippocastanum,176,0.22
+66,White Mulberry,Morus alba,172,0.22
+67,Wych elm,Ulmus glabra,152,0.19
+68,White Oak,Quercus alba,145,0.18
+69,Northern Catalpa,Catalpa speciosa,141,0.18
+70,Bigtooth Aspen,Populus grandidentata,136,0.17
+71,Sycamore Maple,Acer pseudoplatanus,130,0.16
+72,Mountain Maple,Acer spicatum,121,0.15
+73,Paperbark Maple,Acer griseum,118,0.15
+74,Zelkova,Zelkova (genus),118,0.15
+75,Common Chokecherry,Prunus virginiana,116,0.15
+76,American Sycamore,Platanus occidentalis,112,0.14
+77,Turkish Hazelnut,Corylus colurna,110,0.14
+78,Magnolia,Magnolia (genus),109,0.14
+79,Eastern Hemlock,Tsuga canadensis,104,0.13
+80,Balsam Fir,Abies balsamea,101,0.13
+81,Common Pear,Pyrus communis,101,0.13
+82,American Beech,Fagus grandifolia,94,0.12
+83,Pin Cherry,Prunus pensylvanica,91,0.12
+84,Dwarf Mountain Pine,Pinus mugo,87,0.11
+85,Hawthorn,Crataegus (genus),87,0.11
+86,Green Hawthorn,Crataegus viridis,86,0.11
+87,White Poplar,Populus alba,86,0.11
+88,European Hornbeam,Carpinus betulus,85,0.11
+89,Willow,Salix (genus),85,0.11
+90,Silver Birch,Betula pendula,82,0.10
+91,Bigleaf Linden,Tilia platyphyllos,81,0.10
+92,Black Tupelo,Nyssa sylvatica,81,0.10
+93,European Ash,Fraxinus excelsior,81,0.10
+94,Eastern Redbud,Cercis canadensis,80,0.10
+95,Ussurian Pear,Pyrus ussuriensis,78,0.10
+96,Yew,Taxus (genus),78,0.10
+97,Katsura Tree,Cercidiphyllum japonicum,73,0.09
+98,European Linden,Tilia europaea,69,0.09
+99,Panicle Hydrangea,Hydrangea paniculata,67,0.08
+100,Ohio Buckeye,Aesculus glabra,66,0.08
+101,Black Poplar,Populus nigra,65,0.08
+102,Staghorn Sumac,Rhus hirta,63,0.08
+103,Sawara False Cypress,Chamaecyparis pisifera,61,0.08
+104,American Hornbeam,Carpinus caroliniana,58,0.07
+105,Black Oak,Quercus velutina,57,0.07
+106,Kwanzan Cherry,Prunus serrulata,57,0.07
+107,Kousa Dogwood,Cornus kousa,55,0.07
+108,Red Horsechestnut,Aesculus x carnea,54,0.07
+109,Dawn Redwood,Metasequoia glyptostroboides,51,0.06
+110,Tamarack,Larix laricina,48,0.06
+111,Balsam Poplar,Populus balsamifera,47,0.06
+112,Weeping Willow,Salix x sepulcralis,47,0.06
+113,Scarlet Oak,Quercus coccinea,43,0.05
+114,Black Spruce,Picea mariana,42,0.05
+115,Atlantic White Cedar,Chamaecyparis thyoides,40,0.05
+116,Beech,Fagus (genus),37,0.05
+117,Rocky Mountain Maple,Acer glabrum,37,0.05
+118,Plum,Prunus (genus),36,0.05
+119,Smoketree,Cotinus coggygria,36,0.05
+120,Boxelder,Acer negundo,34,0.04
+121,Forsythia,Forsythia (genus),33,0.04
+122,English Elm,Ulmus procera,31,0.04
+123,Black Cherry,Prunus serotina,30,0.04
+124,Purpleleaf Sand Cherry,Prunus x cistena,30,0.04
+125,Chinquapin oak,Quercis muehlenbergii,29,0.04
+126,Flowering Dogwood,Cornus florida,29,0.04
+127,Siberian Elm,Ulmus pumila,29,0.04
+128,Northern Pin Oak,Quercus ellipsoidalis,28,0.04
+129,Bigtooth Maple,Acer grandidentatum,27,0.03
+130,Butternut,Juglans cinerea,27,0.03
+131,Russian Olive,Elaeagnus angustifolia,26,0.03
+132,Witch Hazel,Hamamelis virginiana,26,0.03
+133,Alder Buckthorn,Frangula alnus,24,0.03
+134,Japanese Persimmon,Diospyros virginiana,24,0.03
+135,Downy Serviceberry,Amelanchier arborea,23,0.03
+136,Eastern Cottonwood,Populus deltoides,23,0.03
+137,Nootka Cypress,Chamaecyparis nootkatensis,22,0.03
+138,Shingle Oak,Quercus imbricaria,21,0.03
+139,Dogwood,Cornus (genus),20,0.03
+140,Striped Maple,Acer pensylvanicum,20,0.03
+141,Common Ninebark,Physocarpus opulifolius,19,0.02
+142,Fir,Abies (genus),19,0.02
+143,Black Birch,Betula lenta,18,0.02
+144,Hickory,Carya (genus),18,0.02
+145,Overcup Oak,Quercus lyrata,18,0.02
+146,Privet,Ligustrum (genus),18,0.02
+147,Leatherleaf viburnum,Viburnum rhytidophyllum,17,0.02
+148,Eastern Serviceberry,Amelanchier canadensis,16,0.02
+149,Spotted Oak,Quercus shumardii,16,0.02
+150,Star Magnolia,Magnolia stellata,15,0.02
+151,Black Ash,Fraxinus nigra,14,0.02
+152,Jack Pine,Pinus banksiana,14,0.02
+153,Mountain Ash,Sorbus (genus),14,0.02
+154,Amur Chokecherry,Prunus maackii,13,0.02
+155,Bitternut Hickory,Carya cordiformis,13,0.02
+156,Bristly Locust,Robinia hispida,13,0.02
+157,European Larch,Larix decidua,13,0.02
+158,Morden Hawthorn,Crataegus mordenensis,13,0.02
+159,Siberian Crabapple,Malus baccata,13,0.02
+160,White Fir,Abies concolor,13,0.02
+161,American Mountain Ash,Sorbus americana,12,0.02
+162,Red Alder,Alnus rubra,12,0.02
+163,Red Osier Dogwood,Cornus sericea,12,0.02
+164,Cedar Elm,Ulmus crassifolia,11,0.01
+165,Corkscrew Willow,Salix matsudana,11,0.01
+166,Oakleaf Mountain Ash,Sorbus thuringiaca,10,0.01
+167,Saucer Magnolia,Magnolia soulangeana,10,0.01
+168,White Hickory,Carya tomentosa,10,0.01
+169,Chinese Elm,Ulmus parvifolia,9,0.01
+170,Japanese Angelica,Aralia elata,9,0.01
+171,Cedar of Lebanon,Cedrus libani,8,0.01
+172,Holly,Ilex (genus),8,0.01
+173,Slippery Elm,Ulmus rubra,8,0.01
+174,Blue Ash,Fraxinus quadrangulata,7,0.01
+175,English Walnut,Juglans regia,7,0.01
+176,Honeysuckle,Lonicera (genus),7,0.01
+177,Japanese spindle,Euonymus japonicus,7,0.01
+178,Oregon ash,Fraxinus latifolia,7,0.01
+179,Black Willow,Salix nigra,6,0.01
+180,Common Hawthorn,Crataegus monogyna,6,0.01
+181,Red Elderberry,Sambucus racemosa,6,0.01
+182,Rhododendron,Rhododendron (genus),6,0.01
+183,Southern Catalpa,Catalpa bignonioides,6,0.01
+184,Spirea,Spiraea (genus),6,0.01
+185,Weigela,Weigela (genus),6,0.01
+186,American Chestnut,Castanea dentata,5,0.01
+187,Cucumber Tree,Magnolia acuminata,5,0.01
+188,Poplar,Populus (genus),5,0.01
+189,Quince Tree,Cydonia oblonga,5,0.01
+190,Golden Chain Tree,Laburnum x watereri,4,0.01
+191,Guelder-rose,Viburnum opulus,4,0.01
+192,Japanese Hornbeam,Carpinus japonica,4,0.01
+193,Pawpaw,Asimina triloba,4,0.01
+194,Pitch Pine,Pinus rigida,4,0.01
+195,Siberian Peashrub,Caragana arborescens,4,0.01
+196,Swiss Pine,Pinus cembra,4,0.01
+197,Yellow Bird Magnolia,Magnolia x brooklynensis,4,0.01
+198,American Holly,Ilex opaca,3,0.00
+199,Bigleaf Maple,Acer macrophyllum,3,0.00
+200,Devil's Walking Stick,Aralia spinosa,3,0.00
+201,English Hawthorn,Cartaegus laevigata,3,0.00
+202,Grand fir,Abies grandis,3,0.00
+203,Peach,Prunus persica,3,0.00
+204,Rose of Sharon,Hibiscus syriacus,3,0.00
+205,Sargent Cherry,Prunus sargentii,3,0.00
+206,Sassafras,Sassafras albidum,3,0.00
+207,Winged Elm,Ulmus alata,3,0.00
+208,Atlas Cedar,Cedrus atlantica,2,0.00
+209,Beaked Hazelnut,Corylus cornuta,2,0.00
+210,Black Hickory,Carya texana,2,0.00
+211,Bosnian Pine,Pinus heldreichii,2,0.00
+212,Douglas Fir,Pseudotsuga menziesii,2,0.00
+213,Fringetree,Chionanthus virginicus,2,0.00
+214,Goldenrain Tree,Koelreuteria paniculata,2,0.00
+215,Gutta-percha,Palaquium gutta,2,0.00
+216,Hinoki False Cypress,Chamaecyparis obtusa,2,0.00
+217,Hydrangea,Hydrangea (genus),2,0.00
+218,Japanese Umbrella Pine,Sciadopitys verticillata,2,0.00
+219,Japanese yew,Taxus cuspidata,2,0.00
+220,Korean Fir,Abies koreana,2,0.00
+221,Pagoda Dogwood,Cornus alternifolia,2,0.00
+222,Pioneer elm,Ulmus hollandica,2,0.00
+223,Tea Crabapple,Malus hupehensis,2,0.00
+224,Trident Maple,Acer buergerianum,2,0.00
+225,Yellow Catalpa,Catalpa ovata,2,0.00
+226,Yulan Magnolia,Magnolia denudata,2,0.00
+227,American Plum,Prunus americana,1,0.00
+228,Amur Maackia,Maackia amurensis,1,0.00
+229,Asian Hazelnut,Corylus heterophylla,1,0.00
+230,Autumn Brilliance Serviceberry,Amelanchier x grandiflora,1,0.00
+231,Giant Hazel,Corylus maxima,1,0.00
+232,Grey Alder,Alnus incana,1,0.00
+233,Himalayan White Birch,Betula utilis,1,0.00
+234,Japanese Barberry,Berberis thunbergii,1,0.00
+235,Lewis mock-orange,Philadelphus lewisii,1,0.00
+236,Loebner Magnolia,Magnolia x loebneri,1,0.00
+237,Loquat,Eriobotrya japonica,1,0.00
+238,Narrowleaf meadowsweet,Spiraea alba,1,0.00
+239,Oriental bittersweet,Celastrus orbiculatus,1,0.00
+240,Pecan,Carya illinoinensis,1,0.00
+241,Post Oak,Quercus stellata,1,0.00
+242,Rock Elm,Ulmus thomasii,1,0.00
+243,Sand Hickory,Carya pallida,1,0.00
+244,Seven-sons tree,Heptacodium miconioides,1,0.00
+245,Shrubby cinquefoil,Dasiphora fruticosa,1,0.00
+246,Smoothleaf Elm,Ulmus carpinifolia,1,0.00
+247,Tropical Ash,Fraxinus uhdei,1,0.00
+248,Umbrella Magnolia,Magnolia tripetala,1,0.00
+249,Washington Hawthorn,Crataegus phaenopyrum,1,0.00
+250,Wolf Willow,Elaeagnus commutata,1,0.00

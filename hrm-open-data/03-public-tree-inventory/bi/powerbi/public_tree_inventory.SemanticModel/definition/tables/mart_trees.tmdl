@@ -1,0 +1,147 @@
+table mart_trees
+	lineageTag: 896a9b2a-44a5-4441-9759-7bb338cc9d5c
+
+	measure 'Tree Count' = COUNTROWS ( mart_trees )
+		formatString: 0
+		lineageTag: 0fb79754-e696-4dad-8a04-d579f56e1ed9
+
+	measure 'Distinct Species' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( mart_trees[species_common] ),
+			    mart_trees[species_common] <> "Unidentified"
+			)
+		formatString: 0
+		lineageTag: b13d2956-ff8d-4c71-a317-dba711849b01
+
+	measure 'Top Species Share' = DIVIDE ( MAXX ( VALUES ( mart_trees[species_common] ), [Tree Count] ), [Tree Count] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c2d3258c-4753-400c-a8ad-c4d0f80c1423
+
+	measure 'Species Rank' =
+			
+			RANKX ( ALLSELECTED ( mart_trees[species_common] ), [Tree Count], , DESC, Skip )
+		formatString: 0
+		lineageTag: 2211af2c-0d1d-4218-9000-281583c0345c
+
+	measure 'Avg DBH' = AVERAGE ( mart_trees[dbh] )
+		lineageTag: 66c9ecaa-5a26-4951-b7af-50cb91c50c64
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tree_id
+		dataType: string
+		lineageTag: 8a713827-d504-4b4c-9613-530d9bf99aeb
+		summarizeBy: none
+		sourceColumn: tree_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column species_common
+		dataType: string
+		lineageTag: d3173a5e-929d-4ba8-9089-3b7553d7729f
+		summarizeBy: none
+		sourceColumn: species_common
+
+		annotation SummarizationSetBy = Automatic
+
+	column species_scientific
+		dataType: string
+		lineageTag: a3818e07-2da5-4778-908b-7731201945ef
+		summarizeBy: none
+		sourceColumn: species_scientific
+
+		annotation SummarizationSetBy = Automatic
+
+	column dbh
+		dataType: int64
+		formatString: 0
+		lineageTag: e0c71112-feab-4f96-8eb8-5e84e06f0ddc
+		summarizeBy: sum
+		sourceColumn: dbh
+
+		annotation SummarizationSetBy = Automatic
+
+	column dbh_class
+		dataType: string
+		lineageTag: b69d1aa1-a92d-412a-8432-90f00244a887
+		summarizeBy: none
+		sourceColumn: dbh_class
+
+		annotation SummarizationSetBy = Automatic
+
+	column setting
+		dataType: string
+		lineageTag: d60bfe8f-d3a1-4644-899a-d6bfe88a44d1
+		summarizeBy: none
+		sourceColumn: setting
+
+		annotation SummarizationSetBy = Automatic
+
+	column wires
+		dataType: string
+		lineageTag: 458bcb4c-f609-4e1a-9b3b-2401271c12ac
+		summarizeBy: none
+		sourceColumn: wires
+
+		annotation SummarizationSetBy = Automatic
+
+	column install_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f18814c-e703-4290-ac9c-f7f91aa0c59b
+		summarizeBy: sum
+		sourceColumn: install_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner
+		dataType: string
+		lineageTag: c24c5468-f0e4-4929-9486-28855a2dcc6f
+		summarizeBy: none
+		sourceColumn: owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: cc37226d-1fab-4cb3-8845-2b1f643a89ce
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		lineageTag: 7739c877-8bd1-4fc1-8a7c-1e5f9235cc37
+		summarizeBy: sum
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lon
+		dataType: double
+		lineageTag: 17164210-7cda-440c-a450-f8a8773e3c2a
+		summarizeBy: sum
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_trees = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\03-public-tree-inventory\bi\exports\mart_trees.csv"), [Delimiter = ",", Columns = 12, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"tree_id", type text}, {"species_common", type text}, {"species_scientific", type text}, {"dbh", Int64.Type}, {"dbh_class", type text}, {"setting", type text}, {"wires", type text}, {"install_year", Int64.Type}, {"owner", type text}, {"status", type text}, {"lat", type number}, {"lon", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

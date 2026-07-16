@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "7bb00624a6e13bbbad3b",
+  "position": {
+    "x": 570,
+    "y": 507,
+    "z": 4002,
+    "height": 213,
+    "width": 280,
+    "tabOrder": 4002
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_trees"
+                    }
+                  },
+                  "Property": "install_year"
+                }
+              },
+              "queryRef": "mart_trees.install_year",
+              "nativeQueryRef": "install_year",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7a886416a1b5931ada71",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_trees"
+              }
+            },
+            "Property": "install_year"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

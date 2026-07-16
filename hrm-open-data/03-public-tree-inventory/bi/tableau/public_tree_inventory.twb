@@ -1,0 +1,1004 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20261.26.0512.1609                               -->
+<workbook original-version='18.1' source-build='2025.2.0 (20252.25.0514.2217)' source-platform='win' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <IntuitiveSorting />
+    <IntuitiveSorting_SP2 />
+    <MapboxVectorStylesAndLayers />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <repository-location id='HRMPublicTreeInventory' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='mart_trees' inline='true' name='federated.1tb3zal07l51sa1h10ezk0es2r0t' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='mart_trees' name='textscan.0tieaaq15dktcj1gvjuw5193nqcz'>
+            <connection class='textscan' directory='bi/exports' filename='mart_trees.csv' server='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.0tieaaq15dktcj1gvjuw5193nqcz' name='mart_trees.csv' table='[mart_trees#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='tree_id' ordinal='0' />
+            <column datatype='string' name='species_common' ordinal='1' />
+            <column datatype='string' name='species_scientific' ordinal='2' />
+            <column datatype='integer' name='dbh' ordinal='3' />
+            <column datatype='string' name='dbh_class' ordinal='4' />
+            <column datatype='string' name='setting' ordinal='5' />
+            <column datatype='string' name='wires' ordinal='6' />
+            <column datatype='integer' name='install_year' ordinal='7' />
+            <column datatype='string' name='owner' ordinal='8' />
+            <column datatype='string' name='status' ordinal='9' />
+            <column datatype='real' name='lat' ordinal='10' />
+            <column datatype='real' name='lon' ordinal='11' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>tree_id</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[tree_id]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>tree_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>species_common</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[species_common]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>species_common</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>species_scientific</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[species_scientific]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>species_scientific</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>dbh</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[dbh]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>dbh</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>dbh_class</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[dbh_class]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>dbh_class</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>setting</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[setting]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>setting</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>wires</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[wires]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>wires</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>install_year</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[install_year]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>install_year</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>owner</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[owner]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>owner</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>status</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[status]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>status</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lat</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[lat]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>lat</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lon</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[lon]</local-name>
+            <parent-name>[mart_trees.csv]</parent-name>
+            <remote-alias>lon</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Species group' datatype='string' name='[Calculation_1870682718988935168]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Top species] THEN [species_common] ELSE &quot;Other&quot; END' />
+      </column>
+      <column caption='mart_trees.csv' datatype='table' name='[__tableau_internal_object_id__].[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]' role='measure' type='quantitative' />
+      <column caption='Dbh' datatype='integer' name='[dbh]' role='measure' type='quantitative' />
+      <column caption='Dbh Class' datatype='string' name='[dbh_class]' role='dimension' type='nominal' />
+      <column caption='Install Year' datatype='integer' name='[install_year]' role='dimension' type='quantitative' />
+      <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='dimension' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+      <column aggregation='Avg' caption='Lon' datatype='real' name='[lon]' role='dimension' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+      <column caption='Owner' datatype='string' name='[owner]' role='dimension' type='nominal' />
+      <column caption='Setting' datatype='string' name='[setting]' role='dimension' type='nominal' />
+      <column caption='Species Common' datatype='string' name='[species_common]' role='dimension' type='nominal' />
+      <column caption='Species Scientific' datatype='string' name='[species_scientific]' role='dimension' type='nominal' />
+      <column caption='Status' datatype='string' name='[status]' role='dimension' type='nominal' />
+      <column caption='Tree Id' datatype='string' name='[tree_id]' role='dimension' type='nominal' />
+      <column caption='Wires' datatype='string' name='[wires]' role='dimension' type='nominal' />
+      <column-instance column='[Calculation_1870682718988935168]' derivation='None' name='[none:Calculation_1870682718988935168:nk]' pivot='key' type='nominal' />
+      <group caption='Action (Species Common)' hidden='true' name='[Action (Species Common)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[species_common]' />
+        </groupfilter>
+      </group>
+      <group caption='Top species' name='[Top species]' name-style='unqualified' user:ui-builder='filter-group'>
+        <groupfilter count='15' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+          <groupfilter direction='DESC' expression='COUNT([tree_id])' function='order' user:ui-marker='order'>
+            <groupfilter function='level-members' level='[species_common]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </groupfilter>
+        </groupfilter>
+      </group>
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='Data/TableauTemp/#TableauTemp_10r49ya00psv0q1b8senq0ocv8lc.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='07/16/2026 07:31:54 AM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>tree_id</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[tree_id]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>tree_id</remote-alias>
+              <ordinal>0</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>78896</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>species_common</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[species_common]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>species_common</remote-alias>
+              <ordinal>1</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>349</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>species_scientific</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[species_scientific]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>species_scientific</remote-alias>
+              <ordinal>2</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>349</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>dbh</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[dbh]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>dbh</remote-alias>
+              <ordinal>3</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>dbh_class</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[dbh_class]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>dbh_class</remote-alias>
+              <ordinal>4</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>setting</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[setting]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>setting</remote-alias>
+              <ordinal>5</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>wires</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[wires]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>wires</remote-alias>
+              <ordinal>6</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>install_year</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[install_year]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>install_year</remote-alias>
+              <ordinal>7</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>12</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>owner</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[owner]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>owner</remote-alias>
+              <ordinal>8</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>status</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[status]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>status</remote-alias>
+              <ordinal>9</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>1</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>lat</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[lat]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>lat</remote-alias>
+              <ordinal>10</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>62640</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>lon</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[lon]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>lon</remote-alias>
+              <ordinal>11</ordinal>
+              <family>mart_trees.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>70770</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:Calculation_1870682718988935168:nk]' type='palette'>
+            <map to='#499894'>
+              <bucket>&quot;Maple&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;American Basswood&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Green Ash&quot;</bucket>
+            </map>
+            <map to='#79706e'>
+              <bucket>&quot;Other&quot;</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>&quot;Northern Hackberry&quot;</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>&quot;Japanese Tree Lilac&quot;</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>&quot;American Elm&quot;</bucket>
+            </map>
+            <map to='#b6992d'>
+              <bucket>&quot;Linden&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;Red Maple&quot;</bucket>
+            </map>
+            <map to='#d37295'>
+              <bucket>&quot;Sugar Maple&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Northern Red Oak&quot;</bucket>
+            </map>
+            <map to='#f1ce63'>
+              <bucket>&quot;Littleleaf Linden&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Callery Pear&quot;</bucket>
+            </map>
+            <map to='#fabfd2'>
+              <bucket>&quot;Unidentified&quot;</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>&quot;Norway Maple&quot;</bucket>
+            </map>
+            <map to='#ffbe7d'>
+              <bucket>&quot;Freeman Maple&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='mart_trees.csv' id='mart_trees.csv_7B37C38CB2E34A2BAD02AF72B6769AFE'>
+            <properties context=''>
+              <relation connection='textscan.0tieaaq15dktcj1gvjuw5193nqcz' name='mart_trees.csv' table='[mart_trees#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='tree_id' ordinal='0' />
+                  <column datatype='string' name='species_common' ordinal='1' />
+                  <column datatype='string' name='species_scientific' ordinal='2' />
+                  <column datatype='integer' name='dbh' ordinal='3' />
+                  <column datatype='string' name='dbh_class' ordinal='4' />
+                  <column datatype='string' name='setting' ordinal='5' />
+                  <column datatype='string' name='wires' ordinal='6' />
+                  <column datatype='integer' name='install_year' ordinal='7' />
+                  <column datatype='string' name='owner' ordinal='8' />
+                  <column datatype='string' name='status' ordinal='9' />
+                  <column datatype='real' name='lat' ordinal='10' />
+                  <column datatype='real' name='lon' ordinal='11' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <actions>
+    <action caption='Filter 1 (generated)' name='[Action1_5B64766C86454A49B0D77C080B2F658E]'>
+      <activation auto-clear='true' type='on-select' />
+      <source dashboard='Urban forest' type='sheet' worksheet='Top species' />
+      <command command='tsc:tsl-filter'>
+        <param name='special-fields' value='all' />
+        <param name='target' value='Urban forest' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='DBH distribution'>
+      <repository-location id='DBHdistribution' path='/workbooks/HRMPublicTreeInventory' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='mart_trees' name='federated.1tb3zal07l51sa1h10ezk0es2r0t' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tb3zal07l51sa1h10ezk0es2r0t'>
+            <column-instance column='[tree_id]' derivation='Count' name='[cnt:tree_id:qk]' pivot='key' type='quantitative' />
+            <column caption='Dbh Class' datatype='string' name='[dbh_class]' role='dimension' type='nominal' />
+            <column-instance column='[dbh_class]' derivation='None' name='[none:dbh_class:nk]' pivot='key' type='nominal' />
+            <column caption='Species Common' datatype='string' name='[species_common]' role='dimension' type='nominal' />
+            <column caption='Tree Id' datatype='string' name='[tree_id]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[Action (Species Common)]'>
+            <groupfilter function='level-members' level='[species_common]' user:ui-action-filter='[Action1_5B64766C86454A49B0D77C080B2F658E]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[Action (Species Common)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[cnt:tree_id:qk]</rows>
+        <cols>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:dbh_class:nk]</cols>
+      </table>
+      <simple-id uuid='{C782CA34-C295-46D8-B0F9-FCDE9315BBA0}' />
+    </worksheet>
+    <worksheet name='Top species'>
+      <repository-location id='Topspecies' path='/workbooks/HRMPublicTreeInventory' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='mart_trees' name='federated.1tb3zal07l51sa1h10ezk0es2r0t' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tb3zal07l51sa1h10ezk0es2r0t'>
+            <column-instance column='[tree_id]' derivation='Count' name='[cnt:tree_id:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[species_common]' derivation='None' name='[none:species_common:nk]' pivot='key' type='nominal' />
+            <column caption='Species Common' datatype='string' name='[species_common]' role='dimension' type='nominal' />
+            <column caption='Tree Id' datatype='string' name='[tree_id]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:species_common:nk]'>
+            <groupfilter count='15' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='COUNT([tree_id])' function='order' user:ui-marker='order'>
+                <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+                  <groupfilter function='level-members' level='[none:species_common:nk]' />
+                  <groupfilter function='member' level='[none:species_common:nk]' member='&quot;Unidentified&quot;' />
+                </groupfilter>
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:species_common:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[cnt:tree_id:qk]' shelf='rows' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:species_common:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:species_common:nk]</rows>
+        <cols>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[cnt:tree_id:qk]</cols>
+      </table>
+      <simple-id uuid='{09560BB8-AC47-4FC3-A570-EF19C5736B5D}' />
+    </worksheet>
+    <worksheet name='Tree map'>
+      <repository-location id='Treemap' path='/workbooks/HRMPublicTreeInventory' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='mart_trees' name='federated.1tb3zal07l51sa1h10ezk0es2r0t' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.1tb3zal07l51sa1h10ezk0es2r0t'>
+            <column caption='Species group' datatype='string' name='[Calculation_1870682718988935168]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Top species] THEN [species_common] ELSE &quot;Other&quot; END' />
+            </column>
+            <column-instance column='[dbh_class]' derivation='Attribute' name='[attr:dbh_class:nk]' pivot='key' type='nominal' />
+            <column-instance column='[species_common]' derivation='Attribute' name='[attr:species_common:nk]' pivot='key' type='nominal' />
+            <column-instance column='[wires]' derivation='Attribute' name='[attr:wires:nk]' pivot='key' type='nominal' />
+            <column caption='Dbh' datatype='integer' name='[dbh]' role='measure' type='quantitative' />
+            <column caption='Dbh Class' datatype='string' name='[dbh_class]' role='dimension' type='nominal' />
+            <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='dimension' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' caption='Lon' datatype='real' name='[lon]' role='dimension' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[Calculation_1870682718988935168]' derivation='None' name='[none:Calculation_1870682718988935168:nk]' pivot='key' type='nominal' />
+            <column-instance column='[lat]' derivation='None' name='[none:lat:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[lon]' derivation='None' name='[none:lon:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[tree_id]' derivation='None' name='[none:tree_id:nk]' pivot='key' type='nominal' />
+            <column caption='Species Common' datatype='string' name='[species_common]' role='dimension' type='nominal' />
+            <column-instance column='[dbh]' derivation='Sum' name='[sum:dbh:qk]' pivot='key' type='quantitative' />
+            <column caption='Tree Id' datatype='string' name='[tree_id]' role='dimension' type='nominal' />
+            <column caption='Wires' datatype='string' name='[wires]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[Action (Species Common)]'>
+            <groupfilter function='level-members' level='[species_common]' user:ui-action-filter='[Action1_5B64766C86454A49B0D77C080B2F658E]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[Action (Species Common)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:lon:qk]' field-type='quantitative' max='-6942652.3646139018' min='-7119679.8397558229' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:lat:qk]' field-type='quantitative' max='5621343.543011223' min='5526410.122877094' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <color column='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:Calculation_1870682718988935168:nk]' />
+              <size column='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[sum:dbh:qk]' />
+              <lod column='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:tree_id:nk]' />
+              <tooltip column='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[attr:species_common:nk]' />
+              <tooltip column='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[attr:dbh_class:nk]' />
+              <tooltip column='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[attr:wires:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-transparency' value='180' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:lat:qk]</rows>
+        <cols>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:lon:qk]</cols>
+      </table>
+      <simple-id uuid='{FBE63F51-78FA-4210-A8FC-4A33EDDC74A7}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Urban forest'>
+      <repository-location id='Urbanforest' path='/workbooks/HRMPublicTreeInventory' revision='' />
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Halifax public tree inventory</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' preset-index='1' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='13' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='5250' id='14' type-v2='title' w='98400' x='800' y='1000'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='92750' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='6250'>
+              <zone h='92750' id='5' type-v2='layout-basic' w='82400' x='800' y='6250'>
+                <zone h='46375' id='3' name='Tree map' w='82400' x='800' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='46375' id='10' name='DBH distribution' w='41200' x='800' y='52625'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='46375' id='11' name='Top species' w='41200' x='42000' y='52625'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone fixed-size='160' h='92750' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='16000' x='83200' y='6250'>
+                <zone h='43250' id='8' name='Tree map' pane-specification-id='0' param='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:Calculation_1870682718988935168:nk]' type-v2='color' w='16000' x='83200' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='18250' id='9' name='Tree map' pane-specification-id='0' param='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[sum:dbh:qk]' type-v2='size' w='16000' x='83200' y='49500'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <layout-options>
+            <title>
+              <formatted-text>
+                <run>Halifax public tree inventory</run>
+              </formatted-text>
+            </title>
+          </layout-options>
+          <size maxheight='1100' minheight='1100' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='16' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='15' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+                <zone h='5250' id='14' type-v2='title' w='98400' x='800' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='46375' id='3' is-fixed='true' name='Tree map' w='82400' x='800' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='43250' id='8' name='Tree map' pane-specification-id='0' param='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:Calculation_1870682718988935168:nk]' type-v2='color' w='16000' x='83200' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='18250' id='9' name='Tree map' pane-specification-id='0' param='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[sum:dbh:qk]' type-v2='size' w='16000' x='83200' y='49500'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='46375' id='10' is-fixed='true' name='DBH distribution' w='41200' x='800' y='52625'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='46375' id='11' is-fixed='true' name='Top species' w='41200' x='42000' y='52625'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{B842B98D-FEBE-48DF-8BB7-33BE0085D5B3}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Tree map'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:Calculation_1870682718988935168:nk]' type='color' />
+            <card pane-specification-id='0' param='[federated.1tb3zal07l51sa1h10ezk0es2r0t].[sum:dbh:qk]' type='size' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:Calculation_1870682718988935168:nk]</field>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:dbh_class:nk]</field>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:lat:qk]</field>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:lon:qk]</field>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:species_common:nk]</field>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:tree_id:nk]</field>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:wires:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{6E8379F8-D641-49FD-93CF-53C91EDB7D37}' />
+    </window>
+    <window class='worksheet' name='DBH distribution'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:dbh_class:nk]</field>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:tree_id:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{8DBB50E0-7317-4EA8-8E17-5C5009D21309}' />
+    </window>
+    <window class='worksheet' name='Top species'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:species_common:nk]</field>
+            <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:tree_id:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{031094B1-CF49-4AD9-AE7B-3B8C7EFB641B}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Urban forest'>
+      <viewpoints>
+        <viewpoint name='DBH distribution'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Top species'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Tree map'>
+          <zoom type='entire-view' />
+          <highlight>
+            <color-one-way>
+              <field>[federated.1tb3zal07l51sa1h10ezk0es2r0t].[none:Calculation_1870682718988935168:nk]</field>
+            </color-one-way>
+          </highlight>
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{F6C41C08-3E2B-4F3B-B60D-6D1E1B3CC049}' />
+    </window>
+  </windows>
+</workbook>
