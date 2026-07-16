@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "514515b3c1380720ee3b",
+  "position": {
+    "x": 9.8507462686567155,
+    "y": 214.02985074626866,
+    "z": 3,
+    "height": 505.97014925373134,
+    "width": 530.14925373134326,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_burden"
+                    }
+                  },
+                  "Property": "municipality"
+                }
+              },
+              "queryRef": "mart_tax_burden.municipality",
+              "nativeQueryRef": "municipality",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_burden"
+                    }
+                  },
+                  "Property": "Spread Rank"
+                }
+              },
+              "queryRef": "mart_tax_burden.Spread Rank",
+              "nativeQueryRef": "Spread Rank"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_burden"
+                    }
+                  },
+                  "Property": "Spread YoY Change"
+                }
+              },
+              "queryRef": "mart_tax_burden.Spread YoY Change",
+              "nativeQueryRef": "Spread YoY Change"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_burden"
+                    }
+                  },
+                  "Property": "Total Spread"
+                }
+              },
+              "queryRef": "mart_tax_burden.Total Spread",
+              "nativeQueryRef": "Total Spread"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_tax_burden"
+                  }
+                },
+                "Property": "Total Spread"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d18790cc4b7bceefc00e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_burden"
+              }
+            },
+            "Property": "municipality"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "32f3634bf76bfcd42734",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_burden"
+              }
+            },
+            "Property": "Total Spread"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bbedb216bf823a359bd5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_burden"
+              }
+            },
+            "Property": "Spread Rank"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2e0bed973768320e796c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_burden"
+              }
+            },
+            "Property": "Spread YoY Change"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

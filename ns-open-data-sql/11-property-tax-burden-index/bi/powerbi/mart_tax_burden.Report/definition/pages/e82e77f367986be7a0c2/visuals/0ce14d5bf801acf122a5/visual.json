@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "0ce14d5bf801acf122a5",
+  "position": {
+    "x": 9.8507462686567155,
+    "y": 0,
+    "z": 0,
+    "height": 137.91044776119404,
+    "width": 177.31343283582089,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_burden"
+                    }
+                  },
+                  "Property": "Widest Spread"
+                }
+              },
+              "queryRef": "mart_tax_burden.Widest Spread",
+              "nativeQueryRef": "Widest Spread"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_tax_burden"
+                  }
+                },
+                "Property": "Widest Spread"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "197a0e104f4b3c29b26b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_burden"
+              }
+            },
+            "Property": "Widest Spread"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

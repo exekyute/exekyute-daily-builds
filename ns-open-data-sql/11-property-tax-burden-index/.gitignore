@@ -1,0 +1,8 @@
+out/
+*.duckdb
+*.db
+__pycache__/
+
+# Power BI: keep the .pbip text definition, drop machine-local editor state and cache
+**/.pbi/
+*.pbix

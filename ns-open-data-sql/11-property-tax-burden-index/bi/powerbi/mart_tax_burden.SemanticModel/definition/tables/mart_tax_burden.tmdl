@@ -1,0 +1,194 @@
+table mart_tax_burden
+	lineageTag: d2f1158c-59d8-48e8-b38e-2a5b12748d21
+
+	measure 'Total Spread' = SUM ( mart_tax_burden[spread] )
+		lineageTag: 691d4feb-9b65-4170-8d43-841869005d5d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Latest Year Overall' =
+			
+			CALCULATE ( MAX ( mart_tax_burden[year_start] ), ALL ( mart_tax_burden ) )
+		formatString: 0
+		lineageTag: 7442722f-c184-4453-9328-91df5166f3ec
+
+	measure 'Spread Prev Year' =
+			
+			VAR CurrentYear = MAX ( mart_tax_burden[year_start] )
+			RETURN
+			    CALCULATE (
+			        SUM ( mart_tax_burden[spread] ),
+			        REMOVEFILTERS ( mart_tax_burden[year_start] ),
+			        mart_tax_burden[year_start] = CurrentYear - 1
+			    )
+		lineageTag: fb646168-9b5c-4f69-8253-36637092cb3f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Spread YoY Change' =
+			
+			VAR Prev = [Spread Prev Year]
+			RETURN
+			    IF ( ISBLANK ( Prev ), BLANK (), [Total Spread] - Prev )
+		lineageTag: 44e91f66-ee11-4d75-b834-60065cc4d55f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Widest Spread' =
+			
+			VAR LatestYear = [Latest Year Overall]
+			RETURN
+			    CALCULATE (
+			        MAX ( mart_tax_burden[spread] ),
+			        ALL ( mart_tax_burden ),
+			        mart_tax_burden[year_start] = LatestYear
+			    )
+		formatString: 0.0000
+		lineageTag: d22479ab-958c-41b6-8997-de7ea3c1bd6b
+
+	measure 'Widest Spread Municipality' =
+			
+			VAR LatestYear = [Latest Year Overall]
+			VAR LatestRows =
+			    FILTER ( ALL ( mart_tax_burden ), mart_tax_burden[year_start] = LatestYear )
+			VAR TopRow =
+			    TOPN ( 1, LatestRows, mart_tax_burden[spread], DESC, mart_tax_burden[municipality], ASC )
+			RETURN
+			    CONCATENATEX ( TopRow, mart_tax_burden[municipality], ", " )
+		lineageTag: 2ac2547a-ff7e-40a8-8fd4-0e4b5a9e4727
+
+	measure 'Median Spread Latest Year' =
+			
+			VAR LatestYear = [Latest Year Overall]
+			RETURN
+			    CALCULATE (
+			        MEDIAN ( mart_tax_burden[spread] ),
+			        ALL ( mart_tax_burden ),
+			        mart_tax_burden[year_start] = LatestYear
+			    )
+		formatString: 0.0000
+		lineageTag: 83ec6a63-e78f-4f6e-8bd5-7dfc886bb606
+
+	measure 'Spread Rank' =
+			
+			RANKX (
+			    ALLSELECTED ( mart_tax_burden[municipality] ),
+			    CALCULATE ( SUM ( mart_tax_burden[spread] ) ),
+			    ,
+			    DESC,
+			    Skip
+			)
+		formatString: 0
+		lineageTag: 82dc8fac-3dbe-4af6-88ce-1520f8a69c1b
+
+	column area
+		dataType: string
+		lineageTag: 19cd0c08-3f61-4347-a9fd-e65b00820c92
+		summarizeBy: none
+		sourceColumn: area
+
+		annotation SummarizationSetBy = Automatic
+
+	column area_type
+		dataType: string
+		lineageTag: f74e2f94-e1b3-4c57-9cc4-60d01ff1b592
+		summarizeBy: none
+		sourceColumn: area_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_label
+		dataType: string
+		lineageTag: 208c5239-370f-4a17-8194-3d845fa915d5
+		summarizeBy: none
+		sourceColumn: year_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_start
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ac665e3-b766-489e-b0a1-679d912f44b3
+		summarizeBy: none
+		sourceColumn: year_start
+
+		annotation SummarizationSetBy = User
+
+	column residential_rate
+		dataType: double
+		lineageTag: c1101ea5-eb83-4a79-a0eb-10d212b3f7f0
+		summarizeBy: sum
+		sourceColumn: residential_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column commercial_rate
+		dataType: double
+		lineageTag: e052933b-2577-4b8d-9246-b3a34d1d09eb
+		summarizeBy: sum
+		sourceColumn: commercial_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column spread
+		dataType: double
+		lineageTag: 4978f7db-a27e-4d2c-812e-2cfb87967796
+		summarizeBy: sum
+		sourceColumn: spread
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rank_in_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a6dc39a-462f-4100-8f2b-3516e703602f
+		summarizeBy: sum
+		sourceColumn: rank_in_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column yoy_spread_change
+		dataType: double
+		lineageTag: 42b87d51-44dc-437d-9b52-00c6782fcd61
+		summarizeBy: sum
+		sourceColumn: yoy_spread_change
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_outlier
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 67b8b2cc-cf5c-4c02-b05b-ba7084ed7955
+		summarizeBy: none
+		sourceColumn: is_outlier
+
+		annotation SummarizationSetBy = Automatic
+
+	column municipality = mart_tax_burden[area] & " (" & mart_tax_burden[area_type] & ")"
+		lineageTag: bb3023ab-d609-4c6a-8006-d8dfb73d2aa1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mart_tax_burden = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("..\exports\mart_tax_burden.csv"), [Delimiter = ",", Columns = 10, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"area", type text}, {"area_type", type text}, {"year_label", type text}, {"year_start", Int64.Type}, {"residential_rate", type number}, {"commercial_rate", type number}, {"spread", type number}, {"rank_in_year", Int64.Type}, {"yoy_spread_change", type number}, {"is_outlier", type logical}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

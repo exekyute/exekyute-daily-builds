@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Property tax burden index - Nova Scotia</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">Nova Scotia Open Data &middot; Municipal Property Tax Rates</p>
+    <h1>Property tax burden index</h1>
+    <p class="subhead">
+      How much harder each municipality leans on commercial property than residential:
+      the spread between the two general rates, in dollars per $100 of assessed value.
+      Latest fiscal year <span id="latest-year-label" class="year-pill"></span>
+    </p>
+  </header>
+
+  <section class="kpi-row" aria-label="Headline figures">
+    <div class="kpi-card">
+      <p class="kpi-label">Widest spread</p>
+      <p class="kpi-value" id="kpi-widest-value"></p>
+      <p class="kpi-detail" id="kpi-widest-area"></p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Provincial median spread</p>
+      <p class="kpi-value" id="kpi-median-value"></p>
+      <p class="kpi-detail" id="kpi-median-detail"></p>
+    </div>
+    <div class="kpi-card">
+      <p class="kpi-label">Outliers flagged</p>
+      <p class="kpi-value" id="kpi-outlier-count"></p>
+      <p class="kpi-detail">at or above the 90th percentile of latest-year spread</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Latest-year ranking</h2>
+      <p class="panel-note">Every municipality, widest spread first. Flagged rows are the outliers.</p>
+    </div>
+    <div class="rank-list" id="rank-list"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Spread over time</h2>
+      <p class="panel-note">
+        One municipality's spread across every year it appears in the data.
+        <label class="picker-label" for="muni-picker">Municipality</label>
+        <select id="muni-picker"></select>
+      </p>
+    </div>
+    <div class="trend-wrap">
+      <svg id="trend-chart" viewBox="0 0 680 260" role="img" aria-label="Spread trend line chart"></svg>
+      <p class="trend-summary" id="trend-summary"></p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>
+      Source: Nova Scotia Open Data, Municipal Property Tax Rates (ure8-3w7m),
+      Open Government Licence - Nova Scotia. Figures are re-derived in this page
+      from the SQL pipeline's exported mart; nothing here is hardcoded.
+    </p>
+  </footer>
+
+</div>
+<script src="data.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

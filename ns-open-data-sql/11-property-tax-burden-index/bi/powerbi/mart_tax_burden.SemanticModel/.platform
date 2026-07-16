@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "mart_tax_burden"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9ffedfe0-6317-42ed-89fd-a7f5b65479a5"
+  }
+}

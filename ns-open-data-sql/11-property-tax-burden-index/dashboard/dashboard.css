@@ -1,0 +1,252 @@
+/* Two-tone palette: ink navy on warm paper. Every other shade is a tint of
+   the ink. Spacing is deliberately generous; nothing sits tight. */
+
+:root {
+  --ink: #16324f;
+  --paper: #f6f1e7;
+  --ink-70: rgba(22, 50, 79, 0.70);
+  --ink-45: rgba(22, 50, 79, 0.45);
+  --ink-18: rgba(22, 50, 79, 0.18);
+  --ink-10: rgba(22, 50, 79, 0.10);
+  --ink-06: rgba(22, 50, 79, 0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+}
+
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 64px 40px 80px;
+}
+
+/* Masthead */
+
+.masthead { margin-bottom: 56px; }
+
+.eyebrow {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 44px;
+  line-height: 1.15;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.subhead {
+  max-width: 720px;
+  font-size: 17px;
+  color: var(--ink-70);
+}
+
+.year-pill {
+  display: inline-block;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 13px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 999px;
+  padding: 3px 14px;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+/* KPI cards */
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+  margin-bottom: 56px;
+}
+
+.kpi-card {
+  background: var(--ink-06);
+  border: 1px solid var(--ink-18);
+  border-radius: 14px;
+  padding: 28px 30px 26px;
+}
+
+.kpi-label {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+  margin-bottom: 14px;
+}
+
+.kpi-value {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 38px;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.kpi-detail {
+  font-size: 15px;
+  color: var(--ink-70);
+}
+
+/* Panels */
+
+.panel {
+  background: var(--ink-06);
+  border: 1px solid var(--ink-18);
+  border-radius: 14px;
+  padding: 34px 36px 36px;
+  margin-bottom: 48px;
+}
+
+.panel-head { margin-bottom: 28px; }
+
+.panel-head h2 {
+  font-size: 26px;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+.panel-note {
+  font-size: 15px;
+  color: var(--ink-70);
+}
+
+/* Ranked bar list */
+
+.rank-list {
+  max-height: 560px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.rank-row {
+  display: grid;
+  grid-template-columns: 44px minmax(220px, 300px) 1fr 92px 96px;
+  gap: 18px;
+  align-items: center;
+  padding: 12px 6px;
+  border-bottom: 1px solid var(--ink-10);
+}
+
+.rank-row:last-child { border-bottom: none; }
+
+.rank-num {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 14px;
+  color: var(--ink-45);
+  text-align: right;
+}
+
+.rank-name { font-size: 16px; }
+
+.rank-type {
+  display: block;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+  margin-top: 2px;
+}
+
+.rank-bar-track {
+  background: var(--ink-10);
+  border-radius: 6px;
+  height: 18px;
+  overflow: hidden;
+}
+
+.rank-bar {
+  background: var(--ink);
+  height: 100%;
+  border-radius: 6px;
+  min-width: 2px;
+}
+
+.rank-value {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 14px;
+  text-align: right;
+}
+
+.outlier-badge {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 999px;
+  padding: 4px 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Trend panel */
+
+.picker-label {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+  margin-left: 18px;
+  margin-right: 8px;
+}
+
+#muni-picker {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink-45);
+  border-radius: 8px;
+  padding: 7px 12px;
+  max-width: 340px;
+}
+
+.trend-wrap { padding-top: 8px; }
+
+#trend-chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.trend-summary {
+  font-size: 15px;
+  color: var(--ink-70);
+  margin-top: 20px;
+}
+
+/* Footer */
+
+.foot {
+  border-top: 1px solid var(--ink-18);
+  padding-top: 28px;
+  font-size: 14px;
+  color: var(--ink-45);
+  max-width: 760px;
+}
+
+@media (max-width: 720px) {
+  .page { padding: 40px 20px 60px; }
+  h1 { font-size: 34px; }
+  .rank-row {
+    grid-template-columns: 32px 1fr 80px;
+  }
+  .rank-bar-track, .outlier-badge { display: none; }
+}
