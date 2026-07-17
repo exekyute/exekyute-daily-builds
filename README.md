@@ -19,10 +19,11 @@ DuckDB SQL analyses built on real datasets from the Halifax Regional Municipalit
 
 ## Nova Scotia Open Data
 
-Small DuckDB SQL analyses built on real datasets from the Nova Scotia Open Data portal, plus two formula-driven Excel models. Each build keeps a checked-in snapshot of its source data and a golden copy of the expected output, so the numbers reproduce exactly every time the build runs.
+Small DuckDB SQL analyses built on real datasets from the Nova Scotia Open Data portal, plus three formula-driven Excel models. Each build keeps a checked-in snapshot of its source data and a golden copy of the expected output, so the numbers reproduce exactly every time the build runs.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="ns-open-data-sql/13-public-pay-band-cost-model">13 Public Pay-Band Cost Model</a></td><td>Prices an across-the-board raise on the province's published pay scale in a formula-driven Excel workbook, with a live input cell driving the what-if: at 2 percent, lifting all 1,088 published step rates across 57 classifications costs $108,114.88 per biweekly pay period, LM 10 the costliest at $4,858.06.</td><td>07/17/2026</td></tr>
 <tr><td><a href="ns-open-data-sql/12-childrens-dental-utilization">12 Children's Dental Utilization</a></td><td>Models a children's dental program's paid-per-beneficiary across 16 fiscal years in a formula-driven Excel workbook and projects the next two periods by least squares, with the figure reaching $223.96 in 2023-2024, up 124 percent since 2008-2009.</td><td rowspan="2">07/16/2026</td></tr>
 <tr><td><a href="ns-open-data-sql/11-property-tax-burden-index">11 Property Tax Burden Index</a></td><td>Ranks all 64 municipalities by the gap between their commercial and residential tax rates, flags the widest as outliers, and tracks each one's year-over-year change, with Clark's Harbour widest in 2025/2026.</td></tr>
 <tr><td><a href="ns-open-data-sql/10-highway-capital-plan-tracker">10 Highway Capital-Plan Tracker</a></td><td>Pivots 393 planned road and bridge projects by county, fiscal year, and type in a formula-driven Excel workbook, with Pictou County leading and the Gravel Road Program the largest type.</td><td>07/14/2026</td></tr>
