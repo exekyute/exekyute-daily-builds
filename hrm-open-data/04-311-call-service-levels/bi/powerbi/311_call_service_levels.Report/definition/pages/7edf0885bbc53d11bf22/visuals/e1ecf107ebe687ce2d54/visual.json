@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "e1ecf107ebe687ce2d54",
+  "position": {
+    "x": 986.26139817629189,
+    "y": 0,
+    "z": 5,
+    "height": 140.06079027355625,
+    "width": 235.37993920972644,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_311_monthly"
+                    }
+                  },
+                  "Property": "Offered Rolling 3M"
+                }
+              },
+              "queryRef": "mart_311_monthly.Offered Rolling 3M",
+              "nativeQueryRef": "Offered Rolling 3M"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_311_monthly"
+                  }
+                },
+                "Property": "Offered Rolling 3M"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_311_monthly.Offered Rolling 3M"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2dc3517c50d1ca996788",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_311_monthly"
+              }
+            },
+            "Property": "Offered Rolling 3M"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "88275ec4f5df1d6473e7",
+  "position": {
+    "x": 22.37082066869301,
+    "y": 140.06079027355625,
+    "z": 4,
+    "height": 508.69300911854106,
+    "width": 1199.2705167173253,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date"
+                    }
+                  },
+                  "Property": "Month Start"
+                }
+              },
+              "queryRef": "Date.Month Start",
+              "nativeQueryRef": "Month Start",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_311_monthly"
+                    }
+                  },
+                  "Property": "Total Offered"
+                }
+              },
+              "queryRef": "mart_311_monthly.Total Offered",
+              "nativeQueryRef": "Total Offered"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_311_monthly"
+                    }
+                  },
+                  "Property": "Offered LY"
+                }
+              },
+              "queryRef": "mart_311_monthly.Offered LY",
+              "nativeQueryRef": "Offered LY"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Date"
+                  }
+                },
+                "Property": "Month Start"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4a16eabd07e006d212d1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Month Start"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e49997ed3c6e64574506",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_311_monthly"
+              }
+            },
+            "Property": "Total Offered"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0c0e4e33b830c2efbcbd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_311_monthly"
+              }
+            },
+            "Property": "Offered LY"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

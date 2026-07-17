@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "311_call_service_levels"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e13d7298-18b1-4deb-96eb-afd3dbf6de48"
+  }
+}

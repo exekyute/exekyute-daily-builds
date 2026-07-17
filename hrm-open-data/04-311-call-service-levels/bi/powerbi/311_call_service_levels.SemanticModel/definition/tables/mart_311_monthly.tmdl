@@ -1,0 +1,149 @@
+table mart_311_monthly
+	lineageTag: 28bec2f7-b946-43b6-9703-d2bb1578e33e
+
+	measure 'Total Offered' = SUM ( mart_311_monthly[offered] )
+		formatString: 0
+		lineageTag: e51a56c5-49bc-4eb7-a3c4-d9eded4545f7
+
+	measure 'Total Handled' = SUM ( mart_311_monthly[handled] )
+		formatString: 0
+		lineageTag: 92db7206-6630-424f-985d-72953aa1ea29
+
+	measure 'Total Abandoned' = SUM ( mart_311_monthly[abandoned] )
+		formatString: 0
+		lineageTag: 399a0344-dc6b-4e40-b9fd-c3bfafd0eb51
+
+	measure 'Abandonment Rate' = DIVIDE ( [Total Abandoned], [Total Offered] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 22e1ce12-399e-42f4-8baa-412a61a8634b
+
+	measure 'Answer Rate' = DIVIDE ( [Total Handled], [Total Offered] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ae7ba650-f2f0-4f94-b581-3aef6de14629
+
+	measure 'Offered LY' = CALCULATE ( [Total Offered], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+		formatString: 0
+		lineageTag: 4bbf2eeb-1ee4-438c-b7f1-65e68a462eb4
+
+	measure 'Offered Rolling 3M' = CALCULATE ( [Total Offered], DATESINPERIOD ( 'Date'[Date], MAX ( 'Date'[Date] ), -3, MONTH ) )
+		formatString: 0
+		lineageTag: c3d6d6fa-5c18-4304-9b2c-ec04ec0e49fa
+
+	column month_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1fc1dfaa-ce38-402b-9cd7-f314dc258777
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: ca86d267-f6e0-4134-b895-760c45c7d49b
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 18d8010a-39f5-44af-8034-9863df216c4e
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column offered
+		dataType: int64
+		formatString: 0
+		lineageTag: 534211b4-9024-4ed7-9774-3981aef992d3
+		summarizeBy: sum
+		sourceColumn: offered
+
+		annotation SummarizationSetBy = Automatic
+
+	column handled
+		dataType: int64
+		formatString: 0
+		lineageTag: 19b40b89-df8d-42b1-a0cf-7586312cb3dc
+		summarizeBy: sum
+		sourceColumn: handled
+
+		annotation SummarizationSetBy = Automatic
+
+	column abandoned
+		dataType: int64
+		formatString: 0
+		lineageTag: 98c5cc5b-3451-4f74-acf4-386b13ab77df
+		summarizeBy: sum
+		sourceColumn: abandoned
+
+		annotation SummarizationSetBy = Automatic
+
+	column processed_in_ivr
+		dataType: int64
+		formatString: 0
+		lineageTag: aba58f3a-7094-4613-bdb9-4df6795be5f8
+		summarizeBy: sum
+		sourceColumn: processed_in_ivr
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_talk_time
+		dataType: int64
+		formatString: 0
+		lineageTag: d32092c0-47fd-4f21-8b4a-49d95dfdd926
+		summarizeBy: sum
+		sourceColumn: total_talk_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column abandonment_rate
+		dataType: double
+		lineageTag: bf933c03-54d4-4bb9-a321-fd51a66f10e9
+		summarizeBy: sum
+		sourceColumn: abandonment_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column answer_rate
+		dataType: double
+		lineageTag: 9597430f-4137-4ad9-aed1-f94d5558a2d9
+		summarizeBy: sum
+		sourceColumn: answer_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_talk_time
+		dataType: double
+		lineageTag: 0e49c02f-ceb2-4f91-8c91-279a42ee2ff0
+		summarizeBy: sum
+		sourceColumn: avg_talk_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_311_monthly = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\04-311-call-service-levels\bi\exports\mart_311_monthly.csv"), [Delimiter = ",", Columns = 11, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"month_start", type date}, {"year", Int64.Type}, {"month", Int64.Type}, {"offered", Int64.Type}, {"handled", Int64.Type}, {"abandoned", Int64.Type}, {"processed_in_ivr", Int64.Type}, {"total_talk_time", Int64.Type}, {"abandonment_rate", type number}, {"answer_rate", type number}, {"avg_talk_time", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

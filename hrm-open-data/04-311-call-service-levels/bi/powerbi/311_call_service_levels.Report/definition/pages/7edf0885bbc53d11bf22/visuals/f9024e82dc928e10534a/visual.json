@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "f9024e82dc928e10534a",
+  "position": {
+    "x": 778.11550151975689,
+    "y": 0,
+    "z": 2,
+    "height": 140.06079027355625,
+    "width": 208.14589665653497,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_311_monthly"
+                    }
+                  },
+                  "Property": "Total Offered"
+                }
+              },
+              "queryRef": "mart_311_monthly.Total Offered",
+              "nativeQueryRef": "Total Offered"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_311_monthly"
+                  }
+                },
+                "Property": "Total Offered"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_311_monthly.Total Offered"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8cac1e97b134a7513561",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_311_monthly"
+              }
+            },
+            "Property": "Total Offered"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
