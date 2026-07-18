@@ -1,0 +1,19 @@
+region,total_registrations,pct_of_province,rank_by_count,commercial_count,whole_home_count,traditional_count,commercial_share_pct,rank_by_commercial_share,dominant_type
+Halifax,710,27.8,1,225,485,496,31.7,18,whole-home primary residence
+Lunenburg,383,15.0,2,206,177,249,53.8,8,commercial short-term rental
+Inverness,244,9.5,3,154,90,220,63.1,2,commercial short-term rental
+Kings,159,6.2,4,96,63,129,60.4,4,commercial short-term rental
+Cape Breton,149,5.8,5,74,75,89,49.7,12,whole-home primary residence
+Victoria,110,4.3,6,47,63,179,42.7,14,whole-home primary residence
+Cumberland,89,3.5,7,37,52,154,41.6,15,whole-home primary residence
+Queens,81,3.2,8,48,33,102,59.3,5,commercial short-term rental
+Colchester,78,3.1,9,52,26,88,66.7,1,commercial short-term rental
+Hants,73,2.9,10,40,33,88,54.8,7,commercial short-term rental
+Digby,72,2.8,11,36,36,111,50.0,11,commercial short-term rental
+Pictou,70,2.7,12,34,36,103,48.6,13,whole-home primary residence
+Shelburne,65,2.5,13,36,29,66,55.4,6,commercial short-term rental
+Yarmouth,64,2.5,14,39,25,59,60.9,3,commercial short-term rental
+Antigonish,57,2.2,15,30,27,78,52.6,10,commercial short-term rental
+Annapolis,56,2.2,16,23,33,92,41.1,16,whole-home primary residence
+Richmond,51,2.0,17,27,24,37,52.9,9,commercial short-term rental
+Guysborough,45,1.8,18,17,28,44,37.8,17,whole-home primary residence
