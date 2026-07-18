@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "de8ba96474f8cd65f83f",
+  "position": {
+    "x": 956.10942249240122,
+    "y": 26.261398176291795,
+    "z": 1003,
+    "height": 85.59270516717325,
+    "width": 299.57446808510639,
+    "tabOrder": 1003
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_group"
+                    }
+                  },
+                  "Property": "tax_group"
+                }
+              },
+              "queryRef": "mart_tax_group.tax_group",
+              "nativeQueryRef": "tax_group",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0aa773d68756bb7c668e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_group"
+              }
+            },
+            "Property": "tax_group"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

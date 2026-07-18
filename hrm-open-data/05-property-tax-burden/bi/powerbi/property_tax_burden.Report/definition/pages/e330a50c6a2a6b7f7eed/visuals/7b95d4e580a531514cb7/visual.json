@@ -1,0 +1,202 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "7b95d4e580a531514cb7",
+  "position": {
+    "x": 42.796352583586625,
+    "y": 359.87841945288756,
+    "z": 1000,
+    "height": 318.05471124620061,
+    "width": 1212.8875379939211,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_group"
+                    }
+                  },
+                  "Property": "rate_code"
+                }
+              },
+              "queryRef": "mart_tax_group.rate_code",
+              "nativeQueryRef": "rate_code",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_group"
+                    }
+                  },
+                  "Property": "tax_group"
+                }
+              },
+              "queryRef": "mart_tax_group.tax_group",
+              "nativeQueryRef": "tax_group",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_group"
+                    }
+                  },
+                  "Property": "Bill Amount"
+                }
+              },
+              "queryRef": "mart_tax_group.Bill Amount",
+              "nativeQueryRef": "Bill Amount"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_tax_group"
+                  }
+                },
+                "Property": "tax_group"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mart_tax_group"
+                            }
+                          },
+                          "Property": "Bill Amount"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'minColor'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'maxColor'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "mart_tax_group.Bill Amount"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f82ae83723f1d153a994",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_group"
+              }
+            },
+            "Property": "tax_group"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "acdd1044aceb19f068bd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_group"
+              }
+            },
+            "Property": "rate_code"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3ab778dd254d141605d8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_group"
+              }
+            },
+            "Property": "Bill Amount"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

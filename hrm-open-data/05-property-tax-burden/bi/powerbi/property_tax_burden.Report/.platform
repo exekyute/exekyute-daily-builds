@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "property_tax_burden"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "19113eb7-fb6f-419e-8491-75221d23f9ee"
+  }
+}

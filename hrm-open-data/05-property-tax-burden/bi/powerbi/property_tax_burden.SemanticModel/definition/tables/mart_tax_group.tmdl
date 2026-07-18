@@ -1,0 +1,158 @@
+table mart_tax_group
+	lineageTag: 11db2b0f-c984-4531-a4f6-447020db7efe
+
+	measure 'Total Taxable' = SUM ( mart_tax_group[total_taxable] )
+		formatString: 0
+		lineageTag: 8052080b-5652-404c-ad0b-315552f7579d
+
+	measure 'Bill Amount' = SUM ( mart_tax_group[bill_amount] )
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a317b448-a742-4e85-b338-ba62c95cf70c
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Effective Rate' = DIVIDE ( [Bill Amount], [Total Taxable] )
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: 93861ff2-a389-486a-af5c-c5364d5cb8d9
+
+	measure 'Bill Share' = DIVIDE ( [Bill Amount], CALCULATE ( [Bill Amount], ALL ( mart_tax_group ) ) )
+		lineageTag: b88c9651-d4ac-431e-b0bc-2b92c580e2d1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Group Rank' = RANKX ( ALLSELECTED ( mart_tax_group[tax_group] ), [Bill Amount], , DESC, Skip )
+		formatString: 0
+		lineageTag: 4636b9f6-bd03-48f9-82e0-379d0b0aacfe
+
+	column tax_group
+		dataType: string
+		lineageTag: 00598b5c-2bec-4e52-96ec-fd8fd4f175b2
+		summarizeBy: none
+		sourceColumn: tax_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column tax_summary_group
+		dataType: string
+		lineageTag: ddd3691c-be2f-43bc-848c-3fd02e639f79
+		summarizeBy: none
+		sourceColumn: tax_summary_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column rate_code
+		dataType: string
+		lineageTag: 95592436-5e26-4d21-adcd-4ac3c960a4b5
+		summarizeBy: none
+		sourceColumn: rate_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column rate_description
+		dataType: string
+		lineageTag: a3e4684e-575b-4d6a-869a-18a65734001f
+		summarizeBy: none
+		sourceColumn: rate_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column bill_rate_percentage
+		dataType: double
+		lineageTag: ff41a8b9-cdc8-4c5c-90b3-43736a7467e4
+		summarizeBy: sum
+		sourceColumn: bill_rate_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column account_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 04b392d0-9430-48b2-b4bd-0b2f5b36f87f
+		summarizeBy: sum
+		sourceColumn: account_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column residential_taxable
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e3be8c6-0532-4915-aa4c-b059b0ee052c
+		summarizeBy: sum
+		sourceColumn: residential_taxable
+
+		annotation SummarizationSetBy = Automatic
+
+	column commercial_taxable
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d0091fe-9e4b-466e-9df0-d80e18fbabb9
+		summarizeBy: sum
+		sourceColumn: commercial_taxable
+
+		annotation SummarizationSetBy = Automatic
+
+	column resource_taxable
+		dataType: int64
+		formatString: 0
+		lineageTag: 57b0d62c-99d3-4775-858f-8ce1c32384f3
+		summarizeBy: sum
+		sourceColumn: resource_taxable
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_taxable
+		dataType: int64
+		formatString: 0
+		lineageTag: bedc2a46-30f7-4b6f-8f21-e020cfe0b357
+		summarizeBy: sum
+		sourceColumn: total_taxable
+
+		annotation SummarizationSetBy = Automatic
+
+	column bill_amount
+		dataType: decimal
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		lineageTag: 4398d47e-1ac6-475b-8cf8-bee52af472ae
+		summarizeBy: sum
+		sourceColumn: bill_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-CA"}
+
+	column bill_value
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: e8e38e08-154e-495c-b1e4-005d69016516
+		summarizeBy: sum
+		sourceColumn: bill_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column effective_rate
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1d1f23db-39d7-43aa-a3f1-aed58f6022a1
+		summarizeBy: sum
+		sourceColumn: effective_rate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mart_tax_group = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\05-property-tax-burden\bi\exports\mart_tax_group.csv"), [Delimiter = ",", Columns = 13, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"tax_group", type text}, {"tax_summary_group", type text}, {"rate_code", type text}, {"rate_description", type text}, {"bill_rate_percentage", type number}, {"account_count", Int64.Type}, {"residential_taxable", Int64.Type}, {"commercial_taxable", Int64.Type}, {"resource_taxable", Int64.Type}, {"total_taxable", Int64.Type}, {"bill_amount", Currency.Type}, {"bill_value", Currency.Type}, {"effective_rate", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

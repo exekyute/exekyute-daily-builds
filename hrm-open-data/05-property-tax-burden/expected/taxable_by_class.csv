@@ -1,0 +1,14 @@
+tax_group,class,taxable,share_of_total_taxable
+1. Municipal Commercial,Commercial,50066913575,0.095672
+1. Municipal Residential,Residential,320964015100,0.613324
+1. Municipal Resource,Resource,1424458800,0.002722
+2 .Provincial Commercial,Commercial,20446445600,0.039071
+2 .Provincial Residential,Residential,117937426000,0.225364
+2 .Provincial Resource,Resource,711744400,0.001360
+3. Area Rates Commercial,Commercial,417099000,0.000797
+3. Area Rates Residential,Residential,8679165500,0.016585
+3. Area Rates Resource,Resource,46263800,0.000088
+4. Private Roads Commercial,Commercial,2387800,0.000005
+4. Private Roads Residential,Residential,370539600,0.000708
+4. Private Roads Resource,Resource,877500,0.000002
+5. Business Improvement Districts Commercial,Commercial,2251595700,0.004303

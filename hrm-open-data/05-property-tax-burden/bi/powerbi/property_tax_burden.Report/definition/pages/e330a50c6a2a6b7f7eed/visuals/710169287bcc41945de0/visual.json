@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "710169287bcc41945de0",
+  "position": {
+    "x": 328.75379939209728,
+    "y": 0,
+    "z": 1002,
+    "height": 138.11550151975683,
+    "width": 172.15805471124619,
+    "tabOrder": 1002
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_group"
+                    }
+                  },
+                  "Property": "Effective Rate"
+                }
+              },
+              "queryRef": "mart_tax_group.Effective Rate",
+              "nativeQueryRef": "Effective Rate"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_tax_group"
+                  }
+                },
+                "Property": "Effective Rate"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d2563f95959201fb5ac2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_group"
+              }
+            },
+            "Property": "Effective Rate"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

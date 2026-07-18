@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "257778dc084f741c48fb",
+  "position": {
+    "x": 42.796352583586625,
+    "y": 138.11550151975683,
+    "z": 1001,
+    "height": 221.76291793313072,
+    "width": 1212.8875379939211,
+    "tabOrder": 1001
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_group"
+                    }
+                  },
+                  "Property": "tax_group"
+                }
+              },
+              "queryRef": "mart_tax_group.tax_group",
+              "nativeQueryRef": "tax_group",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_group"
+                    }
+                  },
+                  "Property": "Group Rank"
+                }
+              },
+              "queryRef": "mart_tax_group.Group Rank",
+              "nativeQueryRef": "Group Rank"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_group"
+                    }
+                  },
+                  "Property": "Bill Share"
+                }
+              },
+              "queryRef": "mart_tax_group.Bill Share",
+              "nativeQueryRef": "Bill Share"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_tax_group"
+                    }
+                  },
+                  "Property": "Bill Amount"
+                }
+              },
+              "queryRef": "mart_tax_group.Bill Amount",
+              "nativeQueryRef": "Bill Amount"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_tax_group"
+                  }
+                },
+                "Property": "Bill Amount"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c82ffa9c1a1a70a00cf4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_group"
+              }
+            },
+            "Property": "tax_group"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d890e9da399fb9f9f46f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_group"
+              }
+            },
+            "Property": "Bill Amount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "be9cff0cb5f3e212a15f",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_group"
+              }
+            },
+            "Property": "Group Rank"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1d6d401693b7427d4e6c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_tax_group"
+              }
+            },
+            "Property": "Bill Share"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
