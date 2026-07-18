@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "0895b7b3d4d6004f62c9",
+  "position": {
+    "x": 224,
+    "y": 16,
+    "z": 4000,
+    "height": 120,
+    "width": 180,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_capital"
+                    }
+                  },
+                  "Property": "Latest Year"
+                }
+              },
+              "queryRef": "mart_capital.Latest Year",
+              "nativeQueryRef": "Latest Year"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_capital"
+                  }
+                },
+                "Property": "Latest Year"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_capital.Latest Year"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

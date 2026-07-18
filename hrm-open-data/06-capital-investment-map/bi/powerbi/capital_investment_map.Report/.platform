@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "capital_investment_map"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d64ffbd9-8e8a-4806-86b8-e1845b335f53"
+  }
+}

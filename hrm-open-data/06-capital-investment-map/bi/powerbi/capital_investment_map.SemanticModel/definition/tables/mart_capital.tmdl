@@ -1,0 +1,128 @@
+table mart_capital
+	lineageTag: 1ace1067-373d-404f-be9f-1ea448bd58e1
+
+	measure Projects = COUNTROWS ( mart_capital )
+		formatString: 0
+		lineageTag: 11b36579-cb8c-401f-ba4c-82b0012b97e7
+
+	measure 'Category Rank' = RANKX ( ALLSELECTED ( mart_capital[category_norm] ), [Projects], , DESC, Skip )
+		formatString: 0
+		lineageTag: f43a4d51-b41c-4f2d-997a-46df4b48d5fc
+
+	measure 'Latest Year' = CALCULATE ( MAX ( mart_capital[year] ), ALL ( mart_capital ) )
+		formatString: 0
+		lineageTag: e367e0b8-7b0d-4fe5-baaa-220ad01d7539
+
+	measure 'Projects Prev Year' =
+			
+			VAR y = MAX ( mart_capital[year] )
+			RETURN CALCULATE ( [Projects], REMOVEFILTERS ( mart_capital[year] ), mart_capital[year] = y - 1 )
+		formatString: 0
+		lineageTag: 4d484fbb-2639-4ecc-8220-bc66f6fd5ce2
+
+	measure 'Projects YoY' =
+			
+			VAR p = [Projects Prev Year]
+			RETURN IF ( ISBLANK ( p ), BLANK (), [Projects] - p )
+		formatString: 0
+		lineageTag: dca1e491-736f-4595-babd-1d7bec5753c4
+
+	column proj_no
+		dataType: string
+		lineageTag: 4003b088-05d3-41e8-bf18-827a8df148f5
+		summarizeBy: none
+		sourceColumn: proj_no
+
+		annotation SummarizationSetBy = Automatic
+
+	column proj_name
+		dataType: string
+		lineageTag: 2874d45f-e79c-44e2-87f7-54aeaade161b
+		summarizeBy: none
+		sourceColumn: proj_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column loc_desc
+		dataType: string
+		lineageTag: 1e1193d8-ad7b-4450-a3b8-e5a904579fd4
+		summarizeBy: none
+		sourceColumn: loc_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column work_desc
+		dataType: string
+		lineageTag: 1e887e1a-4f13-4663-9e44-0ac57bfcc4e6
+		summarizeBy: none
+		sourceColumn: work_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 285ccece-0b9a-4214-ac70-ac875c920b5d
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_norm
+		dataType: string
+		lineageTag: fed2770d-34e2-41fd-886f-744eb3b71835
+		summarizeBy: none
+		sourceColumn: category_norm
+
+		annotation SummarizationSetBy = Automatic
+
+	column asset_type
+		dataType: string
+		lineageTag: a7db158b-3e15-432c-bcde-2c17086147fd
+		summarizeBy: none
+		sourceColumn: asset_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: a1f8a0eb-b260-41f0-b4ca-b2c06fe81015
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = User
+
+	column lat
+		dataType: double
+		lineageTag: feaf33d5-f3aa-4ef4-9186-3415db0ceb04
+		summarizeBy: sum
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lon
+		dataType: double
+		lineageTag: 652cd3ef-40b8-4016-b93a-aa21cc3a8541
+		summarizeBy: sum
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_capital = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\06-capital-investment-map\bi\exports\mart_capital.csv"), [Delimiter = ",", Columns = 10, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"proj_no", type text}, {"proj_name", type text}, {"loc_desc", type text}, {"work_desc", type text}, {"category", type text}, {"category_norm", type text}, {"asset_type", type text}, {"year", Int64.Type}, {"lat", type number}, {"lon", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "b708db9bd478b5cd3e52",
+  "position": {
+    "x": 736,
+    "y": 152,
+    "z": 2000,
+    "height": 552,
+    "width": 528,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_capital"
+                    }
+                  },
+                  "Property": "category_norm"
+                }
+              },
+              "queryRef": "mart_capital.category_norm",
+              "nativeQueryRef": "category_norm",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_capital"
+                    }
+                  },
+                  "Property": "Category Rank"
+                }
+              },
+              "queryRef": "mart_capital.Category Rank",
+              "nativeQueryRef": "Category Rank"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_capital"
+                    }
+                  },
+                  "Property": "Projects"
+                }
+              },
+              "queryRef": "mart_capital.Projects",
+              "nativeQueryRef": "Projects"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_capital"
+                  }
+                },
+                "Property": "Projects"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "83d4ce4e48f550a5d1fb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_capital"
+              }
+            },
+            "Property": "category_norm"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f9bd8da51c5244e0a049",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_capital"
+              }
+            },
+            "Property": "Projects"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1db6831d1f2baeedde9c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_capital"
+              }
+            },
+            "Property": "Category Rank"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,809 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20261.26.0512.1609                               -->
+<workbook original-version='18.1' source-build='2025.2.0 (20252.25.0514.2217)' source-platform='win' version='18.1' xml:base='https://localhost:8080' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <MapboxVectorStylesAndLayers />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <repository-location derived-from='https://public.tableau.com/workbooks/HalifaxCapitalInvestmentMap?rev=1.0' id='HalifaxCapitalInvestmentMap' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='mart_capital' inline='true' name='federated.0r02h9t159lku614rsr6f0i13i5n' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='mart_capital' name='textscan.0zlqgb114vscf8161f5lo0hv5tu6'>
+            <connection class='textscan' directory='bi/exports' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.0zlqgb114vscf8161f5lo0hv5tu6' name='mart_capital.csv' table='[mart_capital#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='proj_no' ordinal='0' />
+            <column datatype='string' name='proj_name' ordinal='1' />
+            <column datatype='string' name='loc_desc' ordinal='2' />
+            <column datatype='string' name='work_desc' ordinal='3' />
+            <column datatype='string' name='category' ordinal='4' />
+            <column datatype='string' name='category_norm' ordinal='5' />
+            <column datatype='string' name='asset_type' ordinal='6' />
+            <column datatype='integer' name='year' ordinal='7' />
+            <column datatype='real' name='lat' ordinal='8' />
+            <column datatype='real' name='lon' ordinal='9' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>proj_no</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[proj_no]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>proj_no</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>proj_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[proj_name]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>proj_name</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>loc_desc</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[loc_desc]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>loc_desc</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>work_desc</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[work_desc]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>work_desc</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>category</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>category_norm</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[category_norm]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>category_norm</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>asset_type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[asset_type]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>asset_type</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>year</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[year]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>year</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lat</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[lat]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>lat</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lon</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[lon]</local-name>
+            <parent-name>[mart_capital.csv]</parent-name>
+            <remote-alias>lon</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='mart_capital.csv' datatype='table' name='[__tableau_internal_object_id__].[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]' role='measure' type='quantitative' />
+      <column caption='Asset Type' datatype='string' name='[asset_type]' role='dimension' type='nominal' />
+      <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal' />
+      <column caption='Category Norm' datatype='string' name='[category_norm]' role='dimension' type='nominal' />
+      <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+      <column caption='Loc Desc' datatype='string' name='[loc_desc]' role='dimension' type='nominal' />
+      <column aggregation='Avg' caption='Lon' datatype='real' name='[lon]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+      <column caption='Proj Name' datatype='string' name='[proj_name]' role='dimension' type='nominal' />
+      <column caption='Proj No' datatype='string' name='[proj_no]' role='dimension' type='nominal' />
+      <column caption='Work Desc' datatype='string' name='[work_desc]' role='dimension' type='nominal' />
+      <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+      <column-instance column='[category_norm]' derivation='None' name='[none:category_norm:nk]' pivot='key' type='nominal' />
+      <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='Data/TableauTemp/#TableauTemp_07pzcs90nc2sxa10634ou1a7dm61.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='07/18/2026 01:09:25 PM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>proj_no</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[proj_no]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>proj_no</remote-alias>
+              <ordinal>0</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>241</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>proj_name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[proj_name]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>proj_name</remote-alias>
+              <ordinal>1</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>375</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>loc_desc</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[loc_desc]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>loc_desc</remote-alias>
+              <ordinal>2</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>1414</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>work_desc</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[work_desc]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>work_desc</remote-alias>
+              <ordinal>3</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>579</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>category</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[category]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>category</remote-alias>
+              <ordinal>4</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>24</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>category_norm</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[category_norm]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>category_norm</remote-alias>
+              <ordinal>5</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>15</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>asset_type</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[asset_type]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>asset_type</remote-alias>
+              <ordinal>6</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>13</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>year</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[year]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>year</remote-alias>
+              <ordinal>7</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>8</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>lat</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[lat]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>lat</remote-alias>
+              <ordinal>8</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1451</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>lon</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[lon]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>lon</remote-alias>
+              <ordinal>9</ordinal>
+              <family>mart_capital.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1453</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:category_norm:nk]' type='palette'>
+            <map to='#499894'>
+              <bucket>&quot;Landfill&quot;</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>&quot;Art &amp; Cultural Assets&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Community &amp; Property Development&quot;</bucket>
+            </map>
+            <map to='#79706e'>
+              <bucket>&quot;Sidewalks&quot;</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>&quot;Outdoor Sport Facilities&quot;</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>&quot;Equipment &amp; Fleet&quot;</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>&quot;Bridges&quot;</bucket>
+            </map>
+            <map to='#b6992d'>
+              <bucket>&quot;Halifax Water&quot;</bucket>
+            </map>
+            <map to='#bab0ac'>
+              <bucket>&quot;Solid Waste&quot;</bucket>
+            </map>
+            <map to='#d37295'>
+              <bucket>&quot;Traffic Improvements&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Parks &amp; Playgrounds&quot;</bucket>
+            </map>
+            <map to='#f1ce63'>
+              <bucket>&quot;Industrial Parks&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Buildings&quot;</bucket>
+            </map>
+            <map to='#fabfd2'>
+              <bucket>&quot;Transit&quot;</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>&quot;Roads&quot;</bucket>
+            </map>
+            <map to='#ffbe7d'>
+              <bucket>&quot;Business Systems&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='mart_capital.csv' id='mart_capital.csv_9FC73CD9383D4227BFAA15A9B0B48521'>
+            <properties context=''>
+              <relation connection='textscan.0zlqgb114vscf8161f5lo0hv5tu6' name='mart_capital.csv' table='[mart_capital#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='proj_no' ordinal='0' />
+                  <column datatype='string' name='proj_name' ordinal='1' />
+                  <column datatype='string' name='loc_desc' ordinal='2' />
+                  <column datatype='string' name='work_desc' ordinal='3' />
+                  <column datatype='string' name='category' ordinal='4' />
+                  <column datatype='string' name='category_norm' ordinal='5' />
+                  <column datatype='string' name='asset_type' ordinal='6' />
+                  <column datatype='integer' name='year' ordinal='7' />
+                  <column datatype='real' name='lat' ordinal='8' />
+                  <column datatype='real' name='lon' ordinal='9' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <shared-views>
+    <shared-view name='federated.0r02h9t159lku614rsr6f0i13i5n'>
+      <datasources>
+        <datasource caption='mart_capital' name='federated.0r02h9t159lku614rsr6f0i13i5n' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0r02h9t159lku614rsr6f0i13i5n'>
+        <column-instance column='[year]' derivation='None' name='[none:year:qk]' pivot='key' type='quantitative' />
+        <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+      </datasource-dependencies>
+      <filter class='quantitative' column='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:year:qk]' included-values='in-range-or-null'>
+        <min>2013</min>
+        <max>2021</max>
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='Project map'>
+      <repository-location derived-from='https://public.tableau.com/workbooks/HalifaxCapitalInvestmentMap/Projectmap?rev=' id='131958960' path='/workbooks/HalifaxCapitalInvestmentMap' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='mart_capital' name='federated.0r02h9t159lku614rsr6f0i13i5n' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.0r02h9t159lku614rsr6f0i13i5n'>
+            <column-instance column='[proj_name]' derivation='Attribute' name='[attr:proj_name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[lat]' derivation='Avg' name='[avg:lat:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[lon]' derivation='Avg' name='[avg:lon:qk]' pivot='key' type='quantitative' />
+            <column caption='Category Norm' datatype='string' name='[category_norm]' role='dimension' type='nominal' />
+            <column aggregation='Avg' caption='Lat' datatype='real' name='[lat]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' caption='Lon' datatype='real' name='[lon]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[category_norm]' derivation='None' name='[none:category_norm:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:qk]' pivot='key' type='quantitative' />
+            <column caption='Proj Name' datatype='string' name='[proj_name]' role='dimension' type='nominal' />
+            <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:year:qk]</column>
+          </slices>
+          <aggregation value='false' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0r02h9t159lku614rsr6f0i13i5n].[avg:lon:qk]' field-type='quantitative' max='-6930053.7675228398' min='-7161110.5901428368' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0r02h9t159lku614rsr6f0i13i5n].[avg:lat:qk]' field-type='quantitative' max='5646752.9552601036' min='5530200.1505954433' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:category_norm:nk]' />
+              <tooltip column='[federated.0r02h9t159lku614rsr6f0i13i5n].[attr:proj_name:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.80160218477249146' />
+                <format attr='mark-transparency' value='180' />
+                <format attr='has-stroke' value='true' />
+                <format attr='stroke-color' value='#ffffff' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0r02h9t159lku614rsr6f0i13i5n].[avg:lat:qk]</rows>
+        <cols>[federated.0r02h9t159lku614rsr6f0i13i5n].[avg:lon:qk]</cols>
+      </table>
+      <simple-id uuid='{47E06168-09C2-4995-B309-A7910DEF109D}' />
+    </worksheet>
+    <worksheet name='Projects by category over years'>
+      <repository-location derived-from='https://public.tableau.com/workbooks/HalifaxCapitalInvestmentMap/Projectsbycategoryoveryears?rev=' id='131958961' path='/workbooks/HalifaxCapitalInvestmentMap' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='mart_capital' name='federated.0r02h9t159lku614rsr6f0i13i5n' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0r02h9t159lku614rsr6f0i13i5n'>
+            <column caption='Category Norm' datatype='string' name='[category_norm]' role='dimension' type='nominal' />
+            <column-instance column='[proj_no]' derivation='Count' name='[cnt:proj_no:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[category_norm]' derivation='None' name='[none:category_norm:nk]' pivot='key' type='nominal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[year]' derivation='None' name='[none:year:qk]' pivot='key' type='quantitative' />
+            <column caption='Proj No' datatype='string' name='[proj_no]' role='dimension' type='nominal' />
+            <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:year:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Area' />
+            <encodings>
+              <color column='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:category_norm:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0r02h9t159lku614rsr6f0i13i5n].[cnt:proj_no:qk]</rows>
+        <cols>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:year:ok]</cols>
+      </table>
+      <simple-id uuid='{FD5B27D1-9A87-4B71-A846-B7F8EB210F8C}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Capital investment'>
+      <repository-location derived-from='https://public.tableau.com/workbooks/HalifaxCapitalInvestmentMap/Capitalinvestment?rev=' id='131958962' path='/workbooks/HalifaxCapitalInvestmentMap' revision='' />
+      <style />
+      <size maxheight='900' maxwidth='1200' minheight='900' minwidth='1200' sizing-mode='fixed' />
+      <datasources>
+        <datasource caption='mart_capital' name='federated.0r02h9t159lku614rsr6f0i13i5n' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0r02h9t159lku614rsr6f0i13i5n'>
+        <column-instance column='[year]' derivation='None' name='[none:year:qk]' pivot='key' type='quantitative' />
+        <column caption='Year' datatype='integer' name='[year]' role='dimension' type='quantitative' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98222' id='12' param='vert' type-v2='layout-flow' w='98666' x='667' y='889'>
+            <zone h='4667' id='13' type-v2='title' w='98666' x='667' y='889'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='93555' id='7' param='horz' type-v2='layout-flow' w='98666' x='667' y='5556'>
+              <zone h='93555' id='5' type-v2='layout-basic' w='85333' x='667' y='5556'>
+                <zone h='62652' id='3' name='Project map' w='85333' x='667' y='5556'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='30903' id='10' name='Projects by category over years' w='85333' x='667' y='68208'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone fixed-size='160' h='93555' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='13333' x='86000' y='5556'>
+                <zone h='7667' id='8' name='Project map' param='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:year:qk]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='13333' x='86000' y='5556'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='38445' id='9' name='Project map' pane-specification-id='0' param='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:category_norm:nk]' type-v2='color' w='13333' x='86000' y='13223'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='800' minheight='800' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='15' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98222' id='14' param='vert' type-v2='layout-flow' w='98666' x='667' y='889'>
+                <zone h='4667' id='13' type-v2='title' w='98666' x='667' y='889'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='7667' id='8' name='Project map' param='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:year:qk]' show-domain='false' show-null-ctrls='false' type-v2='filter' w='13333' x='86000' y='5556'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='62652' id='3' is-fixed='true' name='Project map' w='85333' x='667' y='5556'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='38445' id='9' name='Project map' pane-specification-id='0' param='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:category_norm:nk]' type-v2='color' w='13333' x='86000' y='13223'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='270' h='30903' id='10' is-fixed='true' name='Projects by category over years' w='85333' x='667' y='68208'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{D705F317-469B-4250-8F58-0EE3ED97A62E}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Project map'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:year:qk]' show-domain='false' show-null-ctrls='false' type='filter' />
+            <card pane-specification-id='0' param='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:category_norm:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:category_norm:nk]</field>
+            <field>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:proj_name:nk]</field>
+            <field>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:year:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{64730B63-B9A2-4C9A-A12C-670F3C895D3E}' />
+    </window>
+    <window class='worksheet' name='Projects by category over years'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0r02h9t159lku614rsr6f0i13i5n].[none:category_norm:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:category_norm:nk]</field>
+            <field>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:proj_no:nk]</field>
+            <field>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:year:qk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{AF93CC13-C44C-46D8-B72F-AEDEA93447C8}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Capital investment'>
+      <viewpoints>
+        <viewpoint name='Project map'>
+          <zoom type='entire-view' />
+          <highlight>
+            <color-one-way>
+              <field>[federated.0r02h9t159lku614rsr6f0i13i5n].[none:category_norm:nk]</field>
+            </color-one-way>
+          </highlight>
+        </viewpoint>
+        <viewpoint name='Projects by category over years'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{68BB70D4-A930-4C42-BFB3-FBC7D89820E9}' />
+    </window>
+  </windows>
+</workbook>

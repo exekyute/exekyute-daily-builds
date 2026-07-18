@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "f2adf6ea4064d736f69c",
+  "position": {
+    "x": 16,
+    "y": 16,
+    "z": 0,
+    "height": 120,
+    "width": 200,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_capital"
+                    }
+                  },
+                  "Property": "Projects"
+                }
+              },
+              "queryRef": "mart_capital.Projects",
+              "nativeQueryRef": "Projects"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_capital"
+                  }
+                },
+                "Property": "Projects"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_capital.Projects"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

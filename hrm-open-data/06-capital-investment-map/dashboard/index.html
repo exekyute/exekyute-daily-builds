@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halifax capital investment map</title>
+<style>
+/* Two-tone palette: ink navy + harbour teal on a cool paper background. */
+:root {
+  --ink: #14263b;
+  --ink-soft: #3a4d63;
+  --ink-faint: #85929f;
+  --accent: #0e7c86;
+  --accent-deep: #0a5b62;
+  --accent-wash: #e4f0f1;
+  --paper: #f4f6f8;
+  --card: #ffffff;
+  --line: #e2e6ea;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.55;
+  padding: 48px 24px 72px;
+}
+
+.wrap { max-width: 1120px; margin: 0 auto; }
+
+header { margin-bottom: 8px; }
+header h1 { font-size: 30px; letter-spacing: -0.3px; margin-bottom: 10px; }
+header p.sub { color: var(--ink-soft); max-width: 760px; }
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+  margin: 32px 0 40px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+}
+.stat-card .label {
+  color: var(--ink-faint);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.8px;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.stat-card .value { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+.stat-card .detail { color: var(--ink-soft); font-size: 13px; margin-top: 6px; }
+
+section.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 32px 32px;
+  margin-bottom: 32px;
+}
+section.panel h2 { font-size: 19px; margin-bottom: 6px; }
+section.panel p.hint { color: var(--ink-faint); font-size: 13px; margin-bottom: 22px; }
+
+.map-controls {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap;
+}
+.map-controls label { font-size: 13px; color: var(--ink-soft); font-weight: 600; }
+.map-controls select {
+  font: inherit; font-size: 14px; padding: 8px 14px;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink);
+}
+.map-controls .status { font-size: 13px; color: var(--ink-soft); margin-left: auto; }
+.map-controls button {
+  font: inherit; font-size: 13px; padding: 7px 14px; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--card); color: var(--ink-soft); cursor: pointer;
+}
+.map-controls button:hover { border-color: var(--accent); color: var(--accent-deep); }
+
+#map svg, #year-chart svg { width: 100%; height: auto; display: block; }
+#map .frame { fill: var(--accent-wash); fill-opacity: 0.35; stroke: var(--line); stroke-width: 1; }
+.pt { fill: var(--accent); fill-opacity: 0.55; }
+.pt.faded { fill-opacity: 0.10; }
+.pt.hi { fill: var(--ink); fill-opacity: 0.9; }
+
+.legend { display: flex; gap: 24px; margin: 4px 0 16px; font-size: 13px; color: var(--ink-soft); flex-wrap: wrap; }
+.legend .key { display: inline-flex; align-items: center; gap: 8px; }
+.legend .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.legend .dot.base { background: var(--accent); }
+.legend .dot.ink { background: var(--ink); }
+
+.two-col { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; }
+@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+.rank-list { list-style: none; }
+.rank-list li {
+  display: grid; grid-template-columns: 30px 1fr 64px; align-items: center;
+  gap: 12px; padding: 8px 6px; border-radius: 8px; cursor: pointer;
+}
+.rank-list li:hover { background: var(--accent-wash); }
+.rank-list li.active { background: var(--ink); }
+.rank-list li.active .cat, .rank-list li.active .num, .rank-list li.active .rk { color: #fff; }
+.rank-list .rk { font-weight: 700; font-size: 13px; color: var(--ink-faint); text-align: right; }
+.rank-list .cat { font-size: 14px; }
+.rank-list .cat .bar-track { display: block; background: var(--accent-wash); border-radius: 6px; height: 8px; margin-top: 5px; overflow: hidden; }
+.rank-list .cat .bar-fill { display: block; background: var(--accent); height: 100%; border-radius: 6px; min-width: 2px; }
+.rank-list li.active .bar-track { background: rgba(255,255,255,0.25); }
+.rank-list li.active .bar-fill { background: #fff; }
+.rank-list .num { text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; color: var(--ink-soft); }
+
+.asset-list { list-style: none; }
+.asset-list li {
+  display: grid; grid-template-columns: 1fr 90px 56px; align-items: center;
+  gap: 12px; padding: 7px 0;
+}
+.asset-list .aname { font-size: 14px; }
+.asset-list .bar-track { background: var(--accent-wash); border-radius: 6px; height: 14px; overflow: hidden; }
+.asset-list .bar-fill { background: var(--ink-soft); height: 100%; border-radius: 6px; min-width: 2px; }
+.asset-list .num { text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; color: var(--ink-soft); }
+
+#year-chart .y-bar { fill: var(--accent); }
+#year-chart .y-line { fill: none; stroke: var(--ink); stroke-width: 2.5; }
+#year-chart .y-dot { fill: var(--ink); }
+#year-chart text { fill: var(--ink-soft); }
+
+footer { color: var(--ink-faint); font-size: 12px; text-align: center; margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Halifax capital investment map</h1>
+    <p class="sub">Where Halifax Regional Municipality located its capital projects by category and
+    budget year, from the Halifax Data Mapping and Analytics Hub. This dataset carries no dollar
+    amount, so every figure is a count of capital projects. Nothing on this page is hardcoded; each
+    number is re-derived in the browser from the exported records below.</p>
+  </header>
+
+  <div class="stat-row" id="headline"></div>
+
+  <section class="panel">
+    <h2>Project map</h2>
+    <p class="hint">Each dot is one capital project at its location. Pick a budget year to filter,
+    or click a category in the ranking to trace it across the map in ink.</p>
+    <div class="map-controls">
+      <label for="year-select">Budget year</label>
+      <select id="year-select"></select>
+      <button id="clear-cat" type="button">Clear category</button>
+      <span class="status" id="map-status"></span>
+    </div>
+    <div class="legend">
+      <span class="key"><span class="dot base"></span>Capital project</span>
+      <span class="key"><span class="dot ink"></span>Selected category</span>
+    </div>
+    <div id="map"></div>
+  </section>
+
+  <div class="two-col">
+    <section class="panel">
+      <h2>Projects by category</h2>
+      <p class="hint">Normalized categories ranked by project count, all years combined. Click one to
+      highlight it on the map and trace it in the year chart.</p>
+      <ol class="rank-list" id="cat-rank"></ol>
+    </section>
+    <section class="panel">
+      <h2>Projects by budget year</h2>
+      <p class="hint">Teal bars are all projects in each year on file. Select a category to overlay
+      its own count in ink.</p>
+      <div id="year-chart"></div>
+      <ul class="asset-teaser" style="list-style:none;margin-top:8px;color:var(--ink-faint);font-size:12px">
+        <li id="year-note"></li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Projects by asset type</h2>
+    <p class="hint">Most records leave the asset type blank; that is reported as its own
+    (unspecified) bucket rather than hidden.</p>
+    <ul class="asset-list" id="asset-list"></ul>
+  </section>
+
+  <footer>Data: Halifax Data Mapping and Analytics Hub, Capital Projects
+  (HRM::capital-projects). Contains information licenced under the Open Government Licence, Halifax.</footer>
+
+</div>
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  function fmtInt(n) { return n.toLocaleString("en-CA"); }
+  function fmt1(n) { return n.toLocaleString("en-CA", { minimumFractionDigits: 1, maximumFractionDigits: 1 }); }
+
+  /* ---- Aggregations, all re-derived from DATA ---- */
+
+  var total = DATA.length;
+
+  var catCount = {};
+  var assetCount = {};
+  var yearTotal = {};
+  var catYear = {};            // "cat||year" -> count
+  var years = [];
+  var minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity;
+
+  DATA.forEach(function (d) {
+    catCount[d.category_norm] = (catCount[d.category_norm] || 0) + 1;
+    assetCount[d.asset_type] = (assetCount[d.asset_type] || 0) + 1;
+    if (yearTotal[d.year] === undefined) { yearTotal[d.year] = 0; years.push(d.year); }
+    yearTotal[d.year] += 1;
+    var k = d.category_norm + "||" + d.year;
+    catYear[k] = (catYear[k] || 0) + 1;
+    if (d.lat < minLat) minLat = d.lat;
+    if (d.lat > maxLat) maxLat = d.lat;
+    if (d.lon < minLon) minLon = d.lon;
+    if (d.lon > maxLon) maxLon = d.lon;
+  });
+  years.sort(function (a, b) { return a - b; });
+
+  // Category ranking: count desc, then name asc; dense rank on distinct counts.
+  var cats = Object.keys(catCount).map(function (c) { return { cat: c, count: catCount[c] }; });
+  cats.sort(function (a, b) { return b.count - a.count || a.cat.localeCompare(b.cat); });
+  var rank = 0, prev = null;
+  cats.forEach(function (c) { if (c.count !== prev) { rank += 1; prev = c.count; } c.rank = rank; });
+
+  // Asset ranking: count desc, then name asc (matches the golden order).
+  var assets = Object.keys(assetCount).map(function (a) { return { asset: a, count: assetCount[a] }; });
+  assets.sort(function (a, b) { return b.count - a.count || a.asset.localeCompare(b.asset); });
+
+  var topCat = cats[0];
+
+  /* ---- Interaction state ---- */
+  var selectedCategory = null;
+  var yearFilter = null;      // null = all years
+
+  /* ---- Headline cards ---- */
+  document.getElementById("headline").innerHTML =
+    card("Total capital projects", fmtInt(total), years[0] + " to " + years[years.length - 1]) +
+    card("Largest category", topCat.cat,
+         fmtInt(topCat.count) + " projects, " + fmt1(100 * topCat.count / total) + "% of total") +
+    card("Categories", fmtInt(cats.length), "after normalizing the raw labels") +
+    card("Budget years", fmtInt(years.length), "spanning " + years[0] + " to " + years[years.length - 1]);
+
+  function card(label, value, detail) {
+    return '<div class="stat-card"><div class="label">' + esc(label) +
+      '</div><div class="value">' + esc(value) +
+      '</div><div class="detail">' + esc(detail) + "</div></div>";
+  }
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  /* ---- Map ---- */
+  var PAD = 30, PLOT_W = 900;
+  var midLat = (minLat + maxLat) / 2;
+  var kx = Math.cos(midLat * Math.PI / 180);
+  var lonSpan = (maxLon - minLon) * kx;
+  var latSpan = (maxLat - minLat);
+  var PLOT_H = Math.round(PLOT_W * latSpan / lonSpan);
+  var VB_W = PLOT_W + PAD * 2;
+  var VB_H = PLOT_H + PAD * 2;
+
+  function project(lat, lon) {
+    var nx = (lon - minLon) / (maxLon - minLon);
+    var ny = (lat - minLat) / (maxLat - minLat);
+    return [PAD + nx * PLOT_W, PAD + (1 - ny) * PLOT_H];
+  }
+
+  function drawMap() {
+    var pts = (yearFilter === null) ? DATA : DATA.filter(function (d) { return d.year === yearFilter; });
+    var base = [], hi = [];
+    pts.forEach(function (d) {
+      var p = project(d.lat, d.lon);
+      var x = p[0].toFixed(1), y = p[1].toFixed(1);
+      if (selectedCategory === null) {
+        base.push('<circle class="pt" cx="' + x + '" cy="' + y + '" r="2.4"/>');
+      } else if (d.category_norm === selectedCategory) {
+        hi.push('<circle class="pt hi" cx="' + x + '" cy="' + y + '" r="3.2"/>');
+      } else {
+        base.push('<circle class="pt faded" cx="' + x + '" cy="' + y + '" r="2.4"/>');
+      }
+    });
+    var s = '<svg viewBox="0 0 ' + VB_W + ' ' + VB_H + '" xmlns="http://www.w3.org/2000/svg" ' +
+            'role="img" aria-label="Map of Halifax capital projects">';
+    s += '<rect class="frame" x="' + PAD + '" y="' + PAD + '" width="' + PLOT_W + '" height="' + PLOT_H + '" rx="10"/>';
+    s += base.join("") + hi.join("");
+    s += "</svg>";
+    document.getElementById("map").innerHTML = s;
+
+    var shown = pts.length;
+    var msg = fmtInt(shown) + " project" + (shown === 1 ? "" : "s") +
+              (yearFilter === null ? " (all years)" : " in " + yearFilter);
+    if (selectedCategory !== null) {
+      var inSel = pts.filter(function (d) { return d.category_norm === selectedCategory; }).length;
+      msg += "; " + fmtInt(inSel) + " in " + selectedCategory;
+    }
+    document.getElementById("map-status").textContent = msg;
+  }
+
+  /* ---- Year chart ---- */
+  function drawYearChart() {
+    var W = 640, H = 300, padL = 44, padR = 16, padT = 16, padB = 40;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    var maxV = 0;
+    years.forEach(function (y) { if (yearTotal[y] > maxV) maxV = yearTotal[y]; });
+    maxV = niceCeil(maxV);
+
+    var n = years.length, slot = plotW / n, barW = Math.min(slot * 0.6, 54);
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" ' +
+            'role="img" aria-label="Projects by budget year">';
+    for (var g = 0; g <= 4; g++) {
+      var gy = padT + plotH - plotH * g / 4;
+      s += '<line x1="' + padL + '" y1="' + gy + '" x2="' + (W - padR) + '" y2="' + gy +
+           '" stroke="#e2e6ea" stroke-width="1"/>';
+      s += '<text x="' + (padL - 8) + '" y="' + (gy + 4) + '" text-anchor="end" font-size="11">' +
+           fmtInt(Math.round(maxV * g / 4)) + "</text>";
+    }
+    years.forEach(function (y, i) {
+      var cx = padL + slot * i + slot / 2;
+      var bh = plotH * yearTotal[y] / maxV;
+      s += '<rect class="y-bar" x="' + (cx - barW / 2) + '" y="' + (padT + plotH - bh) +
+           '" width="' + barW + '" height="' + bh + '" rx="3"><title>' + y + ": " +
+           fmtInt(yearTotal[y]) + ' projects</title></rect>';
+      s += '<text x="' + cx + '" y="' + (H - padB + 22) + '" text-anchor="middle" font-size="11">' + y + "</text>";
+    });
+    if (selectedCategory !== null) {
+      var pts = years.map(function (y, i) {
+        var cx = padL + slot * i + slot / 2;
+        var v = catYear[selectedCategory + "||" + y] || 0;
+        var cy = padT + plotH - plotH * v / maxV;
+        return [cx, cy, v, y];
+      });
+      var path = pts.map(function (p, i) { return (i === 0 ? "M" : "L") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" ");
+      s += '<path class="y-line" d="' + path + '"/>';
+      pts.forEach(function (p) {
+        s += '<circle class="y-dot" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3.5"><title>' +
+             p[3] + ": " + fmtInt(p[2]) + " " + esc(selectedCategory) + '</title></circle>';
+      });
+    }
+    s += "</svg>";
+    document.getElementById("year-chart").innerHTML = s;
+    document.getElementById("year-note").textContent = selectedCategory === null
+      ? "Years on file: " + years.join(", ") + "."
+      : "Ink line traces " + selectedCategory + " across the years.";
+  }
+
+  function niceCeil(v) {
+    if (v <= 10) return 10;
+    var mag = Math.pow(10, Math.floor(Math.log10(v)));
+    var step = mag / 2;
+    return Math.ceil(v / step) * step;
+  }
+
+  /* ---- Category ranking list ---- */
+  function drawCatRank() {
+    var max = cats[0].count;
+    document.getElementById("cat-rank").innerHTML = cats.map(function (c) {
+      var pct = 100 * c.count / max;
+      return '<li data-cat="' + esc(c.cat) + '"' + (c.cat === selectedCategory ? ' class="active"' : "") + ">" +
+        '<span class="rk">' + c.rank + "</span>" +
+        '<span class="cat">' + esc(c.cat) +
+        '<span class="bar-track"><span class="bar-fill" style="width:' + pct.toFixed(1) + '%"></span></span></span>' +
+        '<span class="num">' + fmtInt(c.count) + "</span></li>";
+    }).join("");
+    var lis = document.querySelectorAll("#cat-rank li");
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].addEventListener("click", function () {
+        var c = this.getAttribute("data-cat");
+        selectCategory(c === selectedCategory ? null : c);
+      });
+    }
+  }
+
+  /* ---- Asset list ---- */
+  (function drawAssets() {
+    var max = assets[0].count;
+    document.getElementById("asset-list").innerHTML = assets.map(function (a) {
+      var pct = 100 * a.count / max;
+      return "<li><span class=\"aname\">" + esc(a.asset) + "</span>" +
+        '<span class="bar-track"><span class="bar-fill" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+        '<span class="num">' + fmtInt(a.count) + "</span></li>";
+    }).join("");
+  })();
+
+  /* ---- Wiring ---- */
+  var sel = document.getElementById("year-select");
+  sel.innerHTML = '<option value="all">All years</option>' +
+    years.map(function (y) { return '<option value="' + y + '">' + y + "</option>"; }).join("");
+  sel.addEventListener("change", function () {
+    yearFilter = sel.value === "all" ? null : parseInt(sel.value, 10);
+    drawMap();
+  });
+  document.getElementById("clear-cat").addEventListener("click", function () { selectCategory(null); });
+
+  function selectCategory(c) {
+    selectedCategory = c;
+    drawCatRank();
+    drawMap();
+    drawYearChart();
+  }
+
+  drawCatRank();
+  drawMap();
+  drawYearChart();
+
+  /* Exposed for verification: the same figures the SQL golden holds. */
+  window.CAP_DERIVED = {
+    totalProjects: total,
+    categories: cats.length,
+    topCategory: topCat.cat,
+    topCategoryCount: topCat.count,
+    yearMin: years[0],
+    yearMax: years[years.length - 1],
+    ranking: cats.map(function (c) { return { rank: c.rank, category: c.cat, projects: c.count }; }),
+    assetTypes: assets.map(function (a) { return { asset: a.asset, projects: a.count }; })
+  };
+})();
+</script>
+</body>
+</html>

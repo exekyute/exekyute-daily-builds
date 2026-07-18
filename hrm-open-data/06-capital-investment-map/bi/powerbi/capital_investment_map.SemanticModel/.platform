@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "capital_investment_map"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "835aacfa-b5f6-46bb-ba74-2b579a9e0fef"
+  }
+}
