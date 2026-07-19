@@ -1,0 +1,12 @@
+*.sql linguist-language=SQL
+*.sql linguist-detectable=true
+data/** linguist-vendored
+*.csv linguist-vendored
+out/** linguist-generated
+*.duckdb linguist-generated
+*.db linguist-generated
+*.md linguist-documentation
+run.py linguist-vendored
+bi/exports/*.csv linguist-generated
+*.pbix binary linguist-generated
+bi/powerbi/** linguist-vendored

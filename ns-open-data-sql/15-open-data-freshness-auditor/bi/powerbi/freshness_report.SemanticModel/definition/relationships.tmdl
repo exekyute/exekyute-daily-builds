@@ -1,0 +1,5 @@
+relationship abb7eed7-6787-4d69-8587-a974e4e3a9be
+	joinOnDateBehavior: datePartOnly
+	fromColumn: mart_freshness.last_updated
+	toColumn: LocalDateTable_14da7a52-276d-4ab7-b656-10ce1b80bcbf.Date
+

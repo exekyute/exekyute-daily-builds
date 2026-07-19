@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "ad8b8584eb23d56772c7",
+  "position": {
+    "x": 235.55555555555554,
+    "y": 67.777777777777771,
+    "z": 1000,
+    "height": 107.77777777777777,
+    "width": 163.33333333333334,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "Total Assets"
+                }
+              },
+              "queryRef": "mart_freshness.Total Assets",
+              "nativeQueryRef": "Total Assets"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_freshness"
+                  }
+                },
+                "Property": "Total Assets"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_freshness.Total Assets"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cdd3a9bd5ab09c24e899",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "Total Assets"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

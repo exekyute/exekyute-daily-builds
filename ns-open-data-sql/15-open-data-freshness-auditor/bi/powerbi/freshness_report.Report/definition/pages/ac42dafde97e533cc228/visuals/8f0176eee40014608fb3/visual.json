@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "8f0176eee40014608fb3",
+  "position": {
+    "x": 398.88888888888886,
+    "y": 67.777777777777771,
+    "z": 2000,
+    "height": 107.77777777777777,
+    "width": 200,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "Avg Age Months"
+                }
+              },
+              "queryRef": "mart_freshness.Avg Age Months",
+              "nativeQueryRef": "Avg Age Months"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_freshness"
+                  }
+                },
+                "Property": "Avg Age Months"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8e5e2b7f845efbbd4690",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "Avg Age Months"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

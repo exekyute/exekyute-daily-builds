@@ -1,0 +1,20 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["mart_freshness"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table mart_freshness
+ref table DateTableTemplate_76d9f448-a39d-457b-a13f-98ae0b7e1ffb
+ref table LocalDateTable_14da7a52-276d-4ab7-b656-10ce1b80bcbf
+
+ref cultureInfo en-US
+

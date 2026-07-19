@@ -1,0 +1,318 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "a4b407ebac68c13e010b",
+  "position": {
+    "x": 0,
+    "y": 175.55555555555554,
+    "z": 5000,
+    "height": 222.22222222222223,
+    "width": 1245.5555555555554,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "name"
+                }
+              },
+              "queryRef": "mart_freshness.name",
+              "nativeQueryRef": "name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "owner"
+                }
+              },
+              "queryRef": "mart_freshness.owner",
+              "nativeQueryRef": "owner"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "mart_freshness.category",
+              "nativeQueryRef": "category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "last_updated"
+                }
+              },
+              "queryRef": "mart_freshness.last_updated",
+              "nativeQueryRef": "last_updated"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "age_months"
+                }
+              },
+              "queryRef": "Sum(mart_freshness.age_months)",
+              "nativeQueryRef": "age_months"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "bucket"
+                }
+              },
+              "queryRef": "mart_freshness.bucket",
+              "nativeQueryRef": "bucket"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_freshness"
+                  }
+                },
+                "Property": "last_updated"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "410.9999981867155D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_freshness.name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "277.33333366334233D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_freshness.owner"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "204.4444343975023D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_freshness.category"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a138f7ab5ebf99e2d507",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ec0d348eab4b5a1b3eaf",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "owner"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fc9a233d6af20c817d7b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1cc3e301f25571f525ce",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "bucket"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5ae3235f5937bf342c27",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "type"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "mart_freshness",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "m"
+                          }
+                        },
+                        "Property": "type"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'dataset'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "cb898cbbe96535f73690",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "age_months"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "de4917b00049c7450170",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "last_updated"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

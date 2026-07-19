@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "c8e5feee6e4bb38fba76",
+  "position": {
+    "x": 10,
+    "y": 67.777777777777771,
+    "z": 0,
+    "height": 107.77777777777777,
+    "width": 225.55555555555554,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "Pct Stale or Dormant"
+                }
+              },
+              "queryRef": "mart_freshness.Pct Stale or Dormant",
+              "nativeQueryRef": "Pct Stale or Dormant"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_freshness"
+                  }
+                },
+                "Property": "Pct Stale or Dormant"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "56421c108396d4c4192d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "Pct Stale or Dormant"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

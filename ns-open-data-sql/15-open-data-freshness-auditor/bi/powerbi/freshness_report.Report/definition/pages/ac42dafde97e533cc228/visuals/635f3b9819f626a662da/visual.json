@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "635f3b9819f626a662da",
+  "position": {
+    "x": 1056.6666666666667,
+    "y": 17.777777777777779,
+    "z": 5001,
+    "height": 142.22222222222223,
+    "width": 167.77777777777777,
+    "tabOrder": 5001
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_freshness"
+                    }
+                  },
+                  "Property": "bucket"
+                }
+              },
+              "queryRef": "mart_freshness.bucket",
+              "nativeQueryRef": "bucket",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "aed0f3d78be5503357df",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_freshness"
+              }
+            },
+            "Property": "bucket"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

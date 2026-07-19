@@ -1,0 +1,134 @@
+table mart_freshness
+	lineageTag: 1199bf66-eff6-46a3-ab80-c03329fe9bda
+
+	measure 'Total Assets' = COUNTROWS ( mart_freshness )
+		formatString: 0
+		lineageTag: e7894ce6-2f9b-4b96-a70d-3c1fcfd55c73
+
+	measure 'Stale or Dormant Assets' =
+			
+			CALCULATE (
+			    COUNTROWS ( mart_freshness ),
+			    mart_freshness[stale_or_dormant] = 1
+			)
+		formatString: 0
+		lineageTag: 4394a810-a862-407d-90b4-0c3144b9e686
+
+	measure 'Pct Stale or Dormant' =
+			
+			DIVIDE ( [Stale or Dormant Assets], [Total Assets] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: e0fd2638-1243-4cae-b01a-04dfa433feb8
+
+	measure 'Avg Age Months' = AVERAGE ( mart_freshness[age_months] )
+		formatString: 0.0
+		lineageTag: 486ed22a-1f87-4784-a888-b2019a2a9751
+
+	column uid
+		dataType: string
+		lineageTag: 409f0299-d6b7-403d-af67-0d93ef55ffa1
+		summarizeBy: none
+		sourceColumn: uid
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: cab6e3a1-7bd4-4d5c-8bf2-95466e26ab0a
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: 6ecba9d7-9c3b-4f28-8e0c-4da7cd99d70b
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: f3974f66-6749-410a-9b90-f18791ddd313
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner
+		dataType: string
+		lineageTag: 1d722c99-4aff-4a06-b071-a78ef1e5d3e4
+		summarizeBy: none
+		sourceColumn: owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 92d7f119-b5f8-46e8-9f3f-e246a42ca713
+		summarizeBy: none
+		sourceColumn: last_updated
+
+		variation Variation
+			isDefault
+			relationship: abb7eed7-6787-4d69-8587-a974e4e3a9be
+			defaultHierarchy: LocalDateTable_14da7a52-276d-4ab7-b656-10ce1b80bcbf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column age_months
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b77d52e-6266-4306-93ea-9169d150f9c2
+		summarizeBy: sum
+		sourceColumn: age_months
+
+		annotation SummarizationSetBy = Automatic
+
+	column bucket
+		dataType: string
+		lineageTag: 51984600-9d6f-4f5b-8a26-dddef6d323b2
+		summarizeBy: none
+		sourceColumn: bucket
+		sortByColumn: bucket_order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column bucket_order
+		dataType: int64
+		formatString: 0
+		lineageTag: ca761ceb-bfa0-4373-94fe-f1b9705a0a9b
+		summarizeBy: sum
+		sourceColumn: bucket_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column stale_or_dormant
+		dataType: int64
+		formatString: 0
+		lineageTag: 8346dc0f-aa26-4842-8574-c68ae9704d83
+		summarizeBy: sum
+		sourceColumn: stale_or_dormant
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mart_freshness = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("bi\exports\mart_freshness.csv"), [Delimiter = ",", Columns = 10, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"uid", type text}, {"name", type text}, {"type", type text}, {"category", type text}, {"owner", type text}, {"last_updated", type date}, {"age_months", Int64.Type}, {"bucket", type text}, {"bucket_order", Int64.Type}, {"stale_or_dormant", Int64.Type}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

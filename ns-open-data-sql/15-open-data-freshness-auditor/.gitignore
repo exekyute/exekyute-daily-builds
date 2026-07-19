@@ -1,0 +1,10 @@
+out/
+*.duckdb
+*.db
+__pycache__/
+
+# Power BI machine-local state (DPAPI-encrypted settings and binary cache)
+bi/powerbi/**/.pbi/localSettings.json
+bi/powerbi/**/.pbi/editorSettings.json
+bi/powerbi/**/.pbi/cache.abf
+*.abf

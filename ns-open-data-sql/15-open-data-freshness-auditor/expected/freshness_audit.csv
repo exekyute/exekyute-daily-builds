@@ -1,0 +1,81 @@
+section,item,detail,n_assets,n_stale_dormant,pct,age_months,last_updated,row_rank
+overall,all assets,"",1269,655,51.6,39.4,"",1
+bucket_summary,Fresh,"",450,"",35.5,2.6,"",1
+bucket_summary,Aging,"",164,"",12.9,9.3,"",2
+bucket_summary,Stale,"",69,"",5.4,17.4,"",3
+bucket_summary,Dormant,"",586,"",46.2,78.7,"",4
+bucket_summary,No date,"",0,"",0.0,"","",5
+by_category,Business and Economy,"",32,32,100.0,109.3,"",1
+by_category,(uncategorized),"",7,7,100.0,33.9,"",2
+by_category,Crime and Justice,"",34,30,88.2,36.2,"",3
+by_category,Mines and Minerals,"",17,15,88.2,96.3,"",4
+by_category,Community Services,"",39,33,84.6,53.1,"",5
+by_category,Education - Early Childhood,"",12,10,83.3,54.5,"",6
+by_category,"Arts, Culture and History","",35,29,82.9,65.2,"",7
+by_category,Education - Primary to Grade 12,"",45,36,80.0,55.0,"",8
+by_category,Business and Industry,"",96,72,75.0,42.7,"",9
+by_category,Interprovincial and International Affairs,"",4,3,75.0,90.0,"",10
+by_category,Public Service,"",11,8,72.7,47.4,"",11
+by_category,"Lands, Forests and Wildlife","",89,64,71.9,55.9,"",12
+by_category,Education - Post-Secondary and Skills Training,"",13,9,69.2,52.9,"",13
+by_category,Communities and Social Services,"",3,2,66.7,33.3,"",14
+by_category,Employment and Labour,"",32,21,65.6,77.9,"",15
+by_category,Public Opinion Research,"",23,15,65.2,57.9,"",16
+by_category,Population and Demographics,"",63,41,65.1,74.7,"",17
+by_category,Internal Government Services,"",27,13,48.1,40.3,"",18
+by_category,Health and Wellness,"",194,85,43.8,24.7,"",19
+by_category,Agriculture and Agri-business,"",29,11,37.9,22.5,"",20
+by_category,Immigration and Migration,"",29,11,37.9,36.1,"",21
+by_category,Government Administration,"",11,4,36.4,12.8,"",22
+by_category,"Roads, Driving and Transport","",45,16,35.6,27.4,"",23
+by_category,Nature and Environment,"",56,18,32.1,18.2,"",24
+by_category,Environment and Energy,"",149,44,29.5,25.8,"",25
+by_category,Permits and Licensing,"",36,8,22.2,26.2,"",26
+by_category,Financial Services,"",11,2,18.2,22.6,"",27
+by_category,Fishing and Aquaculture,"",73,12,16.4,16.0,"",28
+by_category,Municipalities,"",50,4,8.0,8.6,"",29
+by_category,Procurement and Contracts,"",3,0,0.0,3.3,"",30
+by_category,Communications,"",1,0,0.0,1.0,"",31
+by_owner,L'nu Affairs,"",4,4,100.0,19.5,"",1
+by_owner,Public Service Commission,"",4,4,100.0,23.0,"",2
+by_owner,Office of Priorities and Planning,"",2,2,100.0,23.0,"",3
+by_owner,Nova Scotia Status of Women Office,"",1,1,100.0,52.0,"",4
+by_owner,Growth and Development,"",66,63,95.5,61.3,"",5
+by_owner,Finance and Treasury Board,"",121,113,93.4,114.7,"",6
+by_owner,Education and Early Childhood Development,"",55,46,83.6,56.7,"",7
+by_owner,Natural Resources,"",67,55,82.1,57.5,"",8
+by_owner,Opportunities and Social Development,"",31,25,80.6,43.5,"",9
+by_owner,Energy,"",15,11,73.3,37.5,"",10
+by_owner,Advanced Education,"",7,5,71.4,26.3,"",11
+by_owner,Nova Scotia Open Data Portal,"",31,21,67.7,34.4,"",12
+by_owner,House of Assembly,"",3,2,66.7,15.7,"",13
+by_owner,Justice,"",60,36,60.0,27.4,"",14
+by_owner,Intergovernmental Affairs,"",5,3,60.0,72.8,"",15
+by_owner,Emergency Management,"",2,1,50.0,36.5,"",16
+by_owner,"Communities, Culture, Tourism and Heritage","",47,23,48.9,22.8,"",17
+by_owner,Service Nova Scotia,"",175,74,42.3,45.4,"",18
+by_owner,Health and Wellness,"",155,64,41.3,15.3,"",19
+by_owner,Seniors and Long-term Care,"",10,4,40.0,36.1,"",20
+by_owner,Agriculture,"",32,11,34.4,20.4,"",21
+by_owner,Environment and Climate Change,"",140,48,34.3,26.9,"",22
+by_owner,Public Works,"",51,16,31.4,23.8,"",23
+by_owner,"Labour, Skills and Immigration","",41,8,19.5,17.1,"",24
+by_owner,Fisheries and Aquaculture,"",103,11,10.7,9.5,"",25
+by_owner,Municipal Affairs,"",39,4,10.3,12.0,"",26
+by_owner,Executive Council Office,"",1,0,0.0,1.0,"",27
+by_owner,Nova Scotia Legislative Library,"",1,0,0.0,1.0,"",28
+worst_offenders,NS Climate Change Data (outdated: CMIP3/2011),Environment and Climate Change,"","","",128,2015-11-30,1
+worst_offenders,Sea-level Rise (outdated: CMIP3/2011),Environment and Climate Change,"","","",128,2015-11-30,2
+worst_offenders,[ARCHIVED] Hunting License Sellers,Service Nova Scotia,"","","",127,2015-12-11,3
+worst_offenders,[ARCHIVED] Surplus Crown Property: Auction - Miller Lake (Heavy Equipment),Public Works,"","","",127,2015-12-14,4
+worst_offenders,"Census, Assessment and Poll Tax Records 1767-1838",Service Nova Scotia,"","","",126,2016-01-11,5
+worst_offenders,Court for Divorce and Matrimonial Causes Case Files,Service Nova Scotia,"","","",126,2016-01-11,6
+worst_offenders,Tancook Ferry Schedule,Public Works,"","","",126,2016-01-14,7
+worst_offenders,Nova Scotia Assessment Results by Year and Board - Mathématiques en 4e année,Education and Early Childhood Development,"","","",126,2016-01-19,8
+worst_offenders,Nova Scotia Assessment Results by Year and Board - Mathématiques en 6e année,Education and Early Childhood Development,"","","",126,2016-01-19,9
+worst_offenders,Nova Scotia Assessment Results by Year and Board - Mathématiques en 8e année,Education and Early Childhood Development,"","","",126,2016-01-19,10
+worst_offenders,[Archived] Federal Provincial Contribution Agreements,Intergovernmental Affairs,"","","",126,2016-01-21,11
+worst_offenders,Long-term Monitoring of Former Tar Ponds Site,Public Works,"","","",126,2016-01-22,12
+worst_offenders,NS Top Twenty Baby Names 2014,Service Nova Scotia,"","","",126,2016-01-22,13
+worst_offenders,NS Top Twenty Baby Names 2015,Service Nova Scotia,"","","",126,2016-01-22,14
+worst_offenders,[ARCHIVED] Fishing License Sellers,Service Nova Scotia,"","","",126,2016-01-22,15
