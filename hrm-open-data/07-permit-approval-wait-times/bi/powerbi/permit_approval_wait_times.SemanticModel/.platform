@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "permit_approval_wait_times"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7abdfa78-6191-47c9-8f06-02317c46a187"
+  }
+}

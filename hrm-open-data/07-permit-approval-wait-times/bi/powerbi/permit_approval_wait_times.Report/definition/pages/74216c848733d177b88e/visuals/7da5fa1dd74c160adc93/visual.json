@@ -1,0 +1,200 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "7da5fa1dd74c160adc93",
+  "position": {
+    "x": 50.577507598784194,
+    "y": 258.72340425531917,
+    "z": 0,
+    "height": 313.19148936170217,
+    "width": 611.79331306990889,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "decompositionTreeVisual",
+    "query": {
+      "queryState": {
+        "Analyze": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_processing"
+                    }
+                  },
+                  "Property": "Total Duration"
+                }
+              },
+              "queryRef": "mart_processing.Total Duration",
+              "nativeQueryRef": "Total Duration"
+            }
+          ]
+        },
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_processing"
+                    }
+                  },
+                  "Property": "issuance_stage"
+                }
+              },
+              "queryRef": "mart_processing.issuance_stage",
+              "nativeQueryRef": "issuance_stage",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_processing"
+                    }
+                  },
+                  "Property": "jurisdictional_breakdown"
+                }
+              },
+              "queryRef": "mart_processing.jurisdictional_breakdown",
+              "nativeQueryRef": "jurisdictional_breakdown",
+              "active": true
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_processing"
+                  }
+                },
+                "Property": "Total Duration"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "ExplainBy"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "mart_processing.issuance_stage"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_processing"
+                    }
+                  },
+                  "Property": "issuance_stage"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "mart_processing.jurisdictional_breakdown"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Post Issuance'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "tree": [
+        {
+          "properties": {
+            "effectiveBarsPerLevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0dd92e1422dca6d3683c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_processing"
+              }
+            },
+            "Property": "Total Duration"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b18e9adb0448bc580224",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_processing"
+              }
+            },
+            "Property": "issuance_stage"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e19f971984b61dd5bc82",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_processing"
+              }
+            },
+            "Property": "jurisdictional_breakdown"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

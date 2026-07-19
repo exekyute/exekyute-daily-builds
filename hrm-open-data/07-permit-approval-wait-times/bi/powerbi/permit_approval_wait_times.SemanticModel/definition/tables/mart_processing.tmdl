@@ -1,0 +1,82 @@
+table mart_processing
+	lineageTag: 3a951b81-b3b2-4c90-bd04-4e3b8facae8e
+
+	measure 'Total Duration' = SUM ( mart_processing[total_duration] )
+		lineageTag: 23f55aef-de7e-467a-b1b4-837f90ef0488
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Permits = DISTINCTCOUNT ( mart_processing[permit_number] )
+		formatString: 0
+		lineageTag: 1b0f2e4f-9ca0-4dbf-8622-9590e824acec
+
+	measure 'Avg Duration per Permit' = DIVIDE ( [Total Duration], [Permits] )
+		formatString: 0.00
+		lineageTag: 65f4dcb6-0f09-4af6-8445-d265a815a924
+
+	measure Occurrences = SUM ( mart_processing[total_occurrence] )
+		formatString: 0
+		lineageTag: 6110700c-6dd4-4337-870d-5c92bdd8fc3c
+
+	measure 'Stage Share of Duration' = DIVIDE ( [Total Duration], CALCULATE ( [Total Duration], ALL ( mart_processing ) ) )
+		lineageTag: 356421e4-a12d-4ae7-83d8-f9b85b009c63
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column permit_number
+		dataType: string
+		lineageTag: 2fb826ed-2f9a-4be0-bb82-af6f5c3541fc
+		summarizeBy: none
+		sourceColumn: permit_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column issuance_stage
+		dataType: string
+		lineageTag: e3a59cc2-7d2e-4ea5-9fdb-a1a954beef52
+		summarizeBy: none
+		sourceColumn: issuance_stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column jurisdictional_breakdown
+		dataType: string
+		lineageTag: 8728f902-d912-4187-9ffc-a6104a70936d
+		summarizeBy: none
+		sourceColumn: jurisdictional_breakdown
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_occurrence
+		dataType: int64
+		formatString: 0
+		lineageTag: 33b8a760-8fba-4bb6-b904-25668ebd98fa
+		summarizeBy: sum
+		sourceColumn: total_occurrence
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_duration
+		dataType: double
+		lineageTag: b22e846e-5900-424c-95de-b1535f8ec605
+		summarizeBy: sum
+		sourceColumn: total_duration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_processing = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\07-permit-approval-wait-times\bi\exports\mart_processing.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"permit_number", type text}, {"issuance_stage", type text}, {"jurisdictional_breakdown", type text}, {"total_occurrence", Int64.Type}, {"total_duration", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

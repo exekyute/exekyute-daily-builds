@@ -1,0 +1,6 @@
+issuance_stage,jurisdictional_breakdown,permit_count,total_duration,avg_duration_per_permit,median_duration
+Post Issuance,Customer,45472,16890546.35,371.449,272.052
+Pre Issuance,Customer,29415,3178546.452,108.059,9.081
+Other Timeline,Other Type,5163,2907721.914,563.185,721.568
+Pre Issuance,Staff,56440,884703.861,15.675,6.986
+Post Issuance,Staff,13215,157394.003,11.91,4.286

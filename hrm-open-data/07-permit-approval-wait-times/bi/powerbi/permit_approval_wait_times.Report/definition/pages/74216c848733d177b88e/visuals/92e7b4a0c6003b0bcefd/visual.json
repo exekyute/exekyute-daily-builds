@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "92e7b4a0c6003b0bcefd",
+  "position": {
+    "x": 45.714285714285715,
+    "y": 123.5258358662614,
+    "z": 4,
+    "height": 135.19756838905775,
+    "width": 164.37689969604864,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_processing"
+                    }
+                  },
+                  "Property": "issuance_stage"
+                }
+              },
+              "queryRef": "mart_processing.issuance_stage",
+              "nativeQueryRef": "issuance_stage",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4180144aba0577f9804c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_processing"
+              }
+            },
+            "Property": "issuance_stage"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

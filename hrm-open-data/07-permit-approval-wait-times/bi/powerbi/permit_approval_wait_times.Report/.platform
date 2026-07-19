@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "permit_approval_wait_times"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "49862ef7-6a22-4b69-a511-8c207cd5bffe"
+  }
+}
