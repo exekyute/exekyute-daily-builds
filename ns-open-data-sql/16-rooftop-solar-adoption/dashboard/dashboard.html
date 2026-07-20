@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova Scotia rooftop solar adoption</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Nova Scotia rooftop solar adoption</h1>
+    <p class="sub">Residential SolarHomes installations by region and year, from the Nova Scotia
+    Open Data portal. Every figure on this page is derived in the browser from the exported
+    dataset below; nothing is hardcoded.</p>
+  </header>
+
+  <div class="stat-row" id="headline"></div>
+
+  <section class="panel">
+    <h2>Provincial growth curve</h2>
+    <p class="hint">Bars are installations per year; the line is the cumulative total. Click a bar
+    to load that year in the detail panel below.</p>
+    <div class="legend">
+      <span class="key"><span class="swatch bar"></span>Installs per year</span>
+      <span class="key"><span class="swatch line"></span>Cumulative installs</span>
+    </div>
+    <div id="growth-chart"></div>
+  </section>
+
+  <div class="two-col">
+    <section class="panel">
+      <h2>Top regions by installations</h2>
+      <p class="hint">Forward sortation areas (first three postal characters), all years combined.</p>
+      <ol class="rank-list" id="top-installs"></ol>
+    </section>
+    <section class="panel">
+      <h2>Top regions by installed kW</h2>
+      <p class="hint">The same regions ranked by total system capacity.</p>
+      <ol class="rank-list by-kw" id="top-kw"></ol>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Year detail</h2>
+    <div class="year-controls">
+      <label for="year-select">Year</label>
+      <select id="year-select"></select>
+    </div>
+    <div class="detail-grid" id="year-stats"></div>
+    <div id="year-top"></div>
+  </section>
+
+  <footer>Data: Nova Scotia Open Data, Residential SolarHomes Installations (fsvq-ermw).
+  Open Government Licence - Nova Scotia.</footer>
+
+</div>
+<script src="data.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
