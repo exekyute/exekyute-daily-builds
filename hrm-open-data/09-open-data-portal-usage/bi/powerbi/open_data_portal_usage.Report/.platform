@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "open_data_portal_usage"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "33011f08-7f36-41af-97a8-9c220c9f5c85"
+  }
+}

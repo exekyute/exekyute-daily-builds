@@ -1,0 +1,55 @@
+﻿table mart_usage_monthly
+	lineageTag: c87e6346-5e0e-4726-8d98-1a9441f39f82
+
+	column month_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 59d48313-27a5-4bb0-8c46-5ead4dbdfe62
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fa45496-4074-4505-a301-f402c66cce8f
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_usage
+		dataType: int64
+		formatString: 0
+		lineageTag: f2294313-8abc-4eb9-80a1-13aa71889fb2
+		summarizeBy: sum
+		sourceColumn: total_usage
+
+		annotation SummarizationSetBy = Automatic
+
+	column distinct_datasets
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b9e50a4-34f5-4baa-8a75-dc54a0982ef7
+		summarizeBy: sum
+		sourceColumn: distinct_datasets
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mart_usage_monthly = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\09-open-data-portal-usage\bi\exports\mart_usage_monthly.csv"), [Delimiter = ",", Columns = 4, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"month_start", type date}, {"year", Int64.Type}, {"total_usage", Int64.Type}, {"distinct_datasets", Int64.Type}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

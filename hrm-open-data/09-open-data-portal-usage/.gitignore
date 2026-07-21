@@ -1,0 +1,19 @@
+# generated output (golden lives in expected/; marts live in bi/exports/)
+out/
+
+# local working databases
+*.duckdb
+*.db
+
+# python caches
+__pycache__/
+
+# local styled-docs preview (not part of the build)
+_preview/
+
+# local BI working file: the build guide stays local
+bi/README.md
+
+# Power BI local state (Microsoft's own gitignore defaults for .pbip projects)
+**/.pbi/localSettings.json
+**/.pbi/cache.abf

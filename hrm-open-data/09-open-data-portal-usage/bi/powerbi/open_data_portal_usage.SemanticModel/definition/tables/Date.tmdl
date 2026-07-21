@@ -1,0 +1,50 @@
+table Date
+	lineageTag: ce2007df-a6fc-4ca6-aa47-0562bd256660
+	dataCategory: Time
+
+	measure 'Total Usage' = SUM ( mart_usage_monthly[total_usage] )
+		formatString: #,0
+		lineageTag: 87a14313-5d13-4364-99a9-fc6cdb303fbb
+
+	measure 'Usage Rolling 3M' = CALCULATE ( [Total Usage], DATESINPERIOD ( 'Date'[Date], MAX ( 'Date'[Date] ), -3, MONTH ) )
+		formatString: #,0
+		lineageTag: 16382f8f-f6d3-49b4-a262-f4d21f2a2497
+
+	measure 'Dataset Usage' = SUM ( mart_usage_by_dataset[total_usage] )
+		formatString: #,0
+		lineageTag: 517cb7d2-d454-46c7-ba11-340bdbdda97c
+
+	measure 'Dataset Rank' = RANKX ( ALLSELECTED ( mart_usage_by_dataset[Dataset] ), [Dataset Usage], , DESC, Skip )
+		formatString: 0
+		lineageTag: 63e1f7fc-a05f-4f50-a007-8dc711d9d313
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 6a232d09-8029-47e8-a7f4-f01665d1277e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = YEAR ( 'Date'[Date] )
+		formatString: 0
+		lineageTag: eabcba1c-f19e-47fa-8115-d25f1421f048
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Start' = DATE ( YEAR ( 'Date'[Date] ), MONTH ( 'Date'[Date] ), 1 )
+		formatString: General Date
+		lineageTag: 4628b264-5500-4a9a-92c2-536940017d53
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source = CALENDAR ( MIN ( mart_usage_monthly[month_start] ), MAX ( mart_usage_monthly[month_start] ) )
+
+	annotation PBI_Id = b92689005531438aa33296a93d2aa46b
+

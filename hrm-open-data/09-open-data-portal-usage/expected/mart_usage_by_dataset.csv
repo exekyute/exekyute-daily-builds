@@ -1,0 +1,238 @@
+dataset,total_usage,first_month,last_month,usage_rank
+Zoning Boundaries,91508850,2014-09-01,2025-10-01,1
+Street Centrelines,74719864,2014-09-01,2025-10-01,2
+Civic Addresses,44444508,2014-09-01,2025-10-01,3
+Polling Districts,24918350,2014-09-01,2025-10-01,4
+Community Boundaries,19374225,2014-07-01,2025-10-01,5
+PPL&C Building Permits Geolocated,14538697,2023-06-01,2025-10-01,6
+Bus Routes,11010867,2014-09-01,2020-06-01,7
+Ice Routes,9689200,2017-06-01,2025-10-01,8
+Street Name Routes,9432220,2018-07-01,2025-10-01,9
+HRM Parks,7334536,2017-02-01,2025-10-01,10
+Active Travelways,6243133,2018-10-01,2025-10-01,11
+Crime,6220883,2014-07-01,2025-10-01,12
+Active and Proposed Heritage Conservation Districts,5958706,2019-11-01,2025-10-01,13
+Heritage Properties,5763143,2020-10-01,2025-10-01,14
+NSPW HRM Service Exchange Boundary 2022,5539584,2022-06-01,2025-10-01,15
+Bus Stops,4837932,2017-02-01,2025-10-01,16
+Transit Bus Routes,4604354,2020-06-01,2025-10-01,17
+RC Special Area Boundary,4217187,2019-11-01,2025-10-01,18
+Private Road Area Rates,4054809,2017-11-01,2025-10-01,19
+RC Shadow Impact Assessment Areas,3984205,2019-11-01,2025-10-01,20
+Transit Area Rates,3915587,2014-10-01,2025-10-01,21
+BID Area Rates,3902976,2014-09-01,2025-10-01,22
+Community Plan Generalized Future Land Use,3890640,2019-03-01,2025-10-01,23
+Fire Protection Area Rates,3806793,2014-09-01,2025-10-01,24
+Community Facilities and Services Area Rates,3758176,2017-11-01,2025-10-01,25
+Transportation Area Rates,3751976,2014-10-01,2025-10-01,26
+By-Law Areas,3570710,2014-09-01,2025-10-01,27
+RC Minimum Front and Flanking Yards,3486182,2019-11-01,2025-10-01,28
+Permit Parking Zones,3485397,2020-11-01,2025-10-01,29
+HRM Public Washrooms,3410993,2020-08-01,2025-10-01,30
+Accessible Parking Spots,3259024,2019-11-01,2025-10-01,31
+Parking Pay Zones,3180668,2020-11-01,2025-10-01,32
+Building Polygons,2957555,2022-09-01,2025-10-01,33
+Bike Infrastructure and Suggested Routes,2948198,2019-05-01,2025-10-01,34
+Service Requirements,2923481,2018-10-01,2025-10-01,35
+Truck Routes,2887752,2018-10-01,2025-10-01,36
+Building Symbols,2843441,2014-09-01,2025-10-01,37
+Tax Designation,2828370,2015-01-01,2025-10-01,38
+Community Plan Areas,2754480,2018-02-01,2025-10-01,39
+Boat Facilities,2645834,2018-02-01,2025-10-01,40
+View Planes,2639952,2018-02-01,2025-10-01,41
+NSPW HRM Service Exchange Boundary 2006,2603180,2020-10-01,2025-10-01,42
+RC Pedestrian Oriented Commercial Streets,2573675,2019-11-01,2025-10-01,43
+Solid Waste Collection Areas,2485690,2014-09-01,2025-10-01,44
+RC Maximum Floor Area Ratio,2459925,2019-11-01,2025-10-01,45
+RC Landmark Building Sites,2305016,2021-11-01,2025-10-01,46
+RC Transportation Reserves,2279223,2021-11-01,2025-10-01,47
+RC Bonus Zoning Rate Districts,2264965,2021-11-01,2025-10-01,48
+RC SMPS Precincts,2244577,2021-11-01,2025-10-01,49
+RC SMPS View Corridors,2232249,2021-11-01,2025-10-01,50
+Traffic Control Locations,2217837,2021-08-01,2025-10-01,51
+RC Maximum Front and Flanking Yards,2158834,2019-11-01,2025-10-01,52
+Community Council Boundaries,2132821,2015-07-01,2025-10-01,53
+Building Details,2029095,2017-02-01,2025-10-01,54
+311 Call Details,1951222,2023-11-01,2025-10-01,55
+Transit Automated Passenger Counts,1929041,2018-10-01,2025-10-01,56
+HRCE School Boundary - English Program Elementary,1898069,2020-10-01,2025-10-01,57
+Solar City Program - Solar Electric Generation with Micro-Inverters,1859081,2018-03-01,2025-08-01,58
+Building Outlines,1708976,2014-07-01,2025-10-01,59
+Contours 5m,1688094,2014-09-01,2025-10-01,60
+HRCE School Boundary - English Program High,1673499,2020-10-01,2025-10-01,61
+HRCE School Boundary - English Program Junior High,1632011,2020-10-01,2025-10-01,62
+HRCE School Boundary - Early French Immersion Elementary,1596989,2020-10-01,2025-10-01,63
+RC Maximum Building Heights,1570868,2019-11-01,2025-10-01,64
+HRCE School Boundary - Early French Immersion Junior High,1509955,2020-10-01,2025-10-01,65
+HRCE School Boundary - Early French Immersion High,1492979,2020-10-01,2025-10-01,66
+Legacy Building Permits,1490524,2016-01-01,2025-10-01,67
+HRCE School Boundary - Late French Immersion High,1489958,2020-10-01,2025-10-01,68
+HRCE School Boundary - Late French Immersion Junior High,1475232,2020-10-01,2025-10-01,69
+Traffic Collisions,1429525,2020-12-01,2025-10-01,70
+HRM Park Recreation Features,1418774,2022-01-01,2025-10-01,71
+Traffic Calming Assessments,1378780,2023-06-01,2025-10-01,72
+PPL&C Building Permits,1339800,2021-09-01,2025-10-01,73
+Pre-Amalgamation Boundaries,1335350,2014-09-01,2025-10-01,74
+Trails,1315651,2014-07-01,2025-10-01,75
+Street Closures,1275346,2019-05-01,2025-10-01,76
+HRFE Incidents Initial Response,1264135,2023-09-01,2025-10-01,77
+Public Trees,1224251,2020-10-01,2025-10-01,78
+Street Junctions,1177252,2017-06-01,2025-10-01,79
+Dry Hydrants,1043574,2017-06-01,2025-10-01,80
+Outdoor Recreation Equipment,1039071,2017-01-01,2025-10-01,81
+Planning Advisory Committee Boundaries,1033765,2018-07-01,2025-10-01,82
+Grass Inventory,1021704,2022-12-01,2025-10-01,83
+Detailed Plan Areas,1012278,2019-03-01,2025-10-01,84
+Polling Divisions,1004083,2016-10-01,2025-10-01,85
+HRM Traffic Studies,993712,2021-07-01,2025-10-01,86
+Ferry Routes,983900,2018-02-01,2025-10-01,87
+Integrated Mobility Plan 2022 Regional Centre Bikeway Network Map,983000,2019-05-01,2025-10-01,88
+PPL&C Construction Permits,978409,2021-09-01,2025-10-01,89
+Bicycle Counts,937767,2021-07-01,2025-10-01,90
+Census 2016 Population Marital Status Ages,872008,2017-11-01,2025-10-01,91
+Census 2016 Population Age Range,855299,2017-11-01,2025-10-01,92
+Census 2016 Dissemination Areas,838251,2017-11-01,2025-10-01,93
+Census 2016 Census Tracts,834591,2017-11-01,2025-10-01,94
+Polling Divisions 2012,813267,2016-10-01,2025-10-01,95
+Airport Runways,806552,2018-02-01,2025-10-01,96
+Transit Bus Snow Routes,804309,2024-02-01,2025-10-01,97
+Designated Smoking Area Receptacles,800264,2019-01-01,2025-10-01,98
+Spot Heights,796338,2014-10-01,2025-10-01,99
+Post-Bonus Building Height - Downtown Halifax,791640,2019-03-01,2025-10-01,100
+Census 2016 Dissemination Blocks,771487,2017-11-01,2025-10-01,101
+Polling Districts 2012,767290,2016-10-01,2025-10-01,102
+Pre-Bonus Building Height - Downtown Halifax,762783,2019-03-01,2025-10-01,103
+Census 2016 Population Ages,739744,2017-11-01,2025-10-01,104
+Parking Meters,733237,2017-02-01,2020-08-01,105
+Volunteer Recruitment Areas,725624,2022-12-01,2025-10-01,106
+Census 2016 Population Marital Status Gender,724278,2017-11-01,2025-10-01,107
+Tax Rates 2021,704905,2017-11-01,2025-10-01,108
+RC View Lines,703196,2019-11-01,2025-10-01,109
+Transit Priority Corridors,679541,2021-07-01,2025-10-01,110
+Bridges,670350,2020-11-01,2025-10-01,111
+RC View Terminus Sites,665634,2019-11-01,2025-10-01,112
+Regional Plan Generalized Future Land Use,660740,2019-03-01,2025-10-01,113
+Youth Advocate Program,621120,2019-01-01,2025-10-01,114
+Fire Response Zones,614132,2022-01-01,2025-10-01,115
+Sidewalk Closures and Disruptions,603467,2019-05-01,2025-10-01,116
+Open Data Analytics,586441,2018-07-01,2025-10-01,117
+Traffic Calming Infrastructure,583825,2021-11-01,2025-10-01,118
+Steps,583565,2020-11-01,2025-10-01,119
+Capital Projects,562649,2018-10-01,2025-10-01,120
+Census 2021 Dissemination Areas,558198,2022-06-01,2025-10-01,121
+PPL&C Engineering Permits,543904,2022-06-01,2025-10-01,122
+Proposed Rapid Transit Network,539084,2023-09-01,2025-10-01,123
+Spring Weight Restrictions,524322,2022-06-01,2025-10-01,124
+Census 2021 Census Tracts,521702,2022-06-01,2025-10-01,125
+Bike Amenities,518430,2021-11-01,2025-10-01,126
+Commuter Permit Parking Streets,508602,2023-09-01,2025-10-01,127
+RC LUB View Corridors,505555,2021-11-01,2025-10-01,128
+Transit Priority Measures (Operational),504411,2021-07-01,2025-10-01,129
+PPL&C Land Use Approvals Permits,502085,2022-06-01,2025-10-01,130
+RC Accessory Parking Prohibited Areas,501647,2021-11-01,2025-10-01,131
+Land Use Schedules,501498,2019-03-01,2025-10-01,132
+Parking Pay Stations,499186,2021-03-01,2025-10-01,133
+PPL&C Halifax Water Permits,498749,2022-06-01,2025-10-01,134
+Outdoor Recreation Polygons,497656,2021-03-01,2025-10-01,135
+311 Call Volumes,496566,2018-10-01,2025-10-01,136
+Detailed Plan Sub-Areas,488388,2019-03-01,2025-10-01,137
+RC Maximum Streetwall Heights,485888,2021-11-01,2025-10-01,138
+Natural Inventory,478310,2024-07-01,2025-10-01,139
+Height Precincts,471631,2019-03-01,2025-10-01,140
+Height Precincts Interpretation,464176,2019-03-01,2025-10-01,141
+Commercial General Rates,443178,2023-11-01,2025-10-01,142
+Residential Parking Zones,424159,2019-01-01,2020-11-01,143
+PPL&C Issued Public Works ROW Permits,419048,2022-06-01,2025-10-01,144
+RC Transition Lines,405183,2019-11-01,2025-10-01,145
+Speed Display Signs,403818,2021-08-01,2025-10-01,146
+Legacy Residential Standards Violations,390141,2020-08-01,2025-10-01,147
+Street Lights,376222,2021-03-01,2025-10-01,148
+HRFE Fire Cause and Origin,375612,2023-11-01,2025-10-01,149
+RC Citadel Ramparts,360120,2019-11-01,2025-10-01,150
+Census 2021 Dissemination Blocks,360086,2022-06-01,2025-10-01,151
+Naturalization Initiatives,351137,2020-11-01,2025-10-01,152
+RC Site Plan Approval Areas,342829,2019-11-01,2025-10-01,153
+RC Downtown Dartmouth Precincts,338816,2019-11-01,2025-10-01,154
+Transit Ferry Passenger Counts,336837,2021-07-01,2025-10-01,155
+RC View Corridors,335118,2019-11-01,2025-10-01,156
+Floodplain Overlay Zones and Modified Floodproofing,318486,2025-07-01,2025-10-01,157
+Transit Signal Priority (Operational),283172,2021-07-01,2025-10-01,158
+Historical Aerial Photographs Index,282690,2021-03-01,2025-10-01,159
+Litter Bins,281438,2022-03-01,2025-10-01,160
+Growth Control Areas,280509,2024-02-01,2025-10-01,161
+Polling Divisions 2016,280211,2020-06-01,2025-10-01,162
+Proposed Rapid Transit Walksheds,276545,2023-09-01,2025-10-01,163
+Outdoor Recreation Polygon Uses,266558,2021-03-01,2025-10-01,164
+HRM Building Energy Usage,262854,2021-09-01,2025-10-01,165
+Commuting Mode Share by Census Tract,261060,2020-06-01,2025-10-01,166
+Canadian Index of Multiple Deprivation 2021,242780,2024-04-01,2025-10-01,167
+PPL&C Permit Processing Times,241626,2024-05-01,2025-10-01,168
+Cityworks Service Requests,238102,2021-11-01,2025-10-01,169
+Municipal Cemeteries Mapping,233330,2022-01-01,2025-10-01,170
+HRM Tax Bill Info,228216,2021-04-01,2025-10-01,171
+Municipal Cemeteries Interred,225841,2022-01-01,2025-10-01,172
+Open Data Catalogue,222069,2022-02-01,2025-10-01,173
+Horticultural Beds,220828,2022-03-01,2025-10-01,174
+Cityworks Service Requests Custom Fields,217008,2021-11-01,2025-10-01,175
+Maximum Building Heights,215798,2024-07-01,2025-10-01,176
+Mobility Counters,215503,2021-07-01,2025-10-01,177
+Food and Artisan Vendors,205481,2023-06-01,2025-10-01,178
+IMP Key Performance Indicators,199931,2021-08-01,2025-10-01,179
+African Nova Scotian Communities,195768,2024-11-01,2025-10-01,180
+Transportation Analysis Zones (TAZ),186994,2024-04-01,2025-10-01,181
+Commuting Mode Share by Region,186051,2021-08-01,2025-10-01,182
+Road Safety Countermeasure Tracking,183261,2021-11-01,2025-10-01,183
+Census 2021 Census Metropolitan Areas,178246,2024-02-01,2025-10-01,184
+EMO Sectors,164847,2022-02-01,2025-10-01,185
+LW Monitoring Sites,163707,2022-09-01,2025-10-01,186
+Special Election 2019 - District 15 Polling Divisions,161264,2022-01-01,2025-10-01,187
+Sackville Rivers Study - Recommended Floodplains,151680,2022-01-01,2024-10-01,188
+Proposed Bus Rapid Transit and Ferry Stops,150617,2023-09-01,2025-10-01,189
+Minimum Front and Flanking Yards,144153,2024-07-01,2025-10-01,190
+2031 Commuting Mode Share Targets,130972,2022-02-01,2025-10-01,191
+Special Election 2019 - District 15 Polling Divisions Results,130202,2022-01-01,2025-10-01,192
+Cityworks Work Orders,121276,2023-09-01,2025-10-01,193
+Right-Of-Way (ROW) Charge Boundary,117238,2023-11-01,2025-10-01,194
+Zoning Boundaries 2021,115539,2022-09-01,2025-10-01,195
+Sidewalk Winter Maintenance Areas,115046,2022-12-01,2025-10-01,196
+Strategic Performance Snapshot,114940,2022-03-01,2025-10-01,197
+Benefits Estimate Calculator,113736,2022-03-01,2025-10-01,198
+Zoning Boundaries 2019,103015,2022-09-01,2025-10-01,199
+Transit Shelters,99095,2023-02-01,2025-10-01,200
+LW Lab Results,97079,2023-06-01,2025-10-01,201
+Census 2021 Census Divisions,95694,2024-02-01,2025-10-01,202
+Census 2016 Census Metropolitan Areas,95333,2024-02-01,2025-10-01,203
+Census 2021 Census Subdivisions,89515,2024-02-01,2025-10-01,204
+Bonus Zoning Rate Districts,89497,2024-07-01,2025-10-01,205
+Repealed Legislation,86793,2022-12-01,2025-10-01,206
+Street Winter Maintenance Areas,84597,2022-12-01,2025-10-01,207
+Canadian Index of Multiple Deprivation 2016,82123,2024-04-01,2025-10-01,208
+Traffic Collisions - Involved Pedestrian,81720,2023-06-01,2025-10-01,209
+Demographic Scenarios,78706,2024-07-01,2025-10-01,210
+Community Plan Generalized Future Land Use 2021,77600,2022-09-01,2025-10-01,211
+PPL&C Residential Standards Violations,77084,2023-11-01,2025-10-01,212
+Cityworks Work Orders Custom Fields,76666,2023-09-01,2025-10-01,213
+Traffic Collisions - Involved Vehicle,72830,2023-06-01,2025-10-01,214
+Census 2021 Population Age Range,69168,2023-06-01,2025-10-01,215
+Census 2021 Population Ages,68430,2023-06-01,2025-10-01,216
+Census 2016 Census Divisions,60406,2024-02-01,2025-10-01,217
+Community Plan Generalized Future Land Use 2019,58746,2022-09-01,2025-10-01,218
+Tax Rates,58010,2023-06-01,2025-10-01,219
+Census 2016 Census Subdivisions,55375,2024-02-01,2025-10-01,220
+Beach Water Quality,52894,2024-07-01,2025-10-01,221
+Polling Districts 2016,52570,2024-10-01,2025-10-01,222
+Census 2021 Population Marital Status Ages,49949,2023-06-01,2025-10-01,223
+NSPW HRM Service Exchange Boundary 1996,48505,2024-09-01,2025-10-01,224
+Polling Districts 2020,43297,2024-10-01,2025-10-01,225
+Park & Ride,36877,2025-07-01,2025-10-01,226
+PPL&C Inspections,29366,2025-07-01,2025-10-01,227
+Polling Divisions 2020,27120,2024-10-01,2025-10-01,228
+Shubenacadie Lakes Floodplain Study,25360,2025-07-01,2025-10-01,229
+Sackville Rivers Floodplain Study Update - 2024,17783,2025-07-01,2025-10-01,230
+Commuter Travel Time Estimates,14605,2025-07-01,2025-10-01,231
+Census 2021 Population Marital Status Gender,13668,2023-06-01,2025-10-01,232
+Residential Rental Registry,7975,2025-07-01,2025-10-01,233
+Sackville Rivers Floodplain Study - 2017,4666,2025-07-01,2025-10-01,234
+EV Charging Station,3724,2025-07-01,2025-10-01,235
+Social Value Catering Registry,1748,2025-09-01,2025-10-01,236
+Maximum Front and Flanking Yards,1123,2024-07-01,2025-10-01,237

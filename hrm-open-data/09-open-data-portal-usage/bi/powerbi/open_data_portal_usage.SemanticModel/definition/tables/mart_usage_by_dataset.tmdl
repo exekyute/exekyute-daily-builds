@@ -1,0 +1,75 @@
+﻿table mart_usage_by_dataset
+	lineageTag: c7d1f57a-54f0-4585-92af-6754e8e8fef0
+
+	column dataset
+		dataType: string
+		lineageTag: 62edcf63-da50-40fb-9001-a2287a64a384
+		summarizeBy: none
+		sourceColumn: dataset
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_usage
+		dataType: int64
+		formatString: 0
+		lineageTag: 6049ac60-46d0-401a-8b40-b73912e1f9aa
+		summarizeBy: sum
+		sourceColumn: total_usage
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1296b0d6-c6f5-4057-8567-643a4f10c5e5
+		summarizeBy: none
+		sourceColumn: first_month
+
+		variation Variation
+			isDefault
+			relationship: 26fa2b5d-a7b3-41e7-8241-167e4d51a809
+			defaultHierarchy: LocalDateTable_8c5b4452-39e7-4285-8c61-805f57b09cb4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column last_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 79c6c5a6-b36f-4abe-abe9-73fe7fba284a
+		summarizeBy: none
+		sourceColumn: last_month
+
+		variation Variation
+			isDefault
+			relationship: d556f279-7b11-4a32-8d4f-b99deb3de317
+			defaultHierarchy: LocalDateTable_43611a38-0cbf-4fc2-895f-4f2c3e51418b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column usage_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 4688d143-a2ed-4aba-b2aa-f2719ff88469
+		summarizeBy: sum
+		sourceColumn: usage_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mart_usage_by_dataset = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\09-open-data-portal-usage\bi\exports\mart_usage_by_dataset.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"dataset", type text}, {"total_usage", Int64.Type}, {"first_month", type date}, {"last_month", type date}, {"usage_rank", Int64.Type}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["mart_usage_monthly","mart_usage_by_dataset"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table mart_usage_monthly
+ref table DateTableTemplate_8343fd9a-747c-47aa-ba82-ed6c422e9360
+ref table mart_usage_by_dataset
+ref table LocalDateTable_8c5b4452-39e7-4285-8c61-805f57b09cb4
+ref table LocalDateTable_43611a38-0cbf-4fc2-895f-4f2c3e51418b
+ref table Date
+
+ref cultureInfo en-US
+

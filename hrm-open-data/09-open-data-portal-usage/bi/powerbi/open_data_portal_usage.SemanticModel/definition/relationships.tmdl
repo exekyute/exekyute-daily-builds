@@ -1,0 +1,14 @@
+relationship 26fa2b5d-a7b3-41e7-8241-167e4d51a809
+	joinOnDateBehavior: datePartOnly
+	fromColumn: mart_usage_by_dataset.first_month
+	toColumn: LocalDateTable_8c5b4452-39e7-4285-8c61-805f57b09cb4.Date
+
+relationship d556f279-7b11-4a32-8d4f-b99deb3de317
+	joinOnDateBehavior: datePartOnly
+	fromColumn: mart_usage_by_dataset.last_month
+	toColumn: LocalDateTable_43611a38-0cbf-4fc2-895f-4f2c3e51418b.Date
+
+relationship 939f516e-0b12-5d84-fcf9-d37ad9a23eb0
+	fromColumn: mart_usage_monthly.month_start
+	toColumn: Date.Date
+
