@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "8e692a37c16190764c30",
+  "position": {
+    "x": 24.316109422492403,
+    "y": 493.13069908814595,
+    "z": 2,
+    "height": 219.81762917933131,
+    "width": 615.68389057750767,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_ev"
+                    }
+                  },
+                  "Property": "chartype"
+                }
+              },
+              "queryRef": "mart_ev.chartype",
+              "nativeQueryRef": "chartype",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_ev"
+                    }
+                  },
+                  "Property": "Chartype Rank"
+                }
+              },
+              "queryRef": "mart_ev.Chartype Rank",
+              "nativeQueryRef": "Chartype Rank"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_ev"
+                    }
+                  },
+                  "Property": "Chargers"
+                }
+              },
+              "queryRef": "mart_ev.Chargers",
+              "nativeQueryRef": "Chargers"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_ev"
+                  }
+                },
+                "Property": "Chargers"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a54bb24201cac442e434",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_ev"
+              }
+            },
+            "Property": "chartype"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c0501265bbd0410e6396",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_ev"
+              }
+            },
+            "Property": "Chargers"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "25246603b08ae7507bc2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_ev"
+              }
+            },
+            "Property": "Chartype Rank"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

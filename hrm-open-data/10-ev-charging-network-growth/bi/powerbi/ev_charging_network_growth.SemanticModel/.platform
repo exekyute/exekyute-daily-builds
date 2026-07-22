@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "ev_charging_network_growth"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3e0ba342-f1f0-493d-a911-1891b1492c6d"
+  }
+}

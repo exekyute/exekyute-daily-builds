@@ -1,0 +1,133 @@
+table mart_ev
+	lineageTag: 38995f4f-2fa2-49a2-b343-416dd61a2019
+
+	measure Chargers = COUNTROWS ( mart_ev )
+		formatString: 0
+		lineageTag: cb85df13-40f9-4e55-9b46-bdfa2fec775a
+
+	measure 'Cumulative Chargers' =
+			
+			VAR y = MAX ( mart_ev[install_year] )
+			RETURN
+			    CALCULATE (
+			        [Chargers],
+			        REMOVEFILTERS ( mart_ev[install_year] ),
+			        mart_ev[install_year] <= y
+			    )
+		formatString: 0
+		lineageTag: 8b2c1fc9-ff5d-45a9-9d51-dd3ea15ee949
+
+	measure 'Chartype Rank' = RANKX ( ALLSELECTED ( mart_ev[chartype] ), [Chargers], , DESC, Skip )
+		formatString: 0
+		lineageTag: 3d7f98da-71e1-4cf4-9793-4f595f513acf
+
+	column evcsid
+		dataType: string
+		lineageTag: 042f980c-6161-4e34-9691-2449b1311364
+		summarizeBy: none
+		sourceColumn: evcsid
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner
+		dataType: string
+		lineageTag: 03954435-43cf-4893-965b-5d3706cfeeff
+		summarizeBy: none
+		sourceColumn: owner
+
+		annotation SummarizationSetBy = Automatic
+
+	column chartype
+		dataType: string
+		lineageTag: 444515d5-7bc9-4cc0-8b7e-7856eb8cc7dd
+		summarizeBy: none
+		sourceColumn: chartype
+
+		annotation SummarizationSetBy = Automatic
+
+	column connectype
+		dataType: string
+		lineageTag: 5026d350-3eac-431f-a8ee-fe2b30648118
+		summarizeBy: none
+		sourceColumn: connectype
+
+		annotation SummarizationSetBy = Automatic
+
+	column power_kw
+		dataType: double
+		lineageTag: 94fe2a77-3855-4bcf-9d25-61f9052ce45c
+		summarizeBy: sum
+		sourceColumn: power_kw
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column location
+		dataType: string
+		lineageTag: f5f95add-469d-4e34-bf9f-ca9867cec00b
+		summarizeBy: none
+		sourceColumn: location
+
+		annotation SummarizationSetBy = Automatic
+
+	column access
+		dataType: string
+		lineageTag: e64c0e62-aa92-49ab-92cc-4ec8c5a2eedd
+		summarizeBy: none
+		sourceColumn: access
+
+		annotation SummarizationSetBy = Automatic
+
+	column install_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 378c0f9a-b00d-4ce8-a8ec-af039ad93701
+		summarizeBy: none
+		sourceColumn: install_year
+
+		annotation SummarizationSetBy = User
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 59de08de-1bee-456b-ac55-1cbba4e4a14b
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: double
+		lineageTag: 93d00d34-526b-46e3-bcdf-25058570eb40
+		summarizeBy: sum
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lon
+		dataType: double
+		lineageTag: 3fd7dc84-9175-4537-91ed-eaf66d08a2dd
+		summarizeBy: sum
+		sourceColumn: lon
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_ev = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\10-ev-charging-network-growth\bi\exports\mart_ev.csv"), [Delimiter = ",", Columns = 11, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"evcsid", type text}, {"owner", type text}, {"chartype", type text}, {"connectype", type text}, {"power_kw", type number}, {"location", type text}, {"access", type text}, {"install_year", Int64.Type}, {"quantity", Int64.Type}, {"lat", type number}, {"lon", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

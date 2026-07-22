@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "faa5951c9c05de48d7ec",
+  "position": {
+    "x": 24.316109422492403,
+    "y": 231.48936170212767,
+    "z": 1,
+    "height": 244.13373860182372,
+    "width": 615.68389057750767,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_ev"
+                    }
+                  },
+                  "Property": "install_year"
+                }
+              },
+              "queryRef": "mart_ev.install_year",
+              "nativeQueryRef": "install_year",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_ev"
+                    }
+                  },
+                  "Property": "Cumulative Chargers"
+                }
+              },
+              "queryRef": "mart_ev.Cumulative Chargers",
+              "nativeQueryRef": "Cumulative Chargers"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_ev"
+                  }
+                },
+                "Property": "Cumulative Chargers"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "76b0ee0f4096ca815ea0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_ev"
+              }
+            },
+            "Property": "install_year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b4758003806cd100cace",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_ev"
+              }
+            },
+            "Property": "Cumulative Chargers"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

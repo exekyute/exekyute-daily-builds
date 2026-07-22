@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "1ab200f9005d5e319909",
+  "position": {
+    "x": 24.316109422492403,
+    "y": 70.030395136778125,
+    "z": 0,
+    "height": 113.79939209726444,
+    "width": 181.88449848024317,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_ev"
+                    }
+                  },
+                  "Property": "Chargers"
+                }
+              },
+              "queryRef": "mart_ev.Chargers",
+              "nativeQueryRef": "Chargers"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_ev"
+                  }
+                },
+                "Property": "Chargers"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d1b2b18570d66d015618",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_ev"
+              }
+            },
+            "Property": "Chargers"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
