@@ -1,0 +1,852 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20262.26.0625.1400                               -->
+<workbook original-version='18.1' source-build='2025.2.0 (20252.25.0514.2217)' source-platform='win' version='18.1' xml:base='https://localhost:8080' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AnimationOnByDefault />
+    <Layers />
+    <LayersPerPaneSpecPrimaryDS />
+    <MapboxVectorStylesAndLayers />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <SpatialFileLayer />
+    <VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <repository-location derived-from='https://public.tableau.com/workbooks/HalifaxSpeedManagementInventory?rev=1.0' id='HalifaxSpeedManagementInventory' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='speed_limits' inline='true' name='federated.1foylv10n2fuzl1cft73x1vbgssh' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='speed_limits' name='ogrdirect.19bkozb1uzl2ji19iff5z1hot6gh'>
+            <connection class='ogrdirect' directory='bi/exports' tablename='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='ogrdirect.19bkozb1uzl2ji19iff5z1hot6gh' name='speed_limits.geojson' table='[speed_limits.geojson]' type='table'>
+          <columns>
+            <column datatype='integer' name='OBJECTID' ordinal='0' />
+            <column datatype='string' name='ROUTEID' ordinal='1' />
+            <column datatype='string' name='STR_NAME' ordinal='2' />
+            <column datatype='string' name='FULL_NAME' ordinal='3' />
+            <column datatype='string' name='ST_CLASS' ordinal='4' />
+            <column datatype='integer' name='SPEED' ordinal='5' />
+            <column datatype='string' name='REVIEW_STAT' ordinal='6' />
+            <column datatype='integer' name='DATE_EFFECTIVE' ordinal='7' />
+            <column datatype='integer' name='ADDDATE' ordinal='8' />
+            <column datatype='integer' name='MODDATE' ordinal='9' />
+            <column datatype='real' name='Shape__Length' ordinal='10' />
+            <column datatype='spatial' name='Geometry' ordinal='11' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>OBJECTID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[OBJECTID]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>OBJECTID</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ROUTEID</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ROUTEID]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>ROUTEID</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>STR_NAME</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[STR_NAME]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>STR_NAME</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>FULL_NAME</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[FULL_NAME]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>FULL_NAME</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ST_CLASS</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[ST_CLASS]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>ST_CLASS</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SPEED</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[SPEED]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>SPEED</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>REVIEW_STAT</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[REVIEW_STAT]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>REVIEW_STAT</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>DATE_EFFECTIVE</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[DATE_EFFECTIVE]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>DATE_EFFECTIVE</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>ADDDATE</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[ADDDATE]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>ADDDATE</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>MODDATE</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[MODDATE]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>MODDATE</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Shape__Length</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Shape__Length]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>Shape__Length</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Geometry</remote-name>
+            <remote-type>8</remote-type>
+            <local-name>[Geometry]</local-name>
+            <parent-name>[speed_limits.geojson]</parent-name>
+            <remote-alias>Geometry</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>spatial</local-type>
+            <aggregation>Collect</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Adddate' datatype='integer' name='[ADDDATE]' role='measure' type='quantitative' />
+      <column caption='Reduced Speed Street' datatype='boolean' name='[Calculation_2466565247438761984]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='[SPEED] &lt; 50' />
+      </column>
+      <column caption='KM' datatype='real' default-format='n#,##0.00;-#,##0.00' name='[Calculation_2466565247438880769]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Shape__Length] / 1000' />
+      </column>
+      <column caption='Date Effective' datatype='integer' name='[DATE_EFFECTIVE]' role='measure' type='quantitative' />
+      <column caption='Full Name' datatype='string' name='[FULL_NAME]' role='dimension' type='nominal' />
+      <column caption='Moddate' datatype='integer' name='[MODDATE]' role='measure' type='quantitative' />
+      <column caption='Objectid' datatype='integer' name='[OBJECTID]' role='measure' type='quantitative' />
+      <column caption='Review Stat' datatype='string' name='[REVIEW_STAT]' role='dimension' type='nominal' />
+      <column caption='Routeid' datatype='string' name='[ROUTEID]' role='dimension' type='nominal' />
+      <column caption='Speed' datatype='integer' name='[SPEED]' role='measure' type='quantitative' />
+      <column caption='Str Name' datatype='string' name='[STR_NAME]' role='dimension' type='nominal' />
+      <column caption='St Class' datatype='string' name='[ST_CLASS]' role='dimension' type='nominal' />
+      <column caption='speed_limits.geojson' datatype='table' name='[__tableau_internal_object_id__].[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]' role='measure' type='quantitative' />
+      <column-instance column='[SPEED]' derivation='None' name='[none:SPEED:ok]' pivot='key' type='ordinal' />
+      <extract count='-1' enabled='true' object-id='' units='records' user-specific='false'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='Data/TableauTemp/#TableauTemp_1r0unpr1argkwg10mpa40162cfob.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='07/24/2026 02:24:54 AM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>OBJECTID</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[OBJECTID]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>OBJECTID</remote-alias>
+              <ordinal>0</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>13835</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ROUTEID</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[ROUTEID]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ROUTEID</remote-alias>
+              <ordinal>1</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4103</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>STR_NAME</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[STR_NAME]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>STR_NAME</remote-alias>
+              <ordinal>2</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3366</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>FULL_NAME</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[FULL_NAME]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>FULL_NAME</remote-alias>
+              <ordinal>3</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3622</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ST_CLASS</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[ST_CLASS]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ST_CLASS</remote-alias>
+              <ordinal>4</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>6</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>SPEED</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[SPEED]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>SPEED</remote-alias>
+              <ordinal>5</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>14</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>REVIEW_STAT</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[REVIEW_STAT]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>REVIEW_STAT</remote-alias>
+              <ordinal>6</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>DATE_EFFECTIVE</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[DATE_EFFECTIVE]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>DATE_EFFECTIVE</remote-alias>
+              <ordinal>7</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>40</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>ADDDATE</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[ADDDATE]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>ADDDATE</remote-alias>
+              <ordinal>8</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>260</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>MODDATE</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[MODDATE]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>MODDATE</remote-alias>
+              <ordinal>9</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>370</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Shape__Length</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Shape__Length]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Shape__Length</remote-alias>
+              <ordinal>10</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>13835</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Geometry</remote-name>
+              <remote-type>128</remote-type>
+              <local-name>[Geometry]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Geometry</remote-alias>
+              <ordinal>11</ordinal>
+              <family>speed_limits.geojson</family>
+              <local-type>spatial</local-type>
+              <aggregation>Collect</aggregation>
+              <approx-count>13835</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:SPEED:ok]' type='palette'>
+            <map to='#499894'>
+              <bucket>70</bucket>
+            </map>
+            <map to='#4e79a7'>
+              <bucket>%null%</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>40</bucket>
+            </map>
+            <map to='#79706e'>
+              <bucket>110</bucket>
+            </map>
+            <map to='#86bcb6'>
+              <bucket>80</bucket>
+            </map>
+            <map to='#8cd17d'>
+              <bucket>50</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>20</bucket>
+            </map>
+            <map to='#b6992d'>
+              <bucket>55</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>90</bucket>
+            </map>
+            <map to='#f1ce63'>
+              <bucket>60</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>25</bucket>
+            </map>
+            <map to='#ff9d9a'>
+              <bucket>100</bucket>
+            </map>
+            <map to='#ffbe7d'>
+              <bucket>30</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='speed_limits.geojson' id='speed_limits.geojson_186CE3F2EAE34479BDBEC05BAC81AA56'>
+            <properties context=''>
+              <relation connection='ogrdirect.19bkozb1uzl2ji19iff5z1hot6gh' name='speed_limits.geojson' table='[speed_limits.geojson]' type='table'>
+                <columns>
+                  <column datatype='integer' name='OBJECTID' ordinal='0' />
+                  <column datatype='string' name='ROUTEID' ordinal='1' />
+                  <column datatype='string' name='STR_NAME' ordinal='2' />
+                  <column datatype='string' name='FULL_NAME' ordinal='3' />
+                  <column datatype='string' name='ST_CLASS' ordinal='4' />
+                  <column datatype='integer' name='SPEED' ordinal='5' />
+                  <column datatype='string' name='REVIEW_STAT' ordinal='6' />
+                  <column datatype='integer' name='DATE_EFFECTIVE' ordinal='7' />
+                  <column datatype='integer' name='ADDDATE' ordinal='8' />
+                  <column datatype='integer' name='MODDATE' ordinal='9' />
+                  <column datatype='real' name='Shape__Length' ordinal='10' />
+                  <column datatype='spatial' name='Geometry' ordinal='11' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+    <datasource caption='speed_devices' inline='true' name='federated.16c3uji0qbnfng119abf509qahke' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='speed_devices' name='ogrdirect.1xaymnq1wc1nq61and09p1nphk9q'>
+            <connection class='ogrdirect' directory='bi/exports' tablename='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='ogrdirect.1xaymnq1wc1nq61and09p1nphk9q' name='speed_devices.geojson' table='[speed_devices.geojson]' type='table'>
+          <columns>
+            <column datatype='string' name='source_layer' ordinal='0' />
+            <column datatype='string' name='device_type' ordinal='1' />
+            <column datatype='integer' name='install_year' ordinal='2' />
+            <column datatype='string' name='location' ordinal='3' />
+            <column datatype='spatial' name='Geometry' ordinal='4' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>device_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[device_id]</local-name>
+            <parent-name>[speed_devices.geojson]</parent-name>
+            <remote-alias>device_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_devices.geojson_1F07A85E104E4E0893464262966A67F3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>source_layer</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[source_layer]</local-name>
+            <parent-name>[speed_devices.geojson]</parent-name>
+            <remote-alias>source_layer</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[speed_devices.geojson_1F07A85E104E4E0893464262966A67F3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>device_type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[device_type]</local-name>
+            <parent-name>[speed_devices.geojson]</parent-name>
+            <remote-alias>device_type</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[speed_devices.geojson_1F07A85E104E4E0893464262966A67F3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>install_year</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[install_year]</local-name>
+            <parent-name>[speed_devices.geojson]</parent-name>
+            <remote-alias>install_year</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_devices.geojson_1F07A85E104E4E0893464262966A67F3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>location</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[location]</local-name>
+            <parent-name>[speed_devices.geojson]</parent-name>
+            <remote-alias>location</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[speed_devices.geojson_1F07A85E104E4E0893464262966A67F3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Geometry</remote-name>
+            <remote-type>8</remote-type>
+            <local-name>[Geometry]</local-name>
+            <parent-name>[speed_devices.geojson]</parent-name>
+            <remote-alias>Geometry</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>spatial</local-type>
+            <aggregation>Collect</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[speed_devices.geojson_1F07A85E104E4E0893464262966A67F3]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='speed_devices.geojson' datatype='table' name='[__tableau_internal_object_id__].[speed_devices.geojson_1F07A85E104E4E0893464262966A67F3]' role='measure' type='quantitative' />
+      <column caption='Device Type' datatype='string' name='[device_type]' role='dimension' type='nominal' />
+      <column caption='Install Year' datatype='integer' name='[install_year]' role='dimension' type='quantitative' />
+      <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+      <column caption='Source Layer' datatype='string' name='[source_layer]' role='dimension' type='nominal' />
+      <extract count='-1' enabled='true' object-id='' units='records' user-specific='false'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='Data/TableauTemp/TEMP_0t5mm2k11hb2km14wrhnx0slq0mo.hyper' default-settings='yes' schema='Extract' sslmode='' update-time='07/24/2026 02:37:42 AM' updated-database='Data/TableauTemp/TEMP_0t5mm2k11hb2km14wrhnx0slq0mo.hyper'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <refresh>
+            <refresh-event add-from-file-path='speed_devices' increment-value='%null%' refresh-type='create' rows-inserted='780' timestamp-start='2026-07-24 02:37:42.096' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>device_id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[device_id]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>device_id</remote-alias>
+              <ordinal>0</ordinal>
+              <family>speed_devices.geojson</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>780</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>source_layer</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[source_layer]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>source_layer</remote-alias>
+              <ordinal>1</ordinal>
+              <family>speed_devices.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>device_type</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[device_type]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>device_type</remote-alias>
+              <ordinal>2</ordinal>
+              <family>speed_devices.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>9</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>install_year</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[install_year]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>install_year</remote-alias>
+              <ordinal>3</ordinal>
+              <family>speed_devices.geojson</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>9</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>location</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[location]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>location</remote-alias>
+              <ordinal>4</ordinal>
+              <family>speed_devices.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>764</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Geometry</remote-name>
+              <remote-type>128</remote-type>
+              <local-name>[Geometry]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Geometry</remote-alias>
+              <ordinal>5</ordinal>
+              <family>speed_devices.geojson</family>
+              <local-type>spatial</local-type>
+              <aggregation>Collect</aggregation>
+              <approx-count>770</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='speed_devices.geojson' id='speed_devices.geojson_1F07A85E104E4E0893464262966A67F3'>
+            <properties context=''>
+              <relation connection='ogrdirect.1xaymnq1wc1nq61and09p1nphk9q' name='speed_devices.geojson' table='[speed_devices.geojson]' type='table'>
+                <columns>
+                  <column datatype='string' name='source_layer' ordinal='0' />
+                  <column datatype='string' name='device_type' ordinal='1' />
+                  <column datatype='integer' name='install_year' ordinal='2' />
+                  <column datatype='string' name='location' ordinal='3' />
+                  <column datatype='spatial' name='Geometry' ordinal='4' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <worksheets>
+    <worksheet name='Speed management map'>
+      <repository-location derived-from='https://public.tableau.com/workbooks/HalifaxSpeedManagementInventory/Speedmanagementmap?rev=' id='132106012' path='/workbooks/HalifaxSpeedManagementInventory' revision='' />
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Halifax speed management inventory: 780 devices and 410.41 km of reduced-speed streets</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='speed_devices' name='federated.16c3uji0qbnfng119abf509qahke' />
+            <datasource caption='speed_limits' name='federated.1foylv10n2fuzl1cft73x1vbgssh' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.16c3uji0qbnfng119abf509qahke'>
+            <column datatype='spatial' name='[Geometry]' role='measure' type='nominal' />
+            <column-instance column='[__tableau_internal_object_id__].[speed_devices.geojson_1F07A85E104E4E0893464262966A67F3]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:speed_devices.geojson_1F07A85E104E4E0893464262966A67F3:qk]' pivot='key' type='quantitative' />
+            <column caption='speed_devices.geojson' datatype='table' name='[__tableau_internal_object_id__].[speed_devices.geojson_1F07A85E104E4E0893464262966A67F3]' role='measure' type='quantitative' />
+            <column-instance column='[location]' derivation='Attribute' name='[attr:location:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Geometry]' derivation='Collect' name='[clct:Geometry:nk]' pivot='key' type='nominal' />
+            <column datatype='integer' name='[device_id]' role='measure' type='quantitative' />
+            <column caption='Device Type' datatype='string' name='[device_type]' role='dimension' type='nominal' />
+            <column caption='Location' datatype='string' name='[location]' role='dimension' type='nominal' />
+            <column-instance column='[device_id]' derivation='None' name='[none:device_id:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[device_type]' derivation='None' name='[none:device_type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[source_layer]' derivation='None' name='[none:source_layer:nk]' pivot='key' type='nominal' />
+            <column caption='Source Layer' datatype='string' name='[source_layer]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <datasource-dependencies datasource='federated.1foylv10n2fuzl1cft73x1vbgssh'>
+            <column caption='Reduced Speed Street' datatype='boolean' name='[Calculation_2466565247438761984]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='[SPEED] &lt; 50' />
+            </column>
+            <column datatype='spatial' name='[Geometry]' role='measure' type='nominal' />
+            <column caption='Speed' datatype='integer' name='[SPEED]' role='measure' type='quantitative' />
+            <column-instance column='[Geometry]' derivation='Collect' name='[clct:Geometry:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_2466565247438761984]' derivation='None' name='[none:Calculation_2466565247438761984:nk]' pivot='key' type='nominal' />
+            <column-instance column='[SPEED]' derivation='None' name='[none:SPEED:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1foylv10n2fuzl1cft73x1vbgssh].[none:Calculation_2466565247438761984:nk]'>
+            <groupfilter function='member' level='[none:Calculation_2466565247438761984:nk]' member='true' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1foylv10n2fuzl1cft73x1vbgssh].[none:Calculation_2466565247438761984:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.16c3uji0qbnfng119abf509qahke].[Longitude (generated)]' field-type='quantitative' max='-6953424.7659099232' min='-7132510.9411165621' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.16c3uji0qbnfng119abf509qahke].[Latitude (generated)]' field-type='quantitative' max='5634393.829998102' min='5538356.4036185164' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes customization-axis='layer'>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' title='Speed limits'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.1foylv10n2fuzl1cft73x1vbgssh].[none:SPEED:ok]' />
+              <lod column='[federated.1foylv10n2fuzl1cft73x1vbgssh].[clct:Geometry:nk]' />
+              <geometry column='[federated.1foylv10n2fuzl1cft73x1vbgssh].[clct:Geometry:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='1.5272375345230103' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='0' selection-relaxation-option='selection-relaxation-allow' title='Devices'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Shape' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.16c3uji0qbnfng119abf509qahke].[none:device_type:nk]' />
+              <shape column='[federated.16c3uji0qbnfng119abf509qahke].[none:source_layer:nk]' />
+              <lod column='[federated.16c3uji0qbnfng119abf509qahke].[clct:Geometry:nk]' />
+              <lod column='[federated.16c3uji0qbnfng119abf509qahke].[none:device_id:ok]' />
+              <tooltip column='[federated.16c3uji0qbnfng119abf509qahke].[attr:location:nk]' />
+              <tooltip column='[federated.16c3uji0qbnfng119abf509qahke].[__tableau_internal_object_id__].[cnt:speed_devices.geojson_1F07A85E104E4E0893464262966A67F3:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.69165748357772827' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.16c3uji0qbnfng119abf509qahke].[Latitude (generated)]</rows>
+        <cols>[federated.16c3uji0qbnfng119abf509qahke].[Longitude (generated)]</cols>
+      </table>
+      <simple-id uuid='{568A3D55-E941-4DF4-B070-31FC49761327}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='51'>
+    <window class='worksheet' maximized='true' name='Speed management map'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.1foylv10n2fuzl1cft73x1vbgssh].[none:Calculation_2466565247438761984:nk]' type='filter' />
+            <card pane-specification-id='0' param='[federated.16c3uji0qbnfng119abf509qahke].[none:device_type:nk]' type='color' />
+            <card pane-specification-id='0' param='[federated.16c3uji0qbnfng119abf509qahke].[none:source_layer:nk]' type='shape' />
+            <card pane-specification-id='2' param='[federated.1foylv10n2fuzl1cft73x1vbgssh].[none:SPEED:ok]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.16c3uji0qbnfng119abf509qahke].[none:device_type:nk]</field>
+            <field>[federated.16c3uji0qbnfng119abf509qahke].[none:location:nk]</field>
+            <field>[federated.16c3uji0qbnfng119abf509qahke].[none:source_layer:nk]</field>
+            <field>[federated.1foylv10n2fuzl1cft73x1vbgssh].[none:Calculation_2466565247438761984:nk]</field>
+            <field>[federated.1foylv10n2fuzl1cft73x1vbgssh].[none:SPEED:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{CA7E3137-851D-4428-A40F-28CCAE39570A}' />
+    </window>
+  </windows>
+</workbook>

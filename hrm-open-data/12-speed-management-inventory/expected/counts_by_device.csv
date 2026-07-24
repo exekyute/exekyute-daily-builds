@@ -1,0 +1,10 @@
+source_layer,device_type,devices
+Speed Display Sign,Speed Display Sign,73
+Traffic Control Location,Signalized Intersection,310
+Traffic Control Location,Rectangular Rapid Flashing Beacon,211
+Traffic Control Location,RA-5 with Flashing Beacon,153
+Traffic Control Location,Pedestrian Half Signals,14
+Traffic Control Location,Roundabout,9
+Traffic Control Location,Overhead Flashing Beacon,7
+Traffic Control Location,Lane Control,2
+Traffic Control Location,Median Mounted Flashing Beacon,1
