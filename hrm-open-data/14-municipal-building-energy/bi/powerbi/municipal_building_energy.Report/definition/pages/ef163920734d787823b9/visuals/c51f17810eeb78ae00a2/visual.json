@@ -1,0 +1,200 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "c51f17810eeb78ae00a2",
+  "position": {
+    "x": 11.641791044776118,
+    "y": 150.44776119402985,
+    "z": 1000,
+    "height": 554.32835820895525,
+    "width": 555.223880597015,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "decompositionTreeVisual",
+    "query": {
+      "queryState": {
+        "Analyze": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_energy"
+                    }
+                  },
+                  "Property": "Total Cost"
+                }
+              },
+              "queryRef": "mart_energy.Total Cost",
+              "nativeQueryRef": "Total Cost"
+            }
+          ]
+        },
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_energy"
+                    }
+                  },
+                  "Property": "energy_type"
+                }
+              },
+              "queryRef": "mart_energy.energy_type",
+              "nativeQueryRef": "energy_type",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_energy"
+                    }
+                  },
+                  "Property": "building_name"
+                }
+              },
+              "queryRef": "mart_energy.building_name",
+              "nativeQueryRef": "building_name",
+              "active": true
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_energy"
+                  }
+                },
+                "Property": "Total Cost"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "ExplainBy"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "mart_energy.energy_type"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_energy"
+                    }
+                  },
+                  "Property": "energy_type"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "mart_energy.building_name"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Electricity'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "tree": [
+        {
+          "properties": {
+            "effectiveBarsPerLevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "6L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0c99f70e81c2422cb328",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_energy"
+              }
+            },
+            "Property": "Total Cost"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "85201ce059c2072cdd2a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_energy"
+              }
+            },
+            "Property": "energy_type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "19fb851aa80010eec58e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_energy"
+              }
+            },
+            "Property": "building_name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

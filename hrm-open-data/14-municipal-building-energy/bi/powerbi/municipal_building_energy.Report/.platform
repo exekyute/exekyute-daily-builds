@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "municipal_building_energy"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2bda0300-5016-4a1e-bb4a-e850b8c39400"
+  }
+}

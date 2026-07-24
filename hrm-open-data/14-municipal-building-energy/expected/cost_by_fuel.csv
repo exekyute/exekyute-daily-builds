@@ -1,0 +1,5 @@
+energy_type,unit_of_measure,meter_readings,building_count,consumption,cost,cost_share,fuel_rank
+Electricity,kWh (kilowatt-hours),17124,157,556665925.000,64450969.11,0.745580,1
+Natural Gas,GJ (Gigajoules),4132,36,895290.330,15153963.12,0.175304,2
+Fuel Oil,L (Litres),8170,79,6010863.300,5938197.64,0.068694,3
+Propane,L (Litres),1013,13,1435474.560,900983.90,0.010423,4

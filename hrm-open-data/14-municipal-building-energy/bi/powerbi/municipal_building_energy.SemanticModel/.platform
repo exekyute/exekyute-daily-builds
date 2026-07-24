@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "municipal_building_energy"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e07797a4-8fc0-4f06-9b26-855005dfb55d"
+  }
+}

@@ -1,0 +1,5 @@
+energy_type,unit_of_measure,consumption,cost,cost_per_unit
+Electricity,kWh (kilowatt-hours),556665925.000,64450969.11,0.1158
+Fuel Oil,L (Litres),6010863.300,5938197.64,0.9879
+Natural Gas,GJ (Gigajoules),895290.330,15153963.12,16.9263
+Propane,L (Litres),1435474.560,900983.90,0.6277

@@ -1,0 +1,103 @@
+table mart_energy
+	lineageTag: 4cb65463-d805-4d16-89ac-8a718dc02119
+
+	measure 'Total Cost' = SUM ( mart_energy[cost] )
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 925f44fb-98e2-4b2c-9c19-caa569e128ab
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Consumption' = SUM ( mart_energy[consumption] )
+		lineageTag: d03ef226-5914-4ce8-9c98-49aa9422bf51
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost per Unit' = DIVIDE ( [Total Cost], [Total Consumption] )
+		formatString: #,0.0000
+		lineageTag: e4367e1a-7a30-43e0-b638-864d082bde78
+
+	measure 'Building Rank' = RANKX ( ALLSELECTED ( mart_energy[building_name] ), [Total Cost], , DESC, Skip )
+		formatString: 0
+		lineageTag: 3c5dec15-cb90-4776-894d-1005eef4c242
+
+	measure 'Cost Share' = DIVIDE ( [Total Cost], CALCULATE ( [Total Cost], ALL ( mart_energy ) ) )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 149e9318-58d7-47b3-88a7-aebd4021664e
+
+	column building_name
+		dataType: string
+		lineageTag: 60fca60a-db32-4c3e-adb4-0e3ae0ee7f4d
+		summarizeBy: none
+		sourceColumn: building_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column hrm_building_id
+		dataType: string
+		lineageTag: d8fbf4cd-0119-4aa8-b77e-7802ef461b19
+		summarizeBy: none
+		sourceColumn: hrm_building_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column energy_type
+		dataType: string
+		lineageTag: 351e595b-f4b6-412c-be60-b0f0ff058cd9
+		summarizeBy: none
+		sourceColumn: energy_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_of_measure
+		dataType: string
+		lineageTag: 18788a7d-5a47-4e96-8bc9-a335fccc00ce
+		summarizeBy: none
+		sourceColumn: unit_of_measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column consumption
+		dataType: double
+		lineageTag: 7ca6dd16-9d04-4ae4-969a-37b35c1f3047
+		summarizeBy: sum
+		sourceColumn: consumption
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cost
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 358c7f7e-3f3f-4ba2-a769-cc4591507b48
+		summarizeBy: sum
+		sourceColumn: cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column cost_per_unit
+		dataType: double
+		lineageTag: 937da003-5804-4e17-b8bb-dc30462eeb57
+		summarizeBy: sum
+		sourceColumn: cost_per_unit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_energy = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("..\exports\mart_energy.csv"), [Delimiter = ",", Columns = 7, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"building_name", type text}, {"hrm_building_id", type text}, {"energy_type", type text}, {"unit_of_measure", type text}, {"consumption", type number}, {"cost", Currency.Type}, {"cost_per_unit", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,190 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "819ddfa382cb069991b6",
+  "position": {
+    "x": 314.16413373860183,
+    "y": 12.644376899696049,
+    "z": 3000,
+    "height": 138.11550151975683,
+    "width": 214.95440729483283,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_energy"
+                    }
+                  },
+                  "Property": "energy_type"
+                }
+              },
+              "queryRef": "mart_energy.energy_type",
+              "nativeQueryRef": "energy_type",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_energy"
+                    }
+                  },
+                  "Property": "unit_of_measure"
+                }
+              },
+              "queryRef": "mart_energy.unit_of_measure",
+              "nativeQueryRef": "unit_of_measure",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_energy"
+                    }
+                  },
+                  "Property": "Cost per Unit"
+                }
+              },
+              "queryRef": "mart_energy.Cost per Unit",
+              "nativeQueryRef": "Cost per Unit",
+              "displayName": "Cost per Unit",
+              "format": "#,0.0000"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "subTotals": [
+        {
+          "properties": {
+            "perRowLevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "13d43e8d000e0cadb496",
+        "field": {
+          "Arithmetic": {
+            "Left": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_energy"
+                  }
+                },
+                "Property": "Cost per Unit"
+              }
+            },
+            "Right": {
+              "ScopedEval": {
+                "Expression": {
+                  "Measure": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "mart_energy"
+                      }
+                    },
+                    "Property": "Cost per Unit"
+                  }
+                },
+                "Scope": [
+                  {
+                    "RoleRef": {
+                      "Role": "Rows"
+                    }
+                  }
+                ]
+              }
+            },
+            "Operator": 3
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "7e3bd0586475480aba3d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_energy"
+              }
+            },
+            "Property": "energy_type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "08cb9f66500b50836820",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_energy"
+              }
+            },
+            "Property": "unit_of_measure"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "877b9c9b274d6a5b0512",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_energy"
+              }
+            },
+            "Property": "Cost per Unit"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

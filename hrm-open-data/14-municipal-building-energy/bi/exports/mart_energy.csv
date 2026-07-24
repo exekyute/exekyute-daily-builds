@@ -1,0 +1,286 @@
+building_name,hrm_building_id,energy_type,unit_of_measure,consumption,cost,cost_per_unit
+(FORMER) HRP SATELLITE OFFICE,BL198,Electricity,kWh (kilowatt-hours),94845.000,10336.38,0.1090
+(Former) Beechville Lakeside Timberlea Recreation Centre,BL735,Electricity,kWh (kilowatt-hours),505760.000,69749.09,0.1379
+(Former) Beechville Lakeside Timberlea Recreation Centre,BL735,Fuel Oil,L (Litres),59944.100,77268.56,1.2890
+(Former) Bowles Arena,BL368,Electricity,kWh (kilowatt-hours),1301400.000,196872.42,0.1513
+(Former) Bowles Arena,BL368,Fuel Oil,L (Litres),16881.400,11075.90,0.6561
+(Former) Crichton Centre,BL570,Electricity,kWh (kilowatt-hours),226616.000,27257.94,0.1203
+(Former) Crichton Centre,BL570,Fuel Oil,L (Litres),70077.300,53166.90,0.7587
+(Former) Devonshire Arena,BL283,Electricity,kWh (kilowatt-hours),490800.000,74251.59,0.1513
+(Former) Devonshire Arena,BL283,Fuel Oil,L (Litres),35129.200,23468.83,0.6681
+(Former) Fire Station 63 - Sambro,BL103,Electricity,kWh (kilowatt-hours),183519.000,28140.88,0.1533
+(Former) Fire Station 63 - Sambro,BL103,Fuel Oil,L (Litres),10613.700,8059.54,0.7594
+(Former) HRM Fire - Science Park Drive,BL21681,Propane,L (Litres),117194.900,65813.42,0.5616
+(Former) Metropolitan Avenue Park Washroom Facility,BL103527,Electricity,kWh (kilowatt-hours),31443.000,4625.35,0.1471
+(Former) Spring Garden Road Public Library,BL205,Electricity,kWh (kilowatt-hours),512196.000,72154.67,0.1409
+(Former) Spring Garden Road Public Library,BL205,Fuel Oil,L (Litres),174274.200,119847.99,0.6877
+(Former) St Andrews Community Centre,BL152015,Electricity,kWh (kilowatt-hours),223809.000,32357.45,0.1446
+(Former) St Andrews Community Centre,BL152015,Fuel Oil,L (Litres),32659.600,24683.61,0.7558
+(Former) St Andrews Community Centre,BL152015,Natural Gas,GJ (Gigajoules),3802.980,73136.01,19.2312
+(Former) The Commons Pavilion,BL275,Electricity,kWh (kilowatt-hours),202285.000,31215.36,0.1543
+(Former) The Commons Pavilion,BL275,Fuel Oil,L (Litres),35962.200,46673.60,1.2979
+Acadia Centre,BL820,Electricity,kWh (kilowatt-hours),3773645.000,462753.44,0.1226
+Acadia Centre,BL820,Fuel Oil,L (Litres),57915.600,66482.70,1.1479
+Acadia Centre,BL820,Propane,L (Litres),93160.800,59408.31,0.6377
+Adventure Earth Centre,BL247,Electricity,kWh (kilowatt-hours),246621.000,39509.77,0.1602
+Adventure Earth Centre,BL247,Fuel Oil,L (Litres),40791.900,30765.14,0.7542
+Albro Lake Washroom Facility,BL86473,Electricity,kWh (kilowatt-hours),268784.000,40405.38,0.1503
+Alderney Gate,BL448,Electricity,kWh (kilowatt-hours),22605308.000,2561518.07,0.1133
+Alderney Gate,BL448,Natural Gas,GJ (Gigajoules),64230.540,1102564.61,17.1657
+Alderney Landing,BL409,Electricity,kWh (kilowatt-hours),5489301.000,648156.68,0.1181
+Alderney Landing,BL409,Fuel Oil,L (Litres),12210.500,8418.57,0.6895
+Beaver Bank - Kinsac Community Centre,BL228,Electricity,kWh (kilowatt-hours),4367666.000,496244.89,0.1136
+Bedford Lawn Bowling & Leisure Centre,BL602,Electricity,kWh (kilowatt-hours),148089.000,24226.60,0.1636
+Bedford Lawn Bowling & Leisure Centre,BL602,Fuel Oil,L (Litres),35652.200,32628.22,0.9152
+Bedford Lion's Club,BL684,Electricity,kWh (kilowatt-hours),21072.000,3647.23,0.1731
+Bedford Lion's Club,BL684,Fuel Oil,L (Litres),73267.200,65627.34,0.8957
+"Caledonia Rd Greenhouse 1 - 4, office, storage buildings and Header House",BL952,Electricity,kWh (kilowatt-hours),425611.000,66468.95,0.1562
+"Caledonia Rd Greenhouse 1 - 4, office, storage buildings and Header House",BL952,Fuel Oil,L (Litres),27785.700,23103.16,0.8315
+Canada Games Centre,BL917,Electricity,kWh (kilowatt-hours),37323078.000,4090339.23,0.1096
+Canada Games Centre,BL917,Natural Gas,GJ (Gigajoules),41358.430,709828.03,17.1628
+Captain William Spry Community Centre,BL296,Electricity,kWh (kilowatt-hours),7165196.000,842326.08,0.1176
+Captain William Spry Community Centre,BL296,Fuel Oil,L (Litres),510672.200,365924.29,0.7166
+Captain William Spry Community Centre,BL296,Natural Gas,GJ (Gigajoules),27658.460,455015.24,16.4512
+Centennial Arena,BL431,Electricity,kWh (kilowatt-hours),8756466.000,1007937.31,0.1151
+Centennial Arena,BL431,Natural Gas,GJ (Gigajoules),10230.050,190607.37,18.6321
+Centennial Pool,BL814,Electricity,kWh (kilowatt-hours),7339853.000,842666.74,0.1148
+Chocolate Lake Community Recreation Centre,BL414,Electricity,kWh (kilowatt-hours),884970.000,112521.01,0.1271
+Chocolate Lake Community Recreation Centre,BL414,Fuel Oil,L (Litres),216786.300,202041.29,0.9320
+Cole Harbour All-Weather Field Washroom & Storage,BL144202,Electricity,kWh (kilowatt-hours),511020.000,69394.41,0.1358
+Cole Harbour Commons Washrooms,BL102428,Electricity,kWh (kilowatt-hours),62278.000,10167.46,0.1633
+Cole Harbour Outdoor Pool & Tennis Court Complex,BL430,Electricity,kWh (kilowatt-hours),117710.000,11889.27,0.1010
+Cole Harbour Place,BL89,Electricity,kWh (kilowatt-hours),32487539.000,3625002.63,0.1116
+Cole Harbour Place,BL89,Natural Gas,GJ (Gigajoules),52153.300,849781.96,16.2939
+DHE Fieldhouse,BL143888,Electricity,kWh (kilowatt-hours),1195664.000,198335.54,0.1659
+Dartmouth Bridge Transit Terminal,BL78630,Electricity,kWh (kilowatt-hours),2174505.000,241437.25,0.1110
+Dartmouth Bridge Transit Terminal,BL78630,Natural Gas,GJ (Gigajoules),3781.080,76215.88,20.1572
+Dartmouth Ferry Terminal,BL773,Electricity,kWh (kilowatt-hours),2540415.000,283218.33,0.1115
+Dartmouth North Community Centre,BL597,Electricity,kWh (kilowatt-hours),1170552.000,139314.79,0.1190
+Dartmouth North Community Centre,BL597,Natural Gas,GJ (Gigajoules),3339.490,65417.45,19.5891
+David P Mckinnon Building,BL838,Electricity,kWh (kilowatt-hours),13124751.000,1459242.71,0.1112
+David P Mckinnon Building,BL838,Natural Gas,GJ (Gigajoules),40876.780,665714.08,16.2859
+Dr Gerald J Lebrun Memorial Centre,BL501,Electricity,kWh (kilowatt-hours),7976542.000,910435.20,0.1141
+Dr Gerald J Lebrun Memorial Centre,BL501,Fuel Oil,L (Litres),42805.600,42831.69,1.0006
+Dr Gerald J Lebrun Memorial Centre,BL501,Propane,L (Litres),10214.200,6633.57,0.6494
+East Dartmouth Community Centre,BL394,Electricity,kWh (kilowatt-hours),3196947.000,380147.12,0.1189
+East Preston Recreation Centre,BL100,Electricity,kWh (kilowatt-hours),695084.000,111712.20,0.1607
+East Preston Recreation Centre,BL100,Fuel Oil,L (Litres),70196.700,84008.15,1.1968
+Eastern Passage Commons Washroom Facility,BL103516,Electricity,kWh (kilowatt-hours),32752.000,5318.81,0.1624
+Eastern Shore Community Centre,BL474,Electricity,kWh (kilowatt-hours),43192.000,7030.25,0.1628
+Emera Oval Pavilion,BL103507,Electricity,kWh (kilowatt-hours),9439006.000,1123763.33,0.1191
+Emera Oval Pavilion,BL103507,Natural Gas,GJ (Gigajoules),3989.070,78574.27,19.6974
+Employee Assistance Program Office,BL777,Electricity,kWh (kilowatt-hours),36669.000,6104.92,0.1665
+Employee Assistance Program Office,BL777,Fuel Oil,L (Litres),39359.200,36286.25,0.9219
+Eric Spicer Municipal Building,BL466,Electricity,kWh (kilowatt-hours),15844438.000,1773413.50,0.1119
+Eric Spicer Municipal Building,BL466,Fuel Oil,L (Litres),58525.000,34456.00,0.5887
+Eric Spicer Municipal Building,BL466,Natural Gas,GJ (Gigajoules),12536.780,239445.91,19.0995
+Evergreen House,BL776,Electricity,kWh (kilowatt-hours),147967.000,24444.32,0.1652
+Evergreen House,BL776,Fuel Oil,L (Litres),46885.400,42574.97,0.9081
+Fairbanks Centre + Washroom,BL560,Electricity,kWh (kilowatt-hours),1653442.000,228607.99,0.1383
+Fairview Cemetery Office,BL454,Fuel Oil,L (Litres),16420.100,16087.66,0.9798
+Findlay Community Centre,BL569,Electricity,kWh (kilowatt-hours),580468.000,71969.41,0.1240
+Findlay Community Centre,BL569,Natural Gas,GJ (Gigajoules),4368.850,86551.40,19.8110
+Fire Station 02 - University Ave,BL263,Electricity,kWh (kilowatt-hours),505217.000,63806.86,0.1263
+Fire Station 02 - University Ave,BL263,Fuel Oil,L (Litres),67233.000,79709.36,1.1856
+Fire Station 03 - West St,BL124,Electricity,kWh (kilowatt-hours),1122034.000,134764.42,0.1201
+Fire Station 03 - West St,BL124,Fuel Oil,L (Litres),90309.200,99660.23,1.1035
+Fire Station 04 - Lady Hammond,BL663,Electricity,kWh (kilowatt-hours),626715.000,81928.21,0.1307
+Fire Station 04 - Lady Hammond,BL663,Fuel Oil,L (Litres),68940.800,83341.66,1.2089
+Fire Station 05 - Bayers Rd,BL757,Electricity,kWh (kilowatt-hours),498688.000,61694.08,0.1237
+Fire Station 05 - Bayers Rd,BL757,Natural Gas,GJ (Gigajoules),3562.360,70561.70,19.8076
+Fire Station 06 - Spryfield,BL687,Electricity,kWh (kilowatt-hours),345276.000,44216.79,0.1281
+Fire Station 06 - Spryfield,BL687,Fuel Oil,L (Litres),55655.100,65556.94,1.1779
+Fire Station 07 - Knightsridge Dr,BL488,Electricity,kWh (kilowatt-hours),1263037.000,151274.09,0.1198
+Fire Station 07 - Knightsridge Dr,BL488,Natural Gas,GJ (Gigajoules),8172.880,157031.69,19.2138
+Fire Station 08 - Bedford,BL279,Electricity,kWh (kilowatt-hours),1960914.000,223266.87,0.1139
+Fire Station 08 - Bedford,BL279,Fuel Oil,L (Litres),112091.800,136526.36,1.2180
+Fire Station 09 - Metropolitan,BL804,Electricity,kWh (kilowatt-hours),1901760.000,217859.60,0.1146
+Fire Station 09 - Metropolitan,BL804,Fuel Oil,L (Litres),69222.600,84266.16,1.2173
+Fire Station 10 - Millwood,BL629,Electricity,kWh (kilowatt-hours),663355.000,80502.64,0.1214
+Fire Station 10 - Millwood,BL629,Propane,L (Litres),75033.800,44237.07,0.5896
+Fire Station 11 - Patton Rd,BL795,Electricity,kWh (kilowatt-hours),281458.000,39815.74,0.1415
+Fire Station 11 - Patton Rd,BL795,Fuel Oil,L (Litres),70583.900,73606.20,1.0428
+Fire Station 12 - Highfield Park,BL567,Electricity,kWh (kilowatt-hours),1913462.000,219177.23,0.1145
+Fire Station 12 - Highfield Park,BL567,Natural Gas,GJ (Gigajoules),8738.490,165939.91,18.9895
+Fire Station 13 - King St,BL341,Electricity,kWh (kilowatt-hours),666216.000,81130.09,0.1218
+Fire Station 13 - King St,BL341,Natural Gas,GJ (Gigajoules),3472.060,69343.12,19.9718
+Fire Station 14 - Walker/Second,BL387,Electricity,kWh (kilowatt-hours),247084.000,37966.02,0.1537
+Fire Station 14 - Walker/Second,BL387,Fuel Oil,L (Litres),43288.100,50396.56,1.1642
+Fire Station 15 - Pleasant St,BL761,Electricity,kWh (kilowatt-hours),619978.000,74507.31,0.1202
+Fire Station 15 - Pleasant St,BL761,Natural Gas,GJ (Gigajoules),2022.080,43413.43,21.4697
+Fire Station 16 - Eastern Passage,BL530,Electricity,kWh (kilowatt-hours),1907329.000,222006.12,0.1164
+Fire Station 17 - Cole Harbour,BL220,Electricity,kWh (kilowatt-hours),2249871.000,259458.38,0.1153
+Fire Station 18 - Westphal,BL372,Electricity,kWh (kilowatt-hours),384772.000,47888.65,0.1245
+Fire Station 18 - Westphal,BL372,Fuel Oil,L (Litres),83504.400,84084.51,1.0069
+Fire Station 19 - Lawrencetown East,BL425,Electricity,kWh (kilowatt-hours),235558.000,38197.87,0.1622
+Fire Station 19 - Lawrencetown East,BL425,Propane,L (Litres),79950.900,45196.03,0.5653
+Fire Station 20 - Lawrencetown,BL815,Electricity,kWh (kilowatt-hours),185360.000,30213.95,0.1630
+Fire Station 20 - Lawrencetown,BL815,Fuel Oil,L (Litres),22892.100,22813.99,0.9966
+Fire Station 21 - Lake Echo,BL538,Electricity,kWh (kilowatt-hours),251226.000,40765.63,0.1623
+Fire Station 21 - Lake Echo,BL538,Fuel Oil,L (Litres),68064.900,65388.40,0.9607
+Fire Station 22 - North Preston,BL376,Electricity,kWh (kilowatt-hours),172298.000,28298.73,0.1642
+Fire Station 22 - North Preston,BL376,Fuel Oil,L (Litres),21568.900,20474.40,0.9493
+Fire Station 23 - Chezzetcook,BL106,Electricity,kWh (kilowatt-hours),493874.000,64341.02,0.1303
+Fire Station 23 - Chezzetcook,BL106,Fuel Oil,L (Litres),114235.700,116039.67,1.0158
+Fire Station 24 - Musquodoboit Harbour,BL356,Electricity,kWh (kilowatt-hours),361927.000,59077.09,0.1632
+Fire Station 24 - Musquodoboit Harbour,BL356,Fuel Oil,L (Litres),73433.300,72612.22,0.9888
+Fire Station 24 - Musquodoboit Harbour,BL356,Propane,L (Litres),1405.700,583.48,0.4151
+Fire Station 25 - Ostrea Lake,BL403,Electricity,kWh (kilowatt-hours),140440.000,21751.21,0.1549
+Fire Station 25 - Ostrea Lake,BL403,Fuel Oil,L (Litres),22670.500,21851.55,0.9639
+Fire Station 26 - Oyster Pond,BL277,Electricity,kWh (kilowatt-hours),307457.000,50122.80,0.1630
+Fire Station 26 - Oyster Pond,BL277,Fuel Oil,L (Litres),74406.100,73044.55,0.9817
+Fire Station 28 - Sheet Harbour,BL517,Electricity,kWh (kilowatt-hours),102700.000,16897.51,0.1645
+Fire Station 28 - Sheet Harbour,BL517,Fuel Oil,L (Litres),99568.300,98570.42,0.9900
+Fire Station 29 - Moser River,BL514,Electricity,kWh (kilowatt-hours),355544.000,42392.73,0.1192
+Fire Station 29 - Moser River,BL514,Fuel Oil,L (Litres),52462.800,63752.64,1.2152
+Fire Station 30 - Tangier,BL796,Electricity,kWh (kilowatt-hours),225671.000,36608.11,0.1622
+Fire Station 30 - Tangier,BL796,Propane,L (Litres),58776.700,34332.70,0.5841
+Fire Station 31 - East Ship Harbour,BL681,Electricity,kWh (kilowatt-hours),97411.000,16488.57,0.1693
+Fire Station 31 - East Ship Harbour,BL681,Fuel Oil,L (Litres),15587.000,13994.41,0.8978
+Fire Station 33 - Three Harbours,BL257,Electricity,kWh (kilowatt-hours),72469.000,11864.75,0.1637
+Fire Station 33 - Three Harbours,BL257,Fuel Oil,L (Litres),32369.200,31467.91,0.9722
+Fire Station 34 - Mushaboom,BL826,Electricity,kWh (kilowatt-hours),294795.000,48145.26,0.1633
+Fire Station 34 - Mushaboom,BL826,Fuel Oil,L (Litres),17090.800,16025.57,0.9377
+Fire Station 35 - Cooks Brook,BL794,Electricity,kWh (kilowatt-hours),142928.000,23452.94,0.1641
+Fire Station 35 - Cooks Brook,BL794,Fuel Oil,L (Litres),25474.000,29643.18,1.1637
+Fire Station 38 - Middle Musquodoboit,BL450,Electricity,kWh (kilowatt-hours),279991.000,46574.47,0.1663
+Fire Station 38 - Middle Musquodoboit,BL450,Fuel Oil,L (Litres),88468.800,86551.26,0.9783
+Fire Station 39 - Upper Musquodoboit,BL741,Electricity,kWh (kilowatt-hours),244700.000,40153.61,0.1641
+Fire Station 39 - Upper Musquodoboit,BL741,Fuel Oil,L (Litres),46098.800,44355.41,0.9622
+Fire Station 40 - Dutch Settlement,BL973,Electricity,kWh (kilowatt-hours),901145.000,110360.89,0.1225
+Fire Station 41 - Waverley,BL415,Electricity,kWh (kilowatt-hours),273245.000,42423.88,0.1553
+Fire Station 41 - Waverley,BL415,Fuel Oil,L (Litres),82677.400,84373.38,1.0205
+Fire Station 47 - Goff'S,BL698,Electricity,kWh (kilowatt-hours),263324.000,42578.52,0.1617
+Fire Station 47 - Goff'S,BL698,Fuel Oil,L (Litres),34144.700,33792.10,0.9897
+Fire Station 50 - Hammonds Plains,BL280,Electricity,kWh (kilowatt-hours),700668.000,84882.07,0.1211
+Fire Station 50 - Hammonds Plains,BL280,Fuel Oil,L (Litres),85162.800,84448.07,0.9916
+Fire Station 52 - Prospect,BL847,Electricity,kWh (kilowatt-hours),135610.000,21025.54,0.1550
+Fire Station 52 - Prospect,BL847,Fuel Oil,L (Litres),42640.800,44139.72,1.0352
+Fire Station 54 - Shad Bay,BL482,Electricity,kWh (kilowatt-hours),555447.000,70670.95,0.1272
+Fire Station 55 - Seabright,BL252,Electricity,kWh (kilowatt-hours),313131.000,51084.99,0.1631
+Fire Station 55 - Seabright,BL252,Fuel Oil,L (Litres),40033.200,39359.73,0.9832
+Fire Station 56 - Black Point,BL500,Electricity,kWh (kilowatt-hours),716167.000,90931.29,0.1270
+Fire Station 56 - Black Point,BL500,Fuel Oil,L (Litres),88671.200,83643.53,0.9433
+Fire Station 56 - Black Point,BL500,Propane,L (Litres),66265.200,43240.68,0.6525
+Fire Station 58 - Lakeside,BL360,Electricity,kWh (kilowatt-hours),497178.000,80209.98,0.1613
+Fire Station 58 - Lakeside,BL360,Fuel Oil,L (Litres),94590.000,95827.41,1.0131
+Fire Station 60 - Herring Cove,BL972,Electricity,kWh (kilowatt-hours),1247277.000,149229.65,0.1196
+Fire Station 65 - Upper Tantallon,BL975,Electricity,kWh (kilowatt-hours),1331316.000,160608.56,0.1206
+Flume House,BL149167,Electricity,kWh (kilowatt-hours),6867.000,992.13,0.1445
+George Dixon Community Recreation Centre,BL245,Electricity,kWh (kilowatt-hours),868641.000,103205.71,0.1188
+George Dixon Community Recreation Centre,BL245,Natural Gas,GJ (Gigajoules),4921.200,97136.62,19.7384
+Gerald B Gray Arena,BL18,Electricity,kWh (kilowatt-hours),4645810.000,502973.49,0.1083
+Gerald B Gray Arena,BL18,Fuel Oil,L (Litres),35197.200,34458.36,0.9790
+Gerald B Gray Arena,BL18,Natural Gas,GJ (Gigajoules),1863.790,35060.18,18.8112
+Gordon R Snow Community Centre,BL395,Electricity,kWh (kilowatt-hours),7045217.000,811511.43,0.1152
+Graves Oakley Park Facility,BL28901,Electricity,kWh (kilowatt-hours),126393.000,19484.93,0.1542
+Greenfoot Energy Centre (Formerly BMO Centre),BL918,Electricity,kWh (kilowatt-hours),31200507.000,3624280.89,0.1162
+Greenfoot Energy Centre (Formerly BMO Centre),BL918,Natural Gas,GJ (Gigajoules),54901.210,883724.64,16.0966
+Halifax Central Library,BL88426,Electricity,kWh (kilowatt-hours),15846720.000,1810514.82,0.1143
+Halifax Central Library,BL88426,Natural Gas,GJ (Gigajoules),27499.900,456014.83,16.5824
+Halifax City Hall,BL243,Electricity,kWh (kilowatt-hours),4467998.000,514524.40,0.1152
+Halifax City Hall,BL243,Natural Gas,GJ (Gigajoules),10611.460,202938.20,19.1244
+Halifax Ferry Terminal,BL710,Electricity,kWh (kilowatt-hours),1616344.000,179889.96,0.1113
+Halifax Ferry Terminal,BL710,Natural Gas,GJ (Gigajoules),6844.060,131705.09,19.2437
+Halifax Forum,BL406,Electricity,kWh (kilowatt-hours),20326719.000,2336404.57,0.1149
+Halifax Forum,BL406,Natural Gas,GJ (Gigajoules),62430.380,975186.02,15.6204
+Halifax North Common Electrical Facility,BL968,Electricity,kWh (kilowatt-hours),136319.000,21015.56,0.1542
+Halifax North Memorial Public Library,BL756,Electricity,kWh (kilowatt-hours),4611802.000,537922.25,0.1166
+Harrietsfield - Williamswood Community Centre,BL803,Electricity,kWh (kilowatt-hours),166986.000,25750.13,0.1542
+Harrietsfield - Williamswood Community Centre,BL803,Fuel Oil,L (Litres),18415.500,13624.66,0.7398
+Highfield Park Bus Terminal,BL86797,Electricity,kWh (kilowatt-hours),428737.000,65377.51,0.1525
+Hrm Fleet Repair Centre,BL686,Electricity,kWh (kilowatt-hours),3186109.000,365340.39,0.1147
+Hrm Fleet Repair Centre,BL686,Natural Gas,GJ (Gigajoules),11313.080,220375.85,19.4797
+Hubbards Recreation Centre,BL519,Electricity,kWh (kilowatt-hours),143309.000,23075.14,0.1610
+Ilsley Transit Facility,BL688,Electricity,kWh (kilowatt-hours),26845404.000,2848405.99,0.1061
+Ilsley Transit Facility,BL688,Fuel Oil,L (Litres),-33429.000,-21013.13,
+Ilsley Transit Facility,BL688,Natural Gas,GJ (Gigajoules),76371.590,1290610.87,16.8991
+Isleville Community Centre,BL22,Electricity,kWh (kilowatt-hours),26457.000,4637.09,0.1753
+Isleville Community Centre,BL22,Fuel Oil,L (Litres),45794.800,44094.93,0.9629
+J D Shatford Memorial Library,BL589,Electricity,kWh (kilowatt-hours),282001.000,34990.85,0.1241
+Keshen Goodman Library,BL272,Electricity,kWh (kilowatt-hours),3560513.000,415259.81,0.1166
+Keshen Goodman Library,BL272,Natural Gas,GJ (Gigajoules),10430.120,198929.97,19.0726
+Lacewood Terminal,BL88657,Electricity,kWh (kilowatt-hours),1037457.000,119770.26,0.1154
+Lacewood Terminal,BL88657,Natural Gas,GJ (Gigajoules),1214.210,27582.76,22.7166
+Lake Banook Lion's Beach Storage Shed,BL65,Electricity,kWh (kilowatt-hours),26043.000,4443.85,0.1706
+Lake Echo Community Centre,BL650,Electricity,kWh (kilowatt-hours),597311.000,73922.35,0.1238
+Larry O'Connell Centre,BL37,Electricity,kWh (kilowatt-hours),47627.000,7782.36,0.1634
+Larry O'Connell Centre,BL37,Fuel Oil,L (Litres),48333.400,43890.12,0.9081
+MacPhee House Main Building,BL708,Electricity,kWh (kilowatt-hours),70007.000,12130.03,0.1733
+MacPhee House Main Building,BL708,Fuel Oil,L (Litres),1780.100,1388.16,0.7798
+Mackintosh Street Public Works Building 1,BL23,Electricity,kWh (kilowatt-hours),3002700.000,343429.25,0.1144
+Mackintosh Street Public Works Building 1,BL23,Fuel Oil,L (Litres),165102.000,185203.95,1.1218
+Moser River Community Hall,BL324,Electricity,kWh (kilowatt-hours),5060.000,771.50,0.1525
+Municipal Facilities Maintenance & Operations,BL38,Electricity,kWh (kilowatt-hours),2038802.000,252804.75,0.1240
+Municipal Facilities Maintenance & Operations,BL38,Fuel Oil,L (Litres),190424.500,198896.72,1.0445
+Musquodoboit Harbour Recreation Centre And Library,BL55,Electricity,kWh (kilowatt-hours),1267313.000,158196.82,0.1248
+Musquodoboit Valley Bicentennial Theatre & Cultural Centre,BL587,Electricity,kWh (kilowatt-hours),46715.000,7747.54,0.1658
+Needham Community Recreation Centre,BL126,Electricity,kWh (kilowatt-hours),1693002.000,196486.21,0.1161
+Needham Community Recreation Centre,BL126,Fuel Oil,L (Litres),166352.100,187393.58,1.1265
+North Commons Public Washroom Facility,BL841,Electricity,kWh (kilowatt-hours),753058.000,80185.20,0.1065
+North Preston Community Centre,BL744,Electricity,kWh (kilowatt-hours),2346065.000,269625.16,0.1149
+North Preston Community Centre,BL744,Fuel Oil,L (Litres),116643.500,131110.99,1.1240
+North Woodside Community Centre,BL265,Electricity,kWh (kilowatt-hours),736274.000,119043.36,0.1617
+North Woodside Community Centre,BL265,Natural Gas,GJ (Gigajoules),2156.720,46146.92,21.3968
+Northbrook Police Training Centre,BL616,Electricity,kWh (kilowatt-hours),1572471.000,184743.18,0.1175
+Northbrook Police Training Centre,BL616,Natural Gas,GJ (Gigajoules),7968.630,154087.99,19.3368
+Oakwood House,BL532,Electricity,kWh (kilowatt-hours),77739.000,13151.79,0.1692
+Oakwood House,BL532,Fuel Oil,L (Litres),39331.600,32423.30,0.8244
+Point Pleasant Park Works Depot,BL785,Electricity,kWh (kilowatt-hours),76071.000,12238.18,0.1609
+Point Pleasant Park Works Depot,BL785,Fuel Oil,L (Litres),51679.500,51947.42,1.0052
+Portland Hills Transit Terminal,BL344,Electricity,kWh (kilowatt-hours),694325.000,88094.45,0.1269
+Power House,BL375,Fuel Oil,L (Litres),8902.500,5309.66,0.5964
+Prospect Road Community Centre,BL907,Electricity,kWh (kilowatt-hours),4541395.000,529417.63,0.1166
+Public Gardens Greenhouse 1-6,BL927,Electricity,kWh (kilowatt-hours),461098.000,54736.01,0.1187
+Public Gardens Greenhouse 1-6,BL927,Fuel Oil,L (Litres),34616.000,40075.64,1.1577
+Public Gardens Greenhouse 1-6,BL927,Propane,L (Litres),-362.500,-429.41,
+Quaker House,BL778,Electricity,kWh (kilowatt-hours),174990.000,28678.44,0.1639
+Ragged Lake Transit Centre,BL945,Electricity,kWh (kilowatt-hours),27705324.000,3060128.73,0.1105
+Ragged Lake Transit Centre,BL945,Natural Gas,GJ (Gigajoules),74099.580,1269724.40,17.1354
+Ravenscraig Dr Park Washroom Facility,BL88574,Electricity,kWh (kilowatt-hours),62584.000,9982.86,0.1595
+Rbc Centre,BL138092,Electricity,kWh (kilowatt-hours),25892517.000,3054131.11,0.1180
+Rbc Centre,BL138092,Natural Gas,GJ (Gigajoules),62024.560,983546.60,15.8574
+Richmond Canada Family Court,BL266,Electricity,kWh (kilowatt-hours),2377525.000,291035.05,0.1224
+Richmond Canada Family Court,BL266,Fuel Oil,L (Litres),82795.000,94339.90,1.1394
+Sackville Heights Community Centre,BL718,Electricity,kWh (kilowatt-hours),770582.000,96850.61,0.1257
+Sackville Heights Community Centre,BL718,Fuel Oil,L (Litres),83570.400,98187.39,1.1749
+Sackville Metro Link Terminal,BL211,Electricity,kWh (kilowatt-hours),742549.000,90779.38,0.1223
+Sackville Sports Stadium,BL834,Electricity,kWh (kilowatt-hours),26695300.000,2961601.12,0.1109
+Sackville Sports Stadium,BL834,Fuel Oil,L (Litres),324175.900,353411.61,1.0902
+Sackville Sports Stadium,BL834,Propane,L (Litres),473547.700,294304.27,0.6215
+Sandy Lake Beach Washroom Facility,BL115415,Electricity,kWh (kilowatt-hours),19220.000,3257.31,0.1695
+Scotiabank Centre,BL614,Electricity,kWh (kilowatt-hours),40862700.000,4740590.84,0.1160
+Scotiabank Centre,BL614,Natural Gas,GJ (Gigajoules),83920.220,1386472.85,16.5213
+Scott Manor House,BL159,Electricity,kWh (kilowatt-hours),130178.000,21986.61,0.1689
+Scott Manor House,BL159,Fuel Oil,L (Litres),36820.800,35230.93,0.9568
+"Sir Sandford Fleming Park Canteen, Washroom & Electrical",BL78605,Electricity,kWh (kilowatt-hours),47630.000,7077.69,0.1486
+"Sir Sandford Fleming Park Canteen, Washroom & Electrical",BL78605,Fuel Oil,L (Litres),26022.100,24701.34,0.9492
+Sir Sandford Fleming Park Cottage,BL637,Electricity,kWh (kilowatt-hours),22364.000,3878.52,0.1734
+Sir Sandford Fleming Park Cottage,BL637,Fuel Oil,L (Litres),24719.300,22167.94,0.8968
+Spryfield Lions Arena,BL172,Electricity,kWh (kilowatt-hours),5444652.000,894086.35,0.1642
+Spryfield Lions Arena,BL172,Fuel Oil,L (Litres),118360.000,119422.91,1.0090
+St Margarets Centre,BL828,Electricity,kWh (kilowatt-hours),17595390.000,2035343.46,0.1157
+St Margarets Centre,BL828,Fuel Oil,L (Litres),503121.800,573258.18,1.1394
+St Margarets Centre,BL828,Propane,L (Litres),250348.260,184415.66,0.7366
+St Marys Boat Club,BL529,Electricity,kWh (kilowatt-hours),860787.000,108737.39,0.1263
+Ste Therese Community Centre,BL503,Electricity,kWh (kilowatt-hours),74783.000,12474.55,0.1668
+The Bay Community Centre - Unicorn Theatre,BL140,Electricity,kWh (kilowatt-hours),144367.000,21255.25,0.1472
+Theakston Avenue Storage Building,BL78612,Electricity,kWh (kilowatt-hours),47697.000,6916.04,0.1450
+Turner Drive Depot,BL459,Electricity,kWh (kilowatt-hours),3342451.000,396304.90,0.1186
+Turner Drive Depot,BL459,Natural Gas,GJ (Gigajoules),20499.840,392288.07,19.1362
+Upper Hammonds Plains Community Centre,BL83,Electricity,kWh (kilowatt-hours),152367.000,21895.63,0.1437
+Upper Hammonds Plains Community Centre,BL83,Fuel Oil,L (Litres),39479.200,31051.36,0.7865
+W D Piercey Park Canteen,BL103544,Electricity,kWh (kilowatt-hours),7173.000,1506.87,0.2101
+Wallace Lucas Community Centre,BL713,Electricity,kWh (kilowatt-hours),125983.000,18417.54,0.1462
+Wallace Lucas Community Centre,BL713,Fuel Oil,L (Litres),13564.700,12120.94,0.8936
+Wallace Lucas Community Centre,BL713,Propane,L (Litres),14478.300,7286.33,0.5033
+Waverley Road Fire Garage,BL14,Electricity,kWh (kilowatt-hours),1097743.000,126105.52,0.1149
+Waverley Road Fire Garage,BL14,Propane,L (Litres),195460.600,115961.79,0.5933
+Woodlawn Public Library,BL965,Electricity,kWh (kilowatt-hours),2714818.000,311950.95,0.1149
+Woodlawn Public Library,BL965,Natural Gas,GJ (Gigajoules),5203.190,104279.80,20.0415
+Woodside Ferry Terminal,BL316,Electricity,kWh (kilowatt-hours),4099874.000,471767.30,0.1151
+Woodside Ferry Terminal,BL316,Fuel Oil,L (Litres),228469.700,160902.55,0.7043
+Youth Live Warehouse,BL621,Electricity,kWh (kilowatt-hours),358414.000,55724.20,0.1555
+Youth Live Warehouse,BL621,Fuel Oil,L (Litres),52665.200,49800.37,0.9456
+Zatzman Sportsplex,BL219,Electricity,kWh (kilowatt-hours),24791280.000,2796980.34,0.1128
+Zatzman Sportsplex,BL219,Natural Gas,GJ (Gigajoules),76722.910,1199009.40,15.6278

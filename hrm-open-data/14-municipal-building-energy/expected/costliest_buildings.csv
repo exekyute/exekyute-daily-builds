@@ -1,0 +1,161 @@
+building_name,hrm_building_id,fuel_count,cost,cost_share,building_rank
+Scotiabank Centre,BL614,2,6127063.69,0.070879,1
+Canada Games Centre,BL917,2,4800167.26,0.055529,2
+Greenfoot Energy Centre (Formerly BMO Centre),BL918,2,4508005.53,0.052149,3
+Cole Harbour Place,BL89,2,4474784.59,0.051765,4
+Ragged Lake Transit Centre,BL945,2,4329853.13,0.050088,5
+Ilsley Transit Facility,BL688,3,4118003.73,0.047638,6
+Rbc Centre,BL138092,2,4037677.71,0.046709,7
+Zatzman Sportsplex,BL219,2,3995989.74,0.046226,8
+Alderney Gate,BL448,2,3664082.68,0.042387,9
+Sackville Sports Stadium,BL834,3,3609317.00,0.041753,10
+Halifax Forum,BL406,2,3311590.59,0.038309,11
+St Margarets Centre,BL828,3,2793017.30,0.032310,12
+Halifax Central Library,BL88426,2,2266529.65,0.026220,13
+David P Mckinnon Building,BL838,2,2124956.79,0.024582,14
+Eric Spicer Municipal Building,BL466,3,2047315.41,0.023684,15
+Captain William Spry Community Centre,BL296,3,1663265.61,0.019241,16
+Emera Oval Pavilion,BL103507,2,1202337.60,0.013909,17
+Centennial Arena,BL431,2,1198544.68,0.013865,18
+Spryfield Lions Arena,BL172,2,1013509.26,0.011724,19
+Dr Gerald J Lebrun Memorial Centre,BL501,3,959900.46,0.011104,20
+Centennial Pool,BL814,1,842666.74,0.009748,21
+Gordon R Snow Community Centre,BL395,1,811511.43,0.009388,22
+Turner Drive Depot,BL459,2,788592.97,0.009123,23
+Halifax City Hall,BL243,2,717462.60,0.008300,24
+Alderney Landing,BL409,2,656575.25,0.007595,25
+Woodside Ferry Terminal,BL316,2,632669.85,0.007319,26
+Keshen Goodman Library,BL272,2,614189.78,0.007105,27
+Acadia Centre,BL820,3,588644.45,0.006810,28
+Hrm Fleet Repair Centre,BL686,2,585716.24,0.006776,29
+Gerald B Gray Arena,BL18,3,572492.03,0.006623,30
+Halifax North Memorial Public Library,BL756,1,537922.25,0.006223,31
+Prospect Road Community Centre,BL907,1,529417.63,0.006124,32
+Mackintosh Street Public Works Building 1,BL23,2,528633.20,0.006115,33
+Beaver Bank - Kinsac Community Centre,BL228,1,496244.89,0.005741,34
+Municipal Facilities Maintenance & Operations,BL38,2,451701.47,0.005225,35
+Woodlawn Public Library,BL965,2,416230.75,0.004815,36
+North Preston Community Centre,BL744,2,400736.15,0.004636,37
+Richmond Canada Family Court,BL266,2,385374.95,0.004458,38
+Fire Station 12 - Highfield Park,BL567,2,385117.14,0.004455,39
+Needham Community Recreation Centre,BL126,2,383879.79,0.004441,40
+East Dartmouth Community Centre,BL394,1,380147.12,0.004398,41
+Fire Station 08 - Bedford,BL279,2,359793.23,0.004162,42
+Northbrook Police Training Centre,BL616,2,338831.17,0.003920,43
+Dartmouth Bridge Transit Terminal,BL78630,2,317653.13,0.003675,44
+Chocolate Lake Community Recreation Centre,BL414,2,314562.30,0.003639,45
+Halifax Ferry Terminal,BL710,2,311595.05,0.003605,46
+Fire Station 07 - Knightsridge Dr,BL488,2,308305.78,0.003567,47
+Fire Station 09 - Metropolitan,BL804,2,302125.76,0.003495,48
+Dartmouth Ferry Terminal,BL773,1,283218.33,0.003276,49
+Fire Station 17 - Cole Harbour,BL220,1,259458.38,0.003001,50
+Waverley Road Fire Garage,BL14,2,242067.31,0.002800,51
+Fire Station 03 - West St,BL124,2,234424.65,0.002712,52
+Fairbanks Centre + Washroom,BL560,1,228607.99,0.002645,53
+Fire Station 16 - Eastern Passage,BL530,1,222006.12,0.002568,54
+Fire Station 56 - Black Point,BL500,3,217815.50,0.002520,55
+(Former) Bowles Arena,BL368,2,207948.32,0.002406,56
+Dartmouth North Community Centre,BL597,2,204732.24,0.002368,57
+George Dixon Community Recreation Centre,BL245,2,200342.33,0.002318,58
+DHE Fieldhouse,BL143888,1,198335.54,0.002294,59
+East Preston Recreation Centre,BL100,2,195720.35,0.002264,60
+Sackville Heights Community Centre,BL718,2,195038.00,0.002256,61
+(Former) Spring Garden Road Public Library,BL205,2,192002.66,0.002221,62
+Fire Station 23 - Chezzetcook,BL106,2,180380.69,0.002087,63
+Fire Station 58 - Lakeside,BL360,2,176037.39,0.002036,64
+Fire Station 50 - Hammonds Plains,BL280,2,169330.14,0.001959,65
+Fire Station 04 - Lady Hammond,BL663,2,165269.87,0.001912,66
+North Woodside Community Centre,BL265,2,165190.28,0.001911,67
+Fire Station 65 - Upper Tantallon,BL975,1,160608.56,0.001858,68
+Findlay Community Centre,BL569,2,158520.81,0.001834,69
+Musquodoboit Harbour Recreation Centre And Library,BL55,1,158196.82,0.001830,70
+Fire Station 13 - King St,BL341,2,150473.21,0.001741,71
+Fire Station 60 - Herring Cove,BL972,1,149229.65,0.001726,72
+Lacewood Terminal,BL88657,2,147353.02,0.001705,73
+(Former) Beechville Lakeside Timberlea Recreation Centre,BL735,2,147017.65,0.001701,74
+Fire Station 02 - University Ave,BL263,2,143516.22,0.001660,75
+Fire Station 38 - Middle Musquodoboit,BL450,2,133125.73,0.001540,76
+Fire Station 24 - Musquodoboit Harbour,BL356,3,132272.79,0.001530,77
+Fire Station 05 - Bayers Rd,BL757,2,132255.78,0.001530,78
+Fire Station 18 - Westphal,BL372,2,131973.16,0.001527,79
+(Former) St Andrews Community Centre,BL152015,3,130177.07,0.001506,80
+Fire Station 41 - Waverley,BL415,2,126797.26,0.001467,81
+Fire Station 10 - Millwood,BL629,2,124739.71,0.001443,82
+Fire Station 26 - Oyster Pond,BL277,2,123167.35,0.001425,83
+Fire Station 15 - Pleasant St,BL761,2,117920.74,0.001364,84
+Fire Station 28 - Sheet Harbour,BL517,2,115467.93,0.001336,85
+Fire Station 11 - Patton Rd,BL795,2,113421.94,0.001312,86
+Fire Station 40 - Dutch Settlement,BL973,1,110360.89,0.001277,87
+Fire Station 06 - Spryfield,BL687,2,109773.73,0.001270,88
+St Marys Boat Club,BL529,1,108737.39,0.001258,89
+Fire Station 21 - Lake Echo,BL538,2,106154.03,0.001228,90
+Fire Station 29 - Moser River,BL514,2,106145.37,0.001228,91
+Youth Live Warehouse,BL621,2,105524.57,0.001221,92
+(Former) Devonshire Arena,BL283,2,97720.42,0.001130,93
+Public Gardens Greenhouse 1-6,BL927,3,94382.24,0.001092,94
+Sackville Metro Link Terminal,BL211,1,90779.38,0.001050,95
+Fire Station 55 - Seabright,BL252,2,90444.72,0.001046,96
+"Caledonia Rd Greenhouse 1 - 4, office, storage buildings and Header House",BL952,2,89572.11,0.001036,97
+Fire Station 14 - Walker/Second,BL387,2,88362.58,0.001022,98
+Portland Hills Transit Terminal,BL344,1,88094.45,0.001019,99
+Fire Station 39 - Upper Musquodoboit,BL741,2,84509.02,0.000978,100
+Fire Station 19 - Lawrencetown East,BL425,2,83393.90,0.000965,101
+(Former) Crichton Centre,BL570,2,80424.84,0.000930,102
+North Commons Public Washroom Facility,BL841,1,80185.20,0.000928,103
+(Former) The Commons Pavilion,BL275,2,77888.96,0.000901,104
+Fire Station 47 - Goff'S,BL698,2,76370.62,0.000883,105
+Lake Echo Community Centre,BL650,1,73922.35,0.000855,106
+Fire Station 30 - Tangier,BL796,2,70940.81,0.000821,107
+Fire Station 54 - Shad Bay,BL482,1,70670.95,0.000818,108
+Adventure Earth Centre,BL247,2,70274.91,0.000813,109
+Cole Harbour All-Weather Field Washroom & Storage,BL144202,1,69394.41,0.000803,110
+Bedford Lion's Club,BL684,2,69274.57,0.000801,111
+Evergreen House,BL776,2,67019.29,0.000775,112
+(Former) HRM Fire - Science Park Drive,BL21681,1,65813.42,0.000761,113
+Highfield Park Bus Terminal,BL86797,1,65377.51,0.000756,114
+Fire Station 52 - Prospect,BL847,2,65165.26,0.000754,115
+Point Pleasant Park Works Depot,BL785,2,64185.60,0.000743,116
+Fire Station 34 - Mushaboom,BL826,2,64170.83,0.000742,117
+Scott Manor House,BL159,2,57217.54,0.000662,118
+Bedford Lawn Bowling & Leisure Centre,BL602,2,56854.82,0.000658,119
+Fire Station 35 - Cooks Brook,BL794,2,53096.12,0.000614,120
+Fire Station 20 - Lawrencetown,BL815,2,53027.94,0.000613,121
+Upper Hammonds Plains Community Centre,BL83,2,52946.99,0.000612,122
+Larry O'Connell Centre,BL37,2,51672.48,0.000598,123
+Fire Station 22 - North Preston,BL376,2,48773.13,0.000564,124
+Isleville Community Centre,BL22,2,48732.02,0.000564,125
+Oakwood House,BL532,2,45575.09,0.000527,126
+Fire Station 25 - Ostrea Lake,BL403,2,43602.76,0.000504,127
+Fire Station 33 - Three Harbours,BL257,2,43332.66,0.000501,128
+Employee Assistance Program Office,BL777,2,42391.17,0.000490,129
+Albro Lake Washroom Facility,BL86473,1,40405.38,0.000467,130
+Harrietsfield - Williamswood Community Centre,BL803,2,39374.79,0.000455,131
+Wallace Lucas Community Centre,BL713,3,37824.81,0.000438,132
+(Former) Fire Station 63 - Sambro,BL103,2,36200.42,0.000419,133
+J D Shatford Memorial Library,BL589,1,34990.85,0.000405,134
+"Sir Sandford Fleming Park Canteen, Washroom & Electrical",BL78605,2,31779.03,0.000368,135
+Fire Station 31 - East Ship Harbour,BL681,2,30482.98,0.000353,136
+Quaker House,BL778,1,28678.44,0.000332,137
+Sir Sandford Fleming Park Cottage,BL637,2,26046.46,0.000301,138
+Hubbards Recreation Centre,BL519,1,23075.14,0.000267,139
+The Bay Community Centre - Unicorn Theatre,BL140,1,21255.25,0.000246,140
+Halifax North Common Electrical Facility,BL968,1,21015.56,0.000243,141
+Graves Oakley Park Facility,BL28901,1,19484.93,0.000225,142
+Fairview Cemetery Office,BL454,1,16087.66,0.000186,143
+MacPhee House Main Building,BL708,2,13518.19,0.000156,144
+Ste Therese Community Centre,BL503,1,12474.55,0.000144,145
+Cole Harbour Outdoor Pool & Tennis Court Complex,BL430,1,11889.27,0.000138,146
+(FORMER) HRP SATELLITE OFFICE,BL198,1,10336.38,0.000120,147
+Cole Harbour Commons Washrooms,BL102428,1,10167.46,0.000118,148
+Ravenscraig Dr Park Washroom Facility,BL88574,1,9982.86,0.000115,149
+Musquodoboit Valley Bicentennial Theatre & Cultural Centre,BL587,1,7747.54,0.000090,150
+Eastern Shore Community Centre,BL474,1,7030.25,0.000081,151
+Theakston Avenue Storage Building,BL78612,1,6916.04,0.000080,152
+Eastern Passage Commons Washroom Facility,BL103516,1,5318.81,0.000062,153
+Power House,BL375,1,5309.66,0.000061,154
+(Former) Metropolitan Avenue Park Washroom Facility,BL103527,1,4625.35,0.000054,155
+Lake Banook Lion's Beach Storage Shed,BL65,1,4443.85,0.000051,156
+Sandy Lake Beach Washroom Facility,BL115415,1,3257.31,0.000038,157
+W D Piercey Park Canteen,BL103544,1,1506.87,0.000017,158
+Flume House,BL149167,1,992.13,0.000011,159
+Moser River Community Hall,BL324,1,771.50,0.000009,160
