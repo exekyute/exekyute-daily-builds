@@ -1,0 +1,28 @@
+# Read this build as a SQL project (display only; no behaviour change)
+*.sql linguist-language=SQL
+*.sql linguist-detectable=true
+
+# Keep raw open data and exports out of the language stats
+data/**            linguist-vendored
+bi/exports/*.csv   linguist-generated
+*.csv              linguist-vendored
+*.geojson      linguist-vendored
+*.json         linguist-vendored
+*.parquet      linguist-vendored
+
+# Generated engine artifacts
+out/**    linguist-generated
+*.duckdb  linguist-generated
+
+# Keep the BI project files from stealing the bar
+*.twbx binary linguist-generated
+*.twb         linguist-vendored
+*.pbix binary linguist-generated
+bi/tableau/**          linguist-vendored
+bi/powerbi/**          linguist-vendored
+**/*.Report/**         linguist-generated
+**/*.SemanticModel/**  linguist-generated
+
+# Runner and docs do not count toward the bar
+run.py    linguist-vendored
+*.md      linguist-documentation

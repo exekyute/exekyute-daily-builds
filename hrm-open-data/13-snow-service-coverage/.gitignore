@@ -1,0 +1,16 @@
+# generated output
+out/
+
+# local working databases
+*.duckdb
+*.db
+
+# python caches
+__pycache__/
+
+# local styled-docs preview (not part of the build)
+_preview/
+
+# local BI working files: keep the .twb, never the packaged .twbx
+bi/README.md
+*.twbx
