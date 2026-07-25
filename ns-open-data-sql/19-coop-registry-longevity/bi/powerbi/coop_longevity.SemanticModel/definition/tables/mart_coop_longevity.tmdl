@@ -1,0 +1,150 @@
+table mart_coop_longevity
+	lineageTag: a2019a66-2d83-4bb7-b966-e2c0ff086e7a
+
+	measure 'Total Registered' = COUNTROWS(mart_coop_longevity)
+		formatString: 0
+		lineageTag: bdaddd69-82f4-40e7-9da1-e0451ba97577
+
+	measure 'Non-profit Count' =
+			
+			CALCULATE(
+			    COUNTROWS(mart_coop_longevity),
+			    mart_coop_longevity[is_nonprofit] = 1
+			) + 0
+		formatString: 0
+		lineageTag: 4ca8a3ba-7610-4d8d-807c-bab7c501e971
+
+	measure 'Non-profit Share' =
+			
+			DIVIDE([Non-profit Count], COUNTROWS(mart_coop_longevity))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 665f5d40-9111-492b-a03c-3186c2ffce75
+
+	measure 'Registry Share' =
+			
+			DIVIDE(
+			    COUNTROWS(mart_coop_longevity),
+			    CALCULATE(COUNTROWS(mart_coop_longevity), ALL(mart_coop_longevity))
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: bc895007-e619-499b-a344-2bfc3be88a05
+
+	measure 'Oldest Age Years' = MAX(mart_coop_longevity[age_years])
+		formatString: 0.0
+		lineageTag: 800dcd08-b5b7-4ec9-8c38-0d4465262466
+
+	measure 'For-profit Count' =
+			
+			CALCULATE(
+			    COUNTROWS(mart_coop_longevity),
+			    mart_coop_longevity[is_nonprofit] = 0
+			) + 0
+		formatString: 0
+		lineageTag: bde9cd8e-ade6-4c7c-8e67-cb1a5fe10daf
+
+	column registry_id
+		dataType: string
+		lineageTag: 1fe54aed-c913-4447-867c-3fff356e9cb6
+		summarizeBy: none
+		sourceColumn: registry_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column co_op_name
+		dataType: string
+		lineageTag: c20db16f-ca5e-487d-a465-fc7496168dae
+		summarizeBy: none
+		sourceColumn: co_op_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column town
+		dataType: string
+		lineageTag: 886dffcc-d17b-420b-8498-65de142ab655
+		summarizeBy: none
+		sourceColumn: town
+
+		annotation SummarizationSetBy = Automatic
+
+	column incorporation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a3ee5deb-91e3-4dc9-9644-7234e65b6c06
+		summarizeBy: none
+		sourceColumn: incorporation_date
+
+		variation Variation
+			isDefault
+			relationship: 98c497ab-6c56-4a02-bbd2-b7bb5cecc185
+			defaultHierarchy: LocalDateTable_4eea71c7-de1a-4b5b-8051-1db6fae9ffc6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column incorporation_year
+		dataType: int64
+		formatString: 0
+		lineageTag: be15caf9-3fdd-4002-913d-cfbe524735da
+		summarizeBy: none
+		sourceColumn: incorporation_year
+
+		annotation SummarizationSetBy = User
+
+	column decade
+		dataType: string
+		lineageTag: b9a7b7d2-1c8a-4f57-a6b2-2b0c683e640b
+		summarizeBy: none
+		sourceColumn: decade
+
+		annotation SummarizationSetBy = Automatic
+
+	column org_form
+		dataType: string
+		lineageTag: 4784b43f-2c09-430a-b892-f9da4e06e39f
+		summarizeBy: none
+		sourceColumn: org_form
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_nonprofit
+		dataType: int64
+		formatString: 0
+		lineageTag: e618b8cb-61df-4b90-830d-33d170322065
+		summarizeBy: sum
+		sourceColumn: is_nonprofit
+
+		annotation SummarizationSetBy = Automatic
+
+	column coop_type
+		dataType: string
+		lineageTag: fd1f6079-08df-48b0-929f-3ce529334220
+		summarizeBy: none
+		sourceColumn: coop_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_years
+		dataType: double
+		lineageTag: 1738b619-2688-430d-bff4-51cc72bccecb
+		summarizeBy: sum
+		sourceColumn: age_years
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_coop_longevity = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("bi\exports\mart_coop_longevity.csv"), [Delimiter = ",", Columns = 10, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"registry_id", type text}, {"co_op_name", type text}, {"town", type text}, {"incorporation_date", type date}, {"incorporation_year", Int64.Type}, {"decade", type text}, {"org_form", type text}, {"is_nonprofit", Int64.Type}, {"coop_type", type text}, {"age_years", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

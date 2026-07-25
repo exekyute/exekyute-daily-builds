@@ -1,0 +1,90 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "35297afebeda9b9d9375",
+  "position": {
+    "x": 0,
+    "y": 8.0597014925373127,
+    "z": 0,
+    "height": 209.55223880597015,
+    "width": 1279.7014925373135,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "incorporation_year"
+                }
+              },
+              "queryRef": "mart_coop_longevity.incorporation_year",
+              "nativeQueryRef": "incorporation_year",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "Total Registered"
+                }
+              },
+              "queryRef": "mart_coop_longevity.Total Registered",
+              "nativeQueryRef": "Total Registered"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_coop_longevity"
+                  }
+                },
+                "Property": "Total Registered"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Incorporations by year, co-ops still registered'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

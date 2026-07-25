@@ -1,0 +1,136 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "d2985c8d8d84020002e1",
+  "position": {
+    "x": 0,
+    "y": 437.0149253731343,
+    "z": 1000,
+    "height": 273.13432835820896,
+    "width": 504.17910447761193,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "decade"
+                }
+              },
+              "queryRef": "mart_coop_longevity.decade",
+              "nativeQueryRef": "decade",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "Total Registered"
+                }
+              },
+              "queryRef": "mart_coop_longevity.Total Registered",
+              "nativeQueryRef": "Total Registered"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "Non-profit Count"
+                }
+              },
+              "queryRef": "mart_coop_longevity.Non-profit Count",
+              "nativeQueryRef": "Non-profit Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "For-profit Count"
+                }
+              },
+              "queryRef": "mart_coop_longevity.For-profit Count",
+              "nativeQueryRef": "For-profit Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "Non-profit Share"
+                }
+              },
+              "queryRef": "mart_coop_longevity.Non-profit Share",
+              "nativeQueryRef": "Non-profit Share"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "subTotals": [
+        {
+          "properties": {
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cohort survivorship and non-profit mix'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

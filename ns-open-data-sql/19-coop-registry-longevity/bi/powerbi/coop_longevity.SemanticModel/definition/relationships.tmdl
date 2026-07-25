@@ -1,0 +1,5 @@
+relationship 98c497ab-6c56-4a02-bbd2-b7bb5cecc185
+	joinOnDateBehavior: datePartOnly
+	fromColumn: mart_coop_longevity.incorporation_date
+	toColumn: LocalDateTable_4eea71c7-de1a-4b5b-8051-1db6fae9ffc6.Date
+

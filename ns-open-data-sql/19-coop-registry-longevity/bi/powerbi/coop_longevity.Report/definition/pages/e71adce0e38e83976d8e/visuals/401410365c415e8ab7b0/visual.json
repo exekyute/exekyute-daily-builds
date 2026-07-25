@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "401410365c415e8ab7b0",
+  "position": {
+    "x": 0,
+    "y": 199.70149253731344,
+    "z": 2000,
+    "height": 237.31343283582089,
+    "width": 1279.7014925373135,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "decade"
+                }
+              },
+              "queryRef": "mart_coop_longevity.decade",
+              "nativeQueryRef": "decade",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "Registry Share"
+                }
+              },
+              "queryRef": "mart_coop_longevity.Registry Share",
+              "nativeQueryRef": "Registry Share"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_coop_longevity"
+                  }
+                },
+                "Property": "decade"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Share of today''s registry by incorporation decade'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

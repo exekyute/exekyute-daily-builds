@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "1fac6a7d77a4052e5ed4",
+  "position": {
+    "x": 1120.2985074626865,
+    "y": 447.76119402985074,
+    "z": 2004,
+    "height": 94.925373134328353,
+    "width": 149.55223880597015,
+    "tabOrder": 2004
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "org_form"
+                }
+              },
+              "queryRef": "mart_coop_longevity.org_form",
+              "nativeQueryRef": "org_form",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

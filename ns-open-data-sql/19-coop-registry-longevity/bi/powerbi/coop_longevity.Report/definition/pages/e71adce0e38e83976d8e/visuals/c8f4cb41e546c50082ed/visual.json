@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "c8f4cb41e546c50082ed",
+  "position": {
+    "x": 680.59701492537306,
+    "y": 549.85074626865674,
+    "z": 2001,
+    "height": 160.29850746268656,
+    "width": 192.53731343283582,
+    "tabOrder": 2001
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_coop_longevity"
+                    }
+                  },
+                  "Property": "Total Registered"
+                }
+              },
+              "queryRef": "mart_coop_longevity.Total Registered",
+              "nativeQueryRef": "Total Registered"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_coop_longevity"
+                  }
+                },
+                "Property": "Total Registered"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Co-ops registered'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

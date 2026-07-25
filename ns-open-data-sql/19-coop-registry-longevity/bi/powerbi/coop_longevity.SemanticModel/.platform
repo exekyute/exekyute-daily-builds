@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "coop_longevity"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "701773ba-d07f-4e5a-a61b-52bae956d737"
+  }
+}
