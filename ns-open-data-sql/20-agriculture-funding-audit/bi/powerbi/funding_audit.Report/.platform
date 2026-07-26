@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "funding_audit"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8d182ade-7a55-444b-b3ca-0c57333df12f"
+  }
+}

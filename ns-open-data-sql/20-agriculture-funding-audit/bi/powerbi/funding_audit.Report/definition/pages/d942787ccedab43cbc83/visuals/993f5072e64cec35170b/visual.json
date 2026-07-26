@@ -1,0 +1,104 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "993f5072e64cec35170b",
+  "position": {
+    "x": 0,
+    "y": 435,
+    "z": 3000,
+    "height": 285,
+    "width": 1280,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_funding_audit"
+                    }
+                  },
+                  "Property": "division"
+                }
+              },
+              "queryRef": "mart_funding_audit.division",
+              "nativeQueryRef": "division",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_funding_audit"
+                    }
+                  },
+                  "Property": "fiscal_year"
+                }
+              },
+              "queryRef": "mart_funding_audit.fiscal_year",
+              "nativeQueryRef": "fiscal_year",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_funding_audit"
+                    }
+                  },
+                  "Property": "Total Dollars"
+                }
+              },
+              "queryRef": "mart_funding_audit.Total Dollars",
+              "nativeQueryRef": "Total Dollars"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_funding_audit"
+                    }
+                  },
+                  "Property": "YoY Change $"
+                }
+              },
+              "queryRef": "mart_funding_audit.YoY Change $",
+              "nativeQueryRef": "YoY Change $"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_funding_audit"
+                    }
+                  },
+                  "Property": "YoY Change %"
+                }
+              },
+              "queryRef": "mart_funding_audit.YoY Change %",
+              "nativeQueryRef": "YoY Change %"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

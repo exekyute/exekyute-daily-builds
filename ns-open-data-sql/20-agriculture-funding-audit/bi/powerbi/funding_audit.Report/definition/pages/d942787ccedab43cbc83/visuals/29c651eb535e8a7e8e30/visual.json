@@ -1,0 +1,88 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "29c651eb535e8a7e8e30",
+  "position": {
+    "x": 718,
+    "y": 111,
+    "z": 1000,
+    "height": 110,
+    "width": 562,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_funding_audit"
+                    }
+                  },
+                  "Property": "Top 10 Dollars"
+                }
+              },
+              "queryRef": "mart_funding_audit.Top 10 Dollars",
+              "nativeQueryRef": "Top 10 Dollars"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_funding_audit"
+                    }
+                  },
+                  "Property": "Top 10 Concentration %"
+                }
+              },
+              "queryRef": "mart_funding_audit.Top 10 Concentration %",
+              "nativeQueryRef": "Top 10 Concentration %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_funding_audit"
+                  }
+                },
+                "Property": "Top 10 Dollars"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_funding_audit.Top 10 Dollars"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

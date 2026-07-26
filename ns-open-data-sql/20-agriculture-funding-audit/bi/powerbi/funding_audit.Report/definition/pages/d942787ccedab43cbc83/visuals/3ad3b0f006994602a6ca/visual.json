@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "3ad3b0f006994602a6ca",
+  "position": {
+    "x": 814,
+    "y": 0,
+    "z": 2000,
+    "height": 111,
+    "width": 285,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_funding_audit"
+                    }
+                  },
+                  "Property": "Total Dollars"
+                }
+              },
+              "queryRef": "mart_funding_audit.Total Dollars",
+              "nativeQueryRef": "Total Dollars"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_funding_audit"
+                  }
+                },
+                "Property": "Total Dollars"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_funding_audit.Total Dollars"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

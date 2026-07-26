@@ -1,0 +1,186 @@
+table mart_funding_audit
+	lineageTag: 29d600e6-9255-4b88-bd50-679584eda93b
+
+	measure 'Total Dollars' = SUM ( mart_funding_audit[payment_amount] )
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 236dd425-563b-4843-9e6c-0cc6992bec3b
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Base Dollars' =
+			
+			CALCULATE ( [Total Dollars], ALL ( mart_funding_audit[recipient] ) )
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 1dd60e75-605f-4be4-884c-7bcd0b568336
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Cumulative Dollars' =
+			
+			VAR CurrentDollars = [Total Dollars]
+			RETURN
+			    CALCULATE (
+			        [Total Dollars],
+			        FILTER (
+			            ALL ( mart_funding_audit[recipient] ),
+			            [Total Dollars] >= CurrentDollars
+			        )
+			    )
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 19e5ab2c-18a6-4734-ad8a-01d946e53adb
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Cumulative Share %' =
+			
+			DIVIDE ( [Cumulative Dollars], [Base Dollars] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 95e85af3-3dc1-4a83-b0c4-2b44c9493b44
+
+	measure 'Top 10 Dollars' =
+			
+			CALCULATE (
+			    [Total Dollars],
+			    TOPN (
+			        10,
+			        ALL ( mart_funding_audit[recipient] ),
+			        [Total Dollars],
+			        DESC
+			    )
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: bb2aff9d-1987-4526-a3a0-37b9dc42c620
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Top 10 Concentration %' =
+			
+			DIVIDE ( [Top 10 Dollars], [Base Dollars] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ff95c096-9fd9-4fe4-8cf4-546974f31a0d
+
+	measure 'Dollars Previous Year' =
+			
+			VAR CurrentYear = MAX ( mart_funding_audit[fiscal_year_start] )
+			RETURN
+			    CALCULATE (
+			        [Total Dollars],
+			        REMOVEFILTERS (
+			            mart_funding_audit[fiscal_year],
+			            mart_funding_audit[fiscal_year_start]
+			        ),
+			        mart_funding_audit[fiscal_year_start] = CurrentYear - 1
+			    )
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 11c58555-5ea6-4ae8-b1da-f12871a7bf81
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'YoY Change $' =
+			
+			VAR Prev = [Dollars Previous Year]
+			RETURN
+			    IF (
+			        HASONEVALUE ( mart_funding_audit[fiscal_year] ) && NOT ISBLANK ( Prev ),
+			        [Total Dollars] - Prev
+			    )
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: ff680a2b-4047-449c-934d-161e89813dc9
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'YoY Change %' =
+			
+			VAR Prev = [Dollars Previous Year]
+			RETURN
+			    IF (
+			        HASONEVALUE ( mart_funding_audit[fiscal_year] ) && NOT ISBLANK ( Prev ),
+			        DIVIDE ( [Total Dollars] - Prev, Prev )
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9681b933-a529-46fa-9583-7826765d0fef
+
+	column fiscal_year
+		dataType: string
+		lineageTag: 3006b550-9130-43a1-814e-e5312c75a0a8
+		summarizeBy: none
+		sourceColumn: fiscal_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column fiscal_year_start
+		dataType: int64
+		formatString: 0
+		lineageTag: 18b87636-b723-4b98-8282-5134c0e567b4
+		summarizeBy: sum
+		sourceColumn: fiscal_year_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column division
+		dataType: string
+		lineageTag: 2e277979-5645-47c2-ae8e-671ee697a7f2
+		summarizeBy: none
+		sourceColumn: division
+
+		annotation SummarizationSetBy = Automatic
+
+	column program_name
+		dataType: string
+		lineageTag: af7925a0-7258-481f-9a45-a90523e15c8f
+		summarizeBy: none
+		sourceColumn: program_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column recipient
+		dataType: string
+		lineageTag: c262eb70-d295-4e83-a96d-4b84c24bcbd5
+		summarizeBy: none
+		sourceColumn: recipient
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_amount
+		dataType: decimal
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 6192b971-39fe-41c3-82e2-565ef417e736
+		summarizeBy: sum
+		sourceColumn: payment_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column is_duplicate_candidate
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e4cae6d-1d8c-40e4-a91f-7494378e87f8
+		summarizeBy: sum
+		sourceColumn: is_duplicate_candidate
+
+		annotation SummarizationSetBy = Automatic
+
+	column dup_occurrences
+		dataType: int64
+		formatString: 0
+		lineageTag: faa0dd16-3a7d-4900-a4ee-24595ac059d9
+		summarizeBy: sum
+		sourceColumn: dup_occurrences
+
+		annotation SummarizationSetBy = User
+
+	partition mart_funding_audit = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("bi\exports\mart_funding_audit.csv"), [Delimiter = ",", Columns = 8, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"fiscal_year", type text}, {"fiscal_year_start", Int64.Type}, {"division", type text}, {"program_name", type text}, {"recipient", type text}, {"payment_amount", Currency.Type}, {"is_duplicate_candidate", Int64.Type}, {"dup_occurrences", Int64.Type}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
