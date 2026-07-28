@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "water_compliance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1cd63c75-94f4-401e-b52d-cb412a4f4993"
+  }
+}

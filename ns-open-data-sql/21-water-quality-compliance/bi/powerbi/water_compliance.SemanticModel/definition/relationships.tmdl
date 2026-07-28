@@ -1,0 +1,5 @@
+relationship 3b4241a8-ee97-4201-a55b-45b7c1aeecd4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: mart_water.sample_date
+	toColumn: LocalDateTable_ec004d05-71f3-4dae-8145-d1ee9a815804.Date
+

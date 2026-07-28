@@ -1,0 +1,236 @@
+table mart_water
+	lineageTag: 8a155961-4d18-4fd8-b56c-04c35677f327
+
+	measure 'Evaluated Samples' =
+			
+			CALCULATE (
+			    COUNTROWS ( mart_water ),
+			    mart_water[row_class] = "evaluated"
+			)
+		formatString: #,0
+		lineageTag: 663d593e-a74e-47d4-a6bd-f13107605ed4
+
+	measure 'Passing Samples' =
+			
+			CALCULATE (
+			    SUM ( mart_water[is_pass] ),
+			    mart_water[row_class] = "evaluated"
+			)
+		formatString: 0
+		lineageTag: bf5b3707-8fa4-4e78-a17f-fc4eb51c3017
+
+	measure 'Pass Rate' =
+			
+			DIVIDE ( [Passing Samples], [Evaluated Samples] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9a2c58d6-3db3-4d35-aa50-4b37adcbd8a6
+
+	measure 'Breaching Samples' =
+			
+			[Evaluated Samples] - [Passing Samples]
+		formatString: 0
+		lineageTag: b6c6e318-c408-49d3-b7ea-f5541444faf5
+
+	measure 'Non-Detect Samples' =
+			
+			CALCULATE (
+			    SUM ( mart_water[is_non_detect] ),
+			    mart_water[row_class] = "evaluated"
+			)
+		formatString: 0
+		lineageTag: b5722ee6-bef0-44b2-a862-048c291e278a
+
+	measure 'Non-Detect Share' =
+			
+			DIVIDE ( [Non-Detect Samples], [Evaluated Samples] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ed457ed3-13d8-4656-b27d-fc83d38f5d2b
+
+	measure 'Unconfirmable Passes' =
+			
+			CALCULATE (
+			    SUM ( mart_water[is_censored_above] ),
+			    mart_water[row_class] = "evaluated"
+			)
+		formatString: 0
+		lineageTag: bcd00eb5-fe03-46c0-a35f-6ea3ecd4503e
+
+	measure 'Quality Control Rows Excluded' =
+			
+			COALESCE (
+			    CALCULATE (
+			        COUNTROWS ( mart_water ),
+			        mart_water[row_class] = "quality_control"
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 33907b4c-ff1e-4425-986c-0c5abc990c28
+
+	column sample_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ec913037-3ddf-4dc4-a40e-d277bc4be21a
+		summarizeBy: none
+		sourceColumn: sample_date
+
+		variation Variation
+			isDefault
+			relationship: 3b4241a8-ee97-4201-a55b-45b7c1aeecd4
+			defaultHierarchy: LocalDateTable_ec004d05-71f3-4dae-8145-d1ee9a815804.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column sample_time
+		dataType: string
+		lineageTag: 2e10bfe2-c006-4759-b8c5-e7cea0338328
+		summarizeBy: none
+		sourceColumn: sample_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column sample_year
+		dataType: int64
+		formatString: 0
+		lineageTag: eee4f734-65cd-4bae-aca9-adfccb2ffc71
+		summarizeBy: sum
+		sourceColumn: sample_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_id
+		dataType: string
+		lineageTag: b2058615-26b3-49ad-a988-d5ea28c3b1bf
+		summarizeBy: none
+		sourceColumn: location_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column location
+		dataType: string
+		lineageTag: cefffc7e-c37e-409f-b281-8f48f1e3f78a
+		summarizeBy: none
+		sourceColumn: location
+
+		annotation SummarizationSetBy = Automatic
+
+	column analyte
+		dataType: string
+		lineageTag: 2340c53d-9417-48f4-bbf4-873f83be762b
+		summarizeBy: none
+		sourceColumn: analyte
+
+		annotation SummarizationSetBy = Automatic
+
+	column sample_fraction
+		dataType: string
+		lineageTag: 8b3dabc7-9d18-4673-9016-c563fbb75f6b
+		summarizeBy: none
+		sourceColumn: sample_fraction
+
+		annotation SummarizationSetBy = Automatic
+
+	column result_unit
+		dataType: string
+		lineageTag: 3259e760-581f-4a4e-b0f1-1599e0069bad
+		summarizeBy: none
+		sourceColumn: result_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column result_value
+		dataType: double
+		lineageTag: 54c2702b-7339-4883-a984-c8e92592212f
+		summarizeBy: sum
+		sourceColumn: result_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column guideline_unit
+		dataType: string
+		lineageTag: 7385a6dc-34d5-4bad-91b8-807939a94f26
+		summarizeBy: none
+		sourceColumn: guideline_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column guideline_threshold
+		dataType: double
+		lineageTag: 9acccb4b-ae8c-442a-ad28-3be5c437c312
+		summarizeBy: sum
+		sourceColumn: guideline_threshold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column guideline_direction
+		dataType: string
+		lineageTag: cece6db0-76c2-4a5e-9b87-0b7172ec9e67
+		summarizeBy: none
+		sourceColumn: guideline_direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_class
+		dataType: string
+		lineageTag: 389cece9-422a-438a-b6c7-c32e8970a748
+		summarizeBy: none
+		sourceColumn: row_class
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_evaluated
+		dataType: int64
+		formatString: 0
+		lineageTag: 23d33dcb-595c-4422-9138-e9e465c46f48
+		summarizeBy: sum
+		sourceColumn: is_evaluated
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_pass
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b7b0c77-b228-4eb2-b8b1-09b92b8937b5
+		summarizeBy: sum
+		sourceColumn: is_pass
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_non_detect
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ff96328-f572-496b-9d52-fdde3c5c2da8
+		summarizeBy: sum
+		sourceColumn: is_non_detect
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_censored_above
+		dataType: int64
+		formatString: 0
+		lineageTag: 618d10ad-590a-4290-aa57-3c0b18375c53
+		summarizeBy: sum
+		sourceColumn: is_censored_above
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mart_water = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("bi\exports\mart_water.csv"), [Delimiter = ",", Columns = 17, Encoding = 65001]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"sample_date", type date}, {"sample_time", type text}, {"sample_year", Int64.Type}, {"location_id", type text}, {"location", type text}, {"analyte", type text}, {"sample_fraction", type text}, {"result_unit", type text}, {"result_value", type number}, {"guideline_unit", type text}, {"guideline_threshold", type number}, {"guideline_direction", type text}, {"row_class", type text}, {"is_evaluated", Int64.Type}, {"is_pass", Int64.Type}, {"is_non_detect", Int64.Type}, {"is_censored_above", Int64.Type}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

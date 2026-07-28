@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "water_compliance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cf899c3a-a75b-412b-abca-6dd21c23ce45"
+  }
+}
