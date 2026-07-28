@@ -137,7 +137,7 @@ table mart_311_monthly
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\hrm-open-data\04-311-call-service-levels\bi\exports\mart_311_monthly.csv"), [Delimiter = ",", Columns = 11, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents("..\exports\mart_311_monthly.csv"), [Delimiter = ",", Columns = 11, QuoteStyle = QuoteStyle.None]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"month_start", type date}, {"year", Int64.Type}, {"month", Int64.Type}, {"offered", Int64.Type}, {"handled", Int64.Type}, {"abandoned", Int64.Type}, {"processed_in_ivr", Int64.Type}, {"total_talk_time", Int64.Type}, {"abandonment_rate", type number}, {"answer_rate", type number}, {"avg_talk_time", type number}})
 				in

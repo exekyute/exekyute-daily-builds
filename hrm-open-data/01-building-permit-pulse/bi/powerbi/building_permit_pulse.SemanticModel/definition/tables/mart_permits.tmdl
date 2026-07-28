@@ -150,7 +150,7 @@ table mart_permits
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\hrm-open-data\01-building-permit-pulse\bi\exports\mart_permits.csv"), [Delimiter = ",", Columns = 13, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents("..\exports\mart_permits.csv"), [Delimiter = ",", Columns = 13, QuoteStyle = QuoteStyle.None]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"permit_number", type text}, {"issue_year", Int64.Type}, {"issue_month", Int64.Type}, {"community", type text}, {"district", type text}, {"work_type", type text}, {"primary_work_scope", type text}, {"project_value", type number}, {"net_new_units", Int64.Type}, {"storeys", Int64.Type}, {"permit_status", type text}, {"lat", type number}, {"lon", type number}})
 				in

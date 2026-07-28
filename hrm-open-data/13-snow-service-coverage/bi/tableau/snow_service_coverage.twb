@@ -30,7 +30,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='street_winter_areas' name='ogrdirect.0mj9vyi0kzhi3l1bkerv00c7v8oe'>
-            <connection class='ogrdirect' directory='bi/exports' tablename='' workgroup-auth-mode='as-is' />
+            <connection class='ogrdirect' directory='../exports' tablename='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='ogrdirect.0mj9vyi0kzhi3l1bkerv00c7v8oe' name='street_winter_areas.geojson' table='[street_winter_areas.geojson]' type='table'>
@@ -217,7 +217,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='sidewalk_winter_areas' name='ogrdirect.11qwmum0ycckou16cnpk104cjjsn'>
-            <connection class='ogrdirect' directory='bi/exports' tablename='' workgroup-auth-mode='as-is' />
+            <connection class='ogrdirect' directory='../exports' tablename='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='ogrdirect.11qwmum0ycckou16cnpk104cjjsn' name='sidewalk_winter_areas.geojson' table='[sidewalk_winter_areas.geojson]' type='table'>
@@ -408,7 +408,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='ice_routes_by_priority' name='ogrdirect.06tq9kn04lvlas13kgrjy1byy00q'>
-            <connection class='ogrdirect' directory='bi/exports' tablename='' workgroup-auth-mode='as-is' />
+            <connection class='ogrdirect' directory='../exports' tablename='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='ogrdirect.06tq9kn04lvlas13kgrjy1byy00q' name='ice_routes_by_priority.geojson' table='[ice_routes_by_priority.geojson]' type='table'>

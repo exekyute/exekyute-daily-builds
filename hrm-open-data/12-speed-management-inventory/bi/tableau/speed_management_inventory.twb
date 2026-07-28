@@ -27,7 +27,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='speed_limits' name='ogrdirect.19bkozb1uzl2ji19iff5z1hot6gh'>
-            <connection class='ogrdirect' directory='bi/exports' tablename='' workgroup-auth-mode='as-is' />
+            <connection class='ogrdirect' directory='../exports' tablename='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='ogrdirect.19bkozb1uzl2ji19iff5z1hot6gh' name='speed_limits.geojson' table='[speed_limits.geojson]' type='table'>
@@ -478,7 +478,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='speed_devices' name='ogrdirect.1xaymnq1wc1nq61and09p1nphk9q'>
-            <connection class='ogrdirect' directory='bi/exports' tablename='' workgroup-auth-mode='as-is' />
+            <connection class='ogrdirect' directory='../exports' tablename='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='ogrdirect.1xaymnq1wc1nq61and09p1nphk9q' name='speed_devices.geojson' table='[speed_devices.geojson]' type='table'>

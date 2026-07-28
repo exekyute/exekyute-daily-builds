@@ -27,7 +27,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='mart_ev' name='textscan.1m9sups1ejmw8m1clq7j70nt8pe4'>
-            <connection class='textscan' directory='bi/exports' workgroup-auth-mode='as-is' />
+            <connection class='textscan' directory='../exports' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.1m9sups1ejmw8m1clq7j70nt8pe4' name='mart_ev.csv' table='[mart_ev#csv]' type='table'>

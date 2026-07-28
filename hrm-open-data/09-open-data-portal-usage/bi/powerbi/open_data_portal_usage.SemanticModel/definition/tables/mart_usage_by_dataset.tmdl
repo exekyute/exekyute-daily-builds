@@ -63,7 +63,7 @@
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\hrm-open-data\09-open-data-portal-usage\bi\exports\mart_usage_by_dataset.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents("..\exports\mart_usage_by_dataset.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"dataset", type text}, {"total_usage", Int64.Type}, {"first_month", type date}, {"last_month", type date}, {"usage_rank", Int64.Type}})
 				in

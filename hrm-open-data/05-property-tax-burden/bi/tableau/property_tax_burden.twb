@@ -28,7 +28,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='mart_tax_class' name='textscan.1sp8ih808qm7t60zsveyo0pwjqom'>
-            <connection class='textscan' directory='bi/exports' workgroup-auth-mode='as-is' />
+            <connection class='textscan' directory='../exports' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.1sp8ih808qm7t60zsveyo0pwjqom' name='mart_tax_class.csv' table='[mart_tax_class#csv]' type='table'>
@@ -214,7 +214,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='mart_tax_group' name='textscan.1wpx3t21pt44ke11c0mml0snr8rx'>
-            <connection class='textscan' directory='bi/exports' workgroup-auth-mode='as-is' />
+            <connection class='textscan' directory='../exports' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.1wpx3t21pt44ke11c0mml0snr8rx' name='mart_tax_group.csv' table='[mart_tax_group#csv]' type='table'>

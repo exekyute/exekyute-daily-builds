@@ -235,7 +235,7 @@ table mart_collisions
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\hrm-open-data\02-collision-safety-map\bi\exports\mart_collisions.csv"), [Delimiter = ",", Columns = 21, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents("..\exports\mart_collisions.csv"), [Delimiter = ",", Columns = 21, QuoteStyle = QuoteStyle.None]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"collision_id", type text}, {"accident_date", type date}, {"year", Int64.Type}, {"month", Int64.Type}, {"hour", Int64.Type}, {"weekday", Int64.Type}, {"lat", type number}, {"lon", type number}, {"road_location_1", type text}, {"road_location_2", type text}, {"collision_configuration", type text}, {"light_condition", type text}, {"weather_condition", type text}, {"PEDESTRIAN_COLLISIONS", Int64.Type}, {"BICYCLE_COLLISIONS", Int64.Type}, {"IMPAIRED_DRIVING", Int64.Type}, {"DISTRACTED_DRIVING", Int64.Type}, {"AGRESSIVE_DRIVING", Int64.Type}, {"INTERSECTION_RELATED", Int64.Type}, {"FATAL_INJURY", Int64.Type}, {"NON_FATAL_INJURY", Int64.Type}})
 				in

@@ -27,7 +27,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='mart_parkride' name='textscan.0ht8dus1c92mzn15g2cu80bjmv7f'>
-            <connection class='textscan' directory='bi/exports' filename='mart_parkride.csv' server='' workgroup-auth-mode='as-is' />
+            <connection class='textscan' directory='../exports' filename='mart_parkride.csv' server='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.0ht8dus1c92mzn15g2cu80bjmv7f' name='mart_parkride.csv' table='[mart_parkride#csv]' type='table'>
@@ -239,7 +239,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='mart_stops' name='textscan.0q0j47t0v091ox1a7ozlt0d2xw5k'>
-            <connection class='textscan' directory='bi/exports' filename='mart_stops.csv' server='' workgroup-auth-mode='as-is' />
+            <connection class='textscan' directory='../exports' filename='mart_stops.csv' server='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.0q0j47t0v091ox1a7ozlt0d2xw5k' name='mart_stops.csv' table='[mart_stops#csv]' type='table'>

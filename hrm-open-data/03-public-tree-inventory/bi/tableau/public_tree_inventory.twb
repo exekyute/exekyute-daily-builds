@@ -29,7 +29,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='mart_trees' name='textscan.0tieaaq15dktcj1gvjuw5193nqcz'>
-            <connection class='textscan' directory='bi/exports' filename='mart_trees.csv' server='' workgroup-auth-mode='as-is' />
+            <connection class='textscan' directory='../exports' filename='mart_trees.csv' server='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.0tieaaq15dktcj1gvjuw5193nqcz' name='mart_trees.csv' table='[mart_trees#csv]' type='table'>

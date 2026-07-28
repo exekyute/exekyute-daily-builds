@@ -116,7 +116,7 @@ table mart_capital
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\hrm-open-data\06-capital-investment-map\bi\exports\mart_capital.csv"), [Delimiter = ",", Columns = 10, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents("..\exports\mart_capital.csv"), [Delimiter = ",", Columns = 10, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"proj_no", type text}, {"proj_name", type text}, {"loc_desc", type text}, {"work_desc", type text}, {"category", type text}, {"category_norm", type text}, {"asset_type", type text}, {"year", Int64.Type}, {"lat", type number}, {"lon", type number}})
 				in

@@ -121,7 +121,7 @@ table mart_ev
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\hrm-open-data\10-ev-charging-network-growth\bi\exports\mart_ev.csv"), [Delimiter = ",", Columns = 11, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents("..\exports\mart_ev.csv"), [Delimiter = ",", Columns = 11, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"evcsid", type text}, {"owner", type text}, {"chartype", type text}, {"connectype", type text}, {"power_kw", type number}, {"location", type text}, {"access", type text}, {"install_year", Int64.Type}, {"quantity", Int64.Type}, {"lat", type number}, {"lon", type number}})
 				in

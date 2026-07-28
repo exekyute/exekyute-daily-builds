@@ -146,7 +146,7 @@ table mart_tax_group
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\hrm-open-data\05-property-tax-burden\bi\exports\mart_tax_group.csv"), [Delimiter = ",", Columns = 13, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents("..\exports\mart_tax_group.csv"), [Delimiter = ",", Columns = 13, QuoteStyle = QuoteStyle.None]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"tax_group", type text}, {"tax_summary_group", type text}, {"rate_code", type text}, {"rate_description", type text}, {"bill_rate_percentage", type number}, {"account_count", Int64.Type}, {"residential_taxable", Int64.Type}, {"commercial_taxable", Int64.Type}, {"resource_taxable", Int64.Type}, {"total_taxable", Int64.Type}, {"bill_amount", Currency.Type}, {"bill_value", Currency.Type}, {"effective_rate", type number}})
 				in

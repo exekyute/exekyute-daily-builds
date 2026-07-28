@@ -135,7 +135,7 @@ table mart_trees
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\hrm-open-data\03-public-tree-inventory\bi\exports\mart_trees.csv"), [Delimiter = ",", Columns = 12, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents("..\exports\mart_trees.csv"), [Delimiter = ",", Columns = 12, QuoteStyle = QuoteStyle.None]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"tree_id", type text}, {"species_common", type text}, {"species_scientific", type text}, {"dbh", Int64.Type}, {"dbh_class", type text}, {"setting", type text}, {"wires", type text}, {"install_year", Int64.Type}, {"owner", type text}, {"status", type text}, {"lat", type number}, {"lon", type number}})
 				in

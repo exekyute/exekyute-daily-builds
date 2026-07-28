@@ -70,7 +70,7 @@ table mart_processing
 		mode: import
 		source =
 				let
-				  Source = Csv.Document(File.Contents("C:\hrm-open-data\07-permit-approval-wait-times\bi\exports\mart_processing.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents("..\exports\mart_processing.csv"), [Delimiter = ",", Columns = 5, QuoteStyle = QuoteStyle.None]),
 				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
 				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"permit_number", type text}, {"issuance_stage", type text}, {"jurisdictional_breakdown", type text}, {"total_occurrence", Int64.Type}, {"total_duration", type number}})
 				in
