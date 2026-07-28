@@ -27,9 +27,10 @@ COPY (
 ) TO 'out/collisions_month_hour.csv' (HEADER, DELIMITER ',');
 
 -- BI mart: one wide, denormalized row per collision for Tableau and Power BI.
--- The factor flags keep their source-style uppercase names so the Power BI DAX
--- in bi/README.md binds to them verbatim. Ordered by collision_id so the frozen
--- export never reshuffles between runs.
+-- The factor flags keep their source-style uppercase names so the DAX in the
+-- committed semantic model binds to them verbatim, as in
+-- mart_collisions[PEDESTRIAN_COLLISIONS] = 1. Ordered by collision_id so the
+-- frozen export never reshuffles between runs.
 COPY (
   SELECT
     collision_id,
