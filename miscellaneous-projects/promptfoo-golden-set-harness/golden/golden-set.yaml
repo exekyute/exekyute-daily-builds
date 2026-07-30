@@ -1,0 +1,400 @@
+# Golden set: 15 freight-document extraction cases.
+# Every expected value is derivable from the document text alone. No outside
+# knowledge of carriers, ports, or shipments is required to answer any case.
+# Loaded by both promptfooconfig files as `tests: file://golden/golden-set.yaml`.
+# `branch` names the failure mode the case exists to exercise and is not used in
+# the prompt. `expected` is read by harness/grader.py at eval time.
+
+- description: "BOL-001 clean baseline"
+  vars:
+    case_id: BOL-001
+    branch: clean-baseline
+    document: |
+      OCEAN BILL OF LADING
+      B/L NO: MRDU-2026-004411
+      SHIPMENT REF: SHP-88213
+      CARRIER: MERIDIAN LINES        SCAC: MRDU
+      CONTAINER: MRDU4419078
+      PORT OF LOADING: CNSHA SHANGHAI
+      GROSS WEIGHT: 18,420.00 KG
+      INCOTERM: FOB
+      ON BOARD DATE: 2026-02-11
+      DECLARED VALUE: USD 42,300.00
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88213
+      carrier_scac: MRDU
+      container_id: MRDU4419078
+      gross_weight_kg: 18420.0
+      incoterm: FOB
+      port_of_loading: CNSHA
+      ship_date: "2026-02-11"
+      declared_value_usd: 42300.00
+      hazmat: false
+
+- description: "BOL-002 weight stated in pounds"
+  vars:
+    case_id: BOL-002
+    branch: weight-in-pounds
+    document: |
+      OCEAN BILL OF LADING
+      SHIPMENT REF: SHP-88240
+      CARRIER: NORTHGATE CONTAINER LINE     SCAC: NGCU
+      CONTAINER: NGCU7712004
+      PORT OF LOADING: USNYC NEW YORK
+      GROSS WT: 26,455 LB
+      TERMS: CIF
+      ON BOARD DATE: 2026-02-19
+      DECLARED VALUE: USD 15,900.00
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88240
+      carrier_scac: NGCU
+      container_id: NGCU7712004
+      gross_weight_kg: 11999.8
+      incoterm: CIF
+      port_of_loading: USNYC
+      ship_date: "2026-02-19"
+      declared_value_usd: 15900.00
+      hazmat: false
+
+- description: "BOL-003 no incoterm anywhere on the document"
+  vars:
+    case_id: BOL-003
+    branch: absent-incoterm-null
+    document: |
+      OCEAN BILL OF LADING
+      SHIPMENT REF: SHP-88301
+      CARRIER: PACIFIC BRIDGE SHIPPING      SCAC: PBSU
+      CONTAINER: PBSU3390561
+      PORT OF LOADING: SGSIN SINGAPORE
+      GROSS WEIGHT: 9,880.50 KG
+      ON BOARD DATE: 2026-03-01
+      DECLARED VALUE: USD 7,415.25
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88301
+      carrier_scac: PBSU
+      container_id: PBSU3390561
+      gross_weight_kg: 9880.5
+      incoterm: null
+      port_of_loading: SGSIN
+      ship_date: "2026-03-01"
+      declared_value_usd: 7415.25
+      hazmat: false
+
+- description: "BOL-004 container number written with a space and a hyphen"
+  vars:
+    case_id: BOL-004
+    branch: container-formatting
+    document: |
+      OCEAN BILL OF LADING
+      SHIPMENT REF: SHP-88355
+      CARRIER: MERIDIAN LINES        SCAC: MRDU
+      CONTAINER NO: MRDU 765432-1
+      PORT OF LOADING: DEHAM HAMBURG
+      GROSS WEIGHT: 21,005.00 KG
+      INCOTERM: DAP
+      ON BOARD DATE: 2026-03-04
+      DECLARED VALUE: USD 61,250.00
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88355
+      carrier_scac: MRDU
+      container_id: MRDU7654321
+      gross_weight_kg: 21005.0
+      incoterm: DAP
+      port_of_loading: DEHAM
+      ship_date: "2026-03-04"
+      declared_value_usd: 61250.00
+      hazmat: false
+
+- description: "INV-001 value with a currency symbol and thousands separators"
+  vars:
+    case_id: INV-001
+    branch: currency-symbol-and-separators
+    document: |
+      COMMERCIAL INVOICE
+      BOOKING NO: SHP-88370
+      CARRIER: ATLANTIC KESTREL LINE        SCAC: AKLU
+      CONTAINER: AKLU5580223
+      PORT OF LOADING: CAHAL HALIFAX
+      GROSS WEIGHT: 4,310.75 KG
+      DELIVERY TERMS: EXW
+      ON BOARD DATE: 2026-03-06
+      TOTAL INVOICE VALUE: $18,450.00 USD
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88370
+      carrier_scac: AKLU
+      container_id: AKLU5580223
+      gross_weight_kg: 4310.75
+      incoterm: EXW
+      port_of_loading: CAHAL
+      ship_date: "2026-03-06"
+      declared_value_usd: 18450.00
+      hazmat: false
+
+- description: "INV-002 weight stated in metric tonnes"
+  vars:
+    case_id: INV-002
+    branch: weight-in-metric-tonnes
+    document: |
+      COMMERCIAL INVOICE
+      SHIPMENT REF: SHP-88402
+      CARRIER: NORTHGATE CONTAINER LINE     SCAC: NGCU
+      CONTAINER: NGCU6104887
+      PORT OF LOADING: NLRTM ROTTERDAM
+      GROSS WEIGHT: 12.5 MT
+      DELIVERY TERMS: CPT
+      ON BOARD DATE: 2026-03-09
+      TOTAL INVOICE VALUE: USD 33,780.40
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88402
+      carrier_scac: NGCU
+      container_id: NGCU6104887
+      gross_weight_kg: 12500.0
+      incoterm: CPT
+      port_of_loading: NLRTM
+      ship_date: "2026-03-09"
+      declared_value_usd: 33780.40
+      hazmat: false
+
+- description: "BOL-005 issue date and on board date both present"
+  vars:
+    case_id: BOL-005
+    branch: two-dates-on-board-wins
+    document: |
+      OCEAN BILL OF LADING
+      SHIPMENT REF: SHP-88433
+      CARRIER: PACIFIC BRIDGE SHIPPING      SCAC: PBSU
+      CONTAINER: PBSU2245119
+      PORT OF LOADING: SGSIN SINGAPORE
+      GROSS WEIGHT: 16,700.00 KG
+      INCOTERM: FCA
+      DATE OF ISSUE: 2026-03-02
+      ON BOARD DATE: 2026-03-05
+      DECLARED VALUE: USD 24,900.00
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88433
+      carrier_scac: PBSU
+      container_id: PBSU2245119
+      gross_weight_kg: 16700.0
+      incoterm: FCA
+      port_of_loading: SGSIN
+      ship_date: "2026-03-05"
+      declared_value_usd: 24900.00
+      hazmat: false
+
+- description: "BOL-006 dangerous goods declared"
+  vars:
+    case_id: BOL-006
+    branch: hazmat-declared
+    document: |
+      OCEAN BILL OF LADING
+      SHIPMENT REF: SHP-88461
+      CARRIER: MERIDIAN LINES        SCAC: MRDU
+      CONTAINER: MRDU8830745
+      PORT OF LOADING: DEHAM HAMBURG
+      GROSS WEIGHT: 7,240.00 KG
+      INCOTERM: CFR
+      ON BOARD DATE: 2026-03-11
+      DECLARED VALUE: USD 12,050.00
+      DANGEROUS GOODS: UN1263 CLASS 3 PAINT, PACKING GROUP III
+    expected:
+      shipment_id: SHP-88461
+      carrier_scac: MRDU
+      container_id: MRDU8830745
+      gross_weight_kg: 7240.0
+      incoterm: CFR
+      port_of_loading: DEHAM
+      ship_date: "2026-03-11"
+      declared_value_usd: 12050.00
+      hazmat: true
+
+- description: "INV-003 no dangerous goods section at all"
+  vars:
+    case_id: INV-003
+    branch: no-hazmat-declaration
+    document: |
+      COMMERCIAL INVOICE
+      SHIPMENT REF: SHP-88494
+      CARRIER: ATLANTIC KESTREL LINE        SCAC: AKLU
+      CONTAINER: AKLU4471200
+      PORT OF LOADING: CAHAL HALIFAX
+      GROSS WEIGHT: 2,845.20 KG
+      DELIVERY TERMS: DDP
+      ON BOARD DATE: 2026-03-13
+      TOTAL INVOICE VALUE: USD 5,600.00
+    expected:
+      shipment_id: SHP-88494
+      carrier_scac: AKLU
+      container_id: AKLU4471200
+      gross_weight_kg: 2845.2
+      incoterm: DDP
+      port_of_loading: CAHAL
+      ship_date: "2026-03-13"
+      declared_value_usd: 5600.00
+      hazmat: false
+
+- description: "BOL-007 carrier named but no SCAC code printed"
+  vars:
+    case_id: BOL-007
+    branch: carrier-name-without-scac
+    document: |
+      OCEAN BILL OF LADING
+      SHIPMENT REF: SHP-88520
+      CARRIER: NORTHGATE CONTAINER LINE
+      CONTAINER: NGCU9016338
+      PORT OF LOADING: ROTTERDAM
+      GROSS WEIGHT: 13,960.00 KG
+      INCOTERM: FOB
+      ON BOARD DATE: 2026-03-16
+      DECLARED VALUE: USD 28,400.00
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88520
+      carrier_scac: null
+      container_id: NGCU9016338
+      gross_weight_kg: 13960.0
+      incoterm: FOB
+      port_of_loading: ROTTERDAM
+      ship_date: "2026-03-16"
+      declared_value_usd: 28400.00
+      hazmat: false
+
+- description: "INV-004 sample shipment with zero declared value"
+  vars:
+    case_id: INV-004
+    branch: zero-declared-value
+    document: |
+      COMMERCIAL INVOICE
+      SHIPMENT REF: SHP-88547
+      CARRIER: PACIFIC BRIDGE SHIPPING      SCAC: PBSU
+      CONTAINER: PBSU7723480
+      PORT OF LOADING: SGSIN SINGAPORE
+      GROSS WEIGHT: 118.40 KG
+      DELIVERY TERMS: DPU
+      ON BOARD DATE: 2026-03-18
+      NO COMMERCIAL VALUE, SAMPLE ONLY: USD 0.00
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88547
+      carrier_scac: PBSU
+      container_id: PBSU7723480
+      gross_weight_kg: 118.4
+      incoterm: DPU
+      port_of_loading: SGSIN
+      ship_date: "2026-03-18"
+      declared_value_usd: 0.00
+      hazmat: false
+
+- description: "BOL-008 scale ticket weight conflicts with the certified VGM"
+  vars:
+    case_id: BOL-008
+    branch: conflicting-weights-vgm-wins
+    document: |
+      OCEAN BILL OF LADING
+      SHIPMENT REF: SHP-88573
+      CARRIER: MERIDIAN LINES        SCAC: MRDU
+      CONTAINER: MRDU1178902
+      PORT OF LOADING: CNSHA SHANGHAI
+      SCALE TICKET GROSS: 18,200 KG
+      CERTIFIED GROSS MASS (VGM): 18,240 KG
+      INCOTERM: CIP
+      ON BOARD DATE: 2026-03-20
+      DECLARED VALUE: USD 39,100.00
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88573
+      carrier_scac: MRDU
+      container_id: MRDU1178902
+      gross_weight_kg: 18240.0
+      incoterm: CIP
+      port_of_loading: CNSHA
+      ship_date: "2026-03-20"
+      declared_value_usd: 39100.00
+      hazmat: false
+
+- description: "INV-005 date written day first"
+  vars:
+    case_id: INV-005
+    branch: non-iso-date
+    document: |
+      COMMERCIAL INVOICE
+      SHIPMENT REF: SHP-88601
+      CARRIER: ATLANTIC KESTREL LINE        SCAC: AKLU
+      CONTAINER: AKLU3308914
+      PORT OF LOADING: CAHAL HALIFAX
+      GROSS WEIGHT: 6,455.00 KG
+      DELIVERY TERMS: FAS
+      ON BOARD DATE: 14/03/2026
+      TOTAL INVOICE VALUE: USD 9,875.60
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88601
+      carrier_scac: AKLU
+      container_id: AKLU3308914
+      gross_weight_kg: 6455.0
+      incoterm: FAS
+      port_of_loading: CAHAL
+      ship_date: "2026-03-14"
+      declared_value_usd: 9875.60
+      hazmat: false
+
+- description: "BOL-009 container number unreadable in the scan"
+  vars:
+    case_id: BOL-009
+    branch: unreadable-container
+    document: |
+      OCEAN BILL OF LADING
+      SHIPMENT REF: SHP-88628
+      CARRIER: PACIFIC BRIDGE SHIPPING      SCAC: PBSU
+      C0NTA1NER: ####U 8?9##2
+      PORT OF LOADING: USNYC NEW YORK
+      GROSS WEIGHT: 15,330.00 KG
+      INCOTERM: FOB
+      ON BOARD DATE: 2026-03-23
+      DECLARED VALUE: USD 47,600.00
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88628
+      carrier_scac: PBSU
+      container_id: null
+      gross_weight_kg: 15330.0
+      incoterm: FOB
+      port_of_loading: USNYC
+      ship_date: "2026-03-23"
+      declared_value_usd: 47600.00
+      hazmat: false
+
+- description: "INV-006 extra fields outside the schema"
+  vars:
+    case_id: INV-006
+    branch: extra-fields-ignored
+    document: |
+      COMMERCIAL INVOICE
+      SHIPMENT REF: SHP-88655
+      CARRIER: NORTHGATE CONTAINER LINE     SCAC: NGCU
+      CONTAINER: NGCU2260471
+      PORT OF LOADING: NLRTM ROTTERDAM
+      GROSS WEIGHT: 8,912.30 KG
+      DELIVERY TERMS: FOB
+      ON BOARD DATE: 2026-03-25
+      TOTAL INVOICE VALUE: USD 21,300.00
+      OCEAN FREIGHT CHARGE: USD 2,150.00
+      CUSTOMS BROKER REF: CB-4471
+      PAYMENT TERMS: NET 30
+      NO DANGEROUS GOODS DECLARED
+    expected:
+      shipment_id: SHP-88655
+      carrier_scac: NGCU
+      container_id: NGCU2260471
+      gross_weight_kg: 8912.3
+      incoterm: FOB
+      port_of_loading: NLRTM
+      ship_date: "2026-03-25"
+      declared_value_usd: 21300.00
+      hazmat: false

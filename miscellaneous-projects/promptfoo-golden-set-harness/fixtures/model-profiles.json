@@ -1,0 +1,113 @@
+{
+  "_about": [
+    "Behaviour profiles for the offline replay provider. These are written fixtures,",
+    "not recorded API traffic, and they exist so the scoring pipeline can be run and",
+    "checked end to end without an API key. Each profile says how one simulated model",
+    "deviates from the golden answer under each prompt version.",
+    "",
+    "errors: fields the model gets wrong on that case, the same way on every repeat.",
+    "unstable: one override per repeat, cycled by repeat index, for run-to-run drift.",
+    "omits: fields the model leaves out of its JSON object entirely.",
+    "style: surface formatting only. Every style renders the same meaning, so the",
+    "scorer's normalization is what makes the styles score equally."
+  ],
+  "models": {
+    "llama-3.3-70b": {
+      "style": {
+        "money": "usd_commas",
+        "nulls": "null",
+        "container": "compact",
+        "fenced": true
+      },
+      "versions": {
+        "v1": {
+          "errors": {
+            "BOL-002": { "gross_weight_kg": 26455 },
+            "BOL-003": { "incoterm": "FOB" },
+            "BOL-005": { "ship_date": "2026-03-02" },
+            "BOL-008": { "gross_weight_kg": 18200 },
+            "INV-002": { "gross_weight_kg": 12.5 }
+          },
+          "unstable": {},
+          "omits": {}
+        },
+        "v2": {
+          "errors": {
+            "BOL-003": { "incoterm": "FOB" },
+            "BOL-007": { "carrier_scac": "NGCU" },
+            "BOL-009": { "container_id": "PBSU8792002" }
+          },
+          "unstable": {},
+          "omits": {}
+        }
+      }
+    },
+    "gpt-oss-120b": {
+      "style": {
+        "money": "plain",
+        "nulls": "na_text",
+        "container": "spaced",
+        "fenced": false
+      },
+      "versions": {
+        "v1": {
+          "errors": {
+            "BOL-002": { "gross_weight_kg": 26455 },
+            "BOL-005": { "ship_date": "2026-03-02" },
+            "INV-004": { "declared_value_usd": null }
+          },
+          "unstable": {},
+          "omits": {
+            "INV-006": ["incoterm"]
+          }
+        },
+        "v2": {
+          "errors": {
+            "BOL-007": { "carrier_scac": "NGCU" },
+            "BOL-009": { "container_id": "PBSU8792002" }
+          },
+          "unstable": {},
+          "omits": {}
+        }
+      }
+    },
+    "llama-3.1-8b": {
+      "style": {
+        "money": "usd_commas",
+        "nulls": "null",
+        "container": "compact",
+        "fenced": false
+      },
+      "versions": {
+        "v1": {
+          "errors": {
+            "BOL-001": { "port_of_loading": "SHANGHAI" },
+            "BOL-002": { "gross_weight_kg": 26455 },
+            "BOL-003": { "incoterm": "CIF" },
+            "BOL-005": { "ship_date": "2026-03-02" },
+            "BOL-008": { "gross_weight_kg": 18200 },
+            "INV-002": { "gross_weight_kg": 12.5 }
+          },
+          "unstable": {
+            "BOL-006": [{}, { "hazmat": false }, { "hazmat": false }],
+            "INV-005": [{}, { "ship_date": null }, {}]
+          },
+          "omits": {}
+        },
+        "v2": {
+          "errors": {
+            "BOL-003": { "incoterm": "CIF" },
+            "BOL-007": { "carrier_scac": "NGCU" },
+            "BOL-008": { "gross_weight_kg": 18200 },
+            "BOL-009": { "container_id": "PBSU8792002" }
+          },
+          "unstable": {
+            "BOL-006": [{}, { "hazmat": false }, {}],
+            "INV-005": [{}, { "ship_date": null }, {}]
+          },
+          "omits": {}
+        }
+      }
+    }
+  }
+}

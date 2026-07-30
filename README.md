@@ -64,6 +64,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/promptfoo-golden-set-harness">promptfoo Golden-Set Harness</a></td><td>Golden-set eval harness that scores model document extraction for accuracy, fabrication, and run-to-run consistency, and names the cases that stop passing when a prompt changes.</td><td>07/30/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/bibliotheca-dantalian">Bibliotheca Dantalian</a></td><td>Zero-dependency static wiki engine with scoped spoiler blocks, wikilinks, and search, demoed on a wiki for a fictional anime.</td><td rowspan="2">07/12/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/save-point">Save Point</a></td><td>Astro guide and blog template for game guide sites: persistent checklists, sortable tables, galleries, and three themes.</td></tr>
 <tr><td><a href="miscellaneous-projects/kev-wing-wah">Kev Wing Wah</a></td><td>Restaurant website template for a fictional takeout spot, with a searchable 120-dish menu.</td><td>07/03/2026</td></tr>

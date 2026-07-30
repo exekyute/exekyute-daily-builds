@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets: the live config reads GROQ_API_KEY from here
+.env
+.env.*
+!.env.example
+
+# promptfoo local state and its own cache
+.promptfoo/
+node_modules/
+
+# Runs other than the committed baseline
+runs/*.json
+!runs/offline-baseline.json
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/

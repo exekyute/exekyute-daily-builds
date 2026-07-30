@@ -1,0 +1,41 @@
+# Live configuration: 15 golden cases against two prompt versions on three Groq
+# models. Needs GROQ_API_KEY in the environment or in a .env file.
+#
+#   npx promptfoo@latest eval --repeat 3 --no-cache --no-table -o runs/live.json
+#   python harness/report.py runs/live.json
+#
+# Temperature is pinned at 0 and the run still repeats three times. Temperature 0 is a
+# request, not a determinism guarantee, and run-to-run drift on hosted inference is one
+# of the things the report is built to measure.
+
+description: Freight-document extraction, v1 against v2, three Groq models
+
+prompts:
+  - id: file://prompts/extract-v1.txt
+    label: v1
+  - id: file://prompts/extract-v2.txt
+    label: v2
+
+providers:
+  - id: groq:llama-3.3-70b-versatile
+    label: llama-3.3-70b
+    config:
+      temperature: 0
+      max_tokens: 512
+  - id: groq:openai/gpt-oss-120b
+    label: gpt-oss-120b
+    config:
+      temperature: 0
+      max_tokens: 512
+  - id: groq:llama-3.1-8b-instant
+    label: llama-3.1-8b
+    config:
+      temperature: 0
+      max_tokens: 512
+
+defaultTest:
+  assert:
+    - type: python
+      value: file://harness/grader.py
+
+tests: file://golden/golden-set.yaml

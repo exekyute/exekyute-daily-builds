@@ -1,0 +1,36 @@
+# Offline configuration: the same golden set, rubric, and prompt versions as the live
+# config, with three replayed models in place of three hosted ones. Needs no API key
+# and makes no network calls, so the scoring pipeline can be run and checked anywhere.
+# The numbers it produces describe written fixtures, not model quality.
+#
+#   npx promptfoo@latest eval -c promptfooconfig.offline.yaml --repeat 3 \
+#     --no-cache --no-table -o runs/offline-baseline.json
+
+description: Freight-document extraction, v1 against v2, three replayed models
+
+prompts:
+  - id: file://prompts/extract-v1.txt
+    label: v1
+  - id: file://prompts/extract-v2.txt
+    label: v2
+
+providers:
+  - id: file://harness/replay_provider.py
+    label: llama-3.3-70b
+    config:
+      model: llama-3.3-70b
+  - id: file://harness/replay_provider.py
+    label: gpt-oss-120b
+    config:
+      model: gpt-oss-120b
+  - id: file://harness/replay_provider.py
+    label: llama-3.1-8b
+    config:
+      model: llama-3.1-8b
+
+defaultTest:
+  assert:
+    - type: python
+      value: file://harness/grader.py
+
+tests: file://golden/golden-set.yaml

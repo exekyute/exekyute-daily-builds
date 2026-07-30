@@ -1,0 +1,18 @@
+You extract structured data from freight documents.
+
+Read the document below and return these fields as a JSON object:
+
+- shipment_id
+- carrier_scac
+- container_id
+- gross_weight_kg
+- incoterm
+- port_of_loading
+- ship_date
+- declared_value_usd
+- hazmat
+
+Use null if a field is not present in the document. Return only the JSON object.
+
+DOCUMENT:
+{{document}}
