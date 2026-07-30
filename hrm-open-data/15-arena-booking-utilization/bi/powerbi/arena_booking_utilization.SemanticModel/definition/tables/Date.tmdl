@@ -1,0 +1,26 @@
+table Date
+	lineageTag: 06672544-2ced-4185-a372-75ec91b882ce
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: cd0e2fad-040e-4d88-885b-962aaaec4564
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year-Month = FORMAT ( 'Date'[Date], "YYYY-MM" )
+		lineageTag: a9cbe0e3-38bf-4f70-b6a6-7734b25fe509
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source = CALENDAR ( MIN ( mart_arena[month_start] ), MAX ( mart_arena[month_start] ) )
+
+	annotation PBI_Id = 159aef1c2a964f2984d2341024bcf8f0
+

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "74500fb22024908a406b",
+  "position": {
+    "x": 248.99696048632219,
+    "y": 0,
+    "z": 1,
+    "height": 124.4984802431611,
+    "width": 211.06382978723406,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_arena"
+                    }
+                  },
+                  "Property": "Ice Share"
+                }
+              },
+              "queryRef": "mart_arena.Ice Share",
+              "nativeQueryRef": "Ice Share"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_arena"
+                  }
+                },
+                "Property": "Ice Share"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_arena.Ice Share"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e3649d959699a78c910e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_arena"
+              }
+            },
+            "Property": "Ice Share"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "b7a88abc2b0d76b0e0ba",
+  "position": {
+    "x": 10,
+    "y": 401,
+    "z": 2,
+    "height": 319,
+    "width": 1270,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date"
+                    }
+                  },
+                  "Property": "Year-Month"
+                }
+              },
+              "queryRef": "Date.Year-Month",
+              "nativeQueryRef": "Year-Month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_arena"
+                    }
+                  },
+                  "Property": "Booked Hours"
+                }
+              },
+              "queryRef": "mart_arena.Booked Hours",
+              "nativeQueryRef": "Booked Hours"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_arena"
+                    }
+                  },
+                  "Property": "Booked Hours LY"
+                }
+              },
+              "queryRef": "mart_arena.Booked Hours LY",
+              "nativeQueryRef": "Booked Hours LY"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Date"
+                  }
+                },
+                "Property": "Year-Month"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "53a5a49c264e9e24d353",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_arena"
+              }
+            },
+            "Property": "Booked Hours"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "173322df505e21149408",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_arena"
+              }
+            },
+            "Property": "Booked Hours LY"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bda1a43ea30d35004a9e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Date"
+              }
+            },
+            "Property": "Year-Month"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

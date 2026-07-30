@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "arena_booking_utilization"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f8a548e2-c647-4efc-8cde-a68e16155407"
+  }
+}

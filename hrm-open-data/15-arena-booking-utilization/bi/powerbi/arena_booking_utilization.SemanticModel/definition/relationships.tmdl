@@ -1,0 +1,4 @@
+relationship 6cced6e6-7da3-3cf9-d8c5-ca5d25f7c3f5
+	fromColumn: mart_arena.month_start
+	toColumn: Date.Date
+

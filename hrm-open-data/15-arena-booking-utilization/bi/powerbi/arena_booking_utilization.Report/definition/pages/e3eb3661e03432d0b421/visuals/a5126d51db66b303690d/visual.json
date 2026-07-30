@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "a5126d51db66b303690d",
+  "position": {
+    "x": 460,
+    "y": 7,
+    "z": 4,
+    "height": 394,
+    "width": 820,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_arena"
+                    }
+                  },
+                  "Property": "facility"
+                }
+              },
+              "queryRef": "mart_arena.facility",
+              "nativeQueryRef": "facility",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_arena"
+                    }
+                  },
+                  "Property": "Facility Rank"
+                }
+              },
+              "queryRef": "mart_arena.Facility Rank",
+              "nativeQueryRef": "Facility Rank"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mart_arena"
+                    }
+                  },
+                  "Property": "Booked Hours"
+                }
+              },
+              "queryRef": "mart_arena.Booked Hours",
+              "nativeQueryRef": "Booked Hours"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mart_arena"
+                  }
+                },
+                "Property": "Booked Hours"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "12642ba7290e6533eb03",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_arena"
+              }
+            },
+            "Property": "facility"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a4db0cbd2ac495c38b79",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_arena"
+              }
+            },
+            "Property": "Booked Hours"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ed6b4684e6003ed358dd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mart_arena"
+              }
+            },
+            "Property": "Facility Rank"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

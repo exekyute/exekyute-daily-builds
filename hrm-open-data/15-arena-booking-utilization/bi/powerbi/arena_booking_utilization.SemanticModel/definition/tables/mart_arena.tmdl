@@ -1,0 +1,99 @@
+table mart_arena
+	lineageTag: fa3638c0-98eb-42f5-916b-440c10469253
+
+	measure 'Booked Hours' = SUM ( mart_arena[booked_hours] )
+		lineageTag: 571fe086-981e-4524-aebc-92eb2c12dc3d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Bookings' = SUM ( mart_arena[bookings] )
+		formatString: 0
+		lineageTag: c74dcea5-721b-45f1-9503-88dca35e4681
+
+	measure 'Ice Hours' = CALCULATE ( [Booked Hours], mart_arena[use_type] = "Ice" )
+		lineageTag: c7fc0f47-9c01-474b-af63-f37c36f96717
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ice Share' = DIVIDE ( [Ice Hours], [Booked Hours] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: eeadcc0c-a57f-46e7-a284-168bf47fa4d0
+
+	measure 'Booked Hours LY' = CALCULATE ( [Booked Hours], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+		lineageTag: c60811d2-c04d-4d07-bfc3-d055ff396f75
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Facility Rank' = RANKX ( ALLSELECTED ( mart_arena[facility] ), [Booked Hours], , DESC, Skip )
+		formatString: 0
+		lineageTag: d1e60220-6b23-4fc4-8e28-57b175881297
+
+	column facility
+		dataType: string
+		lineageTag: 347ce6b6-62ce-4c18-a7ea-2c912cd64104
+		summarizeBy: none
+		sourceColumn: facility
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 559bce04-9941-4f98-b154-315fb2b387f9
+		summarizeBy: none
+		sourceColumn: month_start
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 5de1cf9f-8145-4843-ba1d-88391a99971e
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column use_type
+		dataType: string
+		lineageTag: 2f51f2b7-865a-44db-84cc-c9997fe37c30
+		summarizeBy: none
+		sourceColumn: use_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column bookings
+		dataType: int64
+		formatString: 0
+		lineageTag: 41d0eef2-9369-44cc-8ea5-5d7bd14bd746
+		summarizeBy: sum
+		sourceColumn: bookings
+
+		annotation SummarizationSetBy = Automatic
+
+	column booked_hours
+		dataType: double
+		lineageTag: 94a95e07-666f-4cba-b58a-ee07356f5889
+		summarizeBy: sum
+		sourceColumn: booked_hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_arena = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("bi\exports\mart_arena.csv"), [Delimiter = ",", Columns = 6, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers",{{"facility", type text}, {"month_start", type date}, {"year", Int64.Type}, {"use_type", type text}, {"bookings", Int64.Type}, {"booked_hours", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
