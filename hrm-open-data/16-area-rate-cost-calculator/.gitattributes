@@ -1,0 +1,12 @@
+# Keep raw open data and generated output out of the language stats
+data/** linguist-vendored
+*.csv linguist-vendored
+out/** linguist-generated
+
+# The workbook is the deliverable, not code: binary, do not count it
+*.xlsx binary
+*.xlsx linguist-generated
+
+# Driver and docs do not count toward the language bar
+build.py linguist-vendored
+*.md linguist-documentation

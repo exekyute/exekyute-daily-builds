@@ -1,0 +1,53 @@
+category,OBJECTID,AREARATE_CODE,DESCRIP,ARCODE_RES,ARCODE_COM,ARCODE_RCE
+Fire Protection,1,M050,Fire Protection,95,97,95
+Transit,1,M060,2023 Local Transit,LTAR,,LTAR
+Transit,2,M060,2024 Local Transit Winter,LTAR,,LTAR
+Transit,3,M060,2025 Local Transit,LTAR,,LTAR
+Transit,4,M060,2020 Local Transit,LTAR,,LTAR
+Transit,5,M060,2021 Local Transit,LTAR,,LTAR
+Transit,6,M060,2024 Local Transit,LTAR,,LTAR
+Transportation,221,M070,REGIONAL TRANSPORTATION,RTTR,,RTTR
+Community Facilities and Services,3,A000,Frame Subdivision Homeowners Association,C101,,C101
+Community Facilities and Services,9,A010,Haliburton Highbury Homeowners Association,80,,80
+Community Facilities and Services,19,A020,Silversides Residents Association,SR,SR,SR
+Community Facilities and Services,8,A030,Highland Park Rate Payers Association,79,,79
+Community Facilities and Services,7,A040,Kingswood Ratepayers Association,KW,KW,KW
+Community Facilities and Services,1,A050,Lakeview/Windsor Junction/Fall River Recreation,63,,63
+Community Facilities and Services,13,A070,Mineville Community Association,MI,MI,MI
+Community Facilities and Services,16,A080,Musquodoboit Harbour Common Rate,75,,75
+Community Facilities and Services,14,A090,Prospect Road Recreation Association,83,,83
+Community Facilities and Services,12,A100,Sackville Heights Community Recreation Centre,SH,SH,SH
+Community Facilities and Services,15,A110,Fox Hollow Homeowners Association,FH,FH,FH
+Community Facilities and Services,17,A120,Glen Arbour Homeowners Association,GAR,GAR,GAR
+Community Facilities and Services,6,A130,Three Brooks Homeowners Association,C117,,C117
+Community Facilities and Services,20,A140,Westwood Hills Residents Assocaition,WH,WH,WH
+Community Facilities and Services,4,A160,Grand Lake/Oakfield Community Centre,84,,84
+Community Facilities and Services,2,A170,Ketch Harbour Residents Association,C114,,C114
+Community Facilities and Services,18,A180,SHSS Tier 1,944A,944A,
+Community Facilities and Services,10,A190,SHSS Tier 2,944B,944B,
+Community Facilities and Services,5,A200,SHSS Tier 3,944C,944C,
+Community Facilities and Services,11,A210,Waverley Community Association Rate,,,
+Private Road,24,R000,Petpeswick Drive $300 Flat Fee,PDR,PDR,PDR
+Private Road,8,R010,Three Brooks Homeowners Association,TBPR,TBPR,TBPR
+Private Road,7,R020,Southwest Grand Lake Private Road Fee,759A,759A,759A
+Private Road,12,R030,Southwest Grand Lake Private Road Fee,759B,759B,759B
+Private Road,19,R040,Southwest Grand Lake Private Road Fee,759C,759C,759C
+Private Road,14,R050,Southwest Grand Lake Private Road Fee,759D,759D,759D
+Private Road,16,R060,River Bend Rd & River Court Homeowners Association,RHOB,RHOB,RHOB
+Private Road,9,R070,Range Rd Private Road Maintenance,R789,R789,R789
+Private Road,15,R080,Rutter Court Residents Association,R788,R788,R788
+Private Road,10,R090,Sambro Head Lot Owners Association:Bald Rock Rd,SHOA,SHOA,SHOA
+Private Road,22,R100,St. Margaret's Village Community Association,SMOA,SMOA,SMOA
+Private Road,13,R110,Blacks Subdivision Ratepayers Association,R79B,R79B,R79B
+Private Road,17,R120,Redoubt Head Homeowners Association,R791,R791,R791
+Private Road,18,R130,Mariners Anchorage Residents Association,R792,R792,R792
+Private Road,2,R140,St Margaret's Bay Heights Subdivision,R793,R793,R793
+Private Road,21,R140,St Margaret's Bay Heights Subdivision,R793,R793,R793
+Private Road,11,R150,Shiloh and Karla Drive Road Association,R794,R794,R794
+Private Road,20,R160,Kelly Point Private Road,R795,R795,R795
+Private Road,5,R170,Jenna Lane Private Road Fee,R796,R796,R796
+Private Road,4,R180,Bayview Homeowners Society,R797,R797,R797
+Private Road,6,R190,Cambrian’s Cove Homeowners Association,R798,R798,R798
+Private Road,3,R200,Shag End Lot Owners Association,SEOA,SEOA,SEOA
+Private Road,23,R210,Blacks Subdivision Ratepayers Association,R79A,R79A,R79A
+Private Road,1,R220,Gill Cove Road Private Road Maintenance,R799,R799,R799

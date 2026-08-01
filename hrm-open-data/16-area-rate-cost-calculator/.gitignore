@@ -1,0 +1,8 @@
+# generated recompute artifact (the golden lives in expected/)
+out/
+
+# python bytecode cache
+__pycache__/
+
+# excel lock file (created while the workbook is open)
+~$*.xlsx

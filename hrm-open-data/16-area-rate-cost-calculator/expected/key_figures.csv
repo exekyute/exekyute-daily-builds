@@ -1,0 +1,9 @@
+scenario,figure,area_code,class,calc_type,rate,assessment,charge,share_pct
+A,charge,M050,Residential,Rate,0.015,325000,48.75,12.4
+A,charge,M060,Residential,Rate,0.092,325000,299.00,76.1
+A,charge,A000,Residential,Flat Rate,45,325000,45.00,11.5
+A,total,,Residential,,,325000,392.75,100.0
+B,charge,M050,Commercial,Rate,0.039,600000,234.00,35.2
+B,charge,R000,Commercial,Flat Rate,330,600000,330.00,49.7
+B,charge,A020,Commercial,Flat Rate,100,600000,100.00,15.1
+B,total,,Commercial,,,600000,664.00,100.0
