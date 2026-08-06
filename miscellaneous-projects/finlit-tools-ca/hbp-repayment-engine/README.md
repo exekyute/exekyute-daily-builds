@@ -1,6 +1,6 @@
 # HBP Repayment & Refinancing Strategy Engine
 
-> Models a 15-year Home Buyers' Plan repayment cycle so Canadians can see the long-term cash, tax, and lost-RRSP-room cost of skipping repayments.
+Models a 15-year Home Buyers' Plan repayment cycle so Canadians can see the long-term cash, tax, and lost-RRSP-room cost of skipping repayments.
 
 ## What it does
 - **15-Year Projection**: year-by-year amortization under your chosen strategy.
@@ -14,7 +14,7 @@
 - Per-year income overrides for parental leave, sabbatical, peak earnings.
 - All 13 provinces and territories with surtaxes and Quebec's 16.5% federal abatement baked in.
 - Bracket-aware: tax on a skipped repayment is computed band-by-band, not as a flat marginal rate.
-- Grace-period aware: knows about the Budget 2024 5-year extension for 2022–2025 withdrawals.
+- Grace-period aware: knows about the Budget 2024 5-year extension for 2022-2025 withdrawals.
 
 ## How to run it
 Double-click `index.html`. Or use the hosted hub at the repo root.
@@ -33,11 +33,13 @@ Double-click `index.html`. Or use the hosted hub at the repo root.
 | HBP lifetime withdrawal cap | $60,000 (Budget 2024) |
 | Repayment period | 15 years (1/15 annually) |
 | Standard grace period | 2 years |
-| Budget 2024 grace extension | 5 years for 2022–2025 withdrawals |
+| Budget 2024 grace extension | 5 years for 2022-2025 withdrawals |
 | Quebec abatement | 16.5% federal credit |
 | Surtaxes | Ontario, PEI included |
 
-## What it does NOT model
+## Simplifications
+
+The model stays deliberately simple and leaves these out:
 - The basic personal amount and other non-refundable credits.
 - Capital gains, dividends, or RRSP/TFSA contributions in the same year.
 - Income tax owed on eventual RRSP withdrawals (future-value figures are gross).

@@ -1,6 +1,6 @@
 # FHSA Optimization Engine
 
-> Projects a Canadian First Home Savings Account year by year, contributions, tax refunds, and growth, toward a down-payment target.
+Projects a Canadian First Home Savings Account year by year, contributions, tax refunds, and growth, toward a down-payment target.
 
 ## What it does
 - **Projected Down Payment**: total balance at withdrawal year.
@@ -33,7 +33,9 @@ Double-click `index.html`. Or use the hosted hub at the repo root.
 | Max carry-forward of unused room | $8,000 |
 | Account life | 15 years (banner fires at year 15) |
 
-## What it does NOT model
+## Simplifications
+
+The model stays deliberately simple and leaves these out:
 - Province-specific brackets or surtaxes (uses a simplified 5-band combined rate).
 - The FHSA-to-RRSP tax-free transfer mechanics on expiry.
 - Qualifying-home rules and the 30-day occupancy requirement.

@@ -1,6 +1,6 @@
 # TFSA Snowballer
 
-> Shows the gap between tax-free TFSA compounding and a taxable account holding the same investments, year by year.
+Shows the gap between tax-free TFSA compounding and a taxable account holding the same investments, year by year.
 
 ## What it does
 - **Final TFSA Balance**: total tax-free cash at withdrawal age.
@@ -30,7 +30,9 @@ Double-click `index.html`. Or use the hosted hub at the repo root.
 - The taxable comparison assumes a tax-drag of 50% of your marginal rate applied to annual growth, a blend approximating mixed interest, dividends, and capital gains.
 - Marginal rate uses a 5-band simplified combined federal+provincial scale.
 
-## What it does NOT model
+## Simplifications
+
+The model stays deliberately simple and leaves these out:
 - Province-specific brackets or surtaxes.
 - Foreign-withholding tax inside the TFSA (e.g. US dividends).
 - Withdrawal-and-recontribution timing rules.

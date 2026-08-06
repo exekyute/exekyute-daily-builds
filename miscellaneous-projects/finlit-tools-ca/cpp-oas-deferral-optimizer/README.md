@@ -1,6 +1,6 @@
 # CPP & OAS Deferral Optimizer
 
-> Helps Canadians choose what age to start CPP and OAS by projecting lifetime payout under different start ages.
+Helps Canadians choose what age to start CPP and OAS by projecting lifetime payout under different start ages.
 
 ## What it does
 - **Total Monthly Pension**: combined CPP + OAS at the start ages you pick.
@@ -30,7 +30,9 @@ Double-click `index.html`. Or use the hosted hub at the repo root.
 | Late OAS bonus | 0.6% per month after age 65 (until 70) |
 | OAS earliest start | Age 65 |
 
-## What it does NOT model
+## Simplifications
+
+The model stays deliberately simple and leaves these out:
 - Future inflation or time-value-of-money discounting.
 - OAS recovery tax (clawback) at higher incomes.
 - Marital or survivor benefits.

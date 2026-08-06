@@ -1,9 +1,9 @@
 # Benefit Clawback Radar
 
-> Visualize the Effective Marginal Tax Rate that low- and middle-income Canadians actually keep on the next dollar, once CCB and GIS clawbacks land on top of income tax.
+Visualize the Effective Marginal Tax Rate that low- and middle-income Canadians actually keep on the next dollar, once CCB and GIS clawbacks land on top of income tax.
 
 ## What it does
-- **Disposable Income Rollercoaster**: keep-rate curve across $0–$120K, with an amber "Invisible Cliff Edge" zone where the combined bite is steepest. Hover or tap to inspect any income point live.
+- **Disposable Income Rollercoaster**: keep-rate curve across $0-$120K, with an amber "Invisible Cliff Edge" zone where the combined bite is steepest. Hover or tap to inspect any income point live.
 - **Leaky Pipeline**: a hypothetical $2,500 raise stripped by federal tax, provincial tax, CCB reduction, and GIS reduction in sequence.
 - **Live explainer card**: plain-English narration that adapts to profile, province, and RRSP usage.
 - **Three summary cards**: Gross Raise on Paper / True Net Take-Home / Effective Marginal Rate.
@@ -26,12 +26,14 @@ Double-click `index.html`. Or use the hosted hub at the repo root.
 5. Close the tab whenever. Your inputs come back next visit.
 
 ## Canadian rules it follows
-- **CCB (July 2026 – June 2027):** max $8,157/yr per child under 6, $6,883/yr per child age 6–17. Tier 1 threshold $38,237. Tier 2 threshold $82,847. Tier 1 phase-out rates 7% / 13.5% / 19% / 23% for 1–4+ kids; Tier 2 rates 3.2% / 5.7% / 8% / 9.5%.
+- **CCB (July 2026 to June 2027):** max $8,157/yr per child under 6, $6,883/yr per child age 6-17. Tier 1 threshold $38,237. Tier 2 threshold $82,847. Tier 1 phase-out rates 7% / 13.5% / 19% / 23% for 1-4+ kids; Tier 2 rates 3.2% / 5.7% / 8% / 9.5%.
 - **GIS (Q1 2026 single-senior reference):** max $1,105.43/month. First $5,000 of employment income fully exempt; next $10,000 50% exempt; 50% clawback above.
 - **Income tax:** 2026-indexed federal brackets + Basic Personal Amount credit. Provincial brackets for ON, BC, AB, QC, NS, MB.
 - **RRSP impact:** reduces AFNI for CCB, reduces GIS-clawback income at the federal level, reduces taxable income for federal + provincial tax.
 
-## What it does NOT model
+## Simplifications
+
+The model stays deliberately simple and leaves these out:
 - Provincial low-income tax reductions (e.g. Ontario LIFT).
 - Health premiums or surtaxes (e.g. Ontario Health Premium).
 - Quebec-specific deductions (QPP, QPIP, abatement).

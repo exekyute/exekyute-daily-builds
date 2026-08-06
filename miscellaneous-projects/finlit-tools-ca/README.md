@@ -1,6 +1,6 @@
 # Canadian FinLit Tools
 
-> Seven self-contained, browser-based calculators for Canadian benefit and tax rules.
+Seven self-contained, browser-based calculators for Canadian benefit and tax rules. Each one turns a piece of normally opaque math, a CCB phase-out, a CESG window, an RRSP clawback, into a tool you can see and change, and each lives in a single HTML file with no build step because the rules themselves are the hard part.
 
 ## The tools
 
@@ -14,22 +14,12 @@
 | [RESP + CESG Optimizer](./resp-cesg-optimizer/) | Capturing the full $7,200 CESG grant |
 | [TFSA Snowballer](./tfsa-snowballer/) | Tax-free vs. taxable account drift over time |
 
-Each tool links from the hub at the repo root (`index.html`) and back to it via a **← Home** button.
+Each tool links from the hub at the repo root (`index.html`) and back to it via a **Home** button.
 
 ## How to run
 
 - **Locally:** open `index.html` at the repo root in any modern browser. Each tool also runs by double-clicking its own `index.html`.
-- **Hosted:** push to GitHub and enable Pages (Settings → Pages → Deploy from branch → `main` / root). The relative links work in both modes.
-
-## Why I built these (self-learning objectives)
-
-I built these to refresh hands-on coding fundamentals while practicing the harder skill: explaining dense Canadian tax-and-benefit rules in plain language, with the rules themselves as the constraint that forces clarity.
-
-Three things I wanted to get better at, in order:
-
-1. **Refresh the basics**: Vanilla JS, React-via-CDN, single-file architecture, no build step. Forcing each tool to live in one HTML file removed every excuse to over-engineer.
-2. **Explain rules without hand-waving**: If I can't translate a CCB phase-out tier or a CESG eligibility window into a working calculator, I don't actually understand it.
-3. **Make the invisible visible**: Most Canadian benefit math is technically public but practically opaque (paystubs don't show clawbacks, CRA recalculates months later). A visual tool is the bridge.
+- **Hosted:** push to GitHub and enable Pages (Settings, then Pages, then Deploy from branch, `main` and root). The relative links work in both modes.
 
 ## Code conventions
 
@@ -75,3 +65,8 @@ finlit-tools-ca/
 These tools are illustrative only. They use 2026-indexed estimates of federal and provincial rules and simplify many real-world variables. Each tool's own README and in-app footer document what it does and does not model.
 
 Verify your personal numbers in **CRA My Account** or **My Service Canada Account** and consult a Certified Professional Accountant or qualified financial advisor before acting. Not tax, legal, or investment advice.
+
+## License
+
+Released under the MIT License. See [LICENSE](LICENSE).
+Copyright (c) 2026 Kevin Yu (https://github.com/exekyute).

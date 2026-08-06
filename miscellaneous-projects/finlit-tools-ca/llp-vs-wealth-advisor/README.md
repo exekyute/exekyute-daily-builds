@@ -1,6 +1,6 @@
 # LLP vs. Wealth Advisor
 
-> Shows the lifelong opportunity cost of pulling RRSP money under the Lifelong Learning Plan, even with perfect repayment, the years out of the market never come back.
+Shows the lifelong opportunity cost of pulling RRSP money under the Lifelong Learning Plan, even with perfect repayment, the years out of the market never come back.
 
 ## What it does
 - **Opportunity Cost Gap**: the dollar gap between "untouched RRSP" and "withdrew + repaid on schedule" at Year 25.
@@ -36,7 +36,9 @@ Double-click `index.html`. Or use the hosted hub at the repo root.
 
 **Grace period model:** when toggled on, repayments start 5 years after the last withdrawal year. The actual CRA rule is the earlier of (a) the 5th year after your first LLP withdrawal, or (b) the 2nd year after you cease to be a full-time student, so your real schedule may begin sooner.
 
-## What it does NOT model
+## Simplifications
+
+The model stays deliberately simple and leaves these out:
 - Variable annual returns (uses a constant rate).
 - Late or missed repayments (treated as income inclusion in the real world).
 - Partial-year repayments or accelerated repayment.
