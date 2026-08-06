@@ -1,4 +1,4 @@
-# 04 — Hatchery stocking summary
+# 04: Hatchery stocking summary
 
 Nova Scotia hatcheries released about 34.1 million fish across 15,000 stocking events from 1976 to 2025. This project rolls those records up by waterbody, county, species, and year, and the headline is Brook Trout: 27.7 million fish, roughly four of every five released.
 

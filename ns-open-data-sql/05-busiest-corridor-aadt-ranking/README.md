@@ -1,4 +1,4 @@
-# 05 — Busiest-corridor AADT ranking
+# 05: Busiest-corridor AADT ranking
 
 Ranks Nova Scotia's provincial highway segments by annual average daily traffic (AADT), measures how fast each one is growing, and flags the segments at or above a two-lane capacity threshold. The busiest segment is Highway 102 between Exit 2 (Kearney Lake Road) and Exit 2B (Larry Uteck Boulevard) in Halifax County, at 35,600 vehicles per day.
 
