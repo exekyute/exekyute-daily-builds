@@ -215,3 +215,8 @@ rules later, the tests tell you right away whether you broke anything.
 - Support international phone numbers instead of assuming a 10-digit US format.
 - Add a column to the report counting how many sources each merged contact came
   from.
+
+## License
+
+Released under the MIT License. See [LICENSE](LICENSE).
+Copyright (c) 2026 Kevin Yu (https://github.com/exekyute).

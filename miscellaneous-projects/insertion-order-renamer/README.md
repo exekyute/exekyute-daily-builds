@@ -207,3 +207,8 @@ whether you broke anything.
 - Add a column to `companies.csv` and include the campaign name in the output.
 - Switch the name format to put the IO number first by editing one line
   (`NAME_FORMAT` at the top of `core.py`).
+
+## License
+
+Released under the MIT License. See [LICENSE](LICENSE).
+Copyright (c) 2026 Kevin Yu (https://github.com/exekyute).

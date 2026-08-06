@@ -1,10 +1,8 @@
-# 🧾 InvoiceParsimus
-
-**A private, browser-based invoice parser and financial dashboard powered by Gemini AI.**
+# InvoiceParsimus
 
 InvoiceParsimus lets you drag and drop PDF invoices or scanned images directly into your browser. It runs OCR locally on your machine, routes the result to Google's Gemini AI for intelligent field extraction, and organizes everything into a sortable, filterable ledger. No accounts. No uploads. No server. Your documents and your API key never leave your control.
 
-## 🎯 What It Does
+## What it does
 
 Drop a PDF or image invoice into the app and it extracts:
 
@@ -16,7 +14,7 @@ Drop a PDF or image invoice into the app and it extracts:
 
 If Gemini cannot confidently read a field, it returns null rather than guessing. The app marks those cells as **N/A** with a small icon you can hover over, reminding you to review manually. Nothing gets silently dropped or fabricated.
 
-## ⚙️ How the Pipeline Works
+## How the pipeline works
 
 Every file you drop goes through a two-stage process:
 
@@ -29,7 +27,7 @@ Tesseract reads the document entirely inside your browser and produces a raw tex
 
 Either path returns the same structured JSON, so the table, charts, and export all work identically regardless of which route was taken.
 
-## ✨ Features
+## Features
 
 📊 **Invoice Table**
 * Eight columns: Date, Vendor, PO #, Invoice #, Description, Subtotal, Tax, Total
@@ -68,11 +66,11 @@ Either path returns the same structured JSON, so the table, charts, and export a
 * Everything runs inside your browser. Your invoices and your Gemini API key never touch a server you don't control. Tesseract runs entirely client-side. The only outbound request is the one you explicitly opt into: your document text or images going directly to Google's Gemini API using your own key.
 * The API key is stored only in the JavaScript memory of the current tab. Refresh the page or click Reset Session and it is gone.
 
-## 🚀 Live Demo
+## Live demo
 
 🔗 [**Launch InvoiceParsimus**](https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/invoice-parsimus/)
 
-## 📖 How to Use
+## How to use
 
 1. Open the live dashboard link above (or open `index.html` directly in your browser).
 2. Click the gear icon ⚙️ and paste in your Gemini API key. Set your preferred PO digit length and confidence threshold if the defaults don't match your documents.
@@ -82,7 +80,7 @@ Either path returns the same structured JSON, so the table, charts, and export a
 6. Use the column filters, sort headers, and range toggles to explore your data.
 7. Click **Export CSV** when you are ready to take the data elsewhere.
 
-## ⚠️ Current Limitations
+## Limitations
 
 🔑 **Gemini API key required.** The app will not process files without a key configured in Settings. You can get a free key at [aistudio.google.com](https://aistudio.google.com). The key is never stored; you re-enter it each session.
 
@@ -90,7 +88,7 @@ Either path returns the same structured JSON, so the table, charts, and export a
 
 🔤 **Stylized fonts can trip up OCR.** Tesseract works best on clean printed text. Decorative logos or script typefaces in headers may affect the confidence score and push the document to the Vision path.
 
-## 📂 Other Document Types This Approach Handles
+## Other document types this approach handles
 
 The same OCR-to-AI pipeline works well for any structured document where you need to pull out specific fields. Some natural extensions:
 
@@ -105,7 +103,7 @@ The same OCR-to-AI pipeline works well for any structured document where you nee
 
 Core pattern remains the same: insert doc, let OCR read it locally, let Gemini interpret intelligently, and get back clean structured data.
 
-## 🛠️ Tech Stack
+## Tech stack
 
 | Tool | What it does |
 |---|---|
@@ -115,3 +113,8 @@ Core pattern remains the same: insert doc, let OCR read it locally, let Gemini i
 | 🔍 Tesseract.js (CDN) | Runs OCR locally, produces text and a confidence score |
 | 🤖 Gemini API (`gemini-2.5-flash`) | Interprets OCR output or page images and returns structured JSON |
 | 📊 Chart.js + datalabels plugin | Powers the spend timeline and vendor distribution charts |
+
+## License
+
+Released under the MIT License. See [LICENSE](LICENSE).
+Copyright (c) 2026 Kevin Yu (https://github.com/exekyute).

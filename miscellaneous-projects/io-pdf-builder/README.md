@@ -2,13 +2,13 @@
 
 A single HTML file with a fillable insertion order form on the left and a live preview on the right. The Print button saves a one-page PDF you can upload straight to DocuSign.
 
-## Why I built this
+## How it's built
 
-This is a follow-up to yesterday's [gsheets-io-pdf](https://github.com/exekyute/gsheets-io-pdf) project. That one used Google Sheets and Apps Script to turn rows of data into PDFs. I wanted to try a different angle: a frontend form that builds one IO at a time, with no spreadsheet, no Apps Script, and no backend.
+A browser-only take on the earlier [gsheets-io-pdf](https://github.com/exekyute/gsheets-io-pdf), which turned spreadsheet rows into PDFs with Google Sheets and Apps Script. This one builds one IO at a time from a frontend form, with no spreadsheet, no Apps Script, and no backend.
 
-The visual template came from Claude Design. I asked it to design a generic insertion order layout, then wrapped that HTML with a form so the fields could be filled in and previewed live before printing.
+The insertion order layout came from Claude Design as a generic template, wrapped in a form so the fields fill and preview live before printing.
 
-DocuSign is the natural endpoint for a signed IO, so I added hidden anchor tags next to each signature, name, date, and title line. After uploading the PDF, DocuSign's Auto-Place can drop the right fields in automatically.
+DocuSign is the natural endpoint for a signed IO, so hidden anchor tags sit next to each signature, name, date, and title line. After the PDF is uploaded, DocuSign Auto-Place drops the right fields in automatically.
 
 ## What it does
 

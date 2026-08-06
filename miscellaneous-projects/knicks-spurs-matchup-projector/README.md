@@ -1,6 +1,6 @@
 # Knicks vs Spurs Matchup Projector
 
-I just wanted something small to tinker with while the Finals were on, so here it is: a single web page that grabs the actual Knicks vs Spurs games from this season and takes a guess at how the next one might go. Nothing serious, just a fun way to stare at numbers between possessions.
+A single web page that pulls the real Knicks vs Spurs games from this season and takes a guess at how the next one might go. It grabs every completed matchup from ESPN, works out the head-to-head record and scoring averages, and projects the next meeting with a Monte Carlo run. Nothing serious, just a fun way to stare at numbers between possessions.
 
 **Live page:** https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/knicks-spurs-matchup-projector/
 

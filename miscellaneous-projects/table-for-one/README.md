@@ -25,3 +25,8 @@ A concept food blog: a quiet diary kept from the eating side of the table rather
 - Works with JavaScript disabled: every entry is in the HTML and remains readable.
 - Accessible touches throughout: a skip link, keyboard focus styles, live status messages, and reduced-motion support.
 - Newest-first ordering is handled automatically from each entry's date.
+
+## License
+
+Released under the MIT License. See [LICENSE](LICENSE).
+Copyright (c) 2026 Kevin Yu (https://github.com/exekyute).

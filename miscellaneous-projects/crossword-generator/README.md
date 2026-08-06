@@ -21,3 +21,8 @@ Play it here: https://exekyute.github.io/exekyute-daily-builds/miscellaneous-pro
 ## Usage
 
 Open `index.html` in any modern web browser. Pick a difficulty and a topic, then solve.
+
+## License
+
+Released under the MIT License. See [LICENSE](LICENSE).
+Copyright (c) 2026 Kevin Yu (https://github.com/exekyute).
