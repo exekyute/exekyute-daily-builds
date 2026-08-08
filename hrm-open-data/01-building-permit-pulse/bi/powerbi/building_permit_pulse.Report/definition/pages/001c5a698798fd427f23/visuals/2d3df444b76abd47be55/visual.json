@@ -6,7 +6,7 @@
     "y": 0,
     "z": 0,
     "height": 280.1215805471125,
-    "width": 170.21276595744681,
+    "width": 170.2127659574468,
     "tabOrder": 0
   },
   "visual": {
@@ -51,6 +51,31 @@
         "isDefaultSort": true
       }
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mart_permits.Total Value"
+          }
+        }
+      ]
+    }
   }
 }
