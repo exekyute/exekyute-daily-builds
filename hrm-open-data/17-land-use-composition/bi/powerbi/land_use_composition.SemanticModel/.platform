@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "land_use_composition"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "318ee967-3e0f-4f06-b839-dc09cbb5c5a4"
+  }
+}

@@ -1,0 +1,966 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20262.26.0716.1805                               -->
+<workbook _.fcp.WorkbookFingerprinting.true...author-id='e7e809342c8c2d899b785f32b0c1b37e205dfc595381b88e1b4891f4516a7ddb' _.fcp.WorkbookFingerprinting.true...creator-author-id='e7e809342c8c2d899b785f32b0c1b37e205dfc595381b88e1b4891f4516a7ddb' _.fcp.WorkbookFingerprinting.true...creator-license-type='public' _.fcp.WorkbookFingerprinting.true...creator-machine-id='8bc5424b9b47d1c26d1d55c64f3b12825da28f3152daac31fbac36dfb7fba9e3' _.fcp.WorkbookFingerprinting.true...license-type='public' _.fcp.WorkbookFingerprinting.true...machine-id='8bc5424b9b47d1c26d1d55c64f3b12825da28f3152daac31fbac36dfb7fba9e3' original-version='18.1' source-build='2026.2.1 (20262.26.0708.1337)' source-platform='win' version='18.1' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AccessibleZoneTabOrder />
+    <AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <MapboxVectorStylesAndLayers />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelExtractV2 />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <SpatialFileLayer />
+    <VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <_.fcp.WorkbookFingerprinting.true...WorkbookFingerprinting />
+    <ZoneBackgroundTransparency />
+  </document-format-change-manifest>
+  <repository-location id='Halifaxlandusecomposition' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='mart_landuse' inline='true' name='federated.0v473by033eomf16zelh10gmdw9s' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='mart_landuse' name='textscan.0yzl1ga1x0tm8q18vrnc00iahfzt'>
+            <connection class='textscan' directory='bi/exports' filename='mart_landuse.csv' server='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.0yzl1ga1x0tm8q18vrnc00iahfzt' name='mart_landuse.csv' table='[mart_landuse#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='community' ordinal='0' />
+            <column datatype='string' name='zone_class' ordinal='1' />
+            <column datatype='integer' name='polygons' ordinal='2' />
+            <column datatype='real' name='area' ordinal='3' />
+            <column datatype='real' name='area_share' ordinal='4' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[mart_landuse.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>community</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[community]</local-name>
+            <parent-name>[mart_landuse.csv]</parent-name>
+            <remote-alias>community</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>zone_class</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[zone_class]</local-name>
+            <parent-name>[mart_landuse.csv]</parent-name>
+            <remote-alias>zone_class</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>polygons</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[polygons]</local-name>
+            <parent-name>[mart_landuse.csv]</parent-name>
+            <remote-alias>polygons</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>area</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[area]</local-name>
+            <parent-name>[mart_landuse.csv]</parent-name>
+            <remote-alias>area</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>area_share</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[area_share]</local-name>
+            <parent-name>[mart_landuse.csv]</parent-name>
+            <remote-alias>area_share</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Community Area' datatype='real' name='[Calculation_1052539344011264]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='{ FIXED [community] : SUM([area]) }' />
+      </column>
+      <column caption='Class Share of Community' datatype='real' default-format='p0.00%' name='[Calculation_1052539344125953]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([area]) / MIN([Calculation_1052539344011264])' />
+      </column>
+      <column caption='Largest Class Area' datatype='real' name='[Calculation_1052539346530306]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='{ FIXED [community] : MAX({ FIXED [community], [zone_class] : SUM([area]) }) }' />
+      </column>
+      <column caption='Mix Index' datatype='real' default-format='p0.00%' name='[Calculation_1052539346898948]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='1 - ([Calculation_1052539346530306] / [Calculation_1052539344011264])' />
+      </column>
+      <column caption='Dominant Class Share' datatype='real' default-format='p0.00%' name='[Calculation_1052539353268229]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF ABS(SUM([area]) - MIN([Calculation_1052539346530306])) &lt; 0.0001&#13;&#10;THEN SUM([area]) / MIN([Calculation_1052539344011264])&#13;&#10;END' />
+      </column>
+      <column caption='mart_landuse.csv' datatype='table' name='[__tableau_internal_object_id__].[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]' role='measure' type='quantitative' />
+      <column caption='Area' datatype='real' name='[area]' role='measure' type='quantitative' />
+      <column caption='Area Share' datatype='real' name='[area_share]' role='measure' type='quantitative' />
+      <column caption='Community' datatype='string' name='[community]' role='dimension' type='nominal' />
+      <column caption='Polygons' datatype='integer' name='[polygons]' role='measure' type='quantitative' />
+      <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+      <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+      <extract count='-1' enabled='true' object-id='' units='records' user-specific='false'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='Data/TableauTemp/#TableauTemp_0l5pjsq1we19se104acvo0b1j5yu.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='08/08/2026 02:57:51 AM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>community</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[community]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>community</remote-alias>
+              <ordinal>0</ordinal>
+              <family>mart_landuse.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>183</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>zone_class</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[zone_class]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>zone_class</remote-alias>
+              <ordinal>1</ordinal>
+              <family>mart_landuse.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>9</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>polygons</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[polygons]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>polygons</remote-alias>
+              <ordinal>2</ordinal>
+              <family>mart_landuse.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>71</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>area</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[area]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>area</remote-alias>
+              <ordinal>3</ordinal>
+              <family>mart_landuse.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>550</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>area_share</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[area_share]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>area_share</remote-alias>
+              <ordinal>4</ordinal>
+              <family>mart_landuse.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>449</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:zone_class:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Commercial&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Other&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Mixed Use&quot;</bucket>
+            </map>
+            <map to='#9c755f'>
+              <bucket>&quot;Unspecified&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;Residential&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Institutional&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Park and Open Space&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Industrial&quot;</bucket>
+            </map>
+            <map to='#ff9da7'>
+              <bucket>&quot;Rural and Resource&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='mart_landuse.csv' id='mart_landuse.csv_4C08A22D7D9B48F08EF379723CEEA65E'>
+            <properties context=''>
+              <relation connection='textscan.0yzl1ga1x0tm8q18vrnc00iahfzt' name='mart_landuse.csv' table='[mart_landuse#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='community' ordinal='0' />
+                  <column datatype='string' name='zone_class' ordinal='1' />
+                  <column datatype='integer' name='polygons' ordinal='2' />
+                  <column datatype='real' name='area' ordinal='3' />
+                  <column datatype='real' name='area_share' ordinal='4' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+    <datasource caption='zoning_tagged' inline='true' name='federated.0ad1r1j025b16d156gd9e0ta7jei' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='zoning_tagged' name='ogrdirect.1v7icmx1iive9z17ivw6e174n4tt'>
+            <connection class='ogrdirect' directory='bi/exports' filename='zoning_tagged.geojson' server='' tablename='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='ogrdirect.1v7icmx1iive9z17ivw6e174n4tt' name='zoning_tagged.geojson' table='[zoning_tagged.geojson]' type='table'>
+          <columns>
+            <column datatype='string' name='zone_class' ordinal='0' />
+            <column datatype='string' name='community' ordinal='1' />
+            <column datatype='string' name='zone' ordinal='2' />
+            <column datatype='string' name='description' ordinal='3' />
+            <column datatype='real' name='area_km2' ordinal='4' />
+            <column datatype='spatial' name='Geometry' ordinal='5' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>zone_class</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[zone_class]</local-name>
+            <parent-name>[zoning_tagged.geojson]</parent-name>
+            <remote-alias>zone_class</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>community</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[community]</local-name>
+            <parent-name>[zoning_tagged.geojson]</parent-name>
+            <remote-alias>community</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>zone</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[zone]</local-name>
+            <parent-name>[zoning_tagged.geojson]</parent-name>
+            <remote-alias>zone</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>description</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[description]</local-name>
+            <parent-name>[zoning_tagged.geojson]</parent-name>
+            <remote-alias>description</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>area_km2</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[area_km2]</local-name>
+            <parent-name>[zoning_tagged.geojson]</parent-name>
+            <remote-alias>area_km2</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Geometry</remote-name>
+            <remote-type>8</remote-type>
+            <local-name>[Geometry]</local-name>
+            <parent-name>[zoning_tagged.geojson]</parent-name>
+            <remote-alias>Geometry</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>spatial</local-type>
+            <aggregation>Collect</aggregation>
+            <contains-null>true</contains-null>
+            <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='zoning_tagged.geojson' datatype='table' name='[__tableau_internal_object_id__].[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]' role='measure' type='quantitative' />
+      <column caption='Area Km2' datatype='real' name='[area_km2]' role='measure' type='quantitative' />
+      <column caption='Community' datatype='string' name='[community]' role='dimension' type='nominal' />
+      <column caption='Description' datatype='string' name='[description]' role='dimension' type='nominal' />
+      <column caption='Zone' datatype='string' name='[zone]' role='dimension' type='nominal' />
+      <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+      <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+      <extract count='-1' enabled='true' object-id='' units='records' user-specific='false'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='Data/TableauTemp/#TableauTemp_1m5hmf10zwt4h414bayhw0xuvhbb.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='08/08/2026 03:28:30 AM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>zone_class</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[zone_class]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>zone_class</remote-alias>
+              <ordinal>0</ordinal>
+              <family>zoning_tagged.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>8</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>community</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[community]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>community</remote-alias>
+              <ordinal>1</ordinal>
+              <family>zoning_tagged.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>181</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>zone</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[zone]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>zone</remote-alias>
+              <ordinal>2</ordinal>
+              <family>zoning_tagged.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>217</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>description</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[description]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>description</remote-alias>
+              <ordinal>3</ordinal>
+              <family>zoning_tagged.geojson</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>242</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='binary' />
+              <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>area_km2</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[area_km2]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>area_km2</remote-alias>
+              <ordinal>4</ordinal>
+              <family>zoning_tagged.geojson</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1120</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Geometry</remote-name>
+              <remote-type>128</remote-type>
+              <local-name>[Geometry]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Geometry</remote-alias>
+              <ordinal>5</ordinal>
+              <family>zoning_tagged.geojson</family>
+              <local-type>spatial</local-type>
+              <aggregation>Collect</aggregation>
+              <approx-count>11076</approx-count>
+              <contains-null>true</contains-null>
+              <object-id>[zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3]</object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:zone_class:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Commercial&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Other&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Mixed Use&quot;</bucket>
+            </map>
+            <map to='#9c755f'>
+              <bucket>&quot;Unspecified&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;Residential&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Institutional&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Park and Open Space&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Industrial&quot;</bucket>
+            </map>
+            <map to='#ff9da7'>
+              <bucket>&quot;Rural and Resource&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <object-graph>
+        <objects>
+          <object caption='zoning_tagged.geojson' id='zoning_tagged.geojson_D8A86C21640149158F0A800C63EFC6A3'>
+            <properties context=''>
+              <relation connection='ogrdirect.1v7icmx1iive9z17ivw6e174n4tt' name='zoning_tagged.geojson' table='[zoning_tagged.geojson]' type='table'>
+                <columns>
+                  <column datatype='string' name='zone_class' ordinal='0' />
+                  <column datatype='string' name='community' ordinal='1' />
+                  <column datatype='string' name='zone' ordinal='2' />
+                  <column datatype='string' name='description' ordinal='3' />
+                  <column datatype='real' name='area_km2' ordinal='4' />
+                  <column datatype='spatial' name='Geometry' ordinal='5' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <datasource-relationships>
+    <datasource-dependencies datasource='federated.0ad1r1j025b16d156gd9e0ta7jei'>
+      <column caption='Community' datatype='string' name='[community]' role='dimension' type='nominal' />
+      <column-instance column='[community]' derivation='None' name='[none:community:nk]' pivot='key' type='nominal' />
+      <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+      <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+    </datasource-dependencies>
+    <datasource-dependencies datasource='federated.0v473by033eomf16zelh10gmdw9s'>
+      <column caption='Community' datatype='string' name='[community]' role='dimension' type='nominal' />
+      <column-instance column='[community]' derivation='None' name='[none:community:nk]' pivot='key' type='nominal' />
+      <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+      <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+    </datasource-dependencies>
+    <datasource-relationship source='federated.0ad1r1j025b16d156gd9e0ta7jei' target='federated.0v473by033eomf16zelh10gmdw9s'>
+      <column-mapping>
+        <map key='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:community:nk]' value='[federated.0v473by033eomf16zelh10gmdw9s].[none:community:nk]' />
+        <map key='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]' value='[federated.0v473by033eomf16zelh10gmdw9s].[none:zone_class:nk]' />
+      </column-mapping>
+    </datasource-relationship>
+  </datasource-relationships>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <shared-views>
+    <shared-view name='federated.0ad1r1j025b16d156gd9e0ta7jei'>
+      <datasources>
+        <datasource caption='zoning_tagged' name='federated.0ad1r1j025b16d156gd9e0ta7jei' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0ad1r1j025b16d156gd9e0ta7jei'>
+        <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+        <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]'>
+        <groupfilter function='level-members' level='[none:zone_class:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+        <target field='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]' />
+      </filter>
+    </shared-view>
+    <shared-view name='federated.0v473by033eomf16zelh10gmdw9s'>
+      <datasources>
+        <datasource caption='mart_landuse' name='federated.0v473by033eomf16zelh10gmdw9s' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0ad1r1j025b16d156gd9e0ta7jei'>
+        <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+        <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+      </datasource-dependencies>
+      <datasource-dependencies datasource='federated.0v473by033eomf16zelh10gmdw9s'>
+        <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+        <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]'>
+        <groupfilter function='level-members' level='[none:zone_class:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+        <target field='[federated.0v473by033eomf16zelh10gmdw9s].[none:zone_class:nk]' />
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='Composition by community'>
+      <repository-location id='Compositionbycommunity' path='/workbooks/Halifaxlandusecomposition' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='mart_landuse' name='federated.0v473by033eomf16zelh10gmdw9s' />
+            <datasource caption='zoning_tagged' name='federated.0ad1r1j025b16d156gd9e0ta7jei' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ad1r1j025b16d156gd9e0ta7jei'>
+            <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+            <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <datasource-dependencies datasource='federated.0v473by033eomf16zelh10gmdw9s'>
+            <column caption='Community Area' datatype='real' name='[Calculation_1052539344011264]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='{ FIXED [community] : SUM([area]) }' />
+            </column>
+            <column caption='Largest Class Area' datatype='real' name='[Calculation_1052539346530306]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='{ FIXED [community] : MAX({ FIXED [community], [zone_class] : SUM([area]) }) }' />
+            </column>
+            <column caption='Mix Index' datatype='real' default-format='p0.00%' name='[Calculation_1052539346898948]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='1 - ([Calculation_1052539346530306] / [Calculation_1052539344011264])' />
+            </column>
+            <column caption='Dominant Class Share' datatype='real' default-format='p0.00%' name='[Calculation_1052539353268229]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='IF ABS(SUM([area]) - MIN([Calculation_1052539346530306])) &lt; 0.0001&#13;&#10;THEN SUM([area]) / MIN([Calculation_1052539344011264])&#13;&#10;END' />
+            </column>
+            <column caption='Area' datatype='real' name='[area]' role='measure' type='quantitative' />
+            <column caption='Community' datatype='string' name='[community]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_1052539346898948]' derivation='Max' name='[max:Calculation_1052539346898948:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[community]' derivation='None' name='[none:community:nk]' pivot='key' type='nominal' />
+            <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+            <column-instance column='[area]' derivation='Sum' name='[sum:area:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Calculation_1052539353268229]' derivation='User' name='[usr:Calculation_1052539353268229:qk]' pivot='key' type='quantitative' />
+            <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0v473by033eomf16zelh10gmdw9s].[none:community:nk]'>
+            <groupfilter count='15' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='MAX([Calculation_1052539346898948])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:community:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <computed-sort column='[federated.0v473by033eomf16zelh10gmdw9s].[none:community:nk]' direction='DESC' using='[federated.0v473by033eomf16zelh10gmdw9s].[max:Calculation_1052539346898948:qk]' />
+          <filter class='categorical' column='[federated.0v473by033eomf16zelh10gmdw9s].[none:zone_class:nk]'>
+            <groupfilter function='level-members' level='[none:zone_class:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0v473by033eomf16zelh10gmdw9s].[none:community:nk]</column>
+            <column>[federated.0v473by033eomf16zelh10gmdw9s].[none:zone_class:nk]</column>
+            <column>[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0v473by033eomf16zelh10gmdw9s].[none:zone_class:nk]' />
+              <text column='[federated.0v473by033eomf16zelh10gmdw9s].[usr:Calculation_1052539353268229:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0v473by033eomf16zelh10gmdw9s].[sum:area:qk]</rows>
+        <cols>[federated.0v473by033eomf16zelh10gmdw9s].[none:community:nk]</cols>
+      </table>
+      <simple-id uuid='{E51E12EC-E96A-47B5-B641-75166C17AD14}' />
+    </worksheet>
+    <worksheet name='Land use map'>
+      <repository-location id='Landusemap' path='/workbooks/Halifaxlandusecomposition' revision='' />
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='zoning_tagged' name='federated.0ad1r1j025b16d156gd9e0ta7jei' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.0ad1r1j025b16d156gd9e0ta7jei'>
+            <column datatype='spatial' name='[Geometry]' role='measure' type='nominal' />
+            <column-instance column='[community]' derivation='Attribute' name='[attr:community:nk]' pivot='key' type='nominal' />
+            <column-instance column='[description]' derivation='Attribute' name='[attr:description:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Geometry]' derivation='Collect' name='[clct:Geometry:nk]' pivot='key' type='nominal' />
+            <column caption='Community' datatype='string' name='[community]' role='dimension' type='nominal' />
+            <column caption='Description' datatype='string' name='[description]' role='dimension' type='nominal' />
+            <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+            <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0ad1r1j025b16d156gd9e0ta7jei].[Longitude (generated)]' field-type='quantitative' max='-6898005.9020996578' min='-7164125.5732638352' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.0ad1r1j025b16d156gd9e0ta7jei].[Latitude (generated)]' field-type='quantitative' max='5674421.3875560313' min='5523912.6728711277' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]' />
+              <lod column='[federated.0ad1r1j025b16d156gd9e0ta7jei].[clct:Geometry:nk]' />
+              <tooltip column='[federated.0ad1r1j025b16d156gd9e0ta7jei].[attr:community:nk]' />
+              <tooltip column='[federated.0ad1r1j025b16d156gd9e0ta7jei].[attr:description:nk]' />
+              <geometry column='[federated.0ad1r1j025b16d156gd9e0ta7jei].[clct:Geometry:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0ad1r1j025b16d156gd9e0ta7jei].[Latitude (generated)]</rows>
+        <cols>[federated.0ad1r1j025b16d156gd9e0ta7jei].[Longitude (generated)]</cols>
+      </table>
+      <simple-id uuid='{1D20AB1D-C523-42F3-B986-B1EAC63F1CA3}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard enable-sort-zone-taborder='true' name='Land use composition'>
+      <repository-location id='Landusecomposition' path='/workbooks/Halifaxlandusecomposition' revision='' />
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' preset-index='1' sizing-mode='fixed' />
+      <datasources>
+        <datasource caption='zoning_tagged' name='federated.0ad1r1j025b16d156gd9e0ta7jei' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0ad1r1j025b16d156gd9e0ta7jei'>
+        <column-instance column='[zone_class]' derivation='None' name='[none:zone_class:nk]' pivot='key' type='nominal' />
+        <column caption='Zone Class' datatype='string' name='[zone_class]' role='dimension' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='12' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='5250' id='13' type-v2='title' w='98400' x='800' y='1000'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+              </zone-style>
+            </zone>
+            <zone h='92750' id='7' param='horz' type-v2='layout-flow' w='98400' x='800' y='6250'>
+              <zone h='92750' id='5' type-v2='layout-basic' w='82400' x='800' y='6250'>
+                <zone h='43750' id='3' name='Land use map' w='82400' x='800' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='49000' id='10' name='Composition by community' w='82400' x='800' y='50000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone fixed-size='160' h='92750' id='6' is-fixed='true' param='vert' type-v2='layout-flow' w='16000' x='83200' y='6250'>
+                <zone h='27750' id='8' name='Land use map' param='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]' type-v2='filter' w='16000' x='83200' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='25750' id='9' name='Land use map' pane-specification-id='0' param='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]' type-v2='color' w='16000' x='83200' y='34000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='800' minheight='800' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='15' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='14' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+                <zone h='5250' id='13' type-v2='title' w='98400' x='800' y='1000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='27750' id='8' mode='checkdropdown' name='Land use map' param='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]' type-v2='filter' w='16000' x='83200' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='43750' id='3' is-fixed='true' name='Land use map' w='82400' x='800' y='6250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='25750' id='9' name='Land use map' pane-specification-id='0' param='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]' type-v2='color' w='16000' x='83200' y='34000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='280' h='49000' id='10' is-fixed='true' name='Composition by community' w='82400' x='800' y='50000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{E7CADEF5-922C-48DB-BCC6-7C9902C77E3B}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='51'>
+    <window class='worksheet' name='Land use map'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]' type='filter' />
+            <card pane-specification-id='0' param='[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:community:nk]</field>
+            <field>[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:description:nk]</field>
+            <field>[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{087E6232-CE9E-489C-B0F3-2111A3C635B0}' />
+    </window>
+    <window class='worksheet' name='Composition by community'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0v473by033eomf16zelh10gmdw9s].[none:zone_class:nk]' type='filter' />
+            <card pane-specification-id='0' param='[federated.0v473by033eomf16zelh10gmdw9s].[none:zone_class:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0v473by033eomf16zelh10gmdw9s].[none:community:nk]</field>
+            <field>[federated.0v473by033eomf16zelh10gmdw9s].[none:zone_class:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{948265A6-F910-4475-9571-E8D086AC9516}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Land use composition'>
+      <viewpoints>
+        <viewpoint name='Composition by community'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Land use map'>
+          <zoom type='entire-view' />
+          <highlight>
+            <color-one-way>
+              <field>[federated.0ad1r1j025b16d156gd9e0ta7jei].[none:zone_class:nk]</field>
+            </color-one-way>
+          </highlight>
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{20374A8E-13F9-45EF-9068-3E79BA1CDC24}' />
+    </window>
+  </windows>
+</workbook>

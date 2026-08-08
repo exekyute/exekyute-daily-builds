@@ -1,0 +1,86 @@
+table mart_landuse
+	lineageTag: 393c326e-ffba-41ce-ac60-5f17e5084013
+
+	measure 'Total Area' = SUM ( mart_landuse[area] )
+		formatString: #,0.00
+		lineageTag: f564011a-0dee-433d-9f51-6fa72f5838e4
+
+	measure 'Community Area' = CALCULATE ( [Total Area], ALLEXCEPT ( mart_landuse, mart_landuse[community] ) )
+		formatString: #,0.00
+		lineageTag: bb65bdab-3a00-496c-8885-15dc4bc6d6ed
+
+	measure 'Area Share' = DIVIDE ( [Total Area], [Community Area] )
+		formatString: 0.00%
+		lineageTag: 2a8c877c-9f0b-4d69-9a8e-01a0e28b4c82
+
+	measure 'Largest Class Share' = MAXX ( VALUES ( mart_landuse[zone_class] ), [Area Share] )
+		formatString: 0.00%
+		lineageTag: b9556d4e-96c5-4205-a1d6-f449d79661d1
+
+	measure 'Mix Index' = 1 - [Largest Class Share]
+		formatString: 0.00%
+		lineageTag: 3b39cb50-42ac-48c8-9b2a-80833635fc6d
+
+	measure 'Community Mix Rank' = RANKX ( ALLSELECTED ( mart_landuse[community] ), [Mix Index], , DESC, Skip )
+		formatString: 0
+		lineageTag: eeb649a8-280e-4dfb-93e5-aee1a1b72c1f
+
+	column community
+		dataType: string
+		lineageTag: 21235653-88ea-46f8-8e0f-2a0ac2665fd4
+		summarizeBy: none
+		sourceColumn: community
+
+		annotation SummarizationSetBy = Automatic
+
+	column zone_class
+		dataType: string
+		lineageTag: 934172fd-c697-485d-88c4-649acaedcae4
+		summarizeBy: none
+		sourceColumn: zone_class
+
+		annotation SummarizationSetBy = Automatic
+
+	column polygons
+		dataType: int64
+		formatString: 0
+		lineageTag: 10938b9d-4448-49c1-bd70-61db52ecff44
+		summarizeBy: sum
+		sourceColumn: polygons
+
+		annotation SummarizationSetBy = Automatic
+
+	column area
+		dataType: double
+		lineageTag: 8b5db245-8d04-4495-8bf4-f14b334f4797
+		summarizeBy: sum
+		sourceColumn: area
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column area_share
+		dataType: double
+		lineageTag: f721d8e3-6177-4758-b809-9d9986153823
+		summarizeBy: none
+		sourceColumn: area_share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mart_landuse = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\hrm-open-data\17-land-use-composition\bi\exports\mart_landuse.csv"), [Delimiter = ",", Columns = 5, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"community", type text}, {"zone_class", type text}, {"polygons", Int64.Type}, {"area", type number}, {"area_share", type number}})
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
