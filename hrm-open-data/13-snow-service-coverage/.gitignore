@@ -12,5 +12,4 @@ __pycache__/
 _preview/
 
 # local BI working files: keep the .twb, never the packaged .twbx
-bi/README.md
 *.twbx
