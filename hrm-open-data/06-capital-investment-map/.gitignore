@@ -12,7 +12,6 @@ __pycache__/
 _preview/
 
 # local BI working files: keep the .twb, never the packaged .twbx
-bi/README.md
 *.twbx
 
 # Power BI local state (Microsoft's own gitignore defaults for .pbip projects)
