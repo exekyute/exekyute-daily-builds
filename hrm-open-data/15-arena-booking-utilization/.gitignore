@@ -9,7 +9,6 @@ out/
 __pycache__/
 
 # local BI working files: keep the .twb, never the packaged .twbx
-bi/README.md
 *.twbx
 
 # Power BI machine-local state (regenerated on open; never commit)
