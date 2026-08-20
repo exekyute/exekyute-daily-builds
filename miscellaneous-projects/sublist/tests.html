@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SubList logic tests</title>
+  <style>
+    body {
+      background: #f4f4f8;
+      color: #1d1d2b;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+    h1 { font-size: 22px; }
+    #summary {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 16px 24px;
+      border-radius: 12px;
+      margin: 16px 0 24px 0;
+      background: #ffffff;
+      border: 1px solid #e6e6ef;
+    }
+    #summary.pass { color: #1a9e4b; }
+    #summary.fail { color: #d64545; }
+    .row {
+      padding: 8px 16px;
+      border-bottom: 1px solid #e6e6ef;
+      font-size: 14px;
+    }
+    .row .ok { color: #1a9e4b; font-weight: 600; }
+    .row .bad { color: #d64545; font-weight: 600; }
+    .row .detail { color: #75758a; margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <h1>SubList logic tests</h1>
+  <div id="summary">Running...</div>
+  <div id="results"></div>
+
+  <script src="js/logic.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      const L = SubLogic;
+      const results = [];
+
+      function t(name, fn) {
+        try {
+          fn();
+          results.push({ name: name, pass: true });
+        } catch (e) {
+          results.push({ name: name, pass: false, detail: e.message });
+        }
+      }
+
+      function assertEq(actual, expected, label) {
+        const a = JSON.stringify(actual);
+        const b = JSON.stringify(expected);
+        if (a !== b) {
+          throw new Error((label || "value") + ": expected " + b + ", got " + a);
+        }
+      }
+
+      function assertClose(actual, expected, label) {
+        if (Math.abs(actual - expected) > 1e-9) {
+          throw new Error((label || "value") + ": expected " + expected + ", got " + actual);
+        }
+      }
+
+      /* ---------- date validation ---------- */
+
+      t("isValidISO accepts a normal date", function () {
+        assertEq(L.isValidISO("2026-08-03"), true);
+      });
+      t("isValidISO rejects month 13", function () {
+        assertEq(L.isValidISO("2026-13-01"), false);
+      });
+      t("isValidISO rejects Feb 30", function () {
+        assertEq(L.isValidISO("2026-02-30"), false);
+      });
+      t("isValidISO accepts Feb 29 in a leap year", function () {
+        assertEq(L.isValidISO("2028-02-29"), true);
+      });
+      t("isValidISO rejects Feb 29 outside a leap year", function () {
+        assertEq(L.isValidISO("2027-02-29"), false);
+      });
+      t("isValidISO rejects junk", function () {
+        assertEq(L.isValidISO("next tuesday"), false);
+        assertEq(L.isValidISO(20260803), false);
+      });
+
+      /* ---------- date arithmetic ---------- */
+
+      t("addDays crosses a month end", function () {
+        assertEq(L.addDays("2026-08-30", 5), "2026-09-04");
+      });
+      t("addDays crosses a year end", function () {
+        assertEq(L.addDays("2026-12-30", 3), "2027-01-02");
+      });
+      t("daysBetween counts forward and backward", function () {
+        assertEq(L.daysBetween("2026-08-01", "2026-08-31"), 30);
+        assertEq(L.daysBetween("2026-08-31", "2026-08-01"), -30);
+      });
+
+      t("monthly renewal clamps Jan 31 to Feb 28", function () {
+        assertEq(L.advanceRenewal("2026-01-31", "monthly", 31), "2026-02-28");
+      });
+      t("anchor day restores the 31st after February", function () {
+        assertEq(L.advanceRenewal("2026-02-28", "monthly", 31), "2026-03-31");
+      });
+      t("leap year February keeps the 29th", function () {
+        assertEq(L.advanceRenewal("2028-01-31", "monthly", 31), "2028-02-29");
+      });
+      t("yearly renewal from Feb 29 lands on Feb 28", function () {
+        assertEq(L.advanceRenewal("2028-02-29", "yearly", 29), "2029-02-28");
+      });
+      t("weekly renewal adds exactly 7 days", function () {
+        assertEq(L.advanceRenewal("2026-08-03", "weekly", 3), "2026-08-10");
+      });
+      t("quarterly renewal adds 3 months", function () {
+        assertEq(L.advanceRenewal("2026-11-30", "quarterly", 30), "2027-02-28");
+      });
+
+      t("catchUp rolls a lapsed monthly date past today", function () {
+        const result = L.catchUp("2026-05-15", "monthly", 15, "2026-08-03");
+        assertEq(result.date, "2026-08-15");
+        assertEq(result.periods, 3);
+      });
+      t("catchUp leaves a current date alone", function () {
+        const result = L.catchUp("2026-08-03", "monthly", 3, "2026-08-03");
+        assertEq(result.date, "2026-08-03");
+        assertEq(result.periods, 0);
+      });
+      t("catchUp handles a weekly date decades behind without capping", function () {
+        const result = L.catchUp("2006-08-01", "weekly", 1, "2026-08-03");
+        assertEq(result.date, "2026-08-04");
+        assertEq(result.periods, 1044);
+        assertEq(result.capped, false);
+      });
+
+      t("periodProgress is elapsed over period length", function () {
+        assertClose(L.periodProgress("2026-08-20", "monthly", 20, "2026-08-03"), 14 / 31);
+      });
+      t("periodProgress clamps past-due to 1", function () {
+        assertEq(L.periodProgress("2026-08-01", "monthly", 1, "2026-08-15"), 1);
+      });
+
+      /* ---------- money ---------- */
+
+      t("monthly equivalent of $139.99 yearly is $11.67", function () {
+        assertEq(L.monthlyCents(13999, "yearly"), 1167);
+      });
+      t("monthly equivalent of $64.99 weekly is $281.62", function () {
+        assertEq(L.monthlyCents(6499, "weekly"), 28162);
+      });
+      t("monthly equivalent of $45.00 quarterly is $15.00", function () {
+        assertEq(L.monthlyCents(4500, "quarterly"), 1500);
+      });
+      t("monthly equivalent of $99.99 biennial rounds half up to $4.17", function () {
+        assertEq(L.monthlyCents(9999, "biennial"), 417);
+      });
+      t("annual cost of $12.29 monthly is $147.48", function () {
+        assertEq(L.annualCents(1229, "monthly"), 14748);
+      });
+      t("annual cost of $99.99 biennial rounds half up to $50.00", function () {
+        assertEq(L.annualCents(9999, "biennial"), 5000);
+      });
+
+      t("parsePrice handles dollars, cents, and a leading $", function () {
+        assertEq(L.parsePrice("12.99"), 1299);
+        assertEq(L.parsePrice("$5"), 500);
+        assertEq(L.parsePrice("12.9"), 1290);
+        assertEq(L.parsePrice("0"), 0);
+      });
+      t("parsePrice rejects bad input", function () {
+        assertEq(L.parsePrice("abc"), null);
+        assertEq(L.parsePrice("12.999"), null);
+        assertEq(L.parsePrice("-3"), null);
+        assertEq(L.parsePrice(""), null);
+      });
+      t("formatMoney prints cents as currency", function () {
+        assertEq(L.formatMoney(1299), "$12.99");
+      });
+
+      /* ---------- validation ---------- */
+
+      function goodSub() {
+        return {
+          id: "t-1", name: "Test Service", category: "Communication",
+          priceCents: 1299, seats: 3, owner: "Jamie Park", noticeDays: 30,
+          cycle: "monthly", nextRenewal: "2026-09-01",
+          anchorDay: 1, status: "active", score: 8, notes: "",
+          links: { manage: "https://example.com/account", cancel: "", help: "" }
+        };
+      }
+
+      t("a well-formed subscription validates clean", function () {
+        assertEq(L.validateSub(goodSub()), []);
+      });
+      t("validateSub rejects a made-up status", function () {
+        const sub = goodSub();
+        sub.status = "zombie";
+        assertEq(L.validateSub(sub).length > 0, true);
+      });
+      t("validateSub rejects a made-up cycle", function () {
+        const sub = goodSub();
+        sub.cycle = "fortnightly";
+        assertEq(L.validateSub(sub).length > 0, true);
+      });
+      t("validateSub rejects score 11", function () {
+        const sub = goodSub();
+        sub.score = 11;
+        assertEq(L.validateSub(sub).length > 0, true);
+      });
+      t("validateSub rejects zero seats", function () {
+        const sub = goodSub();
+        sub.seats = 0;
+        assertEq(L.validateSub(sub).length > 0, true);
+      });
+      t("validateSub rejects a 400-day notice window", function () {
+        const sub = goodSub();
+        sub.noticeDays = 400;
+        assertEq(L.validateSub(sub).length > 0, true);
+      });
+      t("noticeDeadline subtracts the notice window", function () {
+        assertEq(L.noticeDeadline("2026-09-15", 30), "2026-08-16");
+      });
+      t("validateSub rejects a javascript: link", function () {
+        const sub = goodSub();
+        sub.links.manage = "javascript:alert(1)";
+        assertEq(L.validateSub(sub).length > 0, true);
+      });
+      t("validateSub rejects a plain http:// link", function () {
+        const sub = goodSub();
+        sub.links.manage = "http://example.com";
+        assertEq(L.validateSub(sub).length > 0, true);
+      });
+      t("normalizeSub derives the anchor day from the date", function () {
+        const result = L.normalizeSub({
+          name: "X", priceCents: 100, cycle: "monthly",
+          nextRenewal: "2026-08-31", status: "active", links: {}
+        }, "n-1");
+        assertEq(result.errors, []);
+        assertEq(result.sub.anchorDay, 31);
+      });
+      t("imports without seats, owner, or notice get defaults", function () {
+        const result = L.normalizeSub({
+          name: "Legacy", priceCents: 100, cycle: "monthly",
+          nextRenewal: "2026-08-31", status: "active", links: {}
+        }, "n-2");
+        assertEq(result.errors, []);
+        assertEq(result.sub.seats, 1);
+        assertEq(result.sub.noticeDays, 0);
+        assertEq(result.sub.owner, "");
+      });
+
+      /* ---------- import ---------- */
+
+      t("parseImport accepts a clean export shape", function () {
+        const text = JSON.stringify({ app: "sublist", subs: [goodSub()] });
+        const result = L.parseImport(text);
+        assertEq(result.ok, true);
+        assertEq(result.subs.length, 1);
+      });
+      t("parseImport rejects invalid JSON", function () {
+        assertEq(L.parseImport("{not json").ok, false);
+      });
+      t("parseImport rejects an object with no subs array", function () {
+        assertEq(L.parseImport("{\"hello\": 1}").ok, false);
+      });
+      t("one bad record rejects the whole file", function () {
+        const bad = goodSub();
+        bad.priceCents = "free";
+        const text = JSON.stringify({ subs: [goodSub(), bad] });
+        const result = L.parseImport(text);
+        assertEq(result.ok, false);
+        assertEq(result.errors.length > 0, true);
+      });
+      t("duplicate ids are de-duplicated on import", function () {
+        const a = goodSub();
+        const b = goodSub();
+        const result = L.parseImport(JSON.stringify([a, b]));
+        assertEq(result.ok, true);
+        assertEq(result.subs[0].id === result.subs[1].id, false);
+      });
+      t("an id named constructor is not a false duplicate", function () {
+        const a = goodSub();
+        a.id = "constructor";
+        const result = L.parseImport(JSON.stringify([a]));
+        assertEq(result.ok, true);
+        assertEq(result.subs[0].id, "constructor");
+      });
+      t("import error labels are truncated for huge names", function () {
+        const bad = goodSub();
+        bad.name = new Array(201).join("N");
+        bad.priceCents = "free";
+        const result = L.parseImport(JSON.stringify([bad]));
+        assertEq(result.ok, false);
+        assertEq(result.errors[0].length <= 130, true);
+      });
+
+      /* ---------- stats, filters, sorting ---------- */
+
+      function statSet() {
+        const a = goodSub();
+        a.id = "a"; a.priceCents = 1000; a.seats = 3; a.cycle = "monthly";
+        a.status = "active"; a.nextRenewal = "2026-08-06"; a.anchorDay = 6;
+        const b = goodSub();
+        b.id = "b"; b.name = "Trial Thing"; b.priceCents = 12000; b.seats = 1; b.cycle = "yearly";
+        b.status = "trial"; b.nextRenewal = "2027-02-01"; b.anchorDay = 1;
+        const c = goodSub();
+        c.id = "c"; c.name = "Old Thing"; c.priceCents = 500; c.seats = 1; c.cycle = "monthly";
+        c.status = "cancelled"; c.nextRenewal = "2026-07-01"; c.anchorDay = 1;
+        c.owner = "Casey Fox";
+        const d = goodSub();
+        d.id = "d"; d.name = "Review Thing"; d.priceCents = 500; d.seats = 2; d.cycle = "monthly";
+        d.status = "review"; d.nextRenewal = "2026-09-01"; d.anchorDay = 1;
+        return [a, b, c, d];
+      }
+
+      t("stats multiply seats and count under-review spend, skip cancelled", function () {
+        const s = L.stats(statSet(), "2026-08-03");
+        assertEq(s.monthlyCents, 5000);
+        assertEq(s.annualCents, 60000);
+        assertEq(s.activeCount, 3);
+        assertEq(s.dueSoonCount, 1);
+      });
+      t("upcoming includes past-due countable subs, sorted soonest first", function () {
+        const set = statSet();
+        set[0].nextRenewal = "2026-08-01";
+        const up = L.upcoming(set, "2026-08-03", 30);
+        assertEq(up.length, 2);
+        assertEq(up[0].days, -2);
+        assertEq(up[0].sub.id, "a");
+      });
+      t("renewal sort puts cancelled subscriptions last", function () {
+        const sorted = L.sortSubs(statSet(), "renewal", "2026-08-03");
+        assertEq(sorted[sorted.length - 1].id, "c");
+      });
+      t("filterSubs matches name case-insensitively", function () {
+        const hits = L.filterSubs(statSet(), { query: "TRIAL" });
+        assertEq(hits.length, 1);
+        assertEq(hits[0].id, "b");
+      });
+      t("filterSubs matches the owner field too", function () {
+        const hits = L.filterSubs(statSet(), { query: "casey" });
+        assertEq(hits.length, 1);
+        assertEq(hits[0].id, "c");
+      });
+      t("countByStatus tallies every list", function () {
+        const counts = L.countByStatus(statSet());
+        assertEq(counts.all, 4);
+        assertEq(counts.active, 1);
+        assertEq(counts.trial, 1);
+        assertEq(counts.review, 1);
+        assertEq(counts.cancelled, 1);
+      });
+
+      /* ---------- sample data ---------- */
+
+      t("every sample subscription validates clean", function () {
+        const sample = L.sampleSubs("2026-08-03");
+        assertEq(sample.length, 12);
+        sample.forEach(function (sub) {
+          assertEq(L.validateSub(sub), [], sub.name);
+        });
+      });
+      t("the sample set includes one past-due renewal", function () {
+        const sample = L.sampleSubs("2026-08-03");
+        const late = sample.filter(function (s) {
+          return L.COUNTABLE.indexOf(s.status) !== -1 &&
+            L.daysUntil(s.nextRenewal, "2026-08-03") < 0;
+        });
+        assertEq(late.length, 1);
+      });
+
+      /* ---------- report ---------- */
+
+      const resultsBox = document.getElementById("results");
+      let passed = 0;
+      results.forEach(function (r) {
+        const row = document.createElement("div");
+        row.className = "row";
+        const mark = document.createElement("span");
+        mark.className = r.pass ? "ok" : "bad";
+        mark.textContent = r.pass ? "PASS" : "FAIL";
+        row.appendChild(mark);
+        const name = document.createElement("span");
+        name.className = "detail";
+        name.textContent = r.name + (r.pass ? "" : " (" + r.detail + ")");
+        row.appendChild(name);
+        resultsBox.appendChild(row);
+        if (r.pass) passed += 1;
+      });
+
+      const summary = document.getElementById("summary");
+      summary.textContent = passed + " / " + results.length + " tests passed";
+      summary.className = passed === results.length ? "pass" : "fail";
+    })();
+  </script>
+</body>
+</html>

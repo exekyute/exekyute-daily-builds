@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SubList: company subscription tracker</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="logo">Sub<span class="logo-accent">List</span></div>
+    <div class="search-wrap">
+      <label for="search" class="visually-hidden">Search subscriptions</label>
+      <input id="search" type="search" placeholder="Search subscriptions" autocomplete="off">
+    </div>
+    <div class="topbar-actions">
+      <button id="btn-export" type="button" class="btn">Export</button>
+      <button id="btn-import" type="button" class="btn">Import</button>
+      <input id="import-file" type="file" accept=".json,application/json" hidden>
+      <button id="btn-add" type="button" class="btn btn-primary">+ Add subscription</button>
+    </div>
+  </header>
+
+  <section class="stats" aria-label="Spending summary">
+    <div class="stat-tile">
+      <div class="stat-label">Monthly spend</div>
+      <div class="stat-value" id="stat-monthly">$0.00</div>
+      <div class="stat-sub">All seats, active and trial and under review</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Yearly spend</div>
+      <div class="stat-value" id="stat-annual">$0.00</div>
+      <div class="stat-sub">Same set, at annual rates</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Active subs</div>
+      <div class="stat-value" id="stat-active">0</div>
+      <div class="stat-sub">Counting trials and reviews</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Due this week</div>
+      <div class="stat-value" id="stat-due">0</div>
+      <div class="stat-sub">Renewals in the next 7 days</div>
+    </div>
+  </section>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h2 class="side-title">Lists</h2>
+      <ul id="status-list" class="side-list"></ul>
+
+      <h2 class="side-title">Category</h2>
+      <label for="category-filter" class="visually-hidden">Filter by category</label>
+      <select id="category-filter" class="side-select"></select>
+
+      <h2 class="side-title">Sort</h2>
+      <label for="sort-select" class="visually-hidden">Sort subscriptions</label>
+      <select id="sort-select" class="side-select">
+        <option value="renewal">Next renewal</option>
+        <option value="name">Name</option>
+        <option value="price">Monthly cost</option>
+        <option value="score">Score</option>
+      </select>
+
+      <div class="side-tools">
+        <button id="btn-sample" type="button" class="btn">Load sample data</button>
+        <button id="btn-clear" type="button" class="btn btn-danger">Clear all</button>
+      </div>
+    </aside>
+
+    <main>
+      <div id="grid" class="grid"></div>
+    </main>
+
+    <aside class="rail">
+      <div class="rail-box">
+        <h2 class="rail-title">Upcoming renewals</h2>
+        <div id="upcoming-list"></div>
+      </div>
+      <div class="rail-box">
+        <h2 class="rail-title">Service directory</h2>
+        <p class="rail-note">Admin and help pages for common business tools. Typing one of
+          these names in the add form fills its category and links automatically.</p>
+        <div id="directory-list" style="max-height: 320px; overflow-y: auto;"></div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- detail modal -->
+  <div id="detail-overlay" class="overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <div class="modal-head">
+        <h2 id="detail-title">Subscription</h2>
+        <button id="detail-close" type="button" class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-banner" id="detail-late-note" hidden></div>
+        <dl class="detail-grid">
+          <div>
+            <dt>Price</dt>
+            <dd id="detail-price"></dd>
+          </div>
+          <div>
+            <dt>Monthly equivalent</dt>
+            <dd id="detail-monthly"></dd>
+          </div>
+          <div>
+            <dt>Seats</dt>
+            <dd id="detail-seats"></dd>
+          </div>
+          <div>
+            <dt>Owner</dt>
+            <dd id="detail-owner"></dd>
+          </div>
+          <div>
+            <dt>Next renewal</dt>
+            <dd id="detail-renewal"></dd>
+          </div>
+          <div>
+            <dt>Notice window</dt>
+            <dd id="detail-notice"></dd>
+          </div>
+          <div>
+            <dt>Category</dt>
+            <dd id="detail-category"></dd>
+          </div>
+          <div>
+            <dt>Value score</dt>
+            <dd id="detail-score"></dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>
+              <label for="detail-status" class="visually-hidden">Change status</label>
+              <select id="detail-status" class="side-select" style="margin-bottom: 0;"></select>
+            </dd>
+          </div>
+        </dl>
+        <p id="detail-notes" class="detail-notes" hidden></p>
+        <div id="detail-links" class="link-row"></div>
+        <div class="detail-actions">
+          <button id="btn-renewed" type="button" class="btn btn-primary">Mark renewed</button>
+          <button id="btn-edit" type="button" class="btn">Edit</button>
+          <button id="btn-delete" type="button" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- add / edit modal -->
+  <div id="form-overlay" class="overlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="form-title">
+      <div class="modal-head">
+        <h2 id="form-title">Add subscription</h2>
+        <button id="form-close" type="button" class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="form-banner" class="form-banner" hidden></div>
+        <form id="sub-form" novalidate>
+          <div class="form-grid">
+            <div class="form-field span-2">
+              <label for="f-name">Name</label>
+              <input id="f-name" type="text" list="service-names" maxlength="80"
+                     placeholder="Slack, Zoom, a vendor, anything" autocomplete="off">
+              <datalist id="service-names"></datalist>
+              <div class="field-error" id="e-name"></div>
+            </div>
+            <div class="form-field">
+              <label for="f-price">Price per seat</label>
+              <input id="f-price" type="text" inputmode="decimal" placeholder="12.99">
+              <div class="field-error" id="e-price"></div>
+            </div>
+            <div class="form-field">
+              <label for="f-seats">Seats</label>
+              <input id="f-seats" type="number" min="1" max="100000" step="1" value="1">
+              <div class="field-error" id="e-seats"></div>
+            </div>
+            <div class="form-field">
+              <label for="f-cycle">Billing cycle</label>
+              <select id="f-cycle"></select>
+            </div>
+            <div class="form-field">
+              <label for="f-date">Next renewal date</label>
+              <input id="f-date" type="date">
+              <div class="field-error" id="e-date"></div>
+            </div>
+            <div class="form-field">
+              <label for="f-category">Category</label>
+              <select id="f-category"></select>
+            </div>
+            <div class="form-field">
+              <label for="f-status">Status</label>
+              <select id="f-status"></select>
+            </div>
+            <div class="form-field">
+              <label for="f-score">Value score</label>
+              <select id="f-score"></select>
+            </div>
+            <div class="form-field">
+              <label for="f-notice">Cancel notice (days)</label>
+              <input id="f-notice" type="number" min="0" max="365" step="1" value="0">
+              <div class="field-error" id="e-notice"></div>
+            </div>
+            <div class="form-field span-2">
+              <label for="f-owner">Owner</label>
+              <input id="f-owner" type="text" maxlength="60"
+                     placeholder="Who owns this subscription internally">
+            </div>
+            <div class="form-field span-2">
+              <label for="f-link-manage">Manage link</label>
+              <input id="f-link-manage" type="url" placeholder="https://...">
+            </div>
+            <div class="form-field span-2">
+              <label for="f-link-cancel">Cancel link</label>
+              <input id="f-link-cancel" type="url" placeholder="https://...">
+            </div>
+            <div class="form-field span-2">
+              <label for="f-link-help">Help link</label>
+              <input id="f-link-help" type="url" placeholder="https://...">
+              <div class="field-error" id="e-links"></div>
+            </div>
+            <div class="form-field span-2">
+              <label for="f-notes">Notes</label>
+              <textarea id="f-notes" maxlength="500"
+                        placeholder="Plan tier, contract terms, renewal notes"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button id="form-cancel" type="button" class="btn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="js/logic.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
