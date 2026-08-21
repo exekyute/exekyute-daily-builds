@@ -66,6 +66,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/gym-streaks-sql">Gym Streak Queries</a></td><td>Five SQLite queries that turn a gym check-in log into streak reports, built on the gaps-and-islands pattern, with a stdlib Python runner and hand-counted assertion checks.</td><td>08/20/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/sublist">SubList</a></td><td>Company subscription dashboard organized like an anime list tracker: status lists, value scores, per-seat spend totals, cancellation notice deadlines, and admin links for 24 business tools.</td><td>08/10/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/promptfoo-golden-set-harness">promptfoo Golden-Set Harness</a></td><td>Golden-set eval harness that scores model document extraction for accuracy, fabrication, and run-to-run consistency, and names the cases that stop passing when a prompt changes.</td><td>07/30/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/bibliotheca-dantalian">Bibliotheca Dantalian</a></td><td>Zero-dependency static wiki engine with scoped spoiler blocks, wikilinks, and search, demoed on a wiki for a fictional anime.</td><td rowspan="2">07/12/2026</td></tr>
