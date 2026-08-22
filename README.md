@@ -66,7 +66,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
-<tr><td><a href="miscellaneous-projects/date-spine-sql">Date Spine Queries</a></td><td>Five SQLite queries that fill the gaps in a sparse sales log with a recursive CTE calendar, then show how running totals and rolling averages go wrong without it.</td><td rowspan="2">08/20/2026</td></tr>
+<tr><td><a href="miscellaneous-projects/date-spine-sql">Date Spine Queries</a></td><td>Five SQLite queries that fill the gaps in a sparse sales log with a recursive CTE calendar, then show how running totals and rolling averages go wrong without it.</td><td rowspan="2">08/21/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/gym-streaks-sql">Gym Streak Queries</a></td><td>Five SQLite queries that turn a gym check-in log into streak reports, built on the gaps-and-islands pattern, with a stdlib Python runner and hand-counted assertion checks.</td></tr>
 <tr><td><a href="miscellaneous-projects/sublist">SubList</a></td><td>Company subscription dashboard organized like an anime list tracker: status lists, value scores, per-seat spend totals, cancellation notice deadlines, and admin links for 24 business tools.</td><td>08/10/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/promptfoo-golden-set-harness">promptfoo Golden-Set Harness</a></td><td>Golden-set eval harness that scores model document extraction for accuracy, fabrication, and run-to-run consistency, and names the cases that stop passing when a prompt changes.</td><td>07/30/2026</td></tr>
