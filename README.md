@@ -66,6 +66,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/price-history-sql">Price History Queries</a></td><td>Five SQLite queries that version product prices from snapshots with LAG and LEAD, price past orders as of their date, and catch overlaps and gaps in a hand-maintained price list.</td><td>08/22/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/date-spine-sql">Date Spine Queries</a></td><td>Five SQLite queries that fill the gaps in a sparse sales log with a recursive CTE calendar, then show how running totals and rolling averages go wrong without it.</td><td>08/21/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/gym-streaks-sql">Gym Streak Queries</a></td><td>Five SQLite queries that turn a gym check-in log into streak reports, built on the gaps-and-islands pattern, with a stdlib Python runner and hand-counted assertion checks.</td><td>08/20/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/sublist">SubList</a></td><td>Company subscription dashboard organized like an anime list tracker: status lists, value scores, per-seat spend totals, cancellation notice deadlines, and admin links for 24 business tools.</td><td>08/10/2026</td></tr>
