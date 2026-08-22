@@ -35,12 +35,14 @@ def valid_datetime(value, fmt):
 
 def load_members(path):
     members = []
-    with open(path, newline="", encoding="utf-8") as f:
+    # utf-8-sig strips the byte-order mark that Excel puts on its CSV exports.
+    with open(path, newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         if reader.fieldnames != ["member_id", "name", "joined_date"]:
             fail(path, 1, f"expected columns member_id,name,joined_date, got {reader.fieldnames}")
         seen = set()
-        for i, row in enumerate(reader, start=2):
+        for row in reader:
+            i = reader.line_num
             try:
                 member_id = int(row["member_id"])
             except (ValueError, TypeError):
@@ -53,16 +55,20 @@ def load_members(path):
             if not valid_datetime(row["joined_date"], "%Y-%m-%d"):
                 fail(path, i, f"joined_date {row['joined_date']!r} is not YYYY-MM-DD")
             members.append((member_id, row["name"].strip(), row["joined_date"]))
+    if not members:
+        fail(path, 1, "no data rows after the header")
     return members
 
 
 def load_checkins(path, known_ids):
     checkins = []
-    with open(path, newline="", encoding="utf-8") as f:
+    # utf-8-sig strips the byte-order mark that Excel puts on its CSV exports.
+    with open(path, newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         if reader.fieldnames != ["member_id", "checkin_ts"]:
             fail(path, 1, f"expected columns member_id,checkin_ts, got {reader.fieldnames}")
-        for i, row in enumerate(reader, start=2):
+        for row in reader:
+            i = reader.line_num
             try:
                 member_id = int(row["member_id"])
             except (ValueError, TypeError):
@@ -72,6 +78,8 @@ def load_checkins(path, known_ids):
             if not valid_datetime(row["checkin_ts"], "%Y-%m-%d %H:%M"):
                 fail(path, i, f"checkin_ts {row['checkin_ts']!r} is not YYYY-MM-DD HH:MM")
             checkins.append((member_id, row["checkin_ts"]))
+    if not checkins:
+        fail(path, 1, "no data rows after the header")
     return checkins
 
 
