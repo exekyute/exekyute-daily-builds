@@ -8,6 +8,7 @@ Usage:
 
 import argparse
 import csv
+import io
 import sqlite3
 import sys
 from datetime import datetime
@@ -24,6 +25,22 @@ def fail(path, row_num, message):
     sys.exit(2)
 
 
+def fail_file(path, message):
+    print(f"{Path(path).name}: {message}", file=sys.stderr)
+    sys.exit(2)
+
+
+def read_csv(path):
+    # utf-8-sig strips the byte-order mark that Excel puts on its CSV exports.
+    try:
+        text = Path(path).read_text(encoding="utf-8-sig")
+    except OSError as err:
+        fail_file(path, err.strerror or "cannot be read")
+    except UnicodeDecodeError:
+        fail_file(path, "is not UTF-8 text")
+    return io.StringIO(text, newline="")
+
+
 def valid_datetime(value, fmt):
     # Round-trip so non-zero-padded parts like 2026-8-1 are rejected;
     # strptime accepts them but SQLite's DATE() returns NULL on them.
@@ -35,8 +52,7 @@ def valid_datetime(value, fmt):
 
 def load_members(path):
     members = []
-    # utf-8-sig strips the byte-order mark that Excel puts on its CSV exports.
-    with open(path, newline="", encoding="utf-8-sig") as f:
+    with read_csv(path) as f:
         reader = csv.DictReader(f)
         if reader.fieldnames != ["member_id", "name", "joined_date"]:
             fail(path, 1, f"expected columns member_id,name,joined_date, got {reader.fieldnames}")
@@ -62,8 +78,7 @@ def load_members(path):
 
 def load_checkins(path, known_ids):
     checkins = []
-    # utf-8-sig strips the byte-order mark that Excel puts on its CSV exports.
-    with open(path, newline="", encoding="utf-8-sig") as f:
+    with read_csv(path) as f:
         reader = csv.DictReader(f)
         if reader.fieldnames != ["member_id", "checkin_ts"]:
             fail(path, 1, f"expected columns member_id,checkin_ts, got {reader.fieldnames}")

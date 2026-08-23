@@ -8,6 +8,7 @@ Usage:
 
 import argparse
 import csv
+import io
 import math
 import sqlite3
 import sys
@@ -24,6 +25,22 @@ def fail(path, row_num, message):
     sys.exit(2)
 
 
+def fail_file(path, message):
+    print(f"{Path(path).name}: {message}", file=sys.stderr)
+    sys.exit(2)
+
+
+def read_csv(path):
+    # utf-8-sig strips the byte-order mark that Excel puts on its CSV exports.
+    try:
+        text = Path(path).read_text(encoding="utf-8-sig")
+    except OSError as err:
+        fail_file(path, err.strerror or "cannot be read")
+    except UnicodeDecodeError:
+        fail_file(path, "is not UTF-8 text")
+    return io.StringIO(text, newline="")
+
+
 def valid_date(value):
     # Round-trip so non-zero-padded dates like 2026-7-3 are rejected;
     # strptime accepts them but SQLite's DATE() returns NULL on them.
@@ -35,8 +52,7 @@ def valid_date(value):
 
 def load_sales(path):
     rows = []
-    # utf-8-sig strips the byte-order mark that Excel puts on its CSV exports.
-    with open(path, newline="", encoding="utf-8-sig") as f:
+    with read_csv(path) as f:
         reader = csv.DictReader(f)
         if reader.fieldnames != ["sale_date", "store", "amount"]:
             fail(path, 1, f"expected columns sale_date,store,amount, got {reader.fieldnames}")
