@@ -1,0 +1,10 @@
+nation_id,name,short_name,gov_type,capital,ruler,relation_to_tempest
+1,Jura Tempest Federation,Tempest,Demon Lord state,Rimuru,Rimuru Tempest,Self
+2,Armed Nation of Dwargon,Dwargon,Monarchy,Central,Gazel Dwargo,Ally
+3,Kingdom of Blumund,Blumund,Monarchy,Londo,,Ally
+4,Kingdom of Falmuth,Falmuth,Monarchy,Falmuth,Youm,Former Enemy
+5,Sorcerous Dynasty of Sarion,Sarion,Magocracy,Elmine Sarion,Elmesia El Ru Sarion,Ally
+6,Holy Empire of Lubelius,Lubelius,Theocracy,Lubelius,Luminous Valentine,Rival
+7,Beast Kingdom of Eurazania,Eurazania,Demon Lord state,Eurazania,Carrion,Ally
+8,Nasca Namrium Ulmeria United Eastern Empire,Eastern Empire,Empire,Nasca,Rudra Nam Ul Nasca,Enemy
+9,Kingdom of Englassia,Englassia,Monarchy,Ingrassia,,Neutral

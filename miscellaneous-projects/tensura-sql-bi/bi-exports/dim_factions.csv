@@ -1,0 +1,12 @@
+faction_id,name,kind,aligned_with
+1,Jura Tempest Federation Leadership,Government,Tempest
+2,Twelve Guardian Lords,Military,Tempest
+3,Octagram,Council,Independent
+4,Ten Great Demon Lords,Council,Independent
+5,Primordial Demons,Demon group,Independent
+6,Three Devil Girls,Military,Tempest
+7,Holy Knights of Lubelius,Order,Neutral
+8,Free Guild,Guild,Neutral
+9,Moderate Harlequin Alliance,Demon group,Antagonist
+10,Imperial Guardians,Military,Antagonist
+11,Three Beastketeers,Military,Ally

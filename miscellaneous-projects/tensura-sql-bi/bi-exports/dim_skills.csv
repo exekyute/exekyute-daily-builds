@@ -1,0 +1,41 @@
+skill_id,name,skill_type,category
+1,"Raphael, Lord of Wisdom",Ultimate Skill,Analysis
+2,"Beelzebuth, Lord of Gluttony",Ultimate Skill,Predation
+3,"Uriel, Lord of Vows",Ultimate Skill,Support
+4,"Azathoth, Void God",Ultimate Skill,Spatial
+5,"Amaterasu, Lord of the Blazing Sun",Ultimate Skill,Elemental
+6,"Tsukuyomi, Lord of Moon Shadow",Ultimate Skill,Spatial
+7,"Susanoo, Lord of Tyranny",Ultimate Skill,Combat
+8,"Azazel, Lord of Temptation",Ultimate Skill,Manipulation
+9,"Mammon, Lord of Greed",Ultimate Skill,Manipulation
+10,"Metatron, Lord of Purity",Ultimate Skill,Elemental
+11,"Faust, Lord of Investigation",Ultimate Skill,Analysis
+12,"Veldora, Lord of Storms",Ultimate Skill,Elemental
+13,"Michael, Lord of Justice",Ultimate Skill,Manipulation
+14,"Lucifer, Lord of Pride",Ultimate Skill,Manipulation
+15,"Satanael, Lord of Wrath",Ultimate Skill,Elemental
+16,"Mephisto, Lord of Fantasy",Ultimate Skill,Manipulation
+17,Fortuna,Ultimate Skill,Analysis
+18,Predator,Unique Skill,Predation
+19,Great Sage,Unique Skill,Analysis
+20,Gluttony,Unique Skill,Predation
+21,Generalissimo,Unique Skill,Support
+22,Analyst,Unique Skill,Analysis
+23,Manufacturer,Unique Skill,Support
+24,Cook,Unique Skill,Support
+25,Tempter,Unique Skill,Manipulation
+26,Seeker,Unique Skill,Analysis
+27,Mathematician,Unique Skill,Analysis
+28,Creator,Unique Skill,Manipulation
+29,Manipulator,Unique Skill,Manipulation
+30,Chosen One,Unique Skill,Support
+31,Infinite Regeneration,Intrinsic Skill,Support
+32,Universal Shapeshift,Intrinsic Skill,Manipulation
+33,Universal Perception,Intrinsic Skill,Analysis
+34,Black Lightning,Extra Skill,Elemental
+35,Shadow Motion,Intrinsic Skill,Spatial
+36,Drago Nova,Extra Skill,Elemental
+37,Vortex Spear,Extra Skill,Elemental
+38,Flame Manipulation,Extra Skill,Elemental
+39,Martial Master,Unique Skill,Combat
+40,Shadow Striker,Unique Skill,Spatial

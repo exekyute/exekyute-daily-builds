@@ -1,0 +1,41 @@
+character_id,character,skill_id,skill,skill_type,skill_category,acquisition
+1,Rimuru Tempest,1,"Raphael, Lord of Wisdom",Ultimate Skill,Analysis,Post-Awakening
+1,Rimuru Tempest,2,"Beelzebuth, Lord of Gluttony",Ultimate Skill,Predation,Post-Awakening
+1,Rimuru Tempest,3,"Uriel, Lord of Vows",Ultimate Skill,Support,Post-Awakening
+1,Rimuru Tempest,4,"Azathoth, Void God",Ultimate Skill,Spatial,Post-Evolution
+1,Rimuru Tempest,12,"Veldora, Lord of Storms",Ultimate Skill,Elemental,Post-Evolution
+1,Rimuru Tempest,18,Predator,Unique Skill,Predation,Initial
+1,Rimuru Tempest,19,Great Sage,Unique Skill,Analysis,Initial
+1,Rimuru Tempest,20,Gluttony,Unique Skill,Predation,Post-Evolution
+1,Rimuru Tempest,31,Infinite Regeneration,Intrinsic Skill,Support,Initial
+1,Rimuru Tempest,32,Universal Shapeshift,Intrinsic Skill,Manipulation,Initial
+2,Veldora Tempest,11,"Faust, Lord of Investigation",Ultimate Skill,Analysis,Post-Evolution
+2,Veldora Tempest,33,Universal Perception,Intrinsic Skill,Analysis,Initial
+3,Benimaru,5,"Amaterasu, Lord of the Blazing Sun",Ultimate Skill,Elemental,Post-Awakening
+3,Benimaru,21,Generalissimo,Unique Skill,Support,Post-Evolution
+4,Shuna,22,Analyst,Unique Skill,Analysis,Post-Evolution
+4,Shuna,23,Manufacturer,Unique Skill,Support,Post-Evolution
+5,Shion,7,"Susanoo, Lord of Tyranny",Ultimate Skill,Combat,Post-Awakening
+5,Shion,24,Cook,Unique Skill,Support,Post-Awakening
+6,Souei,6,"Tsukuyomi, Lord of Moon Shadow",Ultimate Skill,Spatial,Post-Awakening
+6,Souei,35,Shadow Motion,Intrinsic Skill,Spatial,Post-Evolution
+6,Souei,40,Shadow Striker,Unique Skill,Spatial,Post-Evolution
+7,Hakurou,39,Martial Master,Unique Skill,Combat,Post-Evolution
+11,Ranga,34,Black Lightning,Extra Skill,Elemental,Post-Evolution
+12,Gabiru,37,Vortex Spear,Extra Skill,Elemental,Initial
+15,Diablo,8,"Azazel, Lord of Temptation",Ultimate Skill,Manipulation,Post-Awakening
+15,Diablo,25,Tempter,Unique Skill,Manipulation,Initial
+15,Diablo,26,Seeker,Unique Skill,Analysis,Initial
+23,Zegion,16,"Mephisto, Lord of Fantasy",Ultimate Skill,Manipulation,Post-Awakening
+27,Shizue Izawa,38,Flame Manipulation,Extra Skill,Elemental,Initial
+31,Milim Nava,15,"Satanael, Lord of Wrath",Ultimate Skill,Elemental,Post-Awakening
+31,Milim Nava,36,Drago Nova,Extra Skill,Elemental,Initial
+32,Guy Crimson,14,"Lucifer, Lord of Pride",Ultimate Skill,Manipulation,Post-Awakening
+34,Leon Cromwell,10,"Metatron, Lord of Purity",Ultimate Skill,Elemental,Post-Awakening
+42,Clayman,29,Manipulator,Unique Skill,Manipulation,Initial
+49,Hinata Sakaguchi,17,Fortuna,Ultimate Skill,Analysis,Post-Awakening
+49,Hinata Sakaguchi,27,Mathematician,Unique Skill,Analysis,Initial
+51,Masayuki,30,Chosen One,Unique Skill,Support,Initial
+52,Yuuki Kagurazaka,9,"Mammon, Lord of Greed",Ultimate Skill,Manipulation,Post-Awakening
+52,Yuuki Kagurazaka,28,Creator,Unique Skill,Manipulation,Initial
+56,Rudra Nam Ul Nasca,13,"Michael, Lord of Justice",Ultimate Skill,Manipulation,Initial

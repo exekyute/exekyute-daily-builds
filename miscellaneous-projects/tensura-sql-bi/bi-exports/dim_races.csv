@@ -1,0 +1,39 @@
+race_id,name,category,tier
+1,Slime,Monster,Base
+2,Demon Slime,Monster,Evolved
+3,Goblin,Humanoid,Base
+4,Hobgoblin,Humanoid,Evolved
+5,Ogre,Humanoid,Base
+6,Kijin,Humanoid,Evolved
+7,Oni,Humanoid,Evolved
+8,Direwolf,Monster,Base
+9,Tempest Wolf,Monster,Evolved
+10,Tempest Star Wolf,Monster,Evolved
+11,Lizardman,Monster,Base
+12,Dragonewt,Dragon,Evolved
+13,Orc,Monster,Base
+14,High Orc,Monster,Evolved
+15,Orc Disaster,Monster,Evolved
+16,Dwarf,Humanoid,Base
+17,Human,Human,Base
+18,Otherworlder,Human,Base
+19,Elf,Humanoid,Base
+20,High Elf,Humanoid,Evolved
+21,Dryad,Spirit,Base
+22,Pixie,Spirit,Base
+23,Demon,Demon,Base
+24,Primordial Demon,Demon,Evolved
+25,Majin,Demon,Base
+26,Dragonoid,Dragon,Base
+27,True Dragon,Dragon,Base
+28,Vampire,Undead,Base
+29,Wight,Undead,Evolved
+30,Insectar,Monster,Evolved
+31,Beastfolk,Beastfolk,Base
+32,Winged,Winged,Base
+33,Giant,Giant,Base
+34,Seraph,Spirit,Base
+35,Mystic Fox,Monster,Evolved
+36,Wicked Oni,Humanoid,Evolved
+37,Arch Doll,Construct,Evolved
+38,Metal Daemon,Demon,Evolved

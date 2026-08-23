@@ -1,0 +1,78 @@
+character_id,character,faction_id,faction,aligned_with,role
+1,Rimuru Tempest,1,Jura Tempest Federation Leadership,Tempest,Chancellor
+1,Rimuru Tempest,3,Octagram,Independent,Seat holder
+2,Veldora Tempest,1,Jura Tempest Federation Leadership,Tempest,Guardian
+3,Benimaru,1,Jura Tempest Federation Leadership,Tempest,Commander
+3,Benimaru,2,Twelve Guardian Lords,Tempest,Guardian
+4,Shuna,1,Jura Tempest Federation Leadership,Tempest,Production head
+5,Shion,1,Jura Tempest Federation Leadership,Tempest,Secretary
+5,Shion,2,Twelve Guardian Lords,Tempest,Guardian
+6,Souei,1,Jura Tempest Federation Leadership,Tempest,Spymaster
+6,Souei,2,Twelve Guardian Lords,Tempest,Guardian
+7,Hakurou,1,Jura Tempest Federation Leadership,Tempest,Instructor
+7,Hakurou,2,Twelve Guardian Lords,Tempest,Guardian
+8,Kurobe,1,Jura Tempest Federation Leadership,Tempest,Smith
+9,Rigurd,1,Jura Tempest Federation Leadership,Tempest,Prime Minister
+10,Gobta,2,Twelve Guardian Lords,Tempest,Guardian
+11,Ranga,2,Twelve Guardian Lords,Tempest,Guardian
+12,Gabiru,1,Jura Tempest Federation Leadership,Tempest,Corps head
+13,Souka,1,Jura Tempest Federation Leadership,Tempest,Agent
+14,Geld,1,Jura Tempest Federation Leadership,Tempest,Construction chief
+14,Geld,2,Twelve Guardian Lords,Tempest,Guardian
+15,Diablo,1,Jura Tempest Federation Leadership,Tempest,Chief steward
+15,Diablo,2,Twelve Guardian Lords,Tempest,Guardian
+15,Diablo,5,Primordial Demons,Independent,Noir
+16,Testarossa,1,Jura Tempest Federation Leadership,Tempest,Executive
+16,Testarossa,5,Primordial Demons,Independent,Blanc
+16,Testarossa,6,Three Devil Girls,Tempest,Member
+17,Ultima,1,Jura Tempest Federation Leadership,Tempest,Executive
+17,Ultima,5,Primordial Demons,Independent,Violet
+17,Ultima,6,Three Devil Girls,Tempest,Member
+18,Carrera,1,Jura Tempest Federation Leadership,Tempest,Executive
+18,Carrera,5,Primordial Demons,Independent,Jaune
+18,Carrera,6,Three Devil Girls,Tempest,Member
+19,Ramiris,3,Octagram,Independent,Third seat
+19,Ramiris,4,Ten Great Demon Lords,Independent,Member
+20,Beretta,1,Jura Tempest Federation Leadership,Tempest,Guardian
+21,Treyni,1,Jura Tempest Federation Leadership,Tempest,Forest guardian
+22,Adalmann,1,Jura Tempest Federation Leadership,Tempest,Guardian
+23,Zegion,1,Jura Tempest Federation Leadership,Tempest,Guardian
+23,Zegion,2,Twelve Guardian Lords,Tempest,Guardian
+24,Kumara,1,Jura Tempest Federation Leadership,Tempest,Guardian
+25,Gadra,1,Jura Tempest Federation Leadership,Tempest,Researcher
+26,Kaijin,1,Jura Tempest Federation Leadership,Tempest,Chief engineer
+27,Shizue Izawa,8,Free Guild,Neutral,Veteran adventurer
+30,Velgrynd,10,Imperial Guardians,Antagonist,Marshal
+31,Milim Nava,3,Octagram,Independent,Seat holder
+31,Milim Nava,4,Ten Great Demon Lords,Independent,Member
+32,Guy Crimson,3,Octagram,Independent,Seat holder
+32,Guy Crimson,4,Ten Great Demon Lords,Independent,Member
+32,Guy Crimson,5,Primordial Demons,Independent,Rouge
+33,Luminous Valentine,3,Octagram,Independent,Seat holder
+33,Luminous Valentine,4,Ten Great Demon Lords,Independent,Member
+34,Leon Cromwell,3,Octagram,Independent,Seat holder
+34,Leon Cromwell,4,Ten Great Demon Lords,Independent,Member
+35,Dino,3,Octagram,Independent,Seat holder
+36,Dagruel,3,Octagram,Independent,Seat holder
+36,Dagruel,4,Ten Great Demon Lords,Independent,Member
+37,Carrion,4,Ten Great Demon Lords,Independent,Former member
+38,Albis,11,Three Beastketeers,Ally,Member
+39,Suphia,11,Three Beastketeers,Ally,Member
+41,Frey,4,Ten Great Demon Lords,Independent,Former member
+42,Clayman,4,Ten Great Demon Lords,Independent,Member
+42,Clayman,9,Moderate Harlequin Alliance,Antagonist,Backer
+43,Kagali,4,Ten Great Demon Lords,Independent,Former member
+43,Kagali,9,Moderate Harlequin Alliance,Antagonist,Leader
+44,Laplace,9,Moderate Harlequin Alliance,Antagonist,Member
+45,Tear,9,Moderate Harlequin Alliance,Antagonist,Member
+46,Footman,9,Moderate Harlequin Alliance,Antagonist,Member
+49,Hinata Sakaguchi,7,Holy Knights of Lubelius,Neutral,Captain
+50,Chloe Aubert,7,Holy Knights of Lubelius,Neutral,Trainee
+51,Masayuki,8,Free Guild,Neutral,Star adventurer
+52,Yuuki Kagurazaka,8,Free Guild,Neutral,Grandmaster
+52,Yuuki Kagurazaka,9,Moderate Harlequin Alliance,Antagonist,Secret ally
+53,Fuze,8,Free Guild,Neutral,Branch master
+56,Rudra Nam Ul Nasca,10,Imperial Guardians,Antagonist,Emperor
+57,Kondo Tatsuya,10,Imperial Guardians,Antagonist,Head of Intelligence
+58,Damrada,10,Imperial Guardians,Antagonist,Operative
+59,Phobio,11,Three Beastketeers,Ally,Member

@@ -1,0 +1,60 @@
+character_id,name,epithet,race_id,race,race_category,race_tier,nation_id,nation,relation_to_tempest,debut_arc_id,debut_arc,debut_arc_no,gender,role_title,alignment,status,threat_rank,demon_lord_class,ep_estimate,is_demon_lord,demon_lord_roster,is_true_dragon,skill_count,evolution_steps
+1,Rimuru Tempest,The Slime Demon Lord,2,Demon Slime,Monster,Evolved,1,Jura Tempest Federation,Self,1,Reincarnation in the Jura Forest,1,None,Founder and Chancellor of Tempest,Tempest,Alive,Special S,Awakened,251000000,1,Octagram,0,10,1
+2,Veldora Tempest,Storm Dragon,27,True Dragon,Dragon,Base,1,Jura Tempest Federation,Self,1,Reincarnation in the Jura Forest,1,Male,Guardian and sworn friend of Rimuru,Tempest,Alive,Special S,None,88126579,0,,1,2,0
+3,Benimaru,Flame Lord,6,Kijin,Humanoid,Evolved,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Male,Supreme Commander of Tempest's forces,Tempest,Alive,Special S,None,40000000,0,,0,2,2
+4,Shuna,Princess of the Oni,6,Kijin,Humanoid,Evolved,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Female,Head of the Production Department,Tempest,Alive,A+,None,,0,,0,2,1
+5,Shion,Battle Secretary,36,Wicked Oni,Humanoid,Evolved,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Female,Chief Secretary and bodyguard,Tempest,Revived,Special A,None,4229140,0,,0,2,2
+6,Souei,,6,Kijin,Humanoid,Evolved,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Male,Spymaster,Tempest,Alive,Special A,None,1281162,0,,0,3,1
+7,Hakurou,Sword Saint,6,Kijin,Humanoid,Evolved,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Male,Sword instructor,Tempest,Alive,Special A,None,60000,0,,0,1,1
+8,Kurobe,,6,Kijin,Humanoid,Evolved,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Male,Master blacksmith,Tempest,Alive,A,None,,0,,0,0,1
+9,Rigurd,,4,Hobgoblin,Humanoid,Evolved,1,Jura Tempest Federation,Self,1,Reincarnation in the Jura Forest,1,Male,Prime Minister,Tempest,Alive,A,None,,0,,0,0,1
+10,Gobta,,4,Hobgoblin,Humanoid,Evolved,1,Jura Tempest Federation,Self,1,Reincarnation in the Jura Forest,1,Male,Captain of the Goblin Riders,Tempest,Alive,A,None,,0,,0,0,1
+11,Ranga,Storm Fang,10,Tempest Star Wolf,Monster,Evolved,1,Jura Tempest Federation,Self,1,Reincarnation in the Jura Forest,1,Male,Rimuru's guardian beast,Tempest,Alive,Special A,None,4340084,0,,0,1,2
+12,Gabiru,,12,Dragonewt,Dragon,Evolved,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Male,Head of the flying corps and research,Tempest,Alive,A,None,,0,,0,1,1
+13,Souka,,12,Dragonewt,Dragon,Evolved,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Female,Souei's lieutenant,Tempest,Alive,A,None,,0,,0,0,1
+14,Geld,,14,High Orc,Monster,Evolved,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Male,Chief of construction and defence,Tempest,Alive,Special A,None,2378749,0,,0,0,2
+15,Diablo,"Noir, the Black Primordial",24,Primordial Demon,Demon,Evolved,1,Jura Tempest Federation,Self,7,The Falmuth Invasion,7,Male,Rimuru's chief steward,Tempest,Alive,Special S,Awakened,6666666,0,,0,3,1
+16,Testarossa,"Blanc, the White Primordial",24,Primordial Demon,Demon,Evolved,1,Jura Tempest Federation,Self,11,The Founding Festival and the Labyrinth,11,Female,Diplomat and executive,Tempest,Alive,Special S,Awakened,3333124,0,,0,0,0
+17,Ultima,"Violet, the Purple Primordial",24,Primordial Demon,Demon,Evolved,1,Jura Tempest Federation,Self,11,The Founding Festival and the Labyrinth,11,Female,Executive,Tempest,Alive,Special S,Awakened,2668816,0,,0,0,0
+18,Carrera,"Jaune, the Yellow Primordial",24,Primordial Demon,Demon,Evolved,1,Jura Tempest Federation,Self,11,The Founding Festival and the Labyrinth,11,Female,Executive,Tempest,Alive,Special S,Awakened,7013351,0,,0,0,0
+19,Ramiris,The Labyrinth,22,Pixie,Spirit,Base,1,Jura Tempest Federation,Self,6,Clayman's Web,6,Female,Demon Lord of the Labyrinth,Ally,Alive,Special A,Self-Proclaimed,,1,Octagram,0,0,0
+20,Beretta,,37,Arch Doll,Construct,Evolved,1,Jura Tempest Federation,Self,11,The Founding Festival and the Labyrinth,11,None,Ramiris's guardian,Tempest,Alive,Special A,None,,0,,0,0,0
+21,Treyni,,21,Dryad,Spirit,Base,1,Jura Tempest Federation,Self,3,War of the Orc Disaster,3,Female,Dryad of the Great Jura Forest,Ally,Alive,A+,None,,0,,0,0,0
+22,Adalmann,,29,Wight,Undead,Evolved,1,Jura Tempest Federation,Self,11,The Founding Festival and the Labyrinth,11,Male,Labyrinth guardian and bishop,Tempest,Alive,Special A,None,,0,,0,0,2
+23,Zegion,Insect Kaiser,30,Insectar,Monster,Evolved,1,Jura Tempest Federation,Self,11,The Founding Festival and the Labyrinth,11,Male,Labyrinth guardian,Tempest,Alive,Special S,None,68889143,0,,0,1,1
+24,Kumara,,35,Mystic Fox,Monster,Evolved,1,Jura Tempest Federation,Self,11,The Founding Festival and the Labyrinth,11,Female,Labyrinth guardian,Tempest,Alive,Special A,None,,0,,0,0,0
+25,Gadra,,38,Metal Daemon,Demon,Evolved,1,Jura Tempest Federation,Self,12,War with the Eastern Empire,12,Male,Labyrinth researcher,Tempest,Alive,A+,None,,0,,0,0,0
+26,Kaijin,,16,Dwarf,Humanoid,Base,1,Jura Tempest Federation,Self,2,The Dwarven Kingdom,2,Male,Master smith and engineer,Tempest,Alive,B,None,,0,,0,0,0
+27,Shizue Izawa,Conqueror of Flames,18,Otherworlder,Human,Base,,,,5,The Teacher and the Otherworlders,5,Female,Hero and teacher,Ally,Deceased,A,None,,0,,0,1,0
+28,Veldanava,Star King Dragon,27,True Dragon,Dragon,Base,,,,,,,Male,Progenitor of the world,Neutral,Deceased,Special S,None,,0,,1,0,0
+29,Velzard,Frost Dragon,27,True Dragon,Dragon,Base,,,,9,"Walpurgis, the Demon Lords' Banquet",9,Female,White Ice Dragon,Neutral,Alive,Special S,None,80000000,0,,1,0,0
+30,Velgrynd,Scorch Dragon,27,True Dragon,Dragon,Base,8,Nasca Namrium Ulmeria United Eastern Empire,Enemy,12,War with the Eastern Empire,12,Female,Guardian deity of the Empire,Antagonist,Alive,Special S,None,74350087,0,,1,0,0
+31,Milim Nava,The Destroyer,26,Dragonoid,Dragon,Base,,,,4,Founding of the Nation,4,Female,One of the oldest Demon Lords,Ally,Alive,Special S,Awakened,100000000,1,Octagram,0,2,0
+32,Guy Crimson,Lord of Darkness,24,Primordial Demon,Demon,Evolved,,,,9,"Walpurgis, the Demon Lords' Banquet",9,Male,Oldest and strongest Demon Lord,Neutral,Alive,Special S,Awakened,40000000,1,Octagram,0,1,0
+33,Luminous Valentine,Twilight,28,Vampire,Undead,Base,6,Holy Empire of Lubelius,Rival,10,Hinata and the Holy Church,10,Female,Demon Lord and true ruler of Lubelius,Rival,Alive,Special S,Awakened,20000000,1,Octagram,0,0,0
+34,Leon Cromwell,Platinum Saber,18,Otherworlder,Human,Base,,,,5,The Teacher and the Otherworlders,5,Male,Hero-type Demon Lord,Neutral,Alive,Special S,Self-Proclaimed,5000000,1,Octagram,0,1,0
+35,Dino,Sleeping Ruler,34,Seraph,Spirit,Base,,,,11,The Founding Festival and the Labyrinth,11,Male,The laziest Demon Lord,Neutral,Alive,Special S,Awakened,2260000,1,Octagram,0,0,0
+36,Dagruel,Wicked God,33,Giant,Giant,Base,,,,9,"Walpurgis, the Demon Lords' Banquet",9,Male,Giant Demon Lord,Neutral,Alive,Special S,Awakened,120000000,1,Octagram,0,0,0
+37,Carrion,Beast Master,31,Beastfolk,Beastfolk,Base,7,Beast Kingdom of Eurazania,Ally,6,Clayman's Web,6,Male,Ruler of Eurazania,Ally,Alive,Special A,Self-Proclaimed,2773537,1,Former,0,0,0
+38,Albis,,31,Beastfolk,Beastfolk,Base,7,Beast Kingdom of Eurazania,Ally,6,Clayman's Web,6,Female,One of the Three Beastketeers,Ally,Alive,A+,None,,0,,0,0,0
+39,Suphia,,31,Beastfolk,Beastfolk,Base,7,Beast Kingdom of Eurazania,Ally,6,Clayman's Web,6,Female,One of the Three Beastketeers,Ally,Alive,A,None,,0,,0,0,0
+40,Grucius,,31,Beastfolk,Beastfolk,Base,7,Beast Kingdom of Eurazania,Ally,6,Clayman's Web,6,Male,One of the Three Beastketeers,Ally,Alive,A,None,,0,,0,0,0
+41,Frey,Sky Queen,32,Winged,Winged,Base,,,,9,"Walpurgis, the Demon Lords' Banquet",9,Female,Former Demon Lord of the sky,Ally,Alive,Special A,Self-Proclaimed,,1,Former,0,0,0
+42,Clayman,Marionette Master,25,Majin,Demon,Base,,,,6,Clayman's Web,6,Male,Scheming Demon Lord,Antagonist,Deceased,Special A,Self-Proclaimed,788842,1,Former,0,1,0
+43,Kagali,,25,Majin,Demon,Base,,,,6,Clayman's Web,6,Female,Leader of the Moderate Harlequin Alliance,Antagonist,Alive,Special A,Self-Proclaimed,,0,,0,0,0
+44,Laplace,,25,Majin,Demon,Base,,,,6,Clayman's Web,6,Male,Trickster of the Harlequin troupe,Antagonist,Alive,Special A,None,,0,,0,0,0
+45,Tear,,25,Majin,Demon,Base,,,,6,Clayman's Web,6,Female,Member of the Harlequin troupe,Antagonist,Alive,A+,None,,0,,0,0,0
+46,Footman,,25,Majin,Demon,Base,,,,6,Clayman's Web,6,Male,Member of the Harlequin troupe,Antagonist,Alive,A+,None,,0,,0,0,0
+47,Gazel Dwargo,Hero King,16,Dwarf,Humanoid,Base,2,Armed Nation of Dwargon,Ally,2,The Dwarven Kingdom,2,Male,King of Dwargon,Ally,Alive,Special A,None,1000000,0,,0,0,0
+48,Elmesia El Ru Sarion,Sorcerer Emperor,20,High Elf,Humanoid,Evolved,5,Sorcerous Dynasty of Sarion,Ally,11,The Founding Festival and the Labyrinth,11,Female,Empress of Sarion,Ally,Alive,A+,None,,0,,0,0,0
+49,Hinata Sakaguchi,Strongest of the Holy Knights,18,Otherworlder,Human,Base,6,Holy Empire of Lubelius,Rival,5,The Teacher and the Otherworlders,5,Female,Captain of the Crusaders,Rival,Alive,Special A,None,1000000,0,,0,2,0
+50,Chloe Aubert,,18,Otherworlder,Human,Base,9,Kingdom of Englassia,Neutral,5,The Teacher and the Otherworlders,5,Female,One of Shizu's students,Ally,Alive,Special S,None,,0,,0,0,0
+51,Masayuki,The Chosen Hero,18,Otherworlder,Human,Base,9,Kingdom of Englassia,Neutral,11,The Founding Festival and the Labyrinth,11,Male,Celebrated Hero,Neutral,Alive,B,None,,0,,0,1,0
+52,Yuuki Kagurazaka,,18,Otherworlder,Human,Base,9,Kingdom of Englassia,Neutral,5,The Teacher and the Otherworlders,5,Male,Grandmaster of the Free Guild,Antagonist,Alive,Special A,None,2000000,0,,0,2,0
+53,Fuze,,17,Human,Human,Base,3,Kingdom of Blumund,Ally,1,Reincarnation in the Jura Forest,1,Male,Guild Master of Blumund,Ally,Alive,B,None,,0,,0,0,0
+54,Youm,,17,Human,Human,Base,4,Kingdom of Falmuth,Former Enemy,7,The Falmuth Invasion,7,Male,King of Farmenas (reformed Falmuth),Ally,Alive,C,None,,0,,0,0,0
+55,Razen,,17,Human,Human,Base,4,Kingdom of Falmuth,Former Enemy,7,The Falmuth Invasion,7,Male,Court mage of Falmuth,Antagonist,Alive,B,None,,0,,0,0,0
+56,Rudra Nam Ul Nasca,The Eternal Emperor,18,Otherworlder,Human,Base,8,Nasca Namrium Ulmeria United Eastern Empire,Enemy,12,War with the Eastern Empire,12,Male,Emperor of the Eastern Empire,Antagonist,Alive,Special A,None,,0,,0,1,0
+57,Kondo Tatsuya,,18,Otherworlder,Human,Base,8,Nasca Namrium Ulmeria United Eastern Empire,Enemy,12,War with the Eastern Empire,12,Male,Head of the Imperial Intelligence Bureau,Antagonist,Deceased,Special A,None,,0,,0,0,0
+58,Damrada,,17,Human,Human,Base,8,Nasca Namrium Ulmeria United Eastern Empire,Enemy,12,War with the Eastern Empire,12,Male,Imperial merchant and guardian,Antagonist,Alive,A+,None,,0,,0,0,0
+59,Phobio,,31,Beastfolk,Beastfolk,Base,7,Beast Kingdom of Eurazania,Ally,6,Clayman's Web,6,Male,One of the Three Beastketeers,Ally,Alive,A+,None,,0,,0,0,0

@@ -1,0 +1,22 @@
+evolution_id,character_id,character,step_no,from_form,to_form,trigger,arc_id,arc
+1,1,Rimuru Tempest,1,Slime,Demon Slime,Harvest Festival,8,The Harvest Festival
+2,3,Benimaru,1,Ogre,Kijin,Naming,3,War of the Orc Disaster
+3,3,Benimaru,2,Kijin,Oni,Harvest Festival,8,The Harvest Festival
+4,4,Shuna,1,Ogre,Kijin,Naming,3,War of the Orc Disaster
+5,5,Shion,1,Ogre,Kijin,Naming,3,War of the Orc Disaster
+6,5,Shion,2,Kijin,Wicked Oni,Harvest Festival,8,The Harvest Festival
+7,6,Souei,1,Ogre,Kijin,Naming,3,War of the Orc Disaster
+8,7,Hakurou,1,Ogre,Kijin,Naming,3,War of the Orc Disaster
+9,8,Kurobe,1,Ogre,Kijin,Naming,3,War of the Orc Disaster
+10,9,Rigurd,1,Goblin,Hobgoblin,Naming,1,Reincarnation in the Jura Forest
+11,10,Gobta,1,Goblin,Hobgoblin,Naming,1,Reincarnation in the Jura Forest
+12,11,Ranga,1,Direwolf,Tempest Wolf,Naming,1,Reincarnation in the Jura Forest
+13,11,Ranga,2,Tempest Wolf,Tempest Star Wolf,Harvest Festival,8,The Harvest Festival
+14,12,Gabiru,1,Lizardman,Dragonewt,Naming,3,War of the Orc Disaster
+15,13,Souka,1,Lizardman,Dragonewt,Naming,3,War of the Orc Disaster
+16,14,Geld,1,Orc,High Orc,Naming,3,War of the Orc Disaster
+17,14,Geld,2,High Orc,Orc King,Harvest Festival,8,The Harvest Festival
+18,15,Diablo,1,Demon,Primordial Demon,Naming,7,The Falmuth Invasion
+19,22,Adalmann,1,Human,Wight,Soul absorption,10,Hinata and the Holy Church
+20,22,Adalmann,2,Wight,Wight King,Naming,10,Hinata and the Holy Church
+21,23,Zegion,1,Insectar,Insect Kaiser,Harvest Festival,10,Hinata and the Holy Church

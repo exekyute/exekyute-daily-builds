@@ -1,0 +1,2560 @@
+{
+  "_about": "Single source of truth for the TenSura World Database. engine/build_db.py reads this file, resolves the name references, and writes tensura.db, sql/seed.sql, and the bi-exports CSVs. Facts are drawn from the Tensei Shitara Slime Datta Ken light novels and the fan wiki. EP figures are wiki-cited existence values and are approximate late-story peaks.",
+  "races": [
+    {
+      "name": "Slime",
+      "category": "Monster",
+      "tier": "Base",
+      "notes": "The weakest common monster; the form Rimuru is reborn into."
+    },
+    {
+      "name": "Demon Slime",
+      "category": "Monster",
+      "tier": "Evolved",
+      "notes": "The apex of slime evolution, reached by awakening as a True Demon Lord."
+    },
+    {
+      "name": "Goblin",
+      "category": "Humanoid",
+      "tier": "Base",
+      "notes": "Small forest humanoids, weak on their own."
+    },
+    {
+      "name": "Hobgoblin",
+      "category": "Humanoid",
+      "tier": "Evolved",
+      "notes": "The evolved form of goblins after being named by a powerful monster."
+    },
+    {
+      "name": "Ogre",
+      "category": "Humanoid",
+      "tier": "Base",
+      "notes": "Strong horned humanoids; the surviving ogre village that joined Rimuru."
+    },
+    {
+      "name": "Kijin",
+      "category": "Humanoid",
+      "tier": "Evolved",
+      "notes": "Ogres evolved into a refined oni-like race after Rimuru named them."
+    },
+    {
+      "name": "Oni",
+      "category": "Humanoid",
+      "tier": "Evolved",
+      "notes": "The higher oni forms the kijin reach at the Harvest Festival."
+    },
+    {
+      "name": "Direwolf",
+      "category": "Monster",
+      "tier": "Base",
+      "notes": "Pack-hunting wolves of the Great Jura Forest."
+    },
+    {
+      "name": "Tempest Wolf",
+      "category": "Monster",
+      "tier": "Evolved",
+      "notes": "Direwolves evolved under Veldora's influence and Rimuru's naming."
+    },
+    {
+      "name": "Tempest Star Wolf",
+      "category": "Monster",
+      "tier": "Evolved",
+      "notes": "The leader variant of the star wolf line; Ranga's form."
+    },
+    {
+      "name": "Lizardman",
+      "category": "Monster",
+      "tier": "Base",
+      "notes": "Marsh-dwelling reptilian humanoids."
+    },
+    {
+      "name": "Dragonewt",
+      "category": "Dragon",
+      "tier": "Evolved",
+      "notes": "Lizardmen who reawaken their dragon roots, often through naming."
+    },
+    {
+      "name": "Orc",
+      "category": "Monster",
+      "tier": "Base",
+      "notes": "Pig-like humanoids that swarm in famine."
+    },
+    {
+      "name": "High Orc",
+      "category": "Monster",
+      "tier": "Evolved",
+      "notes": "The evolved orc form that serves Tempest under Geld."
+    },
+    {
+      "name": "Orc Disaster",
+      "category": "Monster",
+      "tier": "Evolved",
+      "notes": "A Demon Lord seed; the evolution of an Orc Lord that devours its own kind."
+    },
+    {
+      "name": "Dwarf",
+      "category": "Humanoid",
+      "tier": "Base",
+      "notes": "Master craftsmen of the Armed Nation of Dwargon."
+    },
+    {
+      "name": "Human",
+      "category": "Human",
+      "tier": "Base",
+      "notes": "The dominant people of the western nations."
+    },
+    {
+      "name": "Otherworlder",
+      "category": "Human",
+      "tier": "Base",
+      "notes": "People summoned or reincarnated from another world, often carrying unique skills."
+    },
+    {
+      "name": "Elf",
+      "category": "Humanoid",
+      "tier": "Base",
+      "notes": "Long-lived people of the Sorcerous Dynasty of Sarion."
+    },
+    {
+      "name": "High Elf",
+      "category": "Humanoid",
+      "tier": "Evolved",
+      "notes": "The elder elven line; the Empress Elmesia's kind."
+    },
+    {
+      "name": "Dryad",
+      "category": "Spirit",
+      "tier": "Base",
+      "notes": "Tree spirits that guard the Great Jura Forest."
+    },
+    {
+      "name": "Pixie",
+      "category": "Spirit",
+      "tier": "Base",
+      "notes": "Tiny fairy spirits; Ramiris's race."
+    },
+    {
+      "name": "Demon",
+      "category": "Demon",
+      "tier": "Base",
+      "notes": "Beings from the spirit world, ranging from lesser to arch demons."
+    },
+    {
+      "name": "Primordial Demon",
+      "category": "Demon",
+      "tier": "Evolved",
+      "notes": "The seven oldest demons, each known by a colour rather than a name."
+    },
+    {
+      "name": "Majin",
+      "category": "Demon",
+      "tier": "Base",
+      "notes": "Demon-kin; the clown troupe and several schemers belong here."
+    },
+    {
+      "name": "Dragonoid",
+      "category": "Dragon",
+      "tier": "Base",
+      "notes": "The rare children of a True Dragon; Milim's race."
+    },
+    {
+      "name": "True Dragon",
+      "category": "Dragon",
+      "tier": "Base",
+      "notes": "The four near-immortal apex dragons of the world."
+    },
+    {
+      "name": "Vampire",
+      "category": "Undead",
+      "tier": "Base",
+      "notes": "Blood-drinking nobles; the Valentine line of Lubelius."
+    },
+    {
+      "name": "Wight",
+      "category": "Undead",
+      "tier": "Evolved",
+      "notes": "Powerful undead sorcerers; the Wight King guards the labyrinth."
+    },
+    {
+      "name": "Insectar",
+      "category": "Monster",
+      "tier": "Evolved",
+      "notes": "Insect-kin of the labyrinth, led by the Insect Kaiser."
+    },
+    {
+      "name": "Beastfolk",
+      "category": "Beastfolk",
+      "tier": "Base",
+      "notes": "Animal-featured warriors of the Beast Kingdom of Eurazania."
+    },
+    {
+      "name": "Winged",
+      "category": "Winged",
+      "tier": "Base",
+      "notes": "Sky-dwelling harpy people; Frey's race."
+    },
+    {
+      "name": "Giant",
+      "category": "Giant",
+      "tier": "Base",
+      "notes": "Titanic beings; Dagruel's kind."
+    },
+    {
+      "name": "Seraph",
+      "category": "Spirit",
+      "tier": "Base",
+      "notes": "Angelic beings tied to the world's guardian system; Dino's true nature."
+    },
+    {
+      "name": "Mystic Fox",
+      "category": "Monster",
+      "tier": "Evolved",
+      "notes": "Nine-tailed mystic foxes; Kumara is a young Ninehead of this line."
+    },
+    {
+      "name": "Wicked Oni",
+      "category": "Humanoid",
+      "tier": "Evolved",
+      "notes": "The higher oni form Shion reached when she was revived through daemons."
+    },
+    {
+      "name": "Arch Doll",
+      "category": "Construct",
+      "tier": "Evolved",
+      "notes": "A daemon bound into a crafted golem body, as with Beretta."
+    },
+    {
+      "name": "Metal Daemon",
+      "category": "Demon",
+      "tier": "Evolved",
+      "notes": "A daemon of living metal; the form Gadra took after his reincarnation."
+    }
+  ],
+  "arcs": [
+    {
+      "sequence_no": 1,
+      "name": "Reincarnation in the Jura Forest",
+      "ln_volumes": "Vol 1",
+      "anime_coverage": "Season 1 Part 1",
+      "summary": "A man reborn as a slime befriends the sealed dragon Veldora, then names the goblins and direwolves and forms the first forest alliance."
+    },
+    {
+      "sequence_no": 2,
+      "name": "The Dwarven Kingdom",
+      "ln_volumes": "Vol 1",
+      "anime_coverage": "Season 1 Part 1",
+      "summary": "Rimuru visits the Armed Nation of Dwargon, gains the smith Kaijin, and draws the eye of King Gazel."
+    },
+    {
+      "sequence_no": 3,
+      "name": "War of the Orc Disaster",
+      "ln_volumes": "Vol 2",
+      "anime_coverage": "Season 1 Part 1",
+      "summary": "The Orc Lord ravages the forest, the ogre survivors are named into kijin, and the Great Jura Forest alliance is forged."
+    },
+    {
+      "sequence_no": 4,
+      "name": "Founding of the Nation",
+      "ln_volumes": "Vol 3",
+      "anime_coverage": "Season 1 Part 2",
+      "summary": "The Jura Tempest Federation is founded, holds its opening festival, and the demon lords begin to take notice."
+    },
+    {
+      "sequence_no": 5,
+      "name": "The Teacher and the Otherworlders",
+      "ln_volumes": "Vol 4",
+      "anime_coverage": "Season 1 Part 2",
+      "summary": "Rimuru teaches the summoned children in Ingracia, learns Shizu's past, and first crosses the holy knight Hinata."
+    },
+    {
+      "sequence_no": 6,
+      "name": "Clayman's Web",
+      "ln_volumes": "Vol 4-5",
+      "anime_coverage": "Season 2 Part 1",
+      "summary": "Milim, the monster Charybdis, and the schemer Clayman pull the demon lords toward open conflict."
+    },
+    {
+      "sequence_no": 7,
+      "name": "The Falmuth Invasion",
+      "ln_volumes": "Vol 5",
+      "anime_coverage": "Season 2 Part 1",
+      "summary": "Falmuth and Hinata strike Tempest while Rimuru is away, and many of its people are killed."
+    },
+    {
+      "sequence_no": 8,
+      "name": "The Harvest Festival",
+      "ln_volumes": "Vol 5",
+      "anime_coverage": "Season 2 Part 1",
+      "summary": "Rimuru awakens as a True Demon Lord, revives the fallen, and the whole of Tempest evolves."
+    },
+    {
+      "sequence_no": 9,
+      "name": "Walpurgis, the Demon Lords' Banquet",
+      "ln_volumes": "Vol 5-6",
+      "anime_coverage": "Season 2 Part 2",
+      "summary": "Clayman is defeated at the demon lords' banquet and the eight-seat Octagram is formed."
+    },
+    {
+      "sequence_no": 10,
+      "name": "Hinata and the Holy Church",
+      "ln_volumes": "Vol 7",
+      "anime_coverage": "Season 3",
+      "summary": "The clash and reconciliation with the Holy Empire of Lubelius, and the truth of the vampire demon lord Luminous."
+    },
+    {
+      "sequence_no": 11,
+      "name": "The Founding Festival and the Labyrinth",
+      "ln_volumes": "Vol 9",
+      "anime_coverage": "Season 3",
+      "summary": "Tempest opens to the world with a festival and tournament, and Ramiris's labyrinth is raised under the city."
+    },
+    {
+      "sequence_no": 12,
+      "name": "War with the Eastern Empire",
+      "ln_volumes": "Vol 13-14",
+      "anime_coverage": "Season 3",
+      "summary": "The vast Eastern Empire invades the forest and is broken by Tempest's officers and the freed Veldora."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Raphael, Lord of Wisdom",
+      "skill_type": "Ultimate Skill",
+      "category": "Analysis",
+      "notes": "Evolved from Great Sage; runs Rimuru's analysis, calculation, and skill control."
+    },
+    {
+      "name": "Beelzebuth, Lord of Gluttony",
+      "skill_type": "Ultimate Skill",
+      "category": "Predation",
+      "notes": "Evolved from Gluttony; devours and stores targets and their abilities."
+    },
+    {
+      "name": "Uriel, Lord of Vows",
+      "skill_type": "Ultimate Skill",
+      "category": "Support",
+      "notes": "Barrier and spatial control bound to promises Rimuru makes."
+    },
+    {
+      "name": "Azathoth, Void God",
+      "skill_type": "Ultimate Skill",
+      "category": "Spatial",
+      "notes": "Rimuru's later fused ultimate governing void and space."
+    },
+    {
+      "name": "Amaterasu, Lord of the Blazing Sun",
+      "skill_type": "Ultimate Skill",
+      "category": "Elemental",
+      "notes": "Benimaru's flame ultimate."
+    },
+    {
+      "name": "Tsukuyomi, Lord of Moon Shadow",
+      "skill_type": "Ultimate Skill",
+      "category": "Spatial",
+      "notes": "Souei's shadow and space ultimate."
+    },
+    {
+      "name": "Susanoo, Lord of Tyranny",
+      "skill_type": "Ultimate Skill",
+      "category": "Combat",
+      "notes": "Shion's ultimate, evolved from her unique skill Cook."
+    },
+    {
+      "name": "Azazel, Lord of Temptation",
+      "skill_type": "Ultimate Skill",
+      "category": "Manipulation",
+      "notes": "Diablo's ultimate, formed from Tempter and Seeker."
+    },
+    {
+      "name": "Mammon, Lord of Greed",
+      "skill_type": "Ultimate Skill",
+      "category": "Manipulation",
+      "notes": "Yuuki's sin-series ultimate."
+    },
+    {
+      "name": "Metatron, Lord of Purity",
+      "skill_type": "Ultimate Skill",
+      "category": "Elemental",
+      "notes": "Leon Cromwell's light ultimate."
+    },
+    {
+      "name": "Faust, Lord of Investigation",
+      "skill_type": "Ultimate Skill",
+      "category": "Analysis",
+      "notes": "Veldora's analysis ultimate, learned partly from Rimuru."
+    },
+    {
+      "name": "Veldora, Lord of Storms",
+      "skill_type": "Ultimate Skill",
+      "category": "Elemental",
+      "notes": "Rimuru's ultimate, gained by absorbing the remains of Veldora inside Beelzebuth."
+    },
+    {
+      "name": "Michael, Lord of Justice",
+      "skill_type": "Ultimate Skill",
+      "category": "Manipulation",
+      "notes": "The controlling angel ultimate held by Emperor Rudra."
+    },
+    {
+      "name": "Lucifer, Lord of Pride",
+      "skill_type": "Ultimate Skill",
+      "category": "Manipulation",
+      "notes": "Guy Crimson's sin-series ultimate."
+    },
+    {
+      "name": "Satanael, Lord of Wrath",
+      "skill_type": "Ultimate Skill",
+      "category": "Elemental",
+      "notes": "Milim's sin-series ultimate, powering her magicule breeder reactor."
+    },
+    {
+      "name": "Mephisto, Lord of Fantasy",
+      "skill_type": "Ultimate Skill",
+      "category": "Manipulation",
+      "notes": "Zegion's illusion and space ultimate."
+    },
+    {
+      "name": "Fortuna",
+      "skill_type": "Ultimate Skill",
+      "category": "Analysis",
+      "notes": "Hinata's precognition ultimate, an evolution of Mathematician."
+    },
+    {
+      "name": "Predator",
+      "skill_type": "Unique Skill",
+      "category": "Predation",
+      "notes": "Rimuru's starting skill; consumes and copies targets."
+    },
+    {
+      "name": "Great Sage",
+      "skill_type": "Unique Skill",
+      "category": "Analysis",
+      "notes": "Rimuru's starting analysis skill; evolves into Raphael."
+    },
+    {
+      "name": "Gluttony",
+      "skill_type": "Unique Skill",
+      "category": "Predation",
+      "notes": "The higher predation skill that evolves into Beelzebuth."
+    },
+    {
+      "name": "Generalissimo",
+      "skill_type": "Unique Skill",
+      "category": "Support",
+      "notes": "Benimaru's command skill for directing troops."
+    },
+    {
+      "name": "Analyst",
+      "skill_type": "Unique Skill",
+      "category": "Analysis",
+      "notes": "Shuna's skill for reading and understanding anything she studies."
+    },
+    {
+      "name": "Manufacturer",
+      "skill_type": "Unique Skill",
+      "category": "Support",
+      "notes": "Shuna's crafting and production skill."
+    },
+    {
+      "name": "Cook",
+      "skill_type": "Unique Skill",
+      "category": "Support",
+      "notes": "Shion's skill that makes any imagined result come out right."
+    },
+    {
+      "name": "Tempter",
+      "skill_type": "Unique Skill",
+      "category": "Manipulation",
+      "notes": "Diablo's temptation skill; folds into Azazel."
+    },
+    {
+      "name": "Seeker",
+      "skill_type": "Unique Skill",
+      "category": "Analysis",
+      "notes": "Diablo's investigation skill; folds into Azazel."
+    },
+    {
+      "name": "Mathematician",
+      "skill_type": "Unique Skill",
+      "category": "Analysis",
+      "notes": "Hinata's calculation skill that predicts an opponent's moves."
+    },
+    {
+      "name": "Creator",
+      "skill_type": "Unique Skill",
+      "category": "Manipulation",
+      "notes": "Yuuki's unique skill that fabricates other skills and abilities."
+    },
+    {
+      "name": "Manipulator",
+      "skill_type": "Unique Skill",
+      "category": "Manipulation",
+      "notes": "Clayman's unique skill for controlling people and running a spy network."
+    },
+    {
+      "name": "Chosen One",
+      "skill_type": "Unique Skill",
+      "category": "Support",
+      "notes": "Masayuki's luck skill that bends situations in his favour."
+    },
+    {
+      "name": "Infinite Regeneration",
+      "skill_type": "Intrinsic Skill",
+      "category": "Support",
+      "notes": "Rimuru's slime-body regeneration."
+    },
+    {
+      "name": "Universal Shapeshift",
+      "skill_type": "Intrinsic Skill",
+      "category": "Manipulation",
+      "notes": "Rimuru's ability to mimic any form he has predated."
+    },
+    {
+      "name": "Universal Perception",
+      "skill_type": "Intrinsic Skill",
+      "category": "Analysis",
+      "notes": "Full-space sensing shared by several apex beings."
+    },
+    {
+      "name": "Black Lightning",
+      "skill_type": "Extra Skill",
+      "category": "Elemental",
+      "notes": "Ranga's signature storm attack."
+    },
+    {
+      "name": "Shadow Motion",
+      "skill_type": "Intrinsic Skill",
+      "category": "Spatial",
+      "notes": "Souei's movement through shadows."
+    },
+    {
+      "name": "Drago Nova",
+      "skill_type": "Extra Skill",
+      "category": "Elemental",
+      "notes": "Milim's devastating dragon energy blast."
+    },
+    {
+      "name": "Vortex Spear",
+      "skill_type": "Extra Skill",
+      "category": "Elemental",
+      "notes": "Gabiru's spinning water attack."
+    },
+    {
+      "name": "Flame Manipulation",
+      "skill_type": "Extra Skill",
+      "category": "Elemental",
+      "notes": "The flame power Shizu wielded while hosting the spirit Ifrit."
+    },
+    {
+      "name": "Martial Master",
+      "skill_type": "Unique Skill",
+      "category": "Combat",
+      "notes": "Hakurou's peerless swordsmanship."
+    },
+    {
+      "name": "Shadow Striker",
+      "skill_type": "Unique Skill",
+      "category": "Spatial",
+      "notes": "Souei's covert-operations unique skill."
+    }
+  ],
+  "factions": [
+    {
+      "name": "Jura Tempest Federation Leadership",
+      "kind": "Government",
+      "aligned_with": "Tempest",
+      "notes": "The ministers and officers who run Rimuru's nation."
+    },
+    {
+      "name": "Twelve Guardian Lords",
+      "kind": "Military",
+      "aligned_with": "Tempest",
+      "notes": "Tempest's circle of strongest guardians; the roster grew over time."
+    },
+    {
+      "name": "Octagram",
+      "kind": "Council",
+      "aligned_with": "Independent",
+      "notes": "The eight-seat demon lord council formed after Walpurgis."
+    },
+    {
+      "name": "Ten Great Demon Lords",
+      "kind": "Council",
+      "aligned_with": "Independent",
+      "notes": "The older ten-seat demon lord order that preceded the Octagram."
+    },
+    {
+      "name": "Primordial Demons",
+      "kind": "Demon group",
+      "aligned_with": "Independent",
+      "notes": "The seven oldest demons, each named for a colour."
+    },
+    {
+      "name": "Three Devil Girls",
+      "kind": "Military",
+      "aligned_with": "Tempest",
+      "notes": "Testarossa, Ultima, and Carrera, who serve Rimuru as diplomats and executives."
+    },
+    {
+      "name": "Holy Knights of Lubelius",
+      "kind": "Order",
+      "aligned_with": "Neutral",
+      "notes": "The crusaders of the Luminism faith, led by Hinata."
+    },
+    {
+      "name": "Free Guild",
+      "kind": "Guild",
+      "aligned_with": "Neutral",
+      "notes": "The independent adventurers' guild spanning the western nations."
+    },
+    {
+      "name": "Moderate Harlequin Alliance",
+      "kind": "Demon group",
+      "aligned_with": "Antagonist",
+      "notes": "The clown troupe of schemers behind much of the early conflict."
+    },
+    {
+      "name": "Imperial Guardians",
+      "kind": "Military",
+      "aligned_with": "Antagonist",
+      "notes": "The elite officers of the Eastern Empire."
+    },
+    {
+      "name": "Three Beastketeers",
+      "kind": "Military",
+      "aligned_with": "Ally",
+      "notes": "The three strongest beast warriors of Eurazania."
+    }
+  ],
+  "nations": [
+    {
+      "name": "Jura Tempest Federation",
+      "short_name": "Tempest",
+      "gov_type": "Demon Lord state",
+      "capital": "Rimuru",
+      "ruler": "Rimuru Tempest",
+      "relation_to_tempest": "Self",
+      "notes": "The monster nation Rimuru builds in the Great Jura Forest."
+    },
+    {
+      "name": "Armed Nation of Dwargon",
+      "short_name": "Dwargon",
+      "gov_type": "Monarchy",
+      "capital": "Central",
+      "ruler": "Gazel Dwargo",
+      "relation_to_tempest": "Ally",
+      "notes": "The dwarven kingdom of craftsmen ruled by the Hero King Gazel."
+    },
+    {
+      "name": "Kingdom of Blumund",
+      "short_name": "Blumund",
+      "gov_type": "Monarchy",
+      "capital": "Londo",
+      "ruler": null,
+      "relation_to_tempest": "Ally",
+      "notes": "A small human kingdom bordering the forest; Rimuru's first foreign contact."
+    },
+    {
+      "name": "Kingdom of Falmuth",
+      "short_name": "Falmuth",
+      "gov_type": "Monarchy",
+      "capital": "Falmuth",
+      "ruler": "Youm",
+      "relation_to_tempest": "Former Enemy",
+      "notes": "A human kingdom that invaded Tempest and lost; later re-founded as the Kingdom of Farmenas under King Youm."
+    },
+    {
+      "name": "Sorcerous Dynasty of Sarion",
+      "short_name": "Sarion",
+      "gov_type": "Magocracy",
+      "capital": "Elmine Sarion",
+      "ruler": "Elmesia El Ru Sarion",
+      "relation_to_tempest": "Ally",
+      "notes": "A union of elven states around the Divine Tree, ruled by Empress Elmesia."
+    },
+    {
+      "name": "Holy Empire of Lubelius",
+      "short_name": "Lubelius",
+      "gov_type": "Theocracy",
+      "capital": "Lubelius",
+      "ruler": "Luminous Valentine",
+      "relation_to_tempest": "Rival",
+      "notes": "The theocracy of the Luminism faith, secretly ruled by the vampire demon lord Luminous."
+    },
+    {
+      "name": "Beast Kingdom of Eurazania",
+      "short_name": "Eurazania",
+      "gov_type": "Demon Lord state",
+      "capital": "Eurazania",
+      "ruler": "Carrion",
+      "relation_to_tempest": "Ally",
+      "notes": "The beastfolk nation of the former demon lord Carrion."
+    },
+    {
+      "name": "Nasca Namrium Ulmeria United Eastern Empire",
+      "short_name": "Eastern Empire",
+      "gov_type": "Empire",
+      "capital": "Nasca",
+      "ruler": "Rudra Nam Ul Nasca",
+      "relation_to_tempest": "Enemy",
+      "notes": "The vast eastern empire of the eternal emperor Rudra, guarded by the Scorch Dragon."
+    },
+    {
+      "name": "Kingdom of Englassia",
+      "short_name": "Englassia",
+      "gov_type": "Monarchy",
+      "capital": "Ingrassia",
+      "ruler": null,
+      "relation_to_tempest": "Neutral",
+      "notes": "A western human kingdom, also rendered Ingracia, home to the Free Guild headquarters and Yuuki's school."
+    }
+  ],
+  "characters": [
+    {
+      "name": "Rimuru Tempest",
+      "epithet": "The Slime Demon Lord",
+      "race": "Demon Slime",
+      "nation": "Jura Tempest Federation",
+      "gender": "None",
+      "role_title": "Founder and Chancellor of Tempest",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 1,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 251000000,
+      "notes": "A man reincarnated as a slime who builds a monster nation and becomes one of the strongest beings alive.",
+      "skills": [
+        {
+          "skill": "Predator",
+          "acquisition": "Initial"
+        },
+        {
+          "skill": "Great Sage",
+          "acquisition": "Initial"
+        },
+        {
+          "skill": "Gluttony",
+          "acquisition": "Post-Evolution"
+        },
+        {
+          "skill": "Raphael, Lord of Wisdom",
+          "acquisition": "Post-Awakening"
+        },
+        {
+          "skill": "Beelzebuth, Lord of Gluttony",
+          "acquisition": "Post-Awakening"
+        },
+        {
+          "skill": "Uriel, Lord of Vows",
+          "acquisition": "Post-Awakening"
+        },
+        {
+          "skill": "Azathoth, Void God",
+          "acquisition": "Post-Evolution"
+        },
+        {
+          "skill": "Infinite Regeneration",
+          "acquisition": "Initial"
+        },
+        {
+          "skill": "Universal Shapeshift",
+          "acquisition": "Initial"
+        },
+        {
+          "skill": "Veldora, Lord of Storms",
+          "acquisition": "Post-Evolution"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Chancellor"
+        },
+        {
+          "faction": "Octagram",
+          "role": "Seat holder"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Slime",
+          "to": "Demon Slime",
+          "trigger": "Harvest Festival",
+          "arc": 8
+        }
+      ],
+      "demon_lord": {
+        "title": "Demon Lord Rimuru",
+        "roster": "Octagram",
+        "is_awakened": true,
+        "domain": "Jura Tempest Federation",
+        "notes": "Recognised as a True Demon Lord after the Harvest Festival."
+      }
+    },
+    {
+      "name": "Veldora Tempest",
+      "epithet": "Storm Dragon",
+      "race": "True Dragon",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Guardian and sworn friend of Rimuru",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 1,
+      "threat_rank": "Special S",
+      "demon_lord_class": "None",
+      "ep_estimate": 88126579,
+      "notes": "One of the four True Dragons, sealed for centuries until Rimuru freed him.",
+      "skills": [
+        {
+          "skill": "Faust, Lord of Investigation",
+          "acquisition": "Post-Evolution"
+        },
+        {
+          "skill": "Universal Perception",
+          "acquisition": "Initial"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [],
+      "true_dragon": {
+        "epithet": "Storm Dragon",
+        "element": "Storm",
+        "birth_order": 4,
+        "status": "Alive",
+        "notes": "The youngest True Dragon; takes the family name Tempest."
+      }
+    },
+    {
+      "name": "Benimaru",
+      "epithet": "Flame Lord",
+      "race": "Kijin",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Supreme Commander of Tempest's forces",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 3,
+      "threat_rank": "Special S",
+      "demon_lord_class": "None",
+      "ep_estimate": 40000000,
+      "notes": "Leader of the ogre survivors, evolved into a kijin and later a flame oni.",
+      "skills": [
+        {
+          "skill": "Generalissimo",
+          "acquisition": "Post-Evolution"
+        },
+        {
+          "skill": "Amaterasu, Lord of the Blazing Sun",
+          "acquisition": "Post-Awakening"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Commander"
+        },
+        {
+          "faction": "Twelve Guardian Lords",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Ogre",
+          "to": "Kijin",
+          "trigger": "Naming",
+          "arc": 3
+        },
+        {
+          "from": "Kijin",
+          "to": "Oni",
+          "trigger": "Harvest Festival",
+          "arc": 8
+        }
+      ]
+    },
+    {
+      "name": "Shuna",
+      "epithet": "Princess of the Oni",
+      "race": "Kijin",
+      "nation": "Jura Tempest Federation",
+      "gender": "Female",
+      "role_title": "Head of the Production Department",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 3,
+      "threat_rank": "A+",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "Benimaru's sister, a gentle priestess and skilled craftsperson.",
+      "skills": [
+        {
+          "skill": "Analyst",
+          "acquisition": "Post-Evolution"
+        },
+        {
+          "skill": "Manufacturer",
+          "acquisition": "Post-Evolution"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Production head"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Ogre",
+          "to": "Kijin",
+          "trigger": "Naming",
+          "arc": 3
+        }
+      ]
+    },
+    {
+      "name": "Shion",
+      "epithet": "Battle Secretary",
+      "race": "Wicked Oni",
+      "nation": "Jura Tempest Federation",
+      "gender": "Female",
+      "role_title": "Chief Secretary and bodyguard",
+      "alignment": "Tempest",
+      "status": "Revived",
+      "debut_arc": 3,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": 4229140,
+      "notes": "Rimuru's fierce secretary, killed in the Falmuth attack and revived at the Harvest Festival.",
+      "skills": [
+        {
+          "skill": "Cook",
+          "acquisition": "Post-Awakening"
+        },
+        {
+          "skill": "Susanoo, Lord of Tyranny",
+          "acquisition": "Post-Awakening"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Secretary"
+        },
+        {
+          "faction": "Twelve Guardian Lords",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Ogre",
+          "to": "Kijin",
+          "trigger": "Naming",
+          "arc": 3
+        },
+        {
+          "from": "Kijin",
+          "to": "Wicked Oni",
+          "trigger": "Harvest Festival",
+          "arc": 8
+        }
+      ]
+    },
+    {
+      "name": "Souei",
+      "epithet": null,
+      "race": "Kijin",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Spymaster",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 3,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": 1281162,
+      "notes": "A quiet, deadly kijin who runs Tempest's intelligence network.",
+      "skills": [
+        {
+          "skill": "Tsukuyomi, Lord of Moon Shadow",
+          "acquisition": "Post-Awakening"
+        },
+        {
+          "skill": "Shadow Motion",
+          "acquisition": "Post-Evolution"
+        },
+        {
+          "skill": "Shadow Striker",
+          "acquisition": "Post-Evolution"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Spymaster"
+        },
+        {
+          "faction": "Twelve Guardian Lords",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Ogre",
+          "to": "Kijin",
+          "trigger": "Naming",
+          "arc": 3
+        }
+      ]
+    },
+    {
+      "name": "Hakurou",
+      "epithet": "Sword Saint",
+      "race": "Kijin",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Sword instructor",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 3,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": 60000,
+      "notes": "The elderly master swordsman of the kijin, teacher to Tempest's fighters.",
+      "skills": [
+        {
+          "skill": "Martial Master",
+          "acquisition": "Post-Evolution"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Instructor"
+        },
+        {
+          "faction": "Twelve Guardian Lords",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Ogre",
+          "to": "Kijin",
+          "trigger": "Naming",
+          "arc": 3
+        }
+      ]
+    },
+    {
+      "name": "Kurobe",
+      "epithet": null,
+      "race": "Kijin",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Master blacksmith",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 3,
+      "threat_rank": "A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "The kijin smith who forges Tempest's finest weapons.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Smith"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Ogre",
+          "to": "Kijin",
+          "trigger": "Naming",
+          "arc": 3
+        }
+      ]
+    },
+    {
+      "name": "Rigurd",
+      "epithet": null,
+      "race": "Hobgoblin",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Prime Minister",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 1,
+      "threat_rank": "A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "The first goblin chief Rimuru named; now the head of Tempest's civil government.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Prime Minister"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Goblin",
+          "to": "Hobgoblin",
+          "trigger": "Naming",
+          "arc": 1
+        }
+      ]
+    },
+    {
+      "name": "Gobta",
+      "epithet": null,
+      "race": "Hobgoblin",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Captain of the Goblin Riders",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 1,
+      "threat_rank": "A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A goofy but oddly gifted goblin who leads the wolf-riding cavalry.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Twelve Guardian Lords",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Goblin",
+          "to": "Hobgoblin",
+          "trigger": "Naming",
+          "arc": 1
+        }
+      ]
+    },
+    {
+      "name": "Ranga",
+      "epithet": "Storm Fang",
+      "race": "Tempest Star Wolf",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Rimuru's guardian beast",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 1,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": 4340084,
+      "notes": "The direwolf pup who grew into Rimuru's loyal storm wolf, living in his shadow.",
+      "skills": [
+        {
+          "skill": "Black Lightning",
+          "acquisition": "Post-Evolution"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Twelve Guardian Lords",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Direwolf",
+          "to": "Tempest Wolf",
+          "trigger": "Naming",
+          "arc": 1
+        },
+        {
+          "from": "Tempest Wolf",
+          "to": "Tempest Star Wolf",
+          "trigger": "Harvest Festival",
+          "arc": 8
+        }
+      ]
+    },
+    {
+      "name": "Gabiru",
+      "epithet": null,
+      "race": "Dragonewt",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Head of the flying corps and research",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 3,
+      "threat_rank": "A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A proud lizardman leader who becomes a dragonewt and a devoted Tempest officer.",
+      "skills": [
+        {
+          "skill": "Vortex Spear",
+          "acquisition": "Initial"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Corps head"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Lizardman",
+          "to": "Dragonewt",
+          "trigger": "Naming",
+          "arc": 3
+        }
+      ]
+    },
+    {
+      "name": "Souka",
+      "epithet": null,
+      "race": "Dragonewt",
+      "nation": "Jura Tempest Federation",
+      "gender": "Female",
+      "role_title": "Souei's lieutenant",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 3,
+      "threat_rank": "A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "Gabiru's sister, a disciplined agent serving under Souei.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Agent"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Lizardman",
+          "to": "Dragonewt",
+          "trigger": "Naming",
+          "arc": 3
+        }
+      ]
+    },
+    {
+      "name": "Geld",
+      "epithet": null,
+      "race": "High Orc",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Chief of construction and defence",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 3,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": 2378749,
+      "notes": "Named after the fallen Orc Disaster, he leads the orcs who build and defend Tempest.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Construction chief"
+        },
+        {
+          "faction": "Twelve Guardian Lords",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Orc",
+          "to": "High Orc",
+          "trigger": "Naming",
+          "arc": 3
+        },
+        {
+          "from": "High Orc",
+          "to": "Orc King",
+          "trigger": "Harvest Festival",
+          "arc": 8
+        }
+      ]
+    },
+    {
+      "name": "Diablo",
+      "epithet": "Noir, the Black Primordial",
+      "race": "Primordial Demon",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Rimuru's chief steward",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 7,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 6666666,
+      "notes": "One of the seven primordial demons, who begs to serve Rimuru after being summoned.",
+      "skills": [
+        {
+          "skill": "Tempter",
+          "acquisition": "Initial"
+        },
+        {
+          "skill": "Seeker",
+          "acquisition": "Initial"
+        },
+        {
+          "skill": "Azazel, Lord of Temptation",
+          "acquisition": "Post-Awakening"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Chief steward"
+        },
+        {
+          "faction": "Primordial Demons",
+          "role": "Noir"
+        },
+        {
+          "faction": "Twelve Guardian Lords",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Demon",
+          "to": "Primordial Demon",
+          "trigger": "Naming",
+          "arc": 7
+        }
+      ]
+    },
+    {
+      "name": "Testarossa",
+      "epithet": "Blanc, the White Primordial",
+      "race": "Primordial Demon",
+      "nation": "Jura Tempest Federation",
+      "gender": "Female",
+      "role_title": "Diplomat and executive",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 3333124,
+      "notes": "The White Primordial, who serves Rimuru as a fearsome diplomat.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Primordial Demons",
+          "role": "Blanc"
+        },
+        {
+          "faction": "Three Devil Girls",
+          "role": "Member"
+        },
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Executive"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Ultima",
+      "epithet": "Violet, the Purple Primordial",
+      "race": "Primordial Demon",
+      "nation": "Jura Tempest Federation",
+      "gender": "Female",
+      "role_title": "Executive",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 2668816,
+      "notes": "The Purple Primordial, cruel in battle and loyal to Rimuru.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Primordial Demons",
+          "role": "Violet"
+        },
+        {
+          "faction": "Three Devil Girls",
+          "role": "Member"
+        },
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Executive"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Carrera",
+      "epithet": "Jaune, the Yellow Primordial",
+      "race": "Primordial Demon",
+      "nation": "Jura Tempest Federation",
+      "gender": "Female",
+      "role_title": "Executive",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 7013351,
+      "notes": "The Yellow Primordial, who loves a good fight and serves Rimuru.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Primordial Demons",
+          "role": "Jaune"
+        },
+        {
+          "faction": "Three Devil Girls",
+          "role": "Member"
+        },
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Executive"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Ramiris",
+      "epithet": "The Labyrinth",
+      "race": "Pixie",
+      "nation": "Jura Tempest Federation",
+      "gender": "Female",
+      "role_title": "Demon Lord of the Labyrinth",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "Special A",
+      "demon_lord_class": "Self-Proclaimed",
+      "ep_estimate": null,
+      "notes": "An ancient, tiny fairy demon lord who moves her labyrinth beneath Tempest.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Octagram",
+          "role": "Third seat"
+        },
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Member"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Labyrinth",
+        "roster": "Octagram",
+        "is_awakened": false,
+        "domain": "Tempest Labyrinth",
+        "notes": "One of the oldest demon lords despite her small stature."
+      }
+    },
+    {
+      "name": "Beretta",
+      "epithet": null,
+      "race": "Arch Doll",
+      "nation": "Jura Tempest Federation",
+      "gender": "None",
+      "role_title": "Ramiris's guardian",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A demon Rimuru bound into a golem body to protect Ramiris.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Treyni",
+      "epithet": null,
+      "race": "Dryad",
+      "nation": "Jura Tempest Federation",
+      "gender": "Female",
+      "role_title": "Dryad of the Great Jura Forest",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 3,
+      "threat_rank": "A+",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "The elegant tree spirit who watches over the forest and favours Rimuru.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Forest guardian"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Adalmann",
+      "epithet": null,
+      "race": "Wight",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Labyrinth guardian and bishop",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A devout undead sorcerer who guards a floor of the labyrinth.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Human",
+          "to": "Wight",
+          "trigger": "Soul absorption",
+          "arc": 10
+        },
+        {
+          "from": "Wight",
+          "to": "Wight King",
+          "trigger": "Naming",
+          "arc": 10
+        }
+      ]
+    },
+    {
+      "name": "Zegion",
+      "epithet": "Insect Kaiser",
+      "race": "Insectar",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Labyrinth guardian",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "Special S",
+      "demon_lord_class": "None",
+      "ep_estimate": 68889143,
+      "notes": "A once-lowly insect who trained under Veldora into one of Tempest's strongest.",
+      "skills": [
+        {
+          "skill": "Mephisto, Lord of Fantasy",
+          "acquisition": "Post-Awakening"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Guardian"
+        },
+        {
+          "faction": "Twelve Guardian Lords",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": [
+        {
+          "from": "Insectar",
+          "to": "Insect Kaiser",
+          "trigger": "Harvest Festival",
+          "arc": 10
+        }
+      ]
+    },
+    {
+      "name": "Kumara",
+      "epithet": null,
+      "race": "Mystic Fox",
+      "nation": "Jura Tempest Federation",
+      "gender": "Female",
+      "role_title": "Labyrinth guardian",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A young nine-tailed spirit beast who guards the labyrinth.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Guardian"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Gadra",
+      "epithet": null,
+      "race": "Metal Daemon",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Labyrinth researcher",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 12,
+      "threat_rank": "A+",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A former court mage of the Eastern Empire, reincarnated into a metal daemon, who defects to Tempest and studies its labyrinth.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Researcher"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Kaijin",
+      "epithet": null,
+      "race": "Dwarf",
+      "nation": "Jura Tempest Federation",
+      "gender": "Male",
+      "role_title": "Master smith and engineer",
+      "alignment": "Tempest",
+      "status": "Alive",
+      "debut_arc": 2,
+      "threat_rank": "B",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A dwarven smith exiled from Dwargon who becomes the backbone of Tempest's industry.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Jura Tempest Federation Leadership",
+          "role": "Chief engineer"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Shizue Izawa",
+      "epithet": "Conqueror of Flames",
+      "race": "Otherworlder",
+      "nation": null,
+      "gender": "Female",
+      "role_title": "Hero and teacher",
+      "alignment": "Ally",
+      "status": "Deceased",
+      "debut_arc": 5,
+      "threat_rank": "A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A summoned hero who hosted the flame spirit Ifrit; her memory shapes Rimuru's human form.",
+      "skills": [
+        {
+          "skill": "Flame Manipulation",
+          "acquisition": "Initial"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Free Guild",
+          "role": "Veteran adventurer"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Veldanava",
+      "epithet": "Star King Dragon",
+      "race": "True Dragon",
+      "nation": null,
+      "gender": "Male",
+      "role_title": "Progenitor of the world",
+      "alignment": "Neutral",
+      "status": "Deceased",
+      "debut_arc": null,
+      "threat_rank": "Special S",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "The firstborn True Dragon who shaped the world and fathered Milim; long dead by the main story.",
+      "skills": [],
+      "factions": [],
+      "true_dragon": {
+        "epithet": "Star King Dragon",
+        "element": "Star",
+        "birth_order": 1,
+        "status": "Deceased",
+        "notes": "The strongest of the True Dragons; gave up his power to create the world."
+      }
+    },
+    {
+      "name": "Velzard",
+      "epithet": "Frost Dragon",
+      "race": "True Dragon",
+      "nation": null,
+      "gender": "Female",
+      "role_title": "White Ice Dragon",
+      "alignment": "Neutral",
+      "status": "Alive",
+      "debut_arc": 9,
+      "threat_rank": "Special S",
+      "demon_lord_class": "None",
+      "ep_estimate": 80000000,
+      "notes": "The second True Dragon, who keeps company with the demon lord Guy in the frozen north.",
+      "skills": [],
+      "factions": [],
+      "true_dragon": {
+        "epithet": "Frost Dragon",
+        "element": "Frost",
+        "birth_order": 2,
+        "status": "Alive",
+        "notes": "Also called the Ice Dragon; sister of Veldora and Velgrynd."
+      }
+    },
+    {
+      "name": "Velgrynd",
+      "epithet": "Scorch Dragon",
+      "race": "True Dragon",
+      "nation": "Nasca Namrium Ulmeria United Eastern Empire",
+      "gender": "Female",
+      "role_title": "Guardian deity of the Empire",
+      "alignment": "Antagonist",
+      "status": "Alive",
+      "debut_arc": 12,
+      "threat_rank": "Special S",
+      "demon_lord_class": "None",
+      "ep_estimate": 74350087,
+      "notes": "The third True Dragon, who serves Emperor Rudra as his marshal and guardian.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Imperial Guardians",
+          "role": "Marshal"
+        }
+      ],
+      "true_dragon": {
+        "epithet": "Scorch Dragon",
+        "element": "Scorch",
+        "birth_order": 3,
+        "status": "Alive",
+        "notes": "Devoted to Rudra; wields scorching flame magic."
+      }
+    },
+    {
+      "name": "Milim Nava",
+      "epithet": "The Destroyer",
+      "race": "Dragonoid",
+      "nation": null,
+      "gender": "Female",
+      "role_title": "One of the oldest Demon Lords",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 4,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 100000000,
+      "notes": "The daughter of Veldanava and among the very strongest demon lords, who becomes Rimuru's close friend.",
+      "skills": [
+        {
+          "skill": "Drago Nova",
+          "acquisition": "Initial"
+        },
+        {
+          "skill": "Satanael, Lord of Wrath",
+          "acquisition": "Post-Awakening"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Octagram",
+          "role": "Seat holder"
+        },
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Member"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Destroyer",
+        "roster": "Octagram",
+        "is_awakened": true,
+        "domain": "Milim's domain",
+        "notes": "Nicknamed the Dragon Princess; one of the oldest demon lords."
+      }
+    },
+    {
+      "name": "Guy Crimson",
+      "epithet": "Lord of Darkness",
+      "race": "Primordial Demon",
+      "nation": null,
+      "gender": "Male",
+      "role_title": "Oldest and strongest Demon Lord",
+      "alignment": "Neutral",
+      "status": "Alive",
+      "debut_arc": 9,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 40000000,
+      "notes": "The Red Primordial and the eldest demon lord, who holds his throne in the frozen north.",
+      "skills": [
+        {
+          "skill": "Lucifer, Lord of Pride",
+          "acquisition": "Post-Awakening"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Octagram",
+          "role": "Seat holder"
+        },
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Member"
+        },
+        {
+          "faction": "Primordial Demons",
+          "role": "Rouge"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Mediator",
+        "roster": "Octagram",
+        "is_awakened": true,
+        "domain": "The frozen north",
+        "notes": "The first primordial demon; acts on the late Veldanava's behalf."
+      }
+    },
+    {
+      "name": "Luminous Valentine",
+      "epithet": "Twilight",
+      "race": "Vampire",
+      "nation": "Holy Empire of Lubelius",
+      "gender": "Female",
+      "role_title": "Demon Lord and true ruler of Lubelius",
+      "alignment": "Rival",
+      "status": "Alive",
+      "debut_arc": 10,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 20000000,
+      "notes": "The vampire demon lord who is secretly worshipped as the god of the Luminism faith.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Octagram",
+          "role": "Seat holder"
+        },
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Member"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Divine Enemy",
+        "roster": "Octagram",
+        "is_awakened": true,
+        "domain": "Holy Empire of Lubelius",
+        "notes": "Rules Lubelius from the shadows as its living god."
+      }
+    },
+    {
+      "name": "Leon Cromwell",
+      "epithet": "Platinum Saber",
+      "race": "Otherworlder",
+      "nation": null,
+      "gender": "Male",
+      "role_title": "Hero-type Demon Lord",
+      "alignment": "Neutral",
+      "status": "Alive",
+      "debut_arc": 5,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Self-Proclaimed",
+      "ep_estimate": 5000000,
+      "notes": "A summoned swordsman who became a demon lord and once summoned Shizu; rules a golden country.",
+      "skills": [
+        {
+          "skill": "Metatron, Lord of Purity",
+          "acquisition": "Post-Awakening"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Octagram",
+          "role": "Seat holder"
+        },
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Member"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Platinum Saber",
+        "roster": "Octagram",
+        "is_awakened": false,
+        "domain": "El Dorado",
+        "notes": "Searches for a summoned girl he cares for."
+      }
+    },
+    {
+      "name": "Dino",
+      "epithet": "Sleeping Ruler",
+      "race": "Seraph",
+      "nation": null,
+      "gender": "Male",
+      "role_title": "The laziest Demon Lord",
+      "alignment": "Neutral",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 2260000,
+      "notes": "A demon lord who lounges around Tempest's labyrinth, secretly an agent of the world's angelic side.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Octagram",
+          "role": "Seat holder"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Sleeping Ruler",
+        "roster": "Octagram",
+        "is_awakened": true,
+        "domain": "Wanderer",
+        "notes": "One of the fallen who serves the Cardinal World; poses as a lazy demon lord."
+      }
+    },
+    {
+      "name": "Dagruel",
+      "epithet": "Wicked God",
+      "race": "Giant",
+      "nation": null,
+      "gender": "Male",
+      "role_title": "Giant Demon Lord",
+      "alignment": "Neutral",
+      "status": "Alive",
+      "debut_arc": 9,
+      "threat_rank": "Special S",
+      "demon_lord_class": "Awakened",
+      "ep_estimate": 120000000,
+      "notes": "A colossal, taciturn demon lord who guards his own domain.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Octagram",
+          "role": "Seat holder"
+        },
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Member"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Wicked God",
+        "roster": "Octagram",
+        "is_awakened": true,
+        "domain": "The giants' land",
+        "notes": "Guards a sealed region and rarely involves himself in politics."
+      }
+    },
+    {
+      "name": "Carrion",
+      "epithet": "Beast Master",
+      "race": "Beastfolk",
+      "nation": "Beast Kingdom of Eurazania",
+      "gender": "Male",
+      "role_title": "Ruler of Eurazania",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "Special A",
+      "demon_lord_class": "Self-Proclaimed",
+      "ep_estimate": 2773537,
+      "notes": "The lion-like former demon lord who rules the beastfolk and allies with Rimuru and Milim.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Former member"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Beast Master",
+        "roster": "Former",
+        "is_awakened": false,
+        "domain": "Beast Kingdom of Eurazania",
+        "notes": "Stepped down from the demon lord seats and became a vassal of Milim."
+      }
+    },
+    {
+      "name": "Albis",
+      "epithet": null,
+      "race": "Beastfolk",
+      "nation": "Beast Kingdom of Eurazania",
+      "gender": "Female",
+      "role_title": "One of the Three Beastketeers",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "A+",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A serpent-attributed beastfolk general of Eurazania.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Three Beastketeers",
+          "role": "Member"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Suphia",
+      "epithet": null,
+      "race": "Beastfolk",
+      "nation": "Beast Kingdom of Eurazania",
+      "gender": "Female",
+      "role_title": "One of the Three Beastketeers",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A beastfolk general of Eurazania who serves Carrion.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Three Beastketeers",
+          "role": "Member"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Grucius",
+      "epithet": null,
+      "race": "Beastfolk",
+      "nation": "Beast Kingdom of Eurazania",
+      "gender": "Male",
+      "role_title": "One of the Three Beastketeers",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A wolf-attributed lycanthrope of Eurazania, part of Carrion's delegation to Tempest.",
+      "skills": [],
+      "factions": [],
+      "evolutions": []
+    },
+    {
+      "name": "Frey",
+      "epithet": "Sky Queen",
+      "race": "Winged",
+      "nation": null,
+      "gender": "Female",
+      "role_title": "Former Demon Lord of the sky",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 9,
+      "threat_rank": "Special A",
+      "demon_lord_class": "Self-Proclaimed",
+      "ep_estimate": null,
+      "notes": "A harpy demon lord who gives up her seat and joins Milim as a trusted aide.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Former member"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Sky Queen",
+        "roster": "Former",
+        "is_awakened": false,
+        "domain": "The sky domain",
+        "notes": "Became one of Milim's subordinates after Walpurgis."
+      }
+    },
+    {
+      "name": "Clayman",
+      "epithet": "Marionette Master",
+      "race": "Majin",
+      "nation": null,
+      "gender": "Male",
+      "role_title": "Scheming Demon Lord",
+      "alignment": "Antagonist",
+      "status": "Deceased",
+      "debut_arc": 6,
+      "threat_rank": "Special A",
+      "demon_lord_class": "Self-Proclaimed",
+      "ep_estimate": 788842,
+      "notes": "A cruel demon lord who manipulates others from behind the scenes; killed by Rimuru at Walpurgis.",
+      "skills": [
+        {
+          "skill": "Manipulator",
+          "acquisition": "Initial"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Member"
+        },
+        {
+          "faction": "Moderate Harlequin Alliance",
+          "role": "Backer"
+        }
+      ],
+      "evolutions": [],
+      "demon_lord": {
+        "title": "Marionette Master",
+        "roster": "Former",
+        "is_awakened": false,
+        "domain": "Clayman's territory",
+        "notes": "Faked greater strength through puppets; defeated at the demon lords' banquet."
+      }
+    },
+    {
+      "name": "Kagali",
+      "epithet": null,
+      "race": "Majin",
+      "nation": null,
+      "gender": "Female",
+      "role_title": "Leader of the Moderate Harlequin Alliance",
+      "alignment": "Antagonist",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "Special A",
+      "demon_lord_class": "Self-Proclaimed",
+      "ep_estimate": null,
+      "notes": "The reborn former demon lord Kazaream, who leads the clown troupe of schemers.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Moderate Harlequin Alliance",
+          "role": "Leader"
+        },
+        {
+          "faction": "Ten Great Demon Lords",
+          "role": "Former member"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Laplace",
+      "epithet": null,
+      "race": "Majin",
+      "nation": null,
+      "gender": "Male",
+      "role_title": "Trickster of the Harlequin troupe",
+      "alignment": "Antagonist",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A cheerful, dangerous clown who works his own agenda within the troupe.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Moderate Harlequin Alliance",
+          "role": "Member"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Tear",
+      "epithet": null,
+      "race": "Majin",
+      "nation": null,
+      "gender": "Female",
+      "role_title": "Member of the Harlequin troupe",
+      "alignment": "Antagonist",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "A+",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A childlike clown of the Moderate Harlequin Alliance.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Moderate Harlequin Alliance",
+          "role": "Member"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Footman",
+      "epithet": null,
+      "race": "Majin",
+      "nation": null,
+      "gender": "Male",
+      "role_title": "Member of the Harlequin troupe",
+      "alignment": "Antagonist",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "A+",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A rotund, violent clown of the Moderate Harlequin Alliance.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Moderate Harlequin Alliance",
+          "role": "Member"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Gazel Dwargo",
+      "epithet": "Hero King",
+      "race": "Dwarf",
+      "nation": "Armed Nation of Dwargon",
+      "gender": "Male",
+      "role_title": "King of Dwargon",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 2,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": 1000000,
+      "notes": "The warrior king of the dwarves, a former hero who becomes one of Rimuru's steadiest allies.",
+      "skills": [],
+      "factions": [],
+      "evolutions": []
+    },
+    {
+      "name": "Elmesia El Ru Sarion",
+      "epithet": "Sorcerer Emperor",
+      "race": "High Elf",
+      "nation": "Sorcerous Dynasty of Sarion",
+      "gender": "Female",
+      "role_title": "Empress of Sarion",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "A+",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "The long-lived, playful empress of the elven dynasty, who befriends Rimuru.",
+      "skills": [],
+      "factions": [],
+      "evolutions": []
+    },
+    {
+      "name": "Hinata Sakaguchi",
+      "epithet": "Strongest of the Holy Knights",
+      "race": "Otherworlder",
+      "nation": "Holy Empire of Lubelius",
+      "gender": "Female",
+      "role_title": "Captain of the Crusaders",
+      "alignment": "Rival",
+      "status": "Alive",
+      "debut_arc": 5,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": 1000000,
+      "notes": "The peerless holy knight who first hunts Rimuru, then becomes a wary ally.",
+      "skills": [
+        {
+          "skill": "Mathematician",
+          "acquisition": "Initial"
+        },
+        {
+          "skill": "Fortuna",
+          "acquisition": "Post-Awakening"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Holy Knights of Lubelius",
+          "role": "Captain"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Chloe Aubert",
+      "epithet": null,
+      "race": "Otherworlder",
+      "nation": "Kingdom of Englassia",
+      "gender": "Female",
+      "role_title": "One of Shizu's students",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 5,
+      "threat_rank": "Special S",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A summoned child taught by Rimuru who is bound to a great destiny across time.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Holy Knights of Lubelius",
+          "role": "Trainee"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Masayuki",
+      "epithet": "The Chosen Hero",
+      "race": "Otherworlder",
+      "nation": "Kingdom of Englassia",
+      "gender": "Male",
+      "role_title": "Celebrated Hero",
+      "alignment": "Neutral",
+      "status": "Alive",
+      "debut_arc": 11,
+      "threat_rank": "B",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A summoned youth whose luck skill makes the world treat him as a legendary hero.",
+      "skills": [
+        {
+          "skill": "Chosen One",
+          "acquisition": "Initial"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Free Guild",
+          "role": "Star adventurer"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Yuuki Kagurazaka",
+      "epithet": null,
+      "race": "Otherworlder",
+      "nation": "Kingdom of Englassia",
+      "gender": "Male",
+      "role_title": "Grandmaster of the Free Guild",
+      "alignment": "Antagonist",
+      "status": "Alive",
+      "debut_arc": 5,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": 2000000,
+      "notes": "The affable head of the Free Guild who hides a long-running scheme against the world's order.",
+      "skills": [
+        {
+          "skill": "Creator",
+          "acquisition": "Initial"
+        },
+        {
+          "skill": "Mammon, Lord of Greed",
+          "acquisition": "Post-Awakening"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Free Guild",
+          "role": "Grandmaster"
+        },
+        {
+          "faction": "Moderate Harlequin Alliance",
+          "role": "Secret ally"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Fuze",
+      "epithet": null,
+      "race": "Human",
+      "nation": "Kingdom of Blumund",
+      "gender": "Male",
+      "role_title": "Guild Master of Blumund",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 1,
+      "threat_rank": "B",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "The shrewd Blumund guild master who becomes an early friend to Tempest.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Free Guild",
+          "role": "Branch master"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Youm",
+      "epithet": null,
+      "race": "Human",
+      "nation": "Kingdom of Falmuth",
+      "gender": "Male",
+      "role_title": "King of Farmenas (reformed Falmuth)",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 7,
+      "threat_rank": "C",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A mercenary Rimuru backs to become the reform king of Falmuth after its invasion fails.",
+      "skills": [],
+      "factions": [],
+      "evolutions": []
+    },
+    {
+      "name": "Razen",
+      "epithet": null,
+      "race": "Human",
+      "nation": "Kingdom of Falmuth",
+      "gender": "Male",
+      "role_title": "Court mage of Falmuth",
+      "alignment": "Antagonist",
+      "status": "Alive",
+      "debut_arc": 7,
+      "threat_rank": "B",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "Falmuth's court sorcerer, captured after the failed invasion; in the novels he survives and later serves the reformed kingdom.",
+      "skills": [],
+      "factions": [],
+      "evolutions": []
+    },
+    {
+      "name": "Rudra Nam Ul Nasca",
+      "epithet": "The Eternal Emperor",
+      "race": "Otherworlder",
+      "nation": "Nasca Namrium Ulmeria United Eastern Empire",
+      "gender": "Male",
+      "role_title": "Emperor of the Eastern Empire",
+      "alignment": "Antagonist",
+      "status": "Alive",
+      "debut_arc": 12,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "The undying emperor who has ruled the East for two thousand years through repeated lives.",
+      "skills": [
+        {
+          "skill": "Michael, Lord of Justice",
+          "acquisition": "Initial"
+        }
+      ],
+      "factions": [
+        {
+          "faction": "Imperial Guardians",
+          "role": "Emperor"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Kondo Tatsuya",
+      "epithet": null,
+      "race": "Otherworlder",
+      "nation": "Nasca Namrium Ulmeria United Eastern Empire",
+      "gender": "Male",
+      "role_title": "Head of the Imperial Intelligence Bureau",
+      "alignment": "Antagonist",
+      "status": "Deceased",
+      "debut_arc": 12,
+      "threat_rank": "Special A",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A cold, gun-wielding officer who serves as the Empire's chief of military staff.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Imperial Guardians",
+          "role": "Head of Intelligence"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Damrada",
+      "epithet": null,
+      "race": "Human",
+      "nation": "Nasca Namrium Ulmeria United Eastern Empire",
+      "gender": "Male",
+      "role_title": "Imperial merchant and guardian",
+      "alignment": "Antagonist",
+      "status": "Alive",
+      "debut_arc": 12,
+      "threat_rank": "A+",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A powerful merchant tied to the Empire's covert operations.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Imperial Guardians",
+          "role": "Operative"
+        }
+      ],
+      "evolutions": []
+    },
+    {
+      "name": "Phobio",
+      "epithet": null,
+      "race": "Beastfolk",
+      "nation": "Beast Kingdom of Eurazania",
+      "gender": "Male",
+      "role_title": "One of the Three Beastketeers",
+      "alignment": "Ally",
+      "status": "Alive",
+      "debut_arc": 6,
+      "threat_rank": "A+",
+      "demon_lord_class": "None",
+      "ep_estimate": null,
+      "notes": "A black-leopard lycanthrope of Eurazania; the Charybdis incident grew out of Milim goading him.",
+      "skills": [],
+      "factions": [
+        {
+          "faction": "Three Beastketeers",
+          "role": "Member"
+        }
+      ],
+      "evolutions": []
+    }
+  ]
+}
