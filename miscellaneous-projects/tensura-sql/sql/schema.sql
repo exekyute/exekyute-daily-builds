@@ -133,8 +133,8 @@ CREATE TABLE true_dragons (
 );
 
 -- Convenience view: characters flattened with their dimension names, plus the
--- subtype flags. This is what the BI export characters.csv is built from, so a
--- single-table connection in Tableau or Power BI already has readable labels.
+-- subtype flags. This is what the characters.csv export is built from, so the
+-- one file already carries readable labels next to its keys.
 CREATE VIEW v_character_full AS
 SELECT
     c.character_id,

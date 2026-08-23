@@ -6,7 +6,7 @@ that one file:
   1. tensura.db      a SQLite database built from sql/schema.sql,
   2. sql/seed.sql    INSERT statements, so the database can also be rebuilt with
                      nothing but the sqlite3 command line,
-  3. bi-exports/*.csv the flat tables Tableau and Power BI connect to.
+  3. exports/*.csv one flat CSV per table, for anything that reads CSVs.
 
 Python standard library only. Run it from the engine folder:
 
@@ -27,7 +27,7 @@ DATA = os.path.join(ROOT, "data", "tensura.json")
 SCHEMA = os.path.join(ROOT, "sql", "schema.sql")
 SEED = os.path.join(ROOT, "sql", "seed.sql")
 DB = os.path.join(ROOT, "tensura.db")
-EXPORTS = os.path.join(ROOT, "bi-exports")
+EXPORTS = os.path.join(ROOT, "exports")
 
 # The tables, in an order that satisfies the foreign keys, for the seed dump.
 SEED_TABLE_ORDER = [
@@ -278,7 +278,7 @@ def main():
     print("\nBuilt tensura.db")
     for t in SEED_TABLE_ORDER:
         print(f"  {t:<22} {counts[t]:>4} rows")
-    print(f"\nWrote sql/seed.sql and {len(exported)} CSVs to bi-exports/")
+    print(f"\nWrote sql/seed.sql and {len(exported)} CSVs to exports/")
 
 
 if __name__ == "__main__":

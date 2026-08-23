@@ -1,8 +1,8 @@
-# BI exports and data dictionary
+# CSV exports and data dictionary
 
 These CSVs are written by `engine/build_db.py` from the same SQLite database the
-SQL queries run against. They are the tables Tableau and Power BI connect to. Each
-one has a header row and is UTF-8 encoded.
+SQL queries run against, one flat table per file. Each one has a header row and
+is UTF-8 encoded.
 
 The model is a small star. `characters.csv` is the centre. The `dim_` files are
 the dimensions it points at. The `bridge_` files carry the many-to-many links

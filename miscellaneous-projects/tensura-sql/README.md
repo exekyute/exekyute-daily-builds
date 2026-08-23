@@ -1,18 +1,18 @@
 # TenSura World Database
 
 A small relational dataset about the world of *That Time I Got Reincarnated as a
-Slime* (Tensei Shitara Slime Datta Ken), built as a SQLite database and wired up so
-the same data feeds a Tableau dashboard and a Power BI report.
+Slime* (Tensei Shitara Slime Datta Ken), built as a SQLite database with a set of
+analytical queries and integrity checks over it.
 
-I built it because I enjoy the series and wanted a real subject to practice two
-things on: modelling messy lore into a clean relational schema, and taking one
-dataset all the way from SQL into two different BI tools. The characters, races,
+I built it because I enjoy the series and wanted a real subject to practice
+modelling messy lore into a clean relational schema and asking real questions of
+it in SQL. The characters, races,
 nations, skills, evolutions, demon lords, and dragons are drawn from the light
 novels and cross-checked against the series wiki. Where the numbers are contested,
 the notes say so.
 
 Everything is generated from one file, `data/tensura.json`, so the database, the
-plain-SQL seed, and the BI exports never drift apart.
+plain-SQL seed, and the CSV exports never drift apart.
 
 ## What is in it
 
@@ -42,7 +42,7 @@ cd engine
 python build_db.py
 ```
 
-That writes `tensura.db`, `sql/seed.sql`, and the CSVs in `bi-exports/`.
+That writes `tensura.db`, `sql/seed.sql`, and the CSVs in `exports/`.
 
 Run the analytical queries and the checks (this is the test run):
 
@@ -67,18 +67,12 @@ shell alone:
 sqlite3 tensura.db ".read sql/schema.sql" ".read sql/seed.sql"
 ```
 
-## The Tableau and Power BI side
+## The CSV exports
 
-The `bi-exports/` folder holds the flat tables both tools connect to, with a data
-dictionary in [bi-exports/README.md](bi-exports/README.md). `characters.csv` already
-carries readable labels next to its keys, so simple charts work from that one file,
-while the dimension and bridge files give you a full model with slicers.
-
-Two step-by-step guides walk through building a dashboard from these files, right
-down to the relationships, the calculated fields, and the DAX measures:
-
-- [tableau/README.md](tableau/README.md)
-- [powerbi/README.md](powerbi/README.md)
+The `exports/` folder holds one flat CSV per table, with a data dictionary in
+[exports/README.md](exports/README.md). `characters.csv` already carries readable
+labels next to its keys, so it stands on its own, while the dimension and bridge
+files carry the full model for anything that reads CSVs.
 
 ## A note on Existence Points
 
@@ -92,7 +86,7 @@ class, which is the better field for a broad distribution.
 ## Repository layout
 
 ```
-tensura-sql-bi/
+tensura-sql/
   data/
     tensura.json          the single source of truth
   sql/
@@ -104,9 +98,7 @@ tensura-sql-bi/
     run_queries.py        runs the queries and the checks
     validate.py           referential-integrity checks
     tests/                unit tests
-  bi-exports/             CSVs for Tableau and Power BI, plus the data dictionary
-  tableau/                Tableau build guide
-  powerbi/                Power BI build guide
+  exports/                one CSV per table, plus the data dictionary
   tensura.db              the built SQLite database
 ```
 
