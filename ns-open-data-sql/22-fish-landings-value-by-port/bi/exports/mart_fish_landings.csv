@@ -1,0 +1,2157 @@
+year,county,port,port_label,is_named_port,kgs,dollars,measure_class
+2017,Annapolis,Anderson Cove,Anderson Cove,1,,,both_blank
+2017,Annapolis,Battery Point,Battery Point,1,,,both_blank
+2017,Annapolis,Delaps Cove,Delaps Cove,1,,,both_blank
+2017,Annapolis,Hampton,Hampton,1,,,both_blank
+2017,Annapolis,Margaretsville,Margaretsville,1,,,both_blank
+2017,Annapolis,Other,Other (Annapolis),0,69437.49,3969363.29,both_present
+2017,Annapolis,Parkers Cove,Parkers Cove,1,408328.96,6021035.83,both_present
+2017,Annapolis,Port Lorne,Port Lorne,1,,,both_blank
+2017,Antigonish,Arisaig,Arisaig,1,,,both_blank
+2017,Antigonish,Aulds Cove,Aulds Cove,1,,,both_blank
+2017,Antigonish,Ballantynes Cove,Ballantynes Cove,1,,,both_blank
+2017,Antigonish,Barrios Beach,Barrios Beach,1,,,both_blank
+2017,Antigonish,Bayfield,Bayfield,1,,,both_blank
+2017,Antigonish,Cribbons Point,Cribbons Point,1,,,both_blank
+2017,Antigonish,Havre Boucher,Havre Boucher,1,,,both_blank
+2017,Antigonish,Livingstone,Livingstone,1,,,both_blank
+2017,Antigonish,Other,Other (Antigonish),0,,,both_blank
+2017,Cape Breton,Alder Point,Alder Point,1,568829.41,8316340.74,both_present
+2017,Cape Breton,Crane Cove,Crane Cove,1,,,both_blank
+2017,Cape Breton,Gabarus,Gabarus,1,135933.99,2060986.82,both_present
+2017,Cape Breton,Glace Bay,Glace Bay,1,5818282.64,41157965.05,both_present
+2017,Cape Breton,Lingan,Lingan,1,,,both_blank
+2017,Cape Breton,Louisbourg,Louisbourg,1,4573959.09,52089837.84,both_present
+2017,Cape Breton,Main-A-Dieu,Main-A-Dieu,1,663156.48,10423447.58,both_present
+2017,Cape Breton,Marion Bridge,Marion Bridge,1,,,both_blank
+2017,Cape Breton,New Waterford,New Waterford,1,,,both_blank
+2017,Cape Breton,North Sydney - Ballast Grounds,North Sydney - Ballast Grounds,1,716567.87,6899286.78,both_present
+2017,Cape Breton,North Sydney - Marina Breakwater,North Sydney - Marina Breakwater,1,,,both_blank
+2017,Cape Breton,Other,Other (Cape Breton),0,1399120.46,9154967.00,both_present
+2017,Cape Breton,Oyster Creek,Oyster Creek,1,,,both_blank
+2017,Cape Breton,Point Aconi,Point Aconi,1,,,both_blank
+2017,Cape Breton,Port Morien,Port Morien,1,541698.62,8534172.88,both_present
+2017,Cape Breton,South Bar,South Bar,1,,,both_blank
+2017,Cape Breton,Three Stick Cove,Three Stick Cove,1,,,both_blank
+2017,Cape Breton,Victoria Bridge,Victoria Bridge,1,,,both_blank
+2017,Colchester,Barrachois,Barrachois,1,,,both_blank
+2017,Colchester,Five Islands,Five Islands,1,,,both_blank
+2017,Colchester,Other,Other (Colchester),0,,,both_blank
+2017,Cumberland,Advocate Harbour,Advocate Harbour,1,,,both_blank
+2017,Cumberland,Apple River,Apple River,1,,,both_blank
+2017,Cumberland,Malagash,Malagash,1,,,both_blank
+2017,Cumberland,Northport,Northport,1,,,both_blank
+2017,Cumberland,Other,Other (Cumberland),0,327125.66,638915.21,both_present
+2017,Cumberland,Pugwash,Pugwash,1,,,both_blank
+2017,Cumberland,Wallace,Wallace,1,,,both_blank
+2017,Digby,Cape St. Marys,Cape St. Marys,1,286842.42,4557734.18,both_present
+2017,Digby,Centerville,Centerville,1,55606.75,1010344.04,both_present
+2017,Digby,Culloden,Culloden,1,,,both_blank
+2017,Digby,Digby,Digby,1,5434106.44,69697904.47,both_present
+2017,Digby,East Ferry,East Ferry,1,,,both_blank
+2017,Digby,Freeport,Freeport,1,,,both_blank
+2017,Digby,Freeport,Freeport,1,,,both_blank
+2017,Digby,Gilberts Cove,Gilberts Cove,1,,,both_blank
+2017,Digby,Little River,Little River (Digby),1,1131659.86,9974772.97,both_present
+2017,Digby,Meteghan,Meteghan,1,3062296.49,5414388.55,both_present
+2017,Digby,Meteghan River,Meteghan River,1,,,both_blank
+2017,Digby,Other,Other (Digby),0,360133.09,3459940.13,both_present
+2017,Digby,Rossway,Rossway,1,,,both_blank
+2017,Digby,Sandy Cove East,Sandy Cove East,1,252670.70,3126025.64,both_present
+2017,Digby,Saulnierville,Saulnierville,1,398760.66,4562447.07,both_present
+2017,Digby,Tiverton,Tiverton,1,,,both_blank
+2017,Digby,Westport,Westport,1,,,both_blank
+2017,Digby,Weymputh North,Weymputh North,1,112170.58,686508.78,both_present
+2017,Digby,Whale Cove,Whale Cove,1,,,both_blank
+2017,Guysborough,Canso,Canso,1,3451577.26,15378136.77,both_present
+2017,Guysborough,Charlos Cove,Charlos Cove,1,,,both_blank
+2017,Guysborough,Cooks Cove,Cooks Cove,1,,,both_blank
+2017,Guysborough,Dover,Dover,1,,,both_blank
+2017,Guysborough,Drum Head,Drum Head,1,,,both_blank
+2017,Guysborough,Ecum Secum,Ecum Secum,1,,,both_blank
+2017,Guysborough,Fishermans Harbour,Fishermans Harbour,1,,,both_blank
+2017,Guysborough,Goldboro,Goldboro,1,,,both_blank
+2017,Guysborough,Half Island Cove,Half Island Cove,1,,,both_blank
+2017,Guysborough,Larrys River,Larrys River,1,,,both_blank
+2017,Guysborough,Little Harbour,Little Harbour (Guysborough),1,,,both_blank
+2017,Guysborough,Little Liscomb,Little Liscomb,1,,,both_blank
+2017,Guysborough,Marie Joseph,Marie Joseph,1,,,both_blank
+2017,Guysborough,New Harbour,New Harbour,1,,,both_blank
+2017,Guysborough,Other,Other (Guysborough),0,,,both_blank
+2017,Guysborough,Pirate Harbour,Pirate Harbour,1,,,both_blank
+2017,Guysborough,Port Brickerton East,Port Brickerton East,1,,,both_blank
+2017,Guysborough,Port Brickerton West,Port Brickerton West,1,,,both_blank
+2017,Guysborough,Port Felix,Port Felix,1,,,both_blank
+2017,Guysborough,Queensport,Queensport,1,,,both_blank
+2017,Guysborough,Sonora,Sonora,1,21929.83,1008119.45,both_present
+2017,Guysborough,Upper Whitehead,Upper Whitehead,1,,,both_blank
+2017,Guysborough,Wine Harbour,Wine Harbour,1,,,both_blank
+2017,Halifax,Boutiliers Point,Boutiliers Point,1,,,both_blank
+2017,Halifax,Carters Point,Carters Point,1,,,both_blank
+2017,Halifax,Coopers Point,Coopers Point,1,,,both_blank
+2017,Halifax,East Chezzetcook,East Chezzetcook,1,,,both_blank
+2017,Halifax,East Dover,East Dover,1,,,both_blank
+2017,Halifax,East Jeddor,East Jeddor,1,,,both_blank
+2017,Halifax,East Petpeswick,East Petpeswick,1,,,both_blank
+2017,Halifax,Eastern Passage,Eastern Passage,1,1857249.55,8204659.18,both_present
+2017,Halifax,Ecum Secum West,Ecum Secum West,1,379389.01,3517418.25,both_present
+2017,Halifax,Factory Cove,Factory Cove,1,,,both_blank
+2017,Halifax,Gammons Creek,Gammons Creek,1,,,both_blank
+2017,Halifax,Halifax,Halifax,1,3796384.75,14215257.27,both_present
+2017,Halifax,Indian Harbour,Indian Harbour,1,,,both_blank
+2017,Halifax,Ketch Harbour,Ketch Harbour,1,,,both_blank
+2017,Halifax,Little Harbour,Little Harbour (Halifax),1,,,both_blank
+2017,Halifax,Ostrea Lake,Ostrea Lake,1,,,both_blank
+2017,Halifax,Other,Other (Halifax),0,2920531.33,12261094.01,both_present
+2017,Halifax,Owls Head,Owls Head,1,,,both_blank
+2017,Halifax,Peggys Cove,Peggys Cove,1,,,both_blank
+2017,Halifax,Pleasant Point,Pleasant Point,1,,,both_blank
+2017,Halifax,Prospect,Prospect,1,,,both_blank
+2017,Halifax,Sambro,Sambro,1,2365006.25,13084753.46,both_present
+2017,Halifax,Shad Bay,Shad Bay,1,,,both_blank
+2017,Halifax,Sober Island,Sober Island,1,451376.65,1852596.13,both_present
+2017,Halifax,Terence Bay,Terence Bay,1,,,both_blank
+2017,Halifax,Three Fathom Harbour,Three Fathom Harbour,1,,,both_blank
+2017,Halifax,West Chezzetcook,West Chezzetcook,1,,,both_blank
+2017,Halifax,West Dover,West Dover,1,,,both_blank
+2017,Hants,Other,Other (Hants),0,,,both_blank
+2017,Inverness,Cheticamp,Cheticamp,1,,,both_blank
+2017,Inverness,Cheticamp - Town Wharf,Cheticamp - Town Wharf,1,,,both_blank
+2017,Inverness,Cheticamp Point,Cheticamp Point,1,,,both_blank
+2017,Inverness,Finlay Point,Finlay Point,1,,,both_blank
+2017,Inverness,Grand Etang,Grand Etang,1,522982.50,7192449.95,both_present
+2017,Inverness,Inverness,Inverness,1,734009.84,9158425.45,both_present
+2017,Inverness,Judique,Judique,1,,,both_blank
+2017,Inverness,Little Judique Harbour,Little Judique Harbour,1,,,both_blank
+2017,Inverness,Little Judique Ponds,Little Judique Ponds,1,,,both_blank
+2017,Inverness,Mabou Harbour,Mabou Harbour,1,474117.94,6016813.63,both_present
+2017,Inverness,Marble Mountain,Marble Mountain,1,,,both_blank
+2017,Inverness,Margaree Harbour,Margaree Harbour,1,454097.76,6204135.31,both_present
+2017,Inverness,Meat Cove,Meat Cove,1,,,both_blank
+2017,Inverness,Murphys Pond,Murphys Pond,1,,,both_blank
+2017,Inverness,Other,Other (Inverness),0,,,both_blank
+2017,Inverness,Pleasant Bay,Pleasant Bay,1,,,both_blank
+2017,Inverness,Port Hood,Port Hood,1,,,both_blank
+2017,Inverness,Port Hood Island,Port Hood Island,1,,,both_blank
+2017,Kings,Halls Harbour,Halls Harbour,1,109496.75,1679044.46,both_present
+2017,Kings,Harbourville,Harbourville,1,180164.65,2769720.71,both_present
+2017,Kings,Kingsport,Kingsport,1,,,both_blank
+2017,Kings,Other,Other (Kings),0,,,both_blank
+2017,Kings,Pereaux,Pereaux,1,,,both_blank
+2017,Kings,Scots Bay,Scots Bay,1,,,both_blank
+2017,Lunenburg,Aspotogan,Aspotogan,1,,,both_blank
+2017,Lunenburg,Bayport,Bayport,1,,,both_blank
+2017,Lunenburg,Big Tancook Island,Big Tancook Island,1,,,both_blank
+2017,Lunenburg,Black Harbour,Black Harbour,1,,,both_blank
+2017,Lunenburg,Blandford,Blandford,1,,,both_blank
+2017,Lunenburg,Bush Island,Bush Island,1,,,both_blank
+2017,Lunenburg,Chester Basin,Chester Basin,1,,,both_blank
+2017,Lunenburg,Feltzen South,Feltzen South,1,,,both_blank
+2017,Lunenburg,Fox Point,Fox Point,1,,,both_blank
+2017,Lunenburg,Kings Bay,Kings Bay,1,,,both_blank
+2017,Lunenburg,Kraut Point,Kraut Point,1,,,both_blank
+2017,Lunenburg,Little Harbour,Little Harbour (Lunenburg),1,,,both_blank
+2017,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2017,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2017,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2017,Lunenburg,Mahone Bay,Mahone Bay,1,,,both_blank
+2017,Lunenburg,Mill Cove,Mill Cove,1,,,both_blank
+2017,Lunenburg,Northwest Cove,Northwest Cove,1,52287.37,935534.36,both_present
+2017,Lunenburg,Other,Other (Lunenburg),0,597353.89,9840133.93,both_present
+2017,Lunenburg,Riverport,Riverport,1,681189.96,601245.10,both_present
+2017,Lunenburg,Saw Pit,Saw Pit,1,,,both_blank
+2017,Lunenburg,Voglers Cove West,Voglers Cove West,1,,,both_blank
+2017,Lunenburg,Western Shore,Western Shore,1,,,both_blank
+2017,Pictou,Baileys Brook,Baileys Brook,1,,,both_blank
+2017,Pictou,Big Island,Big Island,1,,,both_blank
+2017,Pictou,Cape John,Cape John,1,,,both_blank
+2017,Pictou,Caribou,Caribou,1,4984566.92,29527707.64,both_present
+2017,Pictou,Caribou Ferry,Caribou Ferry,1,1059196.30,3796053.93,both_present
+2017,Pictou,Chance Harbour,Chance Harbour,1,,,both_blank
+2017,Pictou,Little Harbour,Little Harbour (Pictou),1,,,both_blank
+2017,Pictou,Merigomish,Merigomish,1,,,both_blank
+2017,Pictou,Other,Other (Pictou),0,355742.96,4741168.83,both_present
+2017,Pictou,Pictou Island,Pictou Island,1,,,both_blank
+2017,Pictou,Pictou Landing,Pictou Landing,1,,,both_blank
+2017,Pictou,Skinners Cove,Skinners Cove,1,,,both_blank
+2017,Pictou,Toney River,Toney River,1,,,both_blank
+2017,Queens,Brooklyn Fisherman's Wharf,Brooklyn Fisherman's Wharf,1,,,both_blank
+2017,Queens,East Side Port L'Hebert,East Side Port L'Hebert,1,,,both_blank
+2017,Queens,Hunts Point,Hunts Point,1,,,both_blank
+2017,Queens,Moose Harbour,Moose Harbour,1,,,both_blank
+2017,Queens,Other,Other (Queens),0,55840.13,4775112.57,both_present
+2017,Queens,Port Medway,Port Medway,1,141265.34,2220212.43,both_present
+2017,Queens,Port Mouton,Port Mouton,1,4151769.29,10549819.63,both_present
+2017,Queens,South West Port Mouton,South West Port Mouton,1,,,both_blank
+2017,Queens,St. Catherines River,St. Catherines River,1,,,both_blank
+2017,Queens,Volgers Cove,Volgers Cove,1,197720.75,2911890.77,both_present
+2017,Queens,West Berlin,West Berlin,1,,,both_blank
+2017,Richmond,Arichat,Arichat,1,,,both_blank
+2017,Richmond,Arrow Point,Arrow Point,1,,,both_blank
+2017,Richmond,Chapel Cove,Chapel Cove,1,,,both_blank
+2017,Richmond,D'escousse,D'escousse,1,,,both_blank
+2017,Richmond,Fourchu,Fourchu,1,,,both_blank
+2017,Richmond,Janvrin Harbour,Janvrin Harbour,1,,,both_blank
+2017,Richmond,L'Archeveque,L'Archeveque,1,,,both_blank
+2017,Richmond,Little Harbour,Little Harbour (Richmond),1,,,both_blank
+2017,Richmond,Other,Other (Richmond),0,2919655.15,34445569.31,both_present
+2017,Richmond,Poirierville,Poirierville,1,,,both_blank
+2017,Richmond,River Bourgeois,River Bourgeois,1,,,both_blank
+2017,Shelburne,Allendale,Allendale,1,,,both_blank
+2017,Shelburne,Bear Point,Bear Point,1,1588972.69,5334285.34,both_present
+2017,Shelburne,Cape Negro,Cape Negro,1,,,both_blank
+2017,Shelburne,Clarck's Harbour,Clarck's Harbour,1,2299821.65,29106668.15,both_present
+2017,Shelburne,Cripple Creek,Cripple Creek,1,219094.92,3589594.69,both_present
+2017,Shelburne,Forbes Point,Forbes Point,1,,,both_blank
+2017,Shelburne,Gunning Cove,Gunning Cove,1,1428197.91,16469978.53,both_present
+2017,Shelburne,Ingomar,Ingomar,1,1578899.10,16050622.36,both_present
+2017,Shelburne,Jones Harbour,Jones Harbour,1,93783.78,1524682.57,both_present
+2017,Shelburne,Little Harbour,Little Harbour (Shelburne),1,144059.00,2229724.57,both_present
+2017,Shelburne,Lockeport,Lockeport,1,776824.06,12693724.76,both_present
+2017,Shelburne,Lower Jordan Bay,Lower Jordan Bay,1,457330.05,3381192.92,both_present
+2017,Shelburne,Lower Sandy Point,Lower Sandy Point,1,316474.97,4255858.30,both_present
+2017,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,2534200.36,10233749.54,both_present
+2017,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,1654513.73,24718066.84,both_present
+2017,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,,,both_blank
+2017,Shelburne,Newellton,Newellton,1,488077.23,8138815.85,both_present
+2017,Shelburne,Osborne Harbour,Osborne Harbour,1,,,both_blank
+2017,Shelburne,Other,Other (Shelburne),0,1545608.71,9720359.10,both_present
+2017,Shelburne,Port La Tour,Port La Tour,1,2049364.93,15353471.17,both_present
+2017,Shelburne,Seal Point,Seal Point,1,84296.45,1283049.98,both_present
+2017,Shelburne,Shag Harbour,Shag Harbour,1,1443910.79,10959650.97,both_present
+2017,Shelburne,Shag Harbour,Shag Harbour,1,,,both_blank
+2017,Shelburne,Shelburne,Shelburne,1,298784.67,1124799.63,both_present
+2017,Shelburne,South Side,South Side,1,430004.76,6542751.03,both_present
+2017,Shelburne,Stoney Island,Stoney Island,1,343746.92,5472967.91,both_present
+2017,Shelburne,Swims Point,Swims Point,1,782041.13,2469618.52,both_present
+2017,Shelburne,Uper Port La Tour,Uper Port La Tour,1,,,both_blank
+2017,Shelburne,West Green Harbour,West Green Harbour,1,92439.51,1377179.19,both_present
+2017,Shelburne,West Head,West Head,1,2717234.69,30032483.84,both_present
+2017,Victoria,Bay St. Lawrence,Bay St. Lawrence,1,,,both_blank
+2017,Victoria,Big Bras D'or,Big Bras D'or,1,,,both_blank
+2017,Victoria,Dingwall,Dingwall,1,332103.74,4502491.23,both_present
+2017,Victoria,Englishtown,Englishtown,1,,,both_blank
+2017,Victoria,Ingonish,Ingonish,1,333220.07,4977563.10,both_present
+2017,Victoria,Ingonish Beach,Ingonish Beach,1,,,both_blank
+2017,Victoria,Ingonish Ferry,Ingonish Ferry,1,,,both_blank
+2017,Victoria,Iona,Iona,1,,,both_blank
+2017,Victoria,Little River,Little River (Victoria),1,,,both_blank
+2017,Victoria,Neils Harbour,Neils Harbour,1,,,both_blank
+2017,Victoria,New Campbellton,New Campbellton,1,,,both_blank
+2017,Victoria,New Haven,New Haven,1,,,both_blank
+2017,Victoria,Nyanza,Nyanza,1,,,both_blank
+2017,Victoria,Other,Other (Victoria),0,,,both_blank
+2017,Victoria,Smelt Book,Smelt Book,1,,,both_blank
+2017,Victoria,White Point,White Point,1,,,both_blank
+2017,Victoria,Wreck Cove,Wreck Cove,1,,,both_blank
+2017,Yarmouth,Abbotts Harbour,Abbotts Harbour,1,604306.11,5383817.56,both_present
+2017,Yarmouth,Abrams River,Abrams River,1,,,both_blank
+2017,Yarmouth,Camp Cove,Camp Cove,1,2134530.47,22536835.91,both_present
+2017,Yarmouth,Chebogue,Chebogue,1,,,both_blank
+2017,Yarmouth,Chegoggin,Chegoggin,1,,,both_blank
+2017,Yarmouth,Chegoggin Point,Chegoggin Point,1,,,both_blank
+2017,Yarmouth,Dennis Point,Dennis Point,1,17376201.85,21154737.21,both_present
+2017,Yarmouth,Glenwood,Glenwood,1,,,both_blank
+2017,Yarmouth,Hubbards Point,Hubbards Point,1,,,both_blank
+2017,Yarmouth,Ledge Harbour,Ledge Harbour,1,,,both_blank
+2017,Yarmouth,Little River Harbour,Little River Harbour,1,950869.44,10783271.38,both_present
+2017,Yarmouth,Lower East Pubnico,Lower East Pubnico,1,7669807.99,34406571.19,both_present
+2017,Yarmouth,Lower Wedgeport Tuna Wharf,Lower Wedgeport Tuna Wharf,1,,,both_blank
+2017,Yarmouth,Morris Island,Morris Island,1,518432.07,576393.59,both_present
+2017,Yarmouth,Other,Other (Yarmouth),0,15003370.30,7011374.27,both_present
+2017,Yarmouth,Pinkneys Point,Pinkneys Point,1,1762975.57,10255189.22,both_present
+2017,Yarmouth,Plymouth,Plymouth,1,,,both_blank
+2017,Yarmouth,Port Maitland,Port Maitland,1,196225.25,3079471.56,both_present
+2017,Yarmouth,Rocco Point,Rocco Point,1,,,both_blank
+2017,Yarmouth,Sluice Point,Sluice Point,1,,,both_blank
+2017,Yarmouth,Stanford,Stanford,1,,,both_blank
+2017,Yarmouth,Surettes Island,Surettes Island,1,,,both_blank
+2017,Yarmouth,Wedge Point,Wedge Point,1,3507932.66,17813630.01,both_present
+2017,Yarmouth,Yarmouth Bar,Yarmouth Bar,1,3168072.97,33893095.43,both_present
+2018,Annapolis,Anderson Cove,Anderson Cove,1,,,both_blank
+2018,Annapolis,Battery Point,Battery Point,1,,,both_blank
+2018,Annapolis,Delaps Cove,Delaps Cove,1,,,both_blank
+2018,Annapolis,Hampton,Hampton,1,,,both_blank
+2018,Annapolis,Margaretsville,Margaretsville,1,,,both_blank
+2018,Annapolis,Other,Other (Annapolis),0,68712.08,3897003.92,both_present
+2018,Annapolis,Parkers Cove,Parkers Cove,1,351898.48,5507880.74,both_present
+2018,Annapolis,Port Lorne,Port Lorne,1,,,both_blank
+2018,Antigonish,Arisaig,Arisaig,1,175332.35,1992161.04,both_present
+2018,Antigonish,Aulds Cove,Aulds Cove,1,,,both_blank
+2018,Antigonish,Ballantynes Cove,Ballantynes Cove,1,341151.30,2779365.38,both_present
+2018,Antigonish,Barrios Beach,Barrios Beach,1,,,both_blank
+2018,Antigonish,Bayfield,Bayfield,1,,,both_blank
+2018,Antigonish,Cribbons Point,Cribbons Point,1,167400.05,2314668.85,both_present
+2018,Antigonish,Havre Boucher,Havre Boucher,1,235852.42,3283468.70,both_present
+2018,Antigonish,Livingstone,Livingstone,1,,,both_blank
+2018,Antigonish,Other,Other (Antigonish),0,,,both_blank
+2018,Cape Breton,Alder Point,Alder Point,1,744804.82,9999654.95,both_present
+2018,Cape Breton,Crane Cove,Crane Cove,1,,,both_blank
+2018,Cape Breton,Gabarus,Gabarus,1,149857.91,2064794.20,both_present
+2018,Cape Breton,Glace Bay,Glace Bay,1,4665942.58,26314292.03,both_present
+2018,Cape Breton,Lingan,Lingan,1,379104.48,4921640.77,both_present
+2018,Cape Breton,Louisbourg,Louisbourg,1,4255067.13,38456242.39,both_present
+2018,Cape Breton,Main-A-Dieu,Main-A-Dieu,1,724104.74,9759412.50,both_present
+2018,Cape Breton,Marion Bridge,Marion Bridge,1,,,both_blank
+2018,Cape Breton,New Waterford,New Waterford,1,,,both_blank
+2018,Cape Breton,North Sydney - Ballast Grounds,North Sydney - Ballast Grounds,1,907227.56,8161710.63,both_present
+2018,Cape Breton,North Sydney - Marina Breakwater,North Sydney - Marina Breakwater,1,87715.21,416038.06,both_present
+2018,Cape Breton,Other,Other (Cape Breton),0,767204.59,7397523.19,both_present
+2018,Cape Breton,Oyster Creek,Oyster Creek,1,,,both_blank
+2018,Cape Breton,Point Aconi,Point Aconi,1,,,both_blank
+2018,Cape Breton,Port Morien,Port Morien,1,1122482.35,15117498.72,both_present
+2018,Cape Breton,South Bar,South Bar,1,142395.69,1979152.00,both_present
+2018,Cape Breton,Three Stick Cove,Three Stick Cove,1,,,both_blank
+2018,Cape Breton,Victoria Bridge,Victoria Bridge,1,,,both_blank
+2018,Colchester,Barrachois,Barrachois,1,,,both_blank
+2018,Colchester,Five Islands,Five Islands,1,,,both_blank
+2018,Colchester,Other,Other (Colchester),0,,,both_blank
+2018,Cumberland,Advocate Harbour,Advocate Harbour,1,166684.00,2927377.07,both_present
+2018,Cumberland,Apple River,Apple River,1,,,both_blank
+2018,Cumberland,Malagash,Malagash,1,,,both_blank
+2018,Cumberland,Northport,Northport,1,,,both_blank
+2018,Cumberland,Other,Other (Cumberland),0,60411.76,831209.15,both_present
+2018,Cumberland,Pugwash,Pugwash,1,,,both_blank
+2018,Cumberland,Wallace,Wallace,1,,,both_blank
+2018,Digby,Cape St. Marys,Cape St. Marys,1,268256.00,4827408.00,both_present
+2018,Digby,Centerville,Centerville,1,67788.87,1199857.86,both_present
+2018,Digby,Culloden,Culloden,1,,,both_blank
+2018,Digby,Digby,Digby,1,5104618.76,59806801.95,both_present
+2018,Digby,East Ferry,East Ferry,1,,,both_blank
+2018,Digby,Freeport,Freeport,1,52783.13,893796.95,both_present
+2018,Digby,Freeport,Freeport,1,,,both_blank
+2018,Digby,Gilberts Cove,Gilberts Cove,1,,,both_blank
+2018,Digby,Little River,Little River (Digby),1,839727.16,9217208.24,both_present
+2018,Digby,Meteghan,Meteghan,1,2814640.06,4509075.44,both_present
+2018,Digby,Meteghan River,Meteghan River,1,,,both_blank
+2018,Digby,Other,Other (Digby),0,155099.43,268537.95,both_present
+2018,Digby,Rossway,Rossway,1,,,both_blank
+2018,Digby,Sandy Cove East,Sandy Cove East,1,239969.22,3592659.51,both_present
+2018,Digby,Saulnierville,Saulnierville,1,499504.14,4804369.63,both_present
+2018,Digby,Tiverton,Tiverton,1,293865.02,5372982.33,both_present
+2018,Digby,Westport,Westport,1,568683.26,8754304.04,both_present
+2018,Digby,Weymputh North,Weymputh North,1,265277.16,867502.75,both_present
+2018,Digby,Whale Cove,Whale Cove,1,,,both_blank
+2018,Guysborough,Canso,Canso,1,2435197.55,7871946.12,both_present
+2018,Guysborough,Charlos Cove,Charlos Cove,1,,,both_blank
+2018,Guysborough,Cooks Cove,Cooks Cove,1,,,both_blank
+2018,Guysborough,Dover,Dover,1,,,both_blank
+2018,Guysborough,Drum Head,Drum Head,1,,,both_blank
+2018,Guysborough,Ecum Secum,Ecum Secum,1,,,both_blank
+2018,Guysborough,Fishermans Harbour,Fishermans Harbour,1,,,both_blank
+2018,Guysborough,Goldboro,Goldboro,1,,,both_blank
+2018,Guysborough,Half Island Cove,Half Island Cove,1,,,both_blank
+2018,Guysborough,Larrys River,Larrys River,1,,,both_blank
+2018,Guysborough,Little Harbour,Little Harbour (Guysborough),1,,,both_blank
+2018,Guysborough,Little Liscomb,Little Liscomb,1,,,both_blank
+2018,Guysborough,Marie Joseph,Marie Joseph,1,356222.59,4805198.10,both_present
+2018,Guysborough,New Harbour,New Harbour,1,,,both_blank
+2018,Guysborough,Other,Other (Guysborough),0,141871.96,4933356.74,both_present
+2018,Guysborough,Pirate Harbour,Pirate Harbour,1,,,both_blank
+2018,Guysborough,Port Brickerton East,Port Brickerton East,1,,,both_blank
+2018,Guysborough,Port Brickerton West,Port Brickerton West,1,,,both_blank
+2018,Guysborough,Port Felix,Port Felix,1,,,both_blank
+2018,Guysborough,Queensport,Queensport,1,,,both_blank
+2018,Guysborough,Sonora,Sonora,1,,,both_blank
+2018,Guysborough,Upper Whitehead,Upper Whitehead,1,45346.08,602658.26,both_present
+2018,Guysborough,Wine Harbour,Wine Harbour,1,,,both_blank
+2018,Halifax,Boutiliers Point,Boutiliers Point,1,,,both_blank
+2018,Halifax,Carters Point,Carters Point,1,,,both_blank
+2018,Halifax,Coopers Point,Coopers Point,1,,,both_blank
+2018,Halifax,East Chezzetcook,East Chezzetcook,1,72644.13,272075.09,both_present
+2018,Halifax,East Dover,East Dover,1,,,both_blank
+2018,Halifax,East Jeddor,East Jeddor,1,1405935.16,7848189.38,both_present
+2018,Halifax,East Petpeswick,East Petpeswick,1,,,both_blank
+2018,Halifax,Eastern Passage,Eastern Passage,1,1452835.93,4438774.00,both_present
+2018,Halifax,Ecum Secum West,Ecum Secum West,1,,,both_blank
+2018,Halifax,Factory Cove,Factory Cove,1,,,both_blank
+2018,Halifax,Gammons Creek,Gammons Creek,1,,,both_blank
+2018,Halifax,Halifax,Halifax,1,1325362.75,5347104.83,both_present
+2018,Halifax,Indian Harbour,Indian Harbour,1,,,both_blank
+2018,Halifax,Ketch Harbour,Ketch Harbour,1,,,both_blank
+2018,Halifax,Little Harbour,Little Harbour (Halifax),1,,,both_blank
+2018,Halifax,Ostrea Lake,Ostrea Lake,1,,,both_blank
+2018,Halifax,Other,Other (Halifax),0,1603131.17,25457846.49,both_present
+2018,Halifax,Owls Head,Owls Head,1,,,both_blank
+2018,Halifax,Peggys Cove,Peggys Cove,1,,,both_blank
+2018,Halifax,Pleasant Point,Pleasant Point,1,,,both_blank
+2018,Halifax,Prospect,Prospect,1,,,both_blank
+2018,Halifax,Sambro,Sambro,1,2725537.21,17270108.36,both_present
+2018,Halifax,Shad Bay,Shad Bay,1,,,both_blank
+2018,Halifax,Sober Island,Sober Island,1,,,both_blank
+2018,Halifax,Terence Bay,Terence Bay,1,,,both_blank
+2018,Halifax,Three Fathom Harbour,Three Fathom Harbour,1,,,both_blank
+2018,Halifax,West Chezzetcook,West Chezzetcook,1,,,both_blank
+2018,Halifax,West Dover,West Dover,1,,,both_blank
+2018,Hants,Other,Other (Hants),0,,,both_blank
+2018,Inverness,Cheticamp,Cheticamp,1,2735828.81,34720733.00,both_present
+2018,Inverness,Cheticamp - Town Wharf,Cheticamp - Town Wharf,1,,,both_blank
+2018,Inverness,Cheticamp Point,Cheticamp Point,1,,,both_blank
+2018,Inverness,Finlay Point,Finlay Point,1,,,both_blank
+2018,Inverness,Grand Etang,Grand Etang,1,344299.91,4705823.09,both_present
+2018,Inverness,Inverness,Inverness,1,300568.21,3881856.23,both_present
+2018,Inverness,Judique,Judique,1,,,both_blank
+2018,Inverness,Little Judique Harbour,Little Judique Harbour,1,,,both_blank
+2018,Inverness,Little Judique Ponds,Little Judique Ponds,1,,,both_blank
+2018,Inverness,Mabou Harbour,Mabou Harbour,1,319492.51,3993522.60,both_present
+2018,Inverness,Marble Mountain,Marble Mountain,1,,,both_blank
+2018,Inverness,Margaree Harbour,Margaree Harbour,1,326975.43,4364773.06,both_present
+2018,Inverness,Meat Cove,Meat Cove,1,,,both_blank
+2018,Inverness,Murphys Pond,Murphys Pond,1,,,both_blank
+2018,Inverness,Other,Other (Inverness),0,,,both_blank
+2018,Inverness,Pleasant Bay,Pleasant Bay,1,306253.53,4127516.69,both_present
+2018,Inverness,Port Hood,Port Hood,1,,,both_blank
+2018,Inverness,Port Hood Island,Port Hood Island,1,,,both_blank
+2018,Kings,Halls Harbour,Halls Harbour,1,62956.48,1018885.49,both_present
+2018,Kings,Harbourville,Harbourville,1,113926.03,1813051.77,both_present
+2018,Kings,Kingsport,Kingsport,1,,,both_blank
+2018,Kings,Other,Other (Kings),0,248819.24,1424050.42,both_present
+2018,Kings,Pereaux,Pereaux,1,,,both_blank
+2018,Kings,Scots Bay,Scots Bay,1,,,both_blank
+2018,Lunenburg,Aspotogan,Aspotogan,1,,,both_blank
+2018,Lunenburg,Bayport,Bayport,1,,,both_blank
+2018,Lunenburg,Big Tancook Island,Big Tancook Island,1,,,both_blank
+2018,Lunenburg,Black Harbour,Black Harbour,1,,,both_blank
+2018,Lunenburg,Blandford,Blandford,1,119581.81,2180484.80,both_present
+2018,Lunenburg,Bush Island,Bush Island,1,,,both_blank
+2018,Lunenburg,Chester Basin,Chester Basin,1,,,both_blank
+2018,Lunenburg,Feltzen South,Feltzen South,1,,,both_blank
+2018,Lunenburg,Fox Point,Fox Point,1,,,both_blank
+2018,Lunenburg,Kings Bay,Kings Bay,1,,,both_blank
+2018,Lunenburg,Kraut Point,Kraut Point,1,,,both_blank
+2018,Lunenburg,Little Harbour,Little Harbour (Lunenburg),1,,,both_blank
+2018,Lunenburg,Lunenburg,Lunenburg,1,41910.99,795163.27,both_present
+2018,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2018,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2018,Lunenburg,Mahone Bay,Mahone Bay,1,,,both_blank
+2018,Lunenburg,Mill Cove,Mill Cove,1,,,both_blank
+2018,Lunenburg,Northwest Cove,Northwest Cove,1,,,both_blank
+2018,Lunenburg,Other,Other (Lunenburg),0,634764.34,12471370.08,both_present
+2018,Lunenburg,Riverport,Riverport,1,,,both_blank
+2018,Lunenburg,Saw Pit,Saw Pit,1,,,both_blank
+2018,Lunenburg,Voglers Cove West,Voglers Cove West,1,274667.67,4978407.67,both_present
+2018,Lunenburg,Western Shore,Western Shore,1,,,both_blank
+2018,Pictou,Baileys Brook,Baileys Brook,1,,,both_blank
+2018,Pictou,Big Island,Big Island,1,,,both_blank
+2018,Pictou,Cape John,Cape John,1,114244.63,1493350.86,both_present
+2018,Pictou,Caribou,Caribou,1,1545583.18,7155638.92,both_present
+2018,Pictou,Caribou Ferry,Caribou Ferry,1,1160735.57,2989492.62,both_present
+2018,Pictou,Chance Harbour,Chance Harbour,1,,,both_blank
+2018,Pictou,Little Harbour,Little Harbour (Pictou),1,183930.65,2272545.60,both_present
+2018,Pictou,Merigomish,Merigomish,1,,,both_blank
+2018,Pictou,Other,Other (Pictou),0,1151198.17,1290100.31,both_present
+2018,Pictou,Pictou Island,Pictou Island,1,,,both_blank
+2018,Pictou,Pictou Landing,Pictou Landing,1,,,both_blank
+2018,Pictou,Skinners Cove,Skinners Cove,1,,,both_blank
+2018,Pictou,Toney River,Toney River,1,252093.28,2732903.15,both_present
+2018,Queens,Brooklyn Fisherman's Wharf,Brooklyn Fisherman's Wharf,1,43916.32,790698.80,both_present
+2018,Queens,East Side Port L'Hebert,East Side Port L'Hebert,1,480589.35,3984234.45,both_present
+2018,Queens,Hunts Point,Hunts Point,1,,,both_blank
+2018,Queens,Moose Harbour,Moose Harbour,1,115262.26,2136171.29,both_present
+2018,Queens,Other,Other (Queens),0,1490102.06,7269778.18,both_present
+2018,Queens,Port Medway,Port Medway,1,143302.40,2560592.54,both_present
+2018,Queens,Port Mouton,Port Mouton,1,5909038.67,21993919.08,both_present
+2018,Queens,South West Port Mouton,South West Port Mouton,1,,,both_blank
+2018,Queens,St. Catherines River,St. Catherines River,1,,,both_blank
+2018,Queens,Volgers Cove,Volgers Cove,1,94412.90,1633815.60,both_present
+2018,Queens,West Berlin,West Berlin,1,,,both_blank
+2018,Richmond,Arichat,Arichat,1,3034033.79,32019919.92,both_present
+2018,Richmond,Arrow Point,Arrow Point,1,,,both_blank
+2018,Richmond,Chapel Cove,Chapel Cove,1,,,both_blank
+2018,Richmond,D'escousse,D'escousse,1,,,both_blank
+2018,Richmond,Fourchu,Fourchu,1,,,both_blank
+2018,Richmond,Janvrin Harbour,Janvrin Harbour,1,,,both_blank
+2018,Richmond,L'Archeveque,L'Archeveque,1,,,both_blank
+2018,Richmond,Little Harbour,Little Harbour (Richmond),1,1709946.18,21623585.80,both_present
+2018,Richmond,Other,Other (Richmond),0,2187966.78,26454121.08,both_present
+2018,Richmond,Poirierville,Poirierville,1,,,both_blank
+2018,Richmond,River Bourgeois,River Bourgeois,1,,,both_blank
+2018,Shelburne,Allendale,Allendale,1,,,both_blank
+2018,Shelburne,Bear Point,Bear Point,1,1561110.04,4613173.63,both_present
+2018,Shelburne,Cape Negro,Cape Negro,1,,,both_blank
+2018,Shelburne,Clarck's Harbour,Clarck's Harbour,1,297935.46,30949473.86,both_present
+2018,Shelburne,Cripple Creek,Cripple Creek,1,250043.95,4614017.00,both_present
+2018,Shelburne,Forbes Point,Forbes Point,1,404127.34,4899881.48,both_present
+2018,Shelburne,Gunning Cove,Gunning Cove,1,1663364.30,16993981.57,both_present
+2018,Shelburne,Ingomar,Ingomar,1,1478141.54,16615083.38,both_present
+2018,Shelburne,Jones Harbour,Jones Harbour,1,103917.01,2176376.33,both_present
+2018,Shelburne,Little Harbour,Little Harbour (Shelburne),1,111179.03,2083310.82,both_present
+2018,Shelburne,Lockeport,Lockeport,1,928274.44,17145825.22,both_present
+2018,Shelburne,Lower Jordan Bay,Lower Jordan Bay,1,759246.78,5016595.80,both_present
+2018,Shelburne,Lower Sandy Point,Lower Sandy Point,1,447416.60,7734834.50,both_present
+2018,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,2389411.97,10492540.32,both_present
+2018,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,1506781.84,25923824.04,both_present
+2018,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,,,both_blank
+2018,Shelburne,Newellton,Newellton,1,557798.39,10091008.37,both_present
+2018,Shelburne,Osborne Harbour,Osborne Harbour,1,,,both_blank
+2018,Shelburne,Other,Other (Shelburne),0,856207.28,7185998.04,both_present
+2018,Shelburne,Port La Tour,Port La Tour,1,1581296.09,14475565.41,both_present
+2018,Shelburne,Seal Point,Seal Point,1,61385.97,1170320.10,both_present
+2018,Shelburne,Shag Harbour,Shag Harbour,1,1444442.43,10346591.82,both_present
+2018,Shelburne,Shag Harbour,Shag Harbour,1,,,both_blank
+2018,Shelburne,Shelburne,Shelburne,1,78940.44,1350915.92,both_present
+2018,Shelburne,South Side,South Side,1,466453.60,6352972.32,both_present
+2018,Shelburne,Stoney Island,Stoney Island,1,293449.07,5200204.23,both_present
+2018,Shelburne,Swims Point,Swims Point,1,274382.34,2251419.47,both_present
+2018,Shelburne,Uper Port La Tour,Uper Port La Tour,1,,,both_blank
+2018,Shelburne,West Green Harbour,West Green Harbour,1,,,both_blank
+2018,Shelburne,West Head,West Head,1,2188834.04,22737055.96,both_present
+2018,Victoria,Bay St. Lawrence,Bay St. Lawrence,1,,,both_blank
+2018,Victoria,Big Bras D'or,Big Bras D'or,1,255608.08,3029307.53,both_present
+2018,Victoria,Dingwall,Dingwall,1,328471.82,4038191.45,both_present
+2018,Victoria,Englishtown,Englishtown,1,,,both_blank
+2018,Victoria,Ingonish,Ingonish,1,285275.53,3667759.86,both_present
+2018,Victoria,Ingonish Beach,Ingonish Beach,1,,,both_blank
+2018,Victoria,Ingonish Ferry,Ingonish Ferry,1,,,both_blank
+2018,Victoria,Iona,Iona,1,,,both_blank
+2018,Victoria,Little River,Little River (Victoria),1,,,both_blank
+2018,Victoria,Neils Harbour,Neils Harbour,1,,,both_blank
+2018,Victoria,New Campbellton,New Campbellton,1,,,both_blank
+2018,Victoria,New Haven,New Haven,1,,,both_blank
+2018,Victoria,Nyanza,Nyanza,1,,,both_blank
+2018,Victoria,Other,Other (Victoria),0,,,both_blank
+2018,Victoria,Smelt Book,Smelt Book,1,,,both_blank
+2018,Victoria,White Point,White Point,1,,,both_blank
+2018,Victoria,Wreck Cove,Wreck Cove,1,,,both_blank
+2018,Yarmouth,Abbotts Harbour,Abbotts Harbour,1,890043.67,5944149.33,both_present
+2018,Yarmouth,Abrams River,Abrams River,1,,,both_blank
+2018,Yarmouth,Camp Cove,Camp Cove,1,2071142.35,24092536.02,both_present
+2018,Yarmouth,Chebogue,Chebogue,1,551302.97,990501.79,both_present
+2018,Yarmouth,Chegoggin,Chegoggin,1,13062.32,226691.30,both_present
+2018,Yarmouth,Chegoggin Point,Chegoggin Point,1,293020.43,4713679.73,both_present
+2018,Yarmouth,Dennis Point,Dennis Point,1,17053810.47,20651905.77,both_present
+2018,Yarmouth,Glenwood,Glenwood,1,,,both_blank
+2018,Yarmouth,Hubbards Point,Hubbards Point,1,,,both_blank
+2018,Yarmouth,Ledge Harbour,Ledge Harbour,1,,,both_blank
+2018,Yarmouth,Little River Harbour,Little River Harbour,1,1242916.93,11271966.76,both_present
+2018,Yarmouth,Lower East Pubnico,Lower East Pubnico,1,7566529.61,50425624.28,both_present
+2018,Yarmouth,Lower Wedgeport Tuna Wharf,Lower Wedgeport Tuna Wharf,1,,,both_blank
+2018,Yarmouth,Morris Island,Morris Island,1,579835.72,646152.21,both_present
+2018,Yarmouth,Other,Other (Yarmouth),0,10534896.18,14092405.58,both_present
+2018,Yarmouth,Pinkneys Point,Pinkneys Point,1,1746510.17,9896027.35,both_present
+2018,Yarmouth,Plymouth,Plymouth,1,,,both_blank
+2018,Yarmouth,Port Maitland,Port Maitland,1,818044.56,6679459.70,both_present
+2018,Yarmouth,Rocco Point,Rocco Point,1,455154.17,173419.78,both_present
+2018,Yarmouth,Sluice Point,Sluice Point,1,1067948.80,368399.97,both_present
+2018,Yarmouth,Stanford,Stanford,1,332529.20,5967876.15,both_present
+2018,Yarmouth,Surettes Island,Surettes Island,1,,,both_blank
+2018,Yarmouth,Wedge Point,Wedge Point,1,3792020.93,18906199.68,both_present
+2018,Yarmouth,Yarmouth Bar,Yarmouth Bar,1,2852259.29,35327486.95,both_present
+2019,Annapolis,Anderson Cove,Anderson Cove,1,,,both_blank
+2019,Annapolis,Battery Point,Battery Point,1,,,both_blank
+2019,Annapolis,Delaps Cove,Delaps Cove,1,,,both_blank
+2019,Annapolis,Hampton,Hampton,1,,,both_blank
+2019,Annapolis,Margaretsville,Margaretsville,1,,,both_blank
+2019,Annapolis,Other,Other (Annapolis),0,78589.38,3819912.00,both_present
+2019,Annapolis,Parkers Cove,Parkers Cove,1,247863.50,4581824.00,both_present
+2019,Annapolis,Port Lorne,Port Lorne,1,,,both_blank
+2019,Antigonish,Arisaig,Arisaig,1,,,both_blank
+2019,Antigonish,Aulds Cove,Aulds Cove,1,,,both_blank
+2019,Antigonish,Ballantynes Cove,Ballantynes Cove,1,259406.10,2837113.00,both_present
+2019,Antigonish,Barrios Beach,Barrios Beach,1,,,both_blank
+2019,Antigonish,Bayfield,Bayfield,1,,,both_blank
+2019,Antigonish,Cribbons Point,Cribbons Point,1,165222.30,2315654.00,both_present
+2019,Antigonish,Havre Boucher,Havre Boucher,1,287677.60,4282349.00,both_present
+2019,Antigonish,Livingstone,Livingstone,1,,,both_blank
+2019,Antigonish,Other,Other (Antigonish),0,,,both_blank
+2019,Cape Breton,Alder Point,Alder Point,1,730654.40,11168036.00,both_present
+2019,Cape Breton,Crane Cove,Crane Cove,1,,,both_blank
+2019,Cape Breton,Gabarus,Gabarus,1,144714.40,2261160.00,both_present
+2019,Cape Breton,Glace Bay,Glace Bay,1,5525967.00,28123634.00,both_present
+2019,Cape Breton,Lingan,Lingan,1,178108.30,2708295.00,both_present
+2019,Cape Breton,Louisbourg,Louisbourg,1,3950889.00,41656157.00,both_present
+2019,Cape Breton,Main-A-Dieu,Main-A-Dieu,1,917010.60,14006517.00,both_present
+2019,Cape Breton,Marion Bridge,Marion Bridge,1,,,both_blank
+2019,Cape Breton,New Waterford,New Waterford,1,,,both_blank
+2019,Cape Breton,North Sydney - Ballast Grounds,North Sydney - Ballast Grounds,1,785816.20,7712457.00,both_present
+2019,Cape Breton,North Sydney - Marina Breakwater,North Sydney - Marina Breakwater,1,,,both_blank
+2019,Cape Breton,Other,Other (Cape Breton),0,1442221.00,9521314.00,both_present
+2019,Cape Breton,Oyster Creek,Oyster Creek,1,,,both_blank
+2019,Cape Breton,Point Aconi,Point Aconi,1,,,both_blank
+2019,Cape Breton,Port Morien,Port Morien,1,1079656.00,16577134.00,both_present
+2019,Cape Breton,South Bar,South Bar,1,,,both_blank
+2019,Cape Breton,Three Stick Cove,Three Stick Cove,1,,,both_blank
+2019,Cape Breton,Victoria Bridge,Victoria Bridge,1,,,both_blank
+2019,Colchester,Barrachois,Barrachois,1,,,both_blank
+2019,Colchester,Five Islands,Five Islands,1,,,both_blank
+2019,Colchester,Other,Other (Colchester),0,13656.36,215208.00,both_present
+2019,Cumberland,Advocate Harbour,Advocate Harbour,1,165057.80,3014812.00,both_present
+2019,Cumberland,Apple River,Apple River,1,,,both_blank
+2019,Cumberland,Malagash,Malagash,1,,,both_blank
+2019,Cumberland,Northport,Northport,1,,,both_blank
+2019,Cumberland,Other,Other (Cumberland),0,,,both_blank
+2019,Cumberland,Pugwash,Pugwash,1,256546.20,3038617.00,both_present
+2019,Cumberland,Wallace,Wallace,1,337181.30,3455181.00,both_present
+2019,Digby,Cape St. Marys,Cape St. Marys,1,294852.00,5468734.00,both_present
+2019,Digby,Centerville,Centerville,1,110009.20,2035518.00,both_present
+2019,Digby,Culloden,Culloden,1,,,both_blank
+2019,Digby,Digby,Digby,1,5124600.00,65478911.00,both_present
+2019,Digby,East Ferry,East Ferry,1,,,both_blank
+2019,Digby,Freeport,Freeport,1,171261.70,3173046.00,both_present
+2019,Digby,Freeport,Freeport,1,,,both_blank
+2019,Digby,Gilberts Cove,Gilberts Cove,1,,,both_blank
+2019,Digby,Little River,Little River (Digby),1,982561.90,127620006.00,both_present
+2019,Digby,Meteghan,Meteghan,1,3601520.00,23991495.00,both_present
+2019,Digby,Meteghan River,Meteghan River,1,576285.50,11680415.00,both_present
+2019,Digby,Other,Other (Digby),0,111995.80,630735.00,both_present
+2019,Digby,Rossway,Rossway,1,,,both_blank
+2019,Digby,Sandy Cove East,Sandy Cove East,1,153800.60,2789673.00,both_present
+2019,Digby,Saulnierville,Saulnierville,1,573644.60,6577045.00,both_present
+2019,Digby,Tiverton,Tiverton,1,183648.10,3433149.00,both_present
+2019,Digby,Westport,Westport,1,587399.40,9338028.00,both_present
+2019,Digby,Weymputh North,Weymputh North,1,93872.23,202156.00,both_present
+2019,Digby,Whale Cove,Whale Cove,1,,,both_blank
+2019,Guysborough,Canso,Canso,1,2156123.00,21104298.00,both_present
+2019,Guysborough,Charlos Cove,Charlos Cove,1,,,both_blank
+2019,Guysborough,Cooks Cove,Cooks Cove,1,,,both_blank
+2019,Guysborough,Dover,Dover,1,,,both_blank
+2019,Guysborough,Drum Head,Drum Head,1,,,both_blank
+2019,Guysborough,Ecum Secum,Ecum Secum,1,,,both_blank
+2019,Guysborough,Fishermans Harbour,Fishermans Harbour,1,,,both_blank
+2019,Guysborough,Goldboro,Goldboro,1,,,both_blank
+2019,Guysborough,Half Island Cove,Half Island Cove,1,,,both_blank
+2019,Guysborough,Larrys River,Larrys River,1,,,both_blank
+2019,Guysborough,Little Harbour,Little Harbour (Guysborough),1,,,both_blank
+2019,Guysborough,Little Liscomb,Little Liscomb,1,,,both_blank
+2019,Guysborough,Marie Joseph,Marie Joseph,1,327309.70,4227250.00,both_present
+2019,Guysborough,New Harbour,New Harbour,1,,,both_blank
+2019,Guysborough,Other,Other (Guysborough),0,127993.20,6882382.00,both_present
+2019,Guysborough,Pirate Harbour,Pirate Harbour,1,,,both_blank
+2019,Guysborough,Port Brickerton East,Port Brickerton East,1,,,both_blank
+2019,Guysborough,Port Brickerton West,Port Brickerton West,1,,,both_blank
+2019,Guysborough,Port Felix,Port Felix,1,,,both_blank
+2019,Guysborough,Queensport,Queensport,1,,,both_blank
+2019,Guysborough,Sonora,Sonora,1,,,both_blank
+2019,Guysborough,Upper Whitehead,Upper Whitehead,1,,,both_blank
+2019,Guysborough,Wine Harbour,Wine Harbour,1,,,both_blank
+2019,Halifax,Boutiliers Point,Boutiliers Point,1,,,both_blank
+2019,Halifax,Carters Point,Carters Point,1,,,both_blank
+2019,Halifax,Coopers Point,Coopers Point,1,,,both_blank
+2019,Halifax,East Chezzetcook,East Chezzetcook,1,,,both_blank
+2019,Halifax,East Dover,East Dover,1,,,both_blank
+2019,Halifax,East Jeddor,East Jeddor,1,2164024.00,9421543.00,both_present
+2019,Halifax,East Petpeswick,East Petpeswick,1,,,both_blank
+2019,Halifax,Eastern Passage,Eastern Passage,1,823173.70,5188536.00,both_present
+2019,Halifax,Ecum Secum West,Ecum Secum West,1,,,both_blank
+2019,Halifax,Factory Cove,Factory Cove,1,,,both_blank
+2019,Halifax,Gammons Creek,Gammons Creek,1,,,both_blank
+2019,Halifax,Halifax,Halifax,1,340766.20,5198304.00,both_present
+2019,Halifax,Indian Harbour,Indian Harbour,1,,,both_blank
+2019,Halifax,Ketch Harbour,Ketch Harbour,1,,,both_blank
+2019,Halifax,Little Harbour,Little Harbour (Halifax),1,,,both_blank
+2019,Halifax,Ostrea Lake,Ostrea Lake,1,,,both_blank
+2019,Halifax,Other,Other (Halifax),0,2718293.00,24088597.00,both_present
+2019,Halifax,Owls Head,Owls Head,1,,,both_blank
+2019,Halifax,Peggys Cove,Peggys Cove,1,,,both_blank
+2019,Halifax,Pleasant Point,Pleasant Point,1,,,both_blank
+2019,Halifax,Prospect,Prospect,1,,,both_blank
+2019,Halifax,Sambro,Sambro,1,2346503.00,18950626.00,both_present
+2019,Halifax,Shad Bay,Shad Bay,1,,,both_blank
+2019,Halifax,Sober Island,Sober Island,1,,,both_blank
+2019,Halifax,Terence Bay,Terence Bay,1,,,both_blank
+2019,Halifax,Three Fathom Harbour,Three Fathom Harbour,1,,,both_blank
+2019,Halifax,West Chezzetcook,West Chezzetcook,1,,,both_blank
+2019,Halifax,West Dover,West Dover,1,,,both_blank
+2019,Hants,Other,Other (Hants),0,,,both_blank
+2019,Inverness,Cheticamp,Cheticamp,1,2777342.00,34191194.00,both_present
+2019,Inverness,Cheticamp - Town Wharf,Cheticamp - Town Wharf,1,,,both_blank
+2019,Inverness,Cheticamp Point,Cheticamp Point,1,,,both_blank
+2019,Inverness,Finlay Point,Finlay Point,1,,,both_blank
+2019,Inverness,Grand Etang,Grand Etang,1,211460.10,2995196.00,both_present
+2019,Inverness,Inverness,Inverness,1,318000.20,4293429.00,both_present
+2019,Inverness,Judique,Judique,1,,,both_blank
+2019,Inverness,Little Judique Harbour,Little Judique Harbour,1,,,both_blank
+2019,Inverness,Little Judique Ponds,Little Judique Ponds,1,,,both_blank
+2019,Inverness,Mabou Harbour,Mabou Harbour,1,86405.61,1162116.00,both_present
+2019,Inverness,Marble Mountain,Marble Mountain,1,,,both_blank
+2019,Inverness,Margaree Harbour,Margaree Harbour,1,336909.10,4690150.00,both_present
+2019,Inverness,Meat Cove,Meat Cove,1,,,both_blank
+2019,Inverness,Murphys Pond,Murphys Pond,1,497591.30,4249755.00,both_present
+2019,Inverness,Other,Other (Inverness),0,1266106.00,13711133.00,both_present
+2019,Inverness,Pleasant Bay,Pleasant Bay,1,,,both_blank
+2019,Inverness,Port Hood,Port Hood,1,22078.59,341039.00,both_present
+2019,Inverness,Port Hood Island,Port Hood Island,1,,,both_blank
+2019,Kings,Halls Harbour,Halls Harbour,1,,,both_blank
+2019,Kings,Harbourville,Harbourville,1,98616.89,1896503.00,both_present
+2019,Kings,Kingsport,Kingsport,1,,,both_blank
+2019,Kings,Other,Other (Kings),0,183493.30,767365.00,both_present
+2019,Kings,Pereaux,Pereaux,1,,,both_blank
+2019,Kings,Scots Bay,Scots Bay,1,,,both_blank
+2019,Lunenburg,Aspotogan,Aspotogan,1,,,both_blank
+2019,Lunenburg,Bayport,Bayport,1,,,both_blank
+2019,Lunenburg,Big Tancook Island,Big Tancook Island,1,,,both_blank
+2019,Lunenburg,Black Harbour,Black Harbour,1,,,both_blank
+2019,Lunenburg,Blandford,Blandford,1,,,both_blank
+2019,Lunenburg,Bush Island,Bush Island,1,,,both_blank
+2019,Lunenburg,Chester Basin,Chester Basin,1,,,both_blank
+2019,Lunenburg,Feltzen South,Feltzen South,1,,,both_blank
+2019,Lunenburg,Fox Point,Fox Point,1,,,both_blank
+2019,Lunenburg,Kings Bay,Kings Bay,1,,,both_blank
+2019,Lunenburg,Kraut Point,Kraut Point,1,,,both_blank
+2019,Lunenburg,Little Harbour,Little Harbour (Lunenburg),1,,,both_blank
+2019,Lunenburg,Lunenburg,Lunenburg,1,80814.22,1552020.00,both_present
+2019,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2019,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2019,Lunenburg,Mahone Bay,Mahone Bay,1,,,both_blank
+2019,Lunenburg,Mill Cove,Mill Cove,1,,,both_blank
+2019,Lunenburg,Northwest Cove,Northwest Cove,1,,,both_blank
+2019,Lunenburg,Other,Other (Lunenburg),0,755599.30,16759131.00,both_present
+2019,Lunenburg,Riverport,Riverport,1,,,both_blank
+2019,Lunenburg,Saw Pit,Saw Pit,1,,,both_blank
+2019,Lunenburg,Voglers Cove West,Voglers Cove West,1,430968.20,7930083.00,both_present
+2019,Lunenburg,Western Shore,Western Shore,1,,,both_blank
+2019,Pictou,Baileys Brook,Baileys Brook,1,158526.80,1838537.00,both_present
+2019,Pictou,Big Island,Big Island,1,,,both_blank
+2019,Pictou,Cape John,Cape John,1,130899.80,1850996.00,both_present
+2019,Pictou,Caribou,Caribou,1,4761040.00,18225943.00,both_present
+2019,Pictou,Caribou Ferry,Caribou Ferry,1,915119.60,2569907.00,both_present
+2019,Pictou,Chance Harbour,Chance Harbour,1,,,both_blank
+2019,Pictou,Little Harbour,Little Harbour (Pictou),1,,,both_blank
+2019,Pictou,Merigomish,Merigomish,1,,,both_blank
+2019,Pictou,Other,Other (Pictou),0,,,both_blank
+2019,Pictou,Pictou Island,Pictou Island,1,,,both_blank
+2019,Pictou,Pictou Landing,Pictou Landing,1,169923.30,2145374.00,both_present
+2019,Pictou,Skinners Cove,Skinners Cove,1,,,both_blank
+2019,Pictou,Toney River,Toney River,1,,,both_blank
+2019,Queens,Brooklyn Fisherman's Wharf,Brooklyn Fisherman's Wharf,1,48129.28,915479.00,both_present
+2019,Queens,East Side Port L'Hebert,East Side Port L'Hebert,1,685084.70,4222551.00,both_present
+2019,Queens,Hunts Point,Hunts Point,1,,,both_blank
+2019,Queens,Moose Harbour,Moose Harbour,1,,,both_blank
+2019,Queens,Other,Other (Queens),0,2071399.00,9846658.00,both_present
+2019,Queens,Port Medway,Port Medway,1,557852.60,24492830.00,both_present
+2019,Queens,Port Mouton,Port Mouton,1,5949915.00,19256682.00,both_present
+2019,Queens,South West Port Mouton,South West Port Mouton,1,,,both_blank
+2019,Queens,St. Catherines River,St. Catherines River,1,,,both_blank
+2019,Queens,Volgers Cove,Volgers Cove,1,,,both_blank
+2019,Queens,West Berlin,West Berlin,1,,,both_blank
+2019,Richmond,Arichat,Arichat,1,1959122.00,21873878.00,both_present
+2019,Richmond,Arrow Point,Arrow Point,1,,,both_blank
+2019,Richmond,Chapel Cove,Chapel Cove,1,,,both_blank
+2019,Richmond,D'escousse,D'escousse,1,,,both_blank
+2019,Richmond,Fourchu,Fourchu,1,,,both_blank
+2019,Richmond,Janvrin Harbour,Janvrin Harbour,1,,,both_blank
+2019,Richmond,L'Archeveque,L'Archeveque,1,,,both_blank
+2019,Richmond,Little Harbour,Little Harbour (Richmond),1,1912586.00,26987789.00,both_present
+2019,Richmond,Other,Other (Richmond),0,,,both_blank
+2019,Richmond,Poirierville,Poirierville,1,,,both_blank
+2019,Richmond,River Bourgeois,River Bourgeois,1,,,both_blank
+2019,Shelburne,Allendale,Allendale,1,,,both_blank
+2019,Shelburne,Bear Point,Bear Point,1,598246.10,5002854.00,both_present
+2019,Shelburne,Cape Negro,Cape Negro,1,,,both_blank
+2019,Shelburne,Clark's Harbour,Clark's Harbour,1,2081682.00,35640109.00,both_present
+2019,Shelburne,Cripple Creek,Cripple Creek,1,269163.80,5142674.00,both_present
+2019,Shelburne,Forbes Point,Forbes Point,1,244636.40,3723426.00,both_present
+2019,Shelburne,Gunning Cove,Gunning Cove,1,1262171.00,10419040.00,both_present
+2019,Shelburne,Ingomar,Ingomar,1,3537795.00,21452723.00,both_present
+2019,Shelburne,Jones Harbour,Jones Harbour,1,127787.80,2391917.00,both_present
+2019,Shelburne,Little Harbour,Little Harbour (Shelburne),1,436161.40,2641695.00,both_present
+2019,Shelburne,Lockeport,Lockeport,1,968007.80,15704268.00,both_present
+2019,Shelburne,Lower Jordan Bay,Lower Jordan Bay,1,650137.90,3610093.00,both_present
+2019,Shelburne,Lower Sandy Point,Lower Sandy Point,1,432499.80,7826034.00,both_present
+2019,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,5141924.00,10706759.00,both_present
+2019,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,1665997.00,27701334.00,both_present
+2019,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,,,both_blank
+2019,Shelburne,Newellton,Newellton,1,915385.00,17114033.00,both_present
+2019,Shelburne,Other,Other (Shelburne),0,1143267.00,10437105.00,both_present
+2019,Shelburne,Port La Tour,Port La Tour,1,1644471.00,12541940.00,both_present
+2019,Shelburne,Seal Point,Seal Point,1,142531.80,2707567.00,both_present
+2019,Shelburne,Shag Harbour,Shag Harbour,1,2072332.00,10531596.00,both_present
+2019,Shelburne,Shag Harbour,Shag Harbour,1,,,both_blank
+2019,Shelburne,Shelburne,Shelburne,1,1962194.00,2024463.00,both_present
+2019,Shelburne,South Side,South Side,1,348374.20,6104006.00,both_present
+2019,Shelburne,Stoney Island,Stoney Island,1,366149.90,7000730.00,both_present
+2019,Shelburne,Swims Point,Swims Point,1,1403275.00,3345178.00,both_present
+2019,Shelburne,Uper Port La Tour,Uper Port La Tour,1,122512.50,2278626.00,both_present
+2019,Shelburne,West Green Harbour,West Green Harbour,1,,,both_blank
+2019,Shelburne,West Head,West Head,1,2234002.00,21999395.00,both_present
+2019,Victoria,Bay St. Lawrence,Bay St. Lawrence,1,844881.70,10110678.00,both_present
+2019,Victoria,Big Bras D'or,Big Bras D'or,1,,,both_blank
+2019,Victoria,Dingwall,Dingwall,1,294185.20,3977726.00,both_present
+2019,Victoria,Englishtown,Englishtown,1,,,both_blank
+2019,Victoria,Ingonish,Ingonish,1,,,both_blank
+2019,Victoria,Ingonish Beach,Ingonish Beach,1,,,both_blank
+2019,Victoria,Ingonish Ferry,Ingonish Ferry,1,110907.00,1621659.00,both_present
+2019,Victoria,Iona,Iona,1,,,both_blank
+2019,Victoria,Little River,Little River (Victoria),1,156104.60,2305598.00,both_present
+2019,Victoria,Neils Harbour,Neils Harbour,1,,,both_blank
+2019,Victoria,New Campbellton,New Campbellton,1,,,both_blank
+2019,Victoria,New Haven,New Haven,1,,,both_blank
+2019,Victoria,Nyanza,Nyanza,1,,,both_blank
+2019,Victoria,Other,Other (Victoria),0,,,both_blank
+2019,Victoria,Smelt Book,Smelt Book,1,,,both_blank
+2019,Victoria,White Point,White Point,1,,,both_blank
+2019,Victoria,Wreck Cove,Wreck Cove,1,,,both_blank
+2019,Yarmouth,Abbotts Harbour,Abbotts Harbour,1,806300.10,7691760.00,both_present
+2019,Yarmouth,Abrams River,Abrams River,1,,,both_blank
+2019,Yarmouth,Camp Cove,Camp Cove,1,1851680.00,27498357.00,both_present
+2019,Yarmouth,Chebogue,Chebogue,1,549714.50,1374480.00,both_present
+2019,Yarmouth,Chegoggin,Chegoggin,1,6602.48,38148.00,both_present
+2019,Yarmouth,Chegoggin Point,Chegoggin Point,1,,,both_blank
+2019,Yarmouth,Dennis Point,Dennis Point,1,21883934.00,72251912.00,both_present
+2019,Yarmouth,Glenwood,Glenwood,1,,,both_blank
+2019,Yarmouth,Hubbards Point,Hubbards Point,1,,,both_blank
+2019,Yarmouth,Ledge Harbour,Ledge Harbour,1,,,both_blank
+2019,Yarmouth,Little River Harbour,Little River Harbour,1,1366314.00,13425622.00,both_present
+2019,Yarmouth,Lower East Pubnico,Lower East Pubnico,1,8251079.00,41160058.00,both_present
+2019,Yarmouth,Lower Wedgeport Tuna Wharf,Lower Wedgeport Tuna Wharf,1,4035537.00,2691480.00,both_present
+2019,Yarmouth,Morris Island,Morris Island,1,561893.40,1017650.00,both_present
+2019,Yarmouth,Other,Other (Yarmouth),0,7307498.00,12353097.00,both_present
+2019,Yarmouth,Pinkneys Point,Pinkneys Point,1,1850743.00,12644772.00,both_present
+2019,Yarmouth,Plymouth,Plymouth,1,,,both_blank
+2019,Yarmouth,Port Maitland,Port Maitland,1,152277.20,2839029.00,both_present
+2019,Yarmouth,Rocco Point,Rocco Point,1,461339.80,76640.00,both_present
+2019,Yarmouth,Sandford,Sandford,1,392282.20,6932957.00,both_present
+2019,Yarmouth,Sluice Point,Sluice Point,1,,,both_blank
+2019,Yarmouth,Surettes Island,Surettes Island,1,,,both_blank
+2019,Yarmouth,Wedge Point,Wedge Point,1,3588023.00,16778448.00,both_present
+2019,Yarmouth,Yarmouth Bar,Yarmouth Bar,1,3373811.00,33041311.00,both_present
+2020,Annapolis,Anderson Cove,Anderson Cove,1,,,both_blank
+2020,Annapolis,Battery Point,Battery Point,1,,,both_blank
+2020,Annapolis,Delaps Cove,Delaps Cove,1,,,both_blank
+2020,Annapolis,Hampton,Hampton,1,,,both_blank
+2020,Annapolis,Margaretsville,Margaretsville,1,,,both_blank
+2020,Annapolis,Other,Other (Annapolis),0,12262.40,197254.69,both_present
+2020,Annapolis,Parkers Cove,Parkers Cove,1,,,both_blank
+2020,Annapolis,Port Lorne,Port Lorne,1,,,both_blank
+2020,Antigonish,Arisaig,Arisaig,1,,,both_blank
+2020,Antigonish,Aulds Cove,Aulds Cove,1,,,both_blank
+2020,Antigonish,Ballantynes Cove,Ballantynes Cove,1,197058.52,1486982.93,both_present
+2020,Antigonish,Barrios Beach,Barrios Beach,1,,,both_blank
+2020,Antigonish,Bayfield,Bayfield,1,,,both_blank
+2020,Antigonish,Cribbons Point,Cribbons Point,1,,,both_blank
+2020,Antigonish,Havre Boucher,Havre Boucher,1,,,both_blank
+2020,Antigonish,Livingstone,Livingstone,1,,,both_blank
+2020,Antigonish,Other,Other (Antigonish),0,,,both_blank
+2020,Cape Breton,Alder Point,Alder Point,1,500694.00,5051182.40,both_present
+2020,Cape Breton,Crane Cove,Crane Cove,1,,,both_blank
+2020,Cape Breton,Gabarus,Gabarus,1,,,both_blank
+2020,Cape Breton,Glace Bay,Glace Bay,1,4736818.15,18711616.89,both_present
+2020,Cape Breton,Lingan,Lingan,1,,,both_blank
+2020,Cape Breton,Louisbourg,Louisbourg,1,1957429.10,14031631.27,both_present
+2020,Cape Breton,Main-A-Dieu,Main-A-Dieu,1,,,both_blank
+2020,Cape Breton,Marion Bridge,Marion Bridge,1,,,both_blank
+2020,Cape Breton,New Waterford,New Waterford,1,,,both_blank
+2020,Cape Breton,North Sydney - Ballast Grounds,North Sydney - Ballast Grounds,1,461966.12,4733282.02,both_present
+2020,Cape Breton,North Sydney - Marina Breakwater,North Sydney - Marina Breakwater,1,,,both_blank
+2020,Cape Breton,Other,Other (Cape Breton),0,298824.04,2858786.25,both_present
+2020,Cape Breton,Oyster Creek,Oyster Creek,1,,,both_blank
+2020,Cape Breton,Point Aconi,Point Aconi,1,,,both_blank
+2020,Cape Breton,Port Morien,Port Morien,1,,,both_blank
+2020,Cape Breton,South Bar,South Bar,1,,,both_blank
+2020,Cape Breton,Three Stick Cove,Three Stick Cove,1,,,both_blank
+2020,Cape Breton,Victoria Bridge,Victoria Bridge,1,,,both_blank
+2020,Colchester,Barrachois,Barrachois,1,,,both_blank
+2020,Colchester,Five Islands,Five Islands,1,,,both_blank
+2020,Colchester,Other,Other (Colchester),0,,,both_blank
+2020,Cumberland,Advocate Harbour,Advocate Harbour,1,,,both_blank
+2020,Cumberland,Apple River,Apple River,1,,,both_blank
+2020,Cumberland,Malagash,Malagash,1,,,both_blank
+2020,Cumberland,Northport,Northport,1,,,both_blank
+2020,Cumberland,Other,Other (Cumberland),0,,,both_blank
+2020,Cumberland,Pugwash,Pugwash,1,275709.55,2125817.53,both_present
+2020,Cumberland,Wallace,Wallace,1,283532.19,2186404.01,both_present
+2020,Digby,Cape St. Marys,Cape St. Marys,1,221723.04,3559111.20,both_present
+2020,Digby,Centerville,Centerville,1,50910.27,880314.81,both_present
+2020,Digby,Culloden,Culloden,1,,,both_blank
+2020,Digby,Digby,Digby,1,4509062.44,53040785.52,both_present
+2020,Digby,East Ferry,East Ferry,1,,,both_blank
+2020,Digby,Freeport,Freeport,1,133002.25,2282489.85,both_present
+2020,Digby,Freeport,Freeport,1,,,both_blank
+2020,Digby,Gilberts Cove,Gilberts Cove,1,,,both_blank
+2020,Digby,Little River,Little River (Digby),1,797452.37,7678897.31,both_present
+2020,Digby,Meteghan,Meteghan,1,3143637.88,16942236.37,both_present
+2020,Digby,Meteghan River,Meteghan River,1,,,both_blank
+2020,Digby,Other,Other (Digby),0,,,both_blank
+2020,Digby,Rossway,Rossway,1,,,both_blank
+2020,Digby,Sandy Cove East,Sandy Cove East,1,135056.56,2360603.89,both_present
+2020,Digby,Saulnierville,Saulnierville,1,132999.98,2042391.07,both_present
+2020,Digby,Tiverton,Tiverton,1,,,both_blank
+2020,Digby,Westport,Westport,1,,,both_blank
+2020,Digby,Weymputh North,Weymputh North,1,,,both_blank
+2020,Digby,Whale Cove,Whale Cove,1,,,both_blank
+2020,Guysborough,Canso,Canso,1,3245507.92,16785263.10,both_present
+2020,Guysborough,Charlos Cove,Charlos Cove,1,,,both_blank
+2020,Guysborough,Cooks Cove,Cooks Cove,1,,,both_blank
+2020,Guysborough,Dover,Dover,1,,,both_blank
+2020,Guysborough,Drum Head,Drum Head,1,,,both_blank
+2020,Guysborough,Ecum Secum,Ecum Secum,1,,,both_blank
+2020,Guysborough,Fishermans Harbour,Fishermans Harbour,1,,,both_blank
+2020,Guysborough,Goldboro,Goldboro,1,,,both_blank
+2020,Guysborough,Half Island Cove,Half Island Cove,1,,,both_blank
+2020,Guysborough,Larrys River,Larrys River,1,,,both_blank
+2020,Guysborough,Little Harbour,Little Harbour (Guysborough),1,,,both_blank
+2020,Guysborough,Little Liscomb,Little Liscomb,1,,,both_blank
+2020,Guysborough,Marie Joseph,Marie Joseph,1,,,both_blank
+2020,Guysborough,New Harbour,New Harbour,1,,,both_blank
+2020,Guysborough,Other,Other (Guysborough),0,91430.79,1000835.80,both_present
+2020,Guysborough,Pirate Harbour,Pirate Harbour,1,,,both_blank
+2020,Guysborough,Port Brickerton East,Port Brickerton East,1,,,both_blank
+2020,Guysborough,Port Brickerton West,Port Brickerton West,1,,,both_blank
+2020,Guysborough,Port Felix,Port Felix,1,,,both_blank
+2020,Guysborough,Queensport,Queensport,1,,,both_blank
+2020,Guysborough,Sonora,Sonora,1,,,both_blank
+2020,Guysborough,Upper Whitehead,Upper Whitehead,1,,,both_blank
+2020,Guysborough,Wine Harbour,Wine Harbour,1,,,both_blank
+2020,Halifax,Boutiliers Point,Boutiliers Point,1,,,both_blank
+2020,Halifax,Carters Point,Carters Point,1,,,both_blank
+2020,Halifax,Coopers Point,Coopers Point,1,,,both_blank
+2020,Halifax,East Chezzetcook,East Chezzetcook,1,,,both_blank
+2020,Halifax,East Dover,East Dover,1,,,both_blank
+2020,Halifax,East Jeddor,East Jeddor,1,,,both_blank
+2020,Halifax,East Petpeswick,East Petpeswick,1,,,both_blank
+2020,Halifax,Eastern Passage,Eastern Passage,1,692891.56,4307750.09,both_present
+2020,Halifax,Ecum Secum West,Ecum Secum West,1,,,both_blank
+2020,Halifax,Factory Cove,Factory Cove,1,,,both_blank
+2020,Halifax,Gammons Creek,Gammons Creek,1,,,both_blank
+2020,Halifax,Halifax,Halifax,1,,,both_blank
+2020,Halifax,Indian Harbour,Indian Harbour,1,,,both_blank
+2020,Halifax,Ketch Harbour,Ketch Harbour,1,,,both_blank
+2020,Halifax,Little Harbour,Little Harbour (Halifax),1,,,both_blank
+2020,Halifax,Ostrea Lake,Ostrea Lake,1,,,both_blank
+2020,Halifax,Other,Other (Halifax),0,3544639.07,7262296.17,both_present
+2020,Halifax,Owls Head,Owls Head,1,,,both_blank
+2020,Halifax,Peggys Cove,Peggys Cove,1,,,both_blank
+2020,Halifax,Pleasant Point,Pleasant Point,1,,,both_blank
+2020,Halifax,Prospect,Prospect,1,,,both_blank
+2020,Halifax,Sambro,Sambro,1,3400625.99,25197084.45,both_present
+2020,Halifax,Shad Bay,Shad Bay,1,,,both_blank
+2020,Halifax,Sober Island,Sober Island,1,,,both_blank
+2020,Halifax,Terence Bay,Terence Bay,1,,,both_blank
+2020,Halifax,Three Fathom Harbour,Three Fathom Harbour,1,,,both_blank
+2020,Halifax,West Chezzetcook,West Chezzetcook,1,,,both_blank
+2020,Halifax,West Dover,West Dover,1,,,both_blank
+2020,Hants,Other,Other (Hants),0,,,both_blank
+2020,Inverness,Cheticamp,Cheticamp,1,,,both_blank
+2020,Inverness,Cheticamp - Town Wharf,Cheticamp - Town Wharf,1,,,both_blank
+2020,Inverness,Cheticamp Point,Cheticamp Point,1,,,both_blank
+2020,Inverness,Finlay Point,Finlay Point,1,,,both_blank
+2020,Inverness,Grand Etang,Grand Etang,1,,,both_blank
+2020,Inverness,Inverness,Inverness,1,277606.01,2554857.73,both_present
+2020,Inverness,Judique,Judique,1,,,both_blank
+2020,Inverness,Little Judique Harbour,Little Judique Harbour,1,,,both_blank
+2020,Inverness,Little Judique Ponds,Little Judique Ponds,1,,,both_blank
+2020,Inverness,Mabou Harbour,Mabou Harbour,1,,,both_blank
+2020,Inverness,Marble Mountain,Marble Mountain,1,,,both_blank
+2020,Inverness,Margaree Harbour,Margaree Harbour,1,361073.29,3345928.24,both_present
+2020,Inverness,Meat Cove,Meat Cove,1,,,both_blank
+2020,Inverness,Murphys Pond,Murphys Pond,1,,,both_blank
+2020,Inverness,Other,Other (Inverness),0,1870236.93,13401474.32,both_present
+2020,Inverness,Pleasant Bay,Pleasant Bay,1,,,both_blank
+2020,Inverness,Port Hood,Port Hood,1,,,both_blank
+2020,Inverness,Port Hood Island,Port Hood Island,1,,,both_blank
+2020,Kings,Halls Harbour,Halls Harbour,1,21253.10,269445.63,both_present
+2020,Kings,Harbourville,Harbourville,1,79224.88,1517137.26,both_present
+2020,Kings,Kingsport,Kingsport,1,,,both_blank
+2020,Kings,Other,Other (Kings),0,,,both_blank
+2020,Kings,Pereaux,Pereaux,1,,,both_blank
+2020,Kings,Scots Bay,Scots Bay,1,,,both_blank
+2020,Lunenburg,Aspotogan,Aspotogan,1,,,both_blank
+2020,Lunenburg,Bayport,Bayport,1,,,both_blank
+2020,Lunenburg,Big Tancook Island,Big Tancook Island,1,,,both_blank
+2020,Lunenburg,Black Harbour,Black Harbour,1,,,both_blank
+2020,Lunenburg,Blandford,Blandford,1,179923.61,3082827.85,both_present
+2020,Lunenburg,Bush Island,Bush Island,1,127397.66,2232630.96,both_present
+2020,Lunenburg,Chester Basin,Chester Basin,1,,,both_blank
+2020,Lunenburg,Feltzen South,Feltzen South,1,,,both_blank
+2020,Lunenburg,Fox Point,Fox Point,1,,,both_blank
+2020,Lunenburg,Kings Bay,Kings Bay,1,,,both_blank
+2020,Lunenburg,Kraut Point,Kraut Point,1,,,both_blank
+2020,Lunenburg,Little Harbour,Little Harbour (Lunenburg),1,,,both_blank
+2020,Lunenburg,Lunenburg,Lunenburg,1,40692.66,735631.48,both_present
+2020,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2020,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2020,Lunenburg,Mahone Bay,Mahone Bay,1,,,both_blank
+2020,Lunenburg,Mill Cove,Mill Cove,1,,,both_blank
+2020,Lunenburg,Northwest Cove,Northwest Cove,1,,,both_blank
+2020,Lunenburg,Other,Other (Lunenburg),0,602825.87,10337206.53,both_present
+2020,Lunenburg,Riverport,Riverport,1,,,both_blank
+2020,Lunenburg,Saw Pit,Saw Pit,1,,,both_blank
+2020,Lunenburg,Voglers Cove West,Voglers Cove West,1,,,both_blank
+2020,Lunenburg,Western Shore,Western Shore,1,,,both_blank
+2020,Pictou,Baileys Brook,Baileys Brook,1,,,both_blank
+2020,Pictou,Big Island,Big Island,1,,,both_blank
+2020,Pictou,Cape John,Cape John,1,,,both_blank
+2020,Pictou,Caribou,Caribou,1,1952510.80,8260997.35,both_present
+2020,Pictou,Caribou Ferry,Caribou Ferry,1,1152570.75,1473483.53,both_present
+2020,Pictou,Chance Harbour,Chance Harbour,1,,,both_blank
+2020,Pictou,Little Harbour,Little Harbour (Pictou),1,62650.95,557084.90,both_present
+2020,Pictou,Merigomish,Merigomish,1,,,both_blank
+2020,Pictou,Other,Other (Pictou),0,,,both_blank
+2020,Pictou,Pictou Island,Pictou Island,1,,,both_blank
+2020,Pictou,Pictou Landing,Pictou Landing,1,,,both_blank
+2020,Pictou,Skinners Cove,Skinners Cove,1,,,both_blank
+2020,Pictou,Toney River,Toney River,1,,,both_blank
+2020,Queens,Brooklyn Fisherman's Wharf,Brooklyn Fisherman's Wharf,1,,,both_blank
+2020,Queens,East Side Port L'Hebert,East Side Port L'Hebert,1,,,both_blank
+2020,Queens,Hunts Point,Hunts Point,1,,,both_blank
+2020,Queens,Moose Harbour,Moose Harbour,1,,,both_blank
+2020,Queens,Other,Other (Queens),0,860112.16,5118716.00,both_present
+2020,Queens,Port Medway,Port Medway,1,1155921.15,1531321.90,both_present
+2020,Queens,Port Mouton,Port Mouton,1,9168776.72,18646819.90,both_present
+2020,Queens,South West Port Mouton,South West Port Mouton,1,,,both_blank
+2020,Queens,St. Catherines River,St. Catherines River,1,,,both_blank
+2020,Queens,Volgers Cove,Volgers Cove,1,,,both_blank
+2020,Queens,West Berlin,West Berlin,1,,,both_blank
+2020,Richmond,Arichat,Arichat,1,3303001.12,21717036.46,both_present
+2020,Richmond,Arrow Point,Arrow Point,1,,,both_blank
+2020,Richmond,Chapel Cove,Chapel Cove,1,,,both_blank
+2020,Richmond,D'escousse,D'escousse,1,,,both_blank
+2020,Richmond,Fourchu,Fourchu,1,,,both_blank
+2020,Richmond,Janvrin Harbour,Janvrin Harbour,1,,,both_blank
+2020,Richmond,L'Archeveque,L'Archeveque,1,,,both_blank
+2020,Richmond,Little Harbour,Little Harbour (Richmond),1,,,both_blank
+2020,Richmond,Other,Other (Richmond),0,,,both_blank
+2020,Richmond,Poirierville,Poirierville,1,,,both_blank
+2020,Richmond,River Bourgeois,River Bourgeois,1,,,both_blank
+2020,Shelburne,Allendale,Allendale,1,,,both_blank
+2020,Shelburne,Bear Point,Bear Point,1,784116.78,3465631.02,both_present
+2020,Shelburne,Cape Negro,Cape Negro,1,,,both_blank
+2020,Shelburne,Clark's Harbour,Clark's Harbour,1,2810074.79,27996332.25,both_present
+2020,Shelburne,Cripple Creek,Cripple Creek,1,223459.82,3567178.82,both_present
+2020,Shelburne,Forbes Point,Forbes Point,1,,,both_blank
+2020,Shelburne,Gunning Cove,Gunning Cove,1,1257058.11,8946721.58,both_present
+2020,Shelburne,Ingomar,Ingomar,1,999963.98,7253340.12,both_present
+2020,Shelburne,Jones Harbour,Jones Harbour,1,113107.70,1996616.23,both_present
+2020,Shelburne,Little Harbour,Little Harbour (Shelburne),1,94179.76,1656907.70,both_present
+2020,Shelburne,Lockeport,Lockeport,1,1057037.64,9992428.09,both_present
+2020,Shelburne,Lower Jordan Bay,Lower Jordan Bay,1,586077.61,2114247.91,both_present
+2020,Shelburne,Lower Sandy Point,Lower Sandy Point,1,179113.97,2634604.84,both_present
+2020,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,2147587.10,27451260.65,both_present
+2020,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,1782202.87,109688264.57,both_present
+2020,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,,,both_blank
+2020,Shelburne,Newellton,Newellton,1,849963.11,12241989.39,both_present
+2020,Shelburne,Other,Other (Shelburne),0,1462323.03,9086466.92,both_present
+2020,Shelburne,Port La Tour,Port La Tour,1,1576758.39,8785329.84,both_present
+2020,Shelburne,Seal Point,Seal Point,1,143142.30,2467635.85,both_present
+2020,Shelburne,Shag Harbour,Shag Harbour,1,1717200.88,8982939.61,both_present
+2020,Shelburne,Shag Harbour,Shag Harbour,1,,,both_blank
+2020,Shelburne,Shelburne,Shelburne,1,180201.67,3160917.49,both_present
+2020,Shelburne,South Side,South Side,1,275259.11,4117724.13,both_present
+2020,Shelburne,Stoney Island,Stoney Island,1,196194.87,3329032.20,both_present
+2020,Shelburne,Swims Point,Swims Point,1,125462.18,2223267.01,both_present
+2020,Shelburne,Uper Port La Tour,Uper Port La Tour,1,,,both_blank
+2020,Shelburne,West Green Harbour,West Green Harbour,1,83478.16,1440637.63,both_present
+2020,Shelburne,West Head,West Head,1,1218919.90,16326970.14,both_present
+2020,Victoria,Bay St. Lawrence,Bay St. Lawrence,1,,,both_blank
+2020,Victoria,Big Bras D'or,Big Bras D'or,1,,,both_blank
+2020,Victoria,Dingwall,Dingwall,1,246448.32,2505320.03,both_present
+2020,Victoria,Englishtown,Englishtown,1,,,both_blank
+2020,Victoria,Ingonish,Ingonish,1,,,both_blank
+2020,Victoria,Ingonish Beach,Ingonish Beach,1,,,both_blank
+2020,Victoria,Ingonish Ferry,Ingonish Ferry,1,,,both_blank
+2020,Victoria,Iona,Iona,1,,,both_blank
+2020,Victoria,Little River,Little River (Victoria),1,,,both_blank
+2020,Victoria,Neils Harbour,Neils Harbour,1,,,both_blank
+2020,Victoria,New Campbellton,New Campbellton,1,,,both_blank
+2020,Victoria,New Haven,New Haven,1,,,both_blank
+2020,Victoria,Nyanza,Nyanza,1,,,both_blank
+2020,Victoria,Other,Other (Victoria),0,,,both_blank
+2020,Victoria,Smelt Book,Smelt Book,1,,,both_blank
+2020,Victoria,White Point,White Point,1,,,both_blank
+2020,Victoria,Wreck Cove,Wreck Cove,1,,,both_blank
+2020,Yarmouth,Abbotts Harbour,Abbotts Harbour,1,528917.77,35522401.03,both_present
+2020,Yarmouth,Abrams River,Abrams River,1,,,both_blank
+2020,Yarmouth,Camp Cove,Camp Cove,1,2472000.77,88739911.51,both_present
+2020,Yarmouth,Chebogue,Chebogue,1,,,both_blank
+2020,Yarmouth,Chegoggin,Chegoggin,1,,,both_blank
+2020,Yarmouth,Chegoggin Point,Chegoggin Point,1,191343.25,3023542.65,both_present
+2020,Yarmouth,Dennis Point,Dennis Point,1,16537756.12,23506153.29,both_present
+2020,Yarmouth,Glenwood,Glenwood,1,,,both_blank
+2020,Yarmouth,Hubbards Point,Hubbards Point,1,,,both_blank
+2020,Yarmouth,Ledge Harbour,Ledge Harbour,1,,,both_blank
+2020,Yarmouth,Little River Harbour,Little River Harbour,1,1283346.94,7793082.77,both_present
+2020,Yarmouth,Lower East Pubnico,Lower East Pubnico,1,7537001.90,29753712.33,both_present
+2020,Yarmouth,Lower Wedgeport Tuna Wharf,Lower Wedgeport Tuna Wharf,1,,,both_blank
+2020,Yarmouth,Morris Island,Morris Island,1,,,both_blank
+2020,Yarmouth,Other,Other (Yarmouth),0,8885037.00,152662072.90,both_present
+2020,Yarmouth,Pinkneys Point,Pinkneys Point,1,1477694.32,8464181.63,both_present
+2020,Yarmouth,Plymouth,Plymouth,1,,,both_blank
+2020,Yarmouth,Port Maitland,Port Maitland,1,,,both_blank
+2020,Yarmouth,Rocco Point,Rocco Point,1,,,both_blank
+2020,Yarmouth,Sandford,Sandford,1,,,both_blank
+2020,Yarmouth,Sluice Point,Sluice Point,1,,,both_blank
+2020,Yarmouth,Surettes Island,Surettes Island,1,,,both_blank
+2020,Yarmouth,Wedge Point,Wedge Point,1,3894793.54,14631098.00,both_present
+2020,Yarmouth,Yarmouth Bar,Yarmouth Bar,1,2239788.59,26024021.13,both_present
+2021,Annapolis,Anderson Cove,Anderson Cove,1,,,both_blank
+2021,Annapolis,Battery Point,Battery Point,1,58052.67,841586.59,both_present
+2021,Annapolis,Delaps Cove,Delaps Cove,1,,,both_blank
+2021,Annapolis,Hampton,Hampton,1,,,both_blank
+2021,Annapolis,Margaretsville,Margaretsville,1,,,both_blank
+2021,Annapolis,Other,Other (Annapolis),0,6534.01,2762399.73,both_present
+2021,Annapolis,Parkers Cove,Parkers Cove,1,36573.12,877729.02,both_present
+2021,Annapolis,Port Lorne,Port Lorne,1,,,both_blank
+2021,Antigonish,Arisaig,Arisaig,1,,,both_blank
+2021,Antigonish,Aulds Cove,Aulds Cove,1,,,both_blank
+2021,Antigonish,Ballantynes Cove,Ballantynes Cove,1,,,both_blank
+2021,Antigonish,Barrios Beach,Barrios Beach,1,,,both_blank
+2021,Antigonish,Bayfield,Bayfield,1,,,both_blank
+2021,Antigonish,Cribbons Point,Cribbons Point,1,,,both_blank
+2021,Antigonish,Havre Boucher,Havre Boucher,1,,,both_blank
+2021,Antigonish,Livingstone,Livingstone,1,,,both_blank
+2021,Antigonish,Other,Other (Antigonish),0,,,both_blank
+2021,Cape Breton,Alder Point,Alder Point,1,968386.91,18209046.34,both_present
+2021,Cape Breton,Crane Cove,Crane Cove,1,,,both_blank
+2021,Cape Breton,Gabarus,Gabarus,1,,,both_blank
+2021,Cape Breton,Glace Bay,Glace Bay,1,5929289.29,48717678.99,both_present
+2021,Cape Breton,Lingan,Lingan,1,,,both_blank
+2021,Cape Breton,Louisbourg,Louisbourg,1,5373970.00,71161571.79,both_present
+2021,Cape Breton,Main-A-Dieu,Main-A-Dieu,1,801385.03,15072179.51,both_present
+2021,Cape Breton,Marion Bridge,Marion Bridge,1,,,both_blank
+2021,Cape Breton,New Waterford,New Waterford,1,,,both_blank
+2021,Cape Breton,North Sydney - Ballast Grounds,North Sydney - Ballast Grounds,1,528040.43,10095417.38,both_present
+2021,Cape Breton,North Sydney - Marina Breakwater,North Sydney - Marina Breakwater,1,,,both_blank
+2021,Cape Breton,Other,Other (Cape Breton),0,416572.43,8033153.24,both_present
+2021,Cape Breton,Oyster Creek,Oyster Creek,1,,,both_blank
+2021,Cape Breton,Point Aconi,Point Aconi,1,,,both_blank
+2021,Cape Breton,Port Morien,Port Morien,1,,,both_blank
+2021,Cape Breton,South Bar,South Bar,1,,,both_blank
+2021,Cape Breton,Three Stick Cove,Three Stick Cove,1,,,both_blank
+2021,Cape Breton,Victoria Bridge,Victoria Bridge,1,,,both_blank
+2021,Colchester,Barrachois,Barrachois,1,,,both_blank
+2021,Colchester,Five Islands,Five Islands,1,,,both_blank
+2021,Colchester,Other,Other (Colchester),0,,,both_blank
+2021,Cumberland,Advocate Harbour,Advocate Harbour,1,,,both_blank
+2021,Cumberland,Apple River,Apple River,1,,,both_blank
+2021,Cumberland,Malagash,Malagash,1,,,both_blank
+2021,Cumberland,Northport,Northport,1,,,both_blank
+2021,Cumberland,Other,Other (Cumberland),0,,,both_blank
+2021,Cumberland,Pugwash,Pugwash,1,,,both_blank
+2021,Cumberland,Wallace,Wallace,1,256612.42,4195283.74,both_present
+2021,Digby,Cape St. Marys,Cape St. Marys,1,269539.79,6069165.95,both_present
+2021,Digby,Centerville,Centerville,1,,,both_blank
+2021,Digby,Culloden,Culloden,1,,,both_blank
+2021,Digby,Digby,Digby,1,4112673.75,65852005.80,both_present
+2021,Digby,East Ferry,East Ferry,1,34682.56,608608.55,both_present
+2021,Digby,Freeport,Freeport,1,194825.47,4485297.51,both_present
+2021,Digby,Freeport,Freeport,1,,,both_blank
+2021,Digby,Gilberts Cove,Gilberts Cove,1,,,both_blank
+2021,Digby,Little River,Little River (Digby),1,1002552.61,1691248.73,both_present
+2021,Digby,Meteghan,Meteghan,1,2755272.71,32269486.14,both_present
+2021,Digby,Meteghan River,Meteghan River,1,,,both_blank
+2021,Digby,Other,Other (Digby),0,240385.61,1858913.04,both_present
+2021,Digby,Rossway,Rossway,1,,,both_blank
+2021,Digby,Sandy Cove East,Sandy Cove East,1,382790.82,9028824.01,both_present
+2021,Digby,Saulnierville,Saulnierville,1,261675.87,3211530.35,both_present
+2021,Digby,Tiverton,Tiverton,1,,,both_blank
+2021,Digby,Westport,Westport,1,490637.76,9529266.80,both_present
+2021,Digby,Weymputh North,Weymputh North,1,,,both_blank
+2021,Digby,Whale Cove,Whale Cove,1,,,both_blank
+2021,Guysborough,Canso,Canso,1,3740770.50,36064494.30,both_present
+2021,Guysborough,Charlos Cove,Charlos Cove,1,,,both_blank
+2021,Guysborough,Cooks Cove,Cooks Cove,1,,,both_blank
+2021,Guysborough,Dover,Dover,1,,,both_blank
+2021,Guysborough,Drum Head,Drum Head,1,,,both_blank
+2021,Guysborough,Ecum Secum,Ecum Secum,1,,,both_blank
+2021,Guysborough,Fishermans Harbour,Fishermans Harbour,1,,,both_blank
+2021,Guysborough,Goldboro,Goldboro,1,,,both_blank
+2021,Guysborough,Half Island Cove,Half Island Cove,1,,,both_blank
+2021,Guysborough,Larrys River,Larrys River,1,,,both_blank
+2021,Guysborough,Little Harbour,Little Harbour (Guysborough),1,,,both_blank
+2021,Guysborough,Little Liscomb,Little Liscomb,1,,,both_blank
+2021,Guysborough,Marie Joseph,Marie Joseph,1,,,both_blank
+2021,Guysborough,New Harbour,New Harbour,1,,,both_blank
+2021,Guysborough,Other,Other (Guysborough),0,898624.81,4648617.27,both_present
+2021,Guysborough,Pirate Harbour,Pirate Harbour,1,,,both_blank
+2021,Guysborough,Port Brickerton East,Port Brickerton East,1,,,both_blank
+2021,Guysborough,Port Brickerton West,Port Brickerton West,1,,,both_blank
+2021,Guysborough,Port Felix,Port Felix,1,,,both_blank
+2021,Guysborough,Queensport,Queensport,1,,,both_blank
+2021,Guysborough,Sonora,Sonora,1,,,both_blank
+2021,Guysborough,Upper Whitehead,Upper Whitehead,1,,,both_blank
+2021,Guysborough,Wine Harbour,Wine Harbour,1,,,both_blank
+2021,Halifax,Boutiliers Point,Boutiliers Point,1,,,both_blank
+2021,Halifax,Carters Point,Carters Point,1,,,both_blank
+2021,Halifax,Coopers Point,Coopers Point,1,,,both_blank
+2021,Halifax,East Chezzetcook,East Chezzetcook,1,,,both_blank
+2021,Halifax,East Dover,East Dover,1,,,both_blank
+2021,Halifax,East Jeddor,East Jeddor,1,,,both_blank
+2021,Halifax,East Petpeswick,East Petpeswick,1,,,both_blank
+2021,Halifax,Eastern Passage,Eastern Passage,1,502932.06,5608980.88,both_present
+2021,Halifax,Ecum Secum West,Ecum Secum West,1,,,both_blank
+2021,Halifax,Factory Cove,Factory Cove,1,,,both_blank
+2021,Halifax,Gammons Creek,Gammons Creek,1,,,both_blank
+2021,Halifax,Halifax,Halifax,1,,,both_blank
+2021,Halifax,Indian Harbour,Indian Harbour,1,,,both_blank
+2021,Halifax,Ketch Harbour,Ketch Harbour,1,,,both_blank
+2021,Halifax,Little Harbour,Little Harbour (Halifax),1,,,both_blank
+2021,Halifax,Ostrea Lake,Ostrea Lake,1,,,both_blank
+2021,Halifax,Other,Other (Halifax),0,3486983.15,19662310.13,both_present
+2021,Halifax,Owls Head,Owls Head,1,,,both_blank
+2021,Halifax,Peggys Cove,Peggys Cove,1,,,both_blank
+2021,Halifax,Pleasant Point,Pleasant Point,1,,,both_blank
+2021,Halifax,Prospect,Prospect,1,,,both_blank
+2021,Halifax,Sambro,Sambro,1,2826802.15,19037733.61,both_present
+2021,Halifax,Shad Bay,Shad Bay,1,,,both_blank
+2021,Halifax,Sober Island,Sober Island,1,,,both_blank
+2021,Halifax,Terence Bay,Terence Bay,1,,,both_blank
+2021,Halifax,Three Fathom Harbour,Three Fathom Harbour,1,,,both_blank
+2021,Halifax,West Chezzetcook,West Chezzetcook,1,,,both_blank
+2021,Halifax,West Dover,West Dover,1,,,both_blank
+2021,Hants,Other,Other (Hants),0,,,both_blank
+2021,Inverness,Cheticamp,Cheticamp,1,,,both_blank
+2021,Inverness,Cheticamp - Town Wharf,Cheticamp - Town Wharf,1,,,both_blank
+2021,Inverness,Cheticamp Point,Cheticamp Point,1,,,both_blank
+2021,Inverness,Finlay Point,Finlay Point,1,,,both_blank
+2021,Inverness,Grand Etang,Grand Etang,1,,,both_blank
+2021,Inverness,Inverness,Inverness,1,,,both_blank
+2021,Inverness,Judique,Judique,1,,,both_blank
+2021,Inverness,Little Judique Harbour,Little Judique Harbour,1,,,both_blank
+2021,Inverness,Little Judique Ponds,Little Judique Ponds,1,,,both_blank
+2021,Inverness,Mabou Harbour,Mabou Harbour,1,168830.57,3099413.90,both_present
+2021,Inverness,Marble Mountain,Marble Mountain,1,,,both_blank
+2021,Inverness,Margaree Harbour,Margaree Harbour,1,409706.52,7927531.33,both_present
+2021,Inverness,Meat Cove,Meat Cove,1,,,both_blank
+2021,Inverness,Murphys Pond,Murphys Pond,1,,,both_blank
+2021,Inverness,Other,Other (Inverness),0,1482341.55,22512245.87,both_present
+2021,Inverness,Pleasant Bay,Pleasant Bay,1,,,both_blank
+2021,Inverness,Port Hood,Port Hood,1,,,both_blank
+2021,Inverness,Port Hood Island,Port Hood Island,1,,,both_blank
+2021,Kings,Halls Harbour,Halls Harbour,1,,,both_blank
+2021,Kings,Harbourville,Harbourville,1,103465.72,2480256.59,both_present
+2021,Kings,Kingsport,Kingsport,1,,,both_blank
+2021,Kings,Other,Other (Kings),0,,,both_blank
+2021,Kings,Pereaux,Pereaux,1,,,both_blank
+2021,Kings,Scots Bay,Scots Bay,1,,,both_blank
+2021,Lunenburg,Aspotogan,Aspotogan,1,,,both_blank
+2021,Lunenburg,Bayport,Bayport,1,,,both_blank
+2021,Lunenburg,Big Tancook Island,Big Tancook Island,1,,,both_blank
+2021,Lunenburg,Black Harbour,Black Harbour,1,,,both_blank
+2021,Lunenburg,Blandford,Blandford,1,,,both_blank
+2021,Lunenburg,Bush Island,Bush Island,1,173796.04,4013093.19,both_present
+2021,Lunenburg,Chester Basin,Chester Basin,1,,,both_blank
+2021,Lunenburg,Feltzen South,Feltzen South,1,,,both_blank
+2021,Lunenburg,Fox Point,Fox Point,1,,,both_blank
+2021,Lunenburg,Kings Bay,Kings Bay,1,,,both_blank
+2021,Lunenburg,Kraut Point,Kraut Point,1,,,both_blank
+2021,Lunenburg,Little Harbour,Little Harbour (Lunenburg),1,,,both_blank
+2021,Lunenburg,Lunenburg,Lunenburg,1,38747.19,935545.39,both_present
+2021,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2021,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2021,Lunenburg,Mahone Bay,Mahone Bay,1,,,both_blank
+2021,Lunenburg,Mill Cove,Mill Cove,1,,,both_blank
+2021,Lunenburg,Northwest Cove,Northwest Cove,1,,,both_blank
+2021,Lunenburg,Other,Other (Lunenburg),0,1703390.18,21575662.72,both_present
+2021,Lunenburg,Riverport,Riverport,1,1016746.00,1525205.00,both_present
+2021,Lunenburg,Saw Pit,Saw Pit,1,,,both_blank
+2021,Lunenburg,Voglers Cove West,Voglers Cove West,1,,,both_blank
+2021,Lunenburg,Western Shore,Western Shore,1,,,both_blank
+2021,Pictou,Baileys Brook,Baileys Brook,1,,,both_blank
+2021,Pictou,Big Island,Big Island,1,,,both_blank
+2021,Pictou,Cape John,Cape John,1,181987.92,3309319.26,both_present
+2021,Pictou,Caribou,Caribou,1,622046.99,498122.76,both_present
+2021,Pictou,Caribou Ferry,Caribou Ferry,1,,,both_blank
+2021,Pictou,Chance Harbour,Chance Harbour,1,,,both_blank
+2021,Pictou,Little Harbour,Little Harbour (Pictou),1,,,both_blank
+2021,Pictou,Merigomish,Merigomish,1,,,both_blank
+2021,Pictou,Other,Other (Pictou),0,1629652.07,11502477.31,both_present
+2021,Pictou,Pictou Island,Pictou Island,1,,,both_blank
+2021,Pictou,Pictou Landing,Pictou Landing,1,,,both_blank
+2021,Pictou,Skinners Cove,Skinners Cove,1,,,both_blank
+2021,Pictou,Toney River,Toney River,1,324146.54,3744278.58,both_present
+2021,Queens,Brooklyn Fisherman's Wharf,Brooklyn Fisherman's Wharf,1,,,both_blank
+2021,Queens,East Side Port L'Hebert,East Side Port L'Hebert,1,375411.35,4865779.84,both_present
+2021,Queens,Hunts Point,Hunts Point,1,,,both_blank
+2021,Queens,Moose Harbour,Moose Harbour,1,,,both_blank
+2021,Queens,Other,Other (Queens),0,1450529.96,15913193.77,both_present
+2021,Queens,Port Medway,Port Medway,1,65120.84,1406616.02,both_present
+2021,Queens,Port Mouton,Port Mouton,1,5249810.29,17445653.30,both_present
+2021,Queens,South West Port Mouton,South West Port Mouton,1,,,both_blank
+2021,Queens,St. Catherines River,St. Catherines River,1,,,both_blank
+2021,Queens,Volgers Cove,Volgers Cove,1,,,both_blank
+2021,Queens,West Berlin,West Berlin,1,,,both_blank
+2021,Richmond,Arichat,Arichat,1,2708625.27,26298728.68,both_present
+2021,Richmond,Arrow Point,Arrow Point,1,,,both_blank
+2021,Richmond,Chapel Cove,Chapel Cove,1,,,both_blank
+2021,Richmond,D'escousse,D'escousse,1,,,both_blank
+2021,Richmond,Fourchu,Fourchu,1,,,both_blank
+2021,Richmond,Janvrin Harbour,Janvrin Harbour,1,,,both_blank
+2021,Richmond,L'Archeveque,L'Archeveque,1,,,both_blank
+2021,Richmond,Other,Other (Richmond),0,1376101.96,23335282.89,both_present
+2021,Richmond,Poirierville,Poirierville,1,,,both_blank
+2021,Richmond,River Bourgeois,River Bourgeois,1,,,both_blank
+2021,Shelburne,Allendale,Allendale,1,,,both_blank
+2021,Shelburne,Bear Point,Bear Point,1,784597.58,5923144.86,both_present
+2021,Shelburne,Cape Negro,Cape Negro,1,,,both_blank
+2021,Shelburne,Clark's Harbour,Clark's Harbour,1,2869914.03,40440416.69,both_present
+2021,Shelburne,Cripple Creek,Cripple Creek,1,277156.05,6374998.02,both_present
+2021,Shelburne,Forbes Point,Forbes Point,1,244475.45,39630345.72,both_present
+2021,Shelburne,Gunning Cove,Gunning Cove,1,1334735.27,13029820.71,both_present
+2021,Shelburne,Ingomar,Ingomar,1,2161985.96,33158109.70,both_present
+2021,Shelburne,Jones Harbour,Jones Harbour,1,110204.70,2578443.28,both_present
+2021,Shelburne,Little Harbour,Little Harbour (Shelburne),1,,,both_blank
+2021,Shelburne,Lockeport,Lockeport,1,922958.10,18439337.80,both_present
+2021,Shelburne,Lower Jordan Bay,Lower Jordan Bay,1,463462.61,3954959.72,both_present
+2021,Shelburne,Lower Sandy Point,Lower Sandy Point,1,254878.78,5248680.79,both_present
+2021,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,1862791.22,37186661.17,both_present
+2021,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,2072739.44,121260845.83,both_present
+2021,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,,,both_blank
+2021,Shelburne,Newellton,Newellton,1,819053.81,18049533.60,both_present
+2021,Shelburne,Osborne Harbour,Osborne Harbour,1,,,both_blank
+2021,Shelburne,Other,Other (Shelburne),0,2036649.39,28670862.50,both_present
+2021,Shelburne,Port La Tour,Port La Tour,1,1456175.94,17088208.07,both_present
+2021,Shelburne,Seal Point,Seal Point,1,198930.45,4490068.55,both_present
+2021,Shelburne,Shag Harbour,Shag Harbour,1,1771381.99,12265775.78,both_present
+2021,Shelburne,Shag Harbour,Shag Harbour,1,,,both_blank
+2021,Shelburne,Shelburne,Shelburne,1,193779.94,3640179.62,both_present
+2021,Shelburne,South Side,South Side,1,338532.96,6737360.19,both_present
+2021,Shelburne,Stoney Island,Stoney Island,1,449556.40,9972555.94,both_present
+2021,Shelburne,Swims Point,Swims Point,1,393826.73,3919718.35,both_present
+2021,Shelburne,Upper Port La Tour,Upper Port La Tour,1,,,both_blank
+2021,Shelburne,West Green Harbour,West Green Harbour,1,68049.68,1529862.76,both_present
+2021,Shelburne,West Head,West Head,1,1961335.67,34640547.90,both_present
+2021,Victoria,Bay St. Lawrence,Bay St. Lawrence,1,,,both_blank
+2021,Victoria,Big Bras D'or,Big Bras D'or,1,,,both_blank
+2021,Victoria,Dingwall,Dingwall,1,263559.62,4778206.19,both_present
+2021,Victoria,Englishtown,Englishtown,1,,,both_blank
+2021,Victoria,Ingonish,Ingonish,1,,,both_blank
+2021,Victoria,Ingonish Beach,Ingonish Beach,1,,,both_blank
+2021,Victoria,Ingonish Ferry,Ingonish Ferry,1,,,both_blank
+2021,Victoria,Iona,Iona,1,,,both_blank
+2021,Victoria,Little River,Little River (Victoria),1,,,both_blank
+2021,Victoria,Neils Harbour,Neils Harbour,1,,,both_blank
+2021,Victoria,New Campbellton,New Campbellton,1,,,both_blank
+2021,Victoria,New Haven,New Haven,1,,,both_blank
+2021,Victoria,Nyanza,Nyanza,1,,,both_blank
+2021,Victoria,Other,Other (Victoria),0,,,both_blank
+2021,Victoria,Smelt Book,Smelt Book,1,,,both_blank
+2021,Victoria,White Point,White Point,1,,,both_blank
+2021,Victoria,Wreck Cove,Wreck Cove,1,,,both_blank
+2021,Yarmouth,Abbotts Harbour,Abbotts Harbour,1,723939.86,42968539.94,both_present
+2021,Yarmouth,Abrams River,Abrams River,1,,,both_blank
+2021,Yarmouth,Camp Cove,Camp Cove,1,2035144.84,60840849.87,both_present
+2021,Yarmouth,Chebogue,Chebogue,1,368608.37,1038642.82,both_present
+2021,Yarmouth,Chegoggin,Chegoggin,1,,,both_blank
+2021,Yarmouth,Chegoggin Point,Chegoggin Point,1,,,both_blank
+2021,Yarmouth,Dennis Point,Dennis Point,1,18898639.86,87365979.40,both_present
+2021,Yarmouth,Glenwood,Glenwood,1,577092.86,157515.48,both_present
+2021,Yarmouth,Hubbards Point,Hubbards Point,1,,,both_blank
+2021,Yarmouth,Ledge Harbour,Ledge Harbour,1,,,both_blank
+2021,Yarmouth,Little River Harbour,Little River Harbour,1,1737387.49,15171254.94,both_present
+2021,Yarmouth,Lower East Pubnico,Lower East Pubnico,1,5729814.48,51735795.84,both_present
+2021,Yarmouth,Lower Wedgeport Tuna Wharf,Lower Wedgeport Tuna Wharf,1,,,both_blank
+2021,Yarmouth,Morris Island,Morris Island,1,,,both_blank
+2021,Yarmouth,Other,Other (Yarmouth),0,9960478.86,167764644.00,both_present
+2021,Yarmouth,Pinkneys Point,Pinkneys Point,1,2274790.02,14848406.80,both_present
+2021,Yarmouth,Plymouth,Plymouth,1,,,both_blank
+2021,Yarmouth,Port Maitland,Port Maitland,1,,,both_blank
+2021,Yarmouth,Rocco Point,Rocco Point,1,,,both_blank
+2021,Yarmouth,Sanford,Sanford,1,409252.03,8943959.38,both_present
+2021,Yarmouth,Sluice Point,Sluice Point,1,,,both_blank
+2021,Yarmouth,Surettes Island,Surettes Island,1,,,both_blank
+2021,Yarmouth,Wedge Point,Wedge Point,1,3556318.70,24918882.60,both_present
+2021,Yarmouth,Yarmouth Bar,Yarmouth Bar,1,3011473.25,51521203.90,both_present
+2022,Annapolis,Anderson Cove,Anderson Cove,1,,,both_blank
+2022,Annapolis,Battery Point,Battery Point,1,,,both_blank
+2022,Annapolis,Delaps Cove,Delaps Cove,1,,,both_blank
+2022,Annapolis,Hampton,Hampton,1,,,both_blank
+2022,Annapolis,Margaretsville,Margaretsville,1,,,both_blank
+2022,Annapolis,Other,Other (Annapolis),0,46499.21,7111984.70,both_present
+2022,Annapolis,Parkers Cove,Parkers Cove,1,221600.10,3661802.40,both_present
+2022,Annapolis,Port Lorne,Port Lorne,1,,,both_blank
+2022,Antigonish,Arisaig,Arisaig,1,,,both_blank
+2022,Antigonish,Aulds Cove,Aulds Cove,1,,,both_blank
+2022,Antigonish,Ballantynes Cove,Ballantynes Cove,1,,,both_blank
+2022,Antigonish,Barrios Beach,Barrios Beach,1,,,both_blank
+2022,Antigonish,Bayfield,Bayfield,1,,,both_blank
+2022,Antigonish,Cribbons Point,Cribbons Point,1,,,both_blank
+2022,Antigonish,Havre Boucher,Havre Boucher,1,,,both_blank
+2022,Antigonish,Livingstone,Livingstone,1,,,both_blank
+2022,Antigonish,Other,Other (Antigonish),0,,,both_blank
+2022,Cape Breton,Alder Point,Alder Point,1,474211.90,8373490.40,both_present
+2022,Cape Breton,Crane Cove,Crane Cove,1,,,both_blank
+2022,Cape Breton,Gabarus,Gabarus,1,,,both_blank
+2022,Cape Breton,Glace Bay,Glace Bay,1,5519438.90,30067569.00,both_present
+2022,Cape Breton,Lingan,Lingan,1,,,both_blank
+2022,Cape Breton,Louisbourg,Louisbourg,1,3664593.36,24891818.21,both_present
+2022,Cape Breton,Main-A-Dieu,Main-A-Dieu,1,911776.30,16040513.80,both_present
+2022,Cape Breton,Marion Bridge,Marion Bridge,1,,,both_blank
+2022,Cape Breton,New Waterford,New Waterford,1,,,both_blank
+2022,Cape Breton,North Sydney - Ballast Grounds,North Sydney - Ballast Grounds,1,924783.01,18888185.76,both_present
+2022,Cape Breton,North Sydney - Marina Breakwater,North Sydney - Marina Breakwater,1,,,both_blank
+2022,Cape Breton,Other,Other (Cape Breton),0,893781.85,12275850.53,both_present
+2022,Cape Breton,Oyster Creek,Oyster Creek,1,,,both_blank
+2022,Cape Breton,Point Aconi,Point Aconi,1,,,both_blank
+2022,Cape Breton,Port Morien,Port Morien,1,583667.67,10497403.04,both_present
+2022,Cape Breton,South Bar,South Bar,1,,,both_blank
+2022,Cape Breton,Three Stick Cove,Three Stick Cove,1,,,both_blank
+2022,Cape Breton,Victoria Bridge,Victoria Bridge,1,,,both_blank
+2022,Colchester,Barrachois,Barrachois,1,,,both_blank
+2022,Colchester,Five Islands,Five Islands,1,,,both_blank
+2022,Colchester,Other,Other (Colchester),0,,,both_blank
+2022,Cumberland,Advocate Harbour,Advocate Harbour,1,192801.56,3260052.42,both_present
+2022,Cumberland,Apple River,Apple River,1,,,both_blank
+2022,Cumberland,Malagash,Malagash,1,,,both_blank
+2022,Cumberland,Northport,Northport,1,,,both_blank
+2022,Cumberland,Other,Other (Cumberland),0,,,both_blank
+2022,Cumberland,Pugwash,Pugwash,1,,,both_blank
+2022,Cumberland,Wallace,Wallace,1,,,both_blank
+2022,Digby,Cape St. Marys,Cape St. Marys,1,202870.84,4479333.34,both_present
+2022,Digby,Centerville,Centerville,1,,,both_blank
+2022,Digby,Culloden,Culloden,1,,,both_blank
+2022,Digby,Digby,Digby,1,3400383.10,60673059.74,both_present
+2022,Digby,East Ferry,East Ferry,1,,,both_blank
+2022,Digby,Freeport,Freeport,1,,,both_blank
+2022,Digby,Freeport,Freeport,1,,,both_blank
+2022,Digby,Gilberts Cove,Gilberts Cove,1,,,both_blank
+2022,Digby,Little River,Little River (Digby),1,671993.19,10375535.71,both_present
+2022,Digby,Meteghan,Meteghan,1,2035944.89,25823545.88,both_present
+2022,Digby,Meteghan River,Meteghan River,1,,,both_blank
+2022,Digby,Other,Other (Digby),0,390156.71,2422867.16,both_present
+2022,Digby,Rossway,Rossway,1,,,both_blank
+2022,Digby,Sandy Cove East,Sandy Cove East,1,225931.00,4807273.47,both_present
+2022,Digby,Saulnierville,Saulnierville,1,183263.87,2677511.96,both_present
+2022,Digby,Tiverton,Tiverton,1,,,both_blank
+2022,Digby,Westport,Westport,1,,,both_blank
+2022,Digby,Weymputh North,Weymputh North,1,,,both_blank
+2022,Digby,Whale Cove,Whale Cove,1,,,both_blank
+2022,Guysborough,Canso,Canso,1,3670452.46,32358559.15,both_present
+2022,Guysborough,Charlos Cove,Charlos Cove,1,,,both_blank
+2022,Guysborough,Cooks Cove,Cooks Cove,1,,,both_blank
+2022,Guysborough,Dover,Dover,1,737071.13,15662571.34,both_present
+2022,Guysborough,Drum Head,Drum Head,1,,,both_blank
+2022,Guysborough,Ecum Secum,Ecum Secum,1,,,both_blank
+2022,Guysborough,Fishermans Harbour,Fishermans Harbour,1,,,both_blank
+2022,Guysborough,Goldboro,Goldboro,1,,,both_blank
+2022,Guysborough,Half Island Cove,Half Island Cove,1,,,both_blank
+2022,Guysborough,Larrys River,Larrys River,1,,,both_blank
+2022,Guysborough,Little Harbour,Little Harbour (Guysborough),1,,,both_blank
+2022,Guysborough,Little Liscomb,Little Liscomb,1,,,both_blank
+2022,Guysborough,Marie Joseph,Marie Joseph,1,,,both_blank
+2022,Guysborough,New Harbour,New Harbour,1,,,both_blank
+2022,Guysborough,Other,Other (Guysborough),0,828819.71,9016911.06,both_present
+2022,Guysborough,Pirate Harbour,Pirate Harbour,1,,,both_blank
+2022,Guysborough,Port Brickerton East,Port Brickerton East,1,,,both_blank
+2022,Guysborough,Port Brickerton West,Port Brickerton West,1,,,both_blank
+2022,Guysborough,Port Felix,Port Felix,1,,,both_blank
+2022,Guysborough,Queensport,Queensport,1,,,both_blank
+2022,Guysborough,Sonora,Sonora,1,,,both_blank
+2022,Guysborough,Upper Whitehead,Upper Whitehead,1,,,both_blank
+2022,Guysborough,Wine Harbour,Wine Harbour,1,,,both_blank
+2022,Halifax,Boutiliers Point,Boutiliers Point,1,,,both_blank
+2022,Halifax,Carters Point,Carters Point,1,,,both_blank
+2022,Halifax,Coopers Point,Coopers Point,1,,,both_blank
+2022,Halifax,East Chezzetcook,East Chezzetcook,1,,,both_blank
+2022,Halifax,East Dover,East Dover,1,,,both_blank
+2022,Halifax,East Jeddor,East Jeddor,1,,,both_blank
+2022,Halifax,East Petpeswick,East Petpeswick,1,,,both_blank
+2022,Halifax,Eastern Passage,Eastern Passage,1,266871.06,5443119.90,both_present
+2022,Halifax,Ecum Secum West,Ecum Secum West,1,,,both_blank
+2022,Halifax,Factory Cove,Factory Cove,1,,,both_blank
+2022,Halifax,Gammons Creek,Gammons Creek,1,,,both_blank
+2022,Halifax,Halifax,Halifax,1,,,both_blank
+2022,Halifax,Indian Harbour,Indian Harbour,1,,,both_blank
+2022,Halifax,Ketch Harbour,Ketch Harbour,1,,,both_blank
+2022,Halifax,Little Harbour,Little Harbour (Halifax),1,,,both_blank
+2022,Halifax,Ostrea Lake,Ostrea Lake,1,,,both_blank
+2022,Halifax,Other,Other (Halifax),0,2999695.69,21222611.35,both_present
+2022,Halifax,Owls Head,Owls Head,1,,,both_blank
+2022,Halifax,Peggys Cove,Peggys Cove,1,,,both_blank
+2022,Halifax,Pleasant Point,Pleasant Point,1,,,both_blank
+2022,Halifax,Prospect,Prospect,1,,,both_blank
+2022,Halifax,Sambro,Sambro,1,2959656.90,38309861.98,both_present
+2022,Halifax,Shad Bay,Shad Bay,1,,,both_blank
+2022,Halifax,Sober Island,Sober Island,1,,,both_blank
+2022,Halifax,Terence Bay,Terence Bay,1,,,both_blank
+2022,Halifax,Three Fathom Harbour,Three Fathom Harbour,1,,,both_blank
+2022,Halifax,West Chezzetcook,West Chezzetcook,1,,,both_blank
+2022,Halifax,West Dover,West Dover,1,,,both_blank
+2022,Hants,Other,Other (Hants),0,113120.45,2097675.22,both_present
+2022,Inverness,Cheticamp,Cheticamp,1,3619743.09,51118130.91,both_present
+2022,Inverness,Cheticamp - Town Wharf,Cheticamp - Town Wharf,1,,,both_blank
+2022,Inverness,Cheticamp Point,Cheticamp Point,1,,,both_blank
+2022,Inverness,Finlay Point,Finlay Point,1,,,both_blank
+2022,Inverness,Grand Etang,Grand Etang,1,,,both_blank
+2022,Inverness,Inverness,Inverness,1,,,both_blank
+2022,Inverness,Judique,Judique,1,,,both_blank
+2022,Inverness,Little Judique Harbour,Little Judique Harbour,1,,,both_blank
+2022,Inverness,Little Judique Ponds,Little Judique Ponds,1,,,both_blank
+2022,Inverness,Mabou Harbour,Mabou Harbour,1,197383.27,3545773.78,both_present
+2022,Inverness,Marble Mountain,Marble Mountain,1,,,both_blank
+2022,Inverness,Margaree Harbour,Margaree Harbour,1,428709.30,7657093.99,both_present
+2022,Inverness,Meat Cove,Meat Cove,1,,,both_blank
+2022,Inverness,Murphys Pond,Murphys Pond,1,,,both_blank
+2022,Inverness,Other,Other (Inverness),0,2647329.07,32285419.28,both_present
+2022,Inverness,Pleasant Bay,Pleasant Bay,1,,,both_blank
+2022,Inverness,Port Hood,Port Hood,1,,,both_blank
+2022,Inverness,Port Hood Island,Port Hood Island,1,,,both_blank
+2022,Kings,Halls Harbour,Halls Harbour,1,,,both_blank
+2022,Kings,Harbourville,Harbourville,1,93763.60,1621217.44,both_present
+2022,Kings,Kingsport,Kingsport,1,,,both_blank
+2022,Kings,Other,Other (Kings),0,437448.21,1130703.71,both_present
+2022,Kings,Pereaux,Pereaux,1,,,both_blank
+2022,Kings,Scots Bay,Scots Bay,1,,,both_blank
+2022,Lunenburg,Aspotogan,Aspotogan,1,,,both_blank
+2022,Lunenburg,Bayport,Bayport,1,,,both_blank
+2022,Lunenburg,Big Tancook Island,Big Tancook Island,1,,,both_blank
+2022,Lunenburg,Black Harbour,Black Harbour,1,,,both_blank
+2022,Lunenburg,Blandford,Blandford,1,,,both_blank
+2022,Lunenburg,Bush Island,Bush Island,1,137500.96,3117779.50,both_present
+2022,Lunenburg,Chester Basin,Chester Basin,1,,,both_blank
+2022,Lunenburg,Feltzen South,Feltzen South,1,,,both_blank
+2022,Lunenburg,Fox Point,Fox Point,1,,,both_blank
+2022,Lunenburg,Kings Bay,Kings Bay,1,,,both_blank
+2022,Lunenburg,Kraut Point,Kraut Point,1,,,both_blank
+2022,Lunenburg,Little Harbour,Little Harbour (Lunenburg),1,,,both_blank
+2022,Lunenburg,Lunenburg,Lunenburg,1,24940.31,533833.25,both_present
+2022,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2022,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2022,Lunenburg,Mahone Bay,Mahone Bay,1,285445.00,346334.98,both_present
+2022,Lunenburg,Mill Cove,Mill Cove,1,,,both_blank
+2022,Lunenburg,Northwest Cove,Northwest Cove,1,,,both_blank
+2022,Lunenburg,Other,Other (Lunenburg),0,827100.39,16954203.74,both_present
+2022,Lunenburg,Riverport,Riverport,1,,,both_blank
+2022,Lunenburg,Saw Pit,Saw Pit,1,,,both_blank
+2022,Lunenburg,Voglers Cove West,Voglers Cove West,1,,,both_blank
+2022,Lunenburg,Western Shore,Western Shore,1,,,both_blank
+2022,Pictou,Baileys Brook,Baileys Brook,1,,,both_blank
+2022,Pictou,Big Island,Big Island,1,,,both_blank
+2022,Pictou,Cape John,Cape John,1,337323.50,6900810.69,both_present
+2022,Pictou,Caribou,Caribou,1,,,both_blank
+2022,Pictou,Caribou Ferry,Caribou Ferry,1,919910.61,786886.89,both_present
+2022,Pictou,Chance Harbour,Chance Harbour,1,,,both_blank
+2022,Pictou,Little Harbour,Little Harbour (Pictou),1,,,both_blank
+2022,Pictou,Merigomish,Merigomish,1,,,both_blank
+2022,Pictou,Other,Other (Pictou),0,,,both_blank
+2022,Pictou,Pictou Island,Pictou Island,1,,,both_blank
+2022,Pictou,Pictou Landing,Pictou Landing,1,,,both_blank
+2022,Pictou,Skinners Cove,Skinners Cove,1,,,both_blank
+2022,Pictou,Toney River,Toney River,1,,,both_blank
+2022,Queens,Brooklyn Fisherman's Wharf,Brooklyn Fisherman's Wharf,1,,,both_blank
+2022,Queens,East Side Port L'Hebert,East Side Port L'Hebert,1,732850.89,2846552.40,both_present
+2022,Queens,Hunts Point,Hunts Point,1,,,both_blank
+2022,Queens,Moose Harbour,Moose Harbour,1,53709.03,1158195.34,both_present
+2022,Queens,Other,Other (Queens),0,3172602.10,24622551.22,both_present
+2022,Queens,Port Medway,Port Medway,1,71661.65,1498823.82,both_present
+2022,Queens,Port Mouton,Port Mouton,1,3862070.10,13881460.95,both_present
+2022,Queens,South West Port Mouton,South West Port Mouton,1,,,both_blank
+2022,Queens,St. Catherines River,St. Catherines River,1,,,both_blank
+2022,Queens,Volgers Cove,Volgers Cove,1,,,both_blank
+2022,Queens,West Berlin,West Berlin,1,,,both_blank
+2022,Richmond,Arichat,Arichat,1,2350185.30,24120382.34,both_present
+2022,Richmond,Arrow Point,Arrow Point,1,,,both_blank
+2022,Richmond,Chapel Cove,Chapel Cove,1,,,both_blank
+2022,Richmond,D'escousse,D'escousse,1,,,both_blank
+2022,Richmond,Fourchu,Fourchu,1,,,both_blank
+2022,Richmond,Janvrin Harbour,Janvrin Harbour,1,,,both_blank
+2022,Richmond,L'Archeveque,L'Archeveque,1,,,both_blank
+2022,Richmond,Other,Other (Richmond),0,,,both_blank
+2022,Richmond,Poirierville,Poirierville,1,,,both_blank
+2022,Richmond,River Bourgeois,River Bourgeois,1,,,both_blank
+2022,Shelburne,Allendale,Allendale,1,,,both_blank
+2022,Shelburne,Bear Point,Bear Point,1,635350.85,3147351.00,both_present
+2022,Shelburne,Cape Negro,Cape Negro,1,,,both_blank
+2022,Shelburne,Clark's Harbour,Clark's Harbour,1,1860891.70,19494070.56,both_present
+2022,Shelburne,Cripple Creek,Cripple Creek,1,196363.60,4499789.88,both_present
+2022,Shelburne,Forbes Point,Forbes Point,1,,,both_blank
+2022,Shelburne,Gunning Cove,Gunning Cove,1,1448672.20,10899194.84,both_present
+2022,Shelburne,Ingomar,Ingomar,1,1465564.40,20032165.91,both_present
+2022,Shelburne,Jones Harbour,Jones Harbour,1,79838.55,1729372.22,both_present
+2022,Shelburne,Little Harbour,Little Harbour (Shelburne),1,115784.82,2482882.19,both_present
+2022,Shelburne,Lockeport,Lockeport,1,616148.94,13668940.19,both_present
+2022,Shelburne,Lower Jordan Bay,Lower Jordan Bay,1,413928.55,6379945.19,both_present
+2022,Shelburne,Lower Sandy Point,Lower Sandy Point,1,248147.15,4548884.85,both_present
+2022,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,2022490.40,9449080.37,both_present
+2022,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,1349493.40,25583911.38,both_present
+2022,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,,,both_blank
+2022,Shelburne,Newellton,Newellton,1,809432.65,12035212.86,both_present
+2022,Shelburne,Osborne Harbour,Osborne Harbour,1,,,both_blank
+2022,Shelburne,Other,Other (Shelburne),0,1742909.76,12462661.39,both_present
+2022,Shelburne,Port La Tour,Port La Tour,1,1418719.20,13092222.92,both_present
+2022,Shelburne,Seal Island,Seal Island,1,,,both_blank
+2022,Shelburne,Seal Island,Seal Island,1,,,both_blank
+2022,Shelburne,Seal Point,Seal Point,1,132928.59,2592419.12,both_present
+2022,Shelburne,Shag Harbour,Shag Harbour,1,1598585.95,8331117.31,both_present
+2022,Shelburne,Shag Harbour,Shag Harbour,1,,,both_blank
+2022,Shelburne,Shelburne,Shelburne,1,66980.57,1114293.84,both_present
+2022,Shelburne,South Side,South Side,1,268120.49,5118667.16,both_present
+2022,Shelburne,Stoney Island,Stoney Island,1,226030.79,4690945.78,both_present
+2022,Shelburne,Swims Point,Swims Point,1,67487.23,1542433.46,both_present
+2022,Shelburne,Upper Port La Tour,Upper Port La Tour,1,306825.96,3655162.45,both_present
+2022,Shelburne,West Green Harbour,West Green Harbour,1,124398.06,2311422.45,both_present
+2022,Shelburne,West Head,West Head,1,1760036.92,24932206.81,both_present
+2022,Victoria,Bay St. Lawrence,Bay St. Lawrence,1,,,both_blank
+2022,Victoria,Big Bras D'or,Big Bras D'or,1,,,both_blank
+2022,Victoria,Dingwall,Dingwall,1,307931.36,5236985.93,both_present
+2022,Victoria,Englishtown,Englishtown,1,,,both_blank
+2022,Victoria,Ingonish,Ingonish,1,,,both_blank
+2022,Victoria,Ingonish Beach,Ingonish Beach,1,,,both_blank
+2022,Victoria,Ingonish Ferry,Ingonish Ferry,1,,,both_blank
+2022,Victoria,Iona,Iona,1,,,both_blank
+2022,Victoria,Little River,Little River (Victoria),1,,,both_blank
+2022,Victoria,Neils Harbour,Neils Harbour,1,,,both_blank
+2022,Victoria,New Campbellton,New Campbellton,1,,,both_blank
+2022,Victoria,New Haven,New Haven,1,,,both_blank
+2022,Victoria,Nyanza,Nyanza,1,,,both_blank
+2022,Victoria,Other,Other (Victoria),0,,,both_blank
+2022,Victoria,Smelt Book,Smelt Book,1,,,both_blank
+2022,Victoria,White Point,White Point,1,,,both_blank
+2022,Victoria,Wreck Cove,Wreck Cove,1,,,both_blank
+2022,Yarmouth,Abbotts Harbour,Abbotts Harbour,1,268421.91,3911342.46,both_present
+2022,Yarmouth,Abrams River,Abrams River,1,,,both_blank
+2022,Yarmouth,Camp Cove,Camp Cove,1,1707069.90,17117677.89,both_present
+2022,Yarmouth,Chebogue,Chebogue,1,554978.42,1703633.69,both_present
+2022,Yarmouth,Chegoggin,Chegoggin,1,,,both_blank
+2022,Yarmouth,Chegoggin Point,Chegoggin Point,1,,,both_blank
+2022,Yarmouth,Dennis Point,Dennis Point,1,14615693.62,63874637.68,both_present
+2022,Yarmouth,Glenwood,Glenwood,1,,,both_blank
+2022,Yarmouth,Hubbards Point,Hubbards Point,1,,,both_blank
+2022,Yarmouth,Ledge Harbour,Ledge Harbour,1,,,both_blank
+2022,Yarmouth,Little River Harbour,Little River Harbour,1,2195334.00,15264972.50,both_present
+2022,Yarmouth,Lower East Pubnico,Lower East Pubnico,1,5260808.06,40169956.04,both_present
+2022,Yarmouth,Lower Wedgeport Tuna Wharf,Lower Wedgeport Tuna Wharf,1,2717507.30,747604.38,both_present
+2022,Yarmouth,Morris Island,Morris Island,1,,,both_blank
+2022,Yarmouth,Other,Other (Yarmouth),0,7659040.09,3119302.70,both_present
+2022,Yarmouth,Pinkneys Point,Pinkneys Point,1,2382840.78,12721567.47,both_present
+2022,Yarmouth,Plymouth,Plymouth,1,,,both_blank
+2022,Yarmouth,Port Maitland,Port Maitland,1,79555.04,1814326.46,both_present
+2022,Yarmouth,Rocco Point,Rocco Point,1,,,both_blank
+2022,Yarmouth,Sanford,Sanford,1,323144.61,6871423.76,both_present
+2022,Yarmouth,Sluice Point,Sluice Point,1,,,both_blank
+2022,Yarmouth,Surettes Island,Surettes Island,1,,,both_blank
+2022,Yarmouth,Wedge Point,Wedge Point,1,3387654.84,22375881.35,both_present
+2022,Yarmouth,Yarmouth Bar,Yarmouth Bar,1,1962301.64,26954741.77,both_present
+2023,Annapolis,Anderson Cove,Anderson Cove,1,,,both_blank
+2023,Annapolis,Battery Point,Battery Point,1,194144.00,1225049.12,both_present
+2023,Annapolis,Delaps Cove,Delaps Cove,1,,,both_blank
+2023,Annapolis,Hampton,Hampton,1,,,both_blank
+2023,Annapolis,Margaretsville,Margaretsville,1,,,both_blank
+2023,Annapolis,Other,Other (Annapolis),0,,,both_blank
+2023,Annapolis,Parkers Cove,Parkers Cove,1,,,both_blank
+2023,Annapolis,Port Lorne,Port Lorne,1,,,both_blank
+2023,Antigonish,Arisaig,Arisaig,1,,,both_blank
+2023,Antigonish,Aulds Cove,Aulds Cove,1,,,both_blank
+2023,Antigonish,Ballantynes Cove,Ballantynes Cove,1,432682.00,3248437.76,both_present
+2023,Antigonish,Barrios Beach,Barrios Beach,1,,,both_blank
+2023,Antigonish,Bayfield,Bayfield,1,,,both_blank
+2023,Antigonish,Cribbons Point,Cribbons Point,1,503130.00,3828987.00,both_present
+2023,Antigonish,Havre Boucher,Havre Boucher,1,,,both_blank
+2023,Antigonish,Livingstone,Livingstone,1,,,both_blank
+2023,Antigonish,Other,Other (Antigonish),0,,,both_blank
+2023,Cape Breton,Alder Point,Alder Point,1,1315243.00,9564373.77,both_present
+2023,Cape Breton,Crane Cove,Crane Cove,1,,,both_blank
+2023,Cape Breton,Gabarus,Gabarus,1,,,both_blank
+2023,Cape Breton,Glace Bay,Glace Bay,1,14146102.50,27684448.54,both_present
+2023,Cape Breton,Lingan,Lingan,1,,,both_blank
+2023,Cape Breton,Louisbourg,Louisbourg,1,9680432.00,28145138.59,both_present
+2023,Cape Breton,Main-A-Dieu,Main-A-Dieu,1,2071943.00,16739493.04,both_present
+2023,Cape Breton,Marion Bridge,Marion Bridge,1,,,both_blank
+2023,Cape Breton,New Waterford,New Waterford,1,,,both_blank
+2023,Cape Breton,North Sydney - Ballast Grounds,North Sydney - Ballast Grounds,1,1254260.00,9470442.73,both_present
+2023,Cape Breton,North Sydney - Marina Breakwater,North Sydney - Marina Breakwater,1,,,both_blank
+2023,Cape Breton,Other,Other (Cape Breton),0,863950.55,6907094.67,both_present
+2023,Cape Breton,Oyster Creek,Oyster Creek,1,,,both_blank
+2023,Cape Breton,Point Aconi,Point Aconi,1,,,both_blank
+2023,Cape Breton,Port Morien,Port Morien,1,,,both_blank
+2023,Cape Breton,South Bar,South Bar,1,,,both_blank
+2023,Cape Breton,Three Stick Cove,Three Stick Cove,1,,,both_blank
+2023,Cape Breton,Victoria Bridge,Victoria Bridge,1,,,both_blank
+2023,Colchester,Barrachois,Barrachois,1,,,both_blank
+2023,Colchester,Five Islands,Five Islands,1,,,both_blank
+2023,Colchester,Other,Other (Colchester),0,,,both_blank
+2023,Cumberland,Advocate Harbour,Advocate Harbour,1,222734.00,2072218.76,both_present
+2023,Cumberland,Apple River,Apple River,1,,,both_blank
+2023,Cumberland,Malagash,Malagash,1,,,both_blank
+2023,Cumberland,Northport,Northport,1,,,both_blank
+2023,Cumberland,Other,Other (Cumberland),0,,,both_blank
+2023,Cumberland,Pugwash,Pugwash,1,,,both_blank
+2023,Cumberland,Wallace,Wallace,1,,,both_blank
+2023,Digby,Cape St. Marys,Cape St. Marys,1,543364.00,5790340.93,both_present
+2023,Digby,Centerville,Centerville,1,22032.00,212434.61,both_present
+2023,Digby,Culloden,Culloden,1,,,both_blank
+2023,Digby,Digby,Digby,1,7130668.80,78597445.22,both_present
+2023,Digby,East Ferry,East Ferry,1,,,both_blank
+2023,Digby,Freeport,Freeport,1,,,both_blank
+2023,Digby,Freeport,Freeport,1,,,both_blank
+2023,Digby,Gilberts Cove,Gilberts Cove,1,,,both_blank
+2023,Digby,Little River,Little River (Digby),1,1744833.00,11433900.46,both_present
+2023,Digby,Meteghan,Meteghan,1,5744946.90,32024217.30,both_present
+2023,Digby,Meteghan River,Meteghan River,1,,,both_blank
+2023,Digby,Other,Other (Digby),0,,,both_blank
+2023,Digby,Rossway,Rossway,1,,,both_blank
+2023,Digby,Sandy Cove East,Sandy Cove East,1,297922.00,3347753.09,both_present
+2023,Digby,Saulnierville,Saulnierville,1,206040.00,2215454.71,both_present
+2023,Digby,Tiverton,Tiverton,1,,,both_blank
+2023,Digby,Westport,Westport,1,1017602.00,9022500.18,both_present
+2023,Digby,Weymputh North,Weymputh North,1,,,both_blank
+2023,Digby,Whale Cove,Whale Cove,1,,,both_blank
+2023,Guysborough,Canso,Canso,1,6537203.00,22069349.41,both_present
+2023,Guysborough,Charlos Cove,Charlos Cove,1,,,both_blank
+2023,Guysborough,Cooks Cove,Cooks Cove,1,,,both_blank
+2023,Guysborough,Dover,Dover,1,,,both_blank
+2023,Guysborough,Drum Head,Drum Head,1,,,both_blank
+2023,Guysborough,Ecum Secum,Ecum Secum,1,,,both_blank
+2023,Guysborough,Fishermans Harbour,Fishermans Harbour,1,,,both_blank
+2023,Guysborough,Goldboro,Goldboro,1,,,both_blank
+2023,Guysborough,Half Island Cove,Half Island Cove,1,,,both_blank
+2023,Guysborough,Larrys River,Larrys River,1,3719542.00,9611940.16,both_present
+2023,Guysborough,Little Harbour,Little Harbour (Guysborough),1,,,both_blank
+2023,Guysborough,Little Liscomb,Little Liscomb,1,,,both_blank
+2023,Guysborough,Marie Joseph,Marie Joseph,1,,,both_blank
+2023,Guysborough,New Harbour,New Harbour,1,,,both_blank
+2023,Guysborough,Other,Other (Guysborough),0,,,both_blank
+2023,Guysborough,Pirate Harbour,Pirate Harbour,1,,,both_blank
+2023,Guysborough,Port Brickerton East,Port Brickerton East,1,,,both_blank
+2023,Guysborough,Port Brickerton West,Port Brickerton West,1,,,both_blank
+2023,Guysborough,Port Felix,Port Felix,1,,,both_blank
+2023,Guysborough,Queensport,Queensport,1,,,both_blank
+2023,Guysborough,Sonora,Sonora,1,,,both_blank
+2023,Guysborough,Upper Whitehead,Upper Whitehead,1,,,both_blank
+2023,Guysborough,Wine Harbour,Wine Harbour,1,,,both_blank
+2023,Halifax,Boutiliers Point,Boutiliers Point,1,,,both_blank
+2023,Halifax,Carters Point,Carters Point,1,,,both_blank
+2023,Halifax,Coopers Point,Coopers Point,1,,,both_blank
+2023,Halifax,East Chezzetcook,East Chezzetcook,1,,,both_blank
+2023,Halifax,East Dover,East Dover,1,,,both_blank
+2023,Halifax,East Jeddor,East Jeddor,1,,,both_blank
+2023,Halifax,East Petpeswick,East Petpeswick,1,,,both_blank
+2023,Halifax,Eastern Passage,Eastern Passage,1,688436.19,6950739.16,both_present
+2023,Halifax,Ecum Secum West,Ecum Secum West,1,,,both_blank
+2023,Halifax,Factory Cove,Factory Cove,1,,,both_blank
+2023,Halifax,Gammons Creek,Gammons Creek,1,,,both_blank
+2023,Halifax,Halifax,Halifax,1,1651439.05,8748489.78,both_present
+2023,Halifax,Indian Harbour,Indian Harbour,1,,,both_blank
+2023,Halifax,Ketch Harbour,Ketch Harbour,1,,,both_blank
+2023,Halifax,Little Harbour,Little Harbour (Halifax),1,,,both_blank
+2023,Halifax,Ostrea Lake,Ostrea Lake,1,,,both_blank
+2023,Halifax,Other,Other (Halifax),0,3517273.63,13769336.66,both_present
+2023,Halifax,Owls Head,Owls Head,1,,,both_blank
+2023,Halifax,Peggys Cove,Peggys Cove,1,,,both_blank
+2023,Halifax,Pleasant Point,Pleasant Point,1,,,both_blank
+2023,Halifax,Prospect,Prospect,1,,,both_blank
+2023,Halifax,Sambro,Sambro,1,7301989.50,40989379.40,both_present
+2023,Halifax,Shad Bay,Shad Bay,1,,,both_blank
+2023,Halifax,Sober Island,Sober Island,1,,,both_blank
+2023,Halifax,Terence Bay,Terence Bay,1,,,both_blank
+2023,Halifax,Three Fathom Harbour,Three Fathom Harbour,1,,,both_blank
+2023,Halifax,West Chezzetcook,West Chezzetcook,1,,,both_blank
+2023,Halifax,West Dover,West Dover,1,51401.00,589605.76,both_present
+2023,Hants,Other,Other (Hants),0,,,both_blank
+2023,Inverness,Cheticamp,Cheticamp,1,,,both_blank
+2023,Inverness,Cheticamp - Town Wharf,Cheticamp - Town Wharf,1,,,both_blank
+2023,Inverness,Cheticamp Point,Cheticamp Point,1,,,both_blank
+2023,Inverness,Finlay Point,Finlay Point,1,,,both_blank
+2023,Inverness,Grand Etang,Grand Etang,1,,,both_blank
+2023,Inverness,Inverness,Inverness,1,,,both_blank
+2023,Inverness,Judique,Judique,1,,,both_blank
+2023,Inverness,Little Judique Harbour,Little Judique Harbour,1,,,both_blank
+2023,Inverness,Little Judique Ponds,Little Judique Ponds,1,,,both_blank
+2023,Inverness,Mabou Harbour,Mabou Harbour,1,,,both_blank
+2023,Inverness,Marble Mountain,Marble Mountain,1,,,both_blank
+2023,Inverness,Margaree Harbour,Margaree Harbour,1,,,both_blank
+2023,Inverness,Meat Cove,Meat Cove,1,,,both_blank
+2023,Inverness,Murphys Pond,Murphys Pond,1,,,both_blank
+2023,Inverness,Other,Other (Inverness),0,3340858.00,11050423.10,both_present
+2023,Inverness,Pleasant Bay,Pleasant Bay,1,,,both_blank
+2023,Inverness,Port Hood,Port Hood,1,,,both_blank
+2023,Inverness,Port Hood Island,Port Hood Island,1,,,both_blank
+2023,Kings,Halls Harbour,Halls Harbour,1,,,both_blank
+2023,Kings,Harbourville,Harbourville,1,154512.00,1495471.93,both_present
+2023,Kings,Kingsport,Kingsport,1,,,both_blank
+2023,Kings,Other,Other (Kings),0,,,both_blank
+2023,Kings,Pereaux,Pereaux,1,,,both_blank
+2023,Kings,Scots Bay,Scots Bay,1,,,both_blank
+2023,Lunenburg,Aspotogan,Aspotogan,1,,,both_blank
+2023,Lunenburg,Bayport,Bayport,1,,,both_blank
+2023,Lunenburg,Big Tancook Island,Big Tancook Island,1,,,both_blank
+2023,Lunenburg,Black Harbour,Black Harbour,1,,,both_blank
+2023,Lunenburg,Blandford,Blandford,1,415032.00,4320095.93,both_present
+2023,Lunenburg,Bush Island,Bush Island,1,285443.00,2964792.19,both_present
+2023,Lunenburg,Chester Basin,Chester Basin,1,,,both_blank
+2023,Lunenburg,Feltzen South,Feltzen South,1,,,both_blank
+2023,Lunenburg,Fox Point,Fox Point,1,,,both_blank
+2023,Lunenburg,Kings Bay,Kings Bay,1,,,both_blank
+2023,Lunenburg,Kraut Point,Kraut Point,1,,,both_blank
+2023,Lunenburg,Little Harbour,Little Harbour (Lunenburg),1,,,both_blank
+2023,Lunenburg,Lunenburg,Lunenburg,1,399398.00,4148767.73,both_present
+2023,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2023,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2023,Lunenburg,Mahone Bay,Mahone Bay,1,,,both_blank
+2023,Lunenburg,Mill Cove,Mill Cove,1,,,both_blank
+2023,Lunenburg,Northwest Cove,Northwest Cove,1,,,both_blank
+2023,Lunenburg,Other,Other (Lunenburg),0,1497092.12,12922336.62,both_present
+2023,Lunenburg,Riverport,Riverport,1,,,both_blank
+2023,Lunenburg,Saw Pit,Saw Pit,1,,,both_blank
+2023,Lunenburg,Voglers Cove West,Voglers Cove West,1,,,both_blank
+2023,Lunenburg,Western Shore,Western Shore,1,,,both_blank
+2023,Pictou,Baileys Brook,Baileys Brook,1,,,both_blank
+2023,Pictou,Big Island,Big Island,1,,,both_blank
+2023,Pictou,Cape John,Cape John,1,,,both_blank
+2023,Pictou,Caribou,Caribou,1,,,both_blank
+2023,Pictou,Caribou Ferry,Caribou Ferry,1,3291736.00,3543132.31,both_present
+2023,Pictou,Chance Harbour,Chance Harbour,1,,,both_blank
+2023,Pictou,Little Harbour,Little Harbour (Pictou),1,,,both_blank
+2023,Pictou,Merigomish,Merigomish,1,,,both_blank
+2023,Pictou,Other,Other (Pictou),0,,,both_blank
+2023,Pictou,Pictou Island,Pictou Island,1,,,both_blank
+2023,Pictou,Pictou Landing,Pictou Landing,1,,,both_blank
+2023,Pictou,Skinners Cove,Skinners Cove,1,,,both_blank
+2023,Pictou,Toney River,Toney River,1,337370.00,2540441.61,both_present
+2023,Queens,Brooklyn Fisherman's Wharf,Brooklyn Fisherman's Wharf,1,1720314.60,1578453.27,both_present
+2023,Queens,East Side Port L'Hebert,East Side Port L'Hebert,1,791655.00,4580933.45,both_present
+2023,Queens,Hunts Point,Hunts Point,1,,,both_blank
+2023,Queens,Moose Harbour,Moose Harbour,1,122130.00,1276652.62,both_present
+2023,Queens,Other,Other (Queens),0,7857314.35,29464268.32,both_present
+2023,Queens,Port Medway,Port Medway,1,2565210.29,6207122.89,both_present
+2023,Queens,Port Mouton,Port Mouton,1,9405173.00,16898703.04,both_present
+2023,Queens,South West Port Mouton,South West Port Mouton,1,,,both_blank
+2023,Queens,St. Catherines River,St. Catherines River,1,,,both_blank
+2023,Queens,Volgers Cove,Volgers Cove,1,,,both_blank
+2023,Queens,West Berlin,West Berlin,1,,,both_blank
+2023,Richmond,Arichat,Arichat,1,3747269.00,13956141.98,both_present
+2023,Richmond,Arrow Point,Arrow Point,1,,,both_blank
+2023,Richmond,Chapel Cove,Chapel Cove,1,,,both_blank
+2023,Richmond,D'escousse,D'escousse,1,,,both_blank
+2023,Richmond,Fourchu,Fourchu,1,,,both_blank
+2023,Richmond,Janvrin Harbour,Janvrin Harbour,1,,,both_blank
+2023,Richmond,L'Archeveque,L'Archeveque,1,,,both_blank
+2023,Richmond,Other,Other (Richmond),0,,,both_blank
+2023,Richmond,Poirierville,Poirierville,1,,,both_blank
+2023,Richmond,River Bourgeois,River Bourgeois,1,,,both_blank
+2023,Shelburne,Allendale,Allendale,1,,,both_blank
+2023,Shelburne,Bear Point,Bear Point,1,1929324.60,3899254.64,both_present
+2023,Shelburne,Cape Negro,Cape Negro,1,,,both_blank
+2023,Shelburne,Clark's Harbour,Clark's Harbour,1,5075773.00,27290698.77,both_present
+2023,Shelburne,Cripple Creek,Cripple Creek,1,484188.00,4986612.57,both_present
+2023,Shelburne,Forbes Point,Forbes Point,1,,,both_blank
+2023,Shelburne,Gunning Cove,Gunning Cove,1,1809576.00,10239413.61,both_present
+2023,Shelburne,Ingomar,Ingomar,1,2965839.00,18984943.02,both_present
+2023,Shelburne,Jones Harbour,Jones Harbour,1,244636.00,2595960.52,both_present
+2023,Shelburne,Little Harbour,Little Harbour (Shelburne),1,236433.00,2480106.09,both_present
+2023,Shelburne,Lockeport,Lockeport,1,1515755.00,14456836.98,both_present
+2023,Shelburne,Lower Jordan Bay,Lower Jordan Bay,1,241141.00,2638188.40,both_present
+2023,Shelburne,Lower Sandy Point,Lower Sandy Point,1,490001.00,4516919.08,both_present
+2023,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,419645.00,1465491.89,both_present
+2023,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,5489460.00,9411174.37,both_present
+2023,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,3426990.00,30256878.98,both_present
+2023,Shelburne,Newellton,Newellton,1,2173535.00,13855225.56,both_present
+2023,Shelburne,Osborne Harbour,Osborne Harbour,1,,,both_blank
+2023,Shelburne,Other,Other (Shelburne),0,2925771.35,12465875.36,both_present
+2023,Shelburne,Port La Tour,Port La Tour,1,3224641.00,14532149.31,both_present
+2023,Shelburne,Seal Island,Seal Island,1,,,both_blank
+2023,Shelburne,Seal Island,Seal Island,1,,,both_blank
+2023,Shelburne,Seal Point,Seal Point,1,1394372.90,5631227.82,both_present
+2023,Shelburne,Shag Harbour,Shag Harbour,1,3561633.00,9431033.45,both_present
+2023,Shelburne,Shag Harbour,Shag Harbour,1,,,both_blank
+2023,Shelburne,Shelburne,Shelburne,1,306357.00,2835249.49,both_present
+2023,Shelburne,Smithsville,Smithsville,1,,,both_blank
+2023,Shelburne,South Side,South Side,1,461707.00,4467625.73,both_present
+2023,Shelburne,Stoney Island,Stoney Island,1,591980.85,6778943.74,both_present
+2023,Shelburne,Swims Point,Swims Point,1,703009.00,1738676.69,both_present
+2023,Shelburne,Townsends Harbour,Townsends Harbour,1,,,both_blank
+2023,Shelburne,Upper Port La Tour,Upper Port La Tour,1,,,both_blank
+2023,Shelburne,West Green Harbour,West Green Harbour,1,256678.00,2681059.65,both_present
+2023,Shelburne,West Head,West Head,1,3722900.90,26123723.15,both_present
+2023,Victoria,Bay St. Lawrence,Bay St. Lawrence,1,,,both_blank
+2023,Victoria,Big Bras D'or,Big Bras D'or,1,,,both_blank
+2023,Victoria,Dingwall,Dingwall,1,552308.50,4021303.56,both_present
+2023,Victoria,Englishtown,Englishtown,1,,,both_blank
+2023,Victoria,Ingonish,Ingonish,1,,,both_blank
+2023,Victoria,Ingonish Beach,Ingonish Beach,1,,,both_blank
+2023,Victoria,Ingonish Ferry,Ingonish Ferry,1,,,both_blank
+2023,Victoria,Iona,Iona,1,,,both_blank
+2023,Victoria,Little River,Little River (Victoria),1,,,both_blank
+2023,Victoria,Neils Harbour,Neils Harbour,1,,,both_blank
+2023,Victoria,New Campbellton,New Campbellton,1,,,both_blank
+2023,Victoria,New Haven,New Haven,1,,,both_blank
+2023,Victoria,Nyanza,Nyanza,1,,,both_blank
+2023,Victoria,Other,Other (Victoria),0,,,both_blank
+2023,Victoria,Smelt Book,Smelt Book,1,,,both_blank
+2023,Victoria,White Point,White Point,1,,,both_blank
+2023,Victoria,Wreck Cove,Wreck Cove,1,,,both_blank
+2023,Yarmouth,Abbotts Harbour,Abbotts Harbour,1,499296.00,3773625.21,both_present
+2023,Yarmouth,Abrams River,Abrams River,1,,,both_blank
+2023,Yarmouth,Camp Cove,Camp Cove,1,4557123.00,21909945.96,both_present
+2023,Yarmouth,Chebogue,Chebogue,1,1263247.00,1667508.94,both_present
+2023,Yarmouth,Chegoggin,Chegoggin,1,,,both_blank
+2023,Yarmouth,Chegoggin Point,Chegoggin Point,1,350481.00,3487128.27,both_present
+2023,Yarmouth,Dennis Point,Dennis Point,1,35710796.96,64838765.06,both_present
+2023,Yarmouth,Glenwood,Glenwood,1,,,both_blank
+2023,Yarmouth,Hubbards Point,Hubbards Point,1,,,both_blank
+2023,Yarmouth,Ledge Harbour,Ledge Harbour,1,,,both_blank
+2023,Yarmouth,Little River Harbour,Little River Harbour,1,5514187.00,16939250.28,both_present
+2023,Yarmouth,Lower East Pubnico,Lower East Pubnico,1,14139655.00,80232979.39,both_present
+2023,Yarmouth,Lower Wedgeport Tuna Wharf,Lower Wedgeport Tuna Wharf,1,,,both_blank
+2023,Yarmouth,Morris Island,Morris Island,1,,,both_blank
+2023,Yarmouth,Other,Other (Yarmouth),0,15970180.68,11258399.02,both_present
+2023,Yarmouth,Pinkneys Point,Pinkneys Point,1,4300247.00,12500943.23,both_present
+2023,Yarmouth,Plymouth,Plymouth,1,,,both_blank
+2023,Yarmouth,Port Maitland,Port Maitland,1,,,both_blank
+2023,Yarmouth,Rocco Point,Rocco Point,1,,,both_blank
+2023,Yarmouth,Sandford,Sandford,1,677253.00,7277181.84,both_present
+2023,Yarmouth,Sluice Point,Sluice Point,1,,,both_blank
+2023,Yarmouth,Surettes Island,Surettes Island,1,,,both_blank
+2023,Yarmouth,Wedge Point,Wedge Point,1,7693228.39,21467579.29,both_present
+2023,Yarmouth,Yarmouth Bar,Yarmouth Bar,1,3129729.00,24946348.40,both_present
+2024,Annapolis,Anderson Cove,Anderson Cove,1,,,both_blank
+2024,Annapolis,Battery Point,Battery Point,1,192307.00,1325947.68,both_present
+2024,Annapolis,Delaps Cove,Delaps Cove,1,,,both_blank
+2024,Annapolis,Hampton,Hampton,1,139830.00,1113207.96,both_present
+2024,Annapolis,Margaretsville,Margaretsville,1,,,both_blank
+2024,Annapolis,Other,Other (Annapolis),0,,,both_blank
+2024,Annapolis,Parkers Cove,Parkers Cove,1,,,both_blank
+2024,Annapolis,Port Lorne,Port Lorne,1,,,both_blank
+2024,Antigonish,Arisaig,Arisaig,1,,,both_blank
+2024,Antigonish,Aulds Cove,Aulds Cove,1,,,both_blank
+2024,Antigonish,Ballantynes Cove,Ballantynes Cove,1,640363.00,4304612.40,both_present
+2024,Antigonish,Barrios Beach,Barrios Beach,1,,,both_blank
+2024,Antigonish,Bayfield,Bayfield,1,,,both_blank
+2024,Antigonish,Cribbons Point,Cribbons Point,1,448260.00,3369461.04,both_present
+2024,Antigonish,Havre Boucher,Havre Boucher,1,,,both_blank
+2024,Antigonish,Livingstone,Livingstone,1,,,both_blank
+2024,Antigonish,Other,Other (Antigonish),0,,,both_blank
+2024,Cape Breton,Alder Point,Alder Point,1,1128747.00,7450689.50,both_present
+2024,Cape Breton,Crane Cove,Crane Cove,1,,,both_blank
+2024,Cape Breton,Gabarus,Gabarus,1,,,both_blank
+2024,Cape Breton,Glace Bay,Glace Bay,1,13360621.00,31054534.51,both_present
+2024,Cape Breton,Lingan,Lingan,1,,,both_blank
+2024,Cape Breton,Louisbourg,Louisbourg,1,9411126.00,34189339.95,both_present
+2024,Cape Breton,Main-A-Dieu,Main-A-Dieu,1,2708982.00,18430058.03,both_present
+2024,Cape Breton,Marion Bridge,Marion Bridge,1,,,both_blank
+2024,Cape Breton,New Waterford,New Waterford,1,,,both_blank
+2024,Cape Breton,North Sydney - Ballast Grounds,North Sydney - Ballast Grounds,1,1431791.00,9709592.35,both_present
+2024,Cape Breton,North Sydney - Marina Breakwater,North Sydney - Marina Breakwater,1,,,both_blank
+2024,Cape Breton,Other,Other (Cape Breton),0,1495919.00,10332523.21,both_present
+2024,Cape Breton,Oyster Creek,Oyster Creek,1,,,both_blank
+2024,Cape Breton,Point Aconi,Point Aconi,1,,,both_blank
+2024,Cape Breton,Port Morien,Port Morien,1,,,both_blank
+2024,Cape Breton,South Bar,South Bar,1,,,both_blank
+2024,Cape Breton,Three Stick Cove,Three Stick Cove,1,,,both_blank
+2024,Cape Breton,Victoria Bridge,Victoria Bridge,1,,,both_blank
+2024,Colchester,Barrachois,Barrachois,1,,,both_blank
+2024,Colchester,Five Islands,Five Islands,1,,,both_blank
+2024,Colchester,Other,Other (Colchester),0,,,both_blank
+2024,Cumberland,Advocate Harbour,Advocate Harbour,1,216711.00,1965613.65,both_present
+2024,Cumberland,Apple River,Apple River,1,,,both_blank
+2024,Cumberland,Malagash,Malagash,1,,,both_blank
+2024,Cumberland,Northport,Northport,1,,,both_blank
+2024,Cumberland,Other,Other (Cumberland),0,,,both_blank
+2024,Cumberland,Pugwash,Pugwash,1,,,both_blank
+2024,Cumberland,Wallace,Wallace,1,,,both_blank
+2024,Digby,Cape St. Marys,Cape St. Marys,1,381504.00,4424243.20,both_present
+2024,Digby,Centerville,Centerville,1,,,both_blank
+2024,Digby,Culloden,Culloden,1,,,both_blank
+2024,Digby,Digby,Digby,1,7069089.50,80383194.26,both_present
+2024,Digby,East Ferry,East Ferry,1,,,both_blank
+2024,Digby,Freeport,Freeport,1,235000.00,2957509.66,both_present
+2024,Digby,Freeport,Freeport,1,,,both_blank
+2024,Digby,Gilberts Cove,Gilberts Cove,1,,,both_blank
+2024,Digby,Little River,Little River (Digby),1,1293243.00,10222426.37,both_present
+2024,Digby,Meteghan,Meteghan,1,4234721.00,31894870.90,both_present
+2024,Digby,Meteghan River,Meteghan River,1,,,both_blank
+2024,Digby,Other,Other (Digby),0,,,both_blank
+2024,Digby,Rossway,Rossway,1,,,both_blank
+2024,Digby,Sandy Cove East,Sandy Cove East,1,293040.00,3503761.42,both_present
+2024,Digby,Saulnierville,Saulnierville,1,172034.00,2069471.66,both_present
+2024,Digby,Tiverton,Tiverton,1,,,both_blank
+2024,Digby,Westport,Westport,1,,,both_blank
+2024,Digby,Weymouth North,Weymouth North,1,167863.97,689290.10,both_present
+2024,Digby,Whale Cove,Whale Cove,1,,,both_blank
+2024,Guysborough,Canso,Canso,1,5069534.00,21229122.80,both_present
+2024,Guysborough,Charlos Cove,Charlos Cove,1,,,both_blank
+2024,Guysborough,Cooks Cove,Cooks Cove,1,,,both_blank
+2024,Guysborough,Dover,Dover,1,2354558.00,15088780.35,both_present
+2024,Guysborough,Drum Head,Drum Head,1,,,both_blank
+2024,Guysborough,Ecum Secum,Ecum Secum,1,,,both_blank
+2024,Guysborough,Fishermans Harbour,Fishermans Harbour,1,,,both_blank
+2024,Guysborough,Goldboro,Goldboro,1,,,both_blank
+2024,Guysborough,Half Island Cove,Half Island Cove,1,,,both_blank
+2024,Guysborough,Larrys River,Larrys River,1,4560063.00,13585870.15,both_present
+2024,Guysborough,Little Harbour,Little Harbour (Guysborough),1,,,both_blank
+2024,Guysborough,Little Liscomb,Little Liscomb,1,,,both_blank
+2024,Guysborough,Marie Joseph,Marie Joseph,1,,,both_blank
+2024,Guysborough,New Harbour,New Harbour,1,,,both_blank
+2024,Guysborough,Other,Other (Guysborough),0,2928109.83,3097153.99,both_present
+2024,Guysborough,Pirate Harbour,Pirate Harbour,1,,,both_blank
+2024,Guysborough,Port Brickerton East,Port Brickerton East,1,,,both_blank
+2024,Guysborough,Port Brickerton West,Port Brickerton West,1,,,both_blank
+2024,Guysborough,Port Felix,Port Felix,1,,,both_blank
+2024,Guysborough,Queensport,Queensport,1,,,both_blank
+2024,Guysborough,Sonora,Sonora,1,,,both_blank
+2024,Guysborough,Upper Whitehead,Upper Whitehead,1,,,both_blank
+2024,Guysborough,Wine Harbour,Wine Harbour,1,,,both_blank
+2024,Halifax,Boutiliers Point,Boutiliers Point,1,,,both_blank
+2024,Halifax,Carters Point,Carters Point,1,,,both_blank
+2024,Halifax,Coopers Point,Coopers Point,1,,,both_blank
+2024,Halifax,East Chezzetcook,East Chezzetcook,1,,,both_blank
+2024,Halifax,East Dover,East Dover,1,,,both_blank
+2024,Halifax,East Jeddor,East Jeddor,1,,,both_blank
+2024,Halifax,East Petpeswick,East Petpeswick,1,,,both_blank
+2024,Halifax,Eastern Passage,Eastern Passage,1,761677.94,7686017.50,both_present
+2024,Halifax,Ecum Secum West,Ecum Secum West,1,605022.00,5285131.78,both_present
+2024,Halifax,Factory Cove,Factory Cove,1,,,both_blank
+2024,Halifax,Gammons Creek,Gammons Creek,1,,,both_blank
+2024,Halifax,Halifax,Halifax,1,653911.00,6779173.32,both_present
+2024,Halifax,Indian Harbour,Indian Harbour,1,,,both_blank
+2024,Halifax,Ketch Harbour,Ketch Harbour,1,,,both_blank
+2024,Halifax,Little Harbour,Little Harbour (Halifax),1,,,both_blank
+2024,Halifax,Ostrea Lake,Ostrea Lake,1,,,both_blank
+2024,Halifax,Other,Other (Halifax),0,6575765.20,11735522.57,both_present
+2024,Halifax,Owls Head,Owls Head,1,,,both_blank
+2024,Halifax,Peggys Cove,Peggys Cove,1,,,both_blank
+2024,Halifax,Pleasant Point,Pleasant Point,1,,,both_blank
+2024,Halifax,Prospect,Prospect,1,,,both_blank
+2024,Halifax,Sambro,Sambro,1,6766247.00,22908729.78,both_present
+2024,Halifax,Shad Bay,Shad Bay,1,,,both_blank
+2024,Halifax,Sober Island,Sober Island,1,,,both_blank
+2024,Halifax,Terence Bay,Terence Bay,1,,,both_blank
+2024,Halifax,Three Fathom Harbour,Three Fathom Harbour,1,,,both_blank
+2024,Halifax,West Chezzetcook,West Chezzetcook,1,,,both_blank
+2024,Halifax,West Dover,West Dover,1,88081.00,1069305.47,both_present
+2024,Hants,Other,Other (Hants),0,,,both_blank
+2024,Inverness,Cheticamp,Cheticamp,1,,,both_blank
+2024,Inverness,Cheticamp - Town Wharf,Cheticamp - Town Wharf,1,,,both_blank
+2024,Inverness,Cheticamp Point,Cheticamp Point,1,,,both_blank
+2024,Inverness,Finlay Point,Finlay Point,1,,,both_blank
+2024,Inverness,Grand Etang,Grand Etang,1,,,both_blank
+2024,Inverness,Inverness,Inverness,1,690204.00,4499163.94,both_present
+2024,Inverness,Judique,Judique,1,,,both_blank
+2024,Inverness,Little Judique Harbour,Little Judique Harbour,1,,,both_blank
+2024,Inverness,Little Judique Ponds,Little Judique Ponds,1,,,both_blank
+2024,Inverness,Mabou Harbour,Mabou Harbour,1,339148.00,2192998.04,both_present
+2024,Inverness,Marble Mountain,Marble Mountain,1,,,both_blank
+2024,Inverness,Margaree Harbour,Margaree Harbour,1,1016954.00,7242267.52,both_present
+2024,Inverness,Meat Cove,Meat Cove,1,,,both_blank
+2024,Inverness,Murphys Pond,Murphys Pond,1,,,both_blank
+2024,Inverness,Other,Other (Inverness),0,4790249.78,19055550.27,both_present
+2024,Inverness,Pleasant Bay,Pleasant Bay,1,,,both_blank
+2024,Inverness,Port Hood,Port Hood,1,,,both_blank
+2024,Inverness,Port Hood Island,Port Hood Island,1,,,both_blank
+2024,Kings,Halls Harbour,Halls Harbour,1,,,both_blank
+2024,Kings,Harbourville,Harbourville,1,155858.20,1749136.32,both_present
+2024,Kings,Kingsport,Kingsport,1,,,both_blank
+2024,Kings,Other,Other (Kings),0,1202886.00,1196962.00,both_present
+2024,Kings,Pereaux,Pereaux,1,,,both_blank
+2024,Kings,Scots Bay,Scots Bay,1,,,both_blank
+2024,Lunenburg,Aspotogan,Aspotogan,1,,,both_blank
+2024,Lunenburg,Bayport,Bayport,1,,,both_blank
+2024,Lunenburg,Big Tancook Island,Big Tancook Island,1,,,both_blank
+2024,Lunenburg,Black Harbour,Black Harbour,1,,,both_blank
+2024,Lunenburg,Blandford,Blandford,1,540616.80,5953460.88,both_present
+2024,Lunenburg,Bush Island,Bush Island,1,298213.00,3421885.40,both_present
+2024,Lunenburg,Chester Basin,Chester Basin,1,,,both_blank
+2024,Lunenburg,Feltzen South,Feltzen South,1,,,both_blank
+2024,Lunenburg,Fox Point,Fox Point,1,,,both_blank
+2024,Lunenburg,Kings Bay,Kings Bay,1,,,both_blank
+2024,Lunenburg,Kraut Point,Kraut Point,1,,,both_blank
+2024,Lunenburg,Little Harbour,Little Harbour (Lunenburg),1,,,both_blank
+2024,Lunenburg,Lunenburg,Lunenburg,1,329221.00,3939459.75,both_present
+2024,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2024,Lunenburg,Lunenburg,Lunenburg,1,,,both_blank
+2024,Lunenburg,Mahone Bay,Mahone Bay,1,,,both_blank
+2024,Lunenburg,Mill Cove,Mill Cove,1,,,both_blank
+2024,Lunenburg,Northwest Cove,Northwest Cove,1,,,both_blank
+2024,Lunenburg,Other,Other (Lunenburg),0,1148013.00,8904613.70,both_present
+2024,Lunenburg,Riverport,Riverport,1,226242.00,747329.51,both_present
+2024,Lunenburg,Saw Pit,Saw Pit,1,,,both_blank
+2024,Lunenburg,Voglers Cove West,Voglers Cove West,1,,,both_blank
+2024,Lunenburg,Western Shore,Western Shore,1,,,both_blank
+2024,Pictou,Baileys Brook,Baileys Brook,1,,,both_blank
+2024,Pictou,Big Island,Big Island,1,,,both_blank
+2024,Pictou,Cape John,Cape John,1,,,both_blank
+2024,Pictou,Caribou,Caribou,1,838140.00,3761391.46,both_present
+2024,Pictou,Caribou Ferry,Caribou Ferry,1,,,both_blank
+2024,Pictou,Chance Harbour,Chance Harbour,1,,,both_blank
+2024,Pictou,Little Harbour,Little Harbour (Pictou),1,,,both_blank
+2024,Pictou,Merigomish,Merigomish,1,,,both_blank
+2024,Pictou,Other,Other (Pictou),0,3538740.50,10219436.89,both_present
+2024,Pictou,Pictou Island,Pictou Island,1,,,both_blank
+2024,Pictou,Pictou Landing,Pictou Landing,1,,,both_blank
+2024,Pictou,Skinners Cove,Skinners Cove,1,,,both_blank
+2024,Pictou,Toney River,Toney River,1,,,both_blank
+2024,Queens,Brooklyn Fisherman's Wharf,Brooklyn Fisherman's Wharf,1,1307862.40,987489.16,both_present
+2024,Queens,East Side Port L'Hebert,East Side Port L'Hebert,1,504502.00,5950997.70,both_present
+2024,Queens,Hunts Point,Hunts Point,1,,,both_blank
+2024,Queens,Moose Harbour,Moose Harbour,1,108132.00,1249488.37,both_present
+2024,Queens,Other,Other (Queens),0,4542755.00,31442981.55,both_present
+2024,Queens,Port Medway,Port Medway,1,153074.42,2998202.28,both_present
+2024,Queens,Port Mouton,Port Mouton,1,8093431.11,19803176.62,both_present
+2024,Queens,South West Port Mouton,South West Port Mouton,1,,,both_blank
+2024,Queens,St. Catherines River,St. Catherines River,1,,,both_blank
+2024,Queens,Volgers Cove,Volgers Cove,1,,,both_blank
+2024,Queens,West Berlin,West Berlin,1,,,both_blank
+2024,Richmond,Arichat,Arichat,1,2251510.80,14190971.15,both_present
+2024,Richmond,Arrow Point,Arrow Point,1,,,both_blank
+2024,Richmond,Chapel Cove,Chapel Cove,1,,,both_blank
+2024,Richmond,D'escousse,D'escousse,1,,,both_blank
+2024,Richmond,Fourchu,Fourchu,1,,,both_blank
+2024,Richmond,Janvrin Harbour,Janvrin Harbour,1,,,both_blank
+2024,Richmond,L'Archeveque,L'Archeveque,1,,,both_blank
+2024,Richmond,Other,Other (Richmond),0,,,both_blank
+2024,Richmond,Poirierville,Poirierville,1,,,both_blank
+2024,Richmond,River Bourgeois,River Bourgeois,1,,,both_blank
+2024,Shelburne,Allendale,Allendale,1,,,both_blank
+2024,Shelburne,Bear Point,Bear Point,1,,,both_blank
+2024,Shelburne,Cape Negro,Cape Negro,1,,,both_blank
+2024,Shelburne,Clark's Harbour,Clark's Harbour,1,4146488.50,46081629.69,both_present
+2024,Shelburne,Cripple Creek,Cripple Creek,1,579156.00,6701200.74,both_present
+2024,Shelburne,Forbes Point,Forbes Point,1,,,both_blank
+2024,Shelburne,Gunning Cove,Gunning Cove,1,2437276.64,9073262.20,both_present
+2024,Shelburne,Ingomar,Ingomar,1,2704304.66,20906994.88,both_present
+2024,Shelburne,Jones Harbour,Jones Harbour,1,338708.00,4016040.54,both_present
+2024,Shelburne,Little Harbour,Little Harbour (Shelburne),1,435872.89,2702280.89,both_present
+2024,Shelburne,Lockeport,Lockeport,1,2089882.25,17064414.13,both_present
+2024,Shelburne,Lower Jordan Bay,Lower Jordan Bay,1,310193.86,3293713.91,both_present
+2024,Shelburne,Lower Sandy Point,Lower Sandy Point,1,463891.00,6417005.06,both_present
+2024,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,5397716.77,12112756.89,both_present
+2024,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,3849407.00,36511993.84,both_present
+2024,Shelburne,Lower Woods Harbour,Lower Woods Harbour,1,,,both_blank
+2024,Shelburne,Newellton,Newellton,1,1653728.96,13320840.07,both_present
+2024,Shelburne,Osborne Harbour,Osborne Harbour,1,,,both_blank
+2024,Shelburne,Other,Other (Shelburne),0,4155846.11,23578103.02,both_present
+2024,Shelburne,Port La Tour,Port La Tour,1,4033675.06,17221524.80,both_present
+2024,Shelburne,Seal Island,Seal Island,1,,,both_blank
+2024,Shelburne,Seal Island,Seal Island,1,,,both_blank
+2024,Shelburne,Seal Point,Seal Point,1,782816.00,8003199.95,both_present
+2024,Shelburne,Shag Harbour,Shag Harbour,1,3047030.83,12237787.88,both_present
+2024,Shelburne,Shag Harbour,Shag Harbour,1,,,both_blank
+2024,Shelburne,Shelburne,Shelburne,1,185338.00,2203636.45,both_present
+2024,Shelburne,Smithsville,Smithsville,1,,,both_blank
+2024,Shelburne,South Side,South Side,1,601365.00,6461582.56,both_present
+2024,Shelburne,Stoney Island,Stoney Island,1,845074.00,9580133.09,both_present
+2024,Shelburne,Swims Point,Swims Point,1,2705927.32,1799839.26,both_present
+2024,Shelburne,Townsends Harbour,Townsends Harbour,1,,,both_blank
+2024,Shelburne,Upper Port La Tour,Upper Port La Tour,1,,,both_blank
+2024,Shelburne,West Green Harbour,West Green Harbour,1,260984.00,2970133.00,both_present
+2024,Shelburne,West Head,West Head,1,3715456.88,31371962.62,both_present
+2024,Victoria,Bay St. Lawrence,Bay St. Lawrence,1,,,both_blank
+2024,Victoria,Big Bras D'or,Big Bras D'or,1,,,both_blank
+2024,Victoria,Dingwall,Dingwall,1,676257.00,4571516.92,both_present
+2024,Victoria,Englishtown,Englishtown,1,,,both_blank
+2024,Victoria,Ingonish,Ingonish,1,,,both_blank
+2024,Victoria,Ingonish Beach,Ingonish Beach,1,,,both_blank
+2024,Victoria,Ingonish Ferry,Ingonish Ferry,1,,,both_blank
+2024,Victoria,Iona,Iona,1,,,both_blank
+2024,Victoria,Little River,Little River (Victoria),1,,,both_blank
+2024,Victoria,Neils Harbour,Neils Harbour,1,,,both_blank
+2024,Victoria,New Campbellton,New Campbellton,1,,,both_blank
+2024,Victoria,New Haven,New Haven,1,,,both_blank
+2024,Victoria,Nyanza,Nyanza,1,,,both_blank
+2024,Victoria,Other,Other (Victoria),0,,,both_blank
+2024,Victoria,Smelt Book,Smelt Book,1,,,both_blank
+2024,Victoria,White Point,White Point,1,,,both_blank
+2024,Victoria,Wreck Cove,Wreck Cove,1,,,both_blank
+2024,Yarmouth,Abbotts Harbour,Abbotts Harbour,1,472300.00,5596936.50,both_present
+2024,Yarmouth,Abrams River,Abrams River,1,,,both_blank
+2024,Yarmouth,Camp Cove,Camp Cove,1,3787998.31,25670746.03,both_present
+2024,Yarmouth,Chebogue,Chebogue,1,1229067.05,1454480.31,both_present
+2024,Yarmouth,Chegoggin,Chegoggin,1,260177.50,2004003.32,both_present
+2024,Yarmouth,Chegoggin Point,Chegoggin Point,1,,,both_blank
+2024,Yarmouth,Dennis Point,Dennis Point,1,34025404.75,81187479.49,both_present
+2024,Yarmouth,Glenwood,Glenwood,1,,,both_blank
+2024,Yarmouth,Hubbards Point,Hubbards Point,1,,,both_blank
+2024,Yarmouth,Ledge Harbour,Ledge Harbour,1,,,both_blank
+2024,Yarmouth,Little River Harbour,Little River Harbour,1,4591976.13,17531088.48,both_present
+2024,Yarmouth,Lower East Pubnico,Lower East Pubnico,1,11500160.42,47479626.18,both_present
+2024,Yarmouth,Lower Wedgeport Tuna Wharf,Lower Wedgeport Tuna Wharf,1,,,both_blank
+2024,Yarmouth,Morris Island,Morris Island,1,,,both_blank
+2024,Yarmouth,Other,Other (Yarmouth),0,11243227.87,11198418.20,both_present
+2024,Yarmouth,Pinkneys Point,Pinkneys Point,1,3892131.83,14741378.57,both_present
+2024,Yarmouth,Plymouth,Plymouth,1,,,both_blank
+2024,Yarmouth,Port Maitland,Port Maitland,1,,,both_blank
+2024,Yarmouth,Rocco Point,Rocco Point,1,,,both_blank
+2024,Yarmouth,Sanford,Sanford,1,,,both_blank
+2024,Yarmouth,Sluice Point,Sluice Point,1,,,both_blank
+2024,Yarmouth,Surettes Island,Surettes Island,1,,,both_blank
+2024,Yarmouth,Wedge Point,Wedge Point,1,6223819.41,23053163.51,both_present
+2024,Yarmouth,Yarmouth Bar,Yarmouth Bar,1,7169125.94,34666454.01,both_present

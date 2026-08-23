@@ -1,0 +1,98 @@
+section,rank,measure,region,city_town,fsa,centres,towns,providers,share_pct
+summary,1,total_centres,,,,47,,,
+summary,2,declared_regions,,,,5,,,
+summary,3,regions_with_centres,,,,5,,,
+summary,4,regions_with_zero_centres,,,,0,,,
+summary,5,distinct_towns,,,,42,,,
+summary,6,distinct_fsas,,,,32,,,
+summary,7,distinct_providers,,,,16,,,
+summary,8,top_region_centres,Cape Breton,,,12,,,
+summary,9,centres_with_all_channels,,,,36,,,
+summary,10,centres_flagged_total,,,,0,,,
+exclusions,1,region_not_in_universe,,,,0,,,
+exclusions,2,postal_code_blank,,,,0,,,
+exclusions,3,postal_code_malformed,,,,0,,,
+exclusions,4,coordinate_out_of_bounds,,,,0,,,
+region_coverage,1,,Cape Breton,,,12,11,3,25.53
+region_coverage,2,,HRM,,,12,9,4,25.53
+region_coverage,3,,South Shore,,,10,10,4,21.28
+region_coverage,4,,Northern,,,7,7,3,14.89
+region_coverage,5,,Annapolis Valley,,,6,5,3,12.77
+city_coverage,1,,HRM,Halifax,,3,,3,6.38
+city_coverage,2,,Annapolis Valley,Kentville,,2,,2,4.26
+city_coverage,3,,Cape Breton,Sydney,,2,,1,4.26
+city_coverage,4,,HRM,Dartmouth,,2,,1,4.26
+city_coverage,5,,Annapolis Valley,Annapolis Royal,,1,,1,2.13
+city_coverage,6,,Annapolis Valley,Coldbrook,,1,,1,2.13
+city_coverage,7,,Annapolis Valley,Middleton,,1,,1,2.13
+city_coverage,8,,Annapolis Valley,Windsor,,1,,1,2.13
+city_coverage,9,,Cape Breton,Baddeck,,1,,1,2.13
+city_coverage,10,,Cape Breton,Glace Bay,,1,,1,2.13
+city_coverage,11,,Cape Breton,Ingonish,,1,,1,2.13
+city_coverage,12,,Cape Breton,Inverness,,1,,1,2.13
+city_coverage,13,,Cape Breton,New Waterford,,1,,1,2.13
+city_coverage,14,,Cape Breton,North Sydney,,1,,1,2.13
+city_coverage,15,,Cape Breton,Petit de Grat,,1,,1,2.13
+city_coverage,16,,Cape Breton,Port Hawkesbury,,1,,1,2.13
+city_coverage,17,,Cape Breton,Saint Joseph du Moine,,1,,1,2.13
+city_coverage,18,,Cape Breton,St. Peters,,1,,1,2.13
+city_coverage,19,,HRM,Cole Harbour,,1,,1,2.13
+city_coverage,20,,HRM,Eastern Passage,,1,,1,2.13
+city_coverage,21,,HRM,Lower Sackville,,1,,1,2.13
+city_coverage,22,,HRM,Musquodoboit,,1,,1,2.13
+city_coverage,23,,HRM,North Preston,,1,,1,2.13
+city_coverage,24,,HRM,Porters Lake,,1,,1,2.13
+city_coverage,25,,HRM,Sheet Harbour,,1,,1,2.13
+city_coverage,26,,Northern,Amherst,,1,,1,2.13
+city_coverage,27,,Northern,Antigonish,,1,,1,2.13
+city_coverage,28,,Northern,Elmsdale,,1,,1,2.13
+city_coverage,29,,Northern,Guysborough,,1,,1,2.13
+city_coverage,30,,Northern,New Glasgow,,1,,1,2.13
+city_coverage,31,,Northern,Springhill,,1,,1,2.13
+city_coverage,32,,Northern,Truro,,1,,1,2.13
+city_coverage,33,,South Shore,Barrington Passage,,1,,1,2.13
+city_coverage,34,,South Shore,Bridgewater,,1,,1,2.13
+city_coverage,35,,South Shore,Chester,,1,,1,2.13
+city_coverage,36,,South Shore,Church Point,,1,,1,2.13
+city_coverage,37,,South Shore,Digby,,1,,1,2.13
+city_coverage,38,,South Shore,Liverpool,,1,,1,2.13
+city_coverage,39,,South Shore,Lockeport,,1,,1,2.13
+city_coverage,40,,South Shore,Shelburne,,1,,1,2.13
+city_coverage,41,,South Shore,Tusket,,1,,1,2.13
+city_coverage,42,,South Shore,Yarmouth,,1,,1,2.13
+fsa_coverage,1,,,,B0E,5,5,,10.64
+fsa_coverage,2,,,,B0W,4,4,,8.51
+fsa_coverage,3,,,,B0J,2,2,,4.26
+fsa_coverage,4,,,,B0N,2,2,,4.26
+fsa_coverage,5,,,,B0S,2,2,,4.26
+fsa_coverage,6,,,,B0T,2,2,,4.26
+fsa_coverage,7,,,,B1P,2,1,,4.26
+fsa_coverage,8,,,,B2Z,2,2,,4.26
+fsa_coverage,9,,,,B3L,2,1,,4.26
+fsa_coverage,10,,,,B4N,2,1,,4.26
+fsa_coverage,11,,,,B0C,1,1,,2.13
+fsa_coverage,12,,,,B0H,1,1,,2.13
+fsa_coverage,13,,,,B0M,1,1,,2.13
+fsa_coverage,14,,,,B0V,1,1,,2.13
+fsa_coverage,15,,,,B1A,1,1,,2.13
+fsa_coverage,16,,,,B1H,1,1,,2.13
+fsa_coverage,17,,,,B2A,1,1,,2.13
+fsa_coverage,18,,,,B2G,1,1,,2.13
+fsa_coverage,19,,,,B2H,1,1,,2.13
+fsa_coverage,20,,,,B2N,1,1,,2.13
+fsa_coverage,21,,,,B2S,1,1,,2.13
+fsa_coverage,22,,,,B2V,1,1,,2.13
+fsa_coverage,23,,,,B3A,1,1,,2.13
+fsa_coverage,24,,,,B3E,1,1,,2.13
+fsa_coverage,25,,,,B3G,1,1,,2.13
+fsa_coverage,26,,,,B3J,1,1,,2.13
+fsa_coverage,27,,,,B4C,1,1,,2.13
+fsa_coverage,28,,,,B4H,1,1,,2.13
+fsa_coverage,29,,,,B4R,1,1,,2.13
+fsa_coverage,30,,,,B4V,1,1,,2.13
+fsa_coverage,31,,,,B5A,1,1,,2.13
+fsa_coverage,32,,,,B9A,1,1,,2.13
+contact_completeness,1,email,,,,47,,,100.00
+contact_completeness,2,web,,,,47,,,100.00
+contact_completeness,3,facebook,,,,47,,,100.00
+contact_completeness,4,twitter,,,,36,,,76.60

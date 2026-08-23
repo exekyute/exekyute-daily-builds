@@ -1,0 +1,6 @@
+out/
+*.duckdb
+*.db
+__pycache__/
+*.pbix
+*.twbx

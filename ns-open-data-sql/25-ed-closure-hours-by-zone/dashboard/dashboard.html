@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova Scotia emergency department closure hours</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Nova Scotia emergency department closure hours</h1>
+    <p class="sub">Reported closure hours by management zone, facility type, and site, for the
+    twelve fiscal years from 2012-13 to 2023-24. Every figure on this page is derived in the
+    browser from the exported rows below; none of it is written into the page.</p>
+  </header>
+
+  <div class="stat-row" id="headline"></div>
+
+  <section class="panel">
+    <h2>Closure hours by zone, by fiscal year</h2>
+    <p class="hint">Each bar is one fiscal year, split by the zone that reported the hours.
+    Hover a segment for its exact figure.</p>
+    <div class="legend" id="zone-legend"></div>
+    <div class="chart" id="zone-chart"></div>
+  </section>
+
+  <div class="two-col">
+    <section class="panel">
+      <h2>Temporary and scheduled split</h2>
+      <p class="hint">Temporary closures are unplanned; scheduled closures are set in advance.
+      The two add to the reported total on every row in the source.</p>
+      <div class="legend">
+        <span class="key"><span class="swatch temp"></span>Temporary</span>
+        <span class="key"><span class="swatch sched"></span>Scheduled</span>
+      </div>
+      <div id="split-overall"></div>
+      <h3 class="sub-head">By zone</h3>
+      <div class="split-list" id="split-by-zone"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Closure hours by facility type</h2>
+      <p class="hint">The type each site reported in that fiscal year. Eight sites were
+      reclassified part way through the window, so their early and later years fall under
+      different types.</p>
+      <div class="split-list" id="type-list"></div>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Sites ranked by total closure hours</h2>
+    <p class="hint">All 38 sites, including the ones that reported no closures at all. Use the
+    filters to cut the table; the cards above always read the full window.</p>
+    <div class="controls">
+      <label for="zone-filter">Zone</label>
+      <select id="zone-filter"></select>
+      <label for="year-filter">Fiscal year</label>
+      <select id="year-filter"></select>
+      <span class="filter-note" id="filter-note"></span>
+    </div>
+    <div class="table-scroll">
+      <table id="site-table">
+        <thead>
+          <tr>
+            <th class="num">#</th>
+            <th>Site</th>
+            <th>Zone</th>
+            <th>Type</th>
+            <th class="num">Total hours</th>
+            <th class="num">Temporary</th>
+            <th class="num">Scheduled</th>
+            <th class="num">Temp share</th>
+            <th class="bar-col">Share of window</th>
+          </tr>
+        </thead>
+        <tbody id="site-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>Data: Nova Scotia Open Data, Emergency Department Closure Hours by Zone, Facility, and
+  Facility Type (75nx-yut7). Open Government Licence - Nova Scotia.</footer>
+
+</div>
+<script src="data.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

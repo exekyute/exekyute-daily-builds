@@ -1,0 +1,116 @@
+section,rank,measure,designation,authority,owner,status,area_name,records,hectares,share_pct,cumulative_hectares,cumulative_share_pct
+summary,1,total_protected_hectares,,,,,,,743084.11,100.00,,
+summary,2,protected_area_records,,,,,,1161,,,,
+summary,3,distinct_area_names,,,,,,436,,,,
+summary,4,designation_types,,,,,,13,,,,
+summary,5,authorities,,,,,,25,,,,
+summary,6,land_owners,,,,,,19,,,,
+summary,7,provincial_land_area_hectares,,,,,,,5333800.00,,,
+summary,8,share_of_provincial_land_pct,,,,,,,,13.93,,
+summary,9,largest_record_hectares,Wilderness Area,,,,Tobeatic Wilderness Area,,103645.77,13.95,,
+summary,10,top_10_records_hectares,,,,,,10,370543.80,49.87,,
+summary,11,records_for_half_of_hectares,,,,,,11,,,,
+summary,12,records_for_ninety_pct_of_hectares,,,,,,103,,,,
+summary,13,legally_designated_hectares,,,,Designated,,326,698294.34,93.97,,
+coverage,1,snapshot_records,,,,,,1161,,,,
+coverage,2,records_loaded,,,,,,1161,,,,
+coverage,3,records_dropped_in_cleaning,,,,,,0,,,,
+coverage,4,records_zero_or_negative_hectares,,,,,,0,,,,
+coverage,5,distinct_area_names,,,,,,436,,,,
+coverage,6,records_sharing_an_area_name,,,,,,914,,,,
+coverage,7,authority_labels_rewritten,,,,,,55,,,,
+coverage,8,owner_labels_rewritten,,,,,,0,,,,
+coverage,9,records_missing_designation_year,,,,,,1161,743084.11,,,
+coverage,10,records_in_year_series,,,,,,0,0.00,,,
+coverage,11,unrounded_total_hectares,,,,,,,743084.05,,,
+coverage,12,record_rounding_difference_hectares,,,,,,,0.06,,,
+totals_tie,1,sum_by_designation,,,,,,1161,743084.11,100.00,,
+totals_tie,2,sum_by_authority,,,,,,1161,743084.11,100.00,,
+totals_tie,3,sum_by_owner,,,,,,1161,743084.11,100.00,,
+totals_tie,4,sum_by_status,,,,,,1161,743084.11,100.00,,
+totals_tie,5,last_row_of_concentration_curve,,,,,,1161,743084.11,100.00,,
+by_designation,1,,Wilderness Area,,,,,163,528920.74,71.18,,
+by_designation,2,,National Park,,,,,6,135547.97,18.24,,
+by_designation,3,,Nature Reserve,,,,,137,27935.83,3.76,,
+by_designation,4,,Land Trust or Conservation Easement,,,,,794,22241.80,2.99,,
+by_designation,5,,Provincial Park,,,,,24,19364.36,2.61,,
+by_designation,6,,"National Park, Migratory Bird Sanctuary",,,,,1,3102.18,0.42,,
+by_designation,7,,National Wildlife Area,,,,,9,1966.52,0.26,,
+by_designation,8,,"Wilderness Area, Conservation Easement",,,,,7,1647.96,0.22,,
+by_designation,9,,"Wilderness Area, Land Trust",,,,,6,1147.03,0.15,,
+by_designation,10,,"Nature Reserve, Land Trust",,,,,7,515.38,0.07,,
+by_designation,11,,"National Wildlife Area, Migratory Bird Sanctuary",,,,,1,408.56,0.05,,
+by_designation,12,,"Nature Reserve, Conservation Easement",,,,,3,160.63,0.02,,
+by_designation,13,,"Nature Reserve, Wilderness Area",,,,,3,125.15,0.02,,
+by_authority,1,,,NS Environment and Climate Change,,,,282,554512.05,74.62,,
+by_authority,2,,,Parks Canada Agency. Environment and Climate Change Canada,,,,7,138650.15,18.66,,
+by_authority,3,,,NS Department of Natural Resources and Renewables,,,,24,19364.36,2.61,,
+by_authority,4,,,Nature Conservancy of Canada,,,,341,11264.38,1.52,,
+by_authority,5,,,Nova Scotia Nature Trust,,,,289,7019.46,0.94,,
+by_authority,6,,,"NS Environment and Climate Change, Nature Conservancy of Canada",,,,12,2748.51,0.37,,
+by_authority,7,,,Canadian Wildlife Service. Environment and Climate Change Canada,,,,10,2375.08,0.32,,
+by_authority,8,,,Ducks Unlimited Canada,,,,71,1422.98,0.19,,
+by_authority,9,,,"NS Environment and Climate Change, Town of Antigonish",,,,2,1335.09,0.18,,
+by_authority,10,,,"NS Department of Natural Resources and Renewables, Nature Conservancy of Canada",,,,2,1149.64,0.15,,
+by_authority,11,,,Nova Scotia Nature Trust and private owner(s),,,,42,983.81,0.13,,
+by_authority,12,,,"NS Environment and Climate Change, Town of Amherst",,,,1,963.27,0.13,,
+by_authority,13,,,"NS Environment and Climate Change, private owner(s)",,,,22,358.54,0.05,,
+by_authority,14,,,Nova Scotia Nature Trust and Town of Wolfville,,,,1,237.95,0.03,,
+by_authority,15,,,"NS Environment and Climate Change, Nova Scotia Power Inc.",,,,1,205.26,0.03,,
+by_authority,16,,,"NS Environment and Climate Change, NS Department of Natural Resources and Renewables",,,,1,202.20,0.03,,
+by_authority,17,,,"NS Environment and Climate Change, Nova Scotia Nature Trust",,,,3,98.53,0.01,,
+by_authority,18,,,Kingsburg Coastal Conservancy,,,,41,81.97,0.01,,
+by_authority,19,,,Bras d'Or Preservation Nature Trust and private owner(s),,,,2,38.63,0.01,,
+by_authority,20,,,"NS Environment and Climate Change, Bras d'Or Preservation Nature Trust",,,,1,26.48,0.00,,
+by_authority,21,,,Bras d'Or Preservation Nature Trust,,,,2,18.06,0.00,,
+by_authority,22,,,Nature Conservancy of Canada and Seagull Foundation,,,,1,12.77,0.00,,
+by_authority,23,,,Tusket River Environmental Protection Association,,,,1,11.79,0.00,,
+by_authority,24,,,"NS Environment and Climate Change, NS Department of Natural Resources and Renewables, Nature Conservancy of Canada",,,,1,2.79,0.00,,
+by_authority,25,,,Nature Conservancy of Canada and private owners,,,,1,0.36,0.00,,
+by_owner,1,,,,NS Environment and Climate Change,,,287,555928.15,74.81,,
+by_owner,2,,,,Parks Canada Agency. Environment and Climate Change Canada,,,7,138650.15,18.66,,
+by_owner,3,,,,NS Department of Natural Resources and Renewables,,,26,20514.00,2.76,,
+by_owner,4,,,,Nature Conservancy of Canada,,,352,12832.72,1.73,,
+by_owner,5,,,,Nova Scotia Nature Trust,,,288,6931.03,0.93,,
+by_owner,6,,,,Canadian Wildlife Service. Environment and Climate Change Canada,,,10,2375.08,0.32,,
+by_owner,7,,,,Ducks Unlimited Canada,,,71,1422.98,0.19,,
+by_owner,8,,,,Private owner(s),,,65,1375.75,0.19,,
+by_owner,9,,,,Town of Antigonish,,,2,1335.09,0.18,,
+by_owner,10,,,,Town of Amherst,,,1,963.27,0.13,,
+by_owner,11,,,,Town of Wolfville,,,1,237.95,0.03,,
+by_owner,12,,,,Nova Scotia Power Inc.,,,1,205.26,0.03,,
+by_owner,13,,,,Acadia University,,,2,156.02,0.02,,
+by_owner,14,,,,Kingsburg Coastal Conservancy,,,41,81.97,0.01,,
+by_owner,15,,,,Bras d'Or Preservation Nature Trust,,,3,44.54,0.01,,
+by_owner,16,,,,Seagull Foundation,,,1,12.77,0.00,,
+by_owner,17,,,,Tusket River Environmental Protection Association,,,1,11.79,0.00,,
+by_owner,18,,,,Nova Scotia Nature Trust and private owner(s),,,1,5.23,0.00,,
+by_owner,19,,,,Nature Conservancy of Canada and private owners,,,1,0.36,0.00,,
+by_status,1,,,,,Designated,,326,698294.34,93.97,,
+by_status,2,,,,,Designation decision made,,41,22547.97,3.03,,
+by_status,3,,,,,Considered protected,,794,22241.80,2.99,,
+concentration,1,,Wilderness Area,NS Environment and Climate Change,,Designated,Tobeatic Wilderness Area,1,103645.77,13.95,103645.77,13.95
+concentration,2,,National Park,Parks Canada Agency. Environment and Climate Change Canada,,Designated,Cape Breton Highlands National Park Of Canada,1,95130.79,12.80,198776.56,26.75
+concentration,3,,National Park,Parks Canada Agency. Environment and Climate Change Canada,,Designated,Kejimkujik National Park And National Historic Site Of Canada,1,38121.34,5.13,236897.90,31.88
+concentration,4,,Wilderness Area,NS Environment and Climate Change,,Designated,Polletts Cove - Aspy Fault Wilderness Area,1,27226.66,3.66,264124.56,35.54
+concentration,5,,Wilderness Area,NS Environment and Climate Change,,Designated,Kelley River Wilderness Area,1,20925.38,2.82,285049.94,38.36
+concentration,6,,Wilderness Area,NS Environment and Climate Change,,Designated,Medway Lakes Wilderness Area,1,19583.00,2.64,304632.94,41.00
+concentration,7,,Wilderness Area,NS Environment and Climate Change,,Designated,Tidney River Wilderness Area,1,17790.07,2.39,322423.01,43.39
+concentration,8,,Wilderness Area,NS Environment and Climate Change,,Designated,French River Wilderness Area,1,16417.99,2.21,338841.00,45.60
+concentration,9,,Wilderness Area,NS Environment and Climate Change,,Designated,Tangier Grand Lake Wilderness Area,1,16029.86,2.16,354870.86,47.76
+concentration,10,,Wilderness Area,NS Environment and Climate Change,,Designated,Tobeatic Wilderness Area,1,15672.94,2.11,370543.80,49.87
+concentration,11,,Wilderness Area,NS Environment and Climate Change,,Designated,Ship Harbour Long Lake Wilderness Area,1,14807.84,1.99,385351.64,51.86
+concentration,12,,Wilderness Area,NS Environment and Climate Change,,Designated,Cloud Lake Wilderness Area,1,10823.02,1.46,396174.66,53.31
+concentration,13,,Wilderness Area,NS Environment and Climate Change,,Designated,Bonnet Lake Barrens Wilderness Area,1,10366.99,1.40,406541.65,54.71
+concentration,14,,Wilderness Area,NS Environment and Climate Change,,Designated,Five Bridge Lakes Wilderness Area,1,8625.92,1.16,415167.57,55.87
+concentration,15,,Wilderness Area,NS Environment and Climate Change,,Designated,Waverley - Salmon River Long Lake Wilderness Area,1,8620.97,1.16,423788.54,57.03
+concentration,16,,Wilderness Area,NS Environment and Climate Change,,Designated,Canso Coastal Barrens Wilderness Area,1,8012.97,1.08,431801.51,58.11
+concentration,17,,Wilderness Area,NS Environment and Climate Change,,Designated,French River Wilderness Area,1,7096.63,0.96,438898.14,59.06
+concentration,18,,Wilderness Area,NS Environment and Climate Change,,Designated,South Panuke Wilderness Area,1,6842.52,0.92,445740.66,59.99
+concentration,19,,Wilderness Area,NS Environment and Climate Change,,Designated,Margaree River Wilderness Area,1,6831.53,0.92,452572.19,60.90
+concentration,20,,Wilderness Area,NS Environment and Climate Change,,Designated,Toadfish Lakes Wilderness Area,1,6319.97,0.85,458892.16,61.76
+concentration,21,,Wilderness Area,NS Environment and Climate Change,,Designated,Economy River Wilderness Area,1,6040.70,0.81,464932.86,62.57
+concentration,22,,Wilderness Area,NS Environment and Climate Change,,Designated,Middle River Framboise Wilderness Area,1,5636.55,0.76,470569.41,63.33
+concentration,23,,Wilderness Area,NS Environment and Climate Change,,Designated,Middle River Wilderness Area,1,5617.72,0.76,476187.13,64.08
+concentration,24,,Wilderness Area,NS Environment and Climate Change,,Designation decision made,Economy River Wilderness Area,1,5495.31,0.74,481682.44,64.82
+concentration,25,,Wilderness Area,NS Environment and Climate Change,,Designated,Ogden Round Lake Wilderness Area,1,5469.08,0.74,487151.52,65.56

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova Scotia long-term care bed supply</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Nova Scotia long-term care bed supply</h1>
+    <p class="sub">Licensed nursing home and residential care capacity by zone, facility type,
+    and facility, from the Nova Scotia Open Data portal. Every figure on this page is derived in
+    the browser from the exported dataset below; nothing is hardcoded.</p>
+    <p class="rule"><strong>Bed definition:</strong> total beds = nursing home beds + residential
+    care beds. Respite beds are counted and shown separately, and stay out of that total.</p>
+  </header>
+
+  <div class="stat-row" id="headline"></div>
+
+  <section class="panel">
+    <h2>Beds by zone</h2>
+    <p class="hint">Each bar is a zone's total beds, split into nursing home beds and residential
+    care beds. Zones are the four provincial health management zones.</p>
+    <div class="legend">
+      <span class="key"><span class="swatch nursing"></span>Nursing home beds</span>
+      <span class="key"><span class="swatch residential"></span>Residential care beds</span>
+    </div>
+    <div id="zone-bars"></div>
+    <div class="table-scroll">
+      <table class="grid" id="zone-table"></table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Nursing versus residential care</h2>
+    <p class="hint">The provincial split of the two bed types inside the total, with the two
+    respite bed types shown underneath for completeness.</p>
+    <div id="split-bar"></div>
+    <div class="split-grid" id="split-cards"></div>
+    <div class="table-scroll">
+      <table class="grid" id="bed-type-table"></table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Facilities</h2>
+    <p class="hint">All facilities in the snapshot. Click any column heading to sort; click it
+    again to reverse.</p>
+    <div class="controls">
+      <label for="zone-filter">Zone</label>
+      <select id="zone-filter"></select>
+      <label for="type-filter">Facility type</label>
+      <select id="type-filter"></select>
+      <span class="count" id="table-count"></span>
+    </div>
+    <div class="table-scroll">
+      <table class="grid sortable" id="facility-table"></table>
+    </div>
+  </section>
+
+  <footer>Data: Nova Scotia Open Data, Long-term Care and Residential Care Facilities
+  (x76a-axw2). Open Government Licence - Nova Scotia.</footer>
+
+</div>
+<script src="data.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+fiscal_year,fiscal_year_start,zone,facility_type,site,temporary_hours,scheduled_hours,total_hours,is_zero_closure
+2012-13,2012,1,CEC,Annapolis Community Health Centre,94.0,0.0,94.0,0
+2013-14,2013,1,CEC,Annapolis Community Health Centre,165.0,0.0,165.0,0
+2014-15,2014,1,CEC,Annapolis Community Health Centre,0.0,0.0,0.0,1
+2015-16,2015,1,CEC,Annapolis Community Health Centre,41.0,0.0,41.0,0
+2016-17,2016,1,CEC,Annapolis Community Health Centre,136.5,0.0,136.5,0
+2017-18,2017,1,CEC,Annapolis Community Health Centre,385.0,0.0,385.0,0
+2018-19,2018,1,CEC,Annapolis Community Health Centre,261.7,760.0,1021.7,0
+2019-20,2019,1,CEC,Annapolis Community Health Centre,1534.0,1260.0,2794.0,0
+2020-21,2020,1,CEC,Annapolis Community Health Centre,124.0,580.0,704.0,0
+2021-22,2021,1,CEC,Annapolis Community Health Centre,1132.0,0.0,1132.0,0
+2022-23,2022,1,CEC,Annapolis Community Health Centre,2912.0,0.0,2912.0,0
+2012-13,2012,1,Community,Digby General Hospital,696.0,0.0,696.0,0
+2013-14,2013,1,Community,Digby General Hospital,276.0,0.0,276.0,0
+2014-15,2014,1,Community,Digby General Hospital,158.0,0.0,158.0,0
+2015-16,2015,1,Community,Digby General Hospital,194.0,0.0,194.0,0
+2016-17,2016,1,Community,Digby General Hospital,466.0,0.0,466.0,0
+2017-18,2017,1,Community,Digby General Hospital,397.5,0.0,397.5,0
+2018-19,2018,1,Community,Digby General Hospital,1101.3,0.0,1101.3,0
+2019-20,2019,1,Community,Digby General Hospital,203.0,0.0,203.0,0
+2020-21,2020,1,Community,Digby General Hospital,50.0,0.0,50.0,0
+2021-22,2021,1,Community,Digby General Hospital,1676.5,0.0,1676.5,0
+2022-23,2022,1,Community,Digby General Hospital,2779.5,0.0,2779.5,0
+2023-24,2023,1,Community,Digby General Hospital,3923.8,0.0,3923.8,0
+2012-13,2012,1,Community,Fishermen's Memorial Hospital,110.0,3285.0,3395.0,0
+2013-14,2013,1,Community,Fishermen's Memorial Hospital,298.0,3293.0,3591.0,0
+2014-15,2014,1,Community,Fishermen's Memorial Hospital,201.0,3285.0,3486.0,0
+2015-16,2015,1,Community,Fishermen's Memorial Hospital,187.0,3294.0,3481.0,0
+2016-17,2016,1,Community,Fishermen's Memorial Hospital,224.0,3285.0,3509.0,0
+2017-18,2017,1,Community,Fishermen's Memorial Hospital,132.5,3285.0,3417.5,0
+2018-19,2018,1,Community,Fishermen's Memorial Hospital,257.5,3285.0,3542.5,0
+2019-20,2019,1,Community,Fishermen's Memorial Hospital,1409.0,3294.0,4703.0,0
+2020-21,2020,1,Community,Fishermen's Memorial Hospital,58.0,3285.0,3343.0,0
+2021-22,2021,1,Community,Fishermen's Memorial Hospital,1077.3,3285.0,4362.3,0
+2022-23,2022,1,Community,Fishermen's Memorial Hospital,1255.5,3285.0,4540.5,0
+2023-24,2023,1,Community,Fishermen's Memorial Hospital,2155.5,3615.0,5770.5,0
+2012-13,2012,1,Community,Queens General Hospital,0.0,0.0,0.0,1
+2013-14,2013,1,Community,Queens General Hospital,4.0,0.0,4.0,0
+2014-15,2014,1,Community,Queens General Hospital,0.0,0.0,0.0,1
+2015-16,2015,1,Community,Queens General Hospital,0.0,0.0,0.0,1
+2016-17,2016,1,Community,Queens General Hospital,0.0,0.0,0.0,1
+2017-18,2017,1,Community,Queens General Hospital,0.0,0.0,0.0,1
+2018-19,2018,1,Community,Queens General Hospital,0.0,0.0,0.0,1
+2019-20,2019,1,Community,Queens General Hospital,0.0,0.0,0.0,1
+2020-21,2020,1,Community,Queens General Hospital,0.0,0.0,0.0,1
+2021-22,2021,1,Community,Queens General Hospital,1049.0,0.0,1049.0,0
+2022-23,2022,1,Community,Queens General Hospital,4374.5,0.0,4374.5,0
+2023-24,2023,1,Community,Queens General Hospital,4438.8,0.0,4438.8,0
+2012-13,2012,1,Community,Roseway Hospital,0.0,0.0,0.0,1
+2013-14,2013,1,Community,Roseway Hospital,117.0,0.0,117.0,0
+2014-15,2014,1,Community,Roseway Hospital,653.0,0.0,653.0,0
+2015-16,2015,1,Community,Roseway Hospital,1331.0,0.0,1331.0,0
+2016-17,2016,1,Community,Roseway Hospital,421.0,0.0,421.0,0
+2017-18,2017,1,Community,Roseway Hospital,789.0,0.0,789.0,0
+2018-19,2018,1,Community,Roseway Hospital,1719.5,0.0,1719.5,0
+2019-20,2019,1,Community,Roseway Hospital,2659.0,0.0,2659.0,0
+2020-21,2020,1,Community,Roseway Hospital,1038.0,0.0,1038.0,0
+2021-22,2021,1,Community,Roseway Hospital,2966.0,0.0,2966.0,0
+2022-23,2022,1,Community,Roseway Hospital,2904.0,0.0,2904.0,0
+2023-24,2023,1,Community,Roseway Hospital,4827.0,0.0,4827.0,0
+2012-13,2012,1,Community,Soldiers Memorial Hospital,516.0,0.0,516.0,0
+2013-14,2013,1,Community,Soldiers Memorial Hospital,72.0,0.0,72.0,0
+2014-15,2014,1,Community,Soldiers Memorial Hospital,150.0,0.0,150.0,0
+2015-16,2015,1,Community,Soldiers Memorial Hospital,60.0,0.0,60.0,0
+2016-17,2016,1,Community,Soldiers Memorial Hospital,38.0,0.0,38.0,0
+2017-18,2017,1,Community,Soldiers Memorial Hospital,52.5,0.0,52.5,0
+2018-19,2018,1,Community,Soldiers Memorial Hospital,100.5,0.0,100.5,0
+2019-20,2019,1,Community,Soldiers Memorial Hospital,770.0,0.0,770.0,0
+2020-21,2020,1,Community,Soldiers Memorial Hospital,1071.0,0.0,1071.0,0
+2021-22,2021,1,Community,Soldiers Memorial Hospital,3354.0,0.0,3354.0,0
+2022-23,2022,1,Community,Soldiers Memorial Hospital,2508.5,4374.0,6882.5,0
+2023-24,2023,1,Community,Soldiers Memorial Hospital,419.5,7218.0,7637.5,0
+2012-13,2012,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2013-14,2013,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2014-15,2014,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2015-16,2015,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2016-17,2016,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2017-18,2017,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2018-19,2018,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2019-20,2019,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2020-21,2020,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2021-22,2021,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2022-23,2022,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2023-24,2023,1,Regional,South Shore Regional Hospital,0.0,0.0,0.0,1
+2012-13,2012,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2013-14,2013,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2014-15,2014,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2015-16,2015,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2016-17,2016,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2017-18,2017,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2018-19,2018,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2019-20,2019,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2020-21,2020,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2021-22,2021,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2022-23,2022,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2023-24,2023,1,Regional,Valley Regional Hospital,0.0,0.0,0.0,1
+2012-13,2012,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2013-14,2013,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2014-15,2014,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2015-16,2015,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2016-17,2016,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2017-18,2017,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2018-19,2018,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2019-20,2019,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2020-21,2020,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2021-22,2021,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2022-23,2022,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2023-24,2023,1,Regional,Yarmouth Regional Hospital,0.0,0.0,0.0,1
+2023-24,2023,1,UTC,Annapolis Community Health Centre,0.0,0.0,0.0,1
+2012-13,2012,2,CEC,All Saints Springhill Hospital,71.0,0.0,71.0,0
+2013-14,2013,2,CEC,All Saints Springhill Hospital,85.0,0.0,85.0,0
+2014-15,2014,2,CEC,All Saints Springhill Hospital,109.0,0.0,109.0,0
+2015-16,2015,2,CEC,All Saints Springhill Hospital,300.0,0.0,300.0,0
+2016-17,2016,2,CEC,All Saints Springhill Hospital,1077.0,0.0,1077.0,0
+2017-18,2017,2,CEC,All Saints Springhill Hospital,1530.0,0.0,1530.0,0
+2018-19,2018,2,CEC,All Saints Springhill Hospital,3177.0,0.0,3177.0,0
+2019-20,2019,2,CEC,All Saints Springhill Hospital,2295.5,88.0,2383.5,0
+2020-21,2020,2,CEC,All Saints Springhill Hospital,0.0,8760.0,8760.0,0
+2021-22,2021,2,CEC,All Saints Springhill Hospital,0.0,6363.0,6363.0,0
+2022-23,2022,2,CEC,All Saints Springhill Hospital,100.8,4797.0,4897.8,0
+2023-24,2023,2,CEC,All Saints Springhill Hospital,0.0,0.0,0.0,1
+2012-13,2012,2,CEC,Lillian Fraser Memorial Hospital,332.0,0.0,332.0,0
+2013-14,2013,2,CEC,Lillian Fraser Memorial Hospital,123.0,0.0,123.0,0
+2014-15,2014,2,CEC,Lillian Fraser Memorial Hospital,83.0,0.0,83.0,0
+2015-16,2015,2,CEC,Lillian Fraser Memorial Hospital,99.0,0.0,99.0,0
+2016-17,2016,2,CEC,Lillian Fraser Memorial Hospital,410.5,0.0,410.5,0
+2017-18,2017,2,CEC,Lillian Fraser Memorial Hospital,356.0,520.0,876.0,0
+2018-19,2018,2,CEC,Lillian Fraser Memorial Hospital,365.0,1256.0,1621.0,0
+2019-20,2019,2,CEC,Lillian Fraser Memorial Hospital,884.0,1048.0,1932.0,0
+2020-21,2020,2,CEC,Lillian Fraser Memorial Hospital,0.0,5455.0,5455.0,0
+2021-22,2021,2,CEC,Lillian Fraser Memorial Hospital,0.0,5432.0,5432.0,0
+2022-23,2022,2,CEC,Lillian Fraser Memorial Hospital,0.0,4084.0,4084.0,0
+2012-13,2012,2,CEC,North Cumberland Memorial Hospital,627.0,0.0,627.0,0
+2013-14,2013,2,CEC,North Cumberland Memorial Hospital,68.0,0.0,68.0,0
+2014-15,2014,2,CEC,North Cumberland Memorial Hospital,101.0,0.0,101.0,0
+2015-16,2015,2,CEC,North Cumberland Memorial Hospital,160.0,0.0,160.0,0
+2016-17,2016,2,CEC,North Cumberland Memorial Hospital,182.5,0.0,182.5,0
+2017-18,2017,2,CEC,North Cumberland Memorial Hospital,2212.0,0.0,2212.0,0
+2018-19,2018,2,CEC,North Cumberland Memorial Hospital,3132.0,0.0,3132.0,0
+2019-20,2019,2,CEC,North Cumberland Memorial Hospital,2402.0,0.0,2402.0,0
+2020-21,2020,2,CEC,North Cumberland Memorial Hospital,0.0,4380.0,4380.0,0
+2021-22,2021,2,CEC,North Cumberland Memorial Hospital,0.0,0.0,0.0,1
+2022-23,2022,2,CEC,North Cumberland Memorial Hospital,104.0,0.0,104.0,0
+2023-24,2023,2,CEC,North Cumberland Memorial Hospital,2491.5,0.0,2491.5,0
+2012-13,2012,2,CEC,South Cumberland Community Care Centre,38.0,0.0,38.0,0
+2013-14,2013,2,CEC,South Cumberland Community Care Centre,41.0,0.0,41.0,0
+2014-15,2014,2,CEC,South Cumberland Community Care Centre,108.0,0.0,108.0,0
+2015-16,2015,2,CEC,South Cumberland Community Care Centre,762.0,0.0,762.0,0
+2016-17,2016,2,CEC,South Cumberland Community Care Centre,288.0,0.0,288.0,0
+2017-18,2017,2,CEC,South Cumberland Community Care Centre,1784.0,0.0,1784.0,0
+2018-19,2018,2,CEC,South Cumberland Community Care Centre,2511.0,0.0,2511.0,0
+2019-20,2019,2,CEC,South Cumberland Community Care Centre,2249.5,279.5,2529.0,0
+2020-21,2020,2,CEC,South Cumberland Community Care Centre,0.0,8760.0,8760.0,0
+2021-22,2021,2,CEC,South Cumberland Community Care Centre,0.0,6250.0,6250.0,0
+2012-13,2012,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2013-14,2013,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2014-15,2014,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2015-16,2015,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2016-17,2016,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2017-18,2017,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2018-19,2018,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2019-20,2019,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2020-21,2020,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2021-22,2021,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2022-23,2022,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2023-24,2023,2,Regional,Aberdeen Hospital,0.0,0.0,0.0,1
+2012-13,2012,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2013-14,2013,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2014-15,2014,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2015-16,2015,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2016-17,2016,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2017-18,2017,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2018-19,2018,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2019-20,2019,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2020-21,2020,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2021-22,2021,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2022-23,2022,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2023-24,2023,2,Regional,Colchester East Hants Health Centre,0.0,0.0,0.0,1
+2012-13,2012,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2013-14,2013,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2014-15,2014,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2015-16,2015,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2016-17,2016,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2017-18,2017,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2018-19,2018,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2019-20,2019,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2020-21,2020,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2021-22,2021,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2022-23,2022,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2023-24,2023,2,Regional,Cumberland Regional Health Care Centre,0.0,0.0,0.0,1
+2023-24,2023,2,UTC,Lillian Fraser Memorial Hospital,0.0,0.0,0.0,1
+2022-23,2022,2,UTC,South Cumberland Community Care Centre,0.0,0.0,0.0,1
+2023-24,2023,2,UTC,South Cumberland Community Care Centre,0.0,0.0,0.0,1
+2012-13,2012,3,CEC,New Waterford Consolidated Hospital,2886.0,510.0,3396.0,0
+2013-14,2013,3,CEC,New Waterford Consolidated Hospital,1674.0,2670.0,4344.0,0
+2014-15,2014,3,CEC,New Waterford Consolidated Hospital,456.0,3538.0,3994.0,0
+2015-16,2015,3,CEC,New Waterford Consolidated Hospital,364.0,3644.0,4008.0,0
+2016-17,2016,3,CEC,New Waterford Consolidated Hospital,545.5,3647.0,4192.5,0
+2017-18,2017,3,CEC,New Waterford Consolidated Hospital,404.0,3654.0,4058.0,0
+2018-19,2018,3,CEC,New Waterford Consolidated Hospital,621.0,6235.0,6856.0,0
+2019-20,2019,3,CEC,New Waterford Consolidated Hospital,538.0,7407.0,7945.0,0
+2020-21,2020,3,CEC,New Waterford Consolidated Hospital,0.0,8760.0,8760.0,0
+2021-22,2021,3,CEC,New Waterford Consolidated Hospital,0.0,8760.0,8760.0,0
+2022-23,2022,3,CEC,New Waterford Consolidated Hospital,0.0,8760.0,8760.0,0
+2023-24,2023,3,CEC,New Waterford Consolidated Hospital,0.0,0.0,0.0,1
+2012-13,2012,3,Community,Buchanan Memorial Health Centre,0.0,0.0,0.0,1
+2013-14,2013,3,Community,Buchanan Memorial Health Centre,0.0,0.0,0.0,1
+2014-15,2014,3,Community,Buchanan Memorial Health Centre,0.0,0.0,0.0,1
+2015-16,2015,3,Community,Buchanan Memorial Health Centre,0.0,0.0,0.0,1
+2016-17,2016,3,Community,Buchanan Memorial Health Centre,0.0,0.0,0.0,1
+2017-18,2017,3,Community,Buchanan Memorial Health Centre,0.0,0.0,0.0,1
+2018-19,2018,3,Community,Buchanan Memorial Health Centre,29.5,0.0,29.5,0
+2019-20,2019,3,Community,Buchanan Memorial Health Centre,0.0,0.0,0.0,1
+2020-21,2020,3,Community,Buchanan Memorial Health Centre,0.0,0.0,0.0,1
+2021-22,2021,3,Community,Buchanan Memorial Health Centre,3.5,0.0,3.5,0
+2022-23,2022,3,Community,Buchanan Memorial Health Centre,319.0,0.0,319.0,0
+2023-24,2023,3,Community,Buchanan Memorial Health Centre,6.0,0.0,6.0,0
+2012-13,2012,3,Community,Eastern Memorial Hospital,0.0,0.0,0.0,1
+2013-14,2013,3,Community,Eastern Memorial Hospital,0.0,0.0,0.0,1
+2014-15,2014,3,Community,Eastern Memorial Hospital,80.0,0.0,80.0,0
+2015-16,2015,3,Community,Eastern Memorial Hospital,0.0,0.0,0.0,1
+2016-17,2016,3,Community,Eastern Memorial Hospital,0.0,0.0,0.0,1
+2017-18,2017,3,Community,Eastern Memorial Hospital,0.0,0.0,0.0,1
+2018-19,2018,3,Community,Eastern Memorial Hospital,5.0,0.0,5.0,0
+2019-20,2019,3,Community,Eastern Memorial Hospital,476.0,3660.0,4136.0,0
+2020-21,2020,3,Community,Eastern Memorial Hospital,352.0,1152.0,1504.0,0
+2021-22,2021,3,Community,Eastern Memorial Hospital,459.0,0.0,459.0,0
+2022-23,2022,3,Community,Eastern Memorial Hospital,2531.8,0.0,2531.8,0
+2023-24,2023,3,Community,Eastern Memorial Hospital,4537.0,0.0,4537.0,0
+2012-13,2012,3,Community,Glace Bay Health Care Facility,541.0,0.0,541.0,0
+2013-14,2013,3,Community,Glace Bay Health Care Facility,1050.0,0.0,1050.0,0
+2014-15,2014,3,Community,Glace Bay Health Care Facility,1711.0,693.0,2404.0,0
+2015-16,2015,3,Community,Glace Bay Health Care Facility,1066.0,0.0,1066.0,0
+2016-17,2016,3,Community,Glace Bay Health Care Facility,888.5,0.0,888.5,0
+2017-18,2017,3,Community,Glace Bay Health Care Facility,1835.0,0.0,1835.0,0
+2018-19,2018,3,Community,Glace Bay Health Care Facility,5554.0,464.0,6018.0,0
+2019-20,2019,3,Community,Glace Bay Health Care Facility,3911.0,2814.0,6725.0,0
+2020-21,2020,3,Community,Glace Bay Health Care Facility,1004.0,0.0,1004.0,0
+2021-22,2021,3,Community,Glace Bay Health Care Facility,586.0,5993.0,6579.0,0
+2022-23,2022,3,Community,Glace Bay Health Care Facility,13.0,8210.0,8223.0,0
+2023-24,2023,3,Community,Glace Bay Health Care Facility,45.0,7508.0,7553.0,0
+2012-13,2012,3,Community,Guysborough Memorial Hospital,0.0,0.0,0.0,1
+2013-14,2013,3,Community,Guysborough Memorial Hospital,0.0,0.0,0.0,1
+2014-15,2014,3,Community,Guysborough Memorial Hospital,0.0,0.0,0.0,1
+2015-16,2015,3,Community,Guysborough Memorial Hospital,0.0,0.0,0.0,1
+2016-17,2016,3,Community,Guysborough Memorial Hospital,0.0,0.0,0.0,1
+2017-18,2017,3,Community,Guysborough Memorial Hospital,7.0,0.0,7.0,0
+2018-19,2018,3,Community,Guysborough Memorial Hospital,96.0,0.0,96.0,0
+2019-20,2019,3,Community,Guysborough Memorial Hospital,266.0,0.0,266.0,0
+2020-21,2020,3,Community,Guysborough Memorial Hospital,915.0,0.0,915.0,0
+2021-22,2021,3,Community,Guysborough Memorial Hospital,2016.5,0.0,2016.5,0
+2022-23,2022,3,Community,Guysborough Memorial Hospital,1756.0,0.0,1756.0,0
+2023-24,2023,3,Community,Guysborough Memorial Hospital,2552.0,0.0,2552.0,0
+2012-13,2012,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2013-14,2013,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2014-15,2014,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2015-16,2015,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2016-17,2016,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2017-18,2017,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2018-19,2018,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2019-20,2019,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2020-21,2020,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2021-22,2021,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2022-23,2022,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2023-24,2023,3,Community,Inverness Consolidated Memorial Hospital,0.0,0.0,0.0,1
+2012-13,2012,3,Community,Northside General Hospital,882.0,510.0,1392.0,0
+2013-14,2013,3,Community,Northside General Hospital,1028.0,0.0,1028.0,0
+2014-15,2014,3,Community,Northside General Hospital,915.0,3876.0,4791.0,0
+2015-16,2015,3,Community,Northside General Hospital,154.0,6222.0,6376.0,0
+2016-17,2016,3,Community,Northside General Hospital,173.0,6205.0,6378.0,0
+2017-18,2017,3,Community,Northside General Hospital,519.0,6087.0,6606.0,0
+2018-19,2018,3,Community,Northside General Hospital,1232.0,6144.0,7376.0,0
+2019-20,2019,3,Community,Northside General Hospital,2125.0,5867.0,7992.0,0
+2020-21,2020,3,Community,Northside General Hospital,0.0,8760.0,8760.0,0
+2021-22,2021,3,Community,Northside General Hospital,0.0,5144.0,5144.0,0
+2012-13,2012,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2013-14,2013,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2014-15,2014,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2015-16,2015,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2016-17,2016,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2017-18,2017,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2018-19,2018,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2019-20,2019,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2020-21,2020,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2021-22,2021,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2022-23,2022,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2023-24,2023,3,Community,Sacred Heart Community Health Centre,0.0,0.0,0.0,1
+2012-13,2012,3,Community,St. Anne Community & Nursing Care Centre,0.0,0.0,0.0,1
+2013-14,2013,3,Community,St. Anne Community & Nursing Care Centre,0.0,0.0,0.0,1
+2014-15,2014,3,Community,St. Anne Community & Nursing Care Centre,901.0,0.0,901.0,0
+2015-16,2015,3,Community,St. Anne Community & Nursing Care Centre,114.0,0.0,114.0,0
+2016-17,2016,3,Community,St. Anne Community & Nursing Care Centre,470.0,0.0,470.0,0
+2017-18,2017,3,Community,St. Anne Community & Nursing Care Centre,451.0,0.0,451.0,0
+2018-19,2018,3,Community,St. Anne Community & Nursing Care Centre,758.0,0.0,758.0,0
+2019-20,2019,3,Community,St. Anne Community & Nursing Care Centre,1615.0,204.0,1819.0,0
+2020-21,2020,3,Community,St. Anne Community & Nursing Care Centre,1675.0,0.0,1675.0,0
+2021-22,2021,3,Community,St. Anne Community & Nursing Care Centre,589.0,0.0,589.0,0
+2012-13,2012,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2013-14,2013,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2014-15,2014,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2015-16,2015,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2016-17,2016,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2017-18,2017,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2018-19,2018,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2019-20,2019,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2020-21,2020,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2021-22,2021,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2022-23,2022,3,Community,St. Mary's Memorial Hospital,12.0,0.0,12.0,0
+2023-24,2023,3,Community,St. Mary's Memorial Hospital,0.0,0.0,0.0,1
+2012-13,2012,3,Community,Strait Richmond Hospital,0.0,0.0,0.0,1
+2013-14,2013,3,Community,Strait Richmond Hospital,154.0,0.0,154.0,0
+2014-15,2014,3,Community,Strait Richmond Hospital,351.0,0.0,351.0,0
+2015-16,2015,3,Community,Strait Richmond Hospital,36.0,0.0,36.0,0
+2016-17,2016,3,Community,Strait Richmond Hospital,0.0,0.0,0.0,1
+2017-18,2017,3,Community,Strait Richmond Hospital,828.0,0.0,828.0,0
+2018-19,2018,3,Community,Strait Richmond Hospital,906.0,0.0,906.0,0
+2019-20,2019,3,Community,Strait Richmond Hospital,2164.0,0.0,2164.0,0
+2020-21,2020,3,Community,Strait Richmond Hospital,1400.0,0.0,1400.0,0
+2021-22,2021,3,Community,Strait Richmond Hospital,2528.5,0.0,2528.5,0
+2022-23,2022,3,Community,Strait Richmond Hospital,5113.5,0.0,5113.5,0
+2023-24,2023,3,Community,Strait Richmond Hospital,446.0,5040.0,5486.0,0
+2012-13,2012,3,Community,Victoria County Memorial Hospital,0.0,0.0,0.0,1
+2013-14,2013,3,Community,Victoria County Memorial Hospital,0.0,0.0,0.0,1
+2014-15,2014,3,Community,Victoria County Memorial Hospital,48.0,0.0,48.0,0
+2015-16,2015,3,Community,Victoria County Memorial Hospital,20.0,0.0,20.0,0
+2016-17,2016,3,Community,Victoria County Memorial Hospital,0.0,0.0,0.0,1
+2017-18,2017,3,Community,Victoria County Memorial Hospital,194.0,0.0,194.0,0
+2018-19,2018,3,Community,Victoria County Memorial Hospital,72.0,0.0,72.0,0
+2019-20,2019,3,Community,Victoria County Memorial Hospital,1579.5,0.0,1579.5,0
+2020-21,2020,3,Community,Victoria County Memorial Hospital,2324.5,0.0,2324.5,0
+2021-22,2021,3,Community,Victoria County Memorial Hospital,3988.3,0.0,3988.3,0
+2022-23,2022,3,Community,Victoria County Memorial Hospital,3644.3,0.0,3644.3,0
+2012-13,2012,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2013-14,2013,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2014-15,2014,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2015-16,2015,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2016-17,2016,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2017-18,2017,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2018-19,2018,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2019-20,2019,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2020-21,2020,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2021-22,2021,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2022-23,2022,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2023-24,2023,3,Regional,Cape Breton Regional Hospital,0.0,0.0,0.0,1
+2012-13,2012,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2013-14,2013,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2014-15,2014,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2015-16,2015,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2016-17,2016,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2017-18,2017,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2018-19,2018,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2019-20,2019,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2020-21,2020,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2021-22,2021,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2022-23,2022,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2023-24,2023,3,Regional,St. Martha's Regional Hospital,0.0,0.0,0.0,1
+2022-23,2022,3,UTC,Northside General Hospital,0.0,0.0,0.0,1
+2023-24,2023,3,UTC,Northside General Hospital,0.0,0.0,0.0,1
+2022-23,2022,3,UTC,St. Anne Community & Nursing Care Centre,0.0,0.0,0.0,1
+2023-24,2023,3,UTC,St. Anne Community & Nursing Care Centre,0.0,0.0,0.0,1
+2023-24,2023,3,UTC,Victoria County Memorial Hospital,0.0,0.0,0.0,1
+2012-13,2012,4,CEC,Musquodoboit Valley Memorial Hospital,0.0,3913.0,3913.0,0
+2013-14,2013,4,CEC,Musquodoboit Valley Memorial Hospital,0.0,4392.0,4392.0,0
+2014-15,2014,4,CEC,Musquodoboit Valley Memorial Hospital,0.0,4380.0,4380.0,0
+2015-16,2015,4,CEC,Musquodoboit Valley Memorial Hospital,0.0,4392.0,4392.0,0
+2016-17,2016,4,CEC,Musquodoboit Valley Memorial Hospital,0.0,4380.0,4380.0,0
+2017-18,2017,4,CEC,Musquodoboit Valley Memorial Hospital,298.0,4380.0,4678.0,0
+2018-19,2018,4,CEC,Musquodoboit Valley Memorial Hospital,508.5,4380.0,4888.5,0
+2019-20,2019,4,CEC,Musquodoboit Valley Memorial Hospital,2089.0,4392.0,6481.0,0
+2020-21,2020,4,CEC,Musquodoboit Valley Memorial Hospital,1945.0,4380.0,6325.0,0
+2021-22,2021,4,CEC,Musquodoboit Valley Memorial Hospital,2864.0,4380.0,7244.0,0
+2022-23,2022,4,CEC,Musquodoboit Valley Memorial Hospital,2684.5,4380.0,7064.5,0
+2012-13,2012,4,CEC,Twin Oaks Memorial Hospital,72.0,0.0,72.0,0
+2013-14,2013,4,CEC,Twin Oaks Memorial Hospital,45.0,0.0,45.0,0
+2014-15,2014,4,CEC,Twin Oaks Memorial Hospital,139.0,0.0,139.0,0
+2015-16,2015,4,CEC,Twin Oaks Memorial Hospital,65.0,0.0,65.0,0
+2016-17,2016,4,CEC,Twin Oaks Memorial Hospital,97.0,0.0,97.0,0
+2017-18,2017,4,CEC,Twin Oaks Memorial Hospital,166.0,0.0,166.0,0
+2018-19,2018,4,CEC,Twin Oaks Memorial Hospital,197.3,0.0,197.3,0
+2019-20,2019,4,CEC,Twin Oaks Memorial Hospital,567.0,0.0,567.0,0
+2020-21,2020,4,CEC,Twin Oaks Memorial Hospital,1026.0,0.0,1026.0,0
+2021-22,2021,4,CEC,Twin Oaks Memorial Hospital,1253.6,0.0,1253.6,0
+2022-23,2022,4,CEC,Twin Oaks Memorial Hospital,1384.5,0.0,1384.5,0
+2023-24,2023,4,CEC,Twin Oaks Memorial Hospital,1591.0,0.0,1591.0,0
+2012-13,2012,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2013-14,2013,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2014-15,2014,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2015-16,2015,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2016-17,2016,4,Community,Cobequid Community Health Centre,0.0,2190.0,2190.0,0
+2017-18,2017,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2018-19,2018,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2019-20,2019,4,Community,Cobequid Community Health Centre,4.5,0.0,4.5,0
+2020-21,2020,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2021-22,2021,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2022-23,2022,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2023-24,2023,4,Community,Cobequid Community Health Centre,0.0,0.0,0.0,1
+2012-13,2012,4,Community,Eastern Shore Memorial Hospital,0.0,0.0,0.0,1
+2013-14,2013,4,Community,Eastern Shore Memorial Hospital,0.0,0.0,0.0,1
+2014-15,2014,4,Community,Eastern Shore Memorial Hospital,0.0,0.0,0.0,1
+2015-16,2015,4,Community,Eastern Shore Memorial Hospital,0.0,0.0,0.0,1
+2016-17,2016,4,Community,Eastern Shore Memorial Hospital,0.0,0.0,0.0,1
+2017-18,2017,4,Community,Eastern Shore Memorial Hospital,227.0,0.0,227.0,0
+2018-19,2018,4,Community,Eastern Shore Memorial Hospital,3654.5,0.0,3654.5,0
+2019-20,2019,4,Community,Eastern Shore Memorial Hospital,3252.5,0.0,3252.5,0
+2020-21,2020,4,Community,Eastern Shore Memorial Hospital,2063.0,0.0,2063.0,0
+2021-22,2021,4,Community,Eastern Shore Memorial Hospital,6095.0,0.0,6095.0,0
+2022-23,2022,4,Community,Eastern Shore Memorial Hospital,6338.0,0.0,6338.0,0
+2012-13,2012,4,Community,Hants Community Hospital,0.0,0.0,0.0,1
+2013-14,2013,4,Community,Hants Community Hospital,0.0,0.0,0.0,1
+2014-15,2014,4,Community,Hants Community Hospital,0.0,0.0,0.0,1
+2015-16,2015,4,Community,Hants Community Hospital,0.0,0.0,0.0,1
+2016-17,2016,4,Community,Hants Community Hospital,0.0,0.0,0.0,1
+2017-18,2017,4,Community,Hants Community Hospital,0.0,0.0,0.0,1
+2018-19,2018,4,Community,Hants Community Hospital,0.0,0.0,0.0,1
+2019-20,2019,4,Community,Hants Community Hospital,25.5,0.0,25.5,0
+2020-21,2020,4,Community,Hants Community Hospital,10.5,0.0,10.5,0
+2021-22,2021,4,Community,Hants Community Hospital,59.8,0.0,59.8,0
+2022-23,2022,4,Community,Hants Community Hospital,1188.0,0.0,1188.0,0
+2023-24,2023,4,Community,Hants Community Hospital,738.0,0.0,738.0,0
+2012-13,2012,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2013-14,2013,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2014-15,2014,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2015-16,2015,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2016-17,2016,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2017-18,2017,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2018-19,2018,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2019-20,2019,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2020-21,2020,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2021-22,2021,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2022-23,2022,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2023-24,2023,4,Regional,Dartmouth General Hospital,0.0,0.0,0.0,1
+2012-13,2012,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2013-14,2013,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2014-15,2014,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2015-16,2015,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2016-17,2016,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2017-18,2017,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2018-19,2018,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2019-20,2019,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2020-21,2020,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2021-22,2021,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2022-23,2022,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2023-24,2023,4,Tertiary,QEII Health Sciences Centre,0.0,0.0,0.0,1
+2023-24,2023,4,UTC,Eastern Shore Memorial Hospital,0.0,0.0,0.0,1
+2023-24,2023,4,UTC,Musquodoboit Valley Memorial Hospital,0.0,0.0,0.0,1
+2012-13,2012,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2013-14,2013,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2014-15,2014,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2015-16,2015,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2016-17,2016,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2017-18,2017,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2018-19,2018,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2019-20,2019,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2020-21,2020,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2021-22,2021,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2022-23,2022,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1
+2023-24,2023,IWK,Tertiary,IWK Health Centre,0.0,0.0,0.0,1

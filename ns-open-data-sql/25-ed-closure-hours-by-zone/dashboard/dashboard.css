@@ -1,0 +1,375 @@
+/* Two tones: slate ink for structure, muted teal for measured values.
+   The five zone shades are steps along the teal ramp so the chart reads as one
+   family rather than five unrelated colours. */
+:root {
+  --ink: #1b2733;
+  --ink-mid: #40566b;
+  --ink-soft: #6b8296;
+  --ink-faint: #93a6b5;
+  --teal: #2f7d78;
+  --teal-deep: #1f5b57;
+  --teal-mid: #4f9d97;
+  --teal-soft: #8cc0bb;
+  --teal-wash: #eaf3f2;
+  --paper: #f4f6f7;
+  --card: #ffffff;
+  --line: #dfe6e9;
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  padding: 56px 28px 88px;
+}
+
+.wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 12px;
+}
+
+header h1 {
+  font-size: 31px;
+  letter-spacing: -0.4px;
+  margin-bottom: 12px;
+}
+
+header p.sub {
+  color: var(--ink-mid);
+  max-width: 760px;
+  font-size: 15px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 22px;
+  margin: 40px 0 44px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 24px 26px 26px;
+}
+
+.stat-card.ink-top {
+  border-top-color: var(--ink-mid);
+}
+
+.stat-card .label {
+  color: var(--ink-faint);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.stat-card .value {
+  font-size: 29px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.stat-card .detail {
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+section.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 30px 34px 36px;
+  margin-bottom: 34px;
+}
+
+section.panel h2 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+section.panel h3.sub-head {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  margin: 34px 0 18px;
+}
+
+section.panel p.hint {
+  color: var(--ink-faint);
+  font-size: 13.5px;
+  margin-bottom: 24px;
+  max-width: 760px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 26px;
+  margin-bottom: 22px;
+  font-size: 13px;
+  color: var(--ink-mid);
+}
+
+.legend .key {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.legend .swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.legend .swatch.temp { background: var(--teal); }
+.legend .swatch.sched { background: var(--ink-mid); }
+
+.chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chart .grid-line {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.chart .axis-text {
+  fill: var(--ink-soft);
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.chart .axis-text.year {
+  fill: var(--ink-mid);
+}
+
+.chart .seg:hover {
+  opacity: 0.78;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 34px;
+}
+
+@media (max-width: 900px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.split-bar {
+  display: flex;
+  height: 34px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--teal-wash);
+}
+
+.split-bar .part {
+  height: 100%;
+}
+
+.split-bar .part.temp { background: var(--teal); }
+.split-bar .part.sched { background: var(--ink-mid); }
+
+.split-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.split-list {
+  display: grid;
+  gap: 20px;
+}
+
+.split-list .row .row-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.split-list .row .name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.split-list .row .figure {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.split-list .row .split-bar {
+  height: 22px;
+}
+
+.split-list .row.empty .split-bar {
+  background: var(--line);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin-bottom: 26px;
+  padding: 18px 20px;
+  background: var(--teal-wash);
+  border-radius: 10px;
+}
+
+.controls label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--teal-deep);
+  letter-spacing: 0.3px;
+}
+
+.controls select {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  min-width: 140px;
+}
+
+.controls .filter-note {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13.5px;
+}
+
+thead th {
+  text-align: left;
+  font-size: 11.5px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+  padding: 0 14px 12px;
+  border-bottom: 2px solid var(--line);
+  white-space: nowrap;
+}
+
+thead th.num {
+  text-align: right;
+}
+
+thead th.bar-col {
+  width: 150px;
+}
+
+tbody td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+tbody td.site {
+  white-space: normal;
+  min-width: 230px;
+  font-weight: 600;
+}
+
+tbody td.num {
+  text-align: right;
+}
+
+tbody tr.zero td {
+  color: var(--ink-faint);
+}
+
+tbody tr.zero td.site {
+  font-weight: 500;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--teal-wash);
+  color: var(--teal-deep);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.row-bar {
+  background: var(--teal-wash);
+  border-radius: 5px;
+  height: 14px;
+  min-width: 120px;
+  overflow: hidden;
+}
+
+.row-bar .fill {
+  background: var(--teal);
+  height: 100%;
+  border-radius: 5px;
+}
+
+tbody tr.zero .row-bar {
+  background: var(--line);
+}
+
+.empty-note {
+  padding: 26px 14px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+footer {
+  color: var(--ink-faint);
+  font-size: 12.5px;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.7;
+}

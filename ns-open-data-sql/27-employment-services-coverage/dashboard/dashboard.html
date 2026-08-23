@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova Scotia Works centre coverage</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Nova Scotia Works centre coverage</h1>
+    <p class="sub">Where the province's employment services centres are, which regions and
+    towns they reach, and which contact channels each one publishes. Every figure on this
+    page is derived in the browser from the exported centre list below. Nothing is
+    hardcoded.</p>
+  </header>
+
+  <div class="stat-row" id="headline"></div>
+
+  <section class="panel">
+    <h2>Centres per region</h2>
+    <p class="hint">The five declared Nova Scotia Works regions, ranked by centre count.
+    Two regions tie at the top, so the ranking breaks the tie on region name.</p>
+    <div id="region-chart"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Contact channels published</h2>
+    <p class="hint">Share of centres that publish each channel. Published means the field
+    carries a value, not that the address was dialled or opened.</p>
+    <div id="channel-chart"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Centre directory</h2>
+    <div class="controls">
+      <div class="control">
+        <label for="region-select">Region</label>
+        <select id="region-select"></select>
+      </div>
+      <div class="control">
+        <label for="town-search">Filter by town or provider</label>
+        <input id="town-search" type="search" placeholder="Type to narrow the list" autocomplete="off">
+      </div>
+      <p class="count" id="table-count"></p>
+    </div>
+    <div class="table-scroll">
+      <table id="directory">
+        <thead>
+          <tr>
+            <th>Region</th>
+            <th>Town</th>
+            <th>Provider</th>
+            <th>Address</th>
+            <th>FSA</th>
+            <th class="num">Latitude</th>
+            <th class="num">Longitude</th>
+            <th class="num">Channels</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="hint foot">Latitude and longitude are shown the right way round. The source
+    file names them backwards: its x_coordinate column holds latitude and its y_coordinate
+    column holds longitude.</p>
+  </section>
+
+  <footer>Data: Nova Scotia Open Data, Nova Scotia Works Employment Services Centre
+  Locations (x7cs-y5zd). Open Government Licence - Nova Scotia.</footer>
+
+</div>
+<script src="data.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

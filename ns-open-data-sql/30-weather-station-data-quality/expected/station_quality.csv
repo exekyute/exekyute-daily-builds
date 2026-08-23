@@ -1,0 +1,360 @@
+section,rank,site_id,reading_date,measure,detail,cadence_seconds,seconds,readings_actual,slots_covered,readings_expected,uptime_pct,share_pct,gap_count,frozen_run_count,out_of_range_count,missing_values
+headline,1,RNSKM,,worst_station_by_completeness,lowest slot coverage over the audited window,240,,3018,3013,5040,59.78,,4,0,0,23
+headline,2,,,stations_flagged,stations failing at least one audit rule,,,,21,46,,,,,,
+headline,3,,,window_slot_coverage,"every station, every day, slots covered against slots expected",,,234835,233712,238896,97.83,,,,,
+constants,1,,,WINDOW_START,2024-01-01 (inclusive UTC date),,,,,,,,,,,
+constants,2,,,WINDOW_END_EXCL,2024-01-15 (exclusive UTC date),,,,,,,,,,,
+constants,3,,,GAP_K,3 x station cadence marks a gap,,,,,,,,,,,
+constants,4,,,FROZEN_RUN_MIN_READINGS,30 identical air temperatures in a row,,,,,,,,,,,
+constants,5,,,MIN_INTERVALS_FOR_MODE,30 intervals needed before a station sets its own cadence,,,,,,,,,,,
+constants,6,,,UPTIME_FLAG_PCT,"99.00 percent slot coverage, below this the station is flagged",,,,,,,,,,,
+constants,7,,,AIR_TEMP_MIN_C,-50.00 degrees Celsius,,,,,,,,,,,
+constants,8,,,AIR_TEMP_MAX_C,45.00 degrees Celsius,,,,,,,,,,,
+constants,9,,,RH_MIN_PCT,1.00 percent relative humidity,,,,,,,,,,,
+constants,10,,,RH_MAX_PCT,100.00 percent relative humidity,,,,,,,,,,,
+constants,11,,,WIND_MIN,0.00 in the published wind unit,,,,,,,,,,,
+constants,12,,,WIND_MAX,200.00 in the published wind unit,,,,,,,,,,,
+window,1,,,window_days,14,,,,,,,,,,,
+window,2,,,window_seconds,1209600,,,,,,,,,,,
+window,3,,,stations,46,,,,,,,,,,,
+window,4,,,station_days,644,,,,,,,,,,,
+window,5,,,snapshot_rows,234835,,,,,,,,,,,
+window,6,,,rows_unparseable_timestamp,0,,,,,,,,,,,
+window,7,,,rows_outside_window,0,,,,,,,,,,,
+window,8,,,readings_kept,234835,,,,,,,,,,,
+window,9,,,unparseable_air_temperature,0,,,,,,,,,,,
+window,10,,,unparseable_relative_humidity,0,,,,,,,,,,,
+window,11,,,unparseable_avg_wind_speed,0,,,,,,,,,,,
+coverage_tie,1,,,snapshot_rows_minus_exclusions,snapshot rows less unparseable timestamps and rows outside the window,,,234835,,,,,,,,
+coverage_tie,2,,,sum_readings_actual_station_days,readings summed over every station-day in the mart,,,234835,,,,,,,,
+coverage_tie,3,,,sum_readings_actual_scorecard,readings summed over the station scorecard,,,234835,,,,,,,,
+station_cadence,1,RNSAM,,modal_interval,"derived, 4945 of 5042 measured intervals",240,240,,,360,,98.08,,,,
+station_cadence,2,RNSBD,,modal_interval,"derived, 4995 of 5016 measured intervals",240,240,,,360,,99.58,,,,
+station_cadence,3,RNSBL,,modal_interval,"derived, 4960 of 4999 measured intervals",240,240,,,360,,99.22,,,,
+station_cadence,4,RNSBU,,modal_interval,"derived, 4983 of 5011 measured intervals",240,240,,,360,,99.44,,,,
+station_cadence,5,RNSBV,,modal_interval,"derived, 4963 of 5001 measured intervals",240,240,,,360,,99.24,,,,
+station_cadence,6,RNSBW,,modal_interval,"derived, 5009 of 5024 measured intervals",240,240,,,360,,99.70,,,,
+station_cadence,7,RNSCA,,modal_interval,"derived, 9776 of 9922 measured intervals",120,120,,,720,,98.53,,,,
+station_cadence,8,RNSCB,,modal_interval,"derived, 4668 of 5311 measured intervals",240,240,,,360,,87.89,,,,
+station_cadence,9,RNSCH,,modal_interval,"derived, 5007 of 5023 measured intervals",240,240,,,360,,99.68,,,,
+station_cadence,10,RNSCHB,,modal_interval,"derived, 4951 of 5022 measured intervals",240,240,,,360,,98.59,,,,
+station_cadence,11,RNSCO,,modal_interval,"derived, 4996 of 5022 measured intervals",240,240,,,360,,99.48,,,,
+station_cadence,12,RNSCP,,modal_interval,"derived, 4978 of 5031 measured intervals",240,240,,,360,,98.95,,,,
+station_cadence,13,RNSEB,,modal_interval,"derived, 4708 of 5052 measured intervals",240,240,,,360,,93.19,,,,
+station_cadence,14,RNSGV,,modal_interval,"derived, 4487 of 4892 measured intervals",240,240,,,360,,91.72,,,,
+station_cadence,15,RNSIC,,modal_interval,"derived, 4816 of 4927 measured intervals",240,240,,,360,,97.75,,,,
+station_cadence,16,RNSKE,,modal_interval,"derived, 4993 of 5023 measured intervals",240,240,,,360,,99.40,,,,
+station_cadence,17,RNSKI,,modal_interval,"derived, 4986 of 5013 measured intervals",240,240,,,360,,99.46,,,,
+station_cadence,18,RNSKM,,modal_interval,"derived, 2991 of 3017 measured intervals",240,240,,,360,,99.14,,,,
+station_cadence,19,RNSLC,,modal_interval,"derived, 5004 of 5023 measured intervals",240,240,,,360,,99.62,,,,
+station_cadence,20,RNSLE,,modal_interval,"derived, 4952 of 4998 measured intervals",240,240,,,360,,99.08,,,,
+station_cadence,21,RNSLI,,modal_interval,"derived, 4999 of 5020 measured intervals",240,240,,,360,,99.58,,,,
+station_cadence,22,RNSLQ,,modal_interval,"derived, 4960 of 4999 measured intervals",240,240,,,360,,99.22,,,,
+station_cadence,23,RNSLV,,modal_interval,"derived, 4838 of 4858 measured intervals",240,240,,,360,,99.59,,,,
+station_cadence,24,RNSMA,,modal_interval,"derived, 4620 of 4657 measured intervals",240,240,,,360,,99.21,,,,
+station_cadence,25,RNSME,,modal_interval,"derived, 4970 of 4991 measured intervals",240,240,,,360,,99.58,,,,
+station_cadence,26,RNSMF,,modal_interval,"derived, 4964 of 5001 measured intervals",240,240,,,360,,99.26,,,,
+station_cadence,27,RNSMH,,modal_interval,"derived, 4973 of 5007 measured intervals",240,240,,,360,,99.32,,,,
+station_cadence,28,RNSMO,,modal_interval,"derived, 4991 of 5017 measured intervals",240,240,,,360,,99.48,,,,
+station_cadence,29,RNSMT,,modal_interval,"derived, 4959 of 4991 measured intervals",240,240,,,360,,99.36,,,,
+station_cadence,30,RNSMW,,modal_interval,"derived, 4913 of 4996 measured intervals",240,240,,,360,,98.34,,,,
+station_cadence,31,RNSNS,,modal_interval,"derived, 4998 of 5019 measured intervals",240,240,,,360,,99.58,,,,
+station_cadence,32,RNSON,,modal_interval,"derived, 4986 of 5020 measured intervals",240,240,,,360,,99.32,,,,
+station_cadence,33,RNSPB,,modal_interval,"derived, 4963 of 5001 measured intervals",240,240,,,360,,99.24,,,,
+station_cadence,34,RNSPC,,modal_interval,"derived, 4988 of 5014 measured intervals",240,240,,,360,,99.48,,,,
+station_cadence,35,RNSPG,,modal_interval,"derived, 4982 of 5010 measured intervals",240,240,,,360,,99.44,,,,
+station_cadence,36,RNSPU,,modal_interval,"derived, 4974 of 5010 measured intervals",240,240,,,360,,99.28,,,,
+station_cadence,37,RNSRB,,modal_interval,"derived, 5000 of 5020 measured intervals",240,240,,,360,,99.60,,,,
+station_cadence,38,RNSSI,,modal_interval,"derived, 9893 of 9983 measured intervals",120,120,,,720,,99.10,,,,
+station_cadence,39,RNSSP,,modal_interval,"derived, 5003 of 5021 measured intervals",240,240,,,360,,99.64,,,,
+station_cadence,40,RNSTN,,modal_interval,"derived, 4981 of 5011 measured intervals",240,240,,,360,,99.40,,,,
+station_cadence,41,RNSTR,,modal_interval,"derived, 4656 of 4851 measured intervals",240,240,,,360,,95.98,,,,
+station_cadence,42,RNSVI,,modal_interval,"derived, 4986 of 5021 measured intervals",240,240,,,360,,99.30,,,,
+station_cadence,43,RNSWA,,modal_interval,"derived, 4167 of 4883 measured intervals",240,240,,,360,,85.34,,,,
+station_cadence,44,RNSWE,,modal_interval,"derived, 4999 of 5025 measured intervals",240,240,,,360,,99.48,,,,
+station_cadence,45,RNSWM,,modal_interval,"derived, 1914 of 1972 measured intervals",600,600,,,144,,97.06,,,,
+station_cadence,46,RNSYA,,modal_interval,"derived, 4997 of 5022 measured intervals",240,240,,,360,,99.50,,,,
+station_scorecard,1,RNSAM,,window_total,ok,240,,5043,5015,5040,99.50,,0,0,0,805
+station_scorecard,2,RNSBD,,window_total,ok,240,,5017,5017,5040,99.54,,0,0,0,110
+station_scorecard,3,RNSBL,,window_total,ok,240,,5000,5000,5040,99.21,,0,0,0,39
+station_scorecard,4,RNSBU,,window_total,flagged: frozen air temperature run; out-of-range values,240,,5012,5012,5040,99.44,,0,1,1,37
+station_scorecard,5,RNSBV,,window_total,ok,240,,5002,5002,5040,99.25,,0,0,0,21
+station_scorecard,6,RNSBW,,window_total,ok,240,,5025,5025,5040,99.70,,0,0,0,5634
+station_scorecard,7,RNSCA,,window_total,flagged: uptime below 99.00 percent; frozen air temperature run,120,,9923,9923,10080,98.44,,1,1,0,63
+station_scorecard,8,RNSCB,,window_total,ok,240,,5312,4999,5040,99.19,,1,0,0,48
+station_scorecard,9,RNSCH,,window_total,ok,240,,5024,5024,5040,99.68,,0,0,0,115
+station_scorecard,10,RNSCHB,,window_total,flagged: frozen air temperature run,240,,5023,5003,5040,99.27,,0,1,0,33
+station_scorecard,11,RNSCO,,window_total,ok,240,,5023,5019,5040,99.58,,0,0,0,54
+station_scorecard,12,RNSCP,,window_total,flagged: frozen air temperature run,240,,5032,5015,5040,99.50,,1,1,0,1080
+station_scorecard,13,RNSEB,,window_total,flagged: uptime below 99.00 percent; out-of-range values,240,,5053,4890,5040,97.02,,5,0,1,568
+station_scorecard,14,RNSGV,,window_total,flagged: uptime below 99.00 percent,240,,4893,4759,5040,94.42,,6,0,0,192
+station_scorecard,15,RNSIC,,window_total,flagged: uptime below 99.00 percent,240,,4928,4928,5040,97.78,,1,0,0,704
+station_scorecard,16,RNSKE,,window_total,flagged: frozen air temperature run,240,,5024,5024,5040,99.68,,0,2,0,54
+station_scorecard,17,RNSKI,,window_total,ok,240,,5014,5014,5040,99.48,,0,0,0,95
+station_scorecard,18,RNSKM,,window_total,flagged: uptime below 99.00 percent; silent days,240,,3018,3013,5040,59.78,,4,0,0,23
+station_scorecard,19,RNSLC,,window_total,flagged: frozen air temperature run,240,,5024,5023,5040,99.66,,0,2,0,288
+station_scorecard,20,RNSLE,,window_total,ok,240,,4999,4996,5040,99.13,,0,0,0,18
+station_scorecard,21,RNSLI,,window_total,flagged: frozen air temperature run,240,,5021,5020,5040,99.60,,0,1,0,29
+station_scorecard,22,RNSLQ,,window_total,ok,240,,5000,5000,5040,99.21,,0,0,0,51
+station_scorecard,23,RNSLV,,window_total,flagged: uptime below 99.00 percent; frozen air temperature run,240,,4859,4859,5040,96.41,,0,1,0,53
+station_scorecard,24,RNSMA,,window_total,flagged: uptime below 99.00 percent,240,,4658,4656,5040,92.38,,2,0,0,115
+station_scorecard,25,RNSME,,window_total,flagged: frozen air temperature run,240,,4992,4990,5040,99.01,,1,1,0,49
+station_scorecard,26,RNSMF,,window_total,flagged: air_temperature never reported; relative_humidity never reported,240,,5002,5002,5040,99.25,,0,0,0,10023
+station_scorecard,27,RNSMH,,window_total,ok,240,,5008,5007,5040,99.35,,0,0,0,27
+station_scorecard,28,RNSMO,,window_total,ok,240,,5018,5018,5040,99.56,,0,0,0,200
+station_scorecard,29,RNSMT,,window_total,ok,240,,4992,4991,5040,99.03,,1,0,0,43
+station_scorecard,30,RNSMW,,window_total,flagged: uptime below 99.00 percent; out-of-range values,240,,4997,4972,5040,98.65,,6,0,4,62
+station_scorecard,31,RNSNS,,window_total,ok,240,,5020,5020,5040,99.60,,0,0,0,23
+station_scorecard,32,RNSON,,window_total,ok,240,,5021,5021,5040,99.62,,0,0,0,46
+station_scorecard,33,RNSPB,,window_total,ok,240,,5002,5002,5040,99.25,,0,0,0,32
+station_scorecard,34,RNSPC,,window_total,ok,240,,5015,5014,5040,99.48,,0,0,0,38
+station_scorecard,35,RNSPG,,window_total,ok,240,,5011,5011,5040,99.42,,0,0,0,40
+station_scorecard,36,RNSPU,,window_total,ok,240,,5011,5008,5040,99.37,,0,0,0,38
+station_scorecard,37,RNSRB,,window_total,ok,240,,5021,5021,5040,99.62,,0,0,0,97
+station_scorecard,38,RNSSI,,window_total,flagged: air_temperature never reported; relative_humidity never reported,120,,9984,9984,10080,99.05,,0,0,0,19996
+station_scorecard,39,RNSSP,,window_total,ok,240,,5022,5022,5040,99.64,,0,0,0,45
+station_scorecard,40,RNSTN,,window_total,flagged: frozen air temperature run,240,,5012,5011,5040,99.42,,0,1,0,44
+station_scorecard,41,RNSTR,,window_total,flagged: uptime below 99.00 percent,240,,4852,4774,5040,94.72,,3,0,0,202
+station_scorecard,42,RNSVI,,window_total,ok,240,,5022,5015,5040,99.50,,0,0,0,26
+station_scorecard,43,RNSWA,,window_total,flagged: uptime below 99.00 percent,240,,4884,4583,5040,90.93,,4,0,0,321
+station_scorecard,44,RNSWE,,window_total,ok,240,,5026,5021,5040,99.62,,0,0,0,50
+station_scorecard,45,RNSWM,,window_total,flagged: uptime below 99.00 percent,600,,1973,1971,2016,97.77,,0,0,0,15
+station_scorecard,46,RNSYA,,window_total,ok,240,,5023,5018,5040,99.56,,0,0,0,65
+completeness_ranking,1,RNSKM,,slot_coverage,"13 of 14 days below full, 2 silent, flagged",240,,3018,3013,5040,59.78,,4,0,0,23
+completeness_ranking,2,RNSWA,,slot_coverage,"14 of 14 days below full, 0 silent, flagged",240,,4884,4583,5040,90.93,,4,0,0,321
+completeness_ranking,3,RNSMA,,slot_coverage,"14 of 14 days below full, 0 silent, flagged",240,,4658,4656,5040,92.38,,2,0,0,115
+completeness_ranking,4,RNSGV,,slot_coverage,"14 of 14 days below full, 0 silent, flagged",240,,4893,4759,5040,94.42,,6,0,0,192
+completeness_ranking,5,RNSTR,,slot_coverage,"12 of 14 days below full, 0 silent, flagged",240,,4852,4774,5040,94.72,,3,0,0,202
+completeness_ranking,6,RNSLV,,slot_coverage,"12 of 14 days below full, 0 silent, flagged",240,,4859,4859,5040,96.41,,0,1,0,53
+completeness_ranking,7,RNSEB,,slot_coverage,"10 of 14 days below full, 0 silent, flagged",240,,5053,4890,5040,97.02,,5,0,1,568
+completeness_ranking,8,RNSWM,,slot_coverage,"13 of 14 days below full, 0 silent, flagged",600,,1973,1971,2016,97.77,,0,0,0,15
+completeness_ranking,9,RNSIC,,slot_coverage,"14 of 14 days below full, 0 silent, flagged",240,,4928,4928,5040,97.78,,1,0,0,704
+completeness_ranking,10,RNSCA,,slot_coverage,"14 of 14 days below full, 0 silent, flagged",120,,9923,9923,10080,98.44,,1,1,0,63
+completeness_ranking,11,RNSMW,,slot_coverage,"11 of 14 days below full, 0 silent, flagged",240,,4997,4972,5040,98.65,,6,0,4,62
+completeness_ranking,12,RNSME,,slot_coverage,"11 of 14 days below full, 0 silent, flagged",240,,4992,4990,5040,99.01,,1,1,0,49
+completeness_ranking,13,RNSMT,,slot_coverage,"14 of 14 days below full, 0 silent, ok",240,,4992,4991,5040,99.03,,1,0,0,43
+completeness_ranking,14,RNSSI,,slot_coverage,"14 of 14 days below full, 0 silent, flagged",120,,9984,9984,10080,99.05,,0,0,0,19996
+completeness_ranking,15,RNSLE,,slot_coverage,"13 of 14 days below full, 0 silent, ok",240,,4999,4996,5040,99.13,,0,0,0,18
+completeness_ranking,16,RNSCB,,slot_coverage,"9 of 14 days below full, 0 silent, ok",240,,5312,4999,5040,99.19,,1,0,0,48
+completeness_ranking,17,RNSBL,,slot_coverage,"14 of 14 days below full, 0 silent, ok",240,,5000,5000,5040,99.21,,0,0,0,39
+completeness_ranking,18,RNSLQ,,slot_coverage,"14 of 14 days below full, 0 silent, ok",240,,5000,5000,5040,99.21,,0,0,0,51
+completeness_ranking,19,RNSBV,,slot_coverage,"14 of 14 days below full, 0 silent, ok",240,,5002,5002,5040,99.25,,0,0,0,21
+completeness_ranking,20,RNSMF,,slot_coverage,"14 of 14 days below full, 0 silent, flagged",240,,5002,5002,5040,99.25,,0,0,0,10023
+completeness_ranking,21,RNSPB,,slot_coverage,"14 of 14 days below full, 0 silent, ok",240,,5002,5002,5040,99.25,,0,0,0,32
+completeness_ranking,22,RNSCHB,,slot_coverage,"14 of 14 days below full, 0 silent, flagged",240,,5023,5003,5040,99.27,,0,1,0,33
+completeness_ranking,23,RNSMH,,slot_coverage,"12 of 14 days below full, 0 silent, ok",240,,5008,5007,5040,99.35,,0,0,0,27
+completeness_ranking,24,RNSPU,,slot_coverage,"14 of 14 days below full, 0 silent, ok",240,,5011,5008,5040,99.37,,0,0,0,38
+completeness_ranking,25,RNSPG,,slot_coverage,"13 of 14 days below full, 0 silent, ok",240,,5011,5011,5040,99.42,,0,0,0,40
+completeness_ranking,26,RNSTN,,slot_coverage,"14 of 14 days below full, 0 silent, flagged",240,,5012,5011,5040,99.42,,0,1,0,44
+completeness_ranking,27,RNSBU,,slot_coverage,"13 of 14 days below full, 0 silent, flagged",240,,5012,5012,5040,99.44,,0,1,1,37
+completeness_ranking,28,RNSKI,,slot_coverage,"13 of 14 days below full, 0 silent, ok",240,,5014,5014,5040,99.48,,0,0,0,95
+completeness_ranking,29,RNSPC,,slot_coverage,"11 of 14 days below full, 0 silent, ok",240,,5015,5014,5040,99.48,,0,0,0,38
+completeness_ranking,30,RNSAM,,slot_coverage,"10 of 14 days below full, 0 silent, ok",240,,5043,5015,5040,99.50,,0,0,0,805
+completeness_ranking,31,RNSCP,,slot_coverage,"9 of 14 days below full, 0 silent, flagged",240,,5032,5015,5040,99.50,,1,1,0,1080
+completeness_ranking,32,RNSVI,,slot_coverage,"10 of 14 days below full, 0 silent, ok",240,,5022,5015,5040,99.50,,0,0,0,26
+completeness_ranking,33,RNSBD,,slot_coverage,"11 of 14 days below full, 0 silent, ok",240,,5017,5017,5040,99.54,,0,0,0,110
+completeness_ranking,34,RNSMO,,slot_coverage,"11 of 14 days below full, 0 silent, ok",240,,5018,5018,5040,99.56,,0,0,0,200
+completeness_ranking,35,RNSYA,,slot_coverage,"9 of 14 days below full, 0 silent, ok",240,,5023,5018,5040,99.56,,0,0,0,65
+completeness_ranking,36,RNSCO,,slot_coverage,"12 of 14 days below full, 0 silent, ok",240,,5023,5019,5040,99.58,,0,0,0,54
+completeness_ranking,37,RNSLI,,slot_coverage,"10 of 14 days below full, 0 silent, flagged",240,,5021,5020,5040,99.60,,0,1,0,29
+completeness_ranking,38,RNSNS,,slot_coverage,"10 of 14 days below full, 0 silent, ok",240,,5020,5020,5040,99.60,,0,0,0,23
+completeness_ranking,39,RNSON,,slot_coverage,"9 of 14 days below full, 0 silent, ok",240,,5021,5021,5040,99.62,,0,0,0,46
+completeness_ranking,40,RNSRB,,slot_coverage,"11 of 14 days below full, 0 silent, ok",240,,5021,5021,5040,99.62,,0,0,0,97
+completeness_ranking,41,RNSWE,,slot_coverage,"10 of 14 days below full, 0 silent, ok",240,,5026,5021,5040,99.62,,0,0,0,50
+completeness_ranking,42,RNSSP,,slot_coverage,"10 of 14 days below full, 0 silent, ok",240,,5022,5022,5040,99.64,,0,0,0,45
+completeness_ranking,43,RNSLC,,slot_coverage,"12 of 14 days below full, 0 silent, flagged",240,,5024,5023,5040,99.66,,0,2,0,288
+completeness_ranking,44,RNSCH,,slot_coverage,"10 of 14 days below full, 0 silent, ok",240,,5024,5024,5040,99.68,,0,0,0,115
+completeness_ranking,45,RNSKE,,slot_coverage,"9 of 14 days below full, 0 silent, flagged",240,,5024,5024,5040,99.68,,0,2,0,54
+completeness_ranking,46,RNSBW,,slot_coverage,"10 of 14 days below full, 0 silent, ok",240,,5025,5025,5040,99.70,,0,0,0,5634
+missing_by_measure,1,RNSMF,,air_temperature,missing values against readings received,,,5002,,,,100.00,,,,5002
+missing_by_measure,2,RNSMF,,relative_humidity,missing values against readings received,,,5002,,,,100.00,,,,5002
+missing_by_measure,3,RNSSI,,air_temperature,missing values against readings received,,,9984,,,,100.00,,,,9984
+missing_by_measure,4,RNSSI,,relative_humidity,missing values against readings received,,,9984,,,,100.00,,,,9984
+missing_by_measure,5,RNSBW,,relative_humidity,missing values against readings received,,,5025,,,,55.96,,,,2812
+missing_by_measure,6,RNSBW,,air_temperature,missing values against readings received,,,5025,,,,55.92,,,,2810
+missing_by_measure,7,RNSAM,,air_temperature,missing values against readings received,,,5043,,,,15.39,,,,776
+missing_by_measure,8,RNSCP,,relative_humidity,missing values against readings received,,,5032,,,,14.67,,,,738
+missing_by_measure,9,RNSIC,,air_temperature,missing values against readings received,,,4928,,,,7.87,,,,388
+missing_by_measure,10,RNSCP,,avg_wind_speed,missing values against readings received,,,5032,,,,6.40,,,,322
+missing_by_measure,11,RNSIC,,relative_humidity,missing values against readings received,,,4928,,,,6.01,,,,296
+missing_by_measure,12,RNSWA,,avg_wind_speed,missing values against readings received,,,4884,,,,5.00,,,,244
+missing_by_measure,13,RNSLC,,avg_wind_speed,missing values against readings received,,,5024,,,,4.28,,,,215
+missing_by_measure,14,RNSEB,,relative_humidity,missing values against readings received,,,5053,,,,3.94,,,,199
+missing_by_measure,15,RNSEB,,avg_wind_speed,missing values against readings received,,,5053,,,,3.66,,,,185
+missing_by_measure,16,RNSEB,,air_temperature,missing values against readings received,,,5053,,,,3.64,,,,184
+missing_by_measure,17,RNSMO,,relative_humidity,missing values against readings received,,,5018,,,,3.05,,,,153
+missing_by_measure,18,RNSTR,,avg_wind_speed,missing values against readings received,,,4852,,,,1.81,,,,88
+missing_by_measure,19,RNSGV,,relative_humidity,missing values against readings received,,,4893,,,,1.33,,,,65
+missing_by_measure,20,RNSGV,,avg_wind_speed,missing values against readings received,,,4893,,,,1.31,,,,64
+missing_by_measure,21,RNSGV,,air_temperature,missing values against readings received,,,4893,,,,1.29,,,,63
+missing_by_measure,22,RNSTR,,air_temperature,missing values against readings received,,,4852,,,,1.22,,,,59
+missing_by_measure,23,RNSTR,,relative_humidity,missing values against readings received,,,4852,,,,1.13,,,,55
+missing_by_measure,24,RNSMA,,air_temperature,missing values against readings received,,,4658,,,,1.12,,,,52
+missing_by_measure,25,RNSMA,,relative_humidity,missing values against readings received,,,4658,,,,1.12,,,,52
+missing_by_measure,26,RNSCH,,avg_wind_speed,missing values against readings received,,,5024,,,,0.94,,,,47
+missing_by_measure,27,RNSWA,,air_temperature,missing values against readings received,,,4884,,,,0.82,,,,40
+missing_by_measure,28,RNSWA,,relative_humidity,missing values against readings received,,,4884,,,,0.76,,,,37
+missing_by_measure,29,RNSBD,,avg_wind_speed,missing values against readings received,,,5017,,,,0.76,,,,38
+missing_by_measure,30,RNSBD,,relative_humidity,missing values against readings received,,,5017,,,,0.74,,,,37
+missing_by_measure,31,RNSLC,,relative_humidity,missing values against readings received,,,5024,,,,0.74,,,,37
+missing_by_measure,32,RNSCH,,relative_humidity,missing values against readings received,,,5024,,,,0.72,,,,36
+missing_by_measure,33,RNSLC,,air_temperature,missing values against readings received,,,5024,,,,0.72,,,,36
+missing_by_measure,34,RNSBD,,air_temperature,missing values against readings received,,,5017,,,,0.70,,,,35
+missing_by_measure,35,RNSRB,,relative_humidity,missing values against readings received,,,5021,,,,0.70,,,,35
+missing_by_measure,36,RNSKI,,relative_humidity,missing values against readings received,,,5014,,,,0.68,,,,34
+missing_by_measure,37,RNSRB,,avg_wind_speed,missing values against readings received,,,5021,,,,0.64,,,,32
+missing_by_measure,38,RNSCH,,air_temperature,missing values against readings received,,,5024,,,,0.64,,,,32
+missing_by_measure,39,RNSKI,,avg_wind_speed,missing values against readings received,,,5014,,,,0.62,,,,31
+missing_by_measure,40,RNSKI,,air_temperature,missing values against readings received,,,5014,,,,0.60,,,,30
+missing_by_measure,41,RNSRB,,air_temperature,missing values against readings received,,,5021,,,,0.60,,,,30
+missing_by_measure,42,RNSMW,,avg_wind_speed,missing values against readings received,,,4997,,,,0.56,,,,28
+missing_by_measure,43,RNSLQ,,avg_wind_speed,missing values against readings received,,,5000,,,,0.52,,,,26
+missing_by_measure,44,RNSLV,,avg_wind_speed,missing values against readings received,,,4859,,,,0.51,,,,25
+missing_by_measure,45,RNSME,,avg_wind_speed,missing values against readings received,,,4992,,,,0.48,,,,24
+missing_by_measure,46,RNSMO,,air_temperature,missing values against readings received,,,5018,,,,0.48,,,,24
+missing_by_measure,47,RNSMO,,avg_wind_speed,missing values against readings received,,,5018,,,,0.46,,,,23
+missing_by_measure,48,RNSSP,,avg_wind_speed,missing values against readings received,,,5022,,,,0.46,,,,23
+missing_by_measure,49,RNSYA,,air_temperature,missing values against readings received,,,5023,,,,0.46,,,,23
+missing_by_measure,50,RNSWE,,avg_wind_speed,missing values against readings received,,,5026,,,,0.44,,,,22
+missing_by_measure,51,RNSCO,,avg_wind_speed,missing values against readings received,,,5023,,,,0.42,,,,21
+missing_by_measure,52,RNSYA,,avg_wind_speed,missing values against readings received,,,5023,,,,0.42,,,,21
+missing_by_measure,53,RNSYA,,relative_humidity,missing values against readings received,,,5023,,,,0.42,,,,21
+missing_by_measure,54,RNSIC,,avg_wind_speed,missing values against readings received,,,4928,,,,0.41,,,,20
+missing_by_measure,55,RNSCHB,,avg_wind_speed,missing values against readings received,,,5023,,,,0.40,,,,20
+missing_by_measure,56,RNSCP,,air_temperature,missing values against readings received,,,5032,,,,0.40,,,,20
+missing_by_measure,57,RNSMF,,avg_wind_speed,missing values against readings received,,,5002,,,,0.38,,,,19
+missing_by_measure,58,RNSLI,,avg_wind_speed,missing values against readings received,,,5021,,,,0.38,,,,19
+missing_by_measure,59,RNSKE,,air_temperature,missing values against readings received,,,5024,,,,0.38,,,,19
+missing_by_measure,60,RNSTN,,avg_wind_speed,missing values against readings received,,,5012,,,,0.36,,,,18
+missing_by_measure,61,RNSKE,,relative_humidity,missing values against readings received,,,5024,,,,0.36,,,,18
+missing_by_measure,62,RNSWM,,avg_wind_speed,missing values against readings received,,,1973,,,,0.35,,,,7
+missing_by_measure,63,RNSMW,,air_temperature,missing values against readings received,,,4997,,,,0.34,,,,17
+missing_by_measure,64,RNSMW,,relative_humidity,missing values against readings received,,,4997,,,,0.34,,,,17
+missing_by_measure,65,RNSCB,,avg_wind_speed,missing values against readings received,,,5312,,,,0.34,,,,18
+missing_by_measure,66,RNSCO,,relative_humidity,missing values against readings received,,,5023,,,,0.34,,,,17
+missing_by_measure,67,RNSKE,,avg_wind_speed,missing values against readings received,,,5024,,,,0.34,,,,17
+missing_by_measure,68,RNSAM,,relative_humidity,missing values against readings received,,,5043,,,,0.34,,,,17
+missing_by_measure,69,RNSMT,,relative_humidity,missing values against readings received,,,4992,,,,0.32,,,,16
+missing_by_measure,70,RNSBL,,relative_humidity,missing values against readings received,,,5000,,,,0.32,,,,16
+missing_by_measure,71,RNSPB,,relative_humidity,missing values against readings received,,,5002,,,,0.32,,,,16
+missing_by_measure,72,RNSPG,,air_temperature,missing values against readings received,,,5011,,,,0.32,,,,16
+missing_by_measure,73,RNSPG,,relative_humidity,missing values against readings received,,,5011,,,,0.32,,,,16
+missing_by_measure,74,RNSON,,avg_wind_speed,missing values against readings received,,,5021,,,,0.32,,,,16
+missing_by_measure,75,RNSCO,,air_temperature,missing values against readings received,,,5023,,,,0.32,,,,16
+missing_by_measure,76,RNSLV,,relative_humidity,missing values against readings received,,,4859,,,,0.31,,,,15
+missing_by_measure,77,RNSLQ,,relative_humidity,missing values against readings received,,,5000,,,,0.30,,,,15
+missing_by_measure,78,RNSMH,,avg_wind_speed,missing values against readings received,,,5008,,,,0.30,,,,15
+missing_by_measure,79,RNSON,,air_temperature,missing values against readings received,,,5021,,,,0.30,,,,15
+missing_by_measure,80,RNSON,,relative_humidity,missing values against readings received,,,5021,,,,0.30,,,,15
+missing_by_measure,81,RNSWE,,relative_humidity,missing values against readings received,,,5026,,,,0.30,,,,15
+missing_by_measure,82,RNSKM,,relative_humidity,missing values against readings received,,,3018,,,,0.30,,,,9
+missing_by_measure,83,RNSCB,,air_temperature,missing values against readings received,,,5312,,,,0.28,,,,15
+missing_by_measure,84,RNSCB,,relative_humidity,missing values against readings received,,,5312,,,,0.28,,,,15
+missing_by_measure,85,RNSMT,,air_temperature,missing values against readings received,,,4992,,,,0.28,,,,14
+missing_by_measure,86,RNSSI,,avg_wind_speed,missing values against readings received,,,9984,,,,0.28,,,,28
+missing_by_measure,87,RNSPU,,avg_wind_speed,missing values against readings received,,,5011,,,,0.28,,,,14
+missing_by_measure,88,RNSTN,,relative_humidity,missing values against readings received,,,5012,,,,0.28,,,,14
+missing_by_measure,89,RNSPC,,avg_wind_speed,missing values against readings received,,,5015,,,,0.28,,,,14
+missing_by_measure,90,RNSCA,,relative_humidity,missing values against readings received,,,9923,,,,0.27,,,,27
+missing_by_measure,91,RNSLV,,air_temperature,missing values against readings received,,,4859,,,,0.27,,,,13
+missing_by_measure,92,RNSME,,relative_humidity,missing values against readings received,,,4992,,,,0.26,,,,13
+missing_by_measure,93,RNSMT,,avg_wind_speed,missing values against readings received,,,4992,,,,0.26,,,,13
+missing_by_measure,94,RNSPU,,relative_humidity,missing values against readings received,,,5011,,,,0.26,,,,13
+missing_by_measure,95,RNSBU,,relative_humidity,missing values against readings received,,,5012,,,,0.26,,,,13
+missing_by_measure,96,RNSSP,,relative_humidity,missing values against readings received,,,5022,,,,0.26,,,,13
+missing_by_measure,97,RNSWE,,air_temperature,missing values against readings received,,,5026,,,,0.26,,,,13
+missing_by_measure,98,RNSME,,air_temperature,missing values against readings received,,,4992,,,,0.24,,,,12
+missing_by_measure,99,RNSBL,,air_temperature,missing values against readings received,,,5000,,,,0.24,,,,12
+missing_by_measure,100,RNSBU,,air_temperature,missing values against readings received,,,5012,,,,0.24,,,,12
+missing_by_measure,101,RNSBU,,avg_wind_speed,missing values against readings received,,,5012,,,,0.24,,,,12
+missing_by_measure,102,RNSTN,,air_temperature,missing values against readings received,,,5012,,,,0.24,,,,12
+missing_by_measure,103,RNSPC,,air_temperature,missing values against readings received,,,5015,,,,0.24,,,,12
+missing_by_measure,104,RNSPC,,relative_humidity,missing values against readings received,,,5015,,,,0.24,,,,12
+missing_by_measure,105,RNSBW,,avg_wind_speed,missing values against readings received,,,5025,,,,0.24,,,,12
+missing_by_measure,106,RNSAM,,avg_wind_speed,missing values against readings received,,,5043,,,,0.24,,,,12
+missing_by_measure,107,RNSMA,,avg_wind_speed,missing values against readings received,,,4658,,,,0.24,,,,11
+missing_by_measure,108,RNSKM,,air_temperature,missing values against readings received,,,3018,,,,0.23,,,,7
+missing_by_measure,109,RNSKM,,avg_wind_speed,missing values against readings received,,,3018,,,,0.23,,,,7
+missing_by_measure,110,RNSCA,,avg_wind_speed,missing values against readings received,,,9923,,,,0.23,,,,23
+missing_by_measure,111,RNSBL,,avg_wind_speed,missing values against readings received,,,5000,,,,0.22,,,,11
+missing_by_measure,112,RNSPB,,air_temperature,missing values against readings received,,,5002,,,,0.22,,,,11
+missing_by_measure,113,RNSPU,,air_temperature,missing values against readings received,,,5011,,,,0.22,,,,11
+missing_by_measure,114,RNSVI,,air_temperature,missing values against readings received,,,5022,,,,0.22,,,,11
+missing_by_measure,115,RNSWM,,air_temperature,missing values against readings received,,,1973,,,,0.20,,,,4
+missing_by_measure,116,RNSWM,,relative_humidity,missing values against readings received,,,1973,,,,0.20,,,,4
+missing_by_measure,117,RNSLQ,,air_temperature,missing values against readings received,,,5000,,,,0.20,,,,10
+missing_by_measure,118,RNSBV,,relative_humidity,missing values against readings received,,,5002,,,,0.20,,,,10
+missing_by_measure,119,RNSNS,,relative_humidity,missing values against readings received,,,5020,,,,0.18,,,,9
+missing_by_measure,120,RNSLI,,air_temperature,missing values against readings received,,,5021,,,,0.18,,,,9
+missing_by_measure,121,RNSSP,,air_temperature,missing values against readings received,,,5022,,,,0.18,,,,9
+missing_by_measure,122,RNSVI,,relative_humidity,missing values against readings received,,,5022,,,,0.18,,,,9
+missing_by_measure,123,RNSPG,,avg_wind_speed,missing values against readings received,,,5011,,,,0.16,,,,8
+missing_by_measure,124,RNSLE,,relative_humidity,missing values against readings received,,,4999,,,,0.14,,,,7
+missing_by_measure,125,RNSMH,,relative_humidity,missing values against readings received,,,5008,,,,0.14,,,,7
+missing_by_measure,126,RNSNS,,air_temperature,missing values against readings received,,,5020,,,,0.14,,,,7
+missing_by_measure,127,RNSNS,,avg_wind_speed,missing values against readings received,,,5020,,,,0.14,,,,7
+missing_by_measure,128,RNSCHB,,air_temperature,missing values against readings received,,,5023,,,,0.14,,,,7
+missing_by_measure,129,RNSCA,,air_temperature,missing values against readings received,,,9923,,,,0.13,,,,13
+missing_by_measure,130,RNSLE,,air_temperature,missing values against readings received,,,4999,,,,0.12,,,,6
+missing_by_measure,131,RNSBV,,air_temperature,missing values against readings received,,,5002,,,,0.12,,,,6
+missing_by_measure,132,RNSVI,,avg_wind_speed,missing values against readings received,,,5022,,,,0.12,,,,6
+missing_by_measure,133,RNSCHB,,relative_humidity,missing values against readings received,,,5023,,,,0.12,,,,6
+missing_by_measure,134,RNSLE,,avg_wind_speed,missing values against readings received,,,4999,,,,0.10,,,,5
+missing_by_measure,135,RNSBV,,avg_wind_speed,missing values against readings received,,,5002,,,,0.10,,,,5
+missing_by_measure,136,RNSPB,,avg_wind_speed,missing values against readings received,,,5002,,,,0.10,,,,5
+missing_by_measure,137,RNSMH,,air_temperature,missing values against readings received,,,5008,,,,0.10,,,,5
+missing_by_measure,138,RNSLI,,relative_humidity,missing values against readings received,,,5021,,,,0.02,,,,1
+gap_detail,1,RNSKM,2024-01-04,reporting_gap,"2024-01-04T04:21:00 to 2024-01-06T12:48:00, 846.8x cadence",240,203220,,,,,,1,,,
+gap_detail,2,RNSKM,2024-01-08,reporting_gap,"2024-01-08T12:13:00 to 2024-01-10T15:56:00, 775.8x cadence",240,186180,,,,,,1,,,
+gap_detail,3,RNSMA,2024-01-09,reporting_gap,"2024-01-09T16:14:00 to 2024-01-10T15:19:00, 346.3x cadence",240,83100,,,,,,1,,,
+gap_detail,4,RNSKM,2024-01-06,reporting_gap,"2024-01-06T20:41:00 to 2024-01-07T13:08:00, 246.8x cadence",240,59220,,,,,,1,,,
+gap_detail,5,RNSKM,2024-01-08,reporting_gap,"2024-01-08T02:21:00 to 2024-01-08T12:08:00, 146.8x cadence",240,35220,,,,,,1,,,
+gap_detail,6,RNSTR,2024-01-13,reporting_gap,"2024-01-13T23:27:00 to 2024-01-14T07:10:00, 115.8x cadence",240,27780,,,,,,1,,,
+gap_detail,7,RNSTR,2024-01-10,reporting_gap,"2024-01-10T18:23:00 to 2024-01-10T23:43:00, 80.0x cadence",240,19200,,,,,,1,,,
+gap_detail,8,RNSME,2024-01-10,reporting_gap,"2024-01-10T15:15:00 to 2024-01-10T17:26:00, 32.8x cadence",240,7860,,,,,,1,,,
+gap_detail,9,RNSEB,2024-01-08,reporting_gap,"2024-01-08T04:14:00 to 2024-01-08T06:14:00, 30.0x cadence",240,7200,,,,,,1,,,
+gap_detail,10,RNSEB,2024-01-08,reporting_gap,"2024-01-08T06:14:00 to 2024-01-08T08:14:00, 30.0x cadence",240,7200,,,,,,1,,,
+gap_detail,11,RNSEB,2024-01-08,reporting_gap,"2024-01-08T08:14:00 to 2024-01-08T10:14:00, 30.0x cadence",240,7200,,,,,,1,,,
+gap_detail,12,RNSEB,2024-01-08,reporting_gap,"2024-01-08T10:14:00 to 2024-01-08T12:14:00, 30.0x cadence",240,7200,,,,,,1,,,
+gap_detail,13,RNSCB,2024-01-10,reporting_gap,"2024-01-10T15:57:00 to 2024-01-10T17:49:00, 28.0x cadence",240,6720,,,,,,1,,,
+gap_detail,14,RNSEB,2024-01-08,reporting_gap,"2024-01-08T12:14:00 to 2024-01-08T13:35:00, 20.3x cadence",240,4860,,,,,,1,,,
+gap_detail,15,RNSMW,2024-01-10,reporting_gap,"2024-01-10T19:49:00 to 2024-01-10T21:08:00, 19.8x cadence",240,4740,,,,,,1,,,
+gap_detail,16,RNSMT,2024-01-10,reporting_gap,"2024-01-10T19:50:00 to 2024-01-10T21:05:00, 18.8x cadence",240,4500,,,,,,1,,,
+gap_detail,17,RNSTR,2024-01-13,reporting_gap,"2024-01-13T22:47:00 to 2024-01-13T23:27:00, 10.0x cadence",240,2400,,,,,,1,,,
+gap_detail,18,RNSMA,2024-01-11,reporting_gap,"2024-01-11T16:06:00 to 2024-01-11T16:37:00, 7.8x cadence",240,1860,,,,,,1,,,
+gap_detail,19,RNSMW,2024-01-10,reporting_gap,"2024-01-10T22:05:00 to 2024-01-10T22:33:00, 7.0x cadence",240,1680,,,,,,1,,,
+gap_detail,20,RNSGV,2024-01-07,reporting_gap,"2024-01-07T22:42:00 to 2024-01-07T23:05:00, 5.8x cadence",240,1380,,,,,,1,,,
+gap_detail,21,RNSMW,2024-01-10,reporting_gap,"2024-01-10T21:09:00 to 2024-01-10T21:32:00, 5.8x cadence",240,1380,,,,,,1,,,
+gap_detail,22,RNSMW,2024-01-14,reporting_gap,"2024-01-14T02:13:00 to 2024-01-14T02:33:00, 5.0x cadence",240,1200,,,,,,1,,,
+gap_detail,23,RNSCP,2024-01-04,reporting_gap,"2024-01-04T10:31:00 to 2024-01-04T10:50:00, 4.8x cadence",240,1140,,,,,,1,,,
+gap_detail,24,RNSGV,2024-01-07,reporting_gap,"2024-01-07T23:06:00 to 2024-01-07T23:25:00, 4.8x cadence",240,1140,,,,,,1,,,
+gap_detail,25,RNSMW,2024-01-10,reporting_gap,"2024-01-10T18:53:00 to 2024-01-10T19:12:00, 4.8x cadence",240,1140,,,,,,1,,,
+gap_detail,26,RNSMW,2024-01-14,reporting_gap,"2024-01-14T03:57:00 to 2024-01-14T04:16:00, 4.8x cadence",240,1140,,,,,,1,,,
+gap_detail,27,RNSWA,2024-01-07,reporting_gap,"2024-01-07T09:25:00 to 2024-01-07T09:44:00, 4.8x cadence",240,1140,,,,,,1,,,
+gap_detail,28,RNSWA,2024-01-12,reporting_gap,"2024-01-12T09:53:00 to 2024-01-12T10:12:00, 4.8x cadence",240,1140,,,,,,1,,,
+gap_detail,29,RNSGV,2024-01-06,reporting_gap,"2024-01-06T21:38:00 to 2024-01-06T21:54:00, 4.0x cadence",240,960,,,,,,1,,,
+gap_detail,30,RNSGV,2024-01-08,reporting_gap,"2024-01-08T04:22:00 to 2024-01-08T04:38:00, 4.0x cadence",240,960,,,,,,1,,,
+gap_detail,31,RNSIC,2024-01-05,reporting_gap,"2024-01-05T18:28:00 to 2024-01-05T18:44:00, 4.0x cadence",240,960,,,,,,1,,,
+gap_detail,32,RNSGV,2024-01-07,reporting_gap,"2024-01-07T23:46:00 to 2024-01-08T00:01:00, 3.8x cadence",240,900,,,,,,1,,,
+gap_detail,33,RNSGV,2024-01-08,reporting_gap,"2024-01-08T07:02:00 to 2024-01-08T07:17:00, 3.8x cadence",240,900,,,,,,1,,,
+gap_detail,34,RNSWA,2024-01-05,reporting_gap,"2024-01-05T06:25:00 to 2024-01-05T06:40:00, 3.8x cadence",240,900,,,,,,1,,,
+gap_detail,35,RNSWA,2024-01-09,reporting_gap,"2024-01-09T09:49:00 to 2024-01-09T10:04:00, 3.8x cadence",240,900,,,,,,1,,,
+gap_detail,36,RNSCA,2024-01-08,reporting_gap,"2024-01-08T20:40:00 to 2024-01-08T20:50:00, 5.0x cadence",120,600,,,,,,1,,,
+frozen_detail,1,RNSCP,2024-01-05,air_temperature,held -1.50 from 2024-01-05T01:31:00 to 2024-01-05T05:35:00,240,14640,62,,,,,,1,,
+frozen_detail,2,RNSTN,2024-01-02,air_temperature,held -4.60 from 2024-01-02T00:06:00 to 2024-01-02T02:54:00,240,10080,42,,,,,,1,,
+frozen_detail,3,RNSKE,2024-01-08,air_temperature,held -4.70 from 2024-01-08T08:25:00 to 2024-01-08T10:49:00,240,8640,37,,,,,,1,,
+frozen_detail,4,RNSCHB,2024-01-02,air_temperature,held -4.50 from 2024-01-02T00:51:00 to 2024-01-02T03:11:00,240,8400,36,,,,,,1,,
+frozen_detail,5,RNSLI,2024-01-03,air_temperature,held -3.30 from 2024-01-03T22:43:00 to 2024-01-04T01:03:00,240,8400,36,,,,,,1,,
+frozen_detail,6,RNSLC,2024-01-02,air_temperature,held -5.00 from 2024-01-02T03:08:00 to 2024-01-02T05:16:00,240,7680,33,,,,,,1,,
+frozen_detail,7,RNSLV,2024-01-07,air_temperature,held -5.20 from 2024-01-07T21:51:00 to 2024-01-08T00:03:00,240,7920,33,,,,,,1,,
+frozen_detail,8,RNSBU,2024-01-04,air_temperature,held -2.10 from 2024-01-04T01:02:00 to 2024-01-04T03:06:00,240,7440,32,,,,,,1,,
+frozen_detail,9,RNSME,2024-01-08,air_temperature,held -3.60 from 2024-01-08T08:35:00 to 2024-01-08T10:35:00,240,7200,31,,,,,,1,,
+frozen_detail,10,RNSCA,2024-01-03,air_temperature,held -1.70 from 2024-01-03T20:16:00 to 2024-01-03T21:16:00,120,3600,30,,,,,,1,,
+frozen_detail,11,RNSKE,2024-01-01,air_temperature,held -5.10 from 2024-01-01T23:05:00 to 2024-01-02T01:01:00,240,6960,30,,,,,,1,,
+frozen_detail,12,RNSLC,2024-01-07,air_temperature,held -3.50 from 2024-01-07T18:48:00 to 2024-01-07T20:44:00,240,6960,30,,,,,,1,,
+out_of_range_detail,1,RNSEB,2024-01-08,relative_humidity,"value 0.00 at 2024-01-08T13:35:00, plausible range 1.00 to 100.00",,,,,,,,,,1,
+out_of_range_detail,2,RNSMW,2024-01-10,relative_humidity,"value 0.00 at 2024-01-10T23:45:00, plausible range 1.00 to 100.00",,,,,,,,,,1,
+out_of_range_detail,3,RNSBU,2024-01-11,relative_humidity,"value 0.00 at 2024-01-11T03:42:00, plausible range 1.00 to 100.00",,,,,,,,,,1,
+out_of_range_detail,4,RNSMW,2024-01-14,relative_humidity,"value 0.00 at 2024-01-14T02:33:00, plausible range 1.00 to 100.00",,,,,,,,,,1,
+out_of_range_detail,5,RNSMW,2024-01-14,relative_humidity,"value 0.00 at 2024-01-14T02:37:00, plausible range 1.00 to 100.00",,,,,,,,,,1,
+out_of_range_detail,6,RNSMW,2024-01-14,relative_humidity,"value 0.00 at 2024-01-14T16:32:00, plausible range 1.00 to 100.00",,,,,,,,,,1,

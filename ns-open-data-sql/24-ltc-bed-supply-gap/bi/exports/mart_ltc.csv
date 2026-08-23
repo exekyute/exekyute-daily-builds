@@ -1,0 +1,581 @@
+facility_id,facility_name,town,postal_code,zone,facility_type,sea_participating,longitude,latitude,facility_total_beds,bed_type,is_core_bed,beds
+ADLH,Adeline Hall,Halifax,B3M 0R8,Central,Nursing Home,Y,-63.679545,44.698835,144,nursing,1,144
+ADLH,Adeline Hall,Halifax,B3M 0R8,Central,Nursing Home,Y,-63.679545,44.698835,144,nursing_respite,0,0
+ADLH,Adeline Hall,Halifax,B3M 0R8,Central,Nursing Home,Y,-63.679545,44.698835,144,residential,1,0
+ADLH,Adeline Hall,Halifax,B3M 0R8,Central,Nursing Home,Y,-63.679545,44.698835,144,residential_respite,0,0
+ADML,The Admiral Long Term Care Centre,Dartmouth,B2X 1W4,Central,Nursing Home,Y,-63.545456,44.684326,65,nursing,1,65
+ADML,The Admiral Long Term Care Centre,Dartmouth,B2X 1W4,Central,Nursing Home,Y,-63.545456,44.684326,65,nursing_respite,0,1
+ADML,The Admiral Long Term Care Centre,Dartmouth,B2X 1W4,Central,Nursing Home,Y,-63.545456,44.684326,65,residential,1,0
+ADML,The Admiral Long Term Care Centre,Dartmouth,B2X 1W4,Central,Nursing Home,Y,-63.545456,44.684326,65,residential_respite,0,0
+ALDM,Au Logis D'Meteghan,Meteghan,B0W 2J0,Western,Residential Care Facility,Y,-66.152963,44.193951,22,nursing,1,0
+ALDM,Au Logis D'Meteghan,Meteghan,B0W 2J0,Western,Residential Care Facility,Y,-66.152963,44.193951,22,nursing_respite,0,0
+ALDM,Au Logis D'Meteghan,Meteghan,B0W 2J0,Western,Residential Care Facility,Y,-66.152963,44.193951,22,residential,1,22
+ALDM,Au Logis D'Meteghan,Meteghan,B0W 2J0,Western,Residential Care Facility,Y,-66.152963,44.193951,22,residential_respite,0,0
+ALWD,Alderwood Corporation,Baddeck,B0E 1B0,Eastern,Nursing Home and Residential Care Facility,Y,-60.76551,46.095442,70,nursing,1,59
+ALWD,Alderwood Corporation,Baddeck,B0E 1B0,Eastern,Nursing Home and Residential Care Facility,Y,-60.76551,46.095442,70,nursing_respite,0,0
+ALWD,Alderwood Corporation,Baddeck,B0E 1B0,Eastern,Nursing Home and Residential Care Facility,Y,-60.76551,46.095442,70,residential,1,11
+ALWD,Alderwood Corporation,Baddeck,B0E 1B0,Eastern,Nursing Home and Residential Care Facility,Y,-60.76551,46.095442,70,residential_respite,0,0
+ANPR,Annapolis Royal Nursing Home,Annapolis Royal,B0S 1A0,Western,Nursing Home,Y,-65.500177,44.735389,65,nursing,1,65
+ANPR,Annapolis Royal Nursing Home,Annapolis Royal,B0S 1A0,Western,Nursing Home,Y,-65.500177,44.735389,65,nursing_respite,0,1
+ANPR,Annapolis Royal Nursing Home,Annapolis Royal,B0S 1A0,Western,Nursing Home,Y,-65.500177,44.735389,65,residential,1,0
+ANPR,Annapolis Royal Nursing Home,Annapolis Royal,B0S 1A0,Western,Nursing Home,Y,-65.500177,44.735389,65,residential_respite,0,0
+ARBS,Arborstone Enhanced Care,Halifax,B3P 1B5,Central,Nursing Home,Y,-63.608227,44.632876,190,nursing,1,190
+ARBS,Arborstone Enhanced Care,Halifax,B3P 1B5,Central,Nursing Home,Y,-63.608227,44.632876,190,nursing_respite,0,0
+ARBS,Arborstone Enhanced Care,Halifax,B3P 1B5,Central,Nursing Home,Y,-63.608227,44.632876,190,residential,1,0
+ARBS,Arborstone Enhanced Care,Halifax,B3P 1B5,Central,Nursing Home,Y,-63.608227,44.632876,190,residential_respite,0,0
+BMCT,Blomidon Court Continuing Care Residence,Greenwich,B4P 0B2,Western,Nursing Home,Y,-64.406858,45.07644,50,nursing,1,50
+BMCT,Blomidon Court Continuing Care Residence,Greenwich,B4P 0B2,Western,Nursing Home,Y,-64.406858,45.07644,50,nursing_respite,0,0
+BMCT,Blomidon Court Continuing Care Residence,Greenwich,B4P 0B2,Western,Nursing Home,Y,-64.406858,45.07644,50,residential,1,0
+BMCT,Blomidon Court Continuing Care Residence,Greenwich,B4P 0B2,Western,Nursing Home,Y,-64.406858,45.07644,50,residential_respite,0,0
+BRCH,The Birches,Musquodoboit Harbour,B0J 2L0,Central,Nursing Home,Y,-63.159371,44.783249,41,nursing,1,41
+BRCH,The Birches,Musquodoboit Harbour,B0J 2L0,Central,Nursing Home,Y,-63.159371,44.783249,41,nursing_respite,0,1
+BRCH,The Birches,Musquodoboit Harbour,B0J 2L0,Central,Nursing Home,Y,-63.159371,44.783249,41,residential,1,0
+BRCH,The Birches,Musquodoboit Harbour,B0J 2L0,Central,Nursing Home,Y,-63.159371,44.783249,41,residential_respite,0,0
+BTCT,Bissett Court Continuing Care Residence,Cole Harbour,B2W 0H5,Central,Nursing Home,Y,-63.490315,44.677899,50,nursing,1,50
+BTCT,Bissett Court Continuing Care Residence,Cole Harbour,B2W 0H5,Central,Nursing Home,Y,-63.490315,44.677899,50,nursing_respite,0,0
+BTCT,Bissett Court Continuing Care Residence,Cole Harbour,B2W 0H5,Central,Nursing Home,Y,-63.490315,44.677899,50,residential,1,0
+BTCT,Bissett Court Continuing Care Residence,Cole Harbour,B2W 0H5,Central,Nursing Home,Y,-63.490315,44.677899,50,residential_respite,0,0
+BYSD,Bay Side Home Corporation,Brass Hill,B0W 1E0,Western,Nursing Home,Y,-65.598174,43.548449,62,nursing,1,62
+BYSD,Bay Side Home Corporation,Brass Hill,B0W 1E0,Western,Nursing Home,Y,-65.598174,43.548449,62,nursing_respite,0,0
+BYSD,Bay Side Home Corporation,Brass Hill,B0W 1E0,Western,Nursing Home,Y,-65.598174,43.548449,62,residential,1,0
+BYSD,Bay Side Home Corporation,Brass Hill,B0W 1E0,Western,Nursing Home,Y,-65.598174,43.548449,62,residential_respite,0,0
+BYVM,Bayview Memorial Health Centre,Advocate Harbour,B0M 1A0,Northern,Nursing Home,Y,-64.794835,45.346212,10,nursing,1,10
+BYVM,Bayview Memorial Health Centre,Advocate Harbour,B0M 1A0,Northern,Nursing Home,Y,-64.794835,45.346212,10,nursing_respite,0,0
+BYVM,Bayview Memorial Health Centre,Advocate Harbour,B0M 1A0,Northern,Nursing Home,Y,-64.794835,45.346212,10,residential,1,0
+BYVM,Bayview Memorial Health Centre,Advocate Harbour,B0M 1A0,Northern,Nursing Home,Y,-64.794835,45.346212,10,residential_respite,0,0
+CDEC,Cedarstone Enhanced Care,Truro,B2N 7H2,Northern,Nursing Home,Y,-63.275942,45.350124,125,nursing,1,125
+CDEC,Cedarstone Enhanced Care,Truro,B2N 7H2,Northern,Nursing Home,Y,-63.275942,45.350124,125,nursing_respite,0,1
+CDEC,Cedarstone Enhanced Care,Truro,B2N 7H2,Northern,Nursing Home,Y,-63.275942,45.350124,125,residential,1,0
+CDEC,Cedarstone Enhanced Care,Truro,B2N 7H2,Northern,Nursing Home,Y,-63.275942,45.350124,125,residential_respite,0,0
+CFDM,Carefield Manor,Dominion,B1G 1B3,Eastern,Residential Care Facility,Y,-60.02201,46.210733,16,nursing,1,0
+CFDM,Carefield Manor,Dominion,B1G 1B3,Eastern,Residential Care Facility,Y,-60.02201,46.210733,16,nursing_respite,0,0
+CFDM,Carefield Manor,Dominion,B1G 1B3,Eastern,Residential Care Facility,Y,-60.02201,46.210733,16,residential,1,16
+CFDM,Carefield Manor,Dominion,B1G 1B3,Eastern,Residential Care Facility,Y,-60.02201,46.210733,16,residential_respite,0,0
+CHGM,Chignecto Manor Co-Operative,Advocate Harbour,B0M 1A0,Northern,Residential Care Facility,Y,-64.778214,45.335725,14,nursing,1,0
+CHGM,Chignecto Manor Co-Operative,Advocate Harbour,B0M 1A0,Northern,Residential Care Facility,Y,-64.778214,45.335725,14,nursing_respite,0,0
+CHGM,Chignecto Manor Co-Operative,Advocate Harbour,B0M 1A0,Northern,Residential Care Facility,Y,-64.778214,45.335725,14,residential,1,14
+CHGM,Chignecto Manor Co-Operative,Advocate Harbour,B0M 1A0,Northern,Residential Care Facility,Y,-64.778214,45.335725,14,residential_respite,0,0
+CHVM,Camp Hill Veterans Memorial Building,Halifax,B3H 2E1,Central,Nursing Home,Y,-63.587366,44.644093,67,nursing,1,67
+CHVM,Camp Hill Veterans Memorial Building,Halifax,B3H 2E1,Central,Nursing Home,Y,-63.587366,44.644093,67,nursing_respite,0,0
+CHVM,Camp Hill Veterans Memorial Building,Halifax,B3H 2E1,Central,Nursing Home,Y,-63.587366,44.644093,67,residential,1,0
+CHVM,Camp Hill Veterans Memorial Building,Halifax,B3H 2E1,Central,Nursing Home,Y,-63.587366,44.644093,67,residential_respite,0,0
+CLCT,Celtic Court,Sydney,B1S 2R5,Eastern,Nursing Home,Y,-60.194658,46.121974,36,nursing,1,36
+CLCT,Celtic Court,Sydney,B1S 2R5,Eastern,Nursing Home,Y,-60.194658,46.121974,36,nursing_respite,0,0
+CLCT,Celtic Court,Sydney,B1S 2R5,Eastern,Nursing Home,Y,-60.194658,46.121974,36,residential,1,0
+CLCT,Celtic Court,Sydney,B1S 2R5,Eastern,Nursing Home,Y,-60.194658,46.121974,36,residential_respite,0,0
+CMRC,Hilltop Villa (Clarmar),Dartmouth,B2X 1S3,Central,Residential Care Facility,Y,-63.532626,44.68353,14,nursing,1,0
+CMRC,Hilltop Villa (Clarmar),Dartmouth,B2X 1S3,Central,Residential Care Facility,Y,-63.532626,44.68353,14,nursing_respite,0,0
+CMRC,Hilltop Villa (Clarmar),Dartmouth,B2X 1S3,Central,Residential Care Facility,Y,-63.532626,44.68353,14,residential,1,14
+CMRC,Hilltop Villa (Clarmar),Dartmouth,B2X 1S3,Central,Residential Care Facility,Y,-63.532626,44.68353,14,residential_respite,0,0
+CNSM,Canso Seaside Manor,Canso,B0H 1H0,Eastern,Nursing Home,Y,-60.983719,45.33237,15,nursing,1,15
+CNSM,Canso Seaside Manor,Canso,B0H 1H0,Eastern,Nursing Home,Y,-60.983719,45.33237,15,nursing_respite,0,0
+CNSM,Canso Seaside Manor,Canso,B0H 1H0,Eastern,Nursing Home,Y,-60.983719,45.33237,15,residential,1,0
+CNSM,Canso Seaside Manor,Canso,B0H 1H0,Eastern,Nursing Home,Y,-60.983719,45.33237,15,residential_respite,0,0
+CTVL,Centennial Villa,Amherst,B4H 3C9,Northern,Nursing Home,Y,-64.189907,45.82403,29,nursing,1,29
+CTVL,Centennial Villa,Amherst,B4H 3C9,Northern,Nursing Home,Y,-64.189907,45.82403,29,nursing_respite,0,0
+CTVL,Centennial Villa,Amherst,B4H 3C9,Northern,Nursing Home,Y,-64.189907,45.82403,29,residential,1,0
+CTVL,Centennial Villa,Amherst,B4H 3C9,Northern,Nursing Home,Y,-64.189907,45.82403,29,residential_respite,0,0
+CVGH,The Cove Guest Home,Sydney,B1S 2G1,Eastern,Nursing Home,Y,-60.19791,46.121793,110,nursing,1,110
+CVGH,The Cove Guest Home,Sydney,B1S 2G1,Eastern,Nursing Home,Y,-60.19791,46.121793,110,nursing_respite,0,0
+CVGH,The Cove Guest Home,Sydney,B1S 2G1,Eastern,Nursing Home,Y,-60.19791,46.121793,110,residential,1,0
+CVGH,The Cove Guest Home,Sydney,B1S 2G1,Eastern,Nursing Home,Y,-60.19791,46.121793,110,residential_respite,0,0
+DBCT,Debert Court Continuing Care Residence,Debert,B0M 1G0,Northern,Nursing Home,Y,-63.453285,45.435409,36,nursing,1,36
+DBCT,Debert Court Continuing Care Residence,Debert,B0M 1G0,Northern,Nursing Home,Y,-63.453285,45.435409,36,nursing_respite,0,0
+DBCT,Debert Court Continuing Care Residence,Debert,B0M 1G0,Northern,Nursing Home,Y,-63.453285,45.435409,36,residential,1,0
+DBCT,Debert Court Continuing Care Residence,Debert,B0M 1G0,Northern,Nursing Home,Y,-63.453285,45.435409,36,residential_respite,0,0
+DBGH,Dutch Brook Guest Home,Dutch Brook,B1L 1G1,Eastern,Residential Care Facility,Y,-60.201403,46.051639,3,nursing,1,0
+DBGH,Dutch Brook Guest Home,Dutch Brook,B1L 1G1,Eastern,Residential Care Facility,Y,-60.201403,46.051639,3,nursing_respite,0,0
+DBGH,Dutch Brook Guest Home,Dutch Brook,B1L 1G1,Eastern,Residential Care Facility,Y,-60.201403,46.051639,3,residential,1,3
+DBGH,Dutch Brook Guest Home,Dutch Brook,B1L 1G1,Eastern,Residential Care Facility,Y,-60.201403,46.051639,3,residential_respite,0,0
+DKLG,Dykeland Lodge,Windsor,B0N 2T0,Central,Nursing Home,Y,-64.126986,44.979764,111,nursing,1,111
+DKLG,Dykeland Lodge,Windsor,B0N 2T0,Central,Nursing Home,Y,-64.126986,44.979764,111,nursing_respite,0,0
+DKLG,Dykeland Lodge,Windsor,B0N 2T0,Central,Nursing Home,Y,-64.126986,44.979764,111,residential,1,0
+DKLG,Dykeland Lodge,Windsor,B0N 2T0,Central,Nursing Home,Y,-64.126986,44.979764,111,residential_respite,0,0
+DPHC,De Paul Hall (Caritas),Halifax,B3M 0C9,Central,Nursing Home,Y,-63.649664,44.669572,46,nursing,1,46
+DPHC,De Paul Hall (Caritas),Halifax,B3M 0C9,Central,Nursing Home,Y,-63.649664,44.669572,46,nursing_respite,0,1
+DPHC,De Paul Hall (Caritas),Halifax,B3M 0C9,Central,Nursing Home,Y,-63.649664,44.669572,46,residential,1,0
+DPHC,De Paul Hall (Caritas),Halifax,B3M 0C9,Central,Nursing Home,Y,-63.649664,44.669572,46,residential_respite,0,0
+ECML,East Cumberland Lodge,Pugwash,B0K 1L0,Northern,Nursing Home,Y,-63.65757,45.856526,73,nursing,1,73
+ECML,East Cumberland Lodge,Pugwash,B0K 1L0,Northern,Nursing Home,Y,-63.65757,45.856526,73,nursing_respite,0,1
+ECML,East Cumberland Lodge,Pugwash,B0K 1L0,Northern,Nursing Home,Y,-63.65757,45.856526,73,residential,1,0
+ECML,East Cumberland Lodge,Pugwash,B0K 1L0,Northern,Nursing Home,Y,-63.65757,45.856526,73,residential_respite,0,0
+EHSC,Evergreen Home for Special Care,Kentville,B4N 3V7,Western,Nursing Home,Y,-64.540058,45.076292,116,nursing,1,116
+EHSC,Evergreen Home for Special Care,Kentville,B4N 3V7,Western,Nursing Home,Y,-64.540058,45.076292,116,nursing_respite,0,3
+EHSC,Evergreen Home for Special Care,Kentville,B4N 3V7,Western,Nursing Home,Y,-64.540058,45.076292,116,residential,1,0
+EHSC,Evergreen Home for Special Care,Kentville,B4N 3V7,Western,Nursing Home,Y,-64.540058,45.076292,116,residential_respite,0,0
+EKCT,Elk Court,Brookfield,B0N 1C0,Northern,Nursing Home,Y,-63.277128,45.257989,35,nursing,1,35
+EKCT,Elk Court,Brookfield,B0N 1C0,Northern,Nursing Home,Y,-63.277128,45.257989,35,nursing_respite,0,1
+EKCT,Elk Court,Brookfield,B0N 1C0,Northern,Nursing Home,Y,-63.277128,45.257989,35,residential,1,0
+EKCT,Elk Court,Brookfield,B0N 1C0,Northern,Nursing Home,Y,-63.277128,45.257989,35,residential_respite,0,0
+FMVM,Fishermen's Memorial Hospital,Lunenburg,B0J 2C0,Western,Nursing Home,Y,-64.326952,44.382276,16,nursing,1,16
+FMVM,Fishermen's Memorial Hospital,Lunenburg,B0J 2C0,Western,Nursing Home,Y,-64.326952,44.382276,16,nursing_respite,0,0
+FMVM,Fishermen's Memorial Hospital,Lunenburg,B0J 2C0,Western,Nursing Home,Y,-64.326952,44.382276,16,residential,1,0
+FMVM,Fishermen's Memorial Hospital,Lunenburg,B0J 2C0,Western,Nursing Home,Y,-64.326952,44.382276,16,residential_respite,0,0
+FYCL,Foyer Celeste,Meteghan,B0W 2J0,Western,Residential Care Facility,Y,-66.169521,44.183646,19,nursing,1,0
+FYCL,Foyer Celeste,Meteghan,B0W 2J0,Western,Residential Care Facility,Y,-66.169521,44.183646,19,nursing_respite,0,0
+FYCL,Foyer Celeste,Meteghan,B0W 2J0,Western,Residential Care Facility,Y,-66.169521,44.183646,19,residential,1,19
+FYCL,Foyer Celeste,Meteghan,B0W 2J0,Western,Residential Care Facility,Y,-66.169521,44.183646,19,residential_respite,0,0
+FYPF,Foyer Pére Fiset,Cheticamp,B0E 1H0,Eastern,Nursing Home and Residential Care Facility,Y,-61.015741,46.623439,70,nursing,1,60
+FYPF,Foyer Pére Fiset,Cheticamp,B0E 1H0,Eastern,Nursing Home and Residential Care Facility,Y,-61.015741,46.623439,70,nursing_respite,0,1
+FYPF,Foyer Pére Fiset,Cheticamp,B0E 1H0,Eastern,Nursing Home and Residential Care Facility,Y,-61.015741,46.623439,70,residential,1,10
+FYPF,Foyer Pére Fiset,Cheticamp,B0E 1H0,Eastern,Nursing Home and Residential Care Facility,Y,-61.015741,46.623439,70,residential_respite,0,0
+GBHC,Glace Bay Health Care Facility,Glace Bay,B1A 1W5,Eastern,Nursing Home,Y,-59.938573,46.183212,18,nursing,1,18
+GBHC,Glace Bay Health Care Facility,Glace Bay,B1A 1W5,Eastern,Nursing Home,Y,-59.938573,46.183212,18,nursing_respite,0,0
+GBHC,Glace Bay Health Care Facility,Glace Bay,B1A 1W5,Eastern,Nursing Home,Y,-59.938573,46.183212,18,residential,1,0
+GBHC,Glace Bay Health Care Facility,Glace Bay,B1A 1W5,Eastern,Nursing Home,Y,-59.938573,46.183212,18,residential_respite,0,0
+GBLG,Gables Lodge,Amherst,B4H 3C9,Northern,Nursing Home,Y,-64.189519,45.824933,96,nursing,1,96
+GBLG,Gables Lodge,Amherst,B4H 3C9,Northern,Nursing Home,Y,-64.189519,45.824933,96,nursing_respite,0,1
+GBLG,Gables Lodge,Amherst,B4H 3C9,Northern,Nursing Home,Y,-64.189519,45.824933,96,residential,1,0
+GBLG,Gables Lodge,Amherst,B4H 3C9,Northern,Nursing Home,Y,-64.189519,45.824933,96,residential_respite,0,0
+GHVM,Glen Haven Manor,New Glasgow,B2H 5E9,Northern,Nursing Home,Y,-62.643936,45.574935,199,nursing,1,199
+GHVM,Glen Haven Manor,New Glasgow,B2H 5E9,Northern,Nursing Home,Y,-62.643936,45.574935,199,nursing_respite,0,1
+GHVM,Glen Haven Manor,New Glasgow,B2H 5E9,Northern,Nursing Home,Y,-62.643936,45.574935,199,residential,1,0
+GHVM,Glen Haven Manor,New Glasgow,B2H 5E9,Northern,Nursing Home,Y,-62.643936,45.574935,199,residential_respite,0,0
+GRHV,Grace Haven,Paradise,B0S 1C0,Western,Residential Care Facility,Y,-65.24009,44.859623,20,nursing,1,0
+GRHV,Grace Haven,Paradise,B0S 1C0,Western,Residential Care Facility,Y,-65.24009,44.859623,20,nursing_respite,0,0
+GRHV,Grace Haven,Paradise,B0S 1C0,Western,Residential Care Facility,Y,-65.24009,44.859623,20,residential,1,20
+GRHV,Grace Haven,Paradise,B0S 1C0,Western,Residential Care Facility,Y,-65.24009,44.859623,20,residential_respite,0,0
+GVMC,Grand View Manor Continuing Care Community,Berwick,B0P 1E0,Western,Nursing Home,Y,-64.728171,45.036005,142,nursing,1,142
+GVMC,Grand View Manor Continuing Care Community,Berwick,B0P 1E0,Western,Nursing Home,Y,-64.728171,45.036005,142,nursing_respite,0,0
+GVMC,Grand View Manor Continuing Care Community,Berwick,B0P 1E0,Western,Nursing Home,Y,-64.728171,45.036005,142,residential,1,0
+GVMC,Grand View Manor Continuing Care Community,Berwick,B0P 1E0,Western,Nursing Home,Y,-64.728171,45.036005,142,residential_respite,0,0
+HBPL,Mayflower Meadows,Windsor,B0N 2T0,Central,Nursing Home,Y,-64.120374,44.986384,31,nursing,1,31
+HBPL,Mayflower Meadows,Windsor,B0N 2T0,Central,Nursing Home,Y,-64.120374,44.986384,31,nursing_respite,0,1
+HBPL,Mayflower Meadows,Windsor,B0N 2T0,Central,Nursing Home,Y,-64.120374,44.986384,31,residential,1,0
+HBPL,Mayflower Meadows,Windsor,B0N 2T0,Central,Nursing Home,Y,-64.120374,44.986384,31,residential_respite,0,0
+HBVH,Harbour View Haven,Lunenburg,B0J 2C0,Western,Nursing Home,Y,-64.302473,44.377074,143,nursing,1,143
+HBVH,Harbour View Haven,Lunenburg,B0J 2C0,Western,Nursing Home,Y,-64.302473,44.377074,143,nursing_respite,0,1
+HBVH,Harbour View Haven,Lunenburg,B0J 2C0,Western,Nursing Home,Y,-64.302473,44.377074,143,residential,1,0
+HBVH,Harbour View Haven,Lunenburg,B0J 2C0,Western,Nursing Home,Y,-64.302473,44.377074,143,residential_respite,0,0
+HCNG,High-Crest New Glasgow,New Glasgow,B2H 4P5,Northern,Residential Care Facility,Y,-62.641853,45.58563,29,nursing,1,0
+HCNG,High-Crest New Glasgow,New Glasgow,B2H 4P5,Northern,Residential Care Facility,Y,-62.641853,45.58563,29,nursing_respite,0,0
+HCNG,High-Crest New Glasgow,New Glasgow,B2H 4P5,Northern,Residential Care Facility,Y,-62.641853,45.58563,29,residential,1,29
+HCNG,High-Crest New Glasgow,New Glasgow,B2H 4P5,Northern,Residential Care Facility,Y,-62.641853,45.58563,29,residential_respite,0,0
+HCPL,High-Crest Place,New Glasgow,B2H 2R3,Northern,Residential Care Facility,Y,-62.645145,45.585717,27,nursing,1,0
+HCPL,High-Crest Place,New Glasgow,B2H 2R3,Northern,Residential Care Facility,Y,-62.645145,45.585717,27,nursing_respite,0,0
+HCPL,High-Crest Place,New Glasgow,B2H 2R3,Northern,Residential Care Facility,Y,-62.645145,45.585717,27,residential,1,27
+HCPL,High-Crest Place,New Glasgow,B2H 2R3,Northern,Residential Care Facility,Y,-62.645145,45.585717,27,residential_respite,0,0
+HCRC,Highland Crest Residential Care Facility,Antigonish,B2G 1Z3,Eastern,Residential Care Facility,Y,-61.990472,45.617684,35,nursing,1,0
+HCRC,Highland Crest Residential Care Facility,Antigonish,B2G 1Z3,Eastern,Residential Care Facility,Y,-61.990472,45.617684,35,nursing_respite,0,0
+HCRC,Highland Crest Residential Care Facility,Antigonish,B2G 1Z3,Eastern,Residential Care Facility,Y,-61.990472,45.617684,35,residential,1,35
+HCRC,Highland Crest Residential Care Facility,Antigonish,B2G 1Z3,Eastern,Residential Care Facility,Y,-61.990472,45.617684,35,residential_respite,0,0
+HCSB,High-Crest Sherbrooke,Sherbrooke,B0J 3C0,Eastern,Nursing Home,Y,-61.981123,45.140878,39,nursing,1,39
+HCSB,High-Crest Sherbrooke,Sherbrooke,B0J 3C0,Eastern,Nursing Home,Y,-61.981123,45.140878,39,nursing_respite,0,0
+HCSB,High-Crest Sherbrooke,Sherbrooke,B0J 3C0,Eastern,Nursing Home,Y,-61.981123,45.140878,39,residential,1,0
+HCSB,High-Crest Sherbrooke,Sherbrooke,B0J 3C0,Eastern,Nursing Home,Y,-61.981123,45.140878,39,residential_respite,0,0
+HCSH,High-Crest Springhill,Springhill,B0M 1X0,Northern,Nursing Home,Y,-64.049336,45.649513,75,nursing,1,75
+HCSH,High-Crest Springhill,Springhill,B0M 1X0,Northern,Nursing Home,Y,-64.049336,45.649513,75,nursing_respite,0,1
+HCSH,High-Crest Springhill,Springhill,B0M 1X0,Northern,Nursing Home,Y,-64.049336,45.649513,75,residential,1,0
+HCSH,High-Crest Springhill,Springhill,B0M 1X0,Northern,Nursing Home,Y,-64.049336,45.649513,75,residential_respite,0,0
+HLMN,Highland Manor,Neil's Harbour,B0C 1N0,Eastern,Nursing Home,Y,-60.322165,46.810967,19,nursing,1,19
+HLMN,Highland Manor,Neil's Harbour,B0C 1N0,Eastern,Nursing Home,Y,-60.322165,46.810967,19,nursing_respite,0,0
+HLMN,Highland Manor,Neil's Harbour,B0C 1N0,Eastern,Nursing Home,Y,-60.322165,46.810967,19,residential,1,0
+HLMN,Highland Manor,Neil's Harbour,B0C 1N0,Eastern,Nursing Home,Y,-60.322165,46.810967,19,residential_respite,0,0
+HLVA,Hillsview Acres,Middlefield,B0T 1E0,Western,Residential Care Facility,Y,-64.863724,44.209164,29,nursing,1,0
+HLVA,Hillsview Acres,Middlefield,B0T 1E0,Western,Residential Care Facility,Y,-64.863724,44.209164,29,nursing_respite,0,0
+HLVA,Hillsview Acres,Middlefield,B0T 1E0,Western,Residential Care Facility,Y,-64.863724,44.209164,29,residential,1,29
+HLVA,Hillsview Acres,Middlefield,B0T 1E0,Western,Residential Care Facility,Y,-64.863724,44.209164,29,residential_respite,0,0
+HOTV,Heart of the Valley Long Term Care Centre,Middleton,B0S 1P0,Western,Nursing Home,Y,-65.066728,44.950569,49,nursing,1,49
+HOTV,Heart of the Valley Long Term Care Centre,Middleton,B0S 1P0,Western,Nursing Home,Y,-65.066728,44.950569,49,nursing_respite,0,1
+HOTV,Heart of the Valley Long Term Care Centre,Middleton,B0S 1P0,Western,Nursing Home,Y,-65.066728,44.950569,49,residential,1,0
+HOTV,Heart of the Valley Long Term Care Centre,Middleton,B0S 1P0,Western,Nursing Home,Y,-65.066728,44.950569,49,residential_respite,0,0
+HPSC,Hillside Pines Home For Special Care,Bridgewater,B4V 3K6,Western,Nursing Home,Y,-64.520648,44.368871,50,nursing,1,50
+HPSC,Hillside Pines Home For Special Care,Bridgewater,B4V 3K6,Western,Nursing Home,Y,-64.520648,44.368871,50,nursing_respite,0,0
+HPSC,Hillside Pines Home For Special Care,Bridgewater,B4V 3K6,Western,Nursing Home,Y,-64.520648,44.368871,50,residential,1,0
+HPSC,Hillside Pines Home For Special Care,Bridgewater,B4V 3K6,Western,Nursing Home,Y,-64.520648,44.368871,50,residential_respite,0,0
+HSEC,Harbourstone Enhanced Care,Sydney River,B1S 3V7,Eastern,Nursing Home,Y,-60.213818,46.10704,270,nursing,1,270
+HSEC,Harbourstone Enhanced Care,Sydney River,B1S 3V7,Eastern,Nursing Home,Y,-60.213818,46.10704,270,nursing_respite,0,2
+HSEC,Harbourstone Enhanced Care,Sydney River,B1S 3V7,Eastern,Nursing Home,Y,-60.213818,46.10704,270,residential,1,0
+HSEC,Harbourstone Enhanced Care,Sydney River,B1S 3V7,Eastern,Nursing Home,Y,-60.213818,46.10704,270,residential_respite,0,0
+HVHP,Harbour View Facility,Sydney Mines,B1V 2H7,Eastern,Nursing Home,Y,-60.222207,46.234744,28,nursing,1,28
+HVHP,Harbour View Facility,Sydney Mines,B1V 2H7,Eastern,Nursing Home,Y,-60.222207,46.234744,28,nursing_respite,0,0
+HVHP,Harbour View Facility,Sydney Mines,B1V 2H7,Eastern,Nursing Home,Y,-60.222207,46.234744,28,residential,1,0
+HVHP,Harbour View Facility,Sydney Mines,B1V 2H7,Eastern,Nursing Home,Y,-60.222207,46.234744,28,residential_respite,0,0
+HVLG,Harbourview Lodge Continuing Care Centre,Sheet Harbour,B0J 3B0,Central,Nursing Home,Y,-62.531867,44.920995,32,nursing,1,32
+HVLG,Harbourview Lodge Continuing Care Centre,Sheet Harbour,B0J 3B0,Central,Nursing Home,Y,-62.531867,44.920995,32,nursing_respite,0,0
+HVLG,Harbourview Lodge Continuing Care Centre,Sheet Harbour,B0J 3B0,Central,Nursing Home,Y,-62.531867,44.920995,32,residential,1,0
+HVLG,Harbourview Lodge Continuing Care Centre,Sheet Harbour,B0J 3B0,Central,Nursing Home,Y,-62.531867,44.920995,32,residential_respite,0,0
+INVM,Inverary Manor,Inverness,B0E 1N0,Eastern,Nursing Home,Y,-61.303994,46.226151,71,nursing,1,71
+INVM,Inverary Manor,Inverness,B0E 1N0,Eastern,Nursing Home,Y,-61.303994,46.226151,71,nursing_respite,0,0
+INVM,Inverary Manor,Inverness,B0E 1N0,Eastern,Nursing Home,Y,-61.303994,46.226151,71,residential,1,0
+INVM,Inverary Manor,Inverness,B0E 1N0,Eastern,Nursing Home,Y,-61.303994,46.226151,71,residential_respite,0,0
+IVMC,Ivy Meadows Continuing Care Centre,Beaverbank,B4G 1E7,Central,Nursing Home,Y,-63.710915,44.902329,36,nursing,1,36
+IVMC,Ivy Meadows Continuing Care Centre,Beaverbank,B4G 1E7,Central,Nursing Home,Y,-63.710915,44.902329,36,nursing_respite,0,0
+IVMC,Ivy Meadows Continuing Care Centre,Beaverbank,B4G 1E7,Central,Nursing Home,Y,-63.710915,44.902329,36,residential,1,0
+IVMC,Ivy Meadows Continuing Care Centre,Beaverbank,B4G 1E7,Central,Nursing Home,Y,-63.710915,44.902329,36,residential_respite,0,0
+IVTR,Ivey's Terrace Nursing Home,Trenton,B0K 1X0,Northern,Nursing Home,Y,-62.631414,45.623116,36,nursing,1,36
+IVTR,Ivey's Terrace Nursing Home,Trenton,B0K 1X0,Northern,Nursing Home,Y,-62.631414,45.623116,36,nursing_respite,0,0
+IVTR,Ivey's Terrace Nursing Home,Trenton,B0K 1X0,Northern,Nursing Home,Y,-62.631414,45.623116,36,residential,1,0
+IVTR,Ivey's Terrace Nursing Home,Trenton,B0K 1X0,Northern,Nursing Home,Y,-62.631414,45.623116,36,residential_respite,0,0
+KKNU,Kiknu,Eskasoni 3,B1T 1J8,Eastern,Nursing Home,Y,-60.662674,45.919041,48,nursing,1,48
+KKNU,Kiknu,Eskasoni 3,B1T 1J8,Eastern,Nursing Home,Y,-60.662674,45.919041,48,nursing_respite,0,0
+KKNU,Kiknu,Eskasoni 3,B1T 1J8,Eastern,Nursing Home,Y,-60.662674,45.919041,48,residential,1,0
+KKNU,Kiknu,Eskasoni 3,B1T 1J8,Eastern,Nursing Home,Y,-60.662674,45.919041,48,residential_respite,0,0
+KLPL,Karlaine Place,Bible Hill,B2N 2S3,Northern,Residential Care Facility,Y,-63.259793,45.375542,8,nursing,1,0
+KLPL,Karlaine Place,Bible Hill,B2N 2S3,Northern,Residential Care Facility,Y,-63.259793,45.375542,8,nursing_respite,0,0
+KLPL,Karlaine Place,Bible Hill,B2N 2S3,Northern,Residential Care Facility,Y,-63.259793,45.375542,8,residential,1,8
+KLPL,Karlaine Place,Bible Hill,B2N 2S3,Northern,Residential Care Facility,Y,-63.259793,45.375542,8,residential_respite,0,0
+LDNH,London Hall,Bedford,B4B 2E3,Central,Nursing Home,Y,-63.707285,44.707766,20,nursing,1,20
+LDNH,London Hall,Bedford,B4B 2E3,Central,Nursing Home,Y,-63.707285,44.707766,20,nursing_respite,0,0
+LDNH,London Hall,Bedford,B4B 2E3,Central,Nursing Home,Y,-63.707285,44.707766,20,residential,1,0
+LDNH,London Hall,Bedford,B4B 2E3,Central,Nursing Home,Y,-63.707285,44.707766,20,residential_respite,0,0
+LNRH,Lohnes Rest Homes,Barss Corner,B0R 1A0,Western,Residential Care Facility,Y,-64.644259,44.584283,8,nursing,1,0
+LNRH,Lohnes Rest Homes,Barss Corner,B0R 1A0,Western,Residential Care Facility,Y,-64.644259,44.584283,8,nursing_respite,0,0
+LNRH,Lohnes Rest Homes,Barss Corner,B0R 1A0,Western,Residential Care Facility,Y,-64.644259,44.584283,8,residential,1,8
+LNRH,Lohnes Rest Homes,Barss Corner,B0R 1A0,Western,Residential Care Facility,Y,-64.644259,44.584283,8,residential_respite,0,0
+MAAW,Mary's Abide-A-While Home,Shelburne,B0T 1W0,Western,Residential Care Facility,Y,-65.324707,43.765688,14,nursing,1,0
+MAAW,Mary's Abide-A-While Home,Shelburne,B0T 1W0,Western,Residential Care Facility,Y,-65.324707,43.765688,14,nursing_respite,0,0
+MAAW,Mary's Abide-A-While Home,Shelburne,B0T 1W0,Western,Residential Care Facility,Y,-65.324707,43.765688,14,residential,1,14
+MAAW,Mary's Abide-A-While Home,Shelburne,B0T 1W0,Western,Residential Care Facility,Y,-65.324707,43.765688,14,residential_respite,0,0
+MBNH,Mahone Bay Nursing Home,Mahone Bay,B0J 2E0,Western,Nursing Home,Y,-64.395441,44.448524,95,nursing,1,95
+MBNH,Mahone Bay Nursing Home,Mahone Bay,B0J 2E0,Western,Nursing Home,Y,-64.395441,44.448524,95,nursing_respite,0,1
+MBNH,Mahone Bay Nursing Home,Mahone Bay,B0J 2E0,Western,Nursing Home,Y,-64.395441,44.448524,95,residential,1,0
+MBNH,Mahone Bay Nursing Home,Mahone Bay,B0J 2E0,Western,Nursing Home,Y,-64.395441,44.448524,95,residential_respite,0,0
+MCBN,My Cape Breton Home for Seniors (North Sydney),North Sydney,B2A 2C8,Eastern,Residential Care Facility,Y,-60.269414,46.204772,16,nursing,1,0
+MCBN,My Cape Breton Home for Seniors (North Sydney),North Sydney,B2A 2C8,Eastern,Residential Care Facility,Y,-60.269414,46.204772,16,nursing_respite,0,0
+MCBN,My Cape Breton Home for Seniors (North Sydney),North Sydney,B2A 2C8,Eastern,Residential Care Facility,Y,-60.269414,46.204772,16,residential,1,16
+MCBN,My Cape Breton Home for Seniors (North Sydney),North Sydney,B2A 2C8,Eastern,Residential Care Facility,Y,-60.269414,46.204772,16,residential_respite,0,0
+MCBS,My Cape Breton Home for Seniors (Sydney),Westmount,B1R 0A9,Eastern,Residential Care Facility,Y,-60.221439,46.118362,16,nursing,1,0
+MCBS,My Cape Breton Home for Seniors (Sydney),Westmount,B1R 0A9,Eastern,Residential Care Facility,Y,-60.221439,46.118362,16,nursing_respite,0,0
+MCBS,My Cape Breton Home for Seniors (Sydney),Westmount,B1R 0A9,Eastern,Residential Care Facility,Y,-60.221439,46.118362,16,residential,1,16
+MCBS,My Cape Breton Home for Seniors (Sydney),Westmount,B1R 0A9,Eastern,Residential Care Facility,Y,-60.221439,46.118362,16,residential_respite,0,0
+MDBV,Musquodoboit Valley Home For Special Care,Middle Musquodoboit,B0N 1X0,Central,Nursing Home,Y,-63.139962,45.039974,29,nursing,1,29
+MDBV,Musquodoboit Valley Home For Special Care,Middle Musquodoboit,B0N 1X0,Central,Nursing Home,Y,-63.139962,45.039974,29,nursing_respite,0,0
+MDBV,Musquodoboit Valley Home For Special Care,Middle Musquodoboit,B0N 1X0,Central,Nursing Home,Y,-63.139962,45.039974,29,residential,1,0
+MDBV,Musquodoboit Valley Home For Special Care,Middle Musquodoboit,B0N 1X0,Central,Nursing Home,Y,-63.139962,45.039974,29,residential_respite,0,0
+MFHV,Milford Haven Home for Special Care,Guysborough,B0H 1N0,Eastern,Nursing Home,Y,-61.507094,45.402112,50,nursing,1,50
+MFHV,Milford Haven Home for Special Care,Guysborough,B0H 1N0,Eastern,Nursing Home,Y,-61.507094,45.402112,50,nursing_respite,0,1
+MFHV,Milford Haven Home for Special Care,Guysborough,B0H 1N0,Eastern,Nursing Home,Y,-61.507094,45.402112,50,residential,1,0
+MFHV,Milford Haven Home for Special Care,Guysborough,B0H 1N0,Eastern,Nursing Home,Y,-61.507094,45.402112,50,residential_respite,0,0
+MHMN,Maple Hill Manor,New Waterford,B1H 3Z5,Eastern,Nursing Home and Residential Care Facility,Y,-60.085433,46.240712,63,nursing,1,50
+MHMN,Maple Hill Manor,New Waterford,B1H 3Z5,Eastern,Nursing Home and Residential Care Facility,Y,-60.085433,46.240712,63,nursing_respite,0,0
+MHMN,Maple Hill Manor,New Waterford,B1H 3Z5,Eastern,Nursing Home and Residential Care Facility,Y,-60.085433,46.240712,63,residential,1,13
+MHMN,Maple Hill Manor,New Waterford,B1H 3Z5,Eastern,Nursing Home and Residential Care Facility,Y,-60.085433,46.240712,63,residential_respite,0,0
+MNCC,The Magnolia,Enfield,B2T 1E1,Northern,Nursing Home,Y,-63.527477,44.951327,71,nursing,1,71
+MNCC,The Magnolia,Enfield,B2T 1E1,Northern,Nursing Home,Y,-63.527477,44.951327,71,nursing_respite,0,0
+MNCC,The Magnolia,Enfield,B2T 1E1,Northern,Nursing Home,Y,-63.527477,44.951327,71,residential,1,0
+MNCC,The Magnolia,Enfield,B2T 1E1,Northern,Nursing Home,Y,-63.527477,44.951327,71,residential_respite,0,0
+MNMM,Miners' Memorial Manor,Sydney Mines,B1V 3B9,Eastern,Nursing Home and Residential Care Facility,Y,-60.218297,46.239598,51,nursing,1,38
+MNMM,Miners' Memorial Manor,Sydney Mines,B1V 3B9,Eastern,Nursing Home and Residential Care Facility,Y,-60.218297,46.239598,51,nursing_respite,0,0
+MNMM,Miners' Memorial Manor,Sydney Mines,B1V 3B9,Eastern,Nursing Home and Residential Care Facility,Y,-60.218297,46.239598,51,residential,1,13
+MNMM,Miners' Memorial Manor,Sydney Mines,B1V 3B9,Eastern,Nursing Home and Residential Care Facility,Y,-60.218297,46.239598,51,residential_respite,0,0
+MODH,Moody Hall,Halifax,B3M 0R8,Central,Nursing Home,Y,-63.67977,44.697879,144,nursing,1,144
+MODH,Moody Hall,Halifax,B3M 0R8,Central,Nursing Home,Y,-63.67977,44.697879,144,nursing_respite,0,0
+MODH,Moody Hall,Halifax,B3M 0R8,Central,Nursing Home,Y,-63.67977,44.697879,144,residential,1,0
+MODH,Moody Hall,Halifax,B3M 0R8,Central,Nursing Home,Y,-63.67977,44.697879,144,residential_respite,0,0
+MOFH,Maritime Odd Fellows' Home,Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.72262,45.673232,46,nursing,1,46
+MOFH,Maritime Odd Fellows' Home,Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.72262,45.673232,46,nursing_respite,0,1
+MOFH,Maritime Odd Fellows' Home,Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.72262,45.673232,46,residential,1,0
+MOFH,Maritime Odd Fellows' Home,Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.72262,45.673232,46,residential_respite,0,0
+MRNH,The Mira Nursing Home,Truro,B2N 7B1,Northern,Nursing Home,Y,-63.274797,45.348082,89,nursing,1,89
+MRNH,The Mira Nursing Home,Truro,B2N 7B1,Northern,Nursing Home,Y,-63.274797,45.348082,89,nursing_respite,0,1
+MRNH,The Mira Nursing Home,Truro,B2N 7B1,Northern,Nursing Home,Y,-63.274797,45.348082,89,residential,1,0
+MRNH,The Mira Nursing Home,Truro,B2N 7B1,Northern,Nursing Home,Y,-63.274797,45.348082,89,residential_respite,0,0
+MSEC,Maplestone Enhanced Care,Halifax,B3M 1B7,Central,Nursing Home,Y,-63.649208,44.653743,86,nursing,1,86
+MSEC,Maplestone Enhanced Care,Halifax,B3M 1B7,Central,Nursing Home,Y,-63.649208,44.653743,86,nursing_respite,0,1
+MSEC,Maplestone Enhanced Care,Halifax,B3M 1B7,Central,Nursing Home,Y,-63.649208,44.653743,86,residential,1,0
+MSEC,Maplestone Enhanced Care,Halifax,B3M 1B7,Central,Nursing Home,Y,-63.649208,44.653743,86,residential_respite,0,0
+MTLL,Mountain Lea Lodge,Bridgetown North,B0S 1C0,Western,Nursing Home,Y,-65.292608,44.848887,107,nursing,1,107
+MTLL,Mountain Lea Lodge,Bridgetown North,B0S 1C0,Western,Nursing Home,Y,-65.292608,44.848887,107,nursing_respite,0,0
+MTLL,Mountain Lea Lodge,Bridgetown North,B0S 1C0,Western,Nursing Home,Y,-65.292608,44.848887,107,residential,1,0
+MTLL,Mountain Lea Lodge,Bridgetown North,B0S 1C0,Western,Nursing Home,Y,-65.292608,44.848887,107,residential_respite,0,0
+MTRH,Mitchell's Rest Home,Upper Nine Mile River,B2S 3A6,Northern,Residential Care Facility,Y,-63.646604,45.081881,3,nursing,1,0
+MTRH,Mitchell's Rest Home,Upper Nine Mile River,B2S 3A6,Northern,Residential Care Facility,Y,-63.646604,45.081881,3,nursing_respite,0,0
+MTRH,Mitchell's Rest Home,Upper Nine Mile River,B2S 3A6,Northern,Residential Care Facility,Y,-63.646604,45.081881,3,residential,1,3
+MTRH,Mitchell's Rest Home,Upper Nine Mile River,B2S 3A6,Northern,Residential Care Facility,Y,-63.646604,45.081881,3,residential_respite,0,0
+MVGD,Melville Gardens,Halifax,B3P 2S9,Central,Nursing Home and Residential Care Facility,Y,-63.614637,44.632004,91,nursing,1,61
+MVGD,Melville Gardens,Halifax,B3P 2S9,Central,Nursing Home and Residential Care Facility,Y,-63.614637,44.632004,91,nursing_respite,0,0
+MVGD,Melville Gardens,Halifax,B3P 2S9,Central,Nursing Home and Residential Care Facility,Y,-63.614637,44.632004,91,residential,1,30
+MVGD,Melville Gardens,Halifax,B3P 2S9,Central,Nursing Home and Residential Care Facility,Y,-63.614637,44.632004,91,residential_respite,0,0
+MVLG,Melville Lodge,Halifax,B3P 2R3,Central,Nursing Home,Y,-63.615251,44.629561,123,nursing,1,123
+MVLG,Melville Lodge,Halifax,B3P 2R3,Central,Nursing Home,Y,-63.615251,44.629561,123,nursing_respite,0,1
+MVLG,Melville Lodge,Halifax,B3P 2R3,Central,Nursing Home,Y,-63.615251,44.629561,123,residential,1,0
+MVLG,Melville Lodge,Halifax,B3P 2R3,Central,Nursing Home,Y,-63.615251,44.629561,123,residential_respite,0,0
+MWMN,Maplewood Manor,Tatamagouche,B0K 1V0,Northern,Residential Care Facility,Y,-63.294136,45.710399,6,nursing,1,0
+MWMN,Maplewood Manor,Tatamagouche,B0K 1V0,Northern,Residential Care Facility,Y,-63.294136,45.710399,6,nursing_respite,0,0
+MWMN,Maplewood Manor,Tatamagouche,B0K 1V0,Northern,Residential Care Facility,Y,-63.294136,45.710399,6,residential,1,6
+MWMN,Maplewood Manor,Tatamagouche,B0K 1V0,Northern,Residential Care Facility,Y,-63.294136,45.710399,6,residential_respite,0,0
+NCGH,Northside Community Guest Home,North Sydney,B2A 1A2,Eastern,Nursing Home,Y,-60.26263,46.195008,144,nursing,1,144
+NCGH,Northside Community Guest Home,North Sydney,B2A 1A2,Eastern,Nursing Home,Y,-60.26263,46.195008,144,nursing_respite,0,0
+NCGH,Northside Community Guest Home,North Sydney,B2A 1A2,Eastern,Nursing Home,Y,-60.26263,46.195008,144,residential,1,0
+NCGH,Northside Community Guest Home,North Sydney,B2A 1A2,Eastern,Nursing Home,Y,-60.26263,46.195008,144,residential_respite,0,0
+NGHE,Northside General Hospital (4 East),North Sydney,B2A 1E3,Eastern,Nursing Home,Y,-60.235551,46.218208,11,nursing,1,11
+NGHE,Northside General Hospital (4 East),North Sydney,B2A 1E3,Eastern,Nursing Home,Y,-60.235551,46.218208,11,nursing_respite,0,0
+NGHE,Northside General Hospital (4 East),North Sydney,B2A 1E3,Eastern,Nursing Home,Y,-60.235551,46.218208,11,residential,1,0
+NGHE,Northside General Hospital (4 East),North Sydney,B2A 1E3,Eastern,Nursing Home,Y,-60.235551,46.218208,11,residential_respite,0,0
+NHCC,Northumberland Hall Continuing Care Residence,Amherst,B4H 3W6,Northern,Nursing Home,Y,-64.189636,45.829351,36,nursing,1,36
+NHCC,Northumberland Hall Continuing Care Residence,Amherst,B4H 3W6,Northern,Nursing Home,Y,-64.189636,45.829351,36,nursing_respite,0,0
+NHCC,Northumberland Hall Continuing Care Residence,Amherst,B4H 3W6,Northern,Nursing Home,Y,-64.189636,45.829351,36,residential,1,0
+NHCC,Northumberland Hall Continuing Care Residence,Amherst,B4H 3W6,Northern,Nursing Home,Y,-64.189636,45.829351,36,residential_respite,0,0
+NHSC,Nakile Home for Special Care,Glenwood,B0W 1W0,Western,Nursing Home,Y,-65.861737,43.791229,47,nursing,1,47
+NHSC,Nakile Home for Special Care,Glenwood,B0W 1W0,Western,Nursing Home,Y,-65.861737,43.791229,47,nursing_respite,0,1
+NHSC,Nakile Home for Special Care,Glenwood,B0W 1W0,Western,Nursing Home,Y,-65.861737,43.791229,47,residential,1,0
+NHSC,Nakile Home for Special Care,Glenwood,B0W 1W0,Western,Nursing Home,Y,-65.861737,43.791229,47,residential_respite,0,0
+NQNH,North Queens Nursing Home,Caledonia,B0T 1B0,Western,Nursing Home,Y,-65.014813,44.376464,43,nursing,1,43
+NQNH,North Queens Nursing Home,Caledonia,B0T 1B0,Western,Nursing Home,Y,-65.014813,44.376464,43,nursing_respite,0,1
+NQNH,North Queens Nursing Home,Caledonia,B0T 1B0,Western,Nursing Home,Y,-65.014813,44.376464,43,residential,1,0
+NQNH,North Queens Nursing Home,Caledonia,B0T 1B0,Western,Nursing Home,Y,-65.014813,44.376464,43,residential_respite,0,0
+NSHM,Northumberland Veterans Unit (Sutherland Harris Memorial Hospital),Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.727032,45.676515,17,nursing,1,17
+NSHM,Northumberland Veterans Unit (Sutherland Harris Memorial Hospital),Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.727032,45.676515,17,nursing_respite,0,0
+NSHM,Northumberland Veterans Unit (Sutherland Harris Memorial Hospital),Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.727032,45.676515,17,residential,1,0
+NSHM,Northumberland Veterans Unit (Sutherland Harris Memorial Hospital),Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.727032,45.676515,17,residential_respite,0,0
+NVSC,New Vision Special Care Homes,South Berwick,B0P 1E0,Western,Residential Care Facility,Y,-64.723272,45.03433,21,nursing,1,0
+NVSC,New Vision Special Care Homes,South Berwick,B0P 1E0,Western,Residential Care Facility,Y,-64.723272,45.03433,21,nursing_respite,0,0
+NVSC,New Vision Special Care Homes,South Berwick,B0P 1E0,Western,Residential Care Facility,Y,-64.723272,45.03433,21,residential,1,21
+NVSC,New Vision Special Care Homes,South Berwick,B0P 1E0,Western,Residential Care Facility,Y,-64.723272,45.03433,21,residential_respite,0,0
+NWBI,Northwood Bedford Incorporated - Christina & Hedley G. Ivany Place,Bedford,B4B 0G7,Central,Nursing Home,Y,-63.706266,44.723717,156,nursing,1,156
+NWBI,Northwood Bedford Incorporated - Christina & Hedley G. Ivany Place,Bedford,B4B 0G7,Central,Nursing Home,Y,-63.706266,44.723717,156,nursing_respite,0,0
+NWBI,Northwood Bedford Incorporated - Christina & Hedley G. Ivany Place,Bedford,B4B 0G7,Central,Nursing Home,Y,-63.706266,44.723717,156,residential,1,0
+NWBI,Northwood Bedford Incorporated - Christina & Hedley G. Ivany Place,Bedford,B4B 0G7,Central,Nursing Home,Y,-63.706266,44.723717,156,residential_respite,0,0
+NWHX,Northwood Incorporated,Halifax,B3K 3S5,Central,Nursing Home and Residential Care Facility,Y,-63.592047,44.657181,385,nursing,1,345
+NWHX,Northwood Incorporated,Halifax,B3K 3S5,Central,Nursing Home and Residential Care Facility,Y,-63.592047,44.657181,385,nursing_respite,0,0
+NWHX,Northwood Incorporated,Halifax,B3K 3S5,Central,Nursing Home and Residential Care Facility,Y,-63.592047,44.657181,385,residential,1,40
+NWHX,Northwood Incorporated,Halifax,B3K 3S5,Central,Nursing Home and Residential Care Facility,Y,-63.592047,44.657181,385,residential_respite,0,0
+OLGE,Olson's Glo Estate Home For Special Care,Yarmouth,B5A 4J7,Western,Residential Care Facility,Y,-66.127606,43.848281,8,nursing,1,0
+OLGE,Olson's Glo Estate Home For Special Care,Yarmouth,B5A 4J7,Western,Residential Care Facility,Y,-66.127606,43.848281,8,nursing_respite,0,0
+OLGE,Olson's Glo Estate Home For Special Care,Yarmouth,B5A 4J7,Western,Residential Care Facility,Y,-66.127606,43.848281,8,residential,1,8
+OLGE,Olson's Glo Estate Home For Special Care,Yarmouth,B5A 4J7,Western,Residential Care Facility,Y,-66.127606,43.848281,8,residential_respite,0,0
+OPRH,Opal Ridge Hall,Dartmouth,B2Y 0H9,Central,Nursing Home,Y,-63.540591,44.673421,144,nursing,1,144
+OPRH,Opal Ridge Hall,Dartmouth,B2Y 0H9,Central,Nursing Home,Y,-63.540591,44.673421,144,nursing_respite,0,0
+OPRH,Opal Ridge Hall,Dartmouth,B2Y 0H9,Central,Nursing Home,Y,-63.540591,44.673421,144,residential,1,0
+OPRH,Opal Ridge Hall,Dartmouth,B2Y 0H9,Central,Nursing Home,Y,-63.540591,44.673421,144,residential_respite,0,0
+ORCT,Orchard Court Continuing Care Residence,Kentville,B4N 1G8,Western,Nursing Home,Y,-64.503172,45.079061,62,nursing,1,62
+ORCT,Orchard Court Continuing Care Residence,Kentville,B4N 1G8,Western,Nursing Home,Y,-64.503172,45.079061,62,nursing_respite,0,0
+ORCT,Orchard Court Continuing Care Residence,Kentville,B4N 1G8,Western,Nursing Home,Y,-64.503172,45.079061,62,residential,1,0
+ORCT,Orchard Court Continuing Care Residence,Kentville,B4N 1G8,Western,Nursing Home,Y,-64.503172,45.079061,62,residential_respite,0,0
+OVMN,Ocean View Manor,Eastern Passage,B3G 1J3,Central,Nursing Home,Y,-63.469948,44.606621,170,nursing,1,170
+OVMN,Ocean View Manor,Eastern Passage,B3G 1J3,Central,Nursing Home,Y,-63.469948,44.606621,170,nursing_respite,0,1
+OVMN,Ocean View Manor,Eastern Passage,B3G 1J3,Central,Nursing Home,Y,-63.469948,44.606621,170,residential,1,0
+OVMN,Ocean View Manor,Eastern Passage,B3G 1J3,Central,Nursing Home,Y,-63.469948,44.606621,170,residential_respite,0,0
+OWTR,Oakwood Terrace,Dartmouth,B2Y 4K1,Central,Nursing Home,Y,-63.544518,44.65353,111,nursing,1,111
+OWTR,Oakwood Terrace,Dartmouth,B2Y 4K1,Central,Nursing Home,Y,-63.544518,44.65353,111,nursing_respite,0,0
+OWTR,Oakwood Terrace,Dartmouth,B2Y 4K1,Central,Nursing Home,Y,-63.544518,44.65353,111,residential,1,0
+OWTR,Oakwood Terrace,Dartmouth,B2Y 4K1,Central,Nursing Home,Y,-63.544518,44.65353,111,residential_respite,0,0
+PAMH,Mary's Court - Parkland Antigonish,Antigonish,B2G 0G5,Eastern,Nursing Home,Y,-61.979728,45.632401,25,nursing,1,25
+PAMH,Mary's Court - Parkland Antigonish,Antigonish,B2G 0G5,Eastern,Nursing Home,Y,-61.979728,45.632401,25,nursing_respite,0,0
+PAMH,Mary's Court - Parkland Antigonish,Antigonish,B2G 0G5,Eastern,Nursing Home,Y,-61.979728,45.632401,25,residential,1,0
+PAMH,Mary's Court - Parkland Antigonish,Antigonish,B2G 0G5,Eastern,Nursing Home,Y,-61.979728,45.632401,25,residential_respite,0,0
+PDMR,Pont du Marais Boarding Home,Lower West Pubnico,B0W 2C0,Western,Residential Care Facility,N,-65.801875,43.638214,21,nursing,1,0
+PDMR,Pont du Marais Boarding Home,Lower West Pubnico,B0W 2C0,Western,Residential Care Facility,N,-65.801875,43.638214,21,nursing_respite,0,0
+PDMR,Pont du Marais Boarding Home,Lower West Pubnico,B0W 2C0,Western,Residential Care Facility,N,-65.801875,43.638214,21,residential,1,21
+PDMR,Pont du Marais Boarding Home,Lower West Pubnico,B0W 2C0,Western,Residential Care Facility,N,-65.801875,43.638214,21,residential_respite,0,2
+PHKA,Precision Health - 21 Kincardine Street,Dartmouth,B2X 1H7,Central,Residential Care Facility,Y,-63.536191,44.690786,4,nursing,1,0
+PHKA,Precision Health - 21 Kincardine Street,Dartmouth,B2X 1H7,Central,Residential Care Facility,Y,-63.536191,44.690786,4,nursing_respite,0,0
+PHKA,Precision Health - 21 Kincardine Street,Dartmouth,B2X 1H7,Central,Residential Care Facility,Y,-63.536191,44.690786,4,residential,1,4
+PHKA,Precision Health - 21 Kincardine Street,Dartmouth,B2X 1H7,Central,Residential Care Facility,Y,-63.536191,44.690786,4,residential_respite,0,0
+PHKB,Precision Health - 24 Kincardine Street,Dartmouth,B2X 1H9,Central,Residential Care Facility,Y,-63.537087,44.691426,3,nursing,1,0
+PHKB,Precision Health - 24 Kincardine Street,Dartmouth,B2X 1H9,Central,Residential Care Facility,Y,-63.537087,44.691426,3,nursing_respite,0,0
+PHKB,Precision Health - 24 Kincardine Street,Dartmouth,B2X 1H9,Central,Residential Care Facility,Y,-63.537087,44.691426,3,residential,1,3
+PHKB,Precision Health - 24 Kincardine Street,Dartmouth,B2X 1H9,Central,Residential Care Facility,Y,-63.537087,44.691426,3,residential_respite,0,0
+PHNH,Port Hawkesbury Nursing Home,Port Hawkesbury,B9A 3A2,Eastern,Nursing Home and Residential Care Facility,Y,-61.353777,45.619351,65,nursing,1,59
+PHNH,Port Hawkesbury Nursing Home,Port Hawkesbury,B9A 3A2,Eastern,Nursing Home and Residential Care Facility,Y,-61.353777,45.619351,65,nursing_respite,0,1
+PHNH,Port Hawkesbury Nursing Home,Port Hawkesbury,B9A 3A2,Eastern,Nursing Home and Residential Care Facility,Y,-61.353777,45.619351,65,residential,1,6
+PHNH,Port Hawkesbury Nursing Home,Port Hawkesbury,B9A 3A2,Eastern,Nursing Home and Residential Care Facility,Y,-61.353777,45.619351,65,residential_respite,0,0
+PHRR,Precision Health - 16 Rannoch Road,Dartmouth,B2X 1J6,Central,Residential Care Facility,Y,-63.535633,44.690664,3,nursing,1,0
+PHRR,Precision Health - 16 Rannoch Road,Dartmouth,B2X 1J6,Central,Residential Care Facility,Y,-63.535633,44.690664,3,nursing_respite,0,0
+PHRR,Precision Health - 16 Rannoch Road,Dartmouth,B2X 1J6,Central,Residential Care Facility,Y,-63.535633,44.690664,3,residential,1,3
+PHRR,Precision Health - 16 Rannoch Road,Dartmouth,B2X 1J6,Central,Residential Care Facility,Y,-63.535633,44.690664,3,residential_respite,0,0
+PHWL,Precision Health - Washmill Lake Drive Apartments,Halifax,B3S 0G8,Central,Residential Care Facility,Y,-63.653668,44.650058,20,nursing,1,0
+PHWL,Precision Health - Washmill Lake Drive Apartments,Halifax,B3S 0G8,Central,Residential Care Facility,Y,-63.653668,44.650058,20,nursing_respite,0,0
+PHWL,Precision Health - Washmill Lake Drive Apartments,Halifax,B3S 0G8,Central,Residential Care Facility,Y,-63.653668,44.650058,20,residential,1,20
+PHWL,Precision Health - Washmill Lake Drive Apartments,Halifax,B3S 0G8,Central,Residential Care Facility,Y,-63.653668,44.650058,20,residential_respite,0,0
+PLGH,Glasgow Hall - Parkland at the Lakes,Dartmouth,B2W 0C7,Central,Nursing Home,Y,-63.530633,44.665716,72,nursing,1,72
+PLGH,Glasgow Hall - Parkland at the Lakes,Dartmouth,B2W 0C7,Central,Nursing Home,Y,-63.530633,44.665716,72,nursing_respite,0,0
+PLGH,Glasgow Hall - Parkland at the Lakes,Dartmouth,B2W 0C7,Central,Nursing Home,Y,-63.530633,44.665716,72,residential,1,0
+PLGH,Glasgow Hall - Parkland at the Lakes,Dartmouth,B2W 0C7,Central,Nursing Home,Y,-63.530633,44.665716,72,residential_respite,0,0
+PPHX,Peter's Place - Community Rehabilitation (Halifax),Halifax,B3M 1T6,Central,Residential Care Facility,Y,-63.65843,44.669059,4,nursing,1,0
+PPHX,Peter's Place - Community Rehabilitation (Halifax),Halifax,B3M 1T6,Central,Residential Care Facility,Y,-63.65843,44.669059,4,nursing_respite,0,0
+PPHX,Peter's Place - Community Rehabilitation (Halifax),Halifax,B3M 1T6,Central,Residential Care Facility,Y,-63.65843,44.669059,4,residential,1,4
+PPHX,Peter's Place - Community Rehabilitation (Halifax),Halifax,B3M 1T6,Central,Residential Care Facility,Y,-63.65843,44.669059,4,residential_respite,0,0
+PPPV,Peter's Place - Community Rehabilitation (Pleasantville),West Dublin,B0R 1G0,Western,Residential Care Facility,Y,-64.416155,44.257922,6,nursing,1,0
+PPPV,Peter's Place - Community Rehabilitation (Pleasantville),West Dublin,B0R 1G0,Western,Residential Care Facility,Y,-64.416155,44.257922,6,nursing_respite,0,0
+PPPV,Peter's Place - Community Rehabilitation (Pleasantville),West Dublin,B0R 1G0,Western,Residential Care Facility,Y,-64.416155,44.257922,6,residential,1,6
+PPPV,Peter's Place - Community Rehabilitation (Pleasantville),West Dublin,B0R 1G0,Western,Residential Care Facility,Y,-64.416155,44.257922,6,residential_respite,0,0
+PSEC,Parkstone Enhanced Care,Halifax,B3S 1N9,Central,Nursing Home,Y,-63.672073,44.663383,220,nursing,1,220
+PSEC,Parkstone Enhanced Care,Halifax,B3S 1N9,Central,Nursing Home,Y,-63.672073,44.663383,220,nursing_respite,0,2
+PSEC,Parkstone Enhanced Care,Halifax,B3S 1N9,Central,Nursing Home,Y,-63.672073,44.663383,220,residential,1,0
+PSEC,Parkstone Enhanced Care,Halifax,B3S 1N9,Central,Nursing Home,Y,-63.672073,44.663383,220,residential_respite,0,0
+QNMN,Queens Manor,Liverpool,B0T 1K0,Western,Nursing Home,Y,-64.706791,44.036176,61,nursing,1,61
+QNMN,Queens Manor,Liverpool,B0T 1K0,Western,Nursing Home,Y,-64.706791,44.036176,61,nursing_respite,0,0
+QNMN,Queens Manor,Liverpool,B0T 1K0,Western,Nursing Home,Y,-64.706791,44.036176,61,residential,1,0
+QNMN,Queens Manor,Liverpool,B0T 1K0,Western,Nursing Home,Y,-64.706791,44.036176,61,residential_respite,0,0
+RCMG,R.C. MacGillivray Guest Home,Sydney,B1S 2R9,Eastern,Nursing Home,Y,-60.194255,46.123566,106,nursing,1,106
+RCMG,R.C. MacGillivray Guest Home,Sydney,B1S 2R9,Eastern,Nursing Home,Y,-60.194255,46.123566,106,nursing_respite,0,1
+RCMG,R.C. MacGillivray Guest Home,Sydney,B1S 2R9,Eastern,Nursing Home,Y,-60.194255,46.123566,106,residential,1,0
+RCMG,R.C. MacGillivray Guest Home,Sydney,B1S 2R9,Eastern,Nursing Home,Y,-60.194255,46.123566,106,residential_respite,0,0
+RCTM,Rosecrest - The Meadows,Lower Sackville,B4C 4E6,Central,Nursing Home,Y,-63.653411,44.760877,144,nursing,1,144
+RCTM,Rosecrest - The Meadows,Lower Sackville,B4C 4E6,Central,Nursing Home,Y,-63.653411,44.760877,144,nursing_respite,0,0
+RCTM,Rosecrest - The Meadows,Lower Sackville,B4C 4E6,Central,Nursing Home,Y,-63.653411,44.760877,144,residential,1,0
+RCTM,Rosecrest - The Meadows,Lower Sackville,B4C 4E6,Central,Nursing Home,Y,-63.653411,44.760877,144,residential_respite,0,0
+RDSC,Rosedale Home for Special Care,New Germany,B0R 1E0,Western,Nursing Home,Y,-64.711159,44.537211,39,nursing,1,39
+RDSC,Rosedale Home for Special Care,New Germany,B0R 1E0,Western,Nursing Home,Y,-64.711159,44.537211,39,nursing_respite,0,0
+RDSC,Rosedale Home for Special Care,New Germany,B0R 1E0,Western,Nursing Home,Y,-64.711159,44.537211,39,residential,1,0
+RDSC,Rosedale Home for Special Care,New Germany,B0R 1E0,Western,Nursing Home,Y,-64.711159,44.537211,39,residential_respite,0,0
+RKMD,RK MacDonald Nursing Home,Antigonish,B2G 1W7,Eastern,Nursing Home,Y,-61.991333,45.625248,136,nursing,1,136
+RKMD,RK MacDonald Nursing Home,Antigonish,B2G 1W7,Eastern,Nursing Home,Y,-61.991333,45.625248,136,nursing_respite,0,1
+RKMD,RK MacDonald Nursing Home,Antigonish,B2G 1W7,Eastern,Nursing Home,Y,-61.991333,45.625248,136,residential,1,0
+RKMD,RK MacDonald Nursing Home,Antigonish,B2G 1W7,Eastern,Nursing Home,Y,-61.991333,45.625248,136,residential_respite,0,0
+RMVL,Richmond Villa,St Peters,B0E 3B0,Eastern,Nursing Home and Residential Care Facility,Y,-60.874942,45.658967,67,nursing,1,59
+RMVL,Richmond Villa,St Peters,B0E 3B0,Eastern,Nursing Home and Residential Care Facility,Y,-60.874942,45.658967,67,nursing_respite,0,1
+RMVL,Richmond Villa,St Peters,B0E 3B0,Eastern,Nursing Home and Residential Care Facility,Y,-60.874942,45.658967,67,residential,1,8
+RMVL,Richmond Villa,St Peters,B0E 3B0,Eastern,Nursing Home and Residential Care Facility,Y,-60.874942,45.658967,67,residential_respite,0,0
+RWMN,Roseway Manor,Shelburne,B0T 1W0,Western,Nursing Home,Y,-65.308961,43.748765,66,nursing,1,66
+RWMN,Roseway Manor,Shelburne,B0T 1W0,Western,Nursing Home,Y,-65.308961,43.748765,66,nursing_respite,0,0
+RWMN,Roseway Manor,Shelburne,B0T 1W0,Western,Nursing Home,Y,-65.308961,43.748765,66,residential,1,0
+RWMN,Roseway Manor,Shelburne,B0T 1W0,Western,Nursing Home,Y,-65.308961,43.748765,66,residential_respite,0,0
+RYHL,Ryan Hall,Bridgewater,B4V 0A3,Western,Nursing Home,Y,-64.505536,44.38355,65,nursing,1,65
+RYHL,Ryan Hall,Bridgewater,B4V 0A3,Western,Nursing Home,Y,-64.505536,44.38355,65,nursing_respite,0,0
+RYHL,Ryan Hall,Bridgewater,B4V 0A3,Western,Nursing Home,Y,-64.505536,44.38355,65,residential,1,0
+RYHL,Ryan Hall,Bridgewater,B4V 0A3,Western,Nursing Home,Y,-64.505536,44.38355,65,residential_respite,0,0
+SBRH,Seabright Resthome,Seabright,B3Z 2Y1,Central,Residential Care Facility,Y,-63.926127,44.623165,6,nursing,1,0
+SBRH,Seabright Resthome,Seabright,B3Z 2Y1,Central,Residential Care Facility,Y,-63.926127,44.623165,6,nursing_respite,0,0
+SBRH,Seabright Resthome,Seabright,B3Z 2Y1,Central,Residential Care Facility,Y,-63.926127,44.623165,6,residential,1,6
+SBRH,Seabright Resthome,Seabright,B3Z 2Y1,Central,Residential Care Facility,Y,-63.926127,44.623165,6,residential_respite,0,0
+SCCC,South Cumberland Community Care Centre,Parrsboro,B0M 1S0,Northern,Nursing Home,Y,-64.325939,45.409087,14,nursing,1,14
+SCCC,South Cumberland Community Care Centre,Parrsboro,B0M 1S0,Northern,Nursing Home,Y,-64.325939,45.409087,14,nursing_respite,0,0
+SCCC,South Cumberland Community Care Centre,Parrsboro,B0M 1S0,Northern,Nursing Home,Y,-64.325939,45.409087,14,residential,1,0
+SCCC,South Cumberland Community Care Centre,Parrsboro,B0M 1S0,Northern,Nursing Home,Y,-64.325939,45.409087,14,residential_respite,0,0
+SDRH,Saunders Rest Home,Bridgetown,B0S 1C0,Western,Residential Care Facility,Y,-65.288853,44.840857,8,nursing,1,0
+SDRH,Saunders Rest Home,Bridgetown,B0S 1C0,Western,Residential Care Facility,Y,-65.288853,44.840857,8,nursing_respite,0,0
+SDRH,Saunders Rest Home,Bridgetown,B0S 1C0,Western,Residential Care Facility,Y,-65.288853,44.840857,8,residential,1,8
+SDRH,Saunders Rest Home,Bridgetown,B0S 1C0,Western,Residential Care Facility,Y,-65.288853,44.840857,8,residential_respite,0,0
+SHVL,Shoreham Village Senior Citizens Association,Chester,B0J 1J0,Western,Nursing Home,Y,-64.232205,44.544859,89,nursing,1,89
+SHVL,Shoreham Village Senior Citizens Association,Chester,B0J 1J0,Western,Nursing Home,Y,-64.232205,44.544859,89,nursing_respite,0,1
+SHVL,Shoreham Village Senior Citizens Association,Chester,B0J 1J0,Western,Nursing Home,Y,-64.232205,44.544859,89,residential,1,0
+SHVL,Shoreham Village Senior Citizens Association,Chester,B0J 1J0,Western,Nursing Home,Y,-64.232205,44.544859,89,residential_respite,0,0
+SLCC,Surf Lodge Community Continuing Care Centre,Lockeport,B0T 1L0,Western,Nursing Home,Y,-65.117478,43.701573,36,nursing,1,36
+SLCC,Surf Lodge Community Continuing Care Centre,Lockeport,B0T 1L0,Western,Nursing Home,Y,-65.117478,43.701573,36,nursing_respite,0,0
+SLCC,Surf Lodge Community Continuing Care Centre,Lockeport,B0T 1L0,Western,Nursing Home,Y,-65.117478,43.701573,36,residential,1,0
+SLCC,Surf Lodge Community Continuing Care Centre,Lockeport,B0T 1L0,Western,Nursing Home,Y,-65.117478,43.701573,36,residential_respite,0,0
+SLHC,Serenity Lodge Home Care,Enfield,B2T 1A7,Northern,Residential Care Facility,Y,-63.53506,44.950874,6,nursing,1,0
+SLHC,Serenity Lodge Home Care,Enfield,B2T 1A7,Northern,Residential Care Facility,Y,-63.53506,44.950874,6,nursing_respite,0,0
+SLHC,Serenity Lodge Home Care,Enfield,B2T 1A7,Northern,Residential Care Facility,Y,-63.53506,44.950874,6,residential,1,6
+SLHC,Serenity Lodge Home Care,Enfield,B2T 1A7,Northern,Residential Care Facility,Y,-63.53506,44.950874,6,residential_respite,0,0
+STAC,St. Anne Community and Nursing Care Centre,Arichat,B0E 1A0,Eastern,Nursing Home,Y,-61.031911,45.511042,29,nursing,1,29
+STAC,St. Anne Community and Nursing Care Centre,Arichat,B0E 1A0,Eastern,Nursing Home,Y,-61.031911,45.511042,29,nursing_respite,0,0
+STAC,St. Anne Community and Nursing Care Centre,Arichat,B0E 1A0,Eastern,Nursing Home,Y,-61.031911,45.511042,29,residential,1,0
+STAC,St. Anne Community and Nursing Care Centre,Arichat,B0E 1A0,Eastern,Nursing Home,Y,-61.031911,45.511042,29,residential_respite,0,0
+STNH,Shiretown Nursing Home,Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.729005,45.677669,53,nursing,1,53
+STNH,Shiretown Nursing Home,Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.729005,45.677669,53,nursing_respite,0,0
+STNH,Shiretown Nursing Home,Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.729005,45.677669,53,residential,1,0
+STNH,Shiretown Nursing Home,Pictou,B0K 1H0,Northern,Nursing Home,Y,-62.729005,45.677669,53,residential_respite,0,0
+STVC,Saint Vincent's Nursing Home,Halifax,B3K 5B2,Central,Nursing Home,Y,-63.594191,44.647916,146,nursing,1,146
+STVC,Saint Vincent's Nursing Home,Halifax,B3K 5B2,Central,Nursing Home,Y,-63.594191,44.647916,146,nursing_respite,0,0
+STVC,Saint Vincent's Nursing Home,Halifax,B3K 5B2,Central,Nursing Home,Y,-63.594191,44.647916,146,residential,1,0
+STVC,Saint Vincent's Nursing Home,Halifax,B3K 5B2,Central,Nursing Home,Y,-63.594191,44.647916,146,residential_respite,0,0
+SVMB,Soldiers Memorial Hospital,Middleton,B0S 1P0,Western,Nursing Home,Y,-65.059339,44.946734,21,nursing,1,21
+SVMB,Soldiers Memorial Hospital,Middleton,B0S 1P0,Western,Nursing Home,Y,-65.059339,44.946734,21,nursing_respite,0,0
+SVMB,Soldiers Memorial Hospital,Middleton,B0S 1P0,Western,Nursing Home,Y,-65.059339,44.946734,21,residential,1,0
+SVMB,Soldiers Memorial Hospital,Middleton,B0S 1P0,Western,Nursing Home,Y,-65.059339,44.946734,21,residential_respite,0,0
+SVMN,Seaview Manor,Glace Bay,B1A 1W6,Eastern,Nursing Home,Y,-59.936439,46.18449,113,nursing,1,113
+SVMN,Seaview Manor,Glace Bay,B1A 1W6,Eastern,Nursing Home,Y,-59.936439,46.18449,113,nursing_respite,0,0
+SVMN,Seaview Manor,Glace Bay,B1A 1W6,Eastern,Nursing Home,Y,-59.936439,46.18449,113,residential,1,0
+SVMN,Seaview Manor,Glace Bay,B1A 1W6,Eastern,Nursing Home,Y,-59.936439,46.18449,113,residential_respite,0,0
+SWCC,Sagewood Continuing Care Centre,Lower Sackville,B4C 4E6,Central,Nursing Home,Y,-63.652014,44.761403,50,nursing,1,50
+SWCC,Sagewood Continuing Care Centre,Lower Sackville,B4C 4E6,Central,Nursing Home,Y,-63.652014,44.761403,50,nursing_respite,0,0
+SWCC,Sagewood Continuing Care Centre,Lower Sackville,B4C 4E6,Central,Nursing Home,Y,-63.652014,44.761403,50,residential,1,0
+SWCC,Sagewood Continuing Care Centre,Lower Sackville,B4C 4E6,Central,Nursing Home,Y,-63.652014,44.761403,50,residential_respite,0,0
+THSC,Tibbetts Home for Special Care (Wilmot),Kingston,B0P 1R0,Western,Residential Care Facility,Y,-64.969062,44.977041,25,nursing,1,0
+THSC,Tibbetts Home for Special Care (Wilmot),Kingston,B0P 1R0,Western,Residential Care Facility,Y,-64.969062,44.977041,25,nursing_respite,0,0
+THSC,Tibbetts Home for Special Care (Wilmot),Kingston,B0P 1R0,Western,Residential Care Facility,Y,-64.969062,44.977041,25,residential,1,25
+THSC,Tibbetts Home for Special Care (Wilmot),Kingston,B0P 1R0,Western,Residential Care Facility,Y,-64.969062,44.977041,25,residential_respite,0,0
+THSL,Taigh Solas,North Sydney,B2A 1E3,Eastern,Nursing Home,Y,-60.235551,46.218208,22,nursing,1,22
+THSL,Taigh Solas,North Sydney,B2A 1E3,Eastern,Nursing Home,Y,-60.235551,46.218208,22,nursing_respite,0,0
+THSL,Taigh Solas,North Sydney,B2A 1E3,Eastern,Nursing Home,Y,-60.235551,46.218208,22,residential,1,0
+THSL,Taigh Solas,North Sydney,B2A 1E3,Eastern,Nursing Home,Y,-60.235551,46.218208,22,residential_respite,0,0
+TNMA,Taigh Na Mara,Glace Bay,B1A 4Z8,Eastern,Nursing Home,Y,-59.977687,46.19945,67,nursing,1,67
+TNMA,Taigh Na Mara,Glace Bay,B1A 4Z8,Eastern,Nursing Home,Y,-59.977687,46.19945,67,nursing_respite,0,0
+TNMA,Taigh Na Mara,Glace Bay,B1A 4Z8,Eastern,Nursing Home,Y,-59.977687,46.19945,67,residential,1,0
+TNMA,Taigh Na Mara,Glace Bay,B1A 4Z8,Eastern,Nursing Home,Y,-59.977687,46.19945,67,residential_respite,0,0
+TVET,Townview Estates,Millbrook 27,B2N 6Y7,Northern,Residential Care Facility,Y,-63.301364,45.337793,51,nursing,1,0
+TVET,Townview Estates,Millbrook 27,B2N 6Y7,Northern,Residential Care Facility,Y,-63.301364,45.337793,51,nursing_respite,0,0
+TVET,Townview Estates,Millbrook 27,B2N 6Y7,Northern,Residential Care Facility,Y,-63.301364,45.337793,51,residential,1,51
+TVET,Townview Estates,Millbrook 27,B2N 6Y7,Northern,Residential Care Facility,Y,-63.301364,45.337793,51,residential_respite,0,0
+TVMM,Tidal View Manor (The Meadows),Yarmouth,B5A 2K9,Western,Nursing Home,Y,-66.103068,43.850509,104,nursing,1,104
+TVMM,Tidal View Manor (The Meadows),Yarmouth,B5A 2K9,Western,Nursing Home,Y,-66.103068,43.850509,104,nursing_respite,0,1
+TVMM,Tidal View Manor (The Meadows),Yarmouth,B5A 2K9,Western,Nursing Home,Y,-66.103068,43.850509,104,residential,1,0
+TVMM,Tidal View Manor (The Meadows),Yarmouth,B5A 2K9,Western,Nursing Home,Y,-66.103068,43.850509,104,residential_respite,0,0
+TVTR,Tideview Terrace,Conway,B0V 1A0,Western,Nursing Home,Y,-65.763293,44.609223,89,nursing,1,89
+TVTR,Tideview Terrace,Conway,B0V 1A0,Western,Nursing Home,Y,-65.763293,44.609223,89,nursing_respite,0,1
+TVTR,Tideview Terrace,Conway,B0V 1A0,Western,Nursing Home,Y,-65.763293,44.609223,89,residential,1,0
+TVTR,Tideview Terrace,Conway,B0V 1A0,Western,Nursing Home,Y,-65.763293,44.609223,89,residential_respite,0,0
+VACD,Villa Acadienne,Meteghan,B0W 2J0,Western,Nursing Home,Y,-66.171983,44.180263,95,nursing,1,95
+VACD,Villa Acadienne,Meteghan,B0W 2J0,Western,Nursing Home,Y,-66.171983,44.180263,95,nursing_respite,0,1
+VACD,Villa Acadienne,Meteghan,B0W 2J0,Western,Nursing Home,Y,-66.171983,44.180263,95,residential,1,0
+VACD,Villa Acadienne,Meteghan,B0W 2J0,Western,Nursing Home,Y,-66.171983,44.180263,95,residential_respite,0,0
+VDLB,Villa d'La Baie,Meteghan,B0W 2J0,Western,Nursing Home,Y,-66.154142,44.193704,47,nursing,1,47
+VDLB,Villa d'La Baie,Meteghan,B0W 2J0,Western,Nursing Home,Y,-66.154142,44.193704,47,nursing_respite,0,0
+VDLB,Villa d'La Baie,Meteghan,B0W 2J0,Western,Nursing Home,Y,-66.154142,44.193704,47,residential,1,0
+VDLB,Villa d'La Baie,Meteghan,B0W 2J0,Western,Nursing Home,Y,-66.154142,44.193704,47,residential_respite,0,0
+VHNH,Victoria Haven Nursing Home,Glace Bay,B1A 4G6,Eastern,Nursing Home,Y,-59.964841,46.211586,53,nursing,1,53
+VHNH,Victoria Haven Nursing Home,Glace Bay,B1A 4G6,Eastern,Nursing Home,Y,-59.964841,46.211586,53,nursing_respite,0,1
+VHNH,Victoria Haven Nursing Home,Glace Bay,B1A 4G6,Eastern,Nursing Home,Y,-59.964841,46.211586,53,residential,1,0
+VHNH,Victoria Haven Nursing Home,Glace Bay,B1A 4G6,Eastern,Nursing Home,Y,-59.964841,46.211586,53,residential_respite,0,0
+VLVV,Valley View Villa,Stellarton,B0K 1S0,Northern,Nursing Home,Y,-62.667148,45.539872,112,nursing,1,112
+VLVV,Valley View Villa,Stellarton,B0K 1S0,Northern,Nursing Home,Y,-62.667148,45.539872,112,nursing_respite,0,1
+VLVV,Valley View Villa,Stellarton,B0K 1S0,Northern,Nursing Home,Y,-62.667148,45.539872,112,residential,1,0
+VLVV,Valley View Villa,Stellarton,B0K 1S0,Northern,Nursing Home,Y,-62.667148,45.539872,112,residential_respite,0,0
+VSJL,Villa Saint-Joseph Du Lac,Dayton,B5A 5A1,Western,Nursing Home,Y,-66.111643,43.869245,79,nursing,1,79
+VSJL,Villa Saint-Joseph Du Lac,Dayton,B5A 5A1,Western,Nursing Home,Y,-66.111643,43.869245,79,nursing_respite,0,0
+VSJL,Villa Saint-Joseph Du Lac,Dayton,B5A 5A1,Western,Nursing Home,Y,-66.111643,43.869245,79,residential,1,0
+VSJL,Villa Saint-Joseph Du Lac,Dayton,B5A 5A1,Western,Nursing Home,Y,-66.111643,43.869245,79,residential_respite,0,0
+VTMN,Victoria Manor,Amherst,B4H 1B8,Northern,Residential Care Facility,Y,-64.214634,45.829729,40,nursing,1,0
+VTMN,Victoria Manor,Amherst,B4H 1B8,Northern,Residential Care Facility,Y,-64.214634,45.829729,40,nursing_respite,0,0
+VTMN,Victoria Manor,Amherst,B4H 1B8,Northern,Residential Care Facility,Y,-64.214634,45.829729,40,residential,1,40
+VTMN,Victoria Manor,Amherst,B4H 1B8,Northern,Residential Care Facility,Y,-64.214634,45.829729,40,residential_respite,0,0
+VTPK,Victoria Park Guest Home,Windsor,B0N 2T0,Central,Residential Care Facility,Y,-64.133255,44.992791,12,nursing,1,0
+VTPK,Victoria Park Guest Home,Windsor,B0N 2T0,Central,Residential Care Facility,Y,-64.133255,44.992791,12,nursing_respite,0,0
+VTPK,Victoria Park Guest Home,Windsor,B0N 2T0,Central,Residential Care Facility,Y,-64.133255,44.992791,12,residential,1,12
+VTPK,Victoria Park Guest Home,Windsor,B0N 2T0,Central,Residential Care Facility,Y,-64.133255,44.992791,12,residential_respite,0,0
+VYCT,Vimy Court Continuing Care Residence,Bible Hill,B2N 4J6,Northern,Nursing Home,Y,-63.260652,45.37933,60,nursing,1,60
+VYCT,Vimy Court Continuing Care Residence,Bible Hill,B2N 4J6,Northern,Nursing Home,Y,-63.260652,45.37933,60,nursing_respite,0,0
+VYCT,Vimy Court Continuing Care Residence,Bible Hill,B2N 4J6,Northern,Nursing Home,Y,-63.260652,45.37933,60,residential,1,0
+VYCT,Vimy Court Continuing Care Residence,Bible Hill,B2N 4J6,Northern,Nursing Home,Y,-63.260652,45.37933,60,residential_respite,0,0
+WBRR,White Birches Retirement Residence,Amherst,B4H 3Y3,Northern,Residential Care Facility,Y,-64.179349,45.841412,24,nursing,1,0
+WBRR,White Birches Retirement Residence,Amherst,B4H 3Y3,Northern,Residential Care Facility,Y,-64.179349,45.841412,24,nursing_respite,0,0
+WBRR,White Birches Retirement Residence,Amherst,B4H 3Y3,Northern,Residential Care Facility,Y,-64.179349,45.841412,24,residential,1,24
+WBRR,White Birches Retirement Residence,Amherst,B4H 3Y3,Northern,Residential Care Facility,Y,-64.179349,45.841412,24,residential_respite,0,0
+WERC,Wolfville Elms,Wolfville,B4P 2N4,Western,Residential Care Facility,Y,-64.379066,45.086931,23,nursing,1,0
+WERC,Wolfville Elms,Wolfville,B4P 2N4,Western,Residential Care Facility,Y,-64.379066,45.086931,23,nursing_respite,0,0
+WERC,Wolfville Elms,Wolfville,B4P 2N4,Western,Residential Care Facility,Y,-64.379066,45.086931,23,residential,1,23
+WERC,Wolfville Elms,Wolfville,B4P 2N4,Western,Residential Care Facility,Y,-64.379066,45.086931,23,residential_respite,0,0
+WEVC,Windsor Elms Village for Continuing Care Society,Falmouth,B0P 1L0,Central,Nursing Home,Y,-64.170934,44.994553,107,nursing,1,107
+WEVC,Windsor Elms Village for Continuing Care Society,Falmouth,B0P 1L0,Central,Nursing Home,Y,-64.170934,44.994553,107,nursing_respite,0,1
+WEVC,Windsor Elms Village for Continuing Care Society,Falmouth,B0P 1L0,Central,Nursing Home,Y,-64.170934,44.994553,107,residential,1,0
+WEVC,Windsor Elms Village for Continuing Care Society,Falmouth,B0P 1L0,Central,Nursing Home,Y,-64.170934,44.994553,107,residential_respite,0,0
+WFHT,Waterford Heights,New Waterford,B1H 3Z5,Eastern,Nursing Home,Y,-60.085793,46.239863,24,nursing,1,24
+WFHT,Waterford Heights,New Waterford,B1H 3Z5,Eastern,Nursing Home,Y,-60.085793,46.239863,24,nursing_respite,0,0
+WFHT,Waterford Heights,New Waterford,B1H 3Z5,Eastern,Nursing Home,Y,-60.085793,46.239863,24,residential,1,0
+WFHT,Waterford Heights,New Waterford,B1H 3Z5,Eastern,Nursing Home,Y,-60.085793,46.239863,24,residential_respite,0,0
+WHLC,Whitehills Long Term Care Centre,Hammonds Plains,B4B 1N5,Central,Nursing Home,Y,-63.805532,44.744839,58,nursing,1,58
+WHLC,Whitehills Long Term Care Centre,Hammonds Plains,B4B 1N5,Central,Nursing Home,Y,-63.805532,44.744839,58,nursing_respite,0,0
+WHLC,Whitehills Long Term Care Centre,Hammonds Plains,B4B 1N5,Central,Nursing Home,Y,-63.805532,44.744839,58,residential,1,0
+WHLC,Whitehills Long Term Care Centre,Hammonds Plains,B4B 1N5,Central,Nursing Home,Y,-63.805532,44.744839,58,residential_respite,0,0
+WLLG,Willow Lodge,Tatamagouche,B0K 1V0,Northern,Nursing Home,Y,-63.297188,45.711164,61,nursing,1,61
+WLLG,Willow Lodge,Tatamagouche,B0K 1V0,Northern,Nursing Home,Y,-63.297188,45.711164,61,nursing_respite,0,0
+WLLG,Willow Lodge,Tatamagouche,B0K 1V0,Northern,Nursing Home,Y,-63.297188,45.711164,61,residential,1,0
+WLLG,Willow Lodge,Tatamagouche,B0K 1V0,Northern,Nursing Home,Y,-63.297188,45.711164,61,residential_respite,0,0
+WLMN,Willows Manor,Shubenacadie,B0N 2H0,Northern,Residential Care Facility,Y,-63.407603,45.088376,8,nursing,1,0
+WLMN,Willows Manor,Shubenacadie,B0N 2H0,Northern,Residential Care Facility,Y,-63.407603,45.088376,8,nursing_respite,0,0
+WLMN,Willows Manor,Shubenacadie,B0N 2H0,Northern,Residential Care Facility,Y,-63.407603,45.088376,8,residential,1,8
+WLMN,Willows Manor,Shubenacadie,B0N 2H0,Northern,Residential Care Facility,Y,-63.407603,45.088376,8,residential_respite,0,0
+WNPV,Wynn Park Villa,Truro,B2N 0B4,Northern,Nursing Home,Y,-63.302235,45.355423,60,nursing,1,60
+WNPV,Wynn Park Villa,Truro,B2N 0B4,Northern,Nursing Home,Y,-63.302235,45.355423,60,nursing_respite,0,0
+WNPV,Wynn Park Villa,Truro,B2N 0B4,Northern,Nursing Home,Y,-63.302235,45.355423,60,residential,1,0
+WNPV,Wynn Park Villa,Truro,B2N 0B4,Northern,Nursing Home,Y,-63.302235,45.355423,60,residential_respite,0,0
+WVEL,Wolfville Nursing Home,Wolfville,B4P 1E9,Western,Nursing Home,Y,-64.372273,45.089781,66,nursing,1,66
+WVEL,Wolfville Nursing Home,Wolfville,B4P 1E9,Western,Nursing Home,Y,-64.372273,45.089781,66,nursing_respite,0,0
+WVEL,Wolfville Nursing Home,Wolfville,B4P 1E9,Western,Nursing Home,Y,-64.372273,45.089781,66,residential,1,0
+WVEL,Wolfville Nursing Home,Wolfville,B4P 1E9,Western,Nursing Home,Y,-64.372273,45.089781,66,residential_respite,0,0
+WWHS,Wedgewood House for Seniors,Kentville,B4N 2K5,Western,Residential Care Facility,N,-64.491561,45.076851,15,nursing,1,0
+WWHS,Wedgewood House for Seniors,Kentville,B4N 2K5,Western,Residential Care Facility,N,-64.491561,45.076851,15,nursing_respite,0,0
+WWHS,Wedgewood House for Seniors,Kentville,B4N 2K5,Western,Residential Care Facility,N,-64.491561,45.076851,15,residential,1,15
+WWHS,Wedgewood House for Seniors,Kentville,B4N 2K5,Western,Residential Care Facility,N,-64.491561,45.076851,15,residential_respite,0,0
+YMHT,Yarmouth Heights,Yarmouth,B5A 4J7,Western,Nursing Home,Y,-66.123168,43.850502,21,nursing,1,21
+YMHT,Yarmouth Heights,Yarmouth,B5A 4J7,Western,Nursing Home,Y,-66.123168,43.850502,21,nursing_respite,0,0
+YMHT,Yarmouth Heights,Yarmouth,B5A 4J7,Western,Nursing Home,Y,-66.123168,43.850502,21,residential,1,0
+YMHT,Yarmouth Heights,Yarmouth,B5A 4J7,Western,Nursing Home,Y,-66.123168,43.850502,21,residential_respite,0,0
+YVMB,Veteran's Place (Yarmouth Regional Hospital),Yarmouth,B5A 2P5,Western,Nursing Home,Y,-66.121569,43.850524,10,nursing,1,10
+YVMB,Veteran's Place (Yarmouth Regional Hospital),Yarmouth,B5A 2P5,Western,Nursing Home,Y,-66.121569,43.850524,10,nursing_respite,0,0
+YVMB,Veteran's Place (Yarmouth Regional Hospital),Yarmouth,B5A 2P5,Western,Nursing Home,Y,-66.121569,43.850524,10,residential,1,0
+YVMB,Veteran's Place (Yarmouth Regional Hospital),Yarmouth,B5A 2P5,Western,Nursing Home,Y,-66.121569,43.850524,10,residential_respite,0,0

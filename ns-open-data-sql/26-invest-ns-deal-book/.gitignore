@@ -1,0 +1,5 @@
+out/
+*.duckdb
+*.db
+__pycache__/
+*.twbx

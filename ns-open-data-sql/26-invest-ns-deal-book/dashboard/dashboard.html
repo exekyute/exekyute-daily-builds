@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invest NS deal book</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Invest NS deal book</h1>
+    <p class="sub">Financial contributions recorded by Invest Nova Scotia across six fiscal
+    years, by sector, county, deal type, and year. Every number on this page is added up in
+    the browser from the exported data below. Nothing here is written in by hand.</p>
+  </header>
+
+  <section class="filter-bar">
+    <span class="filter-label">Fiscal year</span>
+    <div class="year-buttons" id="year-buttons"></div>
+    <span class="filter-note" id="filter-note"></span>
+  </section>
+
+  <div class="stat-row" id="headline"></div>
+
+  <section class="panel">
+    <h2>Contribution by fiscal year</h2>
+    <p class="hint">Total dollars committed in each year. Select a year to filter the sector
+    and county panels below; this chart always shows the full window.</p>
+    <div id="year-chart"></div>
+  </section>
+
+  <div class="two-col">
+    <section class="panel">
+      <h2>Contribution by sector</h2>
+      <p class="hint">Sector labels are shown as the province files them. Related spellings
+      such as ICT and ICT (includes Digital Media) are counted separately.</p>
+      <ol class="rank-list" id="sector-list"></ol>
+    </section>
+
+    <section class="panel">
+      <h2>Contribution by county</h2>
+      <p class="hint">The Halifax family of labels is folded onto one county. Values that do
+      not name a county are kept and marked.</p>
+      <ol class="rank-list alt" id="county-list"></ol>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Deal-type mix by fiscal year</h2>
+    <p class="hint">Each year's dollars split across the deal types recorded that year, with
+    each type's share of its own year. The naming convention moves year to year, which is why
+    a program can appear as an abbreviation in one year and spelled out in another.</p>
+    <p class="lead-line" id="mix-lead"></p>
+    <div class="mix-grid" id="mix-grid"></div>
+  </section>
+
+  <section class="panel">
+    <h2>What is counted and what is set aside</h2>
+    <p class="hint">Nothing is dropped. These classes are reported so the totals above can be
+    read for what they are.</p>
+    <div class="detail-grid" id="classes"></div>
+  </section>
+
+  <footer>Data: Nova Scotia Open Data, Invest NS Financial Programs (6aac-8xtn).
+  Open Government Licence - Nova Scotia.</footer>
+
+</div>
+<script src="data.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
