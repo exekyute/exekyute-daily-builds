@@ -1,0 +1,4 @@
+user_id,event_ts,event_name
+ana,2026-08-01 09:00,signup
+,2026-08-01 10:00,signup
+ben,2026-08-01 9:30,signup

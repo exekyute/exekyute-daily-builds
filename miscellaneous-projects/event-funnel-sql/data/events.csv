@@ -1,0 +1,25 @@
+user_id,event_ts,event_name
+ana,2026-08-01 09:00,signup
+ana,2026-08-01 09:00,project_created
+ana,2026-08-02 10:00,teammate_invited
+ana,2026-08-03 12:00,project_created
+ana,2026-08-05 14:00,purchased
+ben,2026-08-01 10:00,signup
+ben,2026-08-02 11:00,project_created
+ben,2026-08-02 11:05,help_viewed
+cai,2026-08-02 12:00,signup
+dee,2026-08-03 09:00,signup
+dee,2026-08-03 09:30,purchased
+dee,2026-08-04 10:00,project_created
+eva,2026-08-04 08:00,signup
+eva,2026-08-04 09:30,project_created
+eva,2026-08-06 11:00,teammate_invited
+eva,2026-08-08 16:45,purchased
+fin,2026-08-05 13:00,signup
+fin,2026-08-05 13:20,project_created
+fin,2026-08-07 09:20,teammate_invited
+gus,2026-08-06 12:00,purchased
+hana,2026-08-06 09:00,signup
+hana,2026-08-07 10:00,project_created
+hana,2026-08-07 15:00,teammate_invited
+hana,2026-08-12 11:00,purchased
