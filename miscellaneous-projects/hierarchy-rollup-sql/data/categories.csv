@@ -1,0 +1,12 @@
+category_id,parent_id,name
+1,,Operations
+2,1,Facilities
+3,2,Rent
+4,2,Utilities
+5,4,Electricity
+6,4,Water
+7,1,Supplies
+8,7,Cleaning
+9,,Marketing
+10,9,Online Ads
+11,9,Events

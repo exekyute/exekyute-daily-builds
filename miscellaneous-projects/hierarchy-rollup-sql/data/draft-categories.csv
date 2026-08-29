@@ -1,0 +1,8 @@
+category_id,parent_id,name
+101,,Root A
+102,101,Child of A
+103,199,Orphaned child
+104,105,Loop member one
+105,106,Loop member two
+106,104,Loop member three
+107,107,Self-parented
