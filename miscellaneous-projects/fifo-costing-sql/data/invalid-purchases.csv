@@ -1,0 +1,4 @@
+purchase_id,product,purchase_date,qty,unit_cost
+1,arabica-beans,2026-07-01,100,4.00
+2,arabica-beans,2026-07-02,0,4.00
+3,arabica-beans,2026-7-3,50,4.00

@@ -75,6 +75,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/fifo-costing-sql">FIFO Costing Queries</a></td><td>Five SQLite queries that cost sales against purchase layers first-in-first-out with a single interval-intersection join over cumulative unit ranges, proving purchases equal COGS plus ending stock to the cent.</td><td>08/29/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/hierarchy-rollup-sql">Hierarchy Rollup Queries</a></td><td>Five SQLite queries that walk an expense-category tree with recursive CTEs: outline paths, subtree totals through a transitive closure, self-proving consistency checks, and cycle detection on a deliberately broken draft tree.</td><td>08/28/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/latency-percentiles-sql">Latency Percentile Queries</a></td><td>Five SQLite queries that compute interpolated p50, p90, and p99 latencies per endpoint from ROW_NUMBER and COUNT windows, the PERCENTILE_CONT math SQLite lacks, with a grid showing search averaging 133.5 ms while its p99 sits at 800.</td><td>08/27/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/cohort-retention-sql">Cohort Retention Queries</a></td><td>Five SQLite queries that build a weekly cohort retention grid from a bare activity log, generating every observable cell so a week nobody returned reads 0.0 percent while a week that has not happened yet stays blank.</td><td>08/26/2026</td></tr>

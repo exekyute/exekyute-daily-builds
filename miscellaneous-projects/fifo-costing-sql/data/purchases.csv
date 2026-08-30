@@ -1,0 +1,6 @@
+purchase_id,product,purchase_date,qty,unit_cost
+1,arabica-beans,2026-07-01,100,4.00
+2,arabica-beans,2026-07-08,80,4.50
+3,arabica-beans,2026-07-18,120,4.20
+4,paper-cups,2026-07-03,500,0.10
+5,paper-cups,2026-07-15,400,0.12

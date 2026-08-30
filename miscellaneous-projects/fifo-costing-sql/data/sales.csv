@@ -1,0 +1,6 @@
+sale_id,product,sale_date,qty,unit_price
+1,arabica-beans,2026-07-05,60,8.00
+2,arabica-beans,2026-07-10,70,8.00
+3,arabica-beans,2026-07-20,90,8.25
+4,paper-cups,2026-07-06,200,0.25
+5,paper-cups,2026-07-22,450,0.25
