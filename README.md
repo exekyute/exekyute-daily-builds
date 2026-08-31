@@ -75,6 +75,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/market-basket-sql">Market Basket Queries</a></td><td>Five SQLite queries that find which products truly sell together: pair self-joins into support, confidence, and lift, where the top raw pairing scores a lift of exactly 1.00 and the real bundle surfaces at 2.78.</td><td>08/31/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/rfm-scoring-sql">RFM Scoring Queries</a></td><td>Five SQLite queries that score customers on recency, frequency, and monetary value with NTILE quintiles, expose how ties split across bucket boundaries, and roll the named segments up to revenue shares.</td><td>08/30/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/fifo-costing-sql">FIFO Costing Queries</a></td><td>Five SQLite queries that cost sales against purchase layers first-in-first-out with a single interval-intersection join over cumulative unit ranges, proving purchases equal COGS plus ending stock to the cent.</td><td>08/29/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/hierarchy-rollup-sql">Hierarchy Rollup Queries</a></td><td>Five SQLite queries that walk an expense-category tree with recursive CTEs: outline paths, subtree totals through a transitive closure, self-proving consistency checks, and cycle detection on a deliberately broken draft tree.</td><td>08/28/2026</td></tr>
