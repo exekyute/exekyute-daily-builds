@@ -1,0 +1,11 @@
+account_code,name,type
+1000,Cash,asset
+1100,Accounts Receivable,asset
+1200,Inventory,asset
+1500,Equipment,asset
+2000,Accounts Payable,liability
+3000,Owner Capital,equity
+4000,Sales Revenue,revenue
+5000,Cost of Goods Sold,expense
+5100,Rent Expense,expense
+5200,Wages Expense,expense

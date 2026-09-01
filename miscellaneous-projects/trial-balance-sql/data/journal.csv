@@ -1,0 +1,26 @@
+entry_id,entry_date,account_code,debit,credit,memo
+1,2026-08-01,1000,15000.00,,Owner investment
+1,2026-08-01,3000,,15000.00,Owner investment
+2,2026-08-02,1500,6200.00,,Espresso machine and fittings
+2,2026-08-02,1000,,6200.00,Espresso machine and fittings
+3,2026-08-03,1200,2400.00,,Opening inventory on account
+3,2026-08-03,2000,,2400.00,Opening inventory on account
+4,2026-08-05,1000,3150.00,,First week cash sales
+4,2026-08-05,4000,,3150.00,First week cash sales
+5,2026-08-05,5000,1260.00,,Cost of first week sales
+5,2026-08-05,1200,,1260.00,Cost of first week sales
+6,2026-08-09,5100,1800.00,,August rent
+6,2026-08-09,1000,,1800.00,August rent
+7,2026-08-15,1100,940.00,,Catering invoice 104
+7,2026-08-15,4000,,940.00,Catering invoice 104
+8,2026-08-16,5000,380.00,,Cost of catering order
+8,2026-08-16,1200,,380.00,Cost of catering order
+9,2026-08-20,2000,1500.00,,Partial payment to supplier
+9,2026-08-20,1000,,1500.00,Partial payment to supplier
+10,2026-08-24,1000,600.00,,Collection on invoice 104
+10,2026-08-24,1100,,600.00,Collection on invoice 104
+11,2026-08-28,5200,2050.00,,August wages
+11,2026-08-28,1000,,2050.00,August wages
+12,2026-08-30,1000,720.00,,Month-end mixed sale
+12,2026-08-30,1100,480.00,,Month-end mixed sale
+12,2026-08-30,4000,,1200.00,Month-end mixed sale

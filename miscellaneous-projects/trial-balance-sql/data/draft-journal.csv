@@ -1,0 +1,8 @@
+entry_id,entry_date,account_code,debit,credit,memo
+1,2026-09-01,1000,100.00,,Cash sale
+1,2026-09-01,4000,,100.00,Cash sale
+2,2026-09-01,5100,500.00,,September rent
+2,2026-09-01,1000,,450.00,September rent
+3,2026-09-01,9999,75.00,,Mystery account
+3,2026-09-01,1000,,75.00,Mystery account
+4,2026-09-01,1000,300.00,,Orphan line

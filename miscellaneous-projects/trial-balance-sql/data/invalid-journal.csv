@@ -1,0 +1,4 @@
+entry_id,entry_date,account_code,debit,credit,memo
+1,2026-08-01,1000,15000.00,,Owner investment
+1,2026-08-01,3000,200.00,300.00,Both sides filled
+2,2026-08-02,1000,,,Neither side filled
