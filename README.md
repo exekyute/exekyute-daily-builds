@@ -75,6 +75,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/zscore-anomaly-sql">Z-Score Anomaly Queries</a></td><td>Five SQLite queries that flag anomalous days in a metric series by building STDEV from window averages, scoring each day against the 14 days before it, and naming the zero-sigma edge case instead of dividing by it.</td><td>09/02/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/trial-balance-sql">Trial Balance Queries</a></td><td>Five SQLite queries that close a month of double-entry books in integer cents: per-entry balance checks, accounts netted to their landing side, a trial balance tying at 21,190.00, and draft-journal defect detection.</td><td>09/01/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/market-basket-sql">Market Basket Queries</a></td><td>Five SQLite queries that find which products truly sell together: pair self-joins into support, confidence, and lift, where the top raw pairing scores a lift of exactly 1.00 and the real bundle surfaces at 2.78.</td><td>08/31/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/rfm-scoring-sql">RFM Scoring Queries</a></td><td>Five SQLite queries that score customers on recency, frequency, and monetary value with NTILE quintiles, expose how ties split across bucket boundaries, and roll the named segments up to revenue shares.</td><td>08/30/2026</td></tr>
