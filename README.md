@@ -75,6 +75,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/balance-drift-sql">Balance Drift Queries</a></td><td>Five SQLite queries that rebuild a ledger's running balance from its amounts, isolate the exact rows where the recorded balance breaks its own arithmetic, and segment the books into drift regimes for an audit note.</td><td>09/04/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/pareto-abc-sql">Pareto ABC Queries</a></td><td>Five SQLite queries that rank a product catalog by revenue, carry a running share of the total down the ranking with an explicit ROWS frame, and cut the catalog into A, B, and C classes at inclusive 80 and 95 percent boundaries.</td><td>09/03/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/zscore-anomaly-sql">Z-Score Anomaly Queries</a></td><td>Five SQLite queries that flag anomalous days in a metric series by building STDEV from window averages, scoring each day against the 14 days before it, and naming the zero-sigma edge case instead of dividing by it.</td><td>09/02/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/trial-balance-sql">Trial Balance Queries</a></td><td>Five SQLite queries that close a month of double-entry books in integer cents: per-entry balance checks, accounts netted to their landing side, a trial balance tying at 21,190.00, and draft-journal defect detection.</td><td>09/01/2026</td></tr>

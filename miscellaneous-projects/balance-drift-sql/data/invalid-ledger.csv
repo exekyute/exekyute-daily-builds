@@ -1,0 +1,4 @@
+txn_id,txn_date,description,amount,recorded_balance
+1,2026-07-31,Opening balance,500.00,500.00
+2,2026-08-01,Invoice payment,200.00,700.00
+4,2026-08-02,Bank fee,-10.00,690.00
