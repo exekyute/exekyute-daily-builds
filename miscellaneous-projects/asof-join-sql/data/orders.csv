@@ -1,0 +1,16 @@
+order_id,order_date,customer,net_amount
+O-1003,2026-02-10,Birchmount Supply,800.00
+O-1011,2026-07-01,Marlowe Ltd,800.00
+O-1001,2025-12-15,Marlowe Ltd,400.00
+O-1007,2026-04-18,Quayside Media,750.00
+O-1015,2026-09-04,Marlowe Ltd,1350.00
+O-1002,2026-01-05,Hartwell Co,1200.00
+O-1009,2026-05-27,Hartwell Co,1150.00
+O-1005,2026-03-31,Hartwell Co,1000.00
+O-1013,2026-08-02,Birchmount Supply,950.00
+O-1006,2026-04-01,Birchmount Supply,1000.00
+O-1010,2026-06-30,Quayside Media,600.00
+O-1004,2026-02-24,Quayside Media,640.00
+O-1012,2026-07-15,Hartwell Co,1200.00
+O-1008,2026-05-06,Marlowe Ltd,900.00
+O-1014,2026-08-20,Quayside Media,700.00
