@@ -75,6 +75,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/drawdown-sql">Drawdown Queries</a></td><td>Five SQLite queries that score a portfolio series against its own running peak: per-day drawdown, every underwater stretch with trough and recovery, the maximum drawdown's full anatomy, and a statement line for today.</td><td>09/06/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/asof-join-sql">As-Of Join Queries</a></td><td>Five SQLite queries that join orders to the tax rate in force on each order's date, opening with the naive-join trap that inflates the total, then building the point-in-time lookup two ways that agree to the cent.</td><td>09/05/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/balance-drift-sql">Balance Drift Queries</a></td><td>Five SQLite queries that rebuild a ledger's running balance from its amounts, isolate the exact rows where the recorded balance breaks its own arithmetic, and segment the books into drift regimes for an audit note.</td><td>09/04/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/pareto-abc-sql">Pareto ABC Queries</a></td><td>Five SQLite queries that rank a product catalog by revenue, carry a running share of the total down the ranking with an explicit ROWS frame, and cut the catalog into A, B, and C classes at inclusive 80 and 95 percent boundaries.</td><td>09/03/2026</td></tr>
