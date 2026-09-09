@@ -75,6 +75,7 @@ Smaller builds, made to learn something or for fun.
 
 <table>
 <tr><th>Project</th><th>What it does</th><th>Last Updated</th></tr>
+<tr><td><a href="miscellaneous-projects/relational-division-sql">Relational Division Queries</a></td><td>Five SQLite queries answering which technicians hold every certification a job requires, opening on the IN-list version that answers "any of" instead, then running the counting and absence constructions side by side until a job requiring nothing makes them disagree.</td><td>09/09/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/snapshot-diff-sql">Snapshot Diff Queries</a></td><td>Five SQLite queries that reconcile two dated price-list exports into added, removed, changed, and unchanged with EXCEPT and INTERSECT, opening on the naive comparison that silently loses every row where a value crossed into or out of unset.</td><td>09/08/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/rank-three-ways-sql">Rank Three Ways</a></td><td>Five SQLite queries that run ROW_NUMBER, RANK, and DENSE_RANK over one sales table and show where the three stop agreeing: the same top-three instruction selects twelve, thirteen, or seventeen reps.</td><td>09/07/2026</td></tr>
 <tr><td><a href="miscellaneous-projects/drawdown-sql">Drawdown Queries</a></td><td>Five SQLite queries that score a portfolio series against its own running peak: per-day drawdown, every underwater stretch with trough and recovery, the maximum drawdown's full anatomy, and a statement line for today.</td><td>09/06/2026</td></tr>
