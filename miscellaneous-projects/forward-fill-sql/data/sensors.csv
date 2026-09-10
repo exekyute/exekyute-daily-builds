@@ -1,0 +1,3 @@
+sensor_id,location,max_celsius
+FRZ-1,Freezer bay,-15.0
+CLR-1,Cooler bay,4.0
