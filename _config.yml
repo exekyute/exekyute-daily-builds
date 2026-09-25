@@ -1,0 +1,3 @@
+# Astro components open with a --- code fence that Jekyll misreads as YAML front matter
+exclude:
+  - miscellaneous-projects/save-point/src
