@@ -43,6 +43,10 @@ def read_csv(path, columns):
     except UnicodeDecodeError:
         fail_file(path, "is not UTF-8 text")
     reader = csv.DictReader(io.StringIO(text, newline=""))
+    try:
+        reader.fieldnames
+    except csv.Error as err:
+        fail(path, 1, f"cannot be parsed ({err}); most likely a quote that never closes")
     if reader.fieldnames is None:
         fail_file(path, "is empty")
     if reader.fieldnames != columns:

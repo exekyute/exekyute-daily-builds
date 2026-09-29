@@ -61,6 +61,19 @@ def open_csv(path, expected_columns):
         fail_file(path, err.strerror or "cannot be read")
     except UnicodeDecodeError:
         fail_file(path, "is not UTF-8 text")
+    # Parsed once before any loader sees it, so a quote that never closes is
+    # refused at the line its record starts on, instead of swallowing the rows
+    # after it or running past the csv module's field size limit.
+    reader = csv.reader(io.StringIO(text, newline=""))
+    start = 1
+    try:
+        for fields in reader:
+            if any("\r" in v or "\n" in v for v in fields):
+                fail(path, start, "a field runs across more than one line; "
+                                  "most likely a quote that never closes")
+            start = reader.line_num + 1
+    except csv.Error as err:
+        fail(path, start, f"cannot be parsed as CSV ({err})")
     f = io.StringIO(text, newline="")
     reader = csv.DictReader(f)
     if reader.fieldnames != expected_columns:
