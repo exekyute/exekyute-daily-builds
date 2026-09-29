@@ -213,6 +213,18 @@ def run_tests(db):
           [r[2] for r in proof if r[0].startswith("purchases") and r[1] == "paper-cups"],
           ["98.00 = 68.00 + 30.00"])
 
+    # A sale past the last layer, and one with no layers at all, must stay on
+    # the margin report with a note rather than a margin on free units. This
+    # adds rows to the shared database, so it has to stay the last check.
+    db.executemany("INSERT INTO sales VALUES (?, ?, ?, ?, ?)",
+                   [(6, "arabica-beans", "2026-07-28", 100, 800),
+                    (7, "cup-lids", "2026-07-29", 50, 10)])
+    _, margins = run_query(db, SQL_DIR / "04-sale-margins.sql")
+    check("short sales keep a row and lose the margin",
+          [(r[0], r[5], r[6], r[7], r[8]) for r in margins if r[0] >= 6],
+          [(6, None, None, None, "20 of 100 units have no purchase layer"),
+           (7, None, None, None, "50 of 50 units have no purchase layer")])
+
     print()
     if failures:
         print(f"{failures} check(s) failed")

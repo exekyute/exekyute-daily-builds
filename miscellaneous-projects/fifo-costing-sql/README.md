@@ -9,7 +9,7 @@ Five SQLite queries that cost every sale against purchase layers in first-in-fir
 | `sql/01-layers.sql` | Each purchase as a cost layer with its range on the cumulative unit line. |
 | `sql/02-sale-ranges.sql` | Each sale as a range on the same line, counted over units sold so far. |
 | `sql/03-fifo-allocation.sql` | The engine: every sale-layer intersection with its units and cost. |
-| `sql/04-sale-margins.sql` | Revenue, FIFO cost of goods sold, margin, and margin percent per sale. |
+| `sql/04-sale-margins.sql` | Revenue, FIFO cost of goods sold, margin, and margin percent per sale, with a note in place of a margin on any sale the layers cannot cover. |
 | `sql/05-inventory-proof.sql` | Two proofs per product: purchases equal COGS plus ending stock, and every sale found enough layer units. |
 
 ## Running it
@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Ten checks cover the layer ranges, the straddling sale's exact split, both products' allocations, every margin, and both proofs, then print `all checks passed`.
+Eleven checks cover the layer ranges, the straddling sale's exact split, both products' allocations, every margin, both proofs, and two oversold sales staying on the margin report, then print `all checks passed`.
 
 The loader validates both CSVs before any query runs. Point it at the included bad file to see a rejection:
 
@@ -47,7 +47,7 @@ Now every sale draws from exactly the layers its range overlaps, and the units d
 
 Conservation first: whatever was purchased is either sold or still on the shelf, so purchase value must equal cost of goods sold plus ending inventory, checked per product in cents. Ending stock falls out of the same geometry: each layer's unsold remainder is its range clipped to whatever lies past the total units sold, which leaves the beans holding 80 units of the 4.20 layer, 336.00.
 
-Coverage second: every sale must find enough layer units. This check deliberately starts from the sales table, because a sale with no backing layers at all produces no allocation rows, and a check built on the allocations would never see it. Overselling shows up here as a FAIL naming the product, while the conservation identity keeps holding, since it only accounts for units that exist.
+Coverage second: every sale must find enough layer units. This check deliberately starts from the sales table, because a sale with no backing layers at all produces no allocation rows, and a check built on the allocations would never see it. Overselling shows up here as a FAIL naming the product, while the conservation identity keeps holding, since it only accounts for units that exist. Query 04 keeps an oversold sale on the page with its cost and margin left blank and a note counting the uncovered units, rather than pricing those units at zero.
 
 ## Sample data
 
