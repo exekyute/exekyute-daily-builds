@@ -26,6 +26,7 @@ def build():
     """Execute every sql/*.sql file in filename order."""
     import duckdb
 
+    os.makedirs(os.path.join(HERE, "out"), exist_ok=True)
     con = duckdb.connect()  # in-memory database, nothing persisted to disk
     try:
         for path in sorted(glob.glob(os.path.join(HERE, "sql", "*.sql"))):
