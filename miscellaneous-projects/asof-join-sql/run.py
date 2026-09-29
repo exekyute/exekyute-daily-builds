@@ -257,6 +257,12 @@ def main():
     parser.add_argument("--orders", type=Path, default=ORDERS_CSV, help="path to an alternate orders CSV")
     parser.add_argument("--rates", type=Path, default=RATES_CSV, help="path to an alternate rates CSV")
     args = parser.parse_args()
+    # Reports are printed as UTF-8, since output piped or redirected on
+    # Windows otherwise falls back to a codepage that cannot print all text.
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            reconfigure(encoding="utf-8", errors=stream.errors)
     if args.test and (args.orders.resolve() != ORDERS_CSV.resolve()
                       or args.rates.resolve() != RATES_CSV.resolve()):
         parser.error("--test checks hand-computed answers for the sample tables; run it without --orders or --rates")

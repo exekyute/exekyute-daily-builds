@@ -265,6 +265,12 @@ def main():
     parser.add_argument("--expenses", type=Path, default=EXPENSES_CSV, help="path to an alternate expense CSV")
     parser.add_argument("--draft", type=Path, default=DRAFT_CSV, help="path to an alternate draft tree CSV")
     args = parser.parse_args()
+    # Reports are printed as UTF-8, since output piped or redirected on
+    # Windows otherwise falls back to a codepage that cannot print all text.
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            reconfigure(encoding="utf-8", errors=stream.errors)
 
     db = build_db(args.categories, args.expenses, args.draft)
     if args.test:

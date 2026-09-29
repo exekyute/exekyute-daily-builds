@@ -181,6 +181,12 @@ def main():
     parser.add_argument("--test", action="store_true", help="run the assertion suite instead of the reports")
     parser.add_argument("--activity", type=Path, default=ACTIVITY_CSV, help="path to an alternate activity CSV")
     args = parser.parse_args()
+    # Reports are printed as UTF-8, since output piped or redirected on
+    # Windows otherwise falls back to a codepage that cannot print all text.
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            reconfigure(encoding="utf-8", errors=stream.errors)
 
     db = build_db(args.activity)
     if args.test:

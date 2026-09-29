@@ -209,6 +209,12 @@ def main():
     parser.add_argument("--ledger", type=Path, default=LEDGER_CSV, help="path to an alternate ledger CSV")
     parser.add_argument("--bank", type=Path, default=BANK_CSV, help="path to an alternate bank statement CSV")
     args = parser.parse_args()
+    # Reports are printed as UTF-8, since output piped or redirected on
+    # Windows otherwise falls back to a codepage that cannot print all text.
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            reconfigure(encoding="utf-8", errors=stream.errors)
 
     db = build_db(args.ledger, args.bank)
     if args.test:

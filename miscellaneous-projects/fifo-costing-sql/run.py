@@ -226,6 +226,12 @@ def main():
     parser.add_argument("--purchases", type=Path, default=PURCHASES_CSV, help="path to an alternate purchases CSV")
     parser.add_argument("--sales", type=Path, default=SALES_CSV, help="path to an alternate sales CSV")
     args = parser.parse_args()
+    # Reports are printed as UTF-8, since output piped or redirected on
+    # Windows otherwise falls back to a codepage that cannot print all text.
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            reconfigure(encoding="utf-8", errors=stream.errors)
 
     db = build_db(args.purchases, args.sales)
     if args.test:

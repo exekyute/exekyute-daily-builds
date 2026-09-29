@@ -239,6 +239,12 @@ def main():
     parser.add_argument("--before", type=Path, default=BEFORE_CSV, help="path to the earlier snapshot CSV")
     parser.add_argument("--after", type=Path, default=AFTER_CSV, help="path to the later snapshot CSV")
     args = parser.parse_args()
+    # Reports are printed as UTF-8, since output piped or redirected on
+    # Windows otherwise falls back to a codepage that cannot print all text.
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            reconfigure(encoding="utf-8", errors=stream.errors)
     if args.test and (args.before.resolve() != BEFORE_CSV.resolve()
                       or args.after.resolve() != AFTER_CSV.resolve()):
         parser.error("--test checks hand-computed answers for the sample snapshots; "
