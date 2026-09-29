@@ -43,7 +43,7 @@ The loader validates the log before any query runs. Point it at the included bad
 python run.py --deliveries data/invalid-deliveries.csv
 ```
 
-It stops at the first problem it reaches, naming the row where it has one:
+It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte can be reported first, without a row, when a problem sits above it in the same stretch of the file. On the included bad log:
 
 ```
 invalid-deliveries.csv row 61: minutes '12.5' is not a whole number of minutes from -1440 to 1440, written like -15 or 20

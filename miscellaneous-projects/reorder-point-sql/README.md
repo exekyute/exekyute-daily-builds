@@ -43,7 +43,7 @@ The loader validates both files before any query runs. Point it at the included 
 python run.py --parts data/parts.csv --usage data/invalid-usage.csv
 ```
 
-It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte is reported first, without a row, when a problem sits above it in the same stretch of the file. On the included bad log:
+It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte can be reported first, without a row, when a problem sits above it in the same stretch of the file. On the included bad log:
 
 ```
 invalid-usage.csv row 412: units '-2' is not a whole number of units from 0 to 999, written like 4
@@ -82,7 +82,7 @@ Eight parts at the counter of a fictional maintenance shop that is open every da
 - The replay places each order the moment stock reaches the reorder point and brings the delivery at the close of the lead time's last day. A counter that checks stock once a day usually finds it a little under the reorder point by the time it orders, so its cycles start with less stock than the replay assumes and run out more often.
 - Stretches are counted from the first day of the log, and one cut short by the end of the log is left out. Starting a day later groups the days differently and can change the counts, and a part whose lead time is longer than the log gets no cycles at all.
 - The z values are written into the queries: 1.65 as 27225, which is 1.65 x 1.65 x 10000, in queries 03 and 04, and four levels in hundredths in query 05. Changing one means changing each copy.
-- Every part needs a row for every day of the log, with 0 on a day it was not used. A part code is capital letters and digits joined by single hyphens, at most 24 characters, a day is from 1970-01-01 to 2200-12-31, usage is 0 to 999 units a day, a lead time is 1 to 90 days, and a log covers at most 1000 days, 1000 parts and 100000 rows. A line of a file holds at most 1000000 characters, and a field at most 131072, the CSV parser's limit. A file is decoded in blocks of about 8 KB, so a byte that is not UTF-8 is reported ahead of a problem on an earlier row in the same block.
+- Every part needs a row for every day of the log, with 0 on a day it was not used. A part code is capital letters and digits joined by single hyphens, at most 24 characters, a day is from 1970-01-01 to 2200-12-31, usage is 0 to 999 units a day, a lead time is 1 to 90 days, and a log covers at most 1000 days, 1000 parts and 100000 rows. A line of a file holds at most 1000000 characters, and a field at most 131072, the CSV parser's limit. A file is decoded in blocks of about 8 KB, so a byte that is not UTF-8 can be reported ahead of a problem on an earlier row in the same block.
 - A query that runs past a hundred million SQLite steps is stopped with an error. The costliest logs found within the limits take about a quarter of that on 3.31, 3.34 and 3.50 alike; the older versions work a named CTE out again at every mention, which is why each query names its dearest steps once.
 
 ## License

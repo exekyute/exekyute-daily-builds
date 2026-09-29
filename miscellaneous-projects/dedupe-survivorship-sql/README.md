@@ -45,7 +45,7 @@ The loader validates the file before any query runs. Point it at the included ba
 python run.py --customers data/invalid-customers.csv
 ```
 
-It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte is reported first, with no row, when a problem sits above it in the same stretch of the file. On the included bad file:
+It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte can be reported first, with no row, when a problem sits above it in the same stretch of the file. On the included bad file:
 
 ```
 invalid-customers.csv row 21: phone '(902) 555-O147' is not a phone number: ten digits, the first 2 to 9, with or without a 1 in front, and only spaces, hyphens, dots, brackets or a plus sign besides, at most 25 characters

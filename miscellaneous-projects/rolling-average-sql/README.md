@@ -43,7 +43,7 @@ The loader validates the log before any query runs. Point it at the included bad
 python run.py --sales data/invalid-sales.csv
 ```
 
-It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte is reported first, without a row, when a problem sits a little above it in the same stretch of the file. On the included bad log:
+It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte can be reported first, without a row, when a problem sits above it in the same stretch of the file. On the included bad log:
 
 ```
 invalid-sales.csv row 46: sales '1,062.85' is not an amount from 0.00 to 999999.99 written like 412.50

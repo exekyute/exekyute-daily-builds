@@ -873,7 +873,14 @@ def run_tests(db):
                 return "x" * size
 
         def endless_line():
-            return len(list(read_lines(Path(tmp) / "endless.csv", Endless())))
+            # At most three lines are taken, so a reader that never refuses
+            # the line fails this check instead of filling memory.
+            count = 0
+            for _ in read_lines(Path(tmp) / "endless.csv", Endless()):
+                count += 1
+                if count == 3:
+                    break
+            return count
 
         all_days = "".join(f"{(EARLIEST + timedelta(days=k)).isoformat()},1.00\n" for k in range(84371))
         far_down = all_days[:20000 * 16]

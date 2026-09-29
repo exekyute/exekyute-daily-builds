@@ -41,7 +41,7 @@ The loader validates the log before any query runs. Point it at the included bad
 python run.py --mrr data/invalid-mrr.csv
 ```
 
-It stops at the first problem it reaches, naming the row where it has one:
+It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte can be reported first, without a row, when a problem sits above it in the same stretch of the file. On the included bad log:
 
 ```
 invalid-mrr.csv row 63: KEMPT-ROAD-CLINIC appears twice for 2025-07; one row per customer and month, with the amounts added together
