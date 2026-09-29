@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Eight checks cover the row counts, Mara's two streaks, the duplicate check-in collapsing to one day, the longest and current streaks, and the lapsed list, then print `all checks passed`.
+Nine checks cover the row counts, Mara's two streaks, the duplicate check-in collapsing to one day, the longest and current streaks, the lapsed list, and check-ins after the report date leaving both as-of reports untouched, then print `all checks passed`.
 
 The loader validates both CSVs before any query runs. Point it at the included bad file to see a rejection:
 
@@ -60,7 +60,7 @@ The two consecutive July days share a key, and each gap after that pushes the ke
 
 Seven fictional members and 49 check-in rows across 48 distinct visit days, June 22 to August 19, 2026. I placed the rows by hand so every edge case shows up in the output: a 14-day streak, a broken streak, a duplicate same-day check-in, a weekends-only member whose streaks are all one day long, two lapsed members, and one member who joined and never visited.
 
-The report queries pin the as-of date to 2026-08-19 so the sample gives the same answer every run. Against live data, swap the `params` CTE to `DATE('now')`.
+The report queries pin the as-of date to 2026-08-19 so the sample gives the same answer every run. Against live data, swap the `params` CTE to `DATE('now')`. Check-ins dated after the as-of day are left out of the current-streak and lapsed reports, so those two answer for the report date even when the file runs past it.
 
 ## Known limits
 

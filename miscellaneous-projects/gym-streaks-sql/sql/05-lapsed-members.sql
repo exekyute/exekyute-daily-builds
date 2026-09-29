@@ -7,6 +7,7 @@ WITH params AS (
 last_visit AS (
     SELECT member_id, MAX(DATE(checkin_ts)) AS last_day
     FROM checkins
+    WHERE DATE(checkin_ts) <= (SELECT as_of FROM params)
     GROUP BY member_id
 )
 SELECT m.name,

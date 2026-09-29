@@ -175,6 +175,14 @@ def run_tests(db):
           [(name, days) for name, _, _, days in lapsed],
           [("Noor Haddad", None), ("Priya Nair", 50), ("Tomas Rehn", 42)])
 
+    # Check-ins after the pinned report date must not move the as-of reports.
+    db.executemany("INSERT INTO checkins VALUES (?, ?)",
+                   [(1, "2026-08-20 07:00"), (4, "2026-08-25 07:00")])
+    check("check-ins after the report date leave the as-of reports alone",
+          (run_query(db, SQL_DIR / "04-current-streaks.sql")[1],
+           run_query(db, SQL_DIR / "05-lapsed-members.sql")[1]),
+          (current, lapsed))
+
     print()
     if failures:
         print(f"{failures} check(s) failed")

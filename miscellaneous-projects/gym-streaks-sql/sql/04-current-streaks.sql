@@ -7,6 +7,7 @@ WITH params AS (
 days AS (
     SELECT DISTINCT member_id, DATE(checkin_ts) AS day
     FROM checkins
+    WHERE DATE(checkin_ts) <= (SELECT as_of FROM params)
 ),
 numbered AS (
     SELECT member_id, day,
