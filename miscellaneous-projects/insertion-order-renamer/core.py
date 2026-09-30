@@ -45,6 +45,7 @@ JUNK_WORDS = {
 STATUS_OK = "ok"
 STATUS_NO_IO = "skip-no-io"
 STATUS_NO_COMPANY = "skip-no-company"
+STATUS_ALREADY_CLEAN = "skip-already-clean"
 
 # Name of the undo log written next to the script after an apply.
 UNDO_LOG_NAME = "undo_log.json"
@@ -195,6 +196,9 @@ def plan_renames(folder, lookup):
         f for f in os.listdir(folder)
         if os.path.isfile(os.path.join(folder, f))
     )
+    # Every name already in the folder. A new name must never land on one of
+    # these, or the rename would hit a file that is still there.
+    existing = set(name.lower() for name in names)
 
     for old_name in names:
         io_number = extract_io_number(old_name)
@@ -209,11 +213,23 @@ def plan_renames(folder, lookup):
 
         ext = os.path.splitext(old_name)[1].lower()
         new_name = build_new_name(company, io_number, ext)
-        new_name = _dedupe(new_name, taken, ext)
+        if _is_already_clean(old_name, new_name, ext):
+            # Renamed by an earlier run (with or without a -2, -3 suffix).
+            # Leave it where it is so a second run changes nothing.
+            plan.append(Rename(old_name, None, STATUS_ALREADY_CLEAN, io_number))
+            continue
+        new_name = _dedupe(new_name, taken | existing, ext)
         taken.add(new_name.lower())
         plan.append(Rename(old_name, new_name, STATUS_OK, io_number))
 
     return plan
+
+
+def _is_already_clean(old_name, new_name, ext):
+    """True when old_name is already new_name, give or take a -2, -3 suffix."""
+    stem = new_name[: -len(ext)] if ext else new_name
+    pattern = re.escape(stem) + r"(-\d+)?" + re.escape(ext)
+    return re.fullmatch(pattern, old_name, re.IGNORECASE) is not None
 
 
 def _dedupe(new_name, taken, ext):

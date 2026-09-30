@@ -30,6 +30,7 @@ UNDO_LOG = os.path.join(HERE, core.UNDO_LOG_NAME)
 SKIP_REASON = {
     core.STATUS_NO_IO: "no IO number found",
     core.STATUS_NO_COMPANY: "company could not be determined",
+    core.STATUS_ALREADY_CLEAN: "already in the clean format",
 }
 
 
