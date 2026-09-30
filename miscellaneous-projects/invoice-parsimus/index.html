@@ -906,6 +906,14 @@ RULES:
       return canvas.toDataURL('image/png').split(',')[1];
   }
 
+  /* parseLocalDate: read a date-only string like "2026-03-01" as local midnight.
+     new Date("2026-03-01") means UTC midnight, which is still the evening of the
+     28th anywhere west of UTC, so getDate() and getMonth() would land a day early.
+     Adding a time with no offset makes the browser treat it as local time. */
+  function parseLocalDate(iso) {
+      return new Date(/^\d{4}-\d{2}-\d{2}$/.test(iso) ? `${iso}T00:00:00` : iso);
+  }
+
   /* pushInvoiceFromGemini: map Gemini's JSON into the existing invoice shape.
      Crucially, this builds ONE invoice object locally and pushes it. Multiple concurrent files
      each call this function independently, so their objects can never share fields. */
@@ -933,12 +941,12 @@ RULES:
       let rawDate = new Date().toISOString().split('T')[0];
       let displayDate = 'N/A';
       if (parsed.invoice_date) {
-          const d = new Date(parsed.invoice_date);
+          const d = parseLocalDate(parsed.invoice_date);
           if (!isNaN(d)) {
-              rawDate = d.toISOString().split('T')[0];
               const dd = String(d.getDate()).padStart(2, '0');
               const mm = String(d.getMonth() + 1).padStart(2, '0');
               const yyyy = d.getFullYear();
+              rawDate = `${yyyy}-${mm}-${dd}`;
               displayDate = `${dd}-${mm}-${yyyy}`;
           } else {
               flags.date = true;
@@ -1238,12 +1246,12 @@ RULES:
 
       const timelineRows = visible.filter(inv => {
           if (!rangeStart) return true;
-          return new Date(inv.rawDate) >= rangeStart;
+          return parseLocalDate(inv.rawDate) >= rangeStart;
       });
 
       const monthly = {};
       timelineRows.forEach(inv => {
-          const d = new Date(inv.rawDate);
+          const d = parseLocalDate(inv.rawDate);
           const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
           if (!monthly[k]) monthly[k] = { label: d.toLocaleString('default', { month: 'short', year: 'numeric' }), total: 0 };
           monthly[k].total += inv.total || 0;
