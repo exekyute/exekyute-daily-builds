@@ -60,6 +60,24 @@
     }, policy);
     check("unknown category rejected", bad.ok, false);
 
+    // One valid lodging line with a single field swapped out, so each check below
+    // can fail for one reason only.
+    function withField(field, value) {
+      var raw = {
+        expense_id: "E-98", date: "2026-06-08", employee: "A. Singh",
+        category: "Lodging", amount: "240.00", km: "", receipt: "yes",
+      };
+      raw[field] = value;
+      return A.validateExpense(raw, policy);
+    }
+    check("amount with a thousands separator rejected", withField("amount", "1,250.00").error,
+      "Expense E-98: amount must be a number");
+    check("amount with a currency symbol rejected", withField("amount", "$95.00").error,
+      "Expense E-98: amount must be a number");
+    check("impossible date rejected", withField("date", "2026-02-30").error,
+      "Expense E-98: date must be a real date in YYYY-MM-DD form");
+    check("plain decimal amount accepted", withField("amount", "240.5").ok, true);
+
     var passed = results.filter(function (r) { return r.ok; }).length;
     return { passed: passed, failed: results.length - passed, results: results };
   }

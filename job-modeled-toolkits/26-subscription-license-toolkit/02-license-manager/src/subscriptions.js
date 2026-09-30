@@ -33,6 +33,26 @@
     return negative ? -cents : cents;
   }
 
+  // True when the text is a plain decimal number: digits with at most one decimal
+  // point and an optional minus sign. A thousands separator, a currency symbol, an
+  // exponent, or a word is not a number, so toCents never reads part of a value.
+  function isNumberText(value) {
+    return /^-?(\d+\.?\d*|\.\d+)$/.test(String(value).trim());
+  }
+
+  // True when the text is a whole number: digits only, with an optional sign.
+  function isWholeNumberText(value) {
+    return /^[+-]?\d+$/.test(String(value).trim());
+  }
+
+  // True when the text is YYYY-MM-DD and names a day that exists on the calendar.
+  function isRealDate(value) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value).trim());
+    if (!m) { return false; }
+    var d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+    return d.getUTCFullYear() === +m[1] && d.getUTCMonth() === +m[2] - 1 && d.getUTCDate() === +m[3];
+  }
+
   function formatMoney(cents) {
     return (cents / 100).toLocaleString("en-CA", {
       style: "currency", currency: "CAD",
@@ -100,21 +120,24 @@
     if (PLAN_TYPES.indexOf(planType) === -1) {
       return { ok: false, error: label + ": plan_type must be per_seat or flat" };
     }
+    if (!isNumberText(raw.monthly_unit_cost)) {
+      return { ok: false, error: label + ": monthly_unit_cost must be a number" };
+    }
     var unitCents = toCents(raw.monthly_unit_cost);
     if (unitCents < 0) { return { ok: false, error: label + ": monthly_unit_cost cannot be negative" }; }
     var seatsOwned = parseInt(String(raw.seats_owned).trim(), 10);
     var seatsUsed = parseInt(String(raw.seats_used).trim(), 10);
-    if (!Number.isInteger(seatsOwned) || seatsOwned <= 0) {
+    if (!isWholeNumberText(raw.seats_owned) || seatsOwned <= 0) {
       return { ok: false, error: label + ": seats_owned must be a whole number above zero" };
     }
-    if (!Number.isInteger(seatsUsed) || seatsUsed < 0) {
-      return { ok: false, error: label + ": seats_used must be zero or more" };
+    if (!isWholeNumberText(raw.seats_used) || seatsUsed < 0) {
+      return { ok: false, error: label + ": seats_used must be a whole number, zero or more" };
     }
     if (seatsUsed > seatsOwned) {
       return { ok: false, error: label + ": seats_used (" + seatsUsed + ") cannot exceed seats_owned (" + seatsOwned + ")" };
     }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(raw.renewal_date).trim())) {
-      return { ok: false, error: label + ": renewal_date must be YYYY-MM-DD" };
+    if (!isRealDate(raw.renewal_date)) {
+      return { ok: false, error: label + ": renewal_date must be a real date in YYYY-MM-DD form" };
     }
     var autoText = String(raw.auto_renew).trim().toLowerCase();
     if (autoText !== "yes" && autoText !== "no") {

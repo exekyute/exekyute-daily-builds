@@ -174,7 +174,16 @@
       state.decisions = {};
       persist();
       renderTable();
-      setText("note", "Imported " + rows.length + " expenses.");
+      // A row that fails validation is left out of the queue, so the note names it
+      // instead of counting it as imported.
+      var leftOut = [];
+      rows.forEach(function (raw) {
+        var r = A.validateExpense(raw, policy);
+        if (!r.ok) { leftOut.push(r.error); }
+      });
+      setText("note", leftOut.length
+        ? "Imported " + (rows.length - leftOut.length) + " of " + rows.length + " expenses. Left out: " + leftOut.join("; ") + "."
+        : "Imported " + rows.length + " expenses.");
     };
     reader.readAsText(file);
   }

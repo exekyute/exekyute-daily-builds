@@ -28,6 +28,21 @@
     return negative ? -cents : cents;
   }
 
+  // True when the text is a plain decimal number: digits with at most one decimal
+  // point and an optional minus sign. A thousands separator, a currency symbol, an
+  // exponent, or a word is not a number, so toCents never reads part of a value.
+  function isNumberText(value) {
+    return /^-?(\d+\.?\d*|\.\d+)$/.test(String(value).trim());
+  }
+
+  // True when the text is YYYY-MM-DD and names a day that exists on the calendar.
+  function isRealDate(value) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value).trim());
+    if (!m) { return false; }
+    var d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+    return d.getUTCFullYear() === +m[1] && d.getUTCMonth() === +m[2] - 1 && d.getUTCDate() === +m[3];
+  }
+
   function formatMoney(cents) {
     return (cents / 100).toLocaleString("en-CA", { style: "currency", currency: "CAD" });
   }
@@ -59,12 +74,14 @@
     if (allowedCategories(policy).indexOf(category) === -1) {
       return { ok: false, error: label + ": category " + category + " has no policy" };
     }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(raw.date).trim())) {
-      return { ok: false, error: label + ": date must be YYYY-MM-DD" };
+    if (!isRealDate(raw.date)) {
+      return { ok: false, error: label + ": date must be a real date in YYYY-MM-DD form" };
     }
+    if (!isNumberText(raw.amount)) { return { ok: false, error: label + ": amount must be a number" }; }
     var amountCents = toCents(raw.amount);
     if (amountCents <= 0) { return { ok: false, error: label + ": amount must be above zero" }; }
     var kmText = String(raw.km === undefined ? "" : raw.km).trim();
+    if (kmText !== "" && !isNumberText(kmText)) { return { ok: false, error: label + ": km must be a number" }; }
     var km = kmText === "" ? 0 : Number(kmText);
     if (!(km >= 0)) { return { ok: false, error: label + ": km cannot be negative" }; }
     if (category === MILEAGE && km <= 0) {

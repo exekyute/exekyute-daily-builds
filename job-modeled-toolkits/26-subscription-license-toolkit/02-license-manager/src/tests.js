@@ -63,6 +63,27 @@
     });
     check("invalid row rejected", bad.ok, false);
 
+    // One valid row with a single field swapped out, so each check below can
+    // fail for one reason only.
+    function withField(field, value) {
+      var raw = {
+        sub_id: "S-98", vendor: "Probe Co", plan: "Team", plan_type: "per_seat",
+        monthly_unit_cost: "12.50", seats_owned: "50", seats_used: "38",
+        renewal_date: "2026-09-15", auto_renew: "yes",
+      };
+      raw[field] = value;
+      return Logic.validateSub(raw);
+    }
+    check("cost with a thousands separator rejected", withField("monthly_unit_cost", "1,200.00").error,
+      "Subscription S-98: monthly_unit_cost must be a number");
+    check("cost with a currency symbol rejected", withField("monthly_unit_cost", "$12.00").error,
+      "Subscription S-98: monthly_unit_cost must be a number");
+    check("fractional seat count rejected", withField("seats_owned", "50.5").error,
+      "Subscription S-98: seats_owned must be a whole number above zero");
+    check("impossible renewal date rejected", withField("renewal_date", "2026-02-30").error,
+      "Subscription S-98: renewal_date must be a real date in YYYY-MM-DD form");
+    check("plain decimal cost accepted", withField("monthly_unit_cost", "12.50").ok, true);
+
     var passed = results.filter(function (r) { return r.ok; }).length;
     return { passed: passed, failed: results.length - passed, results: results };
   }
