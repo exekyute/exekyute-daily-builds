@@ -156,7 +156,11 @@ def main(argv=None):
         return 1
 
     records, rejections = process_rows(rows, fieldnames, config)
-    write_register(args.output, records)
+    # A rejected header is fatal for the whole file, so leave any existing
+    # register alone instead of replacing it with a header-only file.
+    header_rejected = bool(validation.validate_header(fieldnames))
+    if not header_rejected:
+        write_register(args.output, records)
 
     total_gross, total_net = summarize(records)
 
@@ -168,6 +172,9 @@ def main(argv=None):
             print("    - [%s] %s" % (label, error))
     print("  Total gross: $%s CAD" % format_money(total_gross))
     print("  Total net:   $%s CAD" % format_money(total_net))
+    if header_rejected:
+        print("  Register not written: fix the header and run again.")
+        return 1
     print("  Register written to: %s" % args.output)
     return 0
 

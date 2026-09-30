@@ -10,13 +10,17 @@ The path insert below lets the tests import the tool modules no matter which
 directory the test runner is launched from.
 """
 
+import contextlib
+import io
 import os
 import sys
+import tempfile
 import unittest
 from decimal import Decimal
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+import payroll_cli as cli
 import payroll_logic as logic
 import payroll_validation as validation
 
@@ -170,6 +174,28 @@ class ValidationTests(unittest.TestCase):
         header = validation.REQUIRED_FIELDS + ["surprise"]
         errors = validation.validate_header(header)
         self.assertTrue(any("surprise" in error for error in errors))
+
+
+class CommandLineTests(unittest.TestCase):
+    def test_rejected_header_leaves_existing_register_alone(self):
+        # A two-column file fails the header check, so main() must return 1
+        # and must not touch the register that is already on disk.
+        with tempfile.TemporaryDirectory() as folder:
+            register = os.path.join(folder, "payroll_register.csv")
+            wrong = os.path.join(folder, "wrong_columns.csv")
+            with open(register, "w", newline="", encoding="utf-8") as handle:
+                handle.write("keep me\n")
+            with open(wrong, "w", newline="", encoding="utf-8") as handle:
+                handle.write("a,b\n1,2\n")
+
+            with contextlib.redirect_stdout(io.StringIO()):
+                code = cli.main([wrong, "-o", register])
+
+            with open(register, newline="", encoding="utf-8") as handle:
+                kept = handle.read()
+
+        self.assertEqual(code, 1)
+        self.assertEqual(kept, "keep me\n")
 
 
 if __name__ == "__main__":
