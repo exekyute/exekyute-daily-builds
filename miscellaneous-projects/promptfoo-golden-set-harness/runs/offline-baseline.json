@@ -33617,11 +33617,11 @@
     "description": "Freight-document extraction, v1 against v2, three replayed models",
     "prompts": [
       {
-        "id": "file://C:\\Users\\jebo\\Documents\\Claude Code Projects\\exekyute-daily-builds\\miscellaneous-projects\\promptfoo-golden-set-harness\\prompts\\extract-v1.txt",
+        "id": "file://prompts/extract-v1.txt",
         "label": "v1"
       },
       {
-        "id": "file://C:\\Users\\jebo\\Documents\\Claude Code Projects\\exekyute-daily-builds\\miscellaneous-projects\\promptfoo-golden-set-harness\\prompts\\extract-v2.txt",
+        "id": "file://prompts/extract-v2.txt",
         "label": "v2"
       }
     ],

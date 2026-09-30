@@ -20,10 +20,10 @@ metrics use `decimal.Decimal`, so the figures are exact.
 
 ## Running it
 
-From this folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\job-modeled-toolkits\24-ai-operations-toolkit\02-model-scorecard"
+cd job-modeled-toolkits/24-ai-operations-toolkit/02-model-scorecard
 ```
 
 Run the scorecard against the sample data. The runner prints the ranked scorecard and

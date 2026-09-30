@@ -12,7 +12,7 @@ and nothing leaves your machine.
 Open the folder and double-click `index.html`:
 
 ```
-C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\miscellaneous-projects\sublist
+miscellaneous-projects/sublist
 ```
 
 First run loads a 12-subscription sample stack (Slack, Google Workspace, Salesforce, a

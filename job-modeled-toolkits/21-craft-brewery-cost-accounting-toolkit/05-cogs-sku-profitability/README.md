@@ -18,10 +18,10 @@ Money is carried as `decimal.Decimal` and rounded half up to the cent, so the
 figures agree with the rest of the pipeline.
 
 ## Running it
-From this folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\job-modeled-toolkits\21-craft-brewery-cost-accounting-toolkit\05-cogs-sku-profitability"
+cd job-modeled-toolkits/21-craft-brewery-cost-accounting-toolkit/05-cogs-sku-profitability
 ```
 
 Run the test suite:

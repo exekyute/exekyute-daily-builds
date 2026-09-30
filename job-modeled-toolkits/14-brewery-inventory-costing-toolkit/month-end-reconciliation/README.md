@@ -18,10 +18,10 @@ produced by the costing engine in this repo. The copies here are a sample so the
 tool runs on its own; regenerate them from the engine to reconcile a new period.
 
 ## Running it
-From the tool folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\14-brewery-inventory-costing-toolkit\month-end-reconciliation"
+cd job-modeled-toolkits/14-brewery-inventory-costing-toolkit/month-end-reconciliation
 ```
 
 Run the reconciliation and the totals check:

@@ -18,10 +18,10 @@ Money is carried as `decimal.Decimal` and rounded half up to the cent, so the
 batch costs agree to the cent with the tools downstream.
 
 ## Running it
-From this folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\job-modeled-toolkits\21-craft-brewery-cost-accounting-toolkit\02-batch-production-costing"
+cd job-modeled-toolkits/21-craft-brewery-cost-accounting-toolkit/02-batch-production-costing
 ```
 
 Run the test suite:

@@ -18,7 +18,7 @@ Python and SQL tools to the cent.
 Open the dashboard:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\job-modeled-toolkits\21-craft-brewery-cost-accounting-toolkit\07-cost-dashboard"
+cd job-modeled-toolkits/21-craft-brewery-cost-accounting-toolkit/07-cost-dashboard
 ```
 
 Double-click `index.html` (or open it in a browser). Click **Load sample data**

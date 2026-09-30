@@ -21,7 +21,7 @@ The reports stay simple on purpose: `SELECT`, `WHERE`, one `JOIN`, `GROUP BY`,
 Standard-library Python 3, no install needed.
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\15-membership-services-toolkit\01-membership-reporting-sql"
+cd job-modeled-toolkits/15-membership-services-toolkit/01-membership-reporting-sql
 python run_report.py
 ```
 

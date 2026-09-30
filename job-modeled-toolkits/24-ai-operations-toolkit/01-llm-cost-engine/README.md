@@ -20,10 +20,10 @@ the figures match the SQL reconciliation and the browser dashboard exactly.
 
 ## Running it
 
-From this folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\job-modeled-toolkits\24-ai-operations-toolkit\01-llm-cost-engine"
+cd job-modeled-toolkits/24-ai-operations-toolkit/01-llm-cost-engine
 ```
 
 Run the test suite:

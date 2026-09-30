@@ -17,10 +17,10 @@ Duty is carried as `decimal.Decimal` and rounded half up to the cent, so the
 figure agrees with the month-end close.
 
 ## Running it
-From this folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\job-modeled-toolkits\21-craft-brewery-cost-accounting-toolkit\04-excise-duty-engine"
+cd job-modeled-toolkits/21-craft-brewery-cost-accounting-toolkit/04-excise-duty-engine
 ```
 
 Run the test suite:

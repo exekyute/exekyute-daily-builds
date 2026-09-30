@@ -19,10 +19,10 @@ rules are in [spec.md](spec.md).
 
 ## Running it
 
-From this folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\job-modeled-toolkits\24-ai-operations-toolkit\03-ai-ops-dashboard"
+cd job-modeled-toolkits/24-ai-operations-toolkit/03-ai-ops-dashboard
 ```
 
 Open `index.html` by double-clicking it, or serve the folder and open it in a browser.

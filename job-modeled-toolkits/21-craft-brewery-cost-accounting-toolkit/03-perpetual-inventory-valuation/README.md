@@ -18,10 +18,10 @@ Money is carried as `decimal.Decimal` and rounded half up to the cent, so the
 ending values agree to the cent with the month-end close.
 
 ## Running it
-From this folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\job-modeled-toolkits\21-craft-brewery-cost-accounting-toolkit\03-perpetual-inventory-valuation"
+cd job-modeled-toolkits/21-craft-brewery-cost-accounting-toolkit/03-perpetual-inventory-valuation
 ```
 
 Run the test suite:

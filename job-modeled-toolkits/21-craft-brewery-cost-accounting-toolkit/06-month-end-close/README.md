@@ -16,10 +16,10 @@ server and no install. Money is checked with `decimal.Decimal` so the totals
 agree with the Python engines.
 
 ## Running it
-From this folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\exekyute-daily-builds\job-modeled-toolkits\21-craft-brewery-cost-accounting-toolkit\06-month-end-close"
+cd job-modeled-toolkits/21-craft-brewery-cost-accounting-toolkit/06-month-end-close
 ```
 
 Run the close and the checks:

@@ -103,7 +103,7 @@ of the things the report is built to catch.
 | `harness/grader.py`, `harness/replay_provider.py` | The promptfoo assertion and the offline provider. |
 | `harness/report.py` | Rescores a run, prints the tables, applies the gates. |
 | `fixtures/model-profiles.json` | Written model behaviour the replay provider reads. |
-| `runs/offline-baseline.json` | 1.7 MB of promptfoo output, committed unedited. |
+| `runs/offline-baseline.json` | 1.7 MB of promptfoo output, unedited apart from the two prompt paths, which are made relative. |
 | `tests/` | 102 unit tests. |
 
 ## Known limits

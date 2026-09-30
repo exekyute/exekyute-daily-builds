@@ -17,10 +17,10 @@ no framework, no build step, and it runs entirely on your machine.
 The two output files are what the reconciliation tool in this repo reads next.
 
 ## Running it
-From the tool folder:
+From the repository root:
 
 ```
-cd "C:\Users\jebo\Documents\Claude Code Projects\14-brewery-inventory-costing-toolkit\inventory-costing-engine"
+cd job-modeled-toolkits/14-brewery-inventory-costing-toolkit/inventory-costing-engine
 ```
 
 Run the test suite:
