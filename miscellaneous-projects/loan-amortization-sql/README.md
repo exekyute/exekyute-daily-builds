@@ -1,6 +1,6 @@
 # Loan Amortization Queries
 
-Five SQLite queries built around a loan's month-by-month repayment schedule, where each month's interest is charged on the balance the month before left and rounded to the cent. A window function cannot do that: the balance is a result that has to feed back in as an input, and a window only reads the rows a query starts with. The window attempt charges interest on the starting principal every month, so on a 24,000.00 van loan it bills 5,184.00 of interest and still has 2,427.00 owing after the last payment. A recursive CTE carries the balance forward instead, clears the loan in its 36th month on 2,756.86 of interest, and shows what a 2,000.00 extra payment saves.
+Work out a loan's repayment schedule month by month, with each month's interest charged on the balance the month before left and rounded to the cent. A recursive CTE carries that balance forward, because the balance is a result that has to feed back in as an input, and a window function only reads the rows a query starts with. On a 24,000.00 van loan, a window attempt that charges interest on the starting principal bills 5,184.00 and still has 2,427.00 owing after the last payment, while the recursion clears the loan in month 36 on 2,756.86 of interest.
 
 ## The queries
 
@@ -39,13 +39,21 @@ It stops at the first problem, naming the row when the problem is in one: `inval
 
 ## Why a window cannot carry the balance
 
-Query 02 has the months, the payment, and the rate, and it tries what works for a bank ledger: a running `SUM` of each payment less its interest, taken off the principal. The catch is the interest. Month 2's interest is charged on the balance after month 1, which is what the running sum is still working out. A window reads the rows the query started with, not its own results, so it has no way to reach that balance, and this attempt charges interest on the starting principal instead. It charges the van 144.00 every month, where the real charge falls from 144.00 in month 1 to 4.43 in month 36. It bills 5,184.00 over the term against the true 2,756.86 and leaves 2,427.00 owing after the 36th payment. The espresso machine comes out 214.96 short the same way.
+Query 02 has the months, the payment, and the rate, and it tries what works for a bank ledger: a running `SUM` of each payment less its interest, taken off the principal. The problem is the interest. Month 2's interest is charged on the balance after month 1, which is what the running sum is still working out. A window reads the rows the query started with, not its own results, so it has no way to reach that balance, and this attempt charges interest on the starting principal instead.
+
+It charges the van 144.00 every month, where the real charge falls from 144.00 in month 1 to 4.43 in month 36. It bills 5,184.00 over the term against the true 2,756.86 and leaves 2,427.00 owing after the 36th payment. The espresso machine comes out 214.96 short the same way.
 
 ## The recursive schedule
 
 Query 03's recursive CTE starts each loan at month 0 with its principal, and each step reads the row the step before it produced: it adds the month's interest to the balance, rounded to the cent, and takes off the payment. That feedback is what a recursive CTE gives and a window does not. The recursion carries only the balance; each month's interest, payment, and principal come afterward from the balances on either side of it. `MAX(..., 0)` ends a loan early when a payment would clear it, and the last month of the term is set to 0, so the final payment is whatever remains.
 
 The final payment need not match the stated one. The stated payment is rounded to the cent, and so is every month's interest, so the van's 36 equal payments would not land exactly on zero: its last payment is 743.11, 14 cents under the stated 743.25, while the espresso machine's is 680.00, 8 cents over its 679.92. Query 04 shows that difference with its sign, along with each loan's total interest and total paid: 26,756.86 for the van and 8,159.12 for the espresso machine, principal plus interest to the cent.
+
+## The van loan's third month
+
+Month 3 of the van opens on the 22,797.90 that month 2 left. A twelfth of 7.20 percent is 0.6 percent, and 22,797.90 × 0.006 = 136.7874, which rounds to 136.79. Query 03 gets there in whole numbers: 2,279,790 cents × 720 basis points = 1,641,448,800, plus 60,000 (half of 120,000) makes 1,641,508,800, and integer division by 120,000 gives 13,679 cents. Leave out the 60,000 and SQLite's division cuts to 13,678, a cent short.
+
+The 743.25 payment covers the 136.79 of interest and puts 743.25 - 136.79 = 606.46 against the principal. The balance falls to 22,797.90 - 606.46 = 22,191.44. Those are the four figures on month 3's row. Query 02 charges this month 144.00, the interest on the starting 24,000.00.
 
 ## Extra payments
 

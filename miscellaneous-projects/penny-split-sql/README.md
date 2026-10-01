@@ -1,6 +1,6 @@
 # Penny Split Queries
 
-Five SQLite queries that split shared bills across departments by weight, so the shares add back up to the bill to the cent. Rounding each share to the nearest cent on its own misses six of the seven sample bills by up to two cents. The usual fix, putting the difference on the share with the largest weight, balances every bill but leaves a department a cent or more away from what it owes on four of them. Largest remainder cuts every share down to the cent and hands the missing cents out one each to the shares that lost the most in the cut, which balances every bill and keeps every share within a cent of exact.
+Largest remainder splits shared bills across departments by weight so that the shares add back up to each bill to the cent, with every share within a cent of exact. It cuts every share down to the whole cent, then hands the cents left over one each to the shares that lost the most in the cut. On the seven sample bills, rounding each share on its own misses six by up to two cents, and the usual fix of putting the difference on the largest weight balances them all but leaves a department a cent or more away from what it owes on four.
 
 ## The queries
 
@@ -48,6 +48,21 @@ Query 03 cuts every share down to the whole cent first, which can only leave the
 On the office rent, 8025.00 by floor area, the cut shares come to 8024.97. Sales, Support and Engineering lost the most in the cut, 3400, 2600 and 2400 parts out of 3800, and get the three cents. Design has more floor area than Sales or Support but lost only 800 parts, so it pays its cut share.
 
 The remainders are compared as whole numbers. Worked out in floating point, as the share in cents less its whole cents, two remainders that are equal can come out a hair apart: one of the suite's logs splits 10.50 by weights of 2, 5 and 2, which leaves each share a third of a cent short, and the floating-point version hands the cent to the middle share instead of going by name.
+
+## One bill, cent by cent
+
+The design software bill is 1025.00, or 102500 cents, split over 26 seats. Multiply by each department's seats and divide by 26 in whole numbers; the quotient and remainder are the floored and remainder columns of query 03.
+
+| Department | Seats | 102500 × seats | ÷ 26 | Place | Share |
+| --- | --- | --- | --- | --- | --- |
+| Engineering | 12 | 1230000 | 47307 r 18 | 1 | 473.08 |
+| Operations | 2 | 205000 | 7884 r 16 | 2 | 78.85 |
+| Sales | 5 | 512500 | 19711 r 14 | 3 | 197.11 |
+| Design | 7 | 717500 | 27596 r 4 | 4 | 275.96 |
+
+The floored shares come to 102498 cents, two short. The remainders add up to 18 + 16 + 14 + 4 = 52, which is 2 × 26: the same two cents, counted in 26ths. Places 1 and 2 get a cent each, so Operations, with the fewest seats, gets one and Sales does not.
+
+Sales lost 14/26 of a cent, more than half, so query 02 rounds its share up to 197.12. With only two cents to hand out, largest remainder leaves it at 197.11, 0.538 of a cent under exact. That is the split_worst_miss query 04 prints for this bill.
 
 ## The plug
 

@@ -1,6 +1,6 @@
 # RFM Scoring Queries
 
-Five SQLite queries that score every customer on recency, frequency, and monetary value with `NTILE` quintiles, then turn the three-digit codes into named segments a retention plan can act on. `NTILE`'s sharp edge is the lesson: it deals rows into equal buckets and does not care about ties, so two customers with identical order counts can score differently, and every `ORDER BY` here carries a tiebreak so even that arbitrariness is at least deterministic. On the sample book, three champions carry 49.3 percent of revenue, and the single quiet big spender carries more than the loyal and regular tiers together.
+Recency, frequency, and monetary value each become a quintile score from 1 to 5 for every customer, and the three-digit code maps to a named segment a retention plan can act on. `NTILE(5)` deals customers into equal buckets with no regard for ties, so two customers with the same order count can score differently, and each window breaks ties on customer_id to keep that split the same on every run. On the sample book, three champions carry 49.3 percent of revenue, and the single quiet big spender carries more than the loyal and regular tiers together.
 
 ## The queries
 
@@ -35,17 +35,32 @@ The loader validates the CSV before any query runs. Point it at the included bad
 python run.py --orders data/invalid-orders.csv
 ```
 
-It stops on the first problem and names the row: `invalid-orders.csv row 3: amount '45.005' has more than 2 decimal places`. The row after that has a date without zero padding, which the loader would catch next.
+It quits at the first bad row: `invalid-orders.csv row 3: amount '45.005' has more than 2 decimal places`. The row after that has a date without zero padding, which the loader would catch next.
 
 ## How NTILE deals the buckets
 
 Ten customers into five buckets is two per bucket, dealt in sorted order, and the bucket boundary falls wherever it falls. The sample plants three tied pairs to make the consequence visible: dev and eli both placed two orders, yet dev scores F1 and eli F2, because the boundary runs between them and the customer_id tiebreak decided who stood on which side. The same split happens to fay and hana at three orders and to gus and jon at four. When the row count does not divide evenly, SQLite hands the earlier buckets the extra members, so the best bucket is never the padded one under an ascending sort.
 
-That tiebreak matters more than it looks. Without a unique column in the `ORDER BY`, tied rows land in buckets in whatever order the engine visits them, and the same query can hand a customer a different score on a different day.
+Drop the tiebreak and a score can drift. Without a unique column in the `ORDER BY`, tied rows land in buckets in whatever order the engine visits them, and the same query can hand a customer a different score on a different day.
 
 ## Scores into segments
 
 The CASE reads top down, most specific first. Strong on all three dimensions is a champion. Strong recency and frequency with lighter spend is loyal. Heavy spend gone quiet, like hana at 335, is the big spender at risk, the customer worth a phone call this week, while heavy spend still current keeps a plain big spender tier so it can never fall through to regular. Then the fading tiers by recency alone: 2 is at risk, 1 is lost, and whatever remains is regular.
+
+## Where hana's 335 comes from
+
+Customer hana placed 3 orders, the last on July 30, for 500.00 in all. Each dimension sorts the ten customers from worst to best, ties broken by customer_id, and `NTILE(5)` deals them two to a bucket:
+
+```
+            1          2          3          4          5
+recency     cara dev   eli fay    gus hana   ivy jon    kim ana
+frequency   cara dev   eli fay    hana gus   jon ivy    kim ana
+monetary    cara dev   fay gus    eli jon    ivy kim    hana ana
+```
+
+Her last order is the 6th oldest of ten, which lands in bucket 3. Her 3 orders tie fay's, and since fay sorts first, the line between buckets 2 and 3 runs between them and puts hana in 3. Only ana's 640.00 beats her 500.00, so monetary puts her in bucket 5.
+
+That makes 335. The CASE passes over champions and loyal, which both need R and F of at least 4, and stops at its third test, M of at least 4 with R of 3 or less: big spender at risk.
 
 ## Sample data
 
