@@ -1,16 +1,40 @@
 # Weekday Pivot Queries
 
-Five SQLite queries that turn a café's one-row-per-day sales log into a week-by-weekday grid, the pivot SQLite has no keyword for, built by hand from `SUM` over `CASE`. The first attempt most people write reports the café's busiest day as Sunday, a day it is usually closed, and shows every closed day as 0.00. The correct grid keeps a closed day blank and the one day it opened and sold nothing at 0.00, and averaging it both ways shows what the difference costs.
+The queries turn a café's one-row-per-day sales log into a week-by-weekday grid, total it both ways, and average each weekday twice: over the days the café opened, and with closed days counted as zero. With no `PIVOT` in SQLite, each column is a `SUM` over a `CASE` with no `ELSE`, which leaves a closed day blank and keeps the one day the café opened and sold nothing at 0.00. Query 02 reads strftime's 0 as Monday and fills with `ELSE 0`: the first makes Sunday, a day the café is usually closed, look like its busiest day, and the second prints every closed day as 0.00.
 
 ## The queries
 
 | File | What it answers |
 | --- | --- |
 | `sql/01-sales-shape.sql` | The log at a glance: days trading, weeks, the day that sold nothing, the total. |
-| `sql/02-naive-pivot.sql` | The first pivot most people write, shifted one day and zero-filled. |
+| `sql/02-naive-pivot.sql` | A first-attempt pivot, shifted one day and zero-filled. |
 | `sql/03-pivot.sql` | The grid done right, Monday first, with closed days left blank. |
 | `sql/04-totals.sql` | The grid with a total for each week and a row totalling each weekday. |
 | `sql/05-weekday-averages.sql` | Each weekday's average over the days it opened, and with closures counted as zero. |
+
+## Surprises in strftime, ORDER BY and printf
+
+`strftime('%w')` returns its day number as text, Sunday as `'0'`, and the text `'0'` is not equal to the integer 0. Written with `= 0`, query 02's first column reads 0.00 in all four weeks, the 540.00 taken on Sunday, August 16 included. Queries 03 to 05 cast to INTEGER before the `(w + 6) % 7` remap to Monday-first. `strftime('%u')` would give Monday as 1 directly in SQLite 3.50, but it returns NULL on 3.34.0 and 3.31.1, where the remap still works.
+
+```sql
+SELECT strftime('%w', '2026-08-30') = '0', strftime('%w', '2026-08-30') = 0;
+-- 1 | 0
+```
+
+A name in `ORDER BY` resolves to an output column before an input column of the same name. Query 05 outputs its label as `day` for that reason. Aliased as `weekday`, its rows sort alphabetically, Friday first, and a test checks the order.
+
+```sql
+WITH t(weekday, label) AS (VALUES (0, 'Mon'), (1, 'Tue'), (4, 'Fri'))
+SELECT label AS weekday FROM t ORDER BY weekday;
+-- Fri, Mon, Tue
+```
+
+`printf()` rounds the double it is handed, and the double nearest 822.915 sits just below it. Query 05 rounds each average to whole cents with `ROUND()` before formatting, and a test log built to average exactly 822.915 checks for 822.92. SQLite 3.34.0 and 3.31.1 print 822.92 for both expressions, so without the `ROUND()` the last digit would depend on the release.
+
+```sql
+SELECT printf('%.2f', 82291.5 / 100.0), printf('%.2f', ROUND(82291.5) / 100.0);
+-- 822.91 | 822.92
+```
 
 ## Running it
 
@@ -27,7 +51,7 @@ That prints all five reports against the sample log. The test run checks the que
 python run.py --test
 ```
 
-Sixteen checks cover the shifted columns in the naive grid, the blank and zero cells, both margins of the totals, the two averages, and the order the weekdays print in, plus three logs built to catch edge weeks, a week closed throughout, and an average landing on half a cent, then print `all checks passed`.
+Sixteen checks cover the shifted columns in query 02's grid, the blank and zero cells, both margins of the totals, the two averages, and the order the weekdays print in, plus three logs built to catch edge weeks, a week closed throughout, and an average landing on half a cent, then print `all checks passed`.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
@@ -57,13 +81,12 @@ Query 05 crosses a calendar of every week with every weekday, keeps only the day
 
 ## Sample data
 
-Twenty-four trading days at a fictional café, logged from Monday, August 3 to Saturday, August 29, 2026, across four Monday-start weeks. It opens Monday to Saturday, and of the three Sundays the log covers it closed two and opened one for an event. It closed one Monday for a staff day, and on Wednesday, August 19 it opened through a storm and sold nothing. The file is deliberately not in date order.
+Twenty-four trading days at a fictional café, logged from Monday, August 3 to Saturday, August 29, 2026, across four Monday-start weeks. It opens Monday to Saturday, and of the three Sundays the log covers it closed two and opened one for an event. It closed one Monday for a staff day, and on Wednesday, August 19 it opened through a storm and sold nothing. The file is not in date order, which none of the queries need.
 
 ## Known limits
 
 - Seven columns are written out by hand, once per weekday, in each pivot query. SQLite has no `PIVOT` and no way to generate columns from data, so a grid whose columns are not fixed in advance, such as one column per product, needs the SQL built by the calling code.
 - Weeks start on Monday. A Sunday-first calendar changes the remap and the week start together, and changing only one of them shifts the grid by a day again.
-- Query 05's label column is output as `day`. SQLite resolves a name in `ORDER BY` to an output column before an input one, so naming it `weekday` sorted the rows alphabetically, Friday first, and a test checks the order.
 - The grids in queries 03 and 04 have a row only for weeks holding at least one sale, since a week closed throughout gives them nothing to group. Queries 01 and 05 count such a week from a calendar of weeks, and a grid meant to show it as a blank row needs the same calendar joined in.
 - The period a log covers is taken to run from its first row to its last. A café closed on the first or last days of the period it meant to report has no way to say so, since a closed day leaves no row; a declared start and end date would.
 

@@ -1,6 +1,6 @@
 # Trial Balance Queries
 
-Five SQLite queries that close a month of double-entry books: every journal entry checked for balance, accounts netted onto their landing side, a trial balance whose two columns must agree to the cent, and pre-posting checks that catch the draft entries which would break it. Money lives as integer cents, and the totals row ties at 21,190.00 on both sides. The month also carries a quiet lesson: sales of 5,290.00 against 5,490.00 of expenses, a 200.00 loss the balance sheet still absorbs exactly.
+Close a month of double-entry books: check every journal entry for balance, net each account onto the side it lands on, print a trial balance whose two columns must agree to the cent, and flag the draft entries that would break it before they post. Money lives as integer cents, and the totals row ties at 21,190.00 on both sides. The month runs a 200.00 loss, sales of 5,290.00 against 5,490.00 of expenses, and the balance sheet still absorbs it exactly.
 
 ## The queries
 
@@ -50,6 +50,24 @@ The posted journal is protected at load: a posting to an account the chart does 
 ## Sample data
 
 Ten accounts and twelve August 2026 entries across 25 lines for a fictional cafe: owner investment, equipment, inventory on account, cash and credit sales with their costs, rent, wages, a supplier payment, a collection, and one compound sale. Gross postings run 36,480.00 on each side. The draft journal is seven lines carrying exactly the three defects the checks exist to find.
+
+## Before you change the queries
+
+Query 04 stacks the account rows and the totals row with `UNION ALL`, and SQLite sorts a compound SELECT only by its result columns. An expression that would push the totals row last, such as `account_code IS NULL`, is refused. So the compound sits in a subquery, and the outer query sorts on a numeric `is_total` flag that never prints and on the integer `account_code`, which prints as text. Sort the compound itself by an expression and the whole query fails; I found that out the first time these queries ran.
+
+```sql
+SELECT 1000 AS code UNION ALL SELECT NULL ORDER BY code IS NULL, code;
+-- error: 1st ORDER BY term does not match any column in the result set
+```
+
+`SUM()` over nothing but NULLs is NULL, not 0. Every journal line fills exactly one of debit or credit, so an account posted on one side only has nothing but NULLs on the other. Without the `COALESCE`, query 03 nets six of the ten accounts to NULL and labels each of them a contra balance with no amount. `TOTAL()` avoids the NULL but returns a REAL, and the money here stays in integer cents.
+
+```sql
+SELECT SUM(x), TOTAL(x), COALESCE(SUM(x), 0) FROM (SELECT NULL AS x);
+-- NULL | 0.0 | 0
+```
+
+That integer sort key matters once codes vary in width. As text, 999 sorts after 1000: `'999' < '1000'` is 0, while `999 < 1000` is 1. Every code in the sample has four digits, so sorting on the printed column instead gives the same order today and puts an account 999 after 5200.
 
 ## Known limits
 

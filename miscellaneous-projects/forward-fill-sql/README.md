@@ -1,6 +1,6 @@
 # Forward-Fill Queries
 
-Five SQLite queries that fill the gaps in a cold-storage sensor log with the last reading carried forward, then mark where a carried value has gone stale. The obvious fill, `COALESCE(tenths, LAG(tenths))`, handles a single missing reading and leaves the rest of each run blank, filling four of the twelve gaps that have an earlier reading to carry, where a running COUNT fills all twelve. A two-hour staleness cap then shows what a carried value can hide: the cooler went dark for six hours, forward fill reports a steady 3.5 degrees throughout, and the next real reading is 6.8, over its 4.0 limit.
+Gaps in a cold-storage sensor log fill with each sensor's last reading, carried forward, and a flag marks the rows where that carried value has gone stale. A running `COUNT` of the reading column gives each missing row the same group number as the last reading before it, which fills all twelve gaps that have an earlier reading to carry; `COALESCE(tenths, LAG(tenths))` fills four. A two-hour staleness cap shows what carrying can hide: the cooler goes dark for six hours, forward fill reports a steady 3.5 degrees throughout, and the next real reading is 6.8, over its 4.0 limit.
 
 ## The queries
 
@@ -27,7 +27,7 @@ That prints all five reports against the sample log. The test run checks the que
 python run.py --test
 ```
 
-Twelve checks cover the LAG shortfall, the counter, a three-row run and its ageing, the leading gap, agreement between the one-pass and correlated fills, the four-way split, all three blind spots, and a separate uneven log proving the cap runs on the clock, then print `all checks passed`.
+Twelve checks cover the LAG shortfall, the counter, a three-row run and its ageing, the leading gap, agreement between the one-pass and correlated fills, the four-way split, all three blind spots, and a separate uneven log proving the cap runs on the clock. When none of the twelve fails, the run finishes on `all checks passed`.
 
 The loader validates both CSVs before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates both CSVs before any query runs. Point it at the included b
 python run.py --readings data/invalid-readings.csv
 ```
 
-It stops on the first problem and names the row: `invalid-readings.csv row 4: CLR-1 already has a row at 2026-09-09 01:00; the last reading before any later moment would be ambiguous`. Two rows for one sensor at one instant would give "the most recent reading" two values, so a sensor gets one row per moment.
+The load stops at the first bad row and names it: `invalid-readings.csv row 4: CLR-1 already has a row at 2026-09-09 01:00; the last reading before any later moment would be ambiguous`. Two rows for one sensor at one instant would give "the most recent reading" two values, so a sensor gets one row per moment.
 
 ## Why LAG falls short
 
@@ -43,9 +43,32 @@ LAG reaches exactly one row back. For a missing reading after a real one it retu
 
 Query 02 shows the cost across the sample: twelve gaps have an earlier reading to carry, and LAG fills four of them.
 
-`LAST_VALUE` looks like the fix and is not one. Over a frame running from the first row to the current one, it returns the current row's value, and the current row is the empty one. The standard answer, `LAG(tenths) IGNORE NULLS`, is a syntax error in SQLite.
+The last_reading column in query 02 gets every one of them right, with a correlated subquery that searches backwards for each row. It walks the primary-key index back only as far as the nearest real reading, so each missing row costs its distance back to the start of its own dark run. Summed over a run, that grows with the square of the run's length, which stays negligible for short runs and turns heavy only where a sensor stays dark for a long stretch.
 
-The last_reading column in query 02 is the honest answer, found by a correlated subquery that searches backwards for each row. It is correct, and it walks the primary-key index back only as far as the nearest real reading, so each missing row costs its distance back to the start of its own dark run. Summed over a run, that grows with the square of the run's length, which stays negligible for short runs and turns heavy only where a sensor stays dark for a long stretch.
+## Gotchas behind queries 01 to 03
+
+`COUNT(*)` counts rows and `COUNT(column)` counts non-NULL values, and under a LEFT JOIN the gap between them matters. A sensor on the list with no readings still produces one joined row, so `COUNT(*)` would credit it with one logged row. Query 01 counts `r.reading_at` instead.
+
+```sql
+SELECT COUNT(*), COUNT(r.at)
+FROM (SELECT 'SPARE' AS id) s LEFT JOIN (SELECT 'CLR-1' AS id, '00:00' AS at) r ON r.id = s.id;
+-- 1 | 0
+```
+
+`LAST_VALUE` looks like the fix and is not one. When the `ORDER BY` values are unique, as each sensor's timestamps are, the default frame runs from the first row to the current one, so on an empty row it returns that row's own NULL. Across the sample log it fills none of the fourteen empty rows.
+
+```sql
+WITH r(t, v) AS (VALUES (1, 35), (2, NULL), (3, NULL), (4, 68))
+SELECT LAST_VALUE(v) OVER (ORDER BY t) FROM r;
+-- 35, NULL, NULL, 68
+```
+
+The standard answer, `LAG(tenths) IGNORE NULLS`, is a syntax error in SQLite. The parser takes `IGNORE` for a column alias and fails on the word after it. Query 03 builds its groups from a running `COUNT` instead.
+
+```sql
+WITH r(t, v) AS (VALUES (1, 35), (2, NULL)) SELECT LAG(v) IGNORE NULLS OVER (ORDER BY t) FROM r;
+-- error: near "NULLS": syntax error
+```
 
 ## The COUNT trick
 
@@ -65,12 +88,12 @@ The cooler has both kinds. Its dark start covers 00:00 and 01:00 and ends on 3.4
 
 ## Sample data
 
-Two sensors in a fictional cold-storage warehouse, polled hourly from midnight to 11:00 on September 9, 2026, twenty-four rows in all. The freezer misses one reading on its own, then a run of three, then a run of two. The cooler reports nothing for its first two polls, then goes dark for six hours after 03:00 and comes back warm. Readings are held as integer tenths of a degree in a column named `tenths`, so no comparison against a limit depends on float rounding, and the file is deliberately not in time order, since every query sorts for itself.
+Two sensors in a fictional cold-storage warehouse, polled hourly from midnight to 11:00 on September 9, 2026, twenty-four rows in all. The freezer misses one reading on its own, then a run of three, then a run of two. The cooler reports nothing for its first two polls, then goes dark for six hours after 03:00 and comes back warm. Readings are held as integer tenths of a degree in a column named `tenths`, so no comparison against a limit depends on float rounding, and the file is out of time order, since every query sorts for itself.
 
 ## Known limits
 
 - Two hours is a constant in two SQL files. A real cap belongs on the sensor list, since a freezer drifts slower than a cooler and a sensor on a door drifts faster than both.
-- Forward fill assumes the last reading still holds, which suits slow-moving values like temperature and misleads on anything that changes in steps or spikes. For those, a blank is the honest output and the cap should be zero.
+- Forward fill assumes the last reading still holds, which suits slow-moving values like temperature and misleads on anything that changes in steps or spikes. For those, a blank is the safer output and the cap should be zero.
 - A reading carried into a gap says what the sensor last saw and nothing about what it would see now. The blind-spot check uses the next real reading as the only evidence available, which confirms a breach after the fact and cannot place when it began.
 - The correlated fill in query 02 searches back from each row only as far as the nearest real reading, so a sensor that stays dark for thousands of polls makes it slow in proportion to the square of that run's length. It is kept as the reference the one-pass version is checked against, and query 03 is the one to fill with.
 - Timestamps carry no time zone, the queries sort them as text, and queries 03 through 05 subtract them as plain clock times, so stamps should be UTC or a fixed offset. Across a local fall-back, an hourly log repeats a stamp and the loader refuses it, while an unevenly polled one loads, sorts the repeated hour out of true order, and can make a carried reading look an hour younger than it is, which errs on the unsafe side.

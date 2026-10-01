@@ -1,6 +1,6 @@
 # Drawdown Queries
 
-Five SQLite queries that score a daily portfolio series against its own running peak: how far below the high-water mark each day sits, every underwater stretch with its trough and recovery date, the maximum drawdown with its full anatomy, and a statement line for today. The sample series finishes 27.40 percent up and still spent 25 of its 40 days underwater, which is the point of the build: endpoints measure the trip, drawdown measures what it felt like to be on it.
+Score a daily portfolio series against its own running peak: how far below the high-water mark each day sits, every underwater stretch with its trough and recovery date, the maximum drawdown in full, and a statement line for the latest day. The peak is a cumulative `MAX` window over integer cents, and a day equal to its peak counts as at the peak, not underwater. The sample series finishes 27.40 percent up and still spends 25 of its 40 days underwater, which a report of start and end values never shows.
 
 ## The queries
 
@@ -27,7 +27,7 @@ That prints all five reports against the sample series. The test run checks the 
 python run.py --test
 ```
 
-Ten checks cover the equality boundary from both sides, all four stretches, the max drawdown anatomy, and the status line, then print `all checks passed`.
+Ten checks cover the equality boundary from both sides, all four stretches, the max drawdown anatomy, and the status line; `all checks passed` follows only if none fails.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates the CSV before any query runs. Point it at the included bad
 python run.py --values data/invalid-portfolio.csv
 ```
 
-It stops on the first problem and names the row: `invalid-portfolio.csv row 4: dates must be consecutive; expected 2026-07-03`. The gap check exists because underwater durations count days: with missing dates, an eleven-day stretch quietly stops meaning eleven days, so the loader refuses gaps outright.
+Loading halts on the first problem, with the row number: `invalid-portfolio.csv row 4: dates must be consecutive; expected 2026-07-03`. The gap check exists because underwater durations count days: with missing dates, an eleven-day stretch stops meaning eleven days, so the loader refuses gaps outright.
 
 ## The running peak
 
@@ -47,7 +47,32 @@ Query 03 is the flag-then-running-sum island trick from earlier builds, applied 
 
 ## The max drawdown
 
-Query 04 anatomizes the worst gap: the 12,000.00 peak first reached July 9, the 10,200.00 trough six days later, 15.00 percent down, and the first day back at or above the old peak seven days after that. A tie at the worst depth breaks to the earliest day, so the answer is deterministic. The peak date deliberately means first reached, since the sample sits at 12,000.00 twice before the slide begins. A series that never dipped reports `never underwater` rather than passing off the next ordinary day as a recovery event.
+Query 04 anatomizes the worst gap: the 12,000.00 peak first reached July 9, the 10,200.00 trough six days later, 15.00 percent down, and the first day back at or above the old peak seven days after that. A tie at the worst depth breaks to the earliest day, so the answer is deterministic. The peak date means first reached, since the sample sits at 12,000.00 twice before the slide begins. A series that never dipped reports `never underwater` rather than passing off the next ordinary day as a recovery event.
+
+## SQLite rules that shaped the CTEs
+
+One window function cannot sit inside another's argument. Query 03 needs a running `SUM` of a start flag that comes from `LAG`, and SQLite refuses the two as one expression, so the flag gets its own CTE, `starts`, and the next one, `numbered`, sums it.
+
+```sql
+WITH f(d, u) AS (VALUES (1, 0), (2, 1), (3, 1))
+SELECT SUM(LAG(u) OVER (ORDER BY d)) OVER (ORDER BY d) FROM f;
+-- error: misuse of window function LAG()
+```
+
+A window function cannot appear in `WHERE` either. Query 01 compares each value with its running peak inside a subquery and filters outside it, and query 03 sets its underwater flag in a CTE before anything filters or groups on it.
+
+```sql
+WITH p(d, v) AS (VALUES (1, 1200000), (2, 1170000))
+SELECT d FROM p WHERE v < MAX(v) OVER (ORDER BY d);
+-- error: misuse of window function MAX()
+```
+
+Integer division truncates, so every percentage here starts from `100.0`. With a plain `100`, query 02 would show July 11, at 11,700.00 against a 12,000.00 peak, as 2.0 percent instead of 2.5, and July 21 as 0.0 while still flagging it underwater. `ROUND()` also returns a REAL, so the reports print 27.4 and 12740.0, not 27.40 and 12740.00.
+
+```sql
+SELECT 100 * (1200000 - 1170000) / 1200000, 100.0 * (1200000 - 1170000) / 1200000;
+-- 2 | 2.5
+```
 
 ## Sample data
 

@@ -1,6 +1,6 @@
 # Delimited Split Queries
 
-Five SQLite queries for a product catalog whose tags live in one comma-separated column, the everyday shape of tags, categories, and recipient lists. The obvious way to ask which products are red, `LIKE '%red%'`, returns eight products of which only four are red, and the obvious fix for that, wrapping the search in commas, quietly misses any tag typed after a space. A recursive CTE that splits each list into one row per tag gets every tag right and makes it possible to count how many products carry each one.
+Split a product catalog's comma-separated tags column into one row per tag, so the catalog can be searched and counted by tag. The split is a recursive CTE that walks each list with `instr` and `substr`, then trims and lowercases every piece. Searching the raw column goes wrong in two directions: `LIKE '%red%'` returns eight products when four are red, and the comma-padded fix misses any tag typed after a space.
 
 ## The queries
 
@@ -35,11 +35,11 @@ The loader validates the CSV before any query runs. Point it at the included bad
 python run.py --products data/invalid-products.csv
 ```
 
-It stops on the first problem and names the row: `invalid-products.csv row 4: product_id 'P-01' appears twice`. The loader leaves the spaces and capitals in each tag list as written, since that mess is what the queries are about; the only change it makes is the Unicode normalisation every field gets.
+The first bad row ends the load: `invalid-products.csv row 4: product_id 'P-01' appears twice`. The loader leaves the spaces and capitals in each tag list as written, since that mess is what the queries are about; the only change it makes is the Unicode normalisation every field gets.
 
 ## The substring trap
 
-`LIKE '%red%'` looks for three letters anywhere in the list, so it finds them inside other words. Query 02 prints the eight products it returns beside their tags, and four are not red: the desk lamp and the blanket are tagged reduced, the security camera infrared, and the shelf tiered. Nothing about the result looks wrong until the tags are read, which is the problem with it.
+`LIKE '%red%'` looks for three letters anywhere in the list, so it finds them inside other words. Query 02 prints the eight products it returns beside their tags, and four are not red: the desk lamp and the blanket are tagged reduced, the security camera infrared, and the shelf tiered. Nothing about the result looks wrong until the tags are read.
 
 ## The padded fix, and what it breaks
 
@@ -49,9 +49,29 @@ Query 04 runs both shortcuts against every tag the catalog uses, and they fail i
 
 ## The split
 
-SQLite has no function that breaks a string apart, so query 03 walks it with a recursive CTE. The seed row appends a comma so every tag ends in one, and each step cuts off the text before the next comma with `instr` and `substr`, keeps the rest, and recurses until nothing is left. Each piece is trimmed and lowercased, so `Red, large` becomes red and large. SQLite's `trim()` removes only the plain space unless told otherwise, so it is handed a set that also covers the tab and the non-breaking space that pasted text carries, and a piece that trims to nothing is dropped.
+SQLite has no function that breaks a string apart, so query 03 walks it with a recursive CTE. The seed row appends a comma so every tag ends in one, and each step cuts off the text before the next comma with `instr` and `substr`, keeps the rest, and recurses until nothing is left. Each piece is trimmed against an explicit set of characters and lowercased, so `Red, large` becomes red and large, and a piece that trims to nothing is dropped.
 
 The split yields twenty-four tag rows, the same total query 01 reached by counting commas, which the test suite checks. Once the tags are rows, query 05 counts how many products carry each one, the way any column is counted. A LIKE can count products for a tag it is handed, as query 04 does, but it cannot discover which tags exist; that list comes from the split. Red was typed both `red` and `Red` and counts as one tag carried by four products.
+
+## Small print in SQLite's string functions
+
+`trim()` with one argument strips the plain space and nothing else. A tab or a non-breaking space, both of which text pasted from a web page or a word processor can carry, survives it, so `red` followed by a tab becomes a tag that never matches `red`. Every query that trims passes the set instead: the space, `char(9)` for the tab, and `char(160)`, which takes a code point and returns the two-byte UTF-8 non-breaking space.
+
+```sql
+SELECT length(trim(char(9) || 'red' || char(160))),
+       length(trim(char(9) || 'red' || char(160), ' ' || char(9) || char(160)));
+-- 5 | 3
+```
+
+The string functions also disagree about a NUL byte. `length()` and `substr()` stop at the first NUL, while `instr()` reads past it, so one step of the split finds the comma, cuts the piece short, and returns an empty remainder:
+
+```sql
+SELECT length(x), instr(x, ','), substr(x, 1, instr(x, ',') - 1), substr(x, instr(x, ',') + 1)
+FROM (SELECT 're' || char(0) || 'd,blue,' AS x);
+-- 2 | 5 | re | ''
+```
+
+That is a NUL in the first tag: `red` comes out as `re` and `blue` is lost. A NUL inside a later tag, or at the end of a list of two or more tags, does worse. An earlier `substr()` has already cut the remainder at the NUL, so its last piece has no comma after it, `instr()` returns 0, the remainder never shrinks, and the recursion never ends.
 
 ## Sample data
 
