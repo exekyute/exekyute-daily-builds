@@ -1,6 +1,6 @@
 # Merge Ranges Queries
 
-Five SQLite queries that turn overlapping coverage periods into the stretches a customer was actually covered for. Two answers come easily and each is wrong in its own direction: adding every period up counts a renewed-early customer's overlap twice, and taking the first start to the last end paves over every lapse. Merging the periods first gives the number neither of them has. In the sample, adding up says one customer had 390 days of cover and the span says 303, where the real answer is 299 with a four-day lapse in October.
+Merge a log of overlapping coverage periods into the continuous stretches each customer was covered for, then count the covered days and date the lapses between them. Each period is compared with the furthest end date among the periods before it, a running MAX over a window frame, so a short period inside a long one never opens a block of its own. In the sample, adding the periods up gives one customer 390 days of cover and taking first start to last end gives 303; merged, the answer is 299, with a four-day lapse in October.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that turn overlapping coverage periods into the stretches a 
 
 ## Running it
 
-Python 3.7 or newer, standard library only, on SQLite 3.25 or newer for window functions.
+It runs on Python 3.7 or newer using only the standard library, and the window functions need SQLite 3.25 or newer.
 
 ```
 cd miscellaneous-projects/merge-ranges-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample log. The test run checks the que
 python run.py --test
 ```
 
-Fifteen checks run. Five on the sample cover the log's shape, both naive totals, the seven merged blocks with their numbering per customer, the covered days with the error in each naive total, and the two lapses with their dates. Six on logs built for the suite cover a period that starts the day after the last one ends and one that starts a day later than that, periods held inside a longer one, February 29, a period across the year end, periods with the same dates twice and three times over, and a log whose ids run counter to its dates with a two-period block after a lapse. The first, the leap day and the year end are checked in the totals as well as the blocks, so the merge is pinned in all three files. Four exercise the loader: a period that ends before it starts; row numbers past blank lines and a stray quote, along with text after a closing quote, a repeated period_id, an id with a leading zero or ten digits, and a date written without its leading zeroes or on the first data row; a control character, a zero-width space, rows with too many or too few fields, a renamed header, dates outside the range at either end, an empty file, one with only a header, and one that is not UTF-8, next to a byte-order mark it reads through; and one customer written two ways, a blank name, a name whose spacing and accents are tidied up, and a name spelled with a zero-width joiner, which is kept. The run ends with `all checks passed`.
+Fifteen checks run. Five on the sample cover the log's shape, both easy totals, the seven merged blocks with their numbering per customer, the covered days with the error in each easy total, and the two lapses with their dates. Six on logs built for the suite cover a period that starts the day after the last one ends and one that starts a day later than that, periods held inside a longer one, February 29, a period across the year end, periods with the same dates twice and three times over, and a log whose ids run counter to its dates with a two-period block after a lapse. The first, the leap day and the year end are checked in the totals as well as the blocks, so the merge is pinned in all three files. Four exercise the loader: a period that ends before it starts; row numbers past blank lines and a stray quote, along with text after a closing quote, a repeated period_id, an id with a leading zero or ten digits, and a date written without its leading zeroes or on the first data row; a control character, a zero-width space, rows with too many or too few fields, a renamed header, dates outside the range at either end, an empty file, one with only a header, and one that is not UTF-8, next to a byte-order mark it reads through; and one customer written two ways, a blank name, a name whose spacing and accents are tidied up, and a name spelled with a zero-width joiner, which is kept. The run ends with `all checks passed`.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates the CSV before any query runs. Point it at the included bad
 python run.py --periods data/invalid-periods.csv
 ```
 
-It stops at the first problem, naming the row when the problem is in one: `invalid-periods.csv row 4: period 3 ends on 2026-06-15, before it starts on 2026-08-31`. A period that ends before it starts has a length of zero or less, and period 3 here is 76 days short of zero, which takes days off the added-up total, gives the merge a block whose dates run backwards and whose length eats into the days the other periods covered, and leaves query 05 reporting a lapse that never happened.
+The load goes no further than the first problem, and the message gives the row when there is one: `invalid-periods.csv row 4: period 3 ends on 2026-06-15, before it starts on 2026-08-31`. A period that ends before it starts has a length of zero or less, and period 3 here is 76 days short of zero, which takes days off the added-up total, gives the merge a block whose dates run backwards and whose length eats into the days the other periods covered, and leaves query 05 reporting a lapse that never happened.
 
 ## The two easy answers
 
@@ -51,9 +51,17 @@ The running `MAX` is what makes the frame worth the trouble. Comparing each peri
 
 Query 04 adds the blocks up per customer and prints the covered days beside the added-up total, with a column for how far each easy answer was out: days counted twice is the added-up total less the covered days, a surplus rather than a count of the days it happened on, and days not covered is the span less the covered days. Brightside Dental is 16 and 0, Harbour Freight Co is 0 and 61, and Kestrel Media is 91 and 4. Query 05 dates the lapses: Harbour Freight Co was uncovered from March 1 to April 30, and Kestrel Media from October 1 to October 4. A customer covered throughout has no rows there at all.
 
+## Small experiments
+
+Each changes one date in `data/periods.csv`, starting from the file as shipped, and the effect shows on the next `python run.py`.
+
+1. Period 1, Brightside Dental: change its end from `2026-03-31` to `2026-03-30`. Period 2 starts on April 1, two days after the new end, so Brightside splits into blocks of 89 and 153 days, and query 05 reports a one-day lapse on March 31.
+2. Period 5, Harbour Freight Co: change its start from `2026-05-01` to `2026-03-01`, the day after period 4 ends. Harbour Freight Co becomes one block of 182 days, its 61-day lapse leaves query 05, and both easy answers in query 02 now read 182.
+3. Period 6, Kestrel Media's long one: change its end from `2026-09-30` to `2026-05-15`. The June to July period it used to contain now stands alone, so Kestrel has three blocks where it had two, and query 05 dates lapses of 16 days in May and 65 days from August into October.
+
 ## Sample data
 
-Sixteen coverage periods for five fictional customers, running from January 1 to November 30, 2026. One customer renewed twice, once early, one let cover lapse for two months, one has two short periods inside a long one and a four-day lapse after it, one renewed daily across a working week with the same day bought twice, and one has a single period. The file is deliberately not in date order.
+Sixteen coverage periods for five fictional customers, running from January 1 to November 30, 2026. One customer renewed twice, once early, one let cover lapse for two months, one has two short periods inside a long one and a four-day lapse after it, one renewed daily across a working week with the same day bought twice, and one has a single period. The rows are not in date order.
 
 ## Known limits
 

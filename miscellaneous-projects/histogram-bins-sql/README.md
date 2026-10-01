@@ -1,6 +1,6 @@
 # Delivery Histogram Queries
 
-Five SQLite queries that turn a log of delivery times into a histogram of ten-minute bins, each reading being the minutes a van ran early or late. The bins are built first, by a recursive CTE running from the lowest bin to the highest, and the counts are joined onto them, so a bin nothing lands in still prints. Grouping on the minutes divided by ten instead, the obvious way, goes wrong twice on the sample: dividing toward zero piles 86 deliveries into the bin at zero that holds 50, and 12 empty bins never print at all.
+A courier's delivery times, each the minutes a van ran early or late, go into a histogram of ten-minute bins that keeps its empty bins and files early readings under the right heading. The bins come first, from a recursive CTE that counts from the lowest bin to the highest, and the counts are joined onto them, so a bin nothing lands in still prints. Grouping on the minutes divided by ten instead piles 86 of the sample's deliveries into the bin at zero, where 50 belong, and 12 empty bins never print at all.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that turn a log of delivery times into a histogram of ten-mi
 
 ## Running it
 
-Python 3.7 or newer, standard library only, on SQLite 3.25 or newer for window functions.
+It needs Python 3.7 or newer and SQLite 3.25 or newer for the window functions, and it imports only from the standard library.
 
 ```
 cd miscellaneous-projects/histogram-bins-sql
@@ -49,7 +49,7 @@ It stops at the first problem it reaches, naming the row where it has one. A byt
 invalid-deliveries.csv row 61: minutes '12.5' is not a whole number of minutes from -1440 to 1440, written like -15 or 20
 ```
 
-## Where the quick histogram goes wrong
+## Two faults in query 02
 
 Query 02 groups on the minutes divided by ten. SQLite divides whole numbers toward zero, so -9 / 10 and 9 / 10 are both 0: the bin at zero collects everything from -9 to 9, nineteen minutes wide against ten, and comes to 86 deliveries where the bin from 0 to 9 holds 50. The headings below zero are wrong with it: the bin printed as -10 to -1 holds -19 to -10 instead, so of the 39 readings that belong under that heading it keeps only the 3 sitting exactly on -10, and takes in 6 from further down, 9 in all. The bin printed as -30 to -21 holds the readings from -39 to -30.
 
@@ -67,7 +67,15 @@ Shares are worked out in whole numbers and rounded half up to a tenth of a perce
 
 Query 05 runs the same readings at three widths. At five minutes a bin the log spreads over 44 bins, 26 of them empty, with a 16-bin stretch of nothing in the tail. At ten it is 23 bins and an 8-bin stretch. At thirty it fits in 9 bins, the gap shrinks to 2, and the fullest bin holds 70 of the 126 deliveries.
 
-The shape is smoother at thirty, and the quiet stretch in the tail is nearly gone with it. The width is a choice, and it decides what the histogram shows.
+At thirty the shape is smoother and the quiet stretch in the tail is nearly gone, so the width, which nothing in the data fixes, decides what the histogram shows.
+
+## Three readings to move
+
+Each of these changes one reading in `data/deliveries.csv`. Try them one at a time on the original file.
+
+- Change `D0015,-9` to `D0015,-10`. Query 03 stays exactly the same, since -9 and -10 share the bin from -10 to -1. Query 02 moves, because -9 / 10 is 0 and -10 / 10 is -1: its -10 to -1 line goes from 9 to 10 and its 0 to 9 line from 86 to 85, and query 04 now counts 35 too many at zero.
+- Change `D0125,95` to `D0125,55`. One reading lands in the empty stretch between 40 and 69 and the bin from 90 to 99 empties, so in query 05 the longest run of empty ten-minute bins grows from 8 to 10, the bins from 80 to 179.
+- Change `D0126,181` to `D0126,45`. The latest delivery is now 95 minutes late, query 03 builds 14 bins instead of 23, and at thirty minutes a bin, query 05 finds no empty bin at all.
 
 ## Sample data
 
@@ -80,7 +88,7 @@ The shape is smoother at thirty, and the quiet stretch in the tail is nearly gon
 - Bins start at a multiple of the width, so the bin holding zero runs from 0 to 9 rather than being centred on it. A histogram meant to show early and late as mirror images would need bins placed around zero instead.
 - The bar is drawn against the fullest bin, not against a fixed scale, so bars from two different logs cannot be compared.
 - The log carries no dates, routes or drivers, so the queries cannot show whether the tail belongs to one route or one bad afternoon.
-- A query that runs past a hundred million SQLite steps is stopped with an error. The costliest log the limits allow takes under a tenth of that, on 3.31 and 3.34 as much as on 3.50, though those older versions work a named CTE out again at every mention, which is why each query names its dearest step once.
+- A query that runs past a hundred million SQLite steps is stopped with an error. The costliest log the limits allow takes under a tenth of that, on 3.31 and 3.34 as much as on 3.50, though those older versions work a named CTE out again in every SELECT that names it, so each query names its dearest step once.
 
 ## License
 

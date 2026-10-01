@@ -1,6 +1,6 @@
 # Business-Day Queries
 
-Five SQLite queries about a support desk and its three-business-day target, on a calendar that knows which days the desk is open. The clock most people write first counts days off the wall calendar, which puts four of the sample's ten targets on days the desk is shut and marks two tickets missed that were answered with a day to spare. Numbering the open days in a calendar built by a recursive CTE turns both questions the desk asks into arithmetic: the business days between two dates is one number minus the other, and three business days after a date is the day whose number is three higher.
+Business days, counted on a calendar that knows which days a support desk is open, decide whether each ticket met the desk's three-business-day target. A recursive CTE builds the calendar and a running SUM numbers its open days, so the business days between two dates is one number minus the other, and three business days after a date is the day whose number is three higher. A wall-calendar count puts four of the sample's ten targets on days the desk is shut and marks two tickets missed that were answered with a day to spare.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries about a support desk and its three-business-day target, on a
 
 ## Running it
 
-Python 3.7 or newer, standard library only, on SQLite 3.25 or newer for window functions.
+You need Python 3.7 or newer, with SQLite 3.25 or newer underneath for window functions, and nothing outside the standard library.
 
 ```
 cd miscellaneous-projects/business-days-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample files. The test run checks the q
 python run.py --test
 ```
 
-Twenty checks run. Nine on the sample cover the log's shape and holiday count, the four due dates the calendar clock puts on closed days, its verdicts, the size of the business calendar and its total of open days, the numbering standing still over a weekend and a holiday, every business-day due date and verdict, the two tickets the clocks disagree on, the two that arrived on closed days, and the one that turns from missed to met when the clock starts on the next open day. Six on desks built for the suite cover an answer logged on a Saturday, a target set the day before a five-day closure, a ticket that arrives on a holiday, an on-call answer logged before its clock starts, a desk that opens one day a week, and an answer that lands long after the calendar's 30-day margin. Five exercise the loader: an answer dated before its ticket was opened; row numbers past blank lines and a stray quote, along with text after a closing quote, a repeated ticket_id, and a date written without its leading zeroes; a control character, rows with too many or too few fields, a renamed header, a date outside the range the log can use, and a file with only a header, next to a byte-order mark it reads through; a holiday listed twice, one with no name, one that is not a real date, and a good list that loads; and the limit on closed days, which takes six in a row and turns away seven. The run ends with `all checks passed`.
+Twenty checks run. Nine on the sample cover the log's shape and holiday count, the four due dates the calendar clock puts on closed days, its verdicts, the size of the business calendar and its total of open days, the numbering standing still over a weekend and a holiday, every business-day due date and verdict, the two tickets the clocks disagree on, the two that arrived on closed days, and the one that turns from missed to met when the clock starts on the next open day. Six on desks built for the suite cover an answer logged on a Saturday, a target set the day before a five-day closure, a ticket that arrives on a holiday, an on-call answer logged before its clock starts, a desk that opens one day a week, and an answer that lands long after the calendar's 30-day margin. Five exercise the loader: an answer dated before its ticket was opened; row numbers past blank lines and a stray quote, along with text after a closing quote, a repeated ticket_id, and a date written without its leading zeroes; a control character, rows with too many or too few fields, a renamed header, a date outside the range the log can use, and a file with only a header, next to a byte-order mark it reads through; a holiday listed twice, one with no name, one that is not a real date, and a good list that loads; and the limit on closed days, which takes six in a row and turns away seven. If all twenty pass, the run ends with `all checks passed`.
 
 The sample holiday list is used for any ticket log unless `--holidays` names another, since a holiday list belongs to the desk rather than to one file of tickets. The loader validates both CSVs before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The sample holiday list is used for any ticket log unless `--holidays` names ano
 python run.py --tickets data/invalid-tickets.csv
 ```
 
-It stops at the first problem, naming the row when the problem is in one: `invalid-tickets.csv row 4: ticket 1003 was answered on 2026-09-01, before it was opened on 2026-09-04`. An answer dated before its ticket would make the age of the ticket negative and put its answer before its own due date, so the loader refuses it.
+The first problem stops the load, and the message gives its row where it has one: `invalid-tickets.csv row 4: ticket 1003 was answered on 2026-09-01, before it was opened on 2026-09-04`. An answer dated before its ticket would make the age of the ticket negative and put its answer before its own due date, so the loader refuses it.
 
 ## The clock on the wall calendar
 
@@ -53,9 +53,17 @@ Query 04 rebuilds that calendar and joins each ticket to it on the day it was op
 
 Query 05 adds the rule the desk works to: a ticket that arrives on a closed day starts its clock on the next open day. In the numbering that is one line of arithmetic, since a closed day already carries the number of the open day before it: add 1 on a closed day and 0 on an open one. Ticket 1004 arrived on Saturday September 5 and starts on Tuesday September 8, the Monday being Labour Day, which moves its target from September 10 to September 11. It was answered on September 11, so the ticket query 04 called missed at four business days is met at three. Ticket 1007 arrived on a Sunday and shifts a day as well, from a target of September 16 to September 17, and was met either way.
 
+## Two edits to try
+
+Undo the first edit before making the second; each shows up on the next `python run.py`.
+
+Add a closure as a new last line of `data/holidays.csv`: `2026-09-23,Staff Training`. Query 03 lists that Wednesday under its new name, and from there on every business number is one lower. In queries 04 and 05, ticket 1010's due date moves from September 23 to September 24, and ticket 1009, answered on September 25, comes out a business day younger: 5 instead of 6, and still missed.
+
+In `data/tickets.csv`, change ticket 1005's answer from `2026-09-14` to the Saturday before, `2026-09-12`. Query 02 still calls it missed at 4 calendar days. Queries 04 and 05 read the Saturday as Friday, September 11, and call it met at 3 business days, which is the closed-day rule under Known limits at work.
+
 ## Sample data
 
-Ten tickets at a fictional support desk, opened between Monday, August 31 and Friday, September 18, 2026, one of them still waiting. Two arrive on a weekend, one is answered the day it arrived, and one is answered eight calendar days later. The holiday list holds the two days this desk closed in the period the calendar covers: Labour Day on Monday, September 7 and Thanksgiving on Monday, October 12. The ticket file is deliberately not in date order.
+Ten tickets at a fictional support desk, opened between Monday, August 31 and Friday, September 18, 2026, one of them still waiting. Two arrive on a weekend, one is answered the day it arrived, and one is answered eight calendar days later. The holiday list holds the two days this desk closed in the period the calendar covers: Labour Day on Monday, September 7 and Thanksgiving on Monday, October 12. The ticket file is not in date order.
 
 ## Known limits
 
@@ -65,7 +73,7 @@ Ten tickets at a fictional support desk, opened between Monday, August 31 and Fr
 - The calendar runs 30 days past the last ticket, or to the last answer if that is later, and the loader refuses a holiday list that shuts the desk for seven days or more in a row anywhere a due date could land, which is the case that could push one past the end of it. Closures further out are left alone, since every due date comes from an opening date.
 - Dates run from 1970-01-01 to 2200-12-31. A date outside that is refused, which keeps a mistyped year or a 9999 sentinel from building a calendar of millions of days.
 - Weekends are Saturday and Sunday. A desk that opens on Saturdays, or one on a different week altogether, needs the open-day test changed.
-- The holiday list is the desk's own, not a statutory list. Nothing checks it against one, and the sample's two days are the ones this desk closed.
+- The holiday list holds the desk's own closures. Nothing checks it against a statutory list, and the sample's two days are the ones this desk closed.
 - What counts as a closed day is written out five times: once in query 02 for its due date, once in each of queries 03 to 05, and once in the loader's check on the holiday list. A change to it has to be made in all five.
 
 ## License
