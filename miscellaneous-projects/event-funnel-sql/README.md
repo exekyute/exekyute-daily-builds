@@ -1,6 +1,6 @@
 # Event Funnel Queries
 
-Five SQLite queries that turn a raw product event log into an ordered signup-to-purchase funnel: who reached each stage, where the drop-offs happen, how long each step takes, and which users a naive count gets wrong. The ordering is the whole point: a stage only counts when it happens at or after the stage before it, so a user who bought before creating a project is a stage-two drop-off, not a conversion. On the sample log, raw events show 5 purchases and the ordered funnel finds 3.
+Only 3 of the 5 purchases in the sample event log survive when each stage of the signup-to-purchase funnel has to happen at or after the one before it, and the reports show where everyone else dropped off and how long each step took. Dee bought before she created a project and never invited a teammate, so the funnel stops her at stage two while a did-it-ever-fire count calls her a buyer. Gus never signed up, so his purchase never enters the funnel at all.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that turn a raw product event log into an ordered signup-to-
 
 ## Running it
 
-Python 3, standard library only.
+You need Python 3, and nothing `run.py` imports comes from outside its standard library.
 
 ```
 cd miscellaneous-projects/event-funnel-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Eight checks cover the raw counts, the entrant list, the same-minute boundary, the out-of-order purchase, both naive disagreements, the three medians, and the full summary, then print `all checks passed`.
+Eight checks stand between the reports and `all checks passed`: the 24 loaded events and the raw counts, the 7 funnel entrants, Ana's same-minute signup and project, Dee stopping at the project stage despite her purchase, Dee and Gus as the only two disagreements in the side-by-side count, the three medians, and the summary table.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates the CSV before any query runs. Point it at the included bad
 python run.py --events data/invalid-events.csv
 ```
 
-It stops on the first problem and names the row: `invalid-events.csv row 3: user_id is empty`. The row after that has a timestamp without zero padding, which the loader would catch next.
+The first refusal is the only message: `invalid-events.csv row 3: user_id is empty`. The row after that has a timestamp without zero padding, which the loader would catch next.
 
 ## How the ordering works
 
@@ -43,9 +43,9 @@ The funnel is a chain of four CTEs. Stage one is each user's earliest signup. Ev
 
 Two details in the sample data prove the mechanics. Ana's first project landed in the same minute as her signup and still counts, because the comparison is at-or-after. She also fired `project_created` twice, and `MIN` keeps the first valid one, so repeats change nothing.
 
-## What the naive count gets wrong
+## Dee and Gus, counted two ways
 
-The comparison query counts each user's furthest stage two ways: naive asks only whether the event ever fired, ordered demands the sequence. Six of the eight users agree under both. The two who differ are the reason ordered funnels exist:
+The comparison query counts each user's furthest stage two ways: naive asks only whether the event ever fired, ordered demands the sequence. Six of the eight users agree under both. The other two:
 
 | user | naive says | ordered says | why |
 | --- | --- | --- | --- |

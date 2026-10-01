@@ -1,6 +1,6 @@
 # Bank Reconciliation Queries
 
-Five SQLite queries that reconcile a business ledger against its bank statement: exact matches on date and amount, a second pass that lets a cheque clear up to three days late, everything unmatched on either side, and a one-row report that explains the gap between the books to the cent. Amounts load as integer cents so floats never touch a sum, and the exact pass joins on a `ROW_NUMBER` sequence so two identical payments on the same day pair one-to-one instead of cross-joining into four matches. On the sample month the books differ by 612.13, and the report proves the unmatched rows account for exactly that.
+Every row in a business ledger and its bank statement lands in one of three places: an exact match on date and amount, a same-amount match up to three days apart, or the unmatched list that explains the gap between the books to the cent. Amounts load as integer cents so floats never touch a sum, and the exact pass joins on a `ROW_NUMBER` sequence so two identical payments on the same day pair one-to-one instead of cross-joining into four matches. On the sample month the books differ by 612.13, and the report's `unexplained` column prints 0.00.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that reconcile a business ledger against its bank statement:
 
 ## Running it
 
-Python 3, standard library only.
+It runs on Python 3 with the standard library alone, using `decimal` to parse each amount into whole cents.
 
 ```
 cd miscellaneous-projects/bank-reconciliation-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Ten checks cover the book totals, the duplicate pair matching one-to-one, the day gaps on the tolerance matches, the pair that misses the window, the unmatched rows on both sides, and the full report row, then print `all checks passed`.
+Ten checks run. Two cover the row counts and totals of both books, and the other eight follow the matching: the 5 exact matches and the duplicate 85.00 pair inside them, the day gaps and amounts of the three tolerance matches, the 200.00 pair five days apart staying unmatched, the 4 ledger and 5 bank rows left over, the 120.00 and 102.00 cheque landing on both sides, and the full report row. `all checks passed` means all ten agreed.
 
 The loader validates both CSVs before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates both CSVs before any query runs. Point it at the included b
 python run.py --ledger data/invalid-ledger.csv
 ```
 
-It stops on the first problem and names the row: `invalid-ledger.csv row 3: amount '-320.455' has more than 2 decimal places`. The row after that has a date without zero padding, which the loader would catch next.
+Loading ends at the first refusal: `invalid-ledger.csv row 3: amount '-320.455' has more than 2 decimal places`. The row after that has a date without zero padding, which the loader would catch next.
 
 ## How the matching works
 

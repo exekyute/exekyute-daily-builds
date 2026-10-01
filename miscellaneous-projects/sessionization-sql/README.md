@@ -1,6 +1,6 @@
 # Sessionization Queries
 
-Five SQLite queries that cut a raw page-view log into visitor sessions using a 30-minute timeout, then report on them: numbered sessions, entry and exit pages, per-visitor rollups, and a one-row site summary with the bounce rate. `LAG` measures the gap back to each visitor's previous view, a gap of 30 minutes or more raises a new-session flag, and a running `SUM` over those flags hands out the session numbers. Gaps are compared in whole seconds via `strftime('%s')`, because `julianday()` differences are floats and a gap of exactly 30 minutes could land a hair under the threshold.
+Cutting a raw page-view log into visitor sessions at every gap of 30 minutes or more gives you the entry and exit page of each visit and a bounce rate for the whole site. `LAG` measures the gap back to each visitor's previous view, a gap of 1800 seconds or more raises a new-session flag, and a running `SUM` over those flags hands out the session numbers. Gaps are counted in whole seconds with `strftime('%s')` because `julianday()` works in floating point: measured that way, Ben's exact 30-minute gap from 14:00 to 14:30 comes to 1799.9999731779099 seconds, which would fold his third session into his second.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that cut a raw page-view log into visitor sessions using a 3
 
 ## Running it
 
-Python 3, standard library only.
+The only install is Python 3. `run.py` imports nothing outside the standard library, and its `sqlite3` module does the database work.
 
 ```
 cd miscellaneous-projects/sessionization-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Ten checks cover the row counts, the gap seconds around the 30-minute line, the session counts per visitor, the midnight-crossing session, the entry and exit pages, the bounces, and the site summary row, then print `all checks passed`.
+Three of the ten checks sit on Ben's rows at the 30-minute line: his gap seconds, his new-session flags, and his 29.98-minute first session. The other seven cover the 17 loaded views, sessions per visitor and the 9-session total, Dee's session across midnight, Eva's shuffled rows still forming one 3-page session from /home to /faq, the bounces per visitor, and the site metrics row. All ten passing prints `all checks passed`.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates the CSV before any query runs. Point it at the included bad
 python run.py --pageviews data/invalid-pageviews.csv
 ```
 
-It stops on the first problem and names the row: `invalid-pageviews.csv row 3: view_ts '2026-08-05 9:15:00' is not YYYY-MM-DD HH:MM:SS`. The row after that has a page with no leading slash, which the loader would catch next.
+The loader reports one problem and exits: `invalid-pageviews.csv row 3: view_ts '2026-08-05 9:15:00' is not YYYY-MM-DD HH:MM:SS`. The row after that has a page with no leading slash, which the loader would catch next.
 
 ## How the numbering works
 
@@ -57,7 +57,7 @@ One second decides his first session: 1799 keeps the pricing view inside it, and
 - Dee's first session runs from 23:45 to 00:10 the next day. Grouping views by calendar date would cut it in half; the gap rule keeps it whole.
 - Eva's three rows are shuffled in the CSV. The window's `ORDER BY view_ts` does the sorting, so nothing depends on file order.
 - Cai visits once and leaves. One-view sessions are the bounces, counted with `SUM(pages = 1)`, which works because the comparison is 1 when true and 0 when not.
-- `LAST_VALUE` in the session summary needs its frame spelled out as `ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`. The default frame stops at the current row, which would quietly make every row its own exit page.
+- `LAST_VALUE` in the session summary needs its frame spelled out as `ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`. The default frame stops at the current row, which makes every row its own exit page without raising an error: on the sample, the summary would come back as 17 rows instead of 9 sessions.
 
 ## Sample data
 

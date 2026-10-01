@@ -1,6 +1,6 @@
 # Gym Streak Queries
 
-Five SQLite queries that turn a timestamped gym check-in log into streak reports: every consecutive-day run per member, each member's longest and current streak, and a lapsed-member list. The streak detection is the gaps-and-islands pattern: subtract each visit day's row number from the date itself and consecutive days collapse to one shared key, so a plain GROUP BY finds every streak. One standard-library Python file loads the CSVs and runs everything, with no database server to set up.
+Find out, from a log of timestamped check-ins, who is on a gym streak and who has lapsed as of a given day. Streak detection is the gaps-and-islands pattern: subtract each visit day's row number from the date itself, and consecutive days collapse onto one shared key that a plain GROUP BY collects. Mara Voss has the longest run in the sample at 14 days, and she and Aiko Tanaka are the only 2 of 7 members still on a streak on the report date.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that turn a timestamped gym check-in log into streak reports
 
 ## Running it
 
-Python 3, standard library only.
+Python 3 and its standard library are all it needs. `run.py` loads the CSVs into an in-memory SQLite database, so there is no database server to set up.
 
 ```
 cd miscellaneous-projects/gym-streaks-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Nine checks cover the row counts, Mara's two streaks, the duplicate check-in collapsing to one day, the longest and current streaks, the lapsed list, and check-ins after the report date leaving both as-of reports untouched, then print `all checks passed`.
+A passing suite prints `all checks passed` after nine checks: three counts (49 check-in rows, 48 member-days, 15 streaks), Mara's two streaks, Dev's duplicate check-in counting as one day, the longest and current streaks, the lapsed list, and two check-ins dated after the report date that must leave both as-of reports as they were.
 
 The loader validates both CSVs before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates both CSVs before any query runs. Point it at the included b
 python run.py --checkins data/invalid-checkins.csv
 ```
 
-It stops on the first problem and names the row: `invalid-checkins.csv row 3: member_id 99 has no row in members.csv`.
+The first refusal ends the run with exit code 2, and the message names the file and the row: `invalid-checkins.csv row 3: member_id 99 has no row in members.csv`.
 
 ## How the streak detection works
 
@@ -45,7 +45,7 @@ Three steps, all in `sql/02-streak-islands.sql`.
 2. Number each member's days in date order with `ROW_NUMBER()`.
 3. Subtract the row number from the day. Consecutive days all land on the same key; any skipped day makes the key jump.
 
-Here is the trick on Dev's first four visit days from the sample data:
+Dev's first four visit days from the sample data show the trick:
 
 | day | row number | day minus row number |
 | --- | --- | --- |
@@ -54,7 +54,7 @@ Here is the trick on Dev's first four visit days from the sample data:
 | 2026-07-19 | 3 | 2026-07-16 |
 | 2026-08-10 | 4 | 2026-08-06 |
 
-The two consecutive July days share a key, and each gap after that pushes the key somewhere new. Group by that last column and each group is one streak. The same three steps report on subscription churn, sensor uptime, and login activity. Attendance data is just the friendliest place to practice it.
+The two consecutive July days share a key, and each gap after that pushes the key somewhere new. Group by that last column and each group is one streak. Nothing in the three steps is specific to a gym: any table with a key and a calendar date on each row finds its runs the same way.
 
 ## Sample data
 

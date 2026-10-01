@@ -1,6 +1,6 @@
 # Cohort Retention Queries
 
-Five SQLite queries that turn a bare activity log into a weekly cohort retention grid: users grouped by the week they first showed up, then a matrix of how many came back one, two, and three weeks later. The grid keeps two things apart that careless versions blur: a 0.0% cell means the week happened and nobody returned, a blank cell means the week has not happened for that cohort yet. The sample data puts both in the same column.
+Users whose first activity fell in the same Monday-to-Sunday week form a cohort, and the retention grid built from an activity log shows how many of each cohort came back one, two, and three weeks later. A 0.0% cell and a blank cell mean different things: 0.0% says the week happened and nobody returned, blank says that week has not happened yet for the cohort. The sample puts both in the week 2 column.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that turn a bare activity log into a weekly cohort retention
 
 ## Running it
 
-Python 3, standard library only.
+`run.py` is one Python 3 file that imports only from the standard library.
 
 ```
 cd miscellaneous-projects/cohort-retention-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Ten checks cover the weekly rollup, the cohort sizes, the Sunday-boundary joiner, the collapsed same-week pair, the real zero, the unobservable cells, and the full grid, then print `all checks passed`.
+The suite's ten checks run from the 19 loaded rows to the finished grid, by way of the weekly active users, the cohort sizes and join ranges, the 17 user-week cells, cai the Sunday joiner landing in the first cohort, ana's skipped week 2 and eva's same-week pair collapsing to one cell, the 9 observable cells, the real zero in the first cohort's week 2, and the youngest cohort stopping at week 1. Only when all ten match does it print `all checks passed`.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates the CSV before any query runs. Point it at the included bad
 python run.py --activity data/invalid-activity.csv
 ```
 
-It stops on the first problem and names the row: `invalid-activity.csv row 3: second activity for ana on 2026-07-06`. The row after that has a date without zero padding, which the loader would catch next.
+It refuses that file at row 3 and exits: `invalid-activity.csv row 3: second activity for ana on 2026-07-06`. The row after that has a date without zero padding, which the loader would catch next.
 
 ## How the weeks work
 
@@ -49,7 +49,7 @@ Making that distinction takes two steps. A recursive spine crossed with the coho
 
 ## Sample data
 
-Eight fictional users and 19 activity rows from July 6 to August 1, 2026, forming three Monday cohorts of 3, 3, and 2 users. Two users join on Sundays to work the week boundary, one user is active twice in the same week, and the first cohort's members collectively skip week 2. The grid comes out 100.0/66.7/0.0/66.7, 100.0/66.7/66.7, and 100.0/50.0 percent.
+Eight fictional users and 19 activity rows from July 6 to August 1, 2026, forming three Monday cohorts of 3, 3, and 2 users. Two users join on Sundays to work the week boundary, ana and eva each have two activities inside one week, and the first cohort's members collectively skip week 2. The grid comes out 100.0/66.7/0.0/66.7, 100.0/66.7/66.7, and 100.0/50.0 percent.
 
 ## Known limits
 

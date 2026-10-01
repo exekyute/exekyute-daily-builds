@@ -1,6 +1,6 @@
 # Date Spine Queries
 
-Five SQLite queries that take a sparse daily sales log, where closed days simply have no rows, and turn it into a complete store-by-day grid with running totals and rolling averages that stay honest across the gaps. A recursive CTE generates every calendar day between the first and last sale, a CROSS JOIN spreads that calendar across the stores, and a LEFT JOIN with COALESCE fills the missing days with zeros. The last query computes the same 7-day average on both the sparse table and the grid, and on a day whose window covers a closure they disagree by 28.57.
+A daily sales log with no rows for closed days becomes a full store-by-day grid, so running totals and 7-day averages cover every calendar day, closed ones included. A recursive CTE generates every calendar day between the first and last sale, a CROSS JOIN spreads that calendar across the stores, and a LEFT JOIN with COALESCE fills the missing days with zeros. The last query computes the 7-day average both ways, and on July 21 Harbourfront reads 199.29 on the grid against 227.86 on the sparse rows, because the sparse window reaches back past the July 19 closure.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that take a sparse daily sales log, where closed days simply
 
 ## Running it
 
-Python 3, standard library only.
+It needs Python 3 and nothing outside the standard library.
 
 ```
 cd miscellaneous-projects/date-spine-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Ten checks cover the row counts, the spine length and bounds, the zero-sales days on the grid, the month-end running totals, the flat line before Westside opened, and both 7-day averages on one specific day, then print `all checks passed`.
+Its ten checks follow the reports in order: 55 rows loaded and 50 store-days with sales, a 31-day spine from July 1 to July 31, a 62-row grid with 12 zero days and Harbourfront's three closed days among them, both month-end running totals, Westside still at 0 on July 7, the day before it opened, and Harbourfront's two 7-day averages on July 21. Every one has to match for `all checks passed` to print.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates the CSV before any query runs. Point it at the included bad
 python run.py --sales data/invalid-sales.csv
 ```
 
-It stops on the first problem and names the row: `invalid-sales.csv row 3: amount 'twelve' is not a number`. The next row in that file has a date without zero padding, which strptime would accept but SQLite's `DATE()` returns NULL on, so the loader round-trips every date through a fixed format to catch it.
+Loading stops at the first row it refuses, here row 3: `invalid-sales.csv row 3: amount 'twelve' is not a number`. The next row in that file has a date without zero padding, which strptime would accept but SQLite's `DATE()` returns NULL on, so the loader round-trips every date through a fixed format to catch it.
 
 ## How the spine works
 
@@ -53,9 +53,9 @@ calendar(day) AS (
 
 SQLite runs the anchor once, feeds each new row back into the step, and stops when the guard returns nothing. The bounds come from `MIN` and `MAX` of the sales data rather than hard-coded dates, so the spine stretches on its own when a new month lands.
 
-## Why the gap fill matters
+## Harbourfront's closures in the 7-day average
 
-Harbourfront was closed on July 4 and 5 and reopened on July 6. On that day the average over the grid is 135.00, because two of the six days in the window are zeros. The average over the sparse table is 202.50, because it never saw those days. The naive column is also NULL on every closed day, since the sparse table has no row to compute it on.
+Harbourfront was closed on July 4 and 5 and reopened on July 6. On that day the average over the grid is 135.00, because two of the six days in the window are zeros. The average over the sparse table is 202.50, because it never saw those days. The `naive_7row_avg` column is also NULL on every closed day, since the sparse table has no row to compute it on.
 
 On July 21 both windows are seven rows wide, but the sparse one reaches back past the July 19 closure to pull in July 14. Grid: 199.29. Sparse: 227.86. A chart built on the sparse number would show the store doing better the week after a closure than it actually did.
 

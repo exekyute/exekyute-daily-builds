@@ -1,6 +1,6 @@
 # Price History Queries
 
-Five SQLite queries that turn a log of product price snapshots into a versioned price history, then put it to work: the price of any product on any date, what each past order actually paid, and integrity checks for a hand-maintained price list. `LAG` flags each snapshot where the price differs from the one before it, and `LEAD` turns those change rows into `valid_from` and `valid_to` ranges, the slowly changing dimension Type 2 shape. The checks run against a deliberately broken price list and catch its overlap, its two-day gap, and its two open-ended rows.
+From a log of product price snapshots, the reports work out what any product cost on a given date and what each past order actually paid. `LAG` flags each snapshot where the price differs from the one before it, and `LEAD` turns those change rows into `valid_from` and `valid_to` ranges, the slowly changing dimension Type 2 shape. A separate set of checks finds four issues in the sample's hand-maintained price list, among them a two-day gap and a product with two open-ended rows.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that turn a log of product price snapshots into a versioned 
 
 ## Running it
 
-Python 3, standard library only.
+Every import in `run.py` comes from Python 3's standard library.
 
 ```
 cd miscellaneous-projects/price-history-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Eleven checks cover the row counts, the change events, the full version list for the product that changed price twice, the as-of prices, every order's line total, the price list issue counts by type, and the gap detail, then print `all checks passed`.
+The rows loaded from all three files, the 7 change rows and the beans price moves, the 7 versions with 3 still current, the full beans history, the as-of prices, every order's line total and the 93.70 they add up to, the price list issues by type, and the dates of the gap: that is eleven checks, and the suite reports `all checks passed` once they all pass.
 
 The loader validates all three CSVs before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,7 +35,7 @@ The loader validates all three CSVs before any query runs. Point it at the inclu
 python run.py --snapshots data/invalid-snapshots.csv
 ```
 
-It stops on the first problem and names the row: `invalid-snapshots.csv row 3: duplicate snapshot for cold-brew on 2026-07-01`. The row after that carries a negative price, which the loader would catch next.
+Only the first refusal is reported: `invalid-snapshots.csv row 3: duplicate snapshot for cold-brew on 2026-07-01`. The row after that carries a negative price, which the loader would catch next.
 
 ## How the history is built
 
@@ -84,7 +84,7 @@ On the sample list it finds four issues: the beans rows starting July 1 and July
 
 ## Sample data
 
-Three fictional products and 29 price snapshots on ten dates from July 1 to August 1, 2026, roughly twice a week. Oat milk has no snapshot on July 18, which is deliberate: the version range covers the day anyway. The snapshots collapse to 7 versions, 3 of them current. There are 8 orders and an 8-row hand-maintained price list with one overlap, one gap, and one product with two open rows.
+Three fictional products and 29 price snapshots on ten dates from July 1 to August 1, 2026, roughly twice a week. Oat milk is left without a snapshot on July 18 to show that the version range covers the day anyway. The snapshots collapse to 7 versions, 3 of them current. There are 8 orders and an 8-row hand-maintained price list with one overlap, one gap, and one product with two open rows.
 
 ## Known limits
 

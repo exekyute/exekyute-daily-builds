@@ -1,6 +1,6 @@
 # Latency Percentile Queries
 
-Five SQLite queries that compute interpolated p50, p90, and p99 latencies per API endpoint from a raw request log, using the definition `PERCENTILE_CONT` implements in engines that have it, which SQLite does not. The position math is one line: percentile p sits at rank 1 + p times (n - 1), and a fractional rank blends the two neighbouring values linearly. The payoff is in the grid: search averages 133.5 ms while its p99 is 800, because two slow requests hide inside a healthy-looking mean.
+How slow each API endpoint is at p50, p90, and p99 comes straight out of a raw request log, interpolated the way `PERCENTILE_CONT` defines it in engines that have the function. The position math is one line: percentile p sits at rank 1 + p times (n - 1), and a fractional rank blends the two neighbouring values linearly. Search averages 133.5 ms on the sample while its p99 is 800, because two slow requests, at 400 and 900 ms, hide inside the mean.
 
 ## The queries
 
@@ -14,7 +14,7 @@ Five SQLite queries that compute interpolated p50, p90, and p99 latencies per AP
 
 ## Running it
 
-Python 3, standard library only.
+Install nothing beyond Python 3: the runner uses only the standard library.
 
 ```
 cd miscellaneous-projects/latency-percentiles-sql
@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Nine checks cover the summaries, the tie under the search median, every interpolation bracket, the full grid, and the slowest-request rankings, then print `all checks passed`.
+Nine checks back the reports: the 36 loaded requests, the three endpoint summaries, the tied 80 ms pair under the search median, the 9 percentile rows, the blends behind search p99 (400 to 900 at 0.8), login p99 (0.9 of the way from 50 to 250) and export p50 (the 0.5 midpoint, 1500), the full grid, and the three slowest requests per endpoint. When all nine hold, the run prints `all checks passed`.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
@@ -35,21 +35,23 @@ The loader validates the CSV before any query runs. Point it at the included bad
 python run.py --requests data/invalid-requests.csv
 ```
 
-It stops on the first problem and names the row: `invalid-requests.csv row 3: duration_ms 'fast' is not an integer`. The row after that has a timestamp without zero padding, which the loader would catch next.
+Row 3 is as far as it gets: `invalid-requests.csv row 3: duration_ms 'fast' is not an integer`. The row after that has a timestamp without zero padding, which the loader would catch next.
 
 ## The position math
 
 Rank every duration inside its endpoint, count the rows, and the percentile p lives at 1-based position 1 + p times (n - 1). A whole-number position is just that row. A fractional one blends the rows either side: with 21 search requests, p99 lands at position 20.8, so the answer is the 20th value plus 0.8 of the way to the 21st, 400 + 0.8 x 500 = 800. `CAST` truncates the position down to the lower rank, which is the floor for positive numbers, and a two-argument `MIN` caps the upper rank at n so an exact landing never reaches past the last row.
 
+SQLite 3.50.4 (through Python's `sqlite3` module), 3.34.0 and 3.31.1 all answer `percentile_cont` with `no such function`, so the formula is written out in SQL rather than called.
+
 The sample sizes are chosen to exercise both paths. Search (n = 21) puts p50 and p90 exactly on ranks 11 and 19, and rank 11 sits on a pair of tied 80 ms requests, which interpolation is indifferent to. Login (n = 11) blends its p99 at 0.9 between 50 and 250, landing on 230.
 
-## Why the mean lies
+## Mean and tail on login and search
 
 Login's mean is 58.4 ms, but half its requests finish in 40 ms or less; a single 250 ms request does the damage. Search is worse: the mean says 133.5 ms, the median says 80, and the p99 says 800. Averages fold the tail into the middle, percentiles keep them apart, and the slowest-requests query then names the exact rows behind the tail.
 
 ## Sample data
 
-Three fictional endpoints and 36 requests across one day, August 20, 2026: 21 search, 11 login, 4 export. The export endpoint is deliberately tiny: its p99 of 1988 ms interpolates between the 3rd and 4th of four requests, which is arithmetic, not evidence.
+Three fictional endpoints and 36 requests across one day, August 20, 2026: 21 search, 11 login, 4 export. The export endpoint is kept tiny on purpose: its p99 of 1988 ms interpolates between the 3rd and 4th of four requests, which is arithmetic, not evidence.
 
 ## Known limits
 
