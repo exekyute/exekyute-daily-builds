@@ -540,7 +540,7 @@
       custom.textContent = sub.category;
       catSelect.appendChild(custom);
     }
-    catSelect.value = sub ? sub.category : "Streaming";
+    catSelect.value = sub ? sub.category : "Other";
     $("#f-price").value = sub ? (sub.priceCents / 100).toFixed(2) : "";
     $("#f-seats").value = sub ? String(sub.seats) : "1";
     $("#f-owner").value = sub ? sub.owner : "";
