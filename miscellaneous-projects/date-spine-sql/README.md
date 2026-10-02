@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-Its ten checks follow the reports in order: 55 rows loaded and 50 store-days with sales, a 31-day spine from July 1 to July 31, a 62-row grid with 12 zero days and Harbourfront's three closed days among them, both month-end running totals, Westside still at 0 on July 7, the day before it opened, and Harbourfront's two 7-day averages on July 21. Every one has to match for `all checks passed` to print.
+Its first ten checks follow the reports in order: 55 rows loaded and 50 store-days with sales, a 31-day spine from July 1 to July 31, a 62-row grid with 12 zero days and Harbourfront's three closed days among them, both month-end running totals, Westside still at 0 on July 7, the day before it opened, and Harbourfront's two 7-day averages on July 21. The eleventh loads three amounts with cents into a separate database and runs the four sales queries on them, where 10.10 plus 20.20 has to come back as 30.3 and not 30.299999999999997. Every one has to match for `all checks passed` to print.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
@@ -67,7 +67,7 @@ Two fictional stores and 55 sales rows over July 2026, giving 50 store-days with
 
 - The spine runs from the first sale to the last, so a closure on either end of the range is invisible. Pin the `bounds` CTE to fixed dates for a fixed reporting window.
 - SQLite will recurse as far as the guard allows. SQL Server stops at 100 steps by default and MySQL at 1,000, so the same query needs `MAXRECURSION` or `cte_max_recursion_depth` raised there for a long range.
-- Amounts are stored as `REAL`, so whole-dollar totals print as `210.0` rather than `210`.
+- Amounts are stored as `REAL`, so whole-dollar totals print as `210.0` rather than `210`. Daily sums and running totals are rounded to the cent, which keeps float residue out of the reports but also rounds away any third decimal place in a day's total.
 - Recursive CTEs need SQLite 3.8.3 and window functions need 3.25. The SQLite bundled with the official Python installers covers both; a Linux Python that links an old system libsqlite3 may not.
 
 ## License

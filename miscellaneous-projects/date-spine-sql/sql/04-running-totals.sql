@@ -16,7 +16,7 @@ stores AS (
     SELECT DISTINCT store FROM sales
 ),
 daily AS (
-    SELECT store, sale_date AS day, SUM(amount) AS sales
+    SELECT store, sale_date AS day, ROUND(SUM(amount), 2) AS sales
     FROM sales
     GROUP BY store, sale_date
 ),
@@ -29,6 +29,6 @@ grid AS (
 SELECT store,
        day,
        sales,
-       SUM(sales) OVER (PARTITION BY store ORDER BY day) AS running_total
+       ROUND(SUM(sales) OVER (PARTITION BY store ORDER BY day), 2) AS running_total
 FROM grid
 ORDER BY store, day;

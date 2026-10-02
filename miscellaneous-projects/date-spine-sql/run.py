@@ -18,6 +18,7 @@ from pathlib import Path
 HERE = Path(__file__).parent
 SALES_CSV = HERE / "data" / "sales.csv"
 SQL_DIR = HERE / "sql"
+SALES_TABLE = "CREATE TABLE sales (sale_date TEXT NOT NULL, store TEXT NOT NULL, amount REAL NOT NULL)"
 
 
 def fail(path, row_num, message):
@@ -92,7 +93,7 @@ def load_sales(path):
 def build_db(sales_path):
     sales = load_sales(sales_path)
     db = sqlite3.connect(":memory:")
-    db.execute("CREATE TABLE sales (sale_date TEXT NOT NULL, store TEXT NOT NULL, amount REAL NOT NULL)")
+    db.execute(SALES_TABLE)
     db.executemany("INSERT INTO sales VALUES (?, ?, ?)", sales)
     return db
 
@@ -161,6 +162,24 @@ def run_tests(db):
     check("Harbourfront 7-day averages on 2026-07-21",
           [(r[3], r[4]) for r in rolling if r[0] == "Harbourfront" and r[1] == "2026-07-21"],
           [(199.29, 227.86)])
+
+    # The sample amounts are whole dollars, so none of the checks above would
+    # catch float residue. These would: unrounded, 10.10 + 20.20 sums to
+    # 30.299999999999997, and the running total 30.3 + 12.07 to 42.370000000000005.
+    cents = sqlite3.connect(":memory:")
+    cents.execute(SALES_TABLE)
+    cents.executemany("INSERT INTO sales VALUES (?, ?, ?)",
+                      [("2026-07-01", "Harbourfront", 10.10),
+                       ("2026-07-01", "Harbourfront", 20.20),
+                       ("2026-07-02", "Harbourfront", 12.07)])
+    _, cent_daily = run_query(cents, SQL_DIR / "01-daily-totals.sql")
+    _, cent_grid = run_query(cents, SQL_DIR / "03-gap-filled-daily.sql")
+    _, cent_running = run_query(cents, SQL_DIR / "04-running-totals.sql")
+    _, cent_rolling = run_query(cents, SQL_DIR / "05-rolling-average.sql")
+    check("cent amounts summed without float residue",
+          [[r[2] for r in rows] for rows in (cent_daily, cent_grid, cent_running, cent_rolling)]
+          + [[r[3] for r in cent_running]],
+          [[30.3, 12.07]] * 4 + [[30.3, 42.37]])
 
     print()
     if failures:
