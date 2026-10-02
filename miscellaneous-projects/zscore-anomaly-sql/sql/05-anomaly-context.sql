@@ -18,7 +18,7 @@ SELECT metric_date,
             ELSE printf('%.1f to %.1f', mean_prev - 2 * sigma_prev, mean_prev + 2 * sigma_prev)
        END AS allowed_band,
        CASE WHEN sigma_prev = 0 THEN ''
-            WHEN orders > mean_prev + 2 * sigma_prev
+            WHEN orders > mean_prev
                 THEN printf('%.1f above the band', orders - (mean_prev + 2 * sigma_prev))
             ELSE printf('%.1f below the band', (mean_prev - 2 * sigma_prev) - orders)
        END AS exceedance

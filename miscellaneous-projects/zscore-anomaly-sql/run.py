@@ -195,6 +195,16 @@ def run_tests(db):
           [r[2] for r in context if r[0] == "2026-09-01"],
           ["no band: baseline never moved"])
 
+    # The promotion cut to 110 sits exactly on the upper band edge: 10 over a
+    # mean of 100 with a sigma of 5 is z = 2.0 with nothing rounded. The flag
+    # counts it, so query 05 has to put it above the band, not 20 below.
+    edge = build_db(METRICS_CSV)
+    edge.execute("UPDATE daily_metrics SET orders = 110 WHERE metric_date = '2026-08-10'")
+    _, on_edge = run_query(edge, SQL_DIR / "05-anomaly-context.sql")
+    check("a day exactly on the band edge reads 0.0 above it",
+          [(r[2], r[3]) for r in on_edge if r[0] == "2026-08-10"],
+          [("90.0 to 110.0", "0.0 above the band")])
+
     print()
     if failures:
         print(f"{failures} check(s) failed")

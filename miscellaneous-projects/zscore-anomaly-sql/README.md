@@ -27,7 +27,7 @@ That prints all five reports against the sample data. The test run checks the qu
 python run.py --test
 ```
 
-There are twelve checks, among them the empty first window, the exact baseline of mean 100 and sigma 5, all three flagged days, and two of the three lines in query 05. With none failing, the last line is `all checks passed`.
+There are thirteen checks, among them the empty first window, the exact baseline of mean 100 and sigma 5, all three flagged days, two of the three lines in query 05, and a copy of the series with the promotion cut to 110, which sits exactly on the band edge. With none failing, the last line is `all checks passed`.
 
 The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
 
