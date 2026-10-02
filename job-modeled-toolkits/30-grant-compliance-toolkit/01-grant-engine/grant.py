@@ -54,7 +54,7 @@ def runway_periods(remaining, rate):
 
 def reports_overdue(deadlines, period):
     """Reports whose due period has passed and that are not submitted."""
-    return [d for d in deadlines if d["due_period"] <= period and not d["submitted"]]
+    return [d for d in deadlines if d["due_period"] < period and not d["submitted"]]
 
 
 def build_timeline(transactions, budget_categories, award_total, award_months, as_of, deadlines):

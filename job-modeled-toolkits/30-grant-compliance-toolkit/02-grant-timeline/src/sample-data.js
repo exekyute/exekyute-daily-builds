@@ -37,7 +37,7 @@
     "projected_total": 304000.0,
     "projected_variance": -54000.0,
     "status": "Over budget",
-    "reports_overdue": 1.0
+    "reports_overdue": 0.0
   },
   {
     "period": 4.0,

@@ -79,6 +79,8 @@ class EndToEndTests(unittest.TestCase):
         self.assertEqual(p["projected_variance"], D("-50000.00"))
         self.assertEqual(p["status"], "Over budget")
         self.assertEqual(p["reports_overdue"], 1)
+        # Period 3 is the Q1 report's due period: Due now, not yet overdue.
+        self.assertEqual(self.by_period[3]["reports_overdue"], 0)
 
     def test_category_summary(self):
         summary = {r["category"]: r for r in category_summary(self.txns, self.budgets, set(self.budgets))}
