@@ -115,9 +115,10 @@ def load_sales(path):
 
 
 def build_db(sales_path):
-    # 02 uses a named WINDOW clause, which arrived in SQLite 3.28.
-    if sqlite3.sqlite_version_info < (3, 28):
-        print(f"needs SQLite 3.28 or newer for named window clauses, found {sqlite3.sqlite_version}",
+    # Queries 02 to 05 rank with window functions, which arrived in SQLite
+    # 3.25, and 3.25 already reads the named WINDOW clause in 02.
+    if sqlite3.sqlite_version_info < (3, 25):
+        print(f"needs SQLite 3.25 or newer for window functions, found {sqlite3.sqlite_version}",
               file=sys.stderr)
         sys.exit(2)
     sales = load_sales(sales_path)

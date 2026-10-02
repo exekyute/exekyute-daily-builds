@@ -14,7 +14,7 @@ One sales table and five SQLite queries that show exactly where ROW_NUMBER, RANK
 
 ## Running it
 
-Python 3, standard library only. Query 02 uses a named WINDOW clause, so SQLite 3.28 or newer is needed; the runner checks the version and says so rather than failing on syntax.
+Python 3, standard library only, on SQLite 3.25 or newer for window functions, named WINDOW clause included; the runner checks the version and says so rather than failing on syntax.
 
 ```
 cd miscellaneous-projects/rank-three-ways-sql
