@@ -97,31 +97,49 @@ def cmd_report(args):
     print("\n(Read-only. No files were written.)")
 
 
+def add_flags(parser, defaults):
+    """Add the shared flags to a parser.
+
+    The main parser gets them with their real defaults. Each command gets the
+    same flags with no default of its own (argparse.SUPPRESS), so a flag left
+    out after the command never overwrites one given before it. That way both
+    orders work: `--input x.csv preview` and `preview --input x.csv`.
+    """
+    def default(value):
+        return value if defaults else argparse.SUPPRESS
+
+    parser.add_argument(
+        "--input", default=default(DEFAULT_INPUT),
+        help="CSV of contacts to clean (default: samples/contacts_messy.csv).",
+    )
+    parser.add_argument(
+        "--out", default=default(DEFAULT_CLEAN),
+        help="Where to write the clean CSV (default: contacts_clean.csv).",
+    )
+    parser.add_argument(
+        "--report", default=default(DEFAULT_REPORT),
+        help="Where to write the report (default: merge_report.txt).",
+    )
+    parser.add_argument(
+        "--force", action="store_true", default=default(False),
+        help="Allow overwriting existing output files.",
+    )
+
+
 def build_parser():
     parser = argparse.ArgumentParser(
         description="Clean up and de-duplicate a messy contact list, safely.",
     )
-    parser.add_argument(
-        "--input", default=DEFAULT_INPUT,
-        help="CSV of contacts to clean (default: samples/contacts_messy.csv).",
-    )
-    parser.add_argument(
-        "--out", default=DEFAULT_CLEAN,
-        help="Where to write the clean CSV (default: contacts_clean.csv).",
-    )
-    parser.add_argument(
-        "--report", default=DEFAULT_REPORT,
-        help="Where to write the report (default: merge_report.txt).",
-    )
-    parser.add_argument(
-        "--force", action="store_true",
-        help="Allow overwriting existing output files.",
-    )
+    add_flags(parser, defaults=True)
 
     sub = parser.add_subparsers(dest="command")
-    sub.add_parser("preview", help="Show what would change. Writes nothing.")
-    sub.add_parser("clean", help="Write the clean list after you confirm.")
-    sub.add_parser("report", help="Show the merge and conflict report.")
+    commands = [
+        ("preview", "Show what would change. Writes nothing."),
+        ("clean", "Write the clean list after you confirm."),
+        ("report", "Show the merge and conflict report."),
+    ]
+    for name, help_text in commands:
+        add_flags(sub.add_parser(name, help=help_text), defaults=False)
     return parser
 
 

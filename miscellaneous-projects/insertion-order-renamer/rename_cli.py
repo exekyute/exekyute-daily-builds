@@ -129,24 +129,42 @@ def cmd_undo(args):
     print("Restored %d files to their previous names." % restored)
 
 
+def add_flags(parser, defaults):
+    """Add the shared flags to a parser.
+
+    The main parser gets them with their real defaults. Each command gets the
+    same flags with no default of its own (argparse.SUPPRESS), so a flag left
+    out after the command never overwrites one given before it. That way both
+    orders work: `--folder x preview` and `preview --folder x`.
+    """
+    def default(value):
+        return value if defaults else argparse.SUPPRESS
+
+    parser.add_argument(
+        "--folder", default=default(DEFAULT_WORK),
+        help="Folder of files to work on (default: samples_work).",
+    )
+    parser.add_argument(
+        "--lookup", default=default(DEFAULT_LOOKUP),
+        help="CSV mapping IO number to company (default: companies.csv).",
+    )
+
+
 def build_parser():
     parser = argparse.ArgumentParser(
         description="Clean up messy insertion order file names, safely.",
     )
-    parser.add_argument(
-        "--folder", default=DEFAULT_WORK,
-        help="Folder of files to work on (default: samples_work).",
-    )
-    parser.add_argument(
-        "--lookup", default=DEFAULT_LOOKUP,
-        help="CSV mapping IO number to company (default: companies.csv).",
-    )
+    add_flags(parser, defaults=True)
 
     sub = parser.add_subparsers(dest="command")
-    sub.add_parser("preview", help="Show what would change. Renames nothing.")
-    sub.add_parser("apply", help="Rename after showing a preview and confirming.")
-    sub.add_parser("list", help="List files ordered by IO number.")
-    sub.add_parser("undo", help="Reverse the most recent apply.")
+    commands = [
+        ("preview", "Show what would change. Renames nothing."),
+        ("apply", "Rename after showing a preview and confirming."),
+        ("list", "List files ordered by IO number."),
+        ("undo", "Reverse the most recent apply."),
+    ]
+    for name, help_text in commands:
+        add_flags(sub.add_parser(name, help=help_text), defaults=False)
     return parser
 
 
