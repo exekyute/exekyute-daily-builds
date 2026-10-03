@@ -25,7 +25,7 @@ def read_commitments(path):
 
     Returns (None, []) when the file holds no rows at all.
     """
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         records = list(csv.reader(handle))
     if not records:
         return None, []

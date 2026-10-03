@@ -18,7 +18,7 @@ class LedgerError(Exception):
 def load_invoices(path):
     """Read the invoice CSV at path and return a list of row dicts."""
     try:
-        with open(path, newline="", encoding="utf-8") as handle:
+        with open(path, newline="", encoding="utf-8-sig") as handle:
             reader = csv.DictReader(handle)
             header = reader.fieldnames or []
             missing = [name for name in REQUIRED_COLUMNS if name not in header]

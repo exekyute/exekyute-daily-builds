@@ -42,7 +42,7 @@ def load_database():
     with open(SCHEMA, encoding="utf-8") as fh:
         conn.executescript(fh.read())
 
-    with open(SAMPLE, newline="", encoding="utf-8") as fh:
+    with open(SAMPLE, newline="", encoding="utf-8-sig") as fh:
         rows = list(csv.DictReader(fh))
 
     for row in rows:

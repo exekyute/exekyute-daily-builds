@@ -31,7 +31,7 @@ def money(value):
 
 
 def read_matrix(path):
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         rows = list(reader)
         fields = reader.fieldnames

@@ -70,7 +70,7 @@ def cents_to_dollars(cents):
 
 def load_opening(path):
     rows = []
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         for raw in reader:
             cca_class = (raw.get("cca_class") or "").strip()
@@ -88,7 +88,7 @@ def load_opening(path):
 
 def load_assets(path):
     rows = []
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         missing = [c for c in ASSET_COLUMNS if c not in (reader.fieldnames or [])]
         if missing:
@@ -241,7 +241,7 @@ def print_disposals(rows):
 
 def load_engine_csv(path):
     by_class = {}
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             by_class[raw["cca_class"].strip()] = raw
     return by_class

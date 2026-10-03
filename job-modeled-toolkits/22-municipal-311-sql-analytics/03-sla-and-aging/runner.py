@@ -57,7 +57,7 @@ def round2(value):
 
 
 def load_requests(path):
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         missing = [c for c in REQUEST_COLUMNS if c not in (reader.fieldnames or [])]
         if missing:
@@ -73,7 +73,7 @@ def load_requests(path):
 
 def load_targets(path):
     targets = []
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         for raw in reader:
             targets.append((raw["category"].strip(), int(raw["target_days"].strip())))

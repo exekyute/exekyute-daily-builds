@@ -36,7 +36,7 @@ def read_salaries_from_csv(path):
     the CLI already knows how to report.
     """
     try:
-        with open(path, newline="", encoding="utf-8") as handle:
+        with open(path, newline="", encoding="utf-8-sig") as handle:
             reader = csv.DictReader(handle)
             if reader.fieldnames is None or "annual_salary" not in reader.fieldnames:
                 raise ValidationError(

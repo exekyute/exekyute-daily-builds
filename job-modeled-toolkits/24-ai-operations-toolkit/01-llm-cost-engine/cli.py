@@ -50,7 +50,7 @@ TEAM_COLUMNS = [
 
 def load_price_book(path):
     book = {}
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for row in csv.DictReader(handle):
             model, rates = validate_price_row(row)
             if model in book:
@@ -64,7 +64,7 @@ def load_price_book(path):
 def load_shared(path):
     total = Decimal("0.00")
     items = []
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for row in csv.DictReader(handle):
             item, amount = validate_shared_row(row)
             items.append((item, amount))
@@ -74,7 +74,7 @@ def load_shared(path):
 
 def load_budgets(path):
     budgets = {}
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for row in csv.DictReader(handle):
             team, budget = validate_budget_row(row)
             if team in budgets:
@@ -88,7 +88,7 @@ def load_budgets(path):
 def load_usage(path, known_models, budgets):
     rows = []
     seen = set()
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             row = validate_usage_row(raw, known_models)
             if row["record_id"] in seen:

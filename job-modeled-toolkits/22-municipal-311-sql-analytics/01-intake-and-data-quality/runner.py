@@ -61,7 +61,7 @@ def valid_date(value):
 def load_rows(path):
     """Read the raw CSV. Empty cells become NULL. A malformed date stops the run
     with a clear message before any analysis, so a broken file never loads."""
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         missing = [c for c in REQUIRED_COLUMNS if c not in (reader.fieldnames or [])]
         if missing:

@@ -26,7 +26,7 @@ from validation import ValidationError, validate_driver_row, validate_pool_row
 def load_pool(path):
     items = []
     seen = set()
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             item, amount = validate_pool_row(raw)
             if item in seen:
@@ -40,7 +40,7 @@ def load_pool(path):
 
 def load_drivers(path):
     drivers = {}
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             dept, value = validate_driver_row(raw)
             if dept in drivers:

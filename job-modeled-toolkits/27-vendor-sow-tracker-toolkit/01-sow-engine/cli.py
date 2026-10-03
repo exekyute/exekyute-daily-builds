@@ -37,7 +37,7 @@ SUMMARY_COLUMNS = [
 def load_milestones(path):
     rows = []
     seen = set()
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             row = validate_milestone_row(raw)
             if row["milestone_id"] in seen:
@@ -51,7 +51,7 @@ def load_milestones(path):
 
 def load_effort(path, known_milestones):
     rows = []
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             rows.append(validate_effort_row(raw, known_milestones))
     if not rows:

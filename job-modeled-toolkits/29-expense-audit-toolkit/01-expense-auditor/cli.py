@@ -25,14 +25,14 @@ OUT_COLUMNS = [
 
 
 def load_policy(path):
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         return load_policy_rows(list(csv.DictReader(handle)))
 
 
 def load_expenses(path, policy):
     rows = []
     seen = set()
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             row = validate_expense_row(raw, policy)
             if row["expense_id"] in seen:

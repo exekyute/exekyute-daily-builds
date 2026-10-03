@@ -57,13 +57,13 @@ PER_CLASS_COLUMNS = [
 
 
 def read_assets(path):
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         return [validate_asset_row(row) for row in csv.DictReader(handle)]
 
 
 def read_opening(path):
     opening = {}
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for row in csv.DictReader(handle):
             cca_class, value = validate_opening_row(row)
             opening[cca_class] = value

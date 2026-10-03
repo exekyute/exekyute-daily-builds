@@ -82,7 +82,7 @@ def read_invoices(path):
     rejects = []
     seen_numbers = set()
 
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.reader(handle)
         try:
             header = next(reader)

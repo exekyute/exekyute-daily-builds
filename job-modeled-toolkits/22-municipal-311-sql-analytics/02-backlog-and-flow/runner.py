@@ -73,7 +73,7 @@ def next_month_start(period):
 
 
 def load_requests(path):
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         missing = [c for c in REQUEST_COLUMNS if c not in (reader.fieldnames or [])]
         if missing:
@@ -89,7 +89,7 @@ def load_requests(path):
 
 def load_rates(path):
     rates = []
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         for raw in reader:
             rates.append((raw["category"].strip(), dollars_to_cents(raw["cost_cad"].strip())))

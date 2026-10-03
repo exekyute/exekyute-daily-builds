@@ -43,7 +43,7 @@ def read_csv(path):
     """Read a CSV into (rows, fieldnames). Raises ValidationError if missing."""
     if not os.path.isfile(path):
         raise ValidationError(["input file not found: {0}".format(path)])
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         rows = list(reader)
         return rows, reader.fieldnames

@@ -39,7 +39,7 @@ TOTAL_FILL = PatternFill("solid", fgColor=ACCENT)
 
 
 def read_schedule(path):
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         return list(csv.DictReader(handle))
 
 

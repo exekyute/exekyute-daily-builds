@@ -27,7 +27,7 @@ OUTPUT_COLUMNS = (
 
 
 def read_rows(path):
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         header = reader.fieldnames or []
         rows = [dict(r) for r in reader]

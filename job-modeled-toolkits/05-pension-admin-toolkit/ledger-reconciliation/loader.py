@@ -43,7 +43,7 @@ def load_ledger(path, required_columns):
     skipped = []
 
     try:
-        handle = open(path, newline="", encoding="utf-8")
+        handle = open(path, newline="", encoding="utf-8-sig")
     except FileNotFoundError:
         raise LedgerError(f"Ledger file not found: {path}")
 

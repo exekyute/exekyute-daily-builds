@@ -38,7 +38,7 @@ DEADLINE_COLUMNS = ["report", "due_period", "submitted", "status"]
 
 def load_award(path):
     budgets = {}
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             category, budget = validate_award_row(raw)
             if category in budgets:
@@ -51,7 +51,7 @@ def load_award(path):
 
 def load_transactions(path):
     rows = []
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             rows.append(validate_txn_row(raw))
     if not rows:
@@ -61,7 +61,7 @@ def load_transactions(path):
 
 def load_deadlines(path):
     rows = []
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             rows.append(validate_deadline_row(raw))
     return rows

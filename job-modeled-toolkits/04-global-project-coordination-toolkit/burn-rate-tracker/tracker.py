@@ -26,7 +26,7 @@ DEFAULT_PHASES = "data/phase_updates.csv"
 def load_phase_rows(path):
     """Read the phase CSV into a list of row dicts."""
     try:
-        with open(path, newline="", encoding="utf-8") as handle:
+        with open(path, newline="", encoding="utf-8-sig") as handle:
             reader = csv.DictReader(handle)
             header = reader.fieldnames or []
             for column in ("phase", "cost"):

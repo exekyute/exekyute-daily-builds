@@ -83,7 +83,7 @@ def load_eval_rows(path):
                 "latency_ms", "cost_usd"]
     rows = []
     seen = set()
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         missing = [c for c in required if c not in (reader.fieldnames or [])]
         if missing:
@@ -121,7 +121,7 @@ def load_eval_rows(path):
 def load_call_costs(path):
     """Read the cost engine's per-call output and convert each cost to cents."""
     rows = []
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         for raw in reader:
             rows.append((

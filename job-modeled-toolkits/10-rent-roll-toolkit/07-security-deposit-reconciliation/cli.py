@@ -42,7 +42,7 @@ def read_csv(path):
     """Read a CSV into (header, rows). Raises ValidationError for missing or empty files."""
     if not os.path.isfile(path):
         raise validation.ValidationError(["input file not found: {0}".format(path)])
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         reader = csv.reader(handle)
         all_rows = [row for row in reader if row != []]
     if not all_rows:

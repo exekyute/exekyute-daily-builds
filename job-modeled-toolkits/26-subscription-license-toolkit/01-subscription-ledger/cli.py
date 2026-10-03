@@ -35,7 +35,7 @@ OUT_COLUMNS = [
 def load_subs(path):
     rows = []
     seen = set()
-    with open(path, newline="", encoding="utf-8") as handle:
+    with open(path, newline="", encoding="utf-8-sig") as handle:
         for raw in csv.DictReader(handle):
             row = validate_sub_row(raw)
             if row["sub_id"] in seen:
