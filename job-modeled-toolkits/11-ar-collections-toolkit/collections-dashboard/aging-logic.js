@@ -60,6 +60,38 @@ function bucketClass(bucket) {
   return map[bucket] || "";
 }
 
+// Split one CSV line into fields. A field that starts with a quote may hold
+// commas, and a doubled quote ("") inside it stands for one quote.
+function splitCsvLine(line) {
+  var fields = [];
+  var field = "";
+  var inQuotes = false;
+
+  for (var i = 0; i < line.length; i++) {
+    var ch = line[i];
+    if (inQuotes) {
+      if (ch === '"' && line[i + 1] === '"') {
+        field += '"';
+        i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+      } else {
+        field += ch;
+      }
+    } else if (ch === '"' && field === "") {
+      inQuotes = true;
+    } else if (ch === ",") {
+      fields.push(field);
+      field = "";
+    } else {
+      field += ch;
+    }
+  }
+
+  fields.push(field);
+  return fields;
+}
+
 // Parse aging report CSV text into rows.
 //
 // Returns { rows, skipped, error }:
@@ -77,7 +109,7 @@ function parseAgingCsv(text) {
     return { rows: [], skipped: 0, error: "The file is empty." };
   }
 
-  var header = lines[0].split(",").map(function (field) {
+  var header = splitCsvLine(lines[0]).map(function (field) {
     return field.trim();
   });
 
@@ -100,7 +132,7 @@ function parseAgingCsv(text) {
   var skipped = 0;
 
   for (var i = 1; i < lines.length; i++) {
-    var fields = lines[i].split(",");
+    var fields = splitCsvLine(lines[i]);
     if (fields.length !== EXPECTED_HEADER.length) {
       skipped++;
       continue;
@@ -169,6 +201,7 @@ if (typeof module !== "undefined" && module.exports) {
     dollarsToCents: dollarsToCents,
     formatMoney: formatMoney,
     bucketClass: bucketClass,
+    splitCsvLine: splitCsvLine,
     parseAgingCsv: parseAgingCsv,
     bucketTotals: bucketTotals,
     grandTotalCents: grandTotalCents,

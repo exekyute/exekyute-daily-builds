@@ -65,6 +65,15 @@
         check("total rows", s.reconciliation.totalRows, 12);
         check("distinct members", s.reconciliation.distinctMembers, 11);
 
+        // Quoted names as the SQL tool writes them, plus a hand-typed name with a quote in it.
+        var quoted = parseWorklistCsv(
+            SAMPLE_CSV.replace("101,Ana Reyes,", '101,"Reyes, Ana",'));
+        check("quoted name keeps its comma", quoted[0].name, "Reyes, Ana");
+        check("quoted name grand total cents", summarize(quoted).totals.grandCents, 198414);
+        var bare = parseWorklistCsv(
+            SAMPLE_CSV.replace("102,Ben Cho,", '102,Ben "BC" Cho,'));
+        check("quote inside an unquoted name kept", bare[1].name, 'Ben "BC" Cho');
+
         var summary = document.getElementById("summary");
         summary.className = failed === 0 ? "pass" : "fail";
         summary.textContent = failed === 0

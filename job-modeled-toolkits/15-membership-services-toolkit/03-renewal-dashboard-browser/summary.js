@@ -28,6 +28,32 @@ function isBillable(status) {
     return BILLABLE.indexOf(status) !== -1;
 }
 
+// Split one CSV line into fields. A field that starts with a quote may hold
+// commas, and a doubled quote ("") inside it stands for one quote.
+function splitCsvLine(line) {
+    var fields = [], field = "", inQuotes = false;
+    for (var i = 0; i < line.length; i++) {
+        var ch = line[i];
+        if (inQuotes && ch === '"' && line[i + 1] === '"') {
+            field += '"';
+            i++;
+        } else if (inQuotes && ch === '"') {
+            inQuotes = false;
+        } else if (inQuotes) {
+            field += ch;
+        } else if (ch === '"' && field === "") {
+            inQuotes = true;
+        } else if (ch === ",") {
+            fields.push(field);
+            field = "";
+        } else {
+            field += ch;
+        }
+    }
+    fields.push(field);
+    return fields;
+}
+
 // Turn the worklist CSV text into row objects.
 function parseWorklistCsv(text) {
     var lines = text.split(/\r?\n/).filter(function (l) {
@@ -35,7 +61,7 @@ function parseWorklistCsv(text) {
     });
     var rows = [];
     for (var i = 1; i < lines.length; i++) {
-        var p = lines[i].split(",");
+        var p = splitCsvLine(lines[i]);
         if (p.length < 10) continue;
         rows.push({
             memberId: p[0].trim(),
@@ -121,7 +147,8 @@ function formatMoney(cents) {
 if (typeof module !== "undefined" && module.exports) {
     module.exports = {
         parseMoneyToCents: parseMoneyToCents, roundHalfUp: roundHalfUp,
-        hstCents: hstCents, parseWorklistCsv: parseWorklistCsv,
+        hstCents: hstCents, splitCsvLine: splitCsvLine,
+        parseWorklistCsv: parseWorklistCsv,
         summarize: summarize, formatMoney: formatMoney
     };
 }

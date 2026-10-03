@@ -19,7 +19,7 @@ step, and no server. Files are read in the browser and nothing is uploaded.
    use the file picker to load a `renewal_worklist.csv` from the SQL tool. Both
    paths run the same code. The summary reads total dues $1,733.75, HST $225.39,
    late fees $25.00, and grand total $1,984.14.
-3. Open `tests.html` the same way to see the 18 checks pass.
+3. Open `tests.html` the same way to see the 21 checks pass.
 
 To see it handle imperfect data, note the "Lee Ortiz" row in the sample: it has
 no tier or dues, so it shows with a Review badge and stays out of the totals,
