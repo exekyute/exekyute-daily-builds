@@ -31,7 +31,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='mart_landuse' name='textscan.0yzl1ga1x0tm8q18vrnc00iahfzt'>
-            <connection class='textscan' directory='bi/exports' filename='mart_landuse.csv' server='' workgroup-auth-mode='as-is' />
+            <connection class='textscan' directory='../exports' filename='mart_landuse.csv' server='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.0yzl1ga1x0tm8q18vrnc00iahfzt' name='mart_landuse.csv' table='[mart_landuse#csv]' type='table'>
@@ -292,7 +292,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='zoning_tagged' name='ogrdirect.1v7icmx1iive9z17ivw6e174n4tt'>
-            <connection class='ogrdirect' directory='bi/exports' filename='zoning_tagged.geojson' server='' tablename='' workgroup-auth-mode='as-is' />
+            <connection class='ogrdirect' directory='../exports' filename='zoning_tagged.geojson' server='' tablename='' workgroup-auth-mode='as-is' />
           </named-connection>
         </named-connections>
         <relation connection='ogrdirect.1v7icmx1iive9z17ivw6e174n4tt' name='zoning_tagged.geojson' table='[zoning_tagged.geojson]' type='table'>

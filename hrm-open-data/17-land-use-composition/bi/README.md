@@ -173,9 +173,9 @@ unzip.
    `bi/tableau/land_use_composition.twb`. Never commit the `.twbx`: the packaged
    extract duplicates the data, bloats the repo, and does not diff.
 4. The unzipped `.twb` points its two connections at the packaged copies of the
-   files. The committed workbook is repointed at the repo exports,
-   `bi/exports/mart_landuse.csv` and `bi/exports/zoning_tagged.geojson`. Repoint both
-   the same way before committing.
+   files. The committed workbook is repointed at `../exports/mart_landuse.csv` and
+   `../exports/zoning_tagged.geojson`, relative to `bi/tableau/`, so it reopens
+   against the repo exports. Repoint both the same way before committing.
 5. Screenshots go in `bi/tableau/screenshots/`. The committed one is
    `dashboard-full.png`.
 
