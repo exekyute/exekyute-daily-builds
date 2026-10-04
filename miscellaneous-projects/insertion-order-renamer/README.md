@@ -183,7 +183,7 @@ insertion-order-renamer/
   companies.csv        IO number -> company lookup table (sample data)
   samples/             Messy sample files (sample data)
   tests/
-    test_core.py       Tests for the parsing functions
+    test_core.py       Tests for core.py
 ```
 
 `core.py` holds the real work, and both front ends call into it. That is a common
@@ -196,9 +196,12 @@ on top of it.
 python -m unittest discover tests
 ```
 
-The tests check the trickiest part, pulling the IO number and company out of
-messy names. If you change those rules later, the tests tell you right away
-whether you broke anything.
+The tests cover core.py: the IO number and company pulled out of all 12 sample
+names that `generate_samples.py` makes, the clean name format, the `-2` and `-3`
+suffixes, skipped files, a second run that leaves renamed files in place, and
+undo. Tests that need files make them in a temporary folder, so they never
+touch `samples/`, `samples_work/` or your own files. If you change any of that
+later, the tests tell you right away whether you broke anything.
 
 ## Ideas for extending it
 
