@@ -56,6 +56,8 @@ class TestParsing(unittest.TestCase):
     def test_bad_month_shape(self):
         with self.assertRaises(ValueError):
             core.parse_month("2026/01")
+        with self.assertRaises(ValueError):
+            core.parse_month("2026-1")
 
     def test_month_out_of_range(self):
         with self.assertRaises(ValueError):

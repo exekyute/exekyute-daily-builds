@@ -110,7 +110,7 @@ def parse_month(text):
     if len(parts) != 2:
         raise ValueError(f"month '{value}' is not in YYYY-MM form")
     year, month = parts
-    if len(year) != 4 or not year.isdigit() or not month.isdigit():
+    if len(year) != 4 or len(month) != 2 or not year.isdigit() or not month.isdigit():
         raise ValueError(f"month '{value}' is not in YYYY-MM form")
     if not (1 <= int(month) <= 12):
         raise ValueError(f"month '{value}' has a month outside 01-12")
