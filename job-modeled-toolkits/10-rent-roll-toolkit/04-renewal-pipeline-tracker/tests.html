@@ -124,6 +124,23 @@
       assertEqual("one valid row survives", messyResult.rows.length, 1);
       assertEqual("three rows skipped", messyResult.issues.length, 3);
 
+      // Quoted fields: a tenant name with a comma and one with a doubled quote, as
+      // the scheduler writes them, a hand-typed quote inside a name, and rents with
+      // a thousands separator.
+      var quoted = analyzeRenewals(
+        "unit,tenant,current_rent,lease_end,renewal_start,renewal_end,escalated_rent,notice_due_date,days_to_notice,status\n" +
+          '101,"Bennett, Ava",1500.00,2027-05-31,2027-06-01,2028-05-31,1560.00,2027-03-02,263,upcoming\n' +
+          '103,"Maya ""May"" Singh",1650.00,2026-06-30,2026-07-01,2027-06-30,1716.00,2026-04-01,-72,due_now\n' +
+          '104,Noah 5" Diaz,"$2,000.00",2026-08-11,2026-08-12,2027-08-11,"$2,080.00",2026-05-13,-30,due_now\n'
+      );
+      var quotedTenants = quoted.rows.map(function (r) { return r.tenant; });
+      var quotedRents = quoted.rows.map(function (r) { return formatCents(r.escalatedCents); });
+      assertEqual("quoted file keeps all 3 rows", quoted.rows.length, 3);
+      assertEqual("a quoted tenant keeps its comma", quotedTenants[0], "Bennett, Ava");
+      assertEqual("a doubled quote reads as one quote", quotedTenants[1], 'Maya "May" Singh');
+      assertEqual("a quote inside an unquoted name stays as typed", quotedTenants[2], 'Noah 5" Diaz');
+      assertEqual("a quoted rent with a comma reads as $2,080.00", quotedRents[2], "$2,080.00");
+
       assertEqual("empty file rejected", analyzeRenewals("").ok, false);
 
       var summaryLine = document.getElementById("summary-line");

@@ -40,7 +40,7 @@ total called matches the capital call exactly.
 ## Running the tests
 
 Double-click `tests.html`. Each check prints PASS or FAIL on the page, with a
-green banner reading "15 passed, 0 failed" when everything is in order. No tools
+green banner reading "20 passed, 0 failed" when everything is in order. No tools
 to install.
 
 ## Trying the validation

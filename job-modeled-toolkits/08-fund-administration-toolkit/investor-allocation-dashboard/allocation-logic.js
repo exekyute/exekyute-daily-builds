@@ -30,17 +30,49 @@ function parseDollarsToCents(text) {
   return negative ? -cents : cents;
 }
 
+// Split one CSV line into fields. A field that starts with a quote may hold
+// commas, and a doubled quote ("") inside it stands for one quote.
+function splitCsvLine(line) {
+  var fields = [];
+  var field = "";
+  var inQuotes = false;
+
+  for (var i = 0; i < line.length; i++) {
+    var ch = line.charAt(i);
+    if (inQuotes) {
+      if (ch === '"' && line.charAt(i + 1) === '"') {
+        field += '"';
+        i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+      } else {
+        field += ch;
+      }
+    } else if (ch === '"' && field === "") {
+      inQuotes = true;
+    } else if (ch === ",") {
+      fields.push(field);
+      field = "";
+    } else {
+      field += ch;
+    }
+  }
+
+  fields.push(field);
+  return fields;
+}
+
 function parseCsv(text) {
   var normalised = String(text).replace(/\r\n/g, "\n").replace(/\r/g, "\n").trim();
   if (normalised === "") {
     throw new Error("The file is empty.");
   }
   var lines = normalised.split("\n");
-  var header = lines[0].split(",").map(function (field) {
+  var header = splitCsvLine(lines[0]).map(function (field) {
     return field.trim();
   });
   var rows = lines.slice(1).map(function (line) {
-    return line.split(",").map(function (field) {
+    return splitCsvLine(line).map(function (field) {
       return field.trim();
     });
   });
@@ -131,6 +163,7 @@ function formatPercent(value) {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
     parseDollarsToCents: parseDollarsToCents,
+    splitCsvLine: splitCsvLine,
     parseCsv: parseCsv,
     buildAllocationRows: buildAllocationRows,
     computeRemainingCents: computeRemainingCents,

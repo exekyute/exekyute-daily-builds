@@ -143,6 +143,34 @@
           });
         });
 
+        // A file with quoted fields: a name with a comma and a name with a doubled
+        // quote, as the allocator writes them, a hand-typed quote inside a name, and
+        // an amount with commas.
+        var QUOTED = [
+          "investor,commitment,ownership_pct,called_amount",
+          '"Aurora Capital, L.P.","4,000,000.00",36.3636,90909.09',
+          '"Brightwater ""BW"" LP",3500000.00,31.8182,79545.46',
+          'Cedar 5" Grove Partners,2500000.00,22.7273,56818.18',
+        ].join("\n");
+        var quoted = null;
+
+        check("reads all three rows of a file with quoted fields", function () {
+          quoted = buildAllocationRows(parseCsv(QUOTED));
+          return equals(quoted.length, 3);
+        });
+        check("a quoted investor name keeps its comma", function () {
+          return equals(quoted[0].investor, "Aurora Capital, L.P.");
+        });
+        check("a doubled quote reads as one quote", function () {
+          return equals(quoted[1].investor, 'Brightwater "BW" LP');
+        });
+        check("a quote inside an unquoted name stays as typed", function () {
+          return equals(quoted[2].investor, 'Cedar 5" Grove Partners');
+        });
+        check("a quoted amount with commas reads, total commitment 10,000,000.00", function () {
+          return equals(summarize(quoted).totalCommitment, 1000000000);
+        });
+
         summaryLine.textContent = passed + " passed, " + failed + " failed";
         summaryLine.className =
           "tests-summary " + (failed === 0 ? "tests-summary--pass" : "tests-summary--fail");

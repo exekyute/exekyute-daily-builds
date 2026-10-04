@@ -90,8 +90,40 @@ function isExpiring(days, windowDays) {
   return days <= windowDays;
 }
 
+// Split one CSV line into fields. A field that starts with a quote may hold
+// commas, and a doubled quote ("") inside it stands for one quote.
+function splitCsvLine(line) {
+  var fields = [];
+  var field = "";
+  var inQuotes = false;
+
+  for (var i = 0; i < line.length; i++) {
+    var ch = line.charAt(i);
+    if (inQuotes) {
+      if (ch === '"' && line.charAt(i + 1) === '"') {
+        field += '"';
+        i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+      } else {
+        field += ch;
+      }
+    } else if (ch === '"' && field === "") {
+      inQuotes = true;
+    } else if (ch === ",") {
+      fields.push(field);
+      field = "";
+    } else {
+      field += ch;
+    }
+  }
+
+  fields.push(field);
+  return fields;
+}
+
 // Split CSV text into rows of trimmed string fields. Blank lines are dropped.
-// The rent roll this dashboard reads uses plain numbers with no embedded commas.
+// A quoted field may hold commas, such as a tenant name or "$1,500.00".
 function parseCsv(text) {
   var lines = String(text).split(/\r?\n/);
   var rows = [];
@@ -100,7 +132,7 @@ function parseCsv(text) {
       continue;
     }
     rows.push(
-      lines[i].split(",").map(function (field) {
+      splitCsvLine(lines[i]).map(function (field) {
         return field.trim();
       })
     );

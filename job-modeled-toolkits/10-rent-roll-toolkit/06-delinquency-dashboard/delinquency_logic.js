@@ -89,6 +89,38 @@ function bucketRank(bucket) {
   return rank === -1 ? -1 : rank;
 }
 
+// Split one CSV line into fields. A field that starts with a quote may hold
+// commas, and a doubled quote ("") inside it stands for one quote.
+function splitCsvLine(line) {
+  var fields = [];
+  var field = "";
+  var inQuotes = false;
+
+  for (var i = 0; i < line.length; i++) {
+    var ch = line.charAt(i);
+    if (inQuotes) {
+      if (ch === '"' && line.charAt(i + 1) === '"') {
+        field += '"';
+        i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+      } else {
+        field += ch;
+      }
+    } else if (ch === '"' && field === "") {
+      inQuotes = true;
+    } else if (ch === ",") {
+      fields.push(field);
+      field = "";
+    } else {
+      field += ch;
+    }
+  }
+
+  fields.push(field);
+  return fields;
+}
+
 function parseCsv(text) {
   var lines = String(text).split(/\r?\n/);
   var rows = [];
@@ -97,7 +129,7 @@ function parseCsv(text) {
       continue;
     }
     rows.push(
-      lines[i].split(",").map(function (field) {
+      splitCsvLine(lines[i]).map(function (field) {
         return field.trim();
       })
     );

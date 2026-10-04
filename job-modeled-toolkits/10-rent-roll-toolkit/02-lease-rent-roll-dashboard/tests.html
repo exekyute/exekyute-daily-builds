@@ -130,6 +130,28 @@
       assertEqual("one valid row survives", messyResult.units.length, 1);
       assertEqual("three rows skipped", messyResult.issues.length, 3);
 
+      // Quoted fields: a tenant name with a comma and one with a doubled quote, as
+      // the calculator writes them, a hand-typed quote inside a name, and money
+      // values with a thousands separator.
+      var quoted = analyzeRentRoll(
+        "unit,tenant,monthly_rent,prorated_rent,late_fee,amount_due,lease_end\n" +
+          '101,"Bennett, Ava",1500.00,750.00,0.00,750.00,2027-05-31\n' +
+          '103,"Maya ""May"" Singh",1650.00,550.00,0.00,550.00,2026-06-30\n' +
+          '104,Noah 5" Diaz,"$2,000.00","$2,000.00",25.00,"$2,525.00",2026-08-11\n',
+        "2026-06-12",
+        "60"
+      );
+      var quotedTenants = quoted.units.map(function (u) { return u.tenant; });
+      assertEqual("quoted file keeps all 3 units", quoted.units.length, 3);
+      assertEqual("a quoted tenant keeps its comma", quotedTenants[0], "Bennett, Ava");
+      assertEqual("a doubled quote reads as one quote", quotedTenants[1], 'Maya "May" Singh');
+      assertEqual("a quote inside an unquoted name stays as typed", quotedTenants[2], 'Noah 5" Diaz');
+      assertEqual(
+        "quoted money reads, total billed $3,825.00",
+        formatCents(quoted.summary.totalBilledCents),
+        "$3,825.00"
+      );
+
       // Empty file.
       assertEqual("empty file rejected", analyzeRentRoll("", "2026-06-12", "60").ok, false);
 
