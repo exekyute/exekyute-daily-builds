@@ -89,8 +89,12 @@
   function render(payload) {
     document.getElementById("summary").innerHTML = buildSummary(payload.timeline);
     document.getElementById("chart").innerHTML = buildSvg(payload.timeline, payload.awardTotal);
-    if (payload.categories) { document.getElementById("categories").innerHTML = buildCategories(payload.categories); }
-    if (payload.deadlines) { document.getElementById("deadlines").innerHTML = buildDeadlines(payload.deadlines); }
+    document.getElementById("categories").innerHTML = payload.categories
+      ? buildCategories(payload.categories)
+      : '<p class="note">Category budgets are not in timeline.csv. The engine writes them to category_summary.csv.</p>';
+    document.getElementById("deadlines").innerHTML = payload.deadlines
+      ? buildDeadlines(payload.deadlines)
+      : '<li class="note">Report deadlines are not in timeline.csv. The engine writes them to deadlines.csv.</li>';
   }
 
   function importTimeline(file) {
@@ -98,7 +102,7 @@
     reader.onload = function () {
       var rows = T.parseTimelineCSV(String(reader.result));
       if (!rows.length) { return; }
-      var award = window.GRANT_SAMPLE.awardTotal;
+      var award = T.awardFromTimeline(rows);
       render({ awardTotal: award, timeline: rows, categories: null, deadlines: null });
       document.getElementById("note").textContent = "Loaded " + rows.length + " periods from file.";
     };

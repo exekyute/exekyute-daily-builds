@@ -47,6 +47,13 @@
     var series = T.buildSeries(rows, SAMPLE.awardTotal);
     check("series max value", series.maxVal, 304000);
     check("award total", SAMPLE.awardTotal, 250000);
+    check("award from the sample timeline", T.awardFromTimeline(rows), 250000);
+    check("award from a parsed row", T.awardFromTimeline(parsed), 250000);
+    var header = csv.split("\n")[0] + "\n";
+    var other = T.parseTimelineCSV(header + "3,29000.00,0.00,9666.67,91000.00,116000.00,4000.00,On track,0");
+    check("award from another grant", T.awardFromTimeline(other), 120000);
+    var cents = T.parseTimelineCSV(header + "3,29000.01,750.25,9666.67,91000.04,116000.04,4000.01,On track,1");
+    check("award to the cent", T.awardFromTimeline(cents), 120000.05);
     check("categories sum to award", SAMPLE.categories.reduce(function (a, c) { return a + c.budget; }, 0), 250000);
 
     var passed = results.filter(function (r) { return r.ok; }).length;

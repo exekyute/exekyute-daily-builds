@@ -61,6 +61,14 @@
     }).join(" ");
   }
 
+  // The award a timeline was drawn against. The engine writes remaining as the award
+  // minus the cumulative allowable spend, so allowable plus remaining on the last row
+  // gives the award back. Rounding to the cent drops the float error in the sum.
+  function awardFromTimeline(rows) {
+    var last = rows[rows.length - 1];
+    return Math.round((last.cumulative_allowable + last.remaining) * 100) / 100;
+  }
+
   function finalSummary(rows) {
     var last = rows[rows.length - 1];
     return {
@@ -73,6 +81,7 @@
   var api = {
     parseRows: parseRows, parseTimelineCSV: parseTimelineCSV, formatMoney: formatMoney,
     statusClass: statusClass, buildSeries: buildSeries, pointsFor: pointsFor, finalSummary: finalSummary,
+    awardFromTimeline: awardFromTimeline,
   };
 
   if (typeof module !== "undefined" && module.exports) {

@@ -31,7 +31,10 @@ The on-screen chart, bars, and deadline list. Nothing is written or uploaded.
 ## Edge cases
 The sample starts on track and trends over budget, has a disallowed cost shown in its own
 card, and has a report flagged overdue. Importing a partial timeline still renders against
-the award.
+the award. An imported timeline is drawn against its own award, which the view reads from
+the last row as the allowable drawn plus the remaining. `timeline.csv` holds no category
+budgets or deadlines, so after an import those two panels show a short note naming the
+engine file that holds them. Reset to sample brings the sample back.
 
 ### Hand-checked example
 The summary cards show allowable drawn 100,000.00, remaining 150,000.00, and a projection
