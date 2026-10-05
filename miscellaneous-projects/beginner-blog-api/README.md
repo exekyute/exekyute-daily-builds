@@ -93,9 +93,11 @@ tests/
 
 You'll need Node 18+, a PostgreSQL database (a free Neon project works great), and a JWT secret.
 
+The project lives in the exekyute-daily-builds collection, so a plain clone brings every other build too. To skip their files, add `--filter=blob:none --sparse` to the `git clone` line and run `git -C exekyute-daily-builds sparse-checkout set miscellaneous-projects/beginner-blog-api` before the `cd`.
+
 ```bash
-git clone https://github.com/exekyute/beginner-blog-api.git
-cd beginner-blog-api
+git clone https://github.com/exekyute/exekyute-daily-builds.git
+cd exekyute-daily-builds/miscellaneous-projects/beginner-blog-api
 npm install
 
 cp .env.example .env
