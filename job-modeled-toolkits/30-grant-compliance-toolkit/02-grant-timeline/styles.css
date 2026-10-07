@@ -79,3 +79,15 @@ body { margin: 0; background: var(--base-tint); color: var(--ink); }
 .pill.over-budget { background: var(--over-tint); color: var(--over); }
 .pill.at-risk { background: var(--risk-tint); color: var(--risk); }
 .pill.on-track { background: var(--ok-tint); color: var(--ok); }
+
+@media screen and (max-width: 840px) {
+  .app { padding: calc(var(--space) * 3) calc(var(--space) * 2); }
+  .summary { grid-template-columns: repeat(auto-fit, minmax(calc(var(--space) * 20), 1fr)); }
+  .card-value { overflow-wrap: break-word; }
+  .panels { grid-template-columns: 1fr; }
+  .cat-row { grid-template-columns: 1fr auto; row-gap: var(--space); }
+  .cat-bar { grid-column: 1 / -1; grid-row: 2; }
+  .cat-amounts { white-space: normal; }
+  .deadlines li { display: grid; grid-template-columns: 1fr auto; }
+  .deadline-due { grid-row: 2; }
+}

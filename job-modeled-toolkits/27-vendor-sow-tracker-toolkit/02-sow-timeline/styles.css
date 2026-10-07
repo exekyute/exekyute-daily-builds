@@ -85,3 +85,12 @@ table.data tr:nth-child(even) td { background: #f7fafc; }
 .pill.over-budget { background: var(--over-tint); color: var(--over); }
 .pill.at-risk { background: var(--risk-tint); color: var(--risk); }
 .pill.on-track { background: var(--ok-tint); color: var(--ok); }
+
+@media screen and (max-width: 820px) {
+  .app { padding: calc(var(--space) * 3) calc(var(--space) * 2); }
+  .summary { grid-template-columns: repeat(auto-fit, minmax(calc(var(--space) * 20), 1fr)); }
+  .card-value { overflow-wrap: break-word; }
+  .table-wrap { background: var(--paper); border: 1px solid var(--line); border-radius: var(--space); overflow-x: auto; }
+  .table-wrap table.data { border: none; }
+  table.data th, table.data td { white-space: nowrap; }
+}

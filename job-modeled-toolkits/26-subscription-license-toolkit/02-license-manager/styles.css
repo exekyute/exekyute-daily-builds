@@ -161,3 +161,9 @@ tr.invalid td { background: var(--flag-tint) !important; }
   #report th, #report td { border: 1px solid #999; padding: 5px 8px; text-align: left; }
   #report .num { text-align: right; }
 }
+
+@media screen and (max-width: 780px) {
+  .app { padding: calc(var(--space) * 3) calc(var(--space) * 2); }
+  .summary { grid-template-columns: repeat(auto-fit, minmax(calc(var(--space) * 22), 1fr)); }
+  .card-value { overflow-wrap: break-word; }
+}

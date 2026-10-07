@@ -84,8 +84,8 @@
         "</td><td class='num'>" + money(r.eac) + "</td><td class='num'>" + money(r.vac) +
         "</td><td><span class='pill " + T.statusClass(r.status) + "'>" + r.status + "</span></td></tr>";
     }).join("");
-    return "<table class='data'><thead><tr><th>Period</th><th>Cost to date</th><th>Earned</th>" +
-      "<th>CPI</th><th>EAC</th><th>VAC</th><th>Status</th></tr></thead><tbody>" + body + "</tbody></table>";
+    return "<div class='table-wrap'><table class='data'><thead><tr><th>Period</th><th>Cost to date</th><th>Earned</th>" +
+      "<th>CPI</th><th>EAC</th><th>VAC</th><th>Status</th></tr></thead><tbody>" + body + "</tbody></table></div>";
   }
 
   function buildMilestoneTable(milestones) {
@@ -95,8 +95,8 @@
         "</td><td class='num'>" + money(m.actual_cost) + "</td><td class='num'>" + money(m.variance) +
         "</td><td><span class='pill " + T.statusClass(m.status) + "'>" + m.status + "</span></td></tr>";
     }).join("");
-    return "<h2>Milestones</h2><table class='data'><thead><tr><th>ID</th><th>Milestone</th><th>Budget</th>" +
-      "<th>Actual</th><th>Variance</th><th>Status</th></tr></thead><tbody>" + body + "</tbody></table>";
+    return "<h2>Milestones</h2><div class='table-wrap'><table class='data'><thead><tr><th>ID</th><th>Milestone</th><th>Budget</th>" +
+      "<th>Actual</th><th>Variance</th><th>Status</th></tr></thead><tbody>" + body + "</tbody></table></div>";
   }
 
   function render(payload) {
