@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InvoiceParsimus — Invoice Intelligence</title>
+<title>InvoiceParsimus | Invoice Intelligence</title>
 
 <!-- Tailwind CSS: I use this as my design system. It gives me thousands of
      pre-built utility classes (like "text-sm" or "bg-zinc-900") so I don't
@@ -288,7 +288,7 @@
         </label>
         <input id="settings-po-length" type="number" min="1" max="30" class="mt-1.5 w-full px-3 py-2 text-sm rounded-lg bg-white/[0.04] border border-white/10 text-zinc-100 focus:border-violet-400/50 focus:outline-none font-mono" />
         <p class="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">
-          Gemini will only return a PO number when it matches this exact length. Mismatches show N/A with the manual-review hint. Resets to 8 on refresh or Reset Session.
+          Gemini is told to return a PO number only when it matches this exact length. A wrong-length PO that comes back anyway shows with a warning hint. Resets to 8 on refresh or Reset Session.
         </p>
       </div>
 
@@ -302,7 +302,7 @@
           <span id="settings-confidence-value" class="font-mono text-sm text-zinc-200 w-12 text-right">75%</span>
         </div>
         <p class="text-[11px] text-zinc-500 mt-1.5 leading-relaxed">
-          If Tesseract's confidence is above this number, OCR text is sent to Gemini. If below, the original image is sent to Gemini Vision instead. Resets to 75% on refresh or Reset Session.
+          If Tesseract's confidence is above this number, OCR text is sent to Gemini. At or below it, the page images are sent to Gemini Vision instead. Resets to 75% on refresh or Reset Session.
         </p>
       </div>
     </div>
@@ -321,7 +321,7 @@
     <div>
       <p class="text-xs uppercase tracking-[0.18em] text-zinc-500 mb-2">Overview</p>
       <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Invoice Intelligence</h2>
-      <p class="text-sm text-zinc-400 mt-1.5">Local OCR plus Gemini parse your invoices into a sortable ledger.<br class="hidden sm:block"> Your data never leaves the browser.</p>
+      <p class="text-sm text-zinc-400 mt-1.5">In-browser OCR plus Gemini parse your invoices into a sortable ledger.<br class="hidden sm:block"> The OCR text or page images go to Gemini with your key.</p>
     </div>
     <div class="grid grid-cols-2 gap-2">
       <button id="btn-export-csv" class="px-3 py-2 text-sm rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-zinc-200 transition flex items-center gap-2">
@@ -386,7 +386,7 @@
             <div class="w-7 h-7 rounded-lg bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-300"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></div>
             <span class="text-xs uppercase tracking-wider text-zinc-500">Processed</span>
           </div>
-          <span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300">ALL</span>
+          <span class="text-[10px] font-medium px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-300">SHOWN</span>
         </div>
         <div class="font-mono tabular text-2xl font-semibold text-white" id="dash-count">0</div>
       </div>
@@ -420,7 +420,7 @@
     <div class="mt-3 grid sm:grid-cols-2 gap-3 text-xs text-zinc-400 leading-relaxed">
       <div>
         <p class="font-semibold text-zinc-200 mb-1">1. Drop an invoice</p>
-        <p>Drag a PDF, PNG, or JPG into the box below. Files never leave your browser except for the optional Gemini call you opt into.</p>
+        <p>Drag a PDF, PNG, or JPG into the box below. Only its OCR text or page images leave your browser, sent to Gemini with your key.</p>
       </div>
       <div>
         <p class="font-semibold text-zinc-200 mb-1">2. Tesseract reads it</p>
@@ -495,8 +495,8 @@
     </summary>
     <div class="mt-3 pl-8 text-xs text-amber-100/60 space-y-1.5 border-t border-amber-500/20 pt-3">
       <p><strong class="text-amber-200">Mock: Clean</strong> adds 6 fully-parsed sample rows (random subtotals between $30 and $250, flat 14% tax). Use this to test sorting, filtering, charts, and CSV export.</p>
-      <p><strong class="text-amber-200">Mock: Messy</strong> adds 4 deliberately broken sample rows that demonstrate how the table renders missing or invalid fields. Includes a wrong-length PO, an unreadable vendor, an illegible date, and a fully blank invoice. Use this to preview the N/A pills and the "Review manually" hint tooltip.</p>
-      <p><strong class="text-amber-200">Reset Session</strong> wipes all invoices, filters, sort, and all in-memory settings (API key, PO digit length, confidence threshold). Equivalent to a browser refresh. Nothing is ever saved to disk, so there is nothing to "undo."</p>
+      <p><strong class="text-amber-200">Mock: Messy</strong> adds 4 deliberately broken sample rows that demonstrate how the table renders missing or invalid fields. Includes a wrong-length PO, an unreadable vendor, an illegible date, and a row with only an invoice number. Use this to preview the N/A pills and the "Review manually" hint tooltip.</p>
+      <p><strong class="text-amber-200">Reset Session</strong> wipes all invoices, filters, sort, and all in-memory settings (API key, PO digit length, confidence threshold). Equivalent to a browser refresh. The session lives only in the tab's memory, so there is nothing to "undo."</p>
     </div>
   </details>
 
