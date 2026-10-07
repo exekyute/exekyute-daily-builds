@@ -1,118 +1,77 @@
 # InvoiceParsimus
 
-InvoiceParsimus lets you drag and drop PDF invoices or scanned images directly into your browser. It runs OCR locally on your machine, routes the result to Google's Gemini AI for intelligent field extraction, and organizes everything into a sortable, filterable ledger. No accounts. No uploads. No server. Your documents and your API key never leave your control.
+InvoiceParsimus reads PDF and image invoices into a sortable, filterable table with running totals, four summary cards, two charts and a CSV export. Tesseract.js runs OCR in the browser, then Google's Gemini API (`gemini-2.5-flash`, called with your own key) turns the OCR text, or the page images when OCR confidence is low, into seven fields per invoice. The key, the settings and the rows live only in the tab's memory, so a refresh clears them.
 
-## What it does
+## Running it
 
-Drop a PDF or image invoice into the app and it extracts:
+Open the [live demo](https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/invoice-parsimus/) or `index.html` from this folder in a browser. There is no build step. Click the gear icon (top right), paste a Gemini API key and click Save & Close, then drop PDF, PNG or JPG files on the drop zone or click it to pick them. Mock: Clean fills the table with sample rows if you have no key or no invoices to hand.
 
-* 📅 **Date** (normalized to DD-MM-YYYY)
-* 🏢 **Vendor name**
-* 🆔 **PO Number** (validated against your configured digit length)
-* 🔢 **Invoice Number**
-* 💰 **Subtotal, Tax (GST/HST/VAT), and Total**
+## How a file is read
 
-If Gemini cannot confidently read a field, it returns null rather than guessing. The app marks those cells as **N/A** with a small icon you can hover over, reminding you to review manually. Nothing gets silently dropped or fabricated.
+1. **OCR.** PDF.js draws each PDF page onto a canvas at twice its size, and Tesseract.js reads each page (or the image) with its English model, scoring its confidence from 0 to 100.
+2. **Gemini.** The page scores are averaged. Above the OCR Confidence Threshold (default 75), Gemini gets the OCR text. At or below it, Gemini gets the page images as PNG, since a low score means the OCR text is unreliable.
 
-## How the pipeline works
+Both requests ask for the same JSON schema, so the row looks the same either way. Files are read one at a time. The Description column records the path, `Auto-Parsed (Text)` or `Auto-Parsed (Vision)` plus the vendor, or says `Manual Review Required` when no vendor came back.
 
-Every file you drop goes through a two-stage process:
+## What it extracts
 
-🔄 **Stage 1 - Local OCR (Tesseract.js)**
-Tesseract reads the document entirely inside your browser and produces a raw text string plus a confidence score from 0 to 100.
+Gemini returns seven fields: vendor, invoice number, PO number, date, subtotal, tax (GST/HST/VAT) and total. It is told to return null for any field that is smudged, illegible, partly missing or ambiguous instead of guessing, and those cells show N/A with a "Review manually" hint on hover. Dates come back as YYYY-MM-DD and show as DD-MM-YYYY.
 
-🧠 **Stage 2 - Gemini interpretation (your API key)**
-* If Tesseract's confidence is **above your threshold** (default 75%), the extracted text is sent to Gemini. This is the fast path for clean, readable invoices.
-* If Tesseract's confidence is **at or below your threshold**, the original page images are sent to Gemini Vision instead. This handles blurry scans, low-contrast documents, and stylized fonts where raw OCR text would be unreliable.
+A PO number must be exactly as long as the Expected PO Digits setting (default 8), which screens out phone numbers and other stray numbers of a different length. The length counts every character, so `PO-10421` is 8. A wrong-length PO that comes back anyway shows with a warning hint.
 
-Either path returns the same structured JSON, so the table, charts, and export all work identically regardless of which route was taken.
+## What leaves the browser
 
-## Features
+The page has no backend. The only request that carries invoice data goes straight from the browser to Google's Gemini endpoint (`generativelanguage.googleapis.com`), holding the OCR text or the page images, with your key in the request URL. The page also loads its libraries and fonts from public CDNs, and Tesseract.js downloads its English language data the same way.
 
-📊 **Invoice Table**
-* Eight columns: Date, Vendor, PO #, Invoice #, Description, Subtotal, Tax, Total
-* Click any column header to sort ascending, descending, or back to default
-* Type in the filter row under each header to narrow results by substring. Works on dollar amounts too (typing "24" matches $24.25 and $124.50)
-* A sticky totals row at the bottom always shows the sum of whatever is currently visible
-* A "Clear Sort/Filter" button resets everything in one click
+The key lives only in the tab's memory. The page's own code writes nothing to localStorage, cookies or disk apart from a CSV you export. Tesseract.js does keep a copy of its English language data in the browser's IndexedDB.
 
-🃏 **Dashboard Cards**
-* Four summary cards: Total Invoiced, Total Tax, Processed count, and Unique Vendors
-* Update in real time as you apply filters
+## The table, cards and charts
 
-📈 **Charts**
-* **Spend Timeline (line chart):** monthly spend over time with range toggles for 1 Month, 3 Months, 6 Months, YTD, 1 Year, or All time
-* **Vendor Distribution (pie chart):** each vendor's share of total spend, labeled with name and percentage directly on the slice
+- **Table:** eight columns (Date, Vendor, PO #, Invoice #, Description, Subtotal, Tax, Total), newest first. A header click sorts ascending, then descending, then back.
+- **Filters:** a box under each header matches any part of the cell. Amounts match their two-decimal value, so `24` finds $24.25 and $124.50. Clear Sort/Filter resets both.
+- **Totals:** a row pinned to the bottom sums Subtotal, Tax and Total for the rows that pass the filters.
+- **Cards:** Total Invoiced, Total Tax, Processed and Vendors (unique).
+- **Spend Timeline:** monthly spend as a line chart, with 1M, 3M, 6M, YTD, 1Y and All (the default) ranges counted back from today.
+- **Vendor Distribution:** a pie chart of spend by vendor. Slices of 5% or more are labelled with the name, cut at 8 characters, and the percentage.
 
-🛠️ **Settings Panel**
-* Gear icon in the top-right header opens the Settings modal
-* All three settings are session-only and reset to defaults on refresh or Reset Session:
-  * 🔑 **Gemini API Key:** your personal Google AI Studio key, held only in the tab's memory
-  * 📏 **Expected PO Digits:** tells Gemini how many characters a valid PO number must be. Helps avoid false positives like phone numbers being mistaken for PO numbers (default: 8)
-  * 📉 **OCR Confidence Threshold:** the cutoff that decides whether Gemini reads text or images (default: 75%)
+The cards and both charts follow the filters.
 
-🧪 **Mock Data**
-* **Mock: Clean** loads six fully-parsed sample rows so you can explore the dashboard without real documents. Each click adds another six rows on top.
-* **Mock: Messy** loads four deliberately broken rows demonstrating how the table renders missing or invalid fields: a wrong-length PO, an unreadable vendor, an illegible date, and a fully blank invoice.
-* A collapsible amber warning banner appears when mock data is loaded to prevent you from mixing test data with real invoices.
+## Settings
 
-🧹 **Reset Session**
-* Wipes all invoices, sort, filters, and every in-memory setting back to defaults. Equivalent to refreshing the page. Nothing is ever written to disk so there is nothing to undo.
+All three settings last for the session only. A refresh or Reset Session restores the defaults.
 
-📥 **Export**
-* One-click CSV export covering all parsed invoices, ready to import into Excel or accounting software.
+| Setting | Default | What it controls |
+|---|---|---|
+| Gemini API Key | empty | Required before any file is read |
+| Expected PO Digits | 8 | Exact PO length, 1 to 30 characters |
+| OCR Confidence Threshold | 75% | Above it Gemini reads the OCR text, at or below it the page images |
 
-🔒 **Privacy**
-* Everything runs inside your browser. Your invoices and your Gemini API key never touch a server you don't control. Tesseract runs entirely client-side. The only outbound request is the one you explicitly opt into: your document text or images going directly to Google's Gemini API using your own key.
-* The API key is stored only in the JavaScript memory of the current tab. Refresh the page or click Reset Session and it is gone.
+## Mock data, reset and export
 
-## Live demo
-
-🔗 [**Launch InvoiceParsimus**](https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/invoice-parsimus/)
-
-## How to use
-
-1. Open the live dashboard link above (or open `index.html` directly in your browser).
-2. Click the gear icon ⚙️ and paste in your Gemini API key. Set your preferred PO digit length and confidence threshold if the defaults don't match your documents.
-3. Drag and drop a PDF invoice or image file into the drop zone, or click the zone to browse.
-4. Watch the status message: it shows which OCR page is being scanned, then whether the text or image path was taken to Gemini.
-5. The extracted data populates the table automatically. Fields that could not be confirmed show as N/A with a hover hint.
-6. Use the column filters, sort headers, and range toggles to explore your data.
-7. Click **Export CSV** when you are ready to take the data elsewhere.
+- **Mock: Clean** adds six complete sample rows per click, with random subtotals from $30 to $250 and 14% tax.
+- **Mock: Messy** adds four broken rows: a wrong-length PO, no vendor, no date, and one with only an invoice number. Either mock button opens an amber "Mock data loaded" banner.
+- **Reset Session** returns to the state of a fresh page load: no rows, sort, filters or banner, the timeline on All and the three settings at their defaults. It asks first when there are rows or a key to lose.
+- **Export CSV** downloads `InvoiceParsimus_OCR_Export.csv` with the eight table columns for every row, mock rows included, whatever the filters and sort. Missing text is written as N/A and missing amounts as 0.00.
 
 ## Limitations
 
-🔑 **Gemini API key required.** The app will not process files without a key configured in Settings. You can get a free key at [aistudio.google.com](https://aistudio.google.com). The key is never stored; you re-enter it each session.
-
-📄 **Gemini's extraction is only as good as the document.** Heavily damaged scans, handwritten invoices, and documents with no standard field labels may still produce N/A results even with the Vision path. The N/A pill and manual-review hint are there for exactly this situation.
-
-🔤 **Stylized fonts can trip up OCR.** Tesseract works best on clean printed text. Decorative logos or script typefaces in headers may affect the confidence score and push the document to the Vision path.
-
-## Other document types this approach handles
-
-The same OCR-to-AI pipeline works well for any structured document where you need to pull out specific fields. Some natural extensions:
-
-* 🧾 **Expense receipts** - extract merchant, date, amount, and payment method from till receipts and email receipts
-* 📦 **Purchase orders** - read vendor-issued POs to match against your own records
-* 🚚 **Delivery notes and packing slips** - capture item counts, shipment reference numbers, and delivery dates
-* ⚡ **Utility and telecom bills** - pull account number, billing period, usage, and total due
-* 🏥 **Medical bills and EOBs** - extract provider, service date, billed amount, and patient responsibility
-* 💳 **Bank and credit card statements** - parse transaction dates, descriptions, and amounts into a ledger
-* ⏳ **Contractor timesheets** - capture hours, rates, and project codes from submitted invoices
-* 🛡️ **Insurance claim documents** - extract claim number, policy number, incident date, and settlement amounts
-
-Core pattern remains the same: insert doc, let OCR read it locally, let Gemini interpret intelligently, and get back clean structured data.
+- A key is required and has to be pasted again after every refresh. You can create one in [Google AI Studio](https://aistudio.google.com).
+- One file is one invoice. Confidence is averaged across a PDF's pages, so one poor page can send every page as an image.
+- Rows can't be edited or deleted one at a time, and a refresh loses them.
+- A row with no readable date shows N/A but is filed under the current UTC date for sorting and the timeline. Missing amounts count as zero.
+- Amounts are summed with no currency handling. The Total Invoiced card says CAD regardless.
+- A file that fails, or is not a PDF or image, adds no row, and any error message is gone once the last file finishes.
 
 ## Tech stack
 
 | Tool | What it does |
 |---|---|
-| 🌐 HTML5 + Vanilla JavaScript | All logic and structure, no framework needed |
-| 🎨 Tailwind CSS (CDN) | Styling and layout |
-| 📄 PDF.js (CDN) | Renders PDF pages to canvas so OCR can read them |
-| 🔍 Tesseract.js (CDN) | Runs OCR locally, produces text and a confidence score |
-| 🤖 Gemini API (`gemini-2.5-flash`) | Interprets OCR output or page images and returns structured JSON |
-| 📊 Chart.js + datalabels plugin | Powers the spend timeline and vendor distribution charts |
+| HTML5 + Vanilla JavaScript | All logic and structure, no framework needed |
+| Tailwind CSS (CDN) | Styling and layout |
+| PDF.js (CDN) | Renders PDF pages to canvas so OCR can read them |
+| Tesseract.js (CDN) | Runs OCR locally, produces text and a confidence score |
+| Gemini API (`gemini-2.5-flash`) | Interprets OCR output or page images and returns structured JSON |
+| Chart.js + datalabels plugin | Draws the spend timeline and vendor distribution charts |
 
 ## License
 
