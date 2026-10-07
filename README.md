@@ -156,19 +156,19 @@ Smaller builds, made to learn something or for fun.
 <tr><td><a href="job-modeled-toolkits/14-brewery-inventory-costing-toolkit">14 Brewery Inventory Costing</a></td><td>Weighted-average costing and CRA excise engine.</td><td>06/20/2026</td></tr>
 <tr><td><a href="job-modeled-toolkits/19-saas-revenue-retention-visualizations">19 SaaS Revenue and Retention</a></td><td>MRR waterfall, cohort heatmap, and churn dashboard.</td><td>06/19/2026</td></tr>
 <tr><td><a href="job-modeled-toolkits/16-contact-center-wfm-visualizations">16 Contact Centre WFM</a></td><td>Erlang C planner and service-level dashboard.</td><td>06/17/2026</td></tr>
-<tr><td><a href="job-modeled-toolkits/10-rent-roll-toolkit">10 Rent Roll</a></td><td>Rent roll modeling tools.</td><td>06/16/2026</td></tr>
-<tr><td><a href="job-modeled-toolkits/12-loan-servicing-toolkit">12 Loan Servicing</a></td><td>Loan servicing and amortization tools.</td><td>06/15/2026</td></tr>
-<tr><td><a href="job-modeled-toolkits/01-pricing-profitability-toolkit">01 Pricing and Profitability</a></td><td>Margin and pricing models for profitability work.</td><td rowspan="5">06/14/2026</td></tr>
+<tr><td><a href="job-modeled-toolkits/10-rent-roll-toolkit">10 Rent Roll</a></td><td>Python and browser pairs for rent billing, renewals, and delinquency, then a deposit reconciliation.</td><td>06/16/2026</td></tr>
+<tr><td><a href="job-modeled-toolkits/12-loan-servicing-toolkit">12 Loan Servicing</a></td><td>Amortization schedule generator and loan balance dashboard.</td><td>06/15/2026</td></tr>
+<tr><td><a href="job-modeled-toolkits/01-pricing-profitability-toolkit">01 Pricing and Profitability</a></td><td>Tiered pricing engine, and the margin leakage audit and cost sensitivity simulator that read its schedule.</td><td rowspan="5">06/14/2026</td></tr>
 <tr><td><a href="job-modeled-toolkits/06-sales-compensation-toolkit">06 Sales Compensation</a></td><td>Commission and quota calculator with a validator.</td></tr>
-<tr><td><a href="job-modeled-toolkits/07-volunteer-coordinator-toolkit">07 Volunteer Coordinator</a></td><td>Volunteer scheduling and coordination tools.</td></tr>
+<tr><td><a href="job-modeled-toolkits/07-volunteer-coordinator-toolkit">07 Volunteer Coordinator</a></td><td>Onboarding validator that gates the shift coverage planner, and an hours dashboard, all in the browser.</td></tr>
 <tr><td><a href="job-modeled-toolkits/09-payroll-ops-toolkit">09 Payroll Operations</a></td><td>Canadian CPP/EI net-pay calculator and dashboard.</td></tr>
 <tr><td><a href="job-modeled-toolkits/11-ar-collections-toolkit">11 AR Collections</a></td><td>Python aging engine and collections dashboard.</td></tr>
-<tr><td><a href="job-modeled-toolkits/13-freight-allocation-toolkit">13 Freight Allocation</a></td><td>Landed-cost allocation for inbound logistics.</td><td>06/12/2026</td></tr>
-<tr><td><a href="job-modeled-toolkits/08-fund-administration-toolkit">08 Fund Administration</a></td><td>Fund accounting and NAV tools.</td><td>06/11/2026</td></tr>
-<tr><td><a href="job-modeled-toolkits/04-global-project-coordination-toolkit">04 Global Project Coordination</a></td><td>Cross-region project coordination tools.</td><td>06/09/2026</td></tr>
-<tr><td><a href="job-modeled-toolkits/03-site-compliance-toolkit">03 Site Compliance</a></td><td>Tracking tools for site compliance.</td><td>06/06/2026</td></tr>
-<tr><td><a href="job-modeled-toolkits/02-budget-forecast-toolkit">02 Budget and Forecast</a></td><td>Budgeting and forecasting calculators.</td><td rowspan="2">06/05/2026</td></tr>
-<tr><td><a href="job-modeled-toolkits/05-pension-admin-toolkit">05 Pension Administration</a></td><td>Pension administration calculators.</td></tr>
+<tr><td><a href="job-modeled-toolkits/13-freight-allocation-toolkit">13 Freight Allocation</a></td><td>Freight cost allocator by weight or value, with its landed-cost CSV loaded into a browser dashboard.</td><td>06/12/2026</td></tr>
+<tr><td><a href="job-modeled-toolkits/08-fund-administration-toolkit">08 Fund Administration</a></td><td>Pro-rata capital call allocator and a browser dashboard of called and unfunded amounts per investor.</td><td>06/11/2026</td></tr>
+<tr><td><a href="job-modeled-toolkits/04-global-project-coordination-toolkit">04 Global Project Coordination</a></td><td>Multi-currency consultant ledger feeding a burn-rate tracker, and a contractor onboarding package builder.</td><td>06/09/2026</td></tr>
+<tr><td><a href="job-modeled-toolkits/03-site-compliance-toolkit">03 Site Compliance</a></td><td>Three Python tools: waste and fuel log aggregator, regulatory deadline monitor, and field audit validator.</td><td>06/06/2026</td></tr>
+<tr><td><a href="job-modeled-toolkits/02-budget-forecast-toolkit">02 Budget and Forecast</a></td><td>Budget consolidation and variance reporting, plus a moving-average cash flow forecaster.</td><td rowspan="2">06/05/2026</td></tr>
+<tr><td><a href="job-modeled-toolkits/05-pension-admin-toolkit">05 Pension Administration</a></td><td>Benefit formula engine, payroll-to-trustee reconciliation, and QA test-case generator.</td></tr>
 </table>
 
 </details>
