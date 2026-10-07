@@ -1,6 +1,6 @@
 # Rank Three Ways
 
-One sales table and five SQLite queries that show exactly where ROW_NUMBER, RANK, and DENSE_RANK stop agreeing. The instruction is the same in every case, top three reps in each region, and the three functions select twelve, thirteen, and seventeen people. At a flat bonus that is a 5,000.00 spread decided by which window function someone typed.
+"Top three reps in each region" selects twelve people under ROW_NUMBER, thirteen under RANK and seventeen under DENSE_RANK, all from one sales table. Query 02 sets the three functions side by side for each rep, and every place they part ways traces back to a tie. At a flat 1,000.00 per rep, that is a 5,000.00 difference in the bonus bill.
 
 ## The queries
 
@@ -21,7 +21,7 @@ cd miscellaneous-projects/rank-three-ways-sql
 python run.py
 ```
 
-That prints all five reports against the sample table. The test run checks the queries against hand-computed answers:
+The five reports print one after another, each under its file name. Hand-worked answers sit in `run.py`, and `--test` holds the queries to them:
 
 ```
 python run.py --test
@@ -29,13 +29,13 @@ python run.py --test
 
 Twelve checks cover the three-way tie for first, the tie that straddles the cutoff, the one-cent gap, all five disagreements, and the three bonus totals, then print `all checks passed`.
 
-The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
+Before any ranking, `run.py` checks every row of the sales file. Try it on the bad copy in `data/`:
 
 ```
 python run.py --sales data/invalid-sales.csv
 ```
 
-It stops on the first problem and names the row: `invalid-sales.csv row 4: rep 'Avery Chen' appears twice; the reports identify reps by name`. Every report keys on the rep name alone, so the same name in a second region would read as one person holding two ranks at once.
+It gives up at the first row it refuses, with the row number and the reason: `invalid-sales.csv row 4: rep 'Avery Chen' appears twice; the reports identify reps by name`. Every report keys on the rep name alone, so the same name in a second region would read as one person holding two ranks at once.
 
 ## What the three functions do
 

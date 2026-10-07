@@ -1,6 +1,6 @@
 # Peak Concurrency Queries
 
-Five SQLite queries on a help desk's call log, which records only when each call started and ended, built around one question: how many calls were live at once. Each call becomes a +1 and a -1, and a running `SUM` over them in time order gives the live count. The obvious first version reports six calls at the day's worst moment when there were five, and puts a caller on hold at 13:30 while three agents were each on one call. Both come from how it breaks a tie between a call ending and another starting in the same minute.
+One call ended and another began at 10:25 on the sample day, and how many calls a query reports live at that minute turns on which of the two events it counts first. A help desk's call log holds only the minute each call started and the minute its line came free, so the queries turn every call into a +1 and a -1, and a running `SUM` over them in time order gives the live count. The obvious first version takes the start ahead of the end, which puts the day's peak at six where there were five and shows a caller on hold at 13:30 while three agents each had one call.
 
 ## The queries
 
@@ -14,28 +14,28 @@ Five SQLite queries on a help desk's call log, which records only when each call
 
 ## Running it
 
-Python 3.7 or newer, standard library only, on SQLite 3.25 or newer for window functions.
+It needs Python 3.7 or newer and its standard library, with SQLite 3.25 or later for the window functions.
 
 ```
 cd miscellaneous-projects/peak-concurrency-sql
 python run.py
 ```
 
-That prints all five reports against the sample log. The test run checks the queries against hand-computed answers:
+Without arguments it reads `data/calls.csv` and prints the five reports in order. `--test` runs the assertion suite instead, built on hand-worked answers:
 
 ```
 python run.py --test
 ```
 
-Eighteen checks run. Ten on the sample cover its row count and shape, the naive peak and the hold it invents, the true peak, the same-minute changes that drop out of the timeline, two calls arriving together, the timeline covering the whole span, the two averages, and both stretches over capacity. Six on logs built for the suite cover back-to-back calls, a dip to exactly three between two busy spells, a time-weighted average of 380 minutes over 120 that has to round to 3.17, two calls ending and one starting in the same minute inside a stretch, an average of exactly 1.005, and calls across midnight. Two run the loader on bad files. The run ends with `all checks passed`.
+It runs eighteen checks. Ten on the sample cover its row count and shape, the naive peak and the hold it invents, the true peak, the same-minute changes that drop out of the timeline, two calls arriving together, the timeline covering the whole span, the two averages, and both stretches over capacity. Six on logs built for the suite cover back-to-back calls, a dip to exactly three between two busy spells, a time-weighted average of 380 minutes over 120 that has to round to 3.17, two calls ending and one starting in the same minute inside a stretch, an average of exactly 1.005, and calls across midnight. Two run the loader on bad files. When every one holds, the last line reads `all checks passed`.
 
-The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
+No query runs until the loader has checked the whole log. The bad file in `data/` fails at row 18:
 
 ```
 python run.py --calls data/invalid-calls.csv
 ```
 
-It stops on the first problem and names the row: `invalid-calls.csv row 18: call 111 ends at 2026-09-08 11:40, before it starts at 2026-09-08 12:06`. A call that ends before it starts puts its -1 ahead of its +1, which takes one call off the count for every minute between the two times, so the loader refuses it.
+The message names the row, the call and both times: `invalid-calls.csv row 18: call 111 ends at 2026-09-08 11:40, before it starts at 2026-09-08 12:06`. A call that ends before it starts puts its -1 ahead of its +1, which takes one call off the count for every minute between the two times, so the loader refuses it.
 
 ## The naive peak
 

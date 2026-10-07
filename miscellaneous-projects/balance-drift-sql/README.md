@@ -1,6 +1,6 @@
 # Balance Drift Queries
 
-Five SQLite queries that rebuild a ledger's running balance from its amounts, hold it against the balance column the system recorded, and answer the questions a closing gap cannot: since when the books have been off, by how much, and in how many separate mistakes. On the sample ledger the closing balance is only 30.00 off, and the queries show that number is two breaks, plus 100.00 and minus 130.00, mostly cancelling each other.
+When a ledger's recorded closing balance disagrees with the sum of its amounts, the size of the gap says little about what went wrong. Rebuilt row by row from the amounts, the running balance is set beside the one the system recorded, and the reports date each break and every stretch where the drift holds steady. The sample's gap is 30.00. Behind it sit two breaks, plus 100.00 on August 16 and minus 130.00 on August 31, mostly cancelling each other.
 
 ## The queries
 
@@ -14,14 +14,14 @@ Five SQLite queries that rebuild a ledger's running balance from its amounts, ho
 
 ## Running it
 
-Python 3, standard library only.
+`run.py` is plain Python 3 and imports only from the standard library; the queries need an SQLite with window functions.
 
 ```
 cd miscellaneous-projects/balance-drift-sql
 python run.py
 ```
 
-That prints all five reports against the sample ledger. The test run checks the queries against hand-computed answers:
+With no flags it runs the five files in `sql/` against `data/ledger.csv` and prints each result as a table. For a check against answers worked out by hand, add `--test`:
 
 ```
 python run.py --test
@@ -29,13 +29,13 @@ python run.py --test
 
 Eleven checks cover the closing gap, the drift on both sides of both breaks, the full regime table, and the audit note, then print `all checks passed`.
 
-The loader validates the CSV before any query runs. Point it at the included bad file to see a rejection:
+No query runs until the loader has accepted every row of the ledger. The included bad copy shows a refusal:
 
 ```
 python run.py --ledger data/invalid-ledger.csv
 ```
 
-It stops on the first problem and names the row: `invalid-ledger.csv row 4: txn_id 4 is not consecutive; expected 3`. The gap check exists because the running balance only means anything in exact sequence: a missing transaction produces the same symptom as a recording error, so the loader refuses to guess which one it is looking at. The one thing the loader deliberately does not validate is the balance arithmetic itself; broken arithmetic is data here, and finding it is the queries' whole job.
+The first bad row ends the run, and the message names it: `invalid-ledger.csv row 4: txn_id 4 is not consecutive; expected 3`. The gap check exists because the running balance only means anything in exact sequence: a missing transaction produces the same symptom as a recording error, so the loader refuses to guess which one it is looking at. The one thing the loader deliberately does not validate is the balance arithmetic itself; broken arithmetic is data here, and finding it is the queries' whole job.
 
 ## The rebuild
 

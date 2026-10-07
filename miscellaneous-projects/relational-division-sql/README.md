@@ -1,6 +1,6 @@
 # Relational Division Queries
 
-Five SQLite queries that answer which technicians hold every certification a job requires, the question relational algebra calls division. The obvious way to write it answers a different question. Matching technicians against the required certifications with `IN` finds everyone holding at least one of them, and on the sample roster that is seven people for a job two people can actually do. Then the two standard correct constructions, counting and absence, are run side by side and made to disagree on purpose.
+Which technicians hold every certification a job requires? Relational algebra calls that question division, and the quick version, a match with `IN`, answers an easier one: who holds at least one. For the sample's pump overhaul that is seven technicians, where two can do the job. Counting and absence, the two proper divisions, then run side by side and disagree on exactly one job.
 
 ## The queries
 
@@ -14,14 +14,14 @@ Five SQLite queries that answer which technicians hold every certification a job
 
 ## Running it
 
-Python 3, standard library only.
+There is nothing to install beyond Python 3; everything `run.py` imports is in the standard library.
 
 ```
 cd miscellaneous-projects/relational-division-sql
 python run.py
 ```
 
-That prints all five reports against the sample roster. The test run checks the queries against hand-computed answers:
+`run.py` prints the five reports for the sample roster, from its shape to the near misses. With `--test` it runs checks against hand-computed answers instead:
 
 ```
 python run.py --test
@@ -29,13 +29,13 @@ python run.py --test
 
 Eleven checks cover the any-versus-all counts, both constructions, the exact job they disagree on, the technician holding nothing, and the near-miss list, then print `all checks passed`.
 
-The loader validates all four CSVs before any query runs. Point it at the included bad file to see a rejection:
+All four CSVs go through the loader's checks before the first query. The broken holdings file in `data/` does not get past them:
 
 ```
 python run.py --holdings data/invalid-holdings.csv
 ```
 
-It stops on the first problem and names the row: `invalid-holdings.csv row 4: tech_id 'T-99' is not in technicians.csv; a link to an unknown record would vanish from every join`. A certification held by a technician who does not exist can never produce a qualified pair, because queries 03, 04, and 05 all reach the roster and join it away. It still lands in the holdings total in query 01 and in the any-of count in query 02, neither of which touches the roster, and that is the worse half: a number that moves with no person behind it.
+Loading stops at its first bad row and says why: `invalid-holdings.csv row 4: tech_id 'T-99' is not in technicians.csv; a link to an unknown record would vanish from every join`. A certification held by a technician who does not exist can never produce a qualified pair, because queries 03, 04, and 05 all reach the roster and join it away. It still lands in the holdings total in query 01 and in the any-of count in query 02, neither of which touches the roster, and that is the worse half: a number that moves with no person behind it.
 
 ## Any of, versus all of
 

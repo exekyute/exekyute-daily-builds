@@ -1,6 +1,6 @@
 # As-Of Join Queries
 
-Five SQLite queries that join orders to the tax rate in force on each order's date, the point-in-time lookup every rates, pricing, and FX table eventually needs. The trap comes first: joining on `effective_date <= order_date` alone turns fifteen orders into twenty-nine rows, silently drops the one order older than every rate, and reports 1,491.00 of tax where the true figure is 721.00. Then the same answer is built two correct ways, a correlated latest-date pick and a LEAD-built era table, and the build proves they agree to the cent.
+`ON r.effective_date <= o.order_date` looks like enough to give each order the tax rate in force on its date, yet on the sample it reports 1,491.00 of tax where 721.00 is owed. It pairs each order with every rate that took effect on or before that date, so the fourteen orders after the first rate fan out into twenty-nine rows, and the one order older than every rate drops out. Queries 03 and 04 then do it right two ways, a correlated pick of the newest rate at or before each date and a LEAD-built era table, and they agree to the cent.
 
 ## The queries
 
@@ -14,14 +14,14 @@ Five SQLite queries that join orders to the tax rate in force on each order's da
 
 ## Running it
 
-Python 3, standard library only.
+It needs Python 3 and the modules that ship with it; query 04's LEAD also needs an SQLite with window functions.
 
 ```
 cd miscellaneous-projects/asof-join-sql
 python run.py
 ```
 
-That prints all five reports against the sample tables. The test run checks the queries against hand-computed answers:
+Run bare like that, it loads the sample orders and rate table and prints the five reports in file order. The `--test` flag compares each query's result with figures computed by hand instead:
 
 ```
 python run.py --test
@@ -29,13 +29,13 @@ python run.py --test
 
 Thirteen checks cover both boundary days, the rate cut, the dropped order, the era table, and the reconciliation, then print `all checks passed`.
 
-The loader validates both CSVs before any query runs. Point it at the included bad rate table to see a rejection:
+Both CSVs are checked row by row before the first query, and the included bad rate table fails:
 
 ```
 python run.py --rates data/invalid-rates.csv
 ```
 
-It stops on the first problem and names the row: `invalid-rates.csv row 4: effective_date 2026-04-01 is not after the row above; one rate per date, in order, or the as-of pick is ambiguous`. Two rates effective the same day would make "the newest rate at or before this date" mean two different numbers, so the file is refused before it can.
+Loading halts at the first fault, with the file and row in the message: `invalid-rates.csv row 4: effective_date 2026-04-01 is not after the row above; one rate per date, in order, or the as-of pick is ambiguous`. Two rates effective the same day would make "the newest rate at or before this date" mean two different numbers, so the file is refused before it can.
 
 ## The trap
 

@@ -1,6 +1,6 @@
 # MRR Bridge Queries
 
-Five SQLite queries that explain each month's change in monthly recurring revenue (MRR). From a log of what each customer paid each month, they split the move from opening to closing MRR into new customers, customers coming back, expansion, contraction and churn, check that the pieces add up, and turn them into gross and net revenue retention. The log has no row for a month a customer did not pay, so queries 03 to 05 first give every customer a row in every month; built with LAG over the rows as they stand, the same bridge never records a churn and leaves money unexplained in eight of the eleven months the sample's bridge covers.
+Opening monthly recurring revenue (MRR), plus what new, returning and expanding customers add, less what contraction and churn take away, equals closing MRR. This build lays that bridge out for each month of a subscription log, checks that it adds up and turns it into gross and net revenue retention. A month a customer skipped has no row in the log, so queries 03 to 05 first give every customer a row in every month. Query 02 shows what happens without that step: its LAG over the stored rows never records a churn, and eight of the eleven months after the first end with money unexplained.
 
 ## The queries
 
@@ -14,34 +14,34 @@ Five SQLite queries that explain each month's change in monthly recurring revenu
 
 ## Running it
 
-Python 3.7 or newer, standard library only, on SQLite 3.25 or newer for window functions.
+Use Python 3.7 or newer; nothing outside the standard library is needed, and the SQLite behind it has to be 3.25 or newer for window functions.
 
 ```
 cd miscellaneous-projects/mrr-bridge-sql
 python run.py
 ```
 
-That prints all five reports against the sample log. The test run checks the queries and the loader against hand-computed answers:
+On its own, `run.py` prints the five reports for `data/mrr.csv`, 01 to 05. The suite behind `--test` covers the loader as well as the queries, all against hand-computed answers:
 
 ```
 python run.py --test
 ```
 
-Eighteen checks run. Six on the sample cover the log's shape, the LAG bridge and what it leaves unexplained, every customer's movement, the monthly bridge with its total line, and customers and retention by month. The sixth prints all five reports and checks their column names, a rule as wide as each column, how many rows each prints and the first of them, and that a query file that fails, has no query result, is not UTF-8 or is gone by the time it is read, or a folder named like one, stops them with a one-line message.
+There are eighteen checks in all. Six on the sample cover the log's shape, the LAG bridge and what it leaves unexplained, every customer's movement, the monthly bridge with its total line, and customers and retention by month. The sixth prints all five reports and checks their column names, a rule as wide as each column, how many rows each prints and the first of them, and that a query file that fails, has no query result, is not UTF-8 or is gone by the time it is read, or a folder named like one, stops them with a one-line message.
 
-Four more run on logs built for the suite. The first has a month nobody paid for at the turn of a year, which still gets its row, a customer seen only in the first month who comes back as a reactivation, a month with no change, and a month that opens with nobody paying, whose rates are left blank in the printed report too. The second puts rates on an exact half, which have to round up where rounding half to even would round down and printf or ROUND on a float changes with the SQLite version. The third stores the sample in the opposite order in a table with no key and gets the same five reports, and the fourth runs 36 customers from 1970-01 to 2200-12, each changing every month after the first, near the most customer-months the loader allows, inside the step budget, beside totals from the largest amounts, which print to the cent, and a query that would run for ever, which the step budget stops.
+Another four use logs the suite builds itself. The first has a month nobody paid for at the turn of a year, which still gets its row, a customer seen only in the first month who comes back as a reactivation, a month with no change, and a month that opens with nobody paying, whose rates are left blank in the printed report too. The second puts rates on an exact half, which have to round up where rounding half to even would round down and printf or ROUND on a float changes with the SQLite version. The third stores the sample in the opposite order in a table with no key and gets the same five reports, and the fourth runs 36 customers from 1970-01 to 2200-12, each changing every month after the first, near the most customer-months the loader allows, inside the step budget, beside totals from the largest amounts, which print to the cent, and a query that would run for ever, which the step budget stops.
 
-Eight exercise the loader and the command line. They refuse a customer listed twice in a month; months past 12, at 00, without a leading zero or with a two-digit year, with a slash, a day, a month name or fullwidth digits, blank, or outside 1970 to 2200; customer codes in lower case, with a space, a doubled or outer hyphen, an accent or fullwidth letters, too long or blank; and amounts of 0.00, negative, whole, with one or three decimal places, zero-padded, with seven digits before the point, in exponent form, blank, with a comma, a dollar sign or no digit before the point, or with Arabic-Indic digits in them, next to the edge values that load. They count rows past blank lines and a line of spaces, name a stray quote by its own row, in a data row or in the header, refuse rows with too many or too few fields, a line of commas, a tab, text after a closing quote, a quote left open, a field past the parser's limit and a bad, renamed or reordered header, also one written as a single quoted field or with a trailing comma, and cut a long value or header short in the message.
+The last eight are aimed at the loader and the command line. They refuse a customer listed twice in a month; months past 12, at 00, without a leading zero or with a two-digit year, with a slash, a day, a month name or fullwidth digits, blank, or outside 1970 to 2200; customer codes in lower case, with a space, a doubled or outer hyphen, an accent or fullwidth letters, too long or blank; and amounts of 0.00, negative, whole, with one or three decimal places, zero-padded, with seven digits before the point, in exponent form, blank, with a comma, a dollar sign or no digit before the point, or with Arabic-Indic digits in them, next to the edge values that load. They count rows past blank lines and a line of spaces, name a stray quote by its own row, in a data row or in the header, refuse rows with too many or too few fields, a line of commas, a tab, text after a closing quote, a quote left open, a field past the parser's limit and a bad, renamed or reordered header, also one written as a single quoted field or with a trailing comma, and cut a long value or header short in the message.
 
-They also refuse an empty file, one of blank lines, one with only a header, one that is not UTF-8 from its first line or only far down, or holds only part of a byte-order mark, a folder, a read that gives way partway and a line past 1000000 characters, while a byte-order mark, blank lines before the header and spaces around unquoted fields, in the header as well, load. They refuse a log of one month or of more than 100000 customer-months, stop one past 100000 rows as it is read, before a bad byte further down, and load one of exactly 100000 customer-months. On the command line they refuse a missing file, a name with a wildcard in it and a test run on any file other than the sample, and check that output and messages go out as UTF-8. The run ends with `all checks passed`.
+They also refuse an empty file, one of blank lines, one with only a header, one that is not UTF-8 from its first line or only far down, or holds only part of a byte-order mark, a folder, a read that gives way partway and a line past 1000000 characters, while a byte-order mark, blank lines before the header and spaces around unquoted fields, in the header as well, load. They refuse a log of one month or of more than 100000 customer-months, stop one past 100000 rows as it is read, before a bad byte further down, and load one of exactly 100000 customer-months. From the command line, a missing file, a name with a wildcard in it and a test run on any file other than the sample are refused, and output and messages are checked to go out as UTF-8. A clean run ends on `all checks passed`.
 
-The loader validates the log before any query runs. Point it at the included bad log to see a rejection:
+The log goes through the loader's checks before any query sees it, and the bad log in `data/` is turned away there:
 
 ```
 python run.py --mrr data/invalid-mrr.csv
 ```
 
-It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte can be reported first, without a row, when a problem sits above it in the same stretch of the file. On the included bad log:
+Loading ends at the first problem, and the message carries a row number whenever the problem sits on a row. Bytes that are not UTF-8 work differently. The file is decoded about 8 KB at a time, so a bad byte can be reported first, with no row number, when an earlier problem sits in the same block. For the bad log, the refusal reads:
 
 ```
 invalid-mrr.csv row 63: KEMPT-ROAD-CLINIC appears twice for 2025-07; one row per customer and month, with the amounts added together

@@ -1,6 +1,6 @@
 # Reorder Point Queries
 
-Five SQLite queries that set a reorder point for each part at a parts counter from its daily usage and its supplier's lead time, then replay the usage log to count how often each rule would have left the shelf empty. Safety stock is z times the daily standard deviation times the square root of the lead time, worked out in whole numbers, with the square roots taken by Newton steps in a recursive CTE. Reordering at the average lead-time demand alone runs out in 77 of the sample's 161 replenishment cycles, and adding safety stock at 95 percent brings that to 6.
+To keep a part in stock until the next delivery arrives, the reorder point has to sit above what an average lead time uses. Each part at a parts counter gets that point from its daily usage and its supplier's lead time. Safety stock, z times the daily standard deviation times the square root of the lead time, is worked out in whole numbers, with Newton steps in a recursive CTE taking the roots. In a replay of the sample's 161 replenishment cycles, ordering at the average alone runs out 77 times, and safety stock at 95 percent cuts that to 6.
 
 ## The queries
 
@@ -14,36 +14,36 @@ Five SQLite queries that set a reorder point for each part at a parts counter fr
 
 ## Running it
 
-Python 3.7 or newer, standard library only, on SQLite 3.8.3 or newer for recursive CTEs. The queries give the same rows on SQLite 3.31.1, 3.34.0 and 3.50.4.
+It runs on Python 3.7 or newer with only the standard library, and on SQLite 3.8.3 or newer, the first release with recursive CTEs. The queries give the same rows on SQLite 3.31.1, 3.34.0 and 3.50.4.
 
 ```
 cd miscellaneous-projects/reorder-point-sql
 python run.py
 ```
 
-That prints all five reports against the sample parts list and usage log. The test run checks the queries and the loader against hand-computed answers:
+The five reports print for the sample parts list and usage log, one table each. Under `--test`, both the queries and the loader are held to hand-computed answers:
 
 ```
 python run.py --test
 ```
 
-Nineteen checks run. Seven on the sample cover the log's shape, the average rule's replay, the reorder points, the two rules side by side and the four service levels. The sixth checks that the reports agree wherever they share a number and that the sample stored in the opposite order, in tables with no key, gives the same five reports. The seventh prints all five and checks their column names, a rule as wide as each column, how many rows each prints and the first and last of them, with blank cells on the total lines, and that a query file that fails, has no query result, is not UTF-8 or is gone by the time it is read, or a folder named like one, stops them with a one-line message.
+Seven of the nineteen checks run on the sample and cover the log's shape, the average rule's replay, the reorder points, the two rules side by side and the four service levels. The sixth checks that the reports agree wherever they share a number and that the sample stored in the opposite order, in tables with no key, gives the same five reports. The seventh prints all five and checks their column names, a rule as wide as each column, how many rows each prints and the first and last of them, with blank cells on the total lines, and that a query file that fails, has no query result, is not UTF-8 or is gone by the time it is read, or a folder named like one, stops them with a one-line message.
 
-Four more run on logs built for the suite. A four-day log across a year end has a stretch that uses exactly its reorder point and does not run out beside one a unit over that does, an average and a lead-time demand on exact halves that round up, with a stretch that uses exactly the 3 that 2.5 rounds up to, a safety stock of exactly 33 that must not round up to 34, and one whose square is 841.03, just past 29 x 29, which has to round up to 30. It also has a squared safety stock of 15 whose Newton steps swing between 3 and 4 and still have to stop, parts with no spread and no safety stock, a lead time longer than the log that gives no cycles and a blank share, and a heavy last day in a stretch the end of the log cuts short.
+The next four trade the sample for logs the suite writes itself. A four-day log across a year end has a stretch that uses exactly its reorder point and does not run out beside one a unit over that does, an average and a lead-time demand on exact halves that round up, with a stretch that uses exactly the 3 that 2.5 rounds up to, a safety stock of exactly 33 that must not round up to 34, and one whose square is 841.03, just past 29 x 29, which has to round up to 30. It also has a squared safety stock of 15 whose Newton steps swing between 3 and 4 and still have to stop, parts with no spread and no safety stock, a lead time longer than the log that gives no cycles and a blank share, and a heavy last day in a stretch the end of the log cuts short.
 
 A skewed log has a part used in one burst, which runs out in 1 of 10 cycles under the average rule and still 1 at every service level, also replayed on its own, a part that dips now and then, which runs out in 8 of 10, and 900 units in a stretch the end of the log cuts short, which count against neither rule. Three small logs have a part used on one day in eight, whose share of 12.5 percent has to round up to 13, a part used once in 400 days, whose standard deviation of exactly 0.05 has to print as 0.1, and one used once in 50 days, whose Newton steps swing between 2 and 3 and have to settle on 2, so it prints 0.1 and not 0.2. And 1000 parts over 100 days and 100 parts over 1000 days, at the loader's limits, have to run inside the step budget with their largest numbers exact, beside a query that would run for ever, which the budget stops.
 
-Eight exercise the loader and the command line. They refuse the included bad log, a part listed twice for one day, units and lead times written any way but a plain whole number in range, part codes that are not capital letters and digits joined by single hyphens, at most 24 characters, in either file, and days that are not a real date written like 2026-01-31 from 1970 to 2200, each next to the values at its limits, which load. They refuse a part missing from the parts list, a day missing from one part's log, a part with no rows, a log of one day or of more than 1000, and a parts list past 1000 parts.
+Eight test the loader and the command line. They refuse the included bad log, a part listed twice for one day, units and lead times written any way but a plain whole number in range, part codes that are not capital letters and digits joined by single hyphens, at most 24 characters, in either file, and days that are not a real date written like 2026-01-31 from 1970 to 2200, each next to the values at its limits, which load. They refuse a part missing from the parts list, a day missing from one part's log, a part with no rows, a log of one day or of more than 1000, and a parts list past 1000 parts.
 
-They count rows past blank lines, name a stray quote by its own row, refuse broken rows and a bad, renamed or reordered header in either file, and cut a long value short in the message. They refuse an empty file, one with only a header, one that is not UTF-8 from its first line or only far down, a folder, a read that gives way partway and a line past 1000000 characters, and stop a log past 100000 rows as it is read. On the command line they refuse a missing file, one of the two files given without the other and a test run on any file other than the samples, and check that output and messages go out as UTF-8 and that a message names the parts file given on the command line. The run ends with `all checks passed`.
+They count rows past blank lines, name a stray quote by its own row, refuse broken rows and a bad, renamed or reordered header in either file, and cut a long value short in the message. They refuse an empty file, one with only a header, one that is not UTF-8 from its first line or only far down, a folder, a read that gives way partway and a line past 1000000 characters, and stop a log past 100000 rows as it is read. On the command line they refuse a missing file, one of the two files given without the other and a test run on any file other than the samples, and check that output and messages go out as UTF-8 and that a message names the parts file given on the command line. If none of them fails, the output ends with `all checks passed`.
 
-The loader validates both files before any query runs. Point it at the included bad log to see a rejection:
+Both files are loaded and checked before the first query runs. With the bad usage log from `data/` in place of the sample one, the run stops at the loader:
 
 ```
 python run.py --parts data/parts.csv --usage data/invalid-usage.csv
 ```
 
-It stops at the first problem it reaches, naming the row where it has one. A byte that is not UTF-8 is the exception: the file is decoded about 8 KB at a time, so a bad byte can be reported first, without a row, when a problem sits above it in the same stretch of the file. On the included bad log:
+The first problem stops the load, and when it belongs to a row the message names that row. Encoding errors are the one exception: the file is decoded about 8 KB at a time, so a byte that is not UTF-8 can be reported first, without a row, ahead of a problem on an earlier row in the same block. The bad log stops at row 412:
 
 ```
 invalid-usage.csv row 412: units '-2' is not a whole number of units from 0 to 999, written like 4
