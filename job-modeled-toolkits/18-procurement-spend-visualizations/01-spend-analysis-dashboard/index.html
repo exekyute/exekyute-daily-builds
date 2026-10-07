@@ -242,6 +242,21 @@
         justify-content: flex-end;
         margin-top: calc(var(--space) * 2);
       }
+
+      @media screen and (max-width: 400px) {
+        body {
+          padding: calc(var(--space) * 3) calc(var(--space) * 2);
+        }
+
+        .table-wrap {
+          overflow-x: auto;
+        }
+
+        th,
+        td {
+          white-space: nowrap;
+        }
+      }
     </style>
   </head>
   <body>
@@ -277,31 +292,35 @@
       <section class="panel">
         <h2>Spend by category</h2>
         <svg id="categoryChart" viewBox="0 0 880 240" role="img" aria-label="Spend by category"></svg>
-        <table>
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th class="num">Spend</th>
-              <th class="num">Share</th>
-            </tr>
-          </thead>
-          <tbody id="categoryBody"></tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th class="num">Spend</th>
+                <th class="num">Share</th>
+              </tr>
+            </thead>
+            <tbody id="categoryBody"></tbody>
+          </table>
+        </div>
       </section>
 
       <section class="panel">
         <h2>Spend by supplier</h2>
         <svg id="supplierChart" viewBox="0 0 880 240" role="img" aria-label="Spend by supplier"></svg>
-        <table>
-          <thead>
-            <tr>
-              <th>Supplier</th>
-              <th class="num">Spend</th>
-              <th class="num">Share</th>
-            </tr>
-          </thead>
-          <tbody id="supplierBody"></tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Supplier</th>
+                <th class="num">Spend</th>
+                <th class="num">Share</th>
+              </tr>
+            </thead>
+            <tbody id="supplierBody"></tbody>
+          </table>
+        </div>
         <div class="row-actions">
           <button id="exportBtn" disabled>Export normalized-spend.csv</button>
         </div>

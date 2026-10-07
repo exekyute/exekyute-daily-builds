@@ -247,6 +247,25 @@
         justify-content: flex-end;
         margin-top: calc(var(--space) * 2);
       }
+
+      @media screen and (max-width: 780px) {
+        body {
+          padding: calc(var(--space) * 3) calc(var(--space) * 2);
+        }
+
+        .table-wrap {
+          overflow-x: auto;
+        }
+
+        th,
+        td {
+          white-space: nowrap;
+        }
+
+        .legend {
+          flex-wrap: wrap;
+        }
+      }
     </style>
   </head>
   <body>
@@ -296,20 +315,22 @@
       </section>
 
       <section class="panel">
-        <table>
-          <thead>
-            <tr>
-              <th>Month</th>
-              <th>Opening</th>
-              <th>New</th>
-              <th>Expansion</th>
-              <th>Contraction</th>
-              <th>Churn</th>
-              <th>Closing</th>
-            </tr>
-          </thead>
-          <tbody id="movementBody"></tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Opening</th>
+                <th>New</th>
+                <th>Expansion</th>
+                <th>Contraction</th>
+                <th>Churn</th>
+                <th>Closing</th>
+              </tr>
+            </thead>
+            <tbody id="movementBody"></tbody>
+          </table>
+        </div>
         <div class="row-actions">
           <button id="exportBtn" disabled>Export mrr-movement.csv</button>
         </div>

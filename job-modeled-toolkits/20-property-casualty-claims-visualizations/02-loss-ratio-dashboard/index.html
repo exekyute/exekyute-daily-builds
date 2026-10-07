@@ -201,6 +201,21 @@
         margin: 0 0 calc(var(--space) * 2) 0;
         font-size: 16px;
       }
+
+      @media screen and (max-width: 540px) {
+        body {
+          padding: calc(var(--space) * 3) calc(var(--space) * 2);
+        }
+
+        .table-wrap {
+          overflow-x: auto;
+        }
+
+        th,
+        td {
+          white-space: nowrap;
+        }
+      }
     </style>
   </head>
   <body>
@@ -233,7 +248,9 @@
 
       <section class="panel">
         <h2 class="section-title">Loss ratio by line and accident year</h2>
-        <table id="grid"></table>
+        <div class="table-wrap">
+          <table id="grid"></table>
+        </div>
         <div class="legend"><span>lower</span><span class="bar"></span><span>higher loss ratio</span></div>
       </section>
     </div>

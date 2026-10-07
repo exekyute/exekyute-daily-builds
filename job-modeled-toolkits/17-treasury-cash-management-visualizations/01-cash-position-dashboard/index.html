@@ -202,6 +202,21 @@
         justify-content: flex-end;
         margin-top: calc(var(--space) * 2);
       }
+
+      @media screen and (max-width: 640px) {
+        body {
+          padding: calc(var(--space) * 3) calc(var(--space) * 2);
+        }
+
+        .table-wrap {
+          overflow-x: auto;
+        }
+
+        th,
+        td {
+          white-space: nowrap;
+        }
+      }
     </style>
   </head>
   <body>
@@ -236,18 +251,20 @@
       </section>
 
       <section class="panel">
-        <table>
-          <thead>
-            <tr>
-              <th>Account</th>
-              <th>Opening</th>
-              <th>Inflows</th>
-              <th>Outflows</th>
-              <th>Closing</th>
-            </tr>
-          </thead>
-          <tbody id="positionBody"></tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Account</th>
+                <th>Opening</th>
+                <th>Inflows</th>
+                <th>Outflows</th>
+                <th>Closing</th>
+              </tr>
+            </thead>
+            <tbody id="positionBody"></tbody>
+          </table>
+        </div>
         <div class="row-actions">
           <button id="exportBtn" disabled>Export closing-balances.csv</button>
         </div>

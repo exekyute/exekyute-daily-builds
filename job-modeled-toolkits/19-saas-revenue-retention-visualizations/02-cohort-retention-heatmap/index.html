@@ -227,6 +227,16 @@
         justify-content: flex-end;
         margin-top: calc(var(--space) * 3);
       }
+
+      @media screen and (max-width: 480px) {
+        body {
+          padding: calc(var(--space) * 3) calc(var(--space) * 2);
+        }
+
+        .heatmap {
+          overflow-x: auto;
+        }
+      }
     </style>
   </head>
   <body>

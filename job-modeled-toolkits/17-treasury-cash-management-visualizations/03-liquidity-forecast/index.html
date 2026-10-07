@@ -244,6 +244,25 @@
         justify-content: flex-end;
         margin-top: calc(var(--space) * 2);
       }
+
+      @media screen and (max-width: 840px) {
+        body {
+          padding: calc(var(--space) * 3) calc(var(--space) * 2);
+        }
+
+        .table-wrap {
+          overflow-x: auto;
+        }
+
+        th,
+        td {
+          white-space: nowrap;
+        }
+
+        .legend {
+          flex-wrap: wrap;
+        }
+      }
     </style>
   </head>
   <body>
@@ -300,20 +319,22 @@
       </section>
 
       <section class="panel">
-        <table>
-          <thead>
-            <tr>
-              <th>Week</th>
-              <th>Opening</th>
-              <th>Inflows</th>
-              <th>Total outflows</th>
-              <th>Net</th>
-              <th>Closing</th>
-              <th>Headroom</th>
-            </tr>
-          </thead>
-          <tbody id="forecastBody"></tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Week</th>
+                <th>Opening</th>
+                <th>Inflows</th>
+                <th>Total outflows</th>
+                <th>Net</th>
+                <th>Closing</th>
+                <th>Headroom</th>
+              </tr>
+            </thead>
+            <tbody id="forecastBody"></tbody>
+          </table>
+        </div>
         <div class="row-actions">
           <button id="exportBtn" disabled>Export forecast.csv</button>
         </div>

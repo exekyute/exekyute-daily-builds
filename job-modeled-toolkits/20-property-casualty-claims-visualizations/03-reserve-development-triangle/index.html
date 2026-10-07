@@ -188,6 +188,21 @@
         font-size: 13px;
         color: var(--muted);
       }
+
+      @media screen and (max-width: 680px) {
+        body {
+          padding: calc(var(--space) * 3) calc(var(--space) * 2);
+        }
+
+        .table-wrap {
+          overflow-x: auto;
+        }
+
+        th,
+        td {
+          white-space: nowrap;
+        }
+      }
     </style>
   </head>
   <body>
@@ -225,7 +240,9 @@
 
       <section class="panel">
         <h2 class="section-title">Cumulative paid by accident year and development month</h2>
-        <table id="triangle"></table>
+        <div class="table-wrap">
+          <table id="triangle"></table>
+        </div>
         <p class="note">
           The shaded cell on each row is the latest valuation, the current diagonal. Age-to-age
           factors are read off the years that share both columns; the factor to ultimate is their
@@ -235,19 +252,21 @@
 
       <section class="panel">
         <h2 class="section-title">Projected ultimate and reserve</h2>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Accident year</th>
-              <th scope="col">Latest age</th>
-              <th scope="col">Paid to date</th>
-              <th scope="col">To ultimate</th>
-              <th scope="col">Projected ultimate</th>
-              <th scope="col">Indicated reserve</th>
-            </tr>
-          </thead>
-          <tbody id="projBody"></tbody>
-        </table>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Accident year</th>
+                <th scope="col">Latest age</th>
+                <th scope="col">Paid to date</th>
+                <th scope="col">To ultimate</th>
+                <th scope="col">Projected ultimate</th>
+                <th scope="col">Indicated reserve</th>
+              </tr>
+            </thead>
+            <tbody id="projBody"></tbody>
+          </table>
+        </div>
       </section>
     </div>
 
