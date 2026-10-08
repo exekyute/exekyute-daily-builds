@@ -1040,11 +1040,11 @@ function buildPlacementCard(p, idx) {
   const cfg = PLACEMENT_TYPES[p.type];
   const typeOptions = Object.keys(PLACEMENT_TYPES).map(t =>
     `<option value="${t}" ${t === p.type ? 'selected' : ''}>${t}</option>`).join('');
+  const isOther = cfg && !cfg.formats.includes(p.format);
   const formatOptions = (cfg ? cfg.formats : []).map(f =>
     `<option value="${f}" ${f === p.format ? 'selected' : ''}>${f}</option>`).join('') +
-    `<option value="__other__">Other…</option>`;
+    `<option value="__other__" ${isOther ? 'selected' : ''}>Other…</option>`;
 
-  const isOther = cfg && !cfg.formats.includes(p.format);
   const unit = cfg ? cfg.unit : '';
   const rateModel = cfg ? cfg.rateModel : '';
   const total = lineTotal(p);
@@ -1121,7 +1121,13 @@ function onPlacementInput(id, target) {
       renderPlacementsForm();
       return;
     }
+    const cfg = PLACEMENT_TYPES[p.type];
+    const wasOther = cfg && !cfg.formats.includes(p.format);
     p.format = target.value;
+    if (wasOther) {
+      renderPlacementsForm();
+      return;
+    }
   } else if (field === 'format-other') {
     p.format = target.value;
   } else if (field === 'quantity' || field === 'rate') {
