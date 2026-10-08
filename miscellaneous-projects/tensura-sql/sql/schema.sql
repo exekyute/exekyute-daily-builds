@@ -8,7 +8,8 @@
 -- tables that add detail for a slice of characters (demon_lords, true_dragons).
 --
 -- Runs on SQLite, one file, no server. Build it with engine/build_db.py, or load
--- it by hand: sqlite3 tensura.db ".read sql/schema.sql" ".read sql/seed.sql".
+-- it by hand into a new file (the repository already ships a built tensura.db):
+-- sqlite3 rebuilt.db ".read sql/schema.sql" ".read sql/seed.sql".
 
 PRAGMA foreign_keys = ON;
 

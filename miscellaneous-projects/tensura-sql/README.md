@@ -61,10 +61,11 @@ python -m unittest discover -s tests
 ```
 
 If you would rather not run Python, you can build the same database with the SQLite
-shell alone:
+shell alone. The repository already ships a built `tensura.db`, so load the two SQL
+files into a new database file:
 
 ```
-sqlite3 tensura.db ".read sql/schema.sql" ".read sql/seed.sql"
+sqlite3 rebuilt.db ".read sql/schema.sql" ".read sql/seed.sql"
 ```
 
 ## The CSV exports
