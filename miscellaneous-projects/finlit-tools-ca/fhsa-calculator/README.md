@@ -16,7 +16,7 @@ Projects a Canadian First Home Savings Account year by year, contributions, tax 
 - Surfaces the 15-year account-life rule (transfer to RRSP / buy / withdraw cash).
 
 ## How to run it
-Double-click `index.html`. Or use the hosted hub at the repo root.
+Double-click `index.html`. Or use the hub one folder up ([`../index.html`](../index.html)), also [hosted on GitHub Pages](https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/finlit-tools-ca/).
 
 ## How to use it
 1. Set your annual income (drives the simplified marginal tax rate).

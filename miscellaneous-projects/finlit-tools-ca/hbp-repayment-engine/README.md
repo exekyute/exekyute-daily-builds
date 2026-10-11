@@ -17,7 +17,7 @@ Models a 15-year Home Buyers' Plan repayment cycle so Canadians can see the long
 - Grace-period aware: knows about the Budget 2024 5-year extension for 2022-2025 withdrawals.
 
 ## How to run it
-Double-click `index.html`. Or use the hosted hub at the repo root.
+Double-click `index.html`. Or use the hub one folder up ([`../index.html`](../index.html)), also [hosted on GitHub Pages](https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/finlit-tools-ca/).
 
 ## How to use it
 1. Enter your outstanding HBP balance.

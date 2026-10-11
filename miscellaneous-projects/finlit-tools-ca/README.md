@@ -14,11 +14,11 @@ Seven self-contained, browser-based calculators for Canadian benefit and tax rul
 | [RESP + CESG Optimizer](./resp-cesg-optimizer/) | Capturing the full $7,200 CESG grant |
 | [TFSA Snowballer](./tfsa-snowballer/) | Tax-free vs. taxable account drift over time |
 
-Each tool links from the hub at the repo root (`index.html`) and back to it via a **Home** button.
+Each tool links from the hub in this folder (`index.html`) and back to it via a **Home** button.
 
 ## How to run
 
-- **Locally:** open `index.html` at the repo root in any modern browser. Each tool also runs by double-clicking its own `index.html`.
+- **Locally:** open this folder's `index.html` in any modern browser. Each tool also runs by double-clicking its own `index.html`.
 - **Hosted:** push to GitHub and enable Pages (Settings, then Pages, then Deploy from branch, `main` and root). The relative links work in both modes.
 
 ## Code conventions

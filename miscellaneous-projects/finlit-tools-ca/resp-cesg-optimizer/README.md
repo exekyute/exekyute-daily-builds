@@ -17,7 +17,7 @@ Projects a Canadian RESP year by year, contributions, CESG grant, and growth, to
 - Auto-saves; CSV export of the year-by-year schedule; printer-friendly.
 
 ## How to run it
-Double-click `index.html`. Or use the hosted hub at the repo root.
+Double-click `index.html`. Or use the hub one folder up ([`../index.html`](../index.html)), also [hosted on GitHub Pages](https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/finlit-tools-ca/).
 
 ## How to use it
 1. Slide your child's current age.

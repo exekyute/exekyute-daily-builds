@@ -15,7 +15,7 @@ Shows the gap between tax-free TFSA compounding and a taxable account holding th
 - Slide your current balance from zero; everything updates live.
 
 ## How to run it
-Double-click `index.html`. Or use the hosted hub at the repo root.
+Double-click `index.html`. Or use the hub one folder up ([`../index.html`](../index.html)), also [hosted on GitHub Pages](https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/finlit-tools-ca/).
 
 ## How to use it
 1. Set your current TFSA balance.

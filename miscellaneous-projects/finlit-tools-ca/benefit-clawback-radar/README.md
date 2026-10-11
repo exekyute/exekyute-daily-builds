@@ -16,7 +16,7 @@ Visualize the Effective Marginal Tax Rate that low- and middle-income Canadians 
 - Turns the diagnosis into a dial via the RRSP lever.
 
 ## How to run it
-Double-click `index.html`. Or use the hosted hub at the repo root.
+Double-click `index.html`. Or use the hub one folder up ([`../index.html`](../index.html)), also [hosted on GitHub Pages](https://exekyute.github.io/exekyute-daily-builds/miscellaneous-projects/finlit-tools-ca/).
 
 ## How to use it
 1. Pick a profile preset (Single Parent / Working Family / Senior).
