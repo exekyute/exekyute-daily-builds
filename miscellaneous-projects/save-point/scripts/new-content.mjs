@@ -25,8 +25,13 @@ const slug = title
   .toLowerCase()
   .replace(/[^a-z0-9]+/g, "-")
   .replace(/(^-|-$)/g, "");
+if (!slug) {
+  console.error("Refusing to create: the title has no ASCII letters or digits to build the file name from.");
+  process.exit(1);
+}
 const today = new Date().toISOString().slice(0, 10);
 
+// Typed values go in through JSON.stringify: YAML reads a JSON string back unchanged.
 let path, body;
 
 if (kind === "guide") {
@@ -34,11 +39,11 @@ if (kind === "guide") {
   const category = opt("category", "walkthrough");
   path = `src/content/guides/${slug}.mdx`;
   body = `---
-title: "${title}"
+title: ${JSON.stringify(title)}
 summary: "One-line description used on cards and in search."
-game: "${game}"
+game: ${JSON.stringify(game)}
 platforms: ["PC"]
-category: "${category}"
+category: ${JSON.stringify(category)}
 tags: []
 spoilers: "minor"
 published: ${today}
@@ -63,7 +68,7 @@ Write the guide. See docs/AUTHORING.md for the component cheat sheet
 } else {
   path = `src/content/blog/${slug}.mdx`;
   body = `---
-title: "${title}"
+title: ${JSON.stringify(title)}
 summary: "One-line description used on cards and in search."
 tags: []
 published: ${today}
