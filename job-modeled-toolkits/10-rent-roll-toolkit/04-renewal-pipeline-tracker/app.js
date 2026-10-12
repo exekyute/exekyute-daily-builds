@@ -32,6 +32,12 @@
     message.className = "message";
   }
 
+  function escapeHtml(text) {
+    return String(text).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
   function card(label, value, accent) {
     return (
       '<div class="card' +
@@ -70,16 +76,16 @@
           ? ' <span class="notice-flag">send notice</span>'
           : "";
       html +=
-        '<tr class="row-' + r.status + '">' +
-        "<td>" + r.unit + "</td>" +
-        "<td>" + r.tenant + "</td>" +
+        '<tr class="row-' + escapeHtml(r.status) + '">' +
+        "<td>" + escapeHtml(r.unit) + "</td>" +
+        "<td>" + escapeHtml(r.tenant) + "</td>" +
         '<td class="num">' + formatCents(r.currentCents) + "</td>" +
         '<td class="num">' + formatCents(r.escalatedCents) + "</td>" +
         "<td>" + r.leaseEnd + "</td>" +
         "<td>" + r.renewalStart + " to " + r.renewalEnd + "</td>" +
         "<td>" + r.noticeDue + "</td>" +
         '<td class="num">' + r.daysToNotice + flag + "</td>" +
-        "<td>" + statusBadge(r.status) + "</td>" +
+        "<td>" + statusBadge(escapeHtml(r.status)) + "</td>" +
         "</tr>";
     }
     pipelineBody.innerHTML = html;
@@ -111,7 +117,7 @@
     }
     var html = "";
     for (var i = 0; i < issues.length; i++) {
-      html += "<li>line " + issues[i].line + ": " + issues[i].reason + "</li>";
+      html += "<li>line " + issues[i].line + ": " + escapeHtml(issues[i].reason) + "</li>";
     }
     issuesList.innerHTML = html;
     issuesPanel.hidden = false;

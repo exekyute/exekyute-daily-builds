@@ -32,6 +32,12 @@
     message.className = "message";
   }
 
+  function escapeHtml(text) {
+    return String(text).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
   function card(label, value, accent) {
     return (
       '<div class="card' +
@@ -68,10 +74,10 @@
         (u.expiring ? ' class="expiring"' : "") +
         ">" +
         "<td>" +
-        u.unit +
+        escapeHtml(u.unit) +
         "</td>" +
         "<td>" +
-        u.tenant +
+        escapeHtml(u.tenant) +
         "</td>" +
         '<td class="num">' +
         formatCents(u.monthlyCents) +
@@ -106,7 +112,7 @@
     }
     var html = "";
     for (var i = 0; i < issues.length; i++) {
-      html += "<li>line " + issues[i].line + ": " + issues[i].reason + "</li>";
+      html += "<li>line " + issues[i].line + ": " + escapeHtml(issues[i].reason) + "</li>";
     }
     issuesList.innerHTML = html;
     issuesPanel.hidden = false;

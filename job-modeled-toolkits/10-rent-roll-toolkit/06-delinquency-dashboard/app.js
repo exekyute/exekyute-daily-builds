@@ -28,6 +28,12 @@
     message.className = "message";
   }
 
+  function escapeHtml(text) {
+    return String(text).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
   function sevClass(bucket) {
     return "sev-" + bucketRank(bucket);
   }
@@ -79,9 +85,9 @@
       var r = sorted[i];
       html +=
         '<tr class="' + sevClass(r.bucket) + '">' +
-        "<td>" + r.unit + "</td>" +
-        "<td>" + r.tenant + "</td>" +
-        "<td>" + r.chargeType + "</td>" +
+        "<td>" + escapeHtml(r.unit) + "</td>" +
+        "<td>" + escapeHtml(r.tenant) + "</td>" +
+        "<td>" + escapeHtml(r.chargeType) + "</td>" +
         "<td>" + r.dueDate + "</td>" +
         '<td class="num">' + formatCents(r.balanceCents) + "</td>" +
         '<td class="num">' + r.daysOverdue + "</td>" +
@@ -102,7 +108,7 @@
     }
     var html = "";
     for (var i = 0; i < issues.length; i++) {
-      html += "<li>line " + issues[i].line + ": " + issues[i].reason + "</li>";
+      html += "<li>line " + issues[i].line + ": " + escapeHtml(issues[i].reason) + "</li>";
     }
     issuesList.innerHTML = html;
     issuesPanel.hidden = false;
