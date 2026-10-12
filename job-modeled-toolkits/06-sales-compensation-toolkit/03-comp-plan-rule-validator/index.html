@@ -47,18 +47,20 @@
         </div>
       </div>
 
-      <table class="plan-table">
-        <thead>
-          <tr>
-            <th>Tier</th>
-            <th>From (USD)</th>
-            <th>To (USD, blank = open)</th>
-            <th>Rate (%)</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="tierRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="plan-table">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>From (USD)</th>
+              <th>To (USD, blank = open)</th>
+              <th>Rate (%)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tierRows"></tbody>
+        </table>
+      </div>
       <button id="addTier" type="button" class="ghost">Add tier</button>
     </section>
 
@@ -76,16 +78,18 @@
 
     <section id="findings" class="card findings" hidden>
       <h2 id="findingsHeading"></h2>
-      <table class="findings-table">
-        <thead>
-          <tr>
-            <th>Severity</th>
-            <th>Location</th>
-            <th>Problem</th>
-          </tr>
-        </thead>
-        <tbody id="findingRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="findings-table">
+          <thead>
+            <tr>
+              <th>Severity</th>
+              <th>Location</th>
+              <th>Problem</th>
+            </tr>
+          </thead>
+          <tbody id="findingRows"></tbody>
+        </table>
+      </div>
     </section>
   </main>
 

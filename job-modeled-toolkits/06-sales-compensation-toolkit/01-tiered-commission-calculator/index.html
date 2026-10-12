@@ -51,18 +51,20 @@
         </div>
       </div>
 
-      <table class="plan-table">
-        <thead>
-          <tr>
-            <th>Tier</th>
-            <th>From (USD)</th>
-            <th>To (USD, blank = open)</th>
-            <th>Rate (%)</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="tierRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table class="plan-table">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>From (USD)</th>
+              <th>To (USD, blank = open)</th>
+              <th>Rate (%)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tierRows"></tbody>
+        </table>
+      </div>
       <button id="addTier" type="button" class="ghost">Add tier</button>
     </section>
 
@@ -78,25 +80,27 @@
     <section id="results" class="card" hidden>
       <h2>Payout breakdown</h2>
       <p id="resultSummary" class="summary"></p>
-      <table class="result-table">
-        <thead>
-          <tr>
-            <th>Tier</th>
-            <th>Band</th>
-            <th>Revenue in band</th>
-            <th>Below quota</th>
-            <th>Above quota (accelerated)</th>
-            <th>Tier payout</th>
-          </tr>
-        </thead>
-        <tbody id="resultRows"></tbody>
-        <tfoot>
-          <tr>
-            <th colspan="5">Total payout</th>
-            <th id="resultTotal"></th>
-          </tr>
-        </tfoot>
-      </table>
+      <div class="table-wrap">
+        <table class="result-table">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Band</th>
+              <th>Revenue in band</th>
+              <th>Below quota</th>
+              <th>Above quota (accelerated)</th>
+              <th>Tier payout</th>
+            </tr>
+          </thead>
+          <tbody id="resultRows"></tbody>
+          <tfoot>
+            <tr>
+              <th colspan="5">Total payout</th>
+              <th id="resultTotal"></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </section>
   </main>
 

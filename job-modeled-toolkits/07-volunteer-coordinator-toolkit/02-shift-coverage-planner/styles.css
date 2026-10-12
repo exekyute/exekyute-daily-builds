@@ -273,3 +273,28 @@ code {
   border-radius: 4px;
   font-size: 13px;
 }
+
+@media screen and (max-width: 580px) {
+  .wrap {
+    padding: 24px 16px 64px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+
+  .table-wrap th,
+  .table-wrap td {
+    white-space: nowrap;
+  }
+
+  .file-label {
+    flex-wrap: wrap;
+  }
+
+  .file-label input {
+    width: 100%;
+  }
+}

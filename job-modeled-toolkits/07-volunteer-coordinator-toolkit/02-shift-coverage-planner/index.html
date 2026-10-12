@@ -29,36 +29,40 @@
 
     <section class="card">
       <h2>Shifts</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Role</th>
-            <th>Date</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Min</th>
-            <th>Max</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="shiftRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Role</th>
+              <th>Date</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Min</th>
+              <th>Max</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="shiftRows"></tbody>
+        </table>
+      </div>
       <p class="hint">Dates are YYYY-MM-DD. Times are 24-hour HH:MM. Min and max are whole numbers.</p>
     </section>
 
     <section class="card">
       <h2>Assignments</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Shift id</th>
-            <th>Volunteer id</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="assignmentRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Shift id</th>
+              <th>Volunteer id</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="assignmentRows"></tbody>
+        </table>
+      </div>
       <p class="hint">Each row signs one volunteer up for one shift.</p>
     </section>
 
@@ -75,18 +79,20 @@
 
     <section class="card">
       <p id="summary"></p>
-      <table>
-        <thead>
-          <tr>
-            <th>Shift</th>
-            <th>Time</th>
-            <th>Cleared / min, max</th>
-            <th>Status</th>
-            <th>Filled by</th>
-          </tr>
-        </thead>
-        <tbody id="coverageRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Shift</th>
+              <th>Time</th>
+              <th>Cleared / min, max</th>
+              <th>Status</th>
+              <th>Filled by</th>
+            </tr>
+          </thead>
+          <tbody id="coverageRows"></tbody>
+        </table>
+      </div>
 
       <div class="panel conflicts">
         <h2>Double-booked volunteers</h2>

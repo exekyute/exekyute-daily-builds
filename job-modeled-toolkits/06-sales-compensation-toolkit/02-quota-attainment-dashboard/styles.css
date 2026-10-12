@@ -204,4 +204,19 @@ thead th {
   .summary-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .wrap {
+    padding: 24px 16px 64px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+
+  .table-wrap th,
+  .table-wrap td {
+    white-space: nowrap;
+  }
 }

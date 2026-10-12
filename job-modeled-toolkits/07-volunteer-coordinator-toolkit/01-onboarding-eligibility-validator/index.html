@@ -49,21 +49,23 @@
 
     <section class="card">
       <h2>Volunteers</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Date of birth</th>
-            <th>Check status</th>
-            <th>Check date</th>
-            <th>Trainings done</th>
-            <th>Waiver date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="volunteerRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Date of birth</th>
+              <th>Check status</th>
+              <th>Check date</th>
+              <th>Trainings done</th>
+              <th>Waiver date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="volunteerRows"></tbody>
+        </table>
+      </div>
       <p class="hint">
         Check status is one of <code>passed</code>, <code>failed</code>, or
         <code>none</code>. Trainings done is a comma separated list of codes.
@@ -84,16 +86,18 @@
 
     <section class="card">
       <p id="summary"></p>
-      <table>
-        <thead>
-          <tr>
-            <th>Volunteer</th>
-            <th>Status</th>
-            <th>Reasons</th>
-          </tr>
-        </thead>
-        <tbody id="resultRows"></tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Volunteer</th>
+              <th>Status</th>
+              <th>Reasons</th>
+            </tr>
+          </thead>
+          <tbody id="resultRows"></tbody>
+        </table>
+      </div>
 
       <div class="roster-out">
         <h2>Cleared roster for the Shift Coverage Planner</h2>
