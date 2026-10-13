@@ -12,11 +12,11 @@ Downloads/
     ├── achievements.txt
     ├── icons_64/
     │   ├── Heartbreaker.jpg
-    │   ├── Cake_and_Grief_Counseling.jpg
+    │   ├── Cake and Grief Counseling.jpg
     │   └── ... (one .jpg per achievement, the original Steam icon)
     └── icons_256/
         ├── Heartbreaker.png
-        ├── Cake_and_Grief_Counseling.png
+        ├── Cake and Grief Counseling.png
         └── ... (one .png per achievement, upscaled 4×)
 ```
 
