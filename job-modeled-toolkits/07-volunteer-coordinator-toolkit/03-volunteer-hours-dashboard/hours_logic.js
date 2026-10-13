@@ -70,10 +70,36 @@ var HoursLogic = (function () {
     return h + ":" + (m < 10 ? "0" + m : String(m));
   }
 
-  // Split a single CSV line into fields. The sample data has no quoted commas,
-  // so a plain split is enough and stays easy to read.
+  // Split one CSV line into trimmed fields. A field that starts with a quote
+  // may hold commas, and a doubled quote ("") inside it stands for one quote.
   function splitLine(line) {
-    return line.split(",").map(function (f) { return f.trim(); });
+    var fields = [];
+    var field = "";
+    var inQuotes = false;
+
+    for (var i = 0; i < line.length; i++) {
+      var ch = line.charAt(i);
+      if (inQuotes) {
+        if (ch === '"' && line.charAt(i + 1) === '"') {
+          field += '"';
+          i++;
+        } else if (ch === '"') {
+          inQuotes = false;
+        } else {
+          field += ch;
+        }
+      } else if (ch === '"' && field === "") {
+        inQuotes = true;
+      } else if (ch === ",") {
+        fields.push(field);
+        field = "";
+      } else {
+        field += ch;
+      }
+    }
+
+    fields.push(field);
+    return fields.map(function (f) { return f.trim(); });
   }
 
   // Parse CSV text into valid rows and rejected rows. Returns:

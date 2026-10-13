@@ -138,6 +138,26 @@
       record("an excessive single entry is flagged", hasAnomaly(messy, "excessive-entry"));
       record("an excessive daily total is flagged", hasAnomaly(messy, "excessive-daily"));
 
+      // --- quoted fields ---------------------------------------------------
+      var QUOTED = [
+        "entry_id,volunteer_id,volunteer_name,date,start_time,end_time",
+        'Q-1,V-201,"Smith, Jane",2026-06-02,09:00,12:00',
+        'Q-2,V-202,"Sam ""Sunny"" Okafor",2026-06-03,10:00,11:30',
+        'Q-3,V-203,Lee "LJ" Park,2026-06-04,09:00,10:00'
+      ].join("\n");
+
+      var quotedParsed = HoursLogic.parseCsv(QUOTED);
+      function quotedRow(id) {
+        return quotedParsed.rows.filter(function (r) { return r.entry_id === id; })[0] || {};
+      }
+      assertEqual("a quoted file keeps all three rows", quotedParsed.rows.length, 3);
+      assertEqual("a quoted file rejects nothing", quotedParsed.rejected.length, 0);
+      assertEqual("a quoted name keeps its comma", quotedRow("Q-1").volunteer_name, "Smith, Jane");
+      assertEqual("the fields after a quoted comma stay in their columns",
+        quotedRow("Q-1").date + " " + quotedRow("Q-1").end, "2026-06-02 12:00");
+      assertEqual("a doubled quote reads as one quote", quotedRow("Q-2").volunteer_name, 'Sam "Sunny" Okafor');
+      assertEqual("a quote inside an unquoted name stays as typed", quotedRow("Q-3").volunteer_name, 'Lee "LJ" Park');
+
       // --- summary ---------------------------------------------------------
       var summary = document.getElementById("summary");
       summary.textContent = passed + " passed, " + failed + " failed";
