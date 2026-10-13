@@ -1029,6 +1029,13 @@ RULES:
       return view;
   }
 
+  /* escapeHtml: Gemini and the mock rows hand me plain text. Before a vendor,
+     PO, invoice number or description goes into the table markup, &, <, > and "
+     become entities so the cell shows exactly what came back. */
+  function escapeHtml(text) {
+      return String(text).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  }
+
   /* renderCell: returns the HTML string for a single table cell.
      If the field is flagged (meaning Gemini returned null for it) or the
      value is genuinely empty, I show the N/A pill with a hover tooltip
@@ -1042,7 +1049,7 @@ RULES:
             <span class="hint-bubble">Review manually. OCR or Gemini could not confirm this field.</span>
           </span>`;
       }
-      return `<span class="${extraClass}">${value}</span>`;
+      return `<span class="${extraClass}">${escapeHtml(value)}</span>`;
   }
 
   /* For PO numbers specifically: when the value is present BUT length mismatches expected,
@@ -1052,12 +1059,12 @@ RULES:
       if (flagged) {
           // Value present but length is wrong. Show value + the same hint UX so the user notices.
           return `<span class="hint">
-            <span class="text-zinc-300">${value}</span>
+            <span class="text-zinc-300">${escapeHtml(value)}</span>
             <svg class="w-3.5 h-3.5 text-amber-400/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             <span class="hint-bubble">PO length does not match your configured format.</span>
           </span>`;
       }
-      return `<span>${value}</span>`;
+      return `<span>${escapeHtml(value)}</span>`;
   }
 
   /* ============================================================
@@ -1095,7 +1102,7 @@ RULES:
               <td class="px-5 py-3.5 font-medium ${inv.vendor ? 'text-zinc-200' : ''}">${renderCell(inv.vendor, inv._flags?.vendor)}</td>
               <td class="px-5 py-3.5 text-zinc-300 font-mono text-xs">${renderPoCell(inv.poNumber, inv._flags?.poNumber)}</td>
               <td class="px-5 py-3.5 text-zinc-300 font-mono text-xs">${renderCell(inv.invoiceNumber, inv._flags?.invoiceNumber)}</td>
-              <td class="px-5 py-3.5 text-zinc-400">${inv.description}</td>
+              <td class="px-5 py-3.5 text-zinc-400">${escapeHtml(inv.description)}</td>
               <td class="px-5 py-3.5 text-zinc-300 text-right font-mono tabular">${inv._flags?.subtotal ? renderCell(null, true) : '$' + inv.subtotal.toFixed(2)}</td>
               <td class="px-5 py-3.5 text-zinc-400 text-right font-mono tabular">${inv._flags?.tax ? renderCell(null, true) : '$' + inv.tax.toFixed(2)}</td>
               <td class="px-5 py-3.5 text-zinc-100 font-semibold text-right font-mono tabular">${inv._flags?.total ? renderCell(null, true) : '$' + inv.total.toFixed(2)}</td>
