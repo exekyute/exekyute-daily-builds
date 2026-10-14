@@ -638,7 +638,7 @@
       <div class="field">
         <label for="f-camp-desc">Description</label>
         <textarea id="f-camp-desc" maxlength="320" placeholder="Six-week cross-platform brand campaign promoting the Summit Series technical apparel line. Reaches outdoor and adventure-travel audiences across Northwind Media's display, newsletter, video, and podcast inventory in Canada."></textarea>
-        <div class="hint" id="desc-hint">Up to 320 chars — keep ~3 lines or signatures overflow</div>
+        <div class="hint" id="desc-hint">Up to 320 chars. Keep ~3 lines or signatures overflow</div>
       </div>
       <div class="field-row">
         <div class="field">
@@ -1012,8 +1012,8 @@ function bindAll() {
   $('f-camp-desc').addEventListener('input', () => {
     const len = $('f-camp-desc').value.length;
     const hint = $('desc-hint');
-    if (len > 320) { hint.className = 'hint err'; hint.textContent = `${len}/320 — over hard limit`; }
-    else if (len > 220) { hint.className = 'hint warn'; hint.textContent = `${len}/320 — getting long, may push signatures down`; }
+    if (len > 320) { hint.className = 'hint err'; hint.textContent = `${len}/320: over hard limit`; }
+    else if (len > 220) { hint.className = 'hint warn'; hint.textContent = `${len}/320: getting long, may push signatures down`; }
     else { hint.className = 'hint'; hint.textContent = `${len}/320`; }
   });
   $('f-camp-desc').dispatchEvent(new Event('input'));
