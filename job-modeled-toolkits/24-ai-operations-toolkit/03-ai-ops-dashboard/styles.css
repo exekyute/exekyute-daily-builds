@@ -238,3 +238,9 @@ h1 {
   .summary-grid { grid-template-columns: repeat(2, 1fr); }
   .page { padding: var(--s4) var(--s3); }
 }
+
+@media screen and (max-width: 440px) {
+  .page { padding: var(--s4) var(--s2); }
+  .summary-grid { grid-template-columns: 1fr; }
+  .table-wrap { border: 1px solid var(--line); border-radius: var(--radius); }
+}

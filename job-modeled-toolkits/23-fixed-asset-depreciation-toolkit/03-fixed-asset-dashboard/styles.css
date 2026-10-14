@@ -238,3 +238,11 @@ h2 {
   .summary { grid-template-columns: repeat(2, 1fr); }
   .grid { grid-template-columns: 1fr; }
 }
+
+@media screen and (max-width: 440px) {
+  .page { padding: var(--s5) var(--s2); }
+  .summary { grid-template-columns: 1fr; }
+  .chart-row { grid-template-columns: 1fr auto; row-gap: var(--s1); }
+  .chart-key, .bar-group { grid-column: 1 / -1; }
+  .table-wrap { border: 1px solid var(--line); border-radius: 10px; }
+}
