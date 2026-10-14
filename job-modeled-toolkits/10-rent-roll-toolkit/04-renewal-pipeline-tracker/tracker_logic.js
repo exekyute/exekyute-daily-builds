@@ -172,7 +172,7 @@ function analyzeRenewals(csvText) {
   var index = headerIndex(header);
   var records = [];
   var issues = [];
-  var seen = {};
+  var seen = Object.create(null);
 
   for (var i = 1; i < rows.length; i++) {
     var row = rows[i];
@@ -252,7 +252,7 @@ function analyzeRenewals(csvText) {
   var counts = { due_now: 0, upcoming: 0, expired: 0, other: 0 };
   for (var j = 0; j < records.length; j++) {
     var key = records[j].status;
-    if (key in counts) {
+    if (counts.hasOwnProperty(key)) {
       counts[key] += 1;
     } else {
       counts.other += 1;
@@ -296,8 +296,8 @@ function sortValue(record, key) {
 
 // The default order: most urgent status first, then soonest notice within a status.
 function defaultCompare(a, b) {
-  var pa = a.status in STATUS_PRIORITY ? STATUS_PRIORITY[a.status] : 99;
-  var pb = b.status in STATUS_PRIORITY ? STATUS_PRIORITY[b.status] : 99;
+  var pa = STATUS_PRIORITY.hasOwnProperty(a.status) ? STATUS_PRIORITY[a.status] : 99;
+  var pb = STATUS_PRIORITY.hasOwnProperty(b.status) ? STATUS_PRIORITY[b.status] : 99;
   if (pa !== pb) {
     return pa - pb;
   }

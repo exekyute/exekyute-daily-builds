@@ -130,6 +130,19 @@
       assertEqual("one valid row survives", messyResult.units.length, 1);
       assertEqual("three rows skipped", messyResult.issues.length, 3);
 
+      // Units named constructor and __proto__, like built-in object properties, are
+      // ordinary units. Only the repeated constructor row is a duplicate.
+      var builtIns = analyzeRentRoll(
+        "unit,tenant,monthly_rent,prorated_rent,late_fee,amount_due,lease_end\n" +
+          "constructor,Ava Bennett,1500.00,750.00,0.00,750.00,2027-05-31\n" +
+          "__proto__,Maya Singh,1650.00,550.00,0.00,550.00,2026-06-30\n" +
+          "constructor,Noah Diaz,2000.00,2000.00,25.00,2525.00,2026-08-11\n",
+        "2026-06-12",
+        "60"
+      );
+      assertEqual("units constructor and __proto__ both kept", builtIns.units.length, 2);
+      assertEqual("only the repeated constructor row is skipped", builtIns.issues.length, 1);
+
       // Quoted fields: a tenant name with a comma and one with a doubled quote, as
       // the calculator writes them, a hand-typed quote inside a name, and money
       // values with a thousands separator.

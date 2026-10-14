@@ -195,7 +195,7 @@ function analyzeRentRoll(csvText, asOfText, windowText) {
   var index = headerIndex(header);
   var units = [];
   var issues = [];
-  var seen = {};
+  var seen = Object.create(null);
 
   for (var i = 1; i < rows.length; i++) {
     var row = rows[i];

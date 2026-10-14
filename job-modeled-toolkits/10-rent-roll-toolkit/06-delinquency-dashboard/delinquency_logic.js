@@ -174,7 +174,7 @@ function analyzeAging(csvText) {
   var index = headerIndex(header);
   var records = [];
   var issues = [];
-  var seen = {};
+  var seen = Object.create(null);
 
   for (var i = 1; i < rows.length; i++) {
     var row = rows[i];
