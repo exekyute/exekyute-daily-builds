@@ -131,6 +131,9 @@
             if (typeof parsed.currentBalance === 'undefined') {
               parsed.currentBalance = 0;
             }
+            if (parsed.retirementAge <= parsed.currentAge) {
+              parsed.retirementAge = Math.min(85, parsed.currentAge + 1);
+            }
             return parsed;
           } catch (e) { }
         }
@@ -148,6 +151,9 @@
 
       const handleInputChange = (field, value) => {
         setInputs(prev => ({ ...prev, [field]: value }));
+        if (field === 'currentAge') {
+          setInputs(prev => (prev.retirementAge <= value ? { ...prev, retirementAge: Math.min(85, value + 1) } : prev));
+        }
       };
 
       const handleReset = () => setInputs(defaultInputs);
