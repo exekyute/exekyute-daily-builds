@@ -116,6 +116,15 @@ section.panel p.hint { color: var(--ink-faint); font-size: 13px; margin-bottom: 
 .wt-row .wt-num { text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; color: var(--ink-soft); }
 
 footer { color: var(--ink-faint); font-size: 12px; text-align: center; margin-top: 12px; }
+
+@media screen and (max-width: 480px) {
+  body { padding: 48px 16px 72px; }
+  section.panel { padding: 28px 20px 32px; }
+  .wt-row { grid-template-columns: 1fr auto; row-gap: 8px; }
+  .wt-row .wt-track { grid-column: 1 / -1; grid-row: 2; }
+  .rank-list li { grid-template-columns: minmax(0, 1fr) auto; row-gap: 8px; }
+  .rank-list .bar-track { grid-column: 1 / -1; grid-row: 2; }
+}
 </style>
 </head>
 <body>

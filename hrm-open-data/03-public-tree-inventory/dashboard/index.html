@@ -114,6 +114,15 @@
   .check b { color: var(--leaf-deep); }
 
   footer { color: var(--ink-faint); font-size: 12px; text-align: center; margin-top: 34px; }
+
+  @media screen and (max-width: 460px) {
+    body { padding: 48px 16px 72px; }
+    section.panel { padding: 28px 20px 32px; }
+    .rank-list li { grid-template-columns: 26px 1fr auto; row-gap: 8px; }
+    .rank-list .bar-track { grid-column: 2 / -1; grid-row: 2; }
+    .dist-list li { grid-template-columns: 1fr auto; row-gap: 8px; }
+    .dist-list .bar-track { grid-column: 1 / -1; grid-row: 2; }
+  }
 </style>
 </head>
 <body>

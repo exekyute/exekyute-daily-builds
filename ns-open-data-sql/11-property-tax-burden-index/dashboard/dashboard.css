@@ -250,3 +250,12 @@ h1 {
   }
   .rank-bar-track, .outlier-badge { display: none; }
 }
+
+@media screen and (max-width: 480px) {
+  .page { padding: 40px 16px 60px; }
+  .panel { padding: 34px 20px 36px; }
+  .rank-row { grid-template-columns: 32px 1fr; row-gap: 4px; }
+  .rank-value { grid-column: 2; text-align: left; }
+  .picker-label { display: block; margin: 16px 0 8px; }
+  #muni-picker { width: 100%; }
+}
