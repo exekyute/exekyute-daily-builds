@@ -163,6 +163,14 @@ a:hover { text-decoration: underline; }
   .search-wrap { order: 3; max-width: none; flex-basis: 100%; }
 }
 
+@media screen and (max-width: 420px) {
+  .topbar { padding: 16px; }
+  .topbar-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .stats { padding: 24px 16px 0 16px; }
+  .layout { grid-template-columns: minmax(0, 1fr); padding: 24px 16px 48px 16px; }
+  .modal-body .form-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* ---------- sidebar ---------- */
 
 .sidebar, .rail-box {
