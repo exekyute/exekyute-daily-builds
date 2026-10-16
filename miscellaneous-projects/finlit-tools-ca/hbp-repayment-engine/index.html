@@ -439,7 +439,11 @@
       const [inputs, setInputs] = useState(() => {
         const v2 = localStorage.getItem('hbp_engine_inputs_v2');
         if (v2) {
-          try { return { ...defaultInputs, ...JSON.parse(v2) }; } catch (e) {}
+          try {
+            const saved = { ...defaultInputs, ...JSON.parse(v2) };
+            if (saved.retirementAge <= saved.currentAge) saved.retirementAge = Math.min(85, saved.currentAge + 1);
+            return saved;
+          } catch (e) {}
         }
         const v1 = localStorage.getItem('hbp_engine_inputs_v1');
         if (v1) {
@@ -512,7 +516,11 @@
         [projection, inputs.currentAge, inputs.retirementAge, inputs.assumedReturnRate]
       );
 
-      const handleChange = (field, value) => setInputs(prev => ({ ...prev, [field]: value }));
+      const handleChange = (field, value) => setInputs(prev => {
+        const next = { ...prev, [field]: value };
+        if (field === 'currentAge' && next.retirementAge <= value) next.retirementAge = Math.min(85, value + 1);
+        return next;
+      });
       const handleReset  = () => setInputs(defaultInputs);
       const handleCustomYearChange = (yearIndex, field, value) => {
         setInputs(prev => ({
