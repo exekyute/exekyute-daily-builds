@@ -29,6 +29,11 @@ if (!slug) {
   console.error("Refusing to create: the title has no ASCII letters or digits to build the file name from.");
   process.exit(1);
 }
+const fileName = `${slug}.mdx`;
+if (fileName.length > 255) {
+  console.error(`Refusing to create: the file name from this title would be ${fileName.length} characters, over the 255 most file systems allow.`);
+  process.exit(1);
+}
 const today = new Date().toISOString().slice(0, 10);
 
 // Typed values go in through JSON.stringify: YAML reads a JSON string back unchanged.
