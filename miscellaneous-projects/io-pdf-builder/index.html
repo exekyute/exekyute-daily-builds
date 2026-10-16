@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>IO Builder</title>
 <style>
   :root {
@@ -522,6 +523,23 @@
   }
 
   .page .items, .page .totals, .page .signatures { page-break-inside: avoid; }
+
+  /* ============================================================
+     PHONES: the form above the preview, the page scrolls sideways
+     ============================================================ */
+  @media screen and (max-width: 760px) {
+    .builder { grid-template-columns: minmax(0, 1fr); }
+    .builder-form {
+      height: auto;
+      overflow-y: visible;
+      border-right: none;
+      border-bottom: 1px solid var(--form-border);
+    }
+    .builder-preview { height: auto; overflow-x: auto; padding: 18px 22px; }
+    .toolbar .btn { white-space: nowrap; }
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+    .field-row > .field:empty { display: none; }
+  }
 
   /* ============================================================
      PRINT: only the page, nothing else
