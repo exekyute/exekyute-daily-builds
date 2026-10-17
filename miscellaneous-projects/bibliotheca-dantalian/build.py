@@ -196,7 +196,8 @@ def render_inline(text, ctx):
     text = WIKILINK_RE.sub(wikilink, text)
 
     def ext_link(m):
-        url = html.escape(m.group(2), quote=True)
+        # text was escaped at the top, so unescape the URL first to escape & only once
+        url = html.escape(html.unescape(m.group(2)), quote=True)
         return f'<a href="{url}" rel="noopener">{m.group(1)}</a>'
 
     text = LINK_RE.sub(ext_link, text)
