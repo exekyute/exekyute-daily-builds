@@ -30,6 +30,10 @@
     return n.toLocaleString("en-CA");
   }
 
+  function dealCount(n) {
+    return count(n) + (n === 1 ? " deal" : " deals");
+  }
+
   function share(partCents, wholeCents) {
     if (!wholeCents) return "0.00";
     return (Math.round(partCents * 10000 / wholeCents) / 100).toFixed(2);
@@ -256,7 +260,7 @@
         '<span class="name">' + escapeHtml(g.name) + tag + "</span>" +
         '<span class="num">' + money(g.cents) +
         '<span class="pct">' + share(g.cents, totalCents) + "% of total, " +
-        count(g.deals) + " deals</span></span>" +
+        dealCount(g.deals) + "</span></span>" +
         '<span class="bar-track"><span class="bar-fill" style="width:' +
         width.toFixed(2) + '%"></span></span>' +
         "</li>";
@@ -270,8 +274,8 @@
         restDeals += g.deals;
       });
       el.innerHTML += '<li class="empty">' + (groups.length - LIST_ROWS) +
-        " more, " + money(restCents) + " across " + count(restDeals) +
-        " deals</li>";
+        " more, " + money(restCents) + " across " + dealCount(restDeals) +
+        "</li>";
     }
   }
 
@@ -284,7 +288,7 @@
     document.getElementById("mix-lead").innerHTML =
       "Across all six years the largest single deal-type label is <strong>" +
       escapeHtml(lead.name) + "</strong>, worth " + money(lead.cents) +
-      " over " + count(lead.deals) + " deals, or " +
+      " over " + dealCount(lead.deals) + ", or " +
       share(lead.cents, allCents) + " percent of every dollar in the file.";
 
     document.getElementById("mix-grid").innerHTML = years.map(function (y) {
@@ -300,7 +304,7 @@
       }).join("");
       return '<div class="mix-card' + (y.year === selected ? " on" : "") +
         '"><h3>' + y.year + '</h3><div class="total">' + money(y.cents) +
-        " across " + count(y.deals) + " deals</div>" + rows + "</div>";
+        " across " + dealCount(y.deals) + "</div>" + rows + "</div>";
     }).join("");
   }
 
@@ -324,7 +328,7 @@
 
     document.getElementById("classes").innerHTML =
       cell("Deals with a contribution value", count(funded),
-           "out of " + count(deals) + " deals") +
+           "out of " + dealCount(deals)) +
       cell("Blank contributions", count(blank),
            "left out of every sum, never read as zero") +
       cell("Contributions of exactly zero", count(zero),
