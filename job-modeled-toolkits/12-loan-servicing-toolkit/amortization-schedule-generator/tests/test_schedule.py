@@ -2,7 +2,8 @@
 
 Covered: the level payment formula, the hand-checked six-period schedule, the
 final-period reconciliation, a zero-interest loan, a single-period loan, that
-every schedule closes at exactly zero, and the validation rules for bad input.
+every schedule closes at exactly zero, a whole-number term written as 6.0 or
+1e1, and the validation rules for bad input.
 """
 
 import unittest
@@ -91,6 +92,18 @@ class ScheduleTests(unittest.TestCase):
             summary["total_paid"],
             Decimal("2500.00") + summary["total_interest"],
         )
+
+    def test_term_written_with_decimals_builds_same_schedule(self):
+        # Validation accepts 6.0 as a whole number of months.
+        self.assertEqual(validate_inputs("1000.00", "12", "6.0"), [])
+        self.assertEqual(build_schedule("1000.00", "12", "6.0"),
+                         build_schedule("1000.00", "12", 6))
+
+    def test_term_in_exponent_form_builds_same_schedule(self):
+        # Validation accepts 1e1 as 10 months.
+        self.assertEqual(validate_inputs("1000.00", "12", "1e1"), [])
+        self.assertEqual(build_schedule("1000.00", "12", "1e1"),
+                         build_schedule("1000.00", "12", 10))
 
 
 class ValidationTests(unittest.TestCase):

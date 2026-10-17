@@ -97,9 +97,9 @@ Cannot build the schedule. Please fix the following:
 
 ## In action
 
-The test suite, all 17 cases passing:
+The test suite, all 19 cases passing:
 
-![The unittest suite running with all 17 tests reporting ok](images/01-unittest-suite-passing.png)
+![The unittest suite running with all 19 tests reporting ok](images/01-unittest-suite-passing.png)
 
 A run on the sample loan, with the printed summary:
 

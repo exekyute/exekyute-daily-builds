@@ -35,7 +35,7 @@ def level_payment(principal, annual_rate_percent, term_months):
     """
     principal = Decimal(principal)
     r = monthly_rate(annual_rate_percent)
-    n = int(term_months)
+    n = int(Decimal(term_months))
 
     if r == 0:
         return to_cents(principal / Decimal(n))
@@ -59,7 +59,7 @@ def build_schedule(principal, annual_rate_percent, term_months):
     """
     principal = to_cents(Decimal(principal))
     r = monthly_rate(annual_rate_percent)
-    n = int(term_months)
+    n = int(Decimal(term_months))
     payment = level_payment(principal, annual_rate_percent, term_months)
 
     rows = []
