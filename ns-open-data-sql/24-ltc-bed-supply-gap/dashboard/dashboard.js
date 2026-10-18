@@ -30,6 +30,11 @@
     });
   }
 
+  function escapeHtml(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
   function round2(x) {
     return Math.round(x * 100) / 100;
   }
@@ -143,7 +148,7 @@
     card("Beds per facility", fmt2(avgBeds) + " average",
          fmt2(medBeds) + " median") +
     card("Largest facility", fmtInt(largest.total_beds) + " beds",
-         largest.facility_name + ", " + largest.town) +
+         escapeHtml(largest.facility_name) + ", " + escapeHtml(largest.town)) +
     card("Respite beds", fmtInt(bedTypeTotals.nursing_respite +
          bedTypeTotals.residential_respite),
          "reported separately, outside the total");
@@ -159,7 +164,7 @@
     var nursingPct = 100 * z.nursing / z.total_beds;
     var residentialPct = 100 - nursingPct;
     return '<div class="zone-row">' +
-      '<span class="name">' + z.zone + "</span>" +
+      '<span class="name">' + escapeHtml(z.zone) + "</span>" +
       '<span class="track" style="width:' + span.toFixed(2) + '%">' +
         '<span class="seg nursing" style="width:' + nursingPct.toFixed(2) + '%" ' +
         'title="' + fmtInt(z.nursing) + ' nursing home beds"></span>' +
@@ -178,7 +183,7 @@
     "</tr></thead><tbody>" +
     zones.map(function (z) {
       return "<tr>" +
-        '<td class="text">' + z.zone + "</td>" +
+        '<td class="text">' + escapeHtml(z.zone) + "</td>" +
         "<td>" + fmtInt(z.facilities) + "</td>" +
         "<td>" + fmtInt(z.nursing) + "</td>" +
         "<td>" + fmtInt(z.residential) + "</td>" +
@@ -292,7 +297,7 @@
   function fillFilter(el, key, allLabel) {
     el.innerHTML = '<option value="">' + allLabel + "</option>" +
       distinct(key).map(function (v) {
-        return '<option value="' + v + '">' + v + "</option>";
+        return '<option value="' + escapeHtml(v) + '">' + escapeHtml(v) + "</option>";
       }).join("");
   }
 
@@ -336,7 +341,7 @@
       return "<tr>" + COLUMNS.map(function (c) {
         var v = r[c.key];
         return "<td" + (c.text ? ' class="text"' : "") + ">" +
-          (typeof v === "number" ? fmtInt(v) : v) + "</td>";
+          (typeof v === "number" ? fmtInt(v) : escapeHtml(v)) + "</td>";
       }).join("") + "</tr>";
     }).join("") + "</tbody>";
 
