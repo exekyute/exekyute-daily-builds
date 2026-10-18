@@ -5,13 +5,17 @@ Run from this folder with:
     python -m unittest -v
 
 The tests cover the allocation math (exact reconciliation, the largest-remainder
-tie-break, zero-basis lines), the money formatting, and every validation rule.
+tie-break, zero-basis lines), the money formatting, every validation rule, and
+the file line cli.read_rows gives a row after blank lines or multi-line fields.
 """
 
+import os
+import tempfile
 import unittest
 from decimal import Decimal
 
 import allocator_logic as logic
+import cli
 
 
 def make_item(line_id, quantity, unit_cost, weight, description="line"):
@@ -222,6 +226,60 @@ class BuildLineItemsTests(unittest.TestCase):
         rows = [self._row(2, line_id="")]
         with self.assertRaises(logic.ValidationError):
             logic.build_line_items(rows)
+
+
+class ReadRowsTests(unittest.TestCase):
+    HEADER = "line_id,description,quantity,unit_cost,weight"
+
+    def _rows(self, text):
+        # newline="" writes the line endings in text to the file unchanged.
+        with tempfile.TemporaryDirectory() as folder:
+            path = os.path.join(folder, "shipment.csv")
+            with open(path, "w", encoding="utf-8", newline="") as handle:
+                handle.write(text)
+            _fieldnames, rows = cli.read_rows(path)
+        return rows
+
+    def test_blank_lines_count_toward_the_line_number(self):
+        lines = [self.HEADER, "", "L001,Good,5,10.00,12.0", "", "L002,Bad,abc,5.00,4.0"]
+        for ending in ("\n", "\r\n"):
+            with self.subTest(ending=ending):
+                rows = self._rows(ending.join(lines) + ending)
+                self.assertEqual([number for number, _record in rows], [3, 5])
+                with self.assertRaises(logic.ValidationError) as caught:
+                    logic.build_line_items(rows)
+                self.assertEqual(
+                    caught.exception.problems, ["Line 5: quantity not a whole number."]
+                )
+
+    def test_multi_line_fields_start_on_their_first_line(self):
+        # L001 runs over lines 2 and 3, and L003 over lines 5 to 7.
+        lines = [
+            self.HEADER,
+            'L001,"Bracket, steel',
+            'long note",5,10.00,12.0',
+            "L002,Bad,abc,5.00,4.0",
+            'L003,"Pallet note',
+            "",
+            'with a gap",0,5.00,4.0',
+            "L004,Good,1,2.00,3.0",
+        ]
+        for ending in ("\n", "\r\n"):
+            with self.subTest(ending=ending):
+                rows = self._rows(ending.join(lines) + ending)
+                self.assertEqual([number for number, _record in rows], [2, 4, 5, 8])
+                self.assertEqual(
+                    rows[0][1]["description"], "Bracket, steel" + ending + "long note"
+                )
+                with self.assertRaises(logic.ValidationError) as caught:
+                    logic.build_line_items(rows)
+                self.assertEqual(
+                    caught.exception.problems,
+                    [
+                        "Line 4: quantity not a whole number.",
+                        "Line 5: quantity must be greater than 0.",
+                    ],
+                )
 
 
 if __name__ == "__main__":

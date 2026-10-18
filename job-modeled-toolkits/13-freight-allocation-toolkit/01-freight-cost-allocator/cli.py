@@ -20,18 +20,43 @@ import sys
 import allocator_logic as logic
 
 
+def note_blank_lines(lines, blank_lines):
+    """Yield each line of a file unchanged, noting the empty ones.
+
+    Adds the 1-based number of every line that holds only a line ending to the
+    blank_lines set. DictReader skips such a line when it falls between rows.
+    """
+    for number, line in enumerate(lines, start=1):
+        if line in ("\n", "\r\n", "\r"):
+            blank_lines.add(number)
+        yield line
+
+
 def read_rows(path):
     """Read a shipment CSV into (fieldnames, rows).
 
-    rows is a list of (line_number, record) tuples. line_number is 1-based and
-    counts the header as line 1, so data rows start at line 2.
+    rows is a list of (line_number, record) tuples. line_number is the 1-based
+    file line the row starts on. The header is line 1, and blank lines and the
+    extra lines of a quoted field that runs over several lines count too.
     """
     with open(path, newline="", encoding="utf-8-sig") as handle:
-        reader = csv.DictReader(handle, restkey=logic.EXTRA_KEY, restval=None)
+        blank_lines = set()
+        reader = csv.DictReader(
+            note_blank_lines(handle, blank_lines),
+            restkey=logic.EXTRA_KEY,
+            restval=None,
+        )
         fieldnames = reader.fieldnames
         rows = []
-        for offset, record in enumerate(reader):
-            rows.append((offset + 2, record))
+        # reader.line_num is the last file line read so far, so a row starts on
+        # the first line past the previous row (or the header) that is not blank.
+        last_line = reader.line_num
+        for record in reader:
+            line_number = last_line + 1
+            while line_number in blank_lines:
+                line_number += 1
+            rows.append((line_number, record))
+            last_line = reader.line_num
     return fieldnames, rows
 
 
