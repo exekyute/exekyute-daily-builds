@@ -541,7 +541,7 @@ html[data-theme="dark"] a.redlink { color: #d99a4e; border-bottom-color: #d99a4e
     width: auto;
   }
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 20px;
     padding: 20px 14px 48px;
   }
