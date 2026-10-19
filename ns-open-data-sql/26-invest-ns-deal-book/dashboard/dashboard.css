@@ -290,7 +290,7 @@ section.panel p.lead-line strong {
 
 .mix-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 26px;
 }
 
@@ -392,4 +392,13 @@ footer {
   font-size: 12px;
   text-align: center;
   margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 56px 16px 80px;
+  }
+  section.panel {
+    padding: 30px 20px 34px;
+  }
 }
