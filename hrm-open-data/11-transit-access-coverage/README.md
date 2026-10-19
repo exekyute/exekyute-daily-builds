@@ -55,7 +55,7 @@ total 2444 spaces on both.
 
 ## Testing
 
-DuckDB is the only dependency:
+DuckDB is the only dependency, and it pulls the `spatial` extension on first run:
 
     pip install duckdb
 
