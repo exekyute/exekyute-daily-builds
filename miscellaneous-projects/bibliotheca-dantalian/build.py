@@ -74,7 +74,7 @@ def load_config(wiki_dir):
     cfg_path = wiki_dir / "wiki.json"
     if not cfg_path.is_file():
         sys.exit(f"No wiki.json found in {wiki_dir}")
-    cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+    cfg = json.loads(cfg_path.read_text(encoding="utf-8-sig"))
     for key in ("name", "tagline"):
         if not cfg.get(key):
             sys.exit(f"wiki.json: missing required field '{key}'")
@@ -107,7 +107,7 @@ FRONT_RE = re.compile(r"^---\r?\n(.*?)\r?\n---\r?\n?(.*)$", re.S)
 
 
 def parse_page(path, valid_types):
-    raw = path.read_text(encoding="utf-8")
+    raw = path.read_text(encoding="utf-8-sig")
     m = FRONT_RE.match(raw)
     if not m:
         raise ValueError(f"{path.name}: missing front matter block")
