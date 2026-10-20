@@ -242,7 +242,7 @@ h1 {
   max-width: 760px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 729px) {
   .page { padding: 40px 20px 60px; }
   h1 { font-size: 34px; }
   .rank-row {
