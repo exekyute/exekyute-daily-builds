@@ -143,6 +143,7 @@
       background: var(--ink); overflow: visible;
     }
 
+    #backlog { overflow-x: auto; }
     table.grid { width: 100%; border-collapse: collapse; margin-top: var(--s3); font-size: 14px; }
     table.grid th, table.grid td { text-align: right; padding: var(--s1) var(--s2); border-bottom: 1px solid var(--line); }
     table.grid th:first-child, table.grid td:first-child,
@@ -163,6 +164,16 @@
     .swatch.line { width: 2px; height: 14px; background: var(--ink); border-radius: 0; }
 
     footer { color: var(--muted); font-size: 13px; margin-top: var(--s4); }
+
+    @media screen and (max-width: 480px) {
+      .wrap { padding: var(--s4) var(--s2); }
+      section { padding: var(--s2); }
+      .chart-row { grid-template-columns: minmax(0, 1fr) 64px; row-gap: 0; }
+      .chart-key { grid-column: 1 / -1; }
+      .columns { gap: var(--s1); }
+      .col-stack { width: 100%; max-width: 56px; }
+      .col-key, table.grid th, table.grid td { white-space: nowrap; }
+    }
   </style>
 </head>
 <body>
