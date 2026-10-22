@@ -163,9 +163,10 @@ def parse_page(path, valid_types):
 
 CODE_RE = re.compile(r"`([^`]+)`")
 WIKILINK_RE = re.compile(r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]")
-# URL may contain balanced (...) groups (common in Wikipedia links); quotes and
-# angle brackets are excluded so the URL is safe inside an HTML attribute.
-LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^\s()\"'<>]+(?:\([^\s()\"'<>]*\)[^\s()\"'<>]*)*)\)")
+# URL may contain balanced (...) groups (common in Wikipedia links); quotes,
+# angle brackets and code-span markers (\x00) are excluded so the URL is safe
+# inside an HTML attribute.
+LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^\s()\"'<>\x00]+(?:\([^\s()\"'<>\x00]*\)[^\s()\"'<>\x00]*)*)\)")
 BOLD_RE = re.compile(r"\*\*(.+?)\*\*")
 ITAL_RE = re.compile(r"(?<!\*)\*([^*\n]+)\*(?!\*)")
 
