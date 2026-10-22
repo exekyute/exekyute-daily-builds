@@ -7,7 +7,8 @@ leads municipally at 40.20% (HRM's regional `MU` designation, which blankets the
 suburban and rural fringe), ahead of Rural and Resource at 36.82% and Park and
 Open Space at 14.84%. The most mixed community is Bedford, where the largest
 single land use class holds only 30.59% of its zoned area across all 8 classes;
-its master-planned Comprehensive Development Districts (30.59%) barely edge out
+its Other class (30.59%), split between master-planned Comprehensive Development
+Districts (17.05%) and Urban Reserve (13.55%), barely edges out
 residential land (30.07%). Halifax is next at 32.40% and Lower Sackville at
 33.21%.
 

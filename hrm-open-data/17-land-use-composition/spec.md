@@ -146,7 +146,8 @@ export:
   by-law designation `MU`, which covers large suburban and rural-fringe areas.
 - Most mixed community: Bedford, where the largest single class holds only 30.59%
   of its zoned area across all 8 classes. Its Other bucket (master-planned
-  Comprehensive Development Districts) at 30.59% barely edges out Residential at
+  Comprehensive Development Districts 17.05%, Urban Reserve 13.55%) at 30.59%
+  barely edges out Residential at
   30.07%. Next are Halifax at 32.40% (Residential) and Lower Sackville at 33.21%
   (Residential).
 
