@@ -144,8 +144,11 @@
         CommissionLogic.formatCents(row.fromCents) +
         " to " +
         CommissionLogic.formatCents(row.toCents);
+      if (row.toCents === Infinity) {
+        band = CommissionLogic.formatCents(row.fromCents) + " and up";
+      }
 
-      var aboveText = "0";
+      var aboveText = CommissionLogic.formatCents(0);
       if (row.abovePortionCents > 0) {
         aboveText =
           CommissionLogic.formatCents(row.aboveCommissionCents) +
