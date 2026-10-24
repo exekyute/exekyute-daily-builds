@@ -73,7 +73,7 @@ function drawHeatmap(): void {
   for (const s of currentCohorts) {
     const rowLabel = document.createElement("div");
     rowLabel.className = "hm-rowlabel";
-    rowLabel.innerHTML = `<span class="hm-cohort">${s.cohort}</span><span class="hm-sub">${s.cohortSize} customers, ${money.format(s.startCents / 100)}</span>`;
+    rowLabel.innerHTML = `<span class="hm-cohort">${s.cohort}</span><span class="hm-sub">${s.cohortSize} ${s.cohortSize === 1 ? "customer" : "customers"}, ${money.format(s.startCents / 100)}</span>`;
     grid.appendChild(rowLabel);
 
     for (const cell of s.cells) {
@@ -91,7 +91,7 @@ function drawHeatmap(): void {
       const detail =
         mode === "revenue"
           ? `${s.cohort} month ${cell.offset}: ${money.format(cell.retainedCents / 100)} of ${money.format(s.startCents / 100)} (${cell.revenuePct.toFixed(2)}%)`
-          : `${s.cohort} month ${cell.offset}: ${cell.activeLogos} of ${s.cohortSize} customers (${cell.logoPct.toFixed(2)}%)`;
+          : `${s.cohort} month ${cell.offset}: ${cell.activeLogos} of ${s.cohortSize} ${s.cohortSize === 1 ? "customer" : "customers"} (${cell.logoPct.toFixed(2)}%)`;
       box.title = detail;
       grid.appendChild(box);
     }
