@@ -1,16 +1,22 @@
 """Tests for the grant drawdown and compliance engine.
 
 Covers the allowable check, the burn rate and projection, the runway, the overdue
-report count, the end-to-end run against the sample files, and the validation rules.
+report count, the end-to-end run against the sample files, the --asof cutoff and
+rejection in cli.main, and the validation rules.
 
 Run from this folder:
   python -m unittest
 """
 
+import contextlib
+import csv
+import io
+import os
+import tempfile
 import unittest
 from decimal import Decimal
 
-from cli import load_award, load_deadlines, load_transactions
+from cli import load_award, load_deadlines, load_transactions, main
 from grant import (
     build_timeline,
     burn_rate,
@@ -109,6 +115,43 @@ class ValidationTests(unittest.TestCase):
     def test_invalid_transactions_file_rejected(self):
         with self.assertRaises(ValidationError):
             load_transactions("transactions_invalid.csv")
+
+
+class AsOfTests(unittest.TestCase):
+    def run_cli(self, *args):
+        """Run cli.main with its three outputs in a temp folder: (exit code, stderr, rows by file)."""
+        names = ["timeline.csv", "category_summary.csv", "deadlines.csv"]
+        with tempfile.TemporaryDirectory() as folder:
+            paths = [os.path.join(folder, name) for name in names]
+            argv = list(args) + ["--timeline-out", paths[0], "--category-out", paths[1],
+                                 "--deadlines-out", paths[2]]
+            err = io.StringIO()
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(err):
+                code = main(argv)
+            rows = {}
+            for name, path in zip(names, paths):
+                if os.path.exists(path):
+                    with open(path, newline="", encoding="utf-8") as handle:
+                        rows[name] = list(csv.DictReader(handle))
+        return code, err.getvalue(), rows
+
+    def test_category_summary_stops_at_the_asof_period(self):
+        code, _err, rows = self.run_cli("--asof", "2")
+        self.assertEqual(code, 0)
+        drawn = D(rows["timeline.csv"][-1]["cumulative_allowable"])
+        spent = {r["category"]: D(r["spent"]) for r in rows["category_summary.csv"]}
+        self.assertEqual(drawn, D("46000.00"))
+        self.assertEqual(spent, {"Equipment": D("8000.00"), "Indirect": D("0.00"),
+                                 "Salaries": D("36000.00"), "Travel": D("2000.00")})
+        self.assertEqual(sum(spent.values()), drawn)
+
+    def test_asof_or_months_below_one_rejected(self):
+        for args in (("--asof", "0"), ("--asof", "-1"), ("--months", "0")):
+            with self.subTest(args=args):
+                code, err, rows = self.run_cli(*args)
+                self.assertEqual(code, 1)
+                self.assertEqual(err, "Input rejected. --asof and --months must be 1 or more.\n")
+                self.assertEqual(rows, {})
 
 
 if __name__ == "__main__":

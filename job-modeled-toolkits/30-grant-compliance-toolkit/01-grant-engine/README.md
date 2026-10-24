@@ -43,8 +43,8 @@ run rate projects 300,000.00 at the award end, 50,000.00 over, with one report o
 
 ![Passing tests](images/02-unit-tests.png)
 
-The 13 unit tests passing, covering the allowable check, the burn rate and projection,
-the runway, the overdue-report count, and every validation rule.
+The 15 unit tests passing, covering the allowable check, the burn rate and projection,
+the runway, the overdue-report count, the as-of cutoff, and every validation rule.
 
 ![Rejected input](images/03-rejected-input.png)
 

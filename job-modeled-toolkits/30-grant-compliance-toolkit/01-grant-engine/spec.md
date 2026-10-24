@@ -17,6 +17,7 @@ row per spend (period, category, amount). `reporting_schedule.csv`, one row per 
 - Award: every field present, budget above zero, category not repeated.
 - Transactions: every field present, period a positive number, amount above zero.
 - Reports: every field present, due_period a positive number, submitted yes or no.
+- Options: `--asof` and `--months` are 1 or more; a run with either below 1 is rejected.
 
 ## Logic
 The award total is the sum of the category budgets. A cost is allowable only if its
@@ -33,9 +34,9 @@ drawdown. For each period up to the as-of period:
 5. Status = Over budget if the projection is above the award, On track otherwise.
 6. Reports overdue = reports whose due period has passed and that are not submitted.
 
-A category summary gives each category's budget, allowable spend, and remaining, and a
-deadline list gives each report's status. Money uses `decimal.Decimal` rounded half up
-to the cent.
+A category summary gives each category's budget, allowable spend up to the as-of
+period, and remaining, and a deadline list gives each report's status. Money uses
+`decimal.Decimal` rounded half up to the cent.
 
 ## Outputs
 `timeline.csv` (per period), `category_summary.csv` (per category), and `deadlines.csv`

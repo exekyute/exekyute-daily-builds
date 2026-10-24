@@ -100,10 +100,14 @@ def main(argv=None):
 
     budget_categories = set(budgets)
     award_total = money(sum(budgets.values(), Decimal("0.00")))
-    as_of = args.asof if args.asof else max(t["period"] for t in transactions)
+    as_of = args.asof if args.asof is not None else max(t["period"] for t in transactions)
+    if as_of < 1 or args.months < 1:
+        print("Input rejected. --asof and --months must be 1 or more.", file=sys.stderr)
+        return 1
 
     timeline = build_timeline(transactions, budget_categories, award_total, args.months, as_of, deadlines)
-    categories = category_summary(transactions, budgets, budget_categories)
+    to_date = [t for t in transactions if t["period"] <= as_of]
+    categories = category_summary(to_date, budgets, budget_categories)
     deadline_rows = deadline_status(deadlines, as_of)
 
     write_csv(args.timeline_out, TIMELINE_COLUMNS, timeline)
