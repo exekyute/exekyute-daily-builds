@@ -121,7 +121,7 @@ function handleFile(file: File): void {
       currentCohorts = computeCohorts(ledger);
       el<HTMLButtonElement>("exportBtn").disabled = false;
       redraw();
-      showInfo(`Loaded ${ledger.length} ledger rows into ${currentCohorts.length} cohorts. Darker cells held more of their starting base.`);
+      showInfo(`Loaded ${ledger.length} ledger ${ledger.length === 1 ? "row" : "rows"} into ${currentCohorts.length} ${currentCohorts.length === 1 ? "cohort" : "cohorts"}. Darker cells held more of their starting base.`);
     } catch (err) {
       currentCohorts = [];
       el<HTMLButtonElement>("exportBtn").disabled = true;
