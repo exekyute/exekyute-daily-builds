@@ -36,15 +36,46 @@ interface CategoryRow {
 
 type CsvKind = "period" | "aging" | "category" | "unknown";
 
-/** Split CSV text into trimmed rows of cells. Blank lines are dropped. The data
- *  these tools write has no quoted fields, so a plain split is enough. */
+/** Split CSV text into trimmed rows of cells. Blank lines are dropped. The SQL tools
+ *  write with Python's csv module, which puts double quotes around a department or
+ *  category that holds a comma, so each line goes through splitCsvLine. */
 function splitCsv(text: string): string[][] {
   return text
     .replace(/\r\n/g, "\n")
     .split("\n")
     .map((line) => line.trim())
     .filter((line) => line.length > 0)
-    .map((line) => line.split(",").map((cell) => cell.trim()));
+    .map((line) => splitCsvLine(line).map((cell) => cell.trim()));
+}
+
+/** Split one CSV line into cells. A cell that opens with a double quote may hold
+ *  commas, and a doubled quote ("") inside it stands for one quote. */
+function splitCsvLine(line: string): string[] {
+  const cells: string[] = [];
+  let cell = "";
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line.charAt(i);
+    if (inQuotes) {
+      if (ch === '"' && line.charAt(i + 1) === '"') {
+        cell += '"';
+        i++;
+      } else if (ch === '"') {
+        inQuotes = false;
+      } else {
+        cell += ch;
+      }
+    } else if (ch === '"' && cell === "") {
+      inQuotes = true;
+    } else if (ch === ",") {
+      cells.push(cell);
+      cell = "";
+    } else {
+      cell += ch;
+    }
+  }
+  cells.push(cell);
+  return cells;
 }
 
 /** Identify a file by the columns in its header, so the loader never mislabels one. */

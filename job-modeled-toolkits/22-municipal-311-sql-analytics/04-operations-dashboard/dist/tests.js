@@ -94,6 +94,28 @@ test("a broken closing value is caught as an identity failure", () => {
     assertEqual(failures.length, 1, "one identity failure");
     assertEqual(failures[0].department, "Roads", "the Roads row fails");
 });
+test("a quoted name keeps its comma and the cells after it", () => {
+    const period = parsePeriodRows(splitCsv(PERIOD_CSV.replace(/,Parks,/g, ',"Parks, Recreation",')));
+    const parks = period.filter((r) => r.period === "2025-02" && r.department === "Parks, Recreation")[0];
+    assert(parks !== undefined, "the 2025-02 Parks, Recreation row is read");
+    assertEqual(parks.opening, 1, "opening after the quoted name");
+    assertEqual(parks.closing, 2, "closing after the quoted name");
+    assertEqual(identityFailures(period).length, 0, "no identity failures with a quoted name");
+    assertEqual(totalCostCents(period), 70850, "grand total cents with a quoted name");
+    const category = parseCategoryRows(splitCsv(CATEGORY_CSV.replace("Graffiti,", '"Graffiti, Vandalism",')));
+    assertEqual(category[0].category, "Graffiti, Vandalism", "quoted category name");
+    assertEqual(category[0].closedCount, 2, "closed count after the quoted category");
+    assertEqual(formatHundredths(overallAvgDaysHundredths(category)), "11.22", "overall average with a quoted category");
+});
+test("a doubled quote inside a quoted cell reads as one quote", () => {
+    const table = splitCsv([
+        "category,closed_count,total_days,target_days,breaches",
+        '"Streetlight ""LED"", Main St",2,34,10,2',
+    ].join("\n"));
+    assertEqual(table[1].length, 5, "five cells in the row");
+    assertEqual(table[1][0], 'Streetlight "LED", Main St', "one quote of each pair and the comma kept");
+    assertEqual(parseCategoryRows(table)[0].breaches, 2, "breaches after the quoted cell");
+});
 function runTests() {
     const root = document.getElementById("results");
     if (!root) {
