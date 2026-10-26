@@ -62,9 +62,17 @@ UNDO_LOG_NAME = "undo_log.json"
 # number (the "IO" label is strong evidence). A bare number with no "IO" label
 # has to be at least 3 digits long, so we do not mistake a version number like
 # "v2" for an IO number. \b is a "word boundary".
+#
+# An "IO" standing on its own is tried before an "io" joined to a word, so the
+# "io" in a sender's name such as "Studio71" or "Radio 1" is not read as the
+# label. On its own means no letter touches it on the side away from the number.
 _IO_PATTERNS = [
-    re.compile(r"io[\s#_\-]*(\d{1,8})", re.IGNORECASE),  # IO 42, IO#12345, IO_24680
-    re.compile(r"(\d{1,8})[\s#_\-]*io", re.IGNORECASE),  # 12345-IO, 99001 io
+    # IO 42, IO#12345, IO_24680, then 12345-IO, 99001 io
+    re.compile(r"(?<![A-Za-z])io[\s#_\-]*(\d{1,8})", re.IGNORECASE),
+    re.compile(r"(\d{1,8})[\s#_\-]*io(?![A-Za-z])", re.IGNORECASE),
+    # acmeIO12345, then 12345IOacme
+    re.compile(r"io[\s#_\-]*(\d{1,8})", re.IGNORECASE),
+    re.compile(r"(\d{1,8})[\s#_\-]*io", re.IGNORECASE),
     # A bare number, last resort. We use look-arounds instead of \b because \b
     # counts the underscore as a letter, which would miss "13579_UMBRELLA".
     re.compile(r"(?<![A-Za-z0-9])(\d{3,8})(?![A-Za-z0-9])"),
@@ -76,6 +84,7 @@ def extract_io_number(filename):
 
     Examples:
         "IO 12345 Acme Corp.pdf"  -> "12345"
+        "Studio71 IO 12345.pdf"   -> "12345"
         "12345-Acme-IO.pdf"       -> "12345"
         "scanned_document.pdf"    -> None
     """

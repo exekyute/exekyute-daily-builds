@@ -96,6 +96,19 @@ class TestExtractIoNumber(unittest.TestCase):
         # Two digits are too short for a bare number, so this one needs the label.
         self.assertEqual(core.extract_io_number("Hooli 42 IO.pdf"), "00042")
 
+    def test_io_inside_a_sender_name_is_not_the_label(self):
+        # The "io" in Studio, Radio and Portfolio is part of the name, so the
+        # number after it is not the IO number.
+        self.assertEqual(core.extract_io_number("Studio71 IO 12345.pdf"), "12345")
+        self.assertEqual(core.extract_io_number("Radio 1 Media IO 54321.pdf"), "54321")
+        self.assertEqual(core.extract_io_number("Portfolio 2026 IO 12345.pdf"), "12345")
+        self.assertEqual(core.extract_io_number("Radio 1 Media 54321 IO.pdf"), "54321")
+
+    def test_io_label_joined_to_a_name(self):
+        # With no standalone IO in the name, an IO stuck to a word still counts.
+        self.assertEqual(core.extract_io_number("acmeIO12345.pdf"), "12345")
+        self.assertEqual(core.extract_io_number("AcmeIO42.pdf"), "00042")
+
     def test_bare_number_without_a_label(self):
         self.assertEqual(
             core.extract_io_number("acme_insertionorder_12345_FINAL_v2.pdf"), "12345")
