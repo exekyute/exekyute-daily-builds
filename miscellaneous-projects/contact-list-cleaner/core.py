@@ -254,7 +254,7 @@ def plan_clean(rows):
 
 def read_contacts(csv_path):
     """Read the input CSV into a list of raw dicts. The file is only ever read."""
-    with open(csv_path, newline="", encoding="utf-8") as f:
+    with open(csv_path, newline="", encoding="utf-8-sig") as f:
         return list(csv.DictReader(f))
 
 

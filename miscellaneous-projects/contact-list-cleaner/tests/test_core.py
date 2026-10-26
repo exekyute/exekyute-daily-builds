@@ -11,6 +11,7 @@ lets you change core.py later and instantly see if you broke something.
 
 import os
 import sys
+import tempfile
 import unittest
 
 # Make sure we can import core.py, which lives one folder up from this file.
@@ -120,6 +121,28 @@ class TestPlanClean(unittest.TestCase):
         plan = core.plan_clean(rows)
         self.assertEqual(len(plan.invalid_phones), 1)
         self.assertEqual(plan.invalid_phones[0]["phone"], "55512")
+
+
+class TestReadContacts(unittest.TestCase):
+    def test_an_excel_byte_order_mark_is_skipped(self):
+        # Excel's "CSV UTF-8" save puts a byte order mark before the first
+        # heading. It must not stick to "name", or every name reads as blank
+        # and the two Carol King rows stop merging.
+        text = ("name,email,phone,company,title\r\n"
+                "Carol King,,,Initech LLC,Coordinator\r\n"
+                "carol king,,,Initech LLC,Coordinator\r\n"
+                "Grace Hopper,grace@globex.com,5554567890,,\r\n")
+        with tempfile.TemporaryDirectory() as folder:
+            path = os.path.join(folder, "excel.csv")
+            with open(path, "wb") as f:
+                f.write(b"\xef\xbb\xbf" + text.encode("utf-8"))
+            rows = core.read_contacts(path)
+        self.assertEqual(rows[0]["name"], "Carol King")
+        plan = core.plan_clean(rows)
+        self.assertEqual(plan.rows_out, 2)              # the two Carols merged
+        self.assertEqual(len(plan.merged_groups), 1)
+        self.assertEqual(sorted(c["name"] for c in plan.clean_rows),
+                         ["Carol King", "Grace Hopper"])
 
 
 if __name__ == "__main__":

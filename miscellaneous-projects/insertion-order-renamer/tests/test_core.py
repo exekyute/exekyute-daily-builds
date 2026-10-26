@@ -155,6 +155,16 @@ class TestLoadLookup(TempFolderCase):
         missing = os.path.join(self.root, "companies.csv")
         self.assertEqual(core.load_lookup(missing), {})
 
+    def test_an_excel_byte_order_mark_is_skipped(self):
+        # Excel's "CSV UTF-8" save puts a byte order mark before the first
+        # heading. It must not stick to "io_number", or no row is read.
+        path = self.write_table(generate_samples.COMPANIES)
+        with open(path, "rb") as f:
+            data = f.read()
+        with open(path, "wb") as f:
+            f.write(b"\xef\xbb\xbf" + data)
+        self.assertEqual(core.load_lookup(path), LOOKUP)
+
 
 class TestResolveCompany(unittest.TestCase):
     def test_lookup_table_wins(self):

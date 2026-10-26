@@ -116,7 +116,7 @@ def load_lookup(csv_path):
     lookup = {}
     if not os.path.exists(csv_path):
         return lookup
-    with open(csv_path, newline="", encoding="utf-8") as f:
+    with open(csv_path, newline="", encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
             io_number = (row.get("io_number") or "").strip()
             company = (row.get("company") or "").strip()
