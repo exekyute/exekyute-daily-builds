@@ -221,7 +221,7 @@
   function renderReport() {
     var summary = L.summarize(validatedSubs(), state.asOf);
     var rowsHtml = summary.rows.map(function (r) {
-      return "<tr><td>" + r.sub_id + "</td><td>" + escapeHtml(r.vendor) + "</td><td>" + escapeHtml(r.plan) +
+      return "<tr><td>" + escapeHtml(r.sub_id) + "</td><td>" + escapeHtml(r.vendor) + "</td><td>" + escapeHtml(r.plan) +
         "</td><td class='num'>" + L.formatMoney(r.monthlyCents) + "</td><td class='num'>" + L.formatMoney(r.annualCents) +
         "</td><td class='num'>" + L.formatMoney(r.annualWasteCents) + "</td><td>" + r.renewalStatus +
         "</td><td>" + r.action + "</td></tr>";

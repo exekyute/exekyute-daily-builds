@@ -191,7 +191,7 @@
   function renderReport() {
     var result = audited();
     var body = result.rows.map(function (row) {
-      return "<tr><td>" + row.expense_id + "</td><td>" + escapeHtml(row.employee) + "</td><td>" + row.category +
+      return "<tr><td>" + escapeHtml(row.expense_id) + "</td><td>" + escapeHtml(row.employee) + "</td><td>" + row.category +
         "</td><td class='num'>" + A.formatMoney(row.amountCents) + "</td><td>" +
         (row.flags.length ? row.flags.join(", ") : "clean") + "</td><td>" + decisionFor(row) + "</td></tr>";
     }).join("");

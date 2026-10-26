@@ -13,6 +13,12 @@
 
   function money(v) { return T.formatMoney(v); }
 
+  function escapeHtml(text) {
+    return String(text).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
   function budgetFromTimeline(rows) {
     for (var i = rows.length - 1; i >= 0; i--) {
       if (rows[i].percent_complete > 0) {
@@ -69,7 +75,7 @@
       ["Estimate at completion", money(s.eac), T.statusClass(s.status)],
       ["Variance at completion", money(s.vac), s.vac < 0 ? "over-budget" : "on-track"],
       ["Holdback released", money(s.holdbackReleased), ""],
-      ["Status", s.status, T.statusClass(s.status)],
+      ["Status", escapeHtml(s.status), T.statusClass(s.status)],
     ];
     return cards.map(function (c) {
       return '<div class="card"><span class="card-label">' + c[0] + '</span>' +
@@ -82,7 +88,7 @@
       return "<tr><td>Week " + r.week + "</td><td class='num'>" + money(r.cost_to_date) +
         "</td><td class='num'>" + money(r.earned_value) + "</td><td class='num'>" + r.cpi.toFixed(4) +
         "</td><td class='num'>" + money(r.eac) + "</td><td class='num'>" + money(r.vac) +
-        "</td><td><span class='pill " + T.statusClass(r.status) + "'>" + r.status + "</span></td></tr>";
+        "</td><td><span class='pill " + T.statusClass(r.status) + "'>" + escapeHtml(r.status) + "</span></td></tr>";
     }).join("");
     return "<div class='table-wrap'><table class='data'><thead><tr><th>Period</th><th>Cost to date</th><th>Earned</th>" +
       "<th>CPI</th><th>EAC</th><th>VAC</th><th>Status</th></tr></thead><tbody>" + body + "</tbody></table></div>";
@@ -91,9 +97,9 @@
   function buildMilestoneTable(milestones) {
     if (!milestones || !milestones.length) { return ""; }
     var body = milestones.map(function (m) {
-      return "<tr><td>" + m.milestone_id + "</td><td>" + m.name + "</td><td class='num'>" + money(m.budget) +
+      return "<tr><td>" + escapeHtml(m.milestone_id) + "</td><td>" + escapeHtml(m.name) + "</td><td class='num'>" + money(m.budget) +
         "</td><td class='num'>" + money(m.actual_cost) + "</td><td class='num'>" + money(m.variance) +
-        "</td><td><span class='pill " + T.statusClass(m.status) + "'>" + m.status + "</span></td></tr>";
+        "</td><td><span class='pill " + T.statusClass(m.status) + "'>" + escapeHtml(m.status) + "</span></td></tr>";
     }).join("");
     return "<h2>Milestones</h2><div class='table-wrap'><table class='data'><thead><tr><th>ID</th><th>Milestone</th><th>Budget</th>" +
       "<th>Actual</th><th>Variance</th><th>Status</th></tr></thead><tbody>" + body + "</tbody></table></div>";
