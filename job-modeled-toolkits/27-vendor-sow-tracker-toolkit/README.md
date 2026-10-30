@@ -12,8 +12,8 @@ performance index, the estimate at completion, the variance, and the holdback. A
 browser view plots that timeline as a burn chart against the budget, with per-week and
 per-milestone tables. Each tool is self-contained and rule-based, with the rules
 written out in its own `spec.md`, and there is no framework, no build step, and no
-server. The sample data is synthetic, seeded so the SOW moves between on-track and
-over-budget across its milestones.
+server. The sample data is synthetic, seeded so the SOW moves between at-risk and
+over-budget across its weeks, with some milestones on budget and others over.
 
 ## The tools
 1. **[SOW engine](01-sow-engine/)** command-line Python that reads the milestones and
