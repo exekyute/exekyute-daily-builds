@@ -11,7 +11,7 @@
   var A = window.ExpenseAudit;
   var STORAGE_KEY = "expense-review-state-v1";
 
-  var state = { expenses: [], decisions: {}, filter: "all" };
+  var state = { expenses: [], decisions: decisionMap(), filter: "all" };
   var policy = null;
 
   function load() {
@@ -20,14 +20,23 @@
     try { stored = JSON.parse(window.localStorage.getItem(STORAGE_KEY)); } catch (e) { stored = null; }
     if (stored && Array.isArray(stored.expenses) && stored.expenses.length) {
       state.expenses = stored.expenses;
-      state.decisions = stored.decisions || {};
+      state.decisions = decisionMap(stored.decisions);
     } else {
       state.expenses = window.EXPENSE_SAMPLE.expenses.map(clone);
-      state.decisions = {};
+      state.decisions = decisionMap();
     }
   }
 
   function clone(obj) { return JSON.parse(JSON.stringify(obj)); }
+  // The decisions map has no prototype, so an expense ID such as __proto__ or
+  // toString is an ordinary key. Saved decisions are copied into a new one.
+  function decisionMap(from) {
+    var map = Object.create(null);
+    if (from && typeof from === "object") {
+      Object.keys(from).forEach(function (k) { map[k] = from[k]; });
+    }
+    return map;
+  }
   function persist() {
     try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* off */ }
   }
@@ -108,8 +117,9 @@
     state.decisions[id] = state.decisions[id] || {};
     state.decisions[id].decision = decision;
     persist();
-    var tr = document.querySelector('tr[data-id="' + id + '"]');
-    if (tr) { tr.className = tr.className.replace(/decision-\w+/, "decision-" + decision); }
+    Array.prototype.forEach.call(document.querySelectorAll("#rows tr"), function (tr) {
+      if (tr.dataset.id === id) { tr.className = tr.className.replace(/decision-\w+/, "decision-" + decision); }
+    });
     renderSummary(audited());
     applyFilter();
   }
@@ -171,7 +181,7 @@
       var rows = parseCSV(String(reader.result));
       if (!rows.length) { return; }
       state.expenses = rows;
-      state.decisions = {};
+      state.decisions = decisionMap();
       persist();
       renderTable();
       // A row that fails validation is left out of the queue, so the note names it
@@ -220,7 +230,7 @@
     });
     document.getElementById("reset").addEventListener("click", function () {
       state.expenses = window.EXPENSE_SAMPLE.expenses.map(clone);
-      state.decisions = {};
+      state.decisions = decisionMap();
       persist();
       renderTable();
       setText("note", "Reset to the sample expenses.");
