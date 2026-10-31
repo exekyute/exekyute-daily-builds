@@ -86,8 +86,8 @@ Why the order resolves the false friends:
   Commercial rather than Industrial.
 - **Rural and Resource before Mixed Use and Residential** so "Mixed Resource" and
   every "Rural Residential" land in Rural and Resource, not Mixed Use or
-  Residential. The `MR` prefix keeps the Mixed Resource family (including the one
-  polygon labelled "Mixed Use 1") together.
+  Residential. The `MR` prefix keeps the Mixed Resource family (including the 56
+  MR-1 polygons labelled "Mixed Use 1") together.
 - **Mixed Use before Commercial and Residential** so a combined
   "Residential/Minor Commercial" zone and the downtown, corridor, and centre
   designations read as Mixed Use.
