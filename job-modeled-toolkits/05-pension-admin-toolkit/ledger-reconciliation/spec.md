@@ -36,6 +36,7 @@ the amounts an employer records match the amounts the trustee holds.
 
 - A markdown variance table printed to the screen: Employee ID, Name, Internal, Trustee,
   Variance, Status.
+- One line per skipped row, naming its file (internal or trustee), row number and reason.
 - A summary line counting matched / variance / missing-each-side / duplicates / skipped rows.
 - The same table written to a CSV report file for the record.
 

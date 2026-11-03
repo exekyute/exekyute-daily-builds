@@ -1,8 +1,8 @@
 """Command-line entry point for the Ledger Reconciliation Tool.
 
 Reads the internal payroll file and the trustee file, compares them by Employee
-ID, prints a markdown variance table plus a summary line, and writes the same
-table to a CSV report.
+ID, prints a markdown variance table, any skipped rows and a summary line, and
+writes the same table to a CSV report.
 
 Example
 -------
@@ -92,6 +92,11 @@ def main(argv=None):
     print("============================")
     print(format_markdown_table(lines))
     print()
+    for side, ledger in (("internal", internal), ("trustee", trustee)):
+        for row_number, reason in ledger["skipped"]:
+            print(f"  skipped {side} row {row_number}: {reason}")
+    if internal["skipped"] or trustee["skipped"]:
+        print()
     print(
         "Summary: "
         f"{counts['Matched']} matched, "
