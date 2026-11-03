@@ -151,7 +151,8 @@ The stacked bar, built on `mart_landuse`.
    mappings are what the committed workbook stores.
 4. Back on the dashboard, right-click the `Zone Class` filter card and choose
    **Apply to Worksheets > All Using Related Data Sources**. The committed card is a
-   multiple-values dropdown.
+   **Multiple Values (list)** card, a column of checkboxes. The auto-generated Phone
+   layout switches it to **Multiple Values (dropdown)**.
 5. Remove the duplicate filter and legend cards the second sheet brings in, and keep
    one `Zone Class` filter card above one colour legend in the column down the right
    side.
