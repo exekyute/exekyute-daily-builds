@@ -37,9 +37,12 @@ class TestWeight(unittest.TestCase):
 
     def test_pounds_are_converted(self):
         self.assertEqual(scoring.normalize_weight_kg("26,455 LB"), Decimal("11999.8"))
+        self.assertEqual(scoring.normalize_weight_kg("26455lb"), Decimal("11999.8"))
+        self.assertEqual(scoring.normalize_weight_kg("26,455LB"), Decimal("11999.8"))
 
     def test_tonnes_are_converted(self):
         self.assertEqual(scoring.normalize_weight_kg("12.5 MT"), Decimal("12500.0"))
+        self.assertEqual(scoring.normalize_weight_kg("12.5MT"), Decimal("12500.0"))
 
     def test_rounds_half_up_to_one_decimal(self):
         self.assertEqual(scoring.normalize_weight_kg("11999.75"), Decimal("11999.8"))

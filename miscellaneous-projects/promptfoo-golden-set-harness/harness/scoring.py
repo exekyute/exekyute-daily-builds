@@ -102,9 +102,9 @@ def _quantize(value, places):
 def normalize_weight_kg(value):
     """Kilograms, rounded half up to one decimal.
 
-    A bare number is taken as kilograms. A number carrying a unit is converted, so a
-    model that answers "26455 lb" is scored on the weight it meant rather than on the
-    unit it left in the string.
+    A bare number is taken as kilograms. A unit written right after the number is
+    converted, so a model that answers "26455 lb" is scored on the weight it meant
+    rather than on the unit it left in the string.
     """
     text = _text(value)
     if text is None:
@@ -117,9 +117,10 @@ def normalize_weight_kg(value):
         amount = Decimal(match.group(0))
     except InvalidOperation:
         return INVALID
-    if re.search(r"\b(lb|lbs|pound|pounds)\b", lowered):
+    unit = re.sub(r"^[\s(\[-]+", "", lowered[match.end():])
+    if re.match(r"(lb|lbs|pound|pounds)\b", unit):
         amount = amount * POUNDS_TO_KG
-    elif re.search(r"\b(mt|tonne|tonnes|metric tons?)\b", lowered):
+    elif re.match(r"(mt|tonnes?|metric\s+(?:tons?|tonnes?))\b", unit):
         amount = amount * KG_PER_TONNE
     if amount < 0:
         return INVALID
