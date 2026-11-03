@@ -43,6 +43,9 @@ class ValidationTests(unittest.TestCase):
     def test_slugify(self):
         self.assertEqual(slugify("Amara Okafor"), "amara-okafor")
         self.assertEqual(slugify("  O'Brien,  Sean "), "o-brien-sean")
+        self.assertEqual(slugify("José Núñez"), "jose-nunez")
+        self.assertEqual(slugify("François Müller"), "francois-muller")
+        self.assertEqual(slugify("Søren Strauß"), "soren-strauss")
 
 
 class ResolveDocumentsTests(unittest.TestCase):

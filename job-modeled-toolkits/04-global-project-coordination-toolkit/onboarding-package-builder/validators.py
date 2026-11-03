@@ -6,6 +6,7 @@ reported clearly instead of crashing or building an empty folder.
 """
 
 import re
+import unicodedata
 
 from requirements import REGION_DOCUMENTS, ROLE_DOCUMENTS, known_regions, known_roles
 
@@ -38,9 +39,25 @@ def validate_role(raw):
     return role
 
 
+# Letters that NFKD does not split into a base letter and an accent.
+_PLAIN_LETTERS = str.maketrans({
+    "ß": "ss", "æ": "ae", "œ": "oe", "ø": "o", "ł": "l",
+    "đ": "d", "ð": "d", "þ": "th", "ı": "i", "ħ": "h",
+    "ə": "e", "ŧ": "t", "ǥ": "g",
+})
+
+
 def slugify(name):
-    """Turn a contractor name into a lowercase, hyphenated folder-safe slug."""
-    slug = re.sub(r"[^a-z0-9]+", "-", name.strip().lower()).strip("-")
+    """Turn a contractor name into a lowercase, hyphenated folder-safe slug.
+
+    Accented letters fold to their plain form first, so José Núñez becomes jose-nunez.
+    """
+    # Only letters and digits decompose, so a sign such as ™ stays a symbol.
+    decomposed = "".join(
+        unicodedata.normalize("NFKD", c) if c.isalnum() else c for c in name.strip()
+    ).lower()
+    unaccented = "".join(c for c in decomposed if not unicodedata.combining(c))
+    slug = re.sub(r"[^a-z0-9]+", "-", unaccented.translate(_PLAIN_LETTERS)).strip("-")
     return slug
 
 

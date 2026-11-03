@@ -29,7 +29,8 @@ the supported regions and roles live in `requirements.py`.
 ## Logic
 
 1. Validate and normalize the region, role, and name. The name becomes a lowercase hyphenated slug
-   (for example `Amara Okafor` becomes `amara-okafor`).
+   (for example `Amara Okafor` becomes `amara-okafor`). Accented letters fold to their plain form,
+   so `José Núñez` becomes `jose-nunez`.
 2. Resolve the required documents as base documents plus region documents plus role documents, in
    that order, with duplicates removed.
 3. If the vendor folder already exists, stop and report it. Nothing is copied, so existing files are
