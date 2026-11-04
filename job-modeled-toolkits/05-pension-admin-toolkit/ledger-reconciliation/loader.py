@@ -7,6 +7,7 @@ than silently overwritten, because a duplicate is itself a finding.
 """
 
 import csv
+import re
 from decimal import Decimal, InvalidOperation
 
 
@@ -16,7 +17,7 @@ class LedgerError(ValueError):
 
 def _parse_amount(raw):
     """Return (amount, error). Exactly one of the two is None."""
-    text = str(raw).strip()
+    text = "" if raw is None else str(raw).strip()
     if text == "":
         return None, "amount is blank"
     try:
@@ -56,7 +57,10 @@ def load_ledger(path, required_columns):
                 f"{path} is missing required column(s): {', '.join(missing)}."
             )
 
-        for row_number, row in enumerate(reader, start=2):  # row 1 is the header
+        for row in reader:
+            # first file line of the row; a quoted value can hold line breaks
+            breaks = sum(len(re.findall("\r\n?|\n", str(v))) for v in row.values())
+            row_number = reader.line_num - breaks
             employee_id = (row.get("employee_id") or "").strip()
             if employee_id == "":
                 skipped.append((row_number, "employee_id is blank"))
