@@ -65,5 +65,5 @@ The master `templates/` directory holds synthetic placeholder documents. The rul
   nothing.
 - **An unknown region** such as `MARS` is rejected with the list of supported regions.
 
-The `output/` folder ships empty (only a `.gitkeep`). Vendor folders are generated at run time and are
-not committed.
+The `output/` folder is not in the repository. The first build creates it, and the vendor folders
+built inside it at run time are not committed.
