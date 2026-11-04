@@ -16,6 +16,7 @@ the amounts an employer records match the amounts the trustee holds.
 ## Validation rules
 
 - Both files must contain their required columns. A missing column is a clear, immediate error.
+- `--tolerance` must be a number of 0 or more. Any other value is a clear, immediate error.
 - Every amount must be numeric. Rows with a blank or non-numeric amount are skipped and counted,
   not crashed on.
 - Employee IDs must be non-empty. Rows with a blank ID are skipped and counted.

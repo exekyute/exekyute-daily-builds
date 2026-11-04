@@ -14,7 +14,7 @@ Example
 import argparse
 import csv
 import sys
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 
 from loader import load_ledger, LedgerError
 from reconciler import reconcile, summarize
@@ -79,6 +79,16 @@ def main(argv=None):
 
     try:
         tolerance = Decimal(str(args.tolerance))
+    except InvalidOperation:
+        tolerance = None
+    if tolerance is None or not tolerance.is_finite() or tolerance < 0:
+        print(
+            f"Input error: --tolerance must be a number of 0 or more, not {args.tolerance!r}.",
+            file=sys.stderr,
+        )
+        return 1
+
+    try:
         internal = load_ledger(args.internal, required_columns=["employee_id", "name", "amount"])
         trustee = load_ledger(args.trustee, required_columns=["employee_id", "amount"])
     except LedgerError as error:
