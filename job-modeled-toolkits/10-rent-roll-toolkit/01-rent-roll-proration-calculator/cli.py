@@ -17,7 +17,7 @@ import argparse
 import csv
 import os
 import sys
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 
 import rent_roll_logic as logic
 import rent_roll_validation as validation
@@ -57,6 +57,19 @@ def parse_month(text):
             ["--month must be in YYYY-MM form, for example 2026-06"]
         )
     return year, month
+
+
+def parse_late_fee_rate(text):
+    """Parse the late fee rate. Raises ValidationError if it is not a number."""
+    try:
+        rate = Decimal(text)
+    except InvalidOperation:
+        rate = None
+    if rate is None or not rate.is_finite():
+        raise validation.ValidationError(
+            ["--late-fee-rate must be a number, for example 0.05"]
+        )
+    return rate
 
 
 def read_csv(path):
@@ -178,7 +191,7 @@ def main(argv=None):
 
     try:
         year, month = parse_month(args.month)
-        late_fee_rate = Decimal(args.late_fee_rate)
+        late_fee_rate = parse_late_fee_rate(args.late_fee_rate)
         header, rows = read_csv(args.input)
         validation.check_header(header)
         leases, issues = validation.validate_rows(header, rows)

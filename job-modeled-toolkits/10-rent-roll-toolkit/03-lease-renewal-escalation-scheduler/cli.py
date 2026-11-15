@@ -19,7 +19,7 @@ import csv
 import os
 import sys
 from datetime import datetime
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 
 import renewal_logic as logic
 import renewal_validation as validation
@@ -56,6 +56,19 @@ def parse_as_of(text):
         raise validation.ValidationError(
             ["--as-of must be in YYYY-MM-DD form, for example 2026-06-12"]
         )
+
+
+def parse_escalation_rate(text):
+    """Parse the escalation rate. Raises ValidationError if it is not a number."""
+    try:
+        rate = Decimal(text)
+    except InvalidOperation:
+        rate = None
+    if rate is None or not rate.is_finite():
+        raise validation.ValidationError(
+            ["--escalation-rate must be a number, for example 0.04"]
+        )
+    return rate
 
 
 def read_csv(path):
@@ -185,7 +198,7 @@ def main(argv=None):
 
     try:
         as_of = parse_as_of(args.as_of)
-        escalation_rate = Decimal(args.escalation_rate)
+        escalation_rate = parse_escalation_rate(args.escalation_rate)
         header, rows = read_csv(args.input)
         validation.check_header(header)
         leases, issues = validation.validate_rows(header, rows)
