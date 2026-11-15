@@ -106,7 +106,7 @@ def main(argv=None):
     total_called = sum(row["called_amount"] for row in allocations)
     print(
         f"Allocated {format(call_total.quantize(Decimal('0.01')), 'f')} "
-        f"across {len(allocations)} investors."
+        f"across {len(allocations)} investor{'' if len(allocations) == 1 else 's'}."
     )
     print(f"Sum of called amounts: {format(total_called, 'f')}")
     print(f"Allocation written to: {args.output}")
