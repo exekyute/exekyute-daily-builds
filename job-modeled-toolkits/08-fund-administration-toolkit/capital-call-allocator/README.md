@@ -64,7 +64,7 @@ nothing:
 python allocate.py --call-total 250000.00 --commitments sample_data/commitments_invalid.csv --output sample_data/allocation.csv
 ```
 
-It prints a numbered list of the problems (duplicate investor, missing field,
+It prints a bulleted list of the problems (duplicate investor, missing field,
 extra field, non-numeric commitment, negative commitment) and exits without
 producing an allocation file.
 
