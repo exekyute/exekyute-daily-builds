@@ -21,9 +21,12 @@ def _parse_amount(raw):
     if text == "":
         return None, "amount is blank"
     try:
-        return Decimal(text), None
+        amount = Decimal(text)
     except InvalidOperation:
+        amount = None
+    if amount is None or not amount.is_finite():
         return None, f"amount is not a number: {raw!r}"
+    return amount, None
 
 
 def load_ledger(path, required_columns):
